@@ -1,0 +1,5 @@
+import 'platform:/resource/sculptor-helloworld/src/main/resources/model.btdesign' 
+
+gui Universe for Universe {
+
+}

@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Universe Rich Client Plug-in
+Bundle-SymbolicName: org.fornax.cartridges.sculptor.examples.helloworld.richclient;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.fornax.cartridges.sculptor.examples.helloworld.richclient.UniversePlugin
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Eclipse-RegisterBuddy: org.fornax.cartridges.sculptor.richclient.lib, 
+ org.fornax.cartridges.sculptor.framework.richclient
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms,
+ org.eclipse.core.databinding,
+ org.eclipse.jface.databinding,
+ org.eclipse.core.databinding.beans,
+ org.eclipse.core.databinding.property,
+ org.fornax.cartridges.sculptor.richclient.lib,
+ org.fornax.cartridges.sculptor.framework.richclient
+Bundle-ClassPath: lib/sculptor-helloworld-client.jar,
+ .
+
