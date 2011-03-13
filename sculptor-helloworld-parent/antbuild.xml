@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<project name="sculptor-helloworld-parent" default="deploy-copy" basedir=".">
+
+	<property name="jboss.home" value="${env.JBOSS_HOME}"/>
+	<property name="jboss.server.config" value="default"/>
+	<property name="system.name" value="sculptor-helloworld"/>
+
+	<condition property="deploy.ear">
+		<available file="../${system.name}-ear"/>
+	</condition>
+
+	<condition property="deploy.war">
+		<and>
+			<not><isset property="deploy.ear"/></not>
+			<available file="../${system.name}-web"/>
+		</and>
+	</condition>
+
+	<condition property="deploy.touch" value="${system.name}-ear.ear" else="${system.name}-web.war">
+		<isset property="deploy.ear"/>
+	</condition>
+
+	<target name="deploy-copy">
+		<antcall target="deploy-copy-ear"/>
+		<antcall target="deploy-copy-war"/>
+	</target>
+
+	<target name="deploy-copy-ear" if="deploy.ear">
+		<ant dir="../${system.name}-ear" target="explode-ear" antfile="antbuild.xml" />
+		<ant dir="../${system.name}-ear" target="deploy-copy" antfile="antbuild.xml" />
+		<ant dir="../${system.name}-web" target="deploy-copy" antfile="antbuild.xml" />
+		<ant dir="../${system.name}" target="deploy-copy" antfile="antbuild.xml" />
+		<antcall target="touch" />
+	</target>
+
+	<target name="deploy-copy-war"  if="deploy.war">
+		<ant dir="../${system.name}-web" target="explode-war" antfile="antbuild.xml" />
+		<ant dir="../${system.name}-web" target="deploy-copy" antfile="antbuild.xml" />
+		<ant dir="../${system.name}" target="deploy-copy" antfile="antbuild.xml" />
+		<antcall target="touch" />
+	</target>
+
+	<target name="touch">
+		<touch>
+			<fileset
+				dir="${jboss.home}/server/${jboss.server.config}/deploy/${deploy.touch}"/>
+		</touch>
+	</target>
+
+</project>
