@@ -1,0 +1,60 @@
+«REM»
+ * Copyright 2007 The Fornax Project Team, including the original
+ * author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+«ENDREM»
+
+«IMPORT sculptormetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::dbhelper»
+«EXTENSION extensions::properties»
+
+«DEFINE eclipseLink FOR Application-»
+    «EXPAND mapping»
+«ENDDEFINE »
+
+«DEFINE header FOR Application »
+<?xml version="1.0" encoding="utf-8" ?>
+<entity-mappings
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="1.0">
+«ENDDEFINE »
+
+«DEFINE footer FOR Application »
+</entity-mappings>
+«ENDDEFINE »
+
+«DEFINE mapping FOR Application»
+«FILE getResourceDir("META-INF") + "orm.xml" TO_GEN_RESOURCES-»
+	«EXPAND header»
+	«EXPAND enumConverter FOREACH getAllEnums()»
+	«EXPAND footer»
+«ENDFILE »
+«ENDDEFINE»
+
+«DEFINE enumConverter FOR Enum»
+	«IF !isSimpleEnum()»
+	«REM»only data-type String is suppported now«ENDREM»
+<object-type-converter name="«name»" object-type="«getDomainPackage() + "." + name»" data-type="java.lang.String">
+	«EXPAND enumValue FOREACH values»;
+</object-type-converter>
+	«ENDIF»
+«ENDDEFINE »
+
+«DEFINE enumValue FOR EnumValue»
+	<conversion-value object-value="«name»" data-value="«getKeyEnumValue()»"/>
+«ENDDEFINE»
+
+
