@@ -1,0 +1,5 @@
+import 'classpath:/model.btdesign' 
+
+gui UniverseWeb for Universe {
+
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+
+<project name="sculptor-helloworld-web" default="deploy-copy" basedir=".">
+
+	<property name="jboss.home" value="${env.JBOSS_HOME}"/>
+	<property name="jboss.server.config" value="default"/>
+	<property name="system.name" value="sculptor-helloworld"/>
+
+	<property name="jboss.deploy.path" value="${jboss.home}/server/${jboss.server.config}/deploy"/>
+
+	<condition property="deploy.ear">
+		<available file="../${system.name}-ear"/>
+	</condition>
+
+	<condition property="deploy.war">
+		<and>
+			<not><isset property="deploy.ear"/></not>
+			<available file="../${system.name}-web"/>
+		</and>
+	</condition>
+
+	<condition property="deploy.path" value="${jboss.deploy.path}/${system.name}-ear.ear" else="${jboss.deploy.path}/${system.name}-web.war">
+		<isset property="deploy.ear"/>
+	</condition>
+
+	<condition property="deploy.war.path" value="${deploy.path}/${system.name}-web.war" else="${deploy.path}">
+		<isset property="deploy.ear"/>
+	</condition>
+
+	<condition property="deploy.exploded.path" value="${deploy.path}/META-INF/application.xml" else="${deploy.path}/WEB-INF/web.xml">
+		<isset property="deploy.ear"/>
+	</condition>
+
+	<target name="check-exploded-path-exists">
+		<available file="${deploy.exploded.path}"
+			property="exploded.path.exists"/>
+	</target>
+
+	<target name="deploy-copy" depends="check-exploded-path-exists" if="exploded.path.exists">
+		<copy
+			todir="${deploy.war.path}/WEB-INF/classes">
+			<fileset dir="target/classes">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy
+			todir="${deploy.war.path}/WEB-INF/lib">
+			<fileset dir="target/${system.name}-web/WEB-INF/lib">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy
+			todir="${deploy.war.path}">
+			<fileset dir="src/main/webapp">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="touch">
+		<touch>
+			<fileset
+				dir="${deploy.path}"/>
+		</touch>
+	</target>
+
+	<target name="explode-war" depends="check-exploded-path-exists" unless="exploded.path.exists" if="deploy.war">
+		<echo>Exploding WAR to ${deploy.war.path} ...</echo>
+		<copy
+			todir="${deploy.war.path}">
+			<fileset dir="target/${system.name}-web">
+				<include name="**/*"/>
+				<exclude name="WEB-INF/lib/${system.name}*.jar" />
+			</fileset>
+		</copy>
+		<antcall target="explode-jar"/>
+	</target>
+
+	<target name="explode-jar" if="deploy.war">
+		<unzip
+			src="target/${system.name}-web/WEB-INF/lib/${system.name}*.jar"
+			dest="${deploy.war.path}/WEB-INF/lib/${system.name}.jar"/>
+	</target>
+
+	<target name="undeploy" if="deploy.war">
+		<delete dir="${deploy.war.path}"/>
+	</target>
+
+	<target name="redeploy" if="deploy.war">
+		<antcall target="undeploy"/>
+		<antcall target="explode-war"/>
+	</target>
+
+	<target name="delete-generated">
+		<delete includeemptydirs="true">
+			<fileset dir="src/test/generated/java" includes="**/*"/>
+			<fileset dir="src/test/generated/resources" includes="**/*"/>
+			<fileset dir="src/generated/java" includes="**/*"/>
+			<fileset dir="src/generated/resources" includes="**/*"/>
+			<fileset dir="src/main/webapp/themes" includes="**/*"/>
+			<fileset dir="src/main/webapp/WEB-INF/flows" includes="**/*"/>
+			<fileset dir="src/main/webapp/WEB-INF/jsp/generated" includes="**/*"/>
+			<fileset dir="src/main/webapp/WEB-INF/tld" includes="**/*"/>
+			<fileset dir="src/main/webapp/WEB-INF" includes="applicationContext.xml"/>
+			<fileset dir="src/main/webapp/WEB-INF" includes="*-servlet-config.xml"/>
+			<fileset dir="src/main/webapp/WEB-INF" includes="*-webflow-config.xml"/>
+			<fileset dir="src/main/webapp/WEB-INF" includes="web.xml"/>
+		</delete>
+	</target>
+
+</project>
