@@ -1,0 +1,450 @@
+h1. Sculptor Messaging Tutorial
+
+In this tutorial we will look at the message Consumer features of Sculptor. We will use the [Hello World|2. Hello World Tutorial (CSC)] example as a baseline and add Consumers that unmarshall incoming XML messages and stores the resulting Domain Objects.
+
+Table of Contents:
+{toc}
+
+h2. Setup Project
+
+Setup the environment according to the [Archetype Tutorial|4. Archetype Tutorial (CSC)]. You need to use JBoss and deploy as EAR.
+
+h2. Add First Consumer
+
+We start by adding a Consumer that will store new Planets and update existing Planets. Add a Consumer and a ValueObject for the incoming message to {{model.btdesign}}
+
+{code}
+Consumer PlanetConsumer {
+    unmarshall to @PlanetMessage
+}
+
+ValueObject PlanetMessage {
+    package=consumer
+    not persistent
+    - List<@Planet> planets
+}
+{code}
+
+When you specify {{unmarshall to}} like this Sculptor will generate a [Castor|http://www.castor.org/]XML mapper, which will parse the incoming XML and create the specified Domain Objects. This automatic approach is based on naming conventions and it doesn't work for all XML structures. You can omit the {{unmarshall}} definition to be able to take care of the incoming XML text yourself. Either you can write the Castor mapping file manually or you can use some other XML parsing technique.
+
+{tip:title=XMLBeans}
+[XMLBeans|http://xmlbeans.apache.org/] is a good XML binding framework, which generates a Java classes from an XML schema.
+{tip}
+
+However, in this tutorial we will use the automatic Castor mapper.
+
+Generate code with
+{code}
+mvn generate-sources -Dfornax.generator.force.execution=true
+{code}
+Take a quick look at the generated artifacts:
+* {{PlanetConsumer}}
+* {{PlanetMessageMapper}}
+* {{PlanetMessage-mapping.xml}}
+
+h2. Write Test for XML Mapper
+
+Add a JUnit test for the {{PlanetMessageMapper}}.
+{code}
+public void testUnmarshall() throws Exception {
+    String message = createMessage();
+    PlanetMessageMapper mapper = new PlanetMessageMapper(message);
+    PlanetMessage planetMessage = mapper.getPlanetMessage();
+    assertEquals(3, planetMessage.getPlanets().size());
+    for (Planet p : planetMessage.getPlanets()) {
+        assertNotNull(p.getName());
+        assertNotNull(p.getMessage());
+    }
+}
+
+private String createMessage() {
+    String msg = "<?xml version='1.0' encoding='UTF-8'?>\n" +
+        "<h:planet-message \n" +
+        "    xmlns:h='http://www.helloworld.org/' " +
+        "xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' " +
+        "xsi:schemaLocation='http://www.helloworld.org/ " +
+        "http://www.helloworld.org/schemas/planet-message.xsd'" +
+        ">\n" +
+        "  <planet name='Mercury'><message>Hello from Mercury</message></planet>" +
+        "  <planet name='Venus'><message>Hello from Venus</message></planet>" +
+        "  <planet name='Earth'><message>Hello from Tellus</message></planet>" +
+        "</h:planet-message>\n";
+
+    return msg;
+}
+{code}
+
+When you run this you will get red bar due to schema validation. You have to add a schema for the XML...
+
+h2. Schema Validation
+
+The Castor XML mapper does XML schema validation of the incoming XML message. You need to define an XML schema and place it in {{src/main/resources/schemas}}. The schema is loaded from the classpath.
+The XML schema for the planet-message looks like this:
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:h="http://www.helloworld.org/" 
+  targetNamespace="http://www.helloworld.org/" 
+  elementFormDefault="unqualified">
+  <xsd:element name="planet-message">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="planet" type="h:planet" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="planet">
+    <xsd:sequence>
+      <xsd:element name="message" minOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="128"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" use="required">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="30"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+</xsd:schema>
+{code}
+
+Run {{PlanetMessageMapperTest}}. {color:green}Green{color} bar\! (y)
+
+Try that the schema validation really works by adding another test method and create some invalid XML as input to the Consumer.
+
+h2. Implement Consumer
+Now, when we have the XML stuff in place we can continue with the actual Consumer. We start with writing the test. A skeleton for the test class has already been generated, {{PlanetConsumerTest}}. Add testing code that looks like this:
+{code}
+public class PlanetConsumerTest extends IsolatedDatabaseTestCase {
+    private MessageConsumer planetConsumer;
+    private PlanetService planetService;
+
+    protected void setUp() throws Exception {
+        super.setUp();
+        planetConsumer = (MessageConsumer) getContext().
+            getBean(PlanetConsumerImplBase.BEAN_ID);
+        planetService = (PlanetService) getContext().
+            getBean(PlanetService.BEAN_ID);
+    }
+
+    protected String getDataSetFile() {
+        return "dbunit/PlanetConsumerTest.xml";
+    }
+
+    public void testConsume() throws Exception {
+        int before = getDbUnitConnection().countRows("planet");
+        assertEquals(2, before);
+        
+        String message = createMessage();
+        planetConsumer.consume(getServiceContext(), message);
+        
+        // two new, one updated
+        int after = getDbUnitConnection().countRows("planet");
+        assertEquals(before + 2, after);
+        
+        // verify updated greeting
+        String greeting = planetService.sayHello(getServiceContext(), "Earth");
+        assertEquals("Hello from Tellus", greeting);
+    }
+{code}
+
+Note the assert statements and the convenient way to count rows in the database.
+
+You can use the same XML in the createMessage method as in the previous {{PlanetMessageMapperTest}}.
+
+The initial test data in {{dbunit/PlanetConsumerTest.xml}} can look like this:
+{code}
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset> 
+  <PLANET id="1" name="Earth" message="Hello from Earth" version="1" /> 
+  <PLANET id="2" name="Mars" message="Hello from Mars" version="1" /> 
+</dataset>
+{code}
+
+To implement the Consumer you need to complete the consume method in {{PlanetConsumer}}. Try it yourself! Note that you might need dependency injection of Repository.
+{code}
+Consumer PlanetConsumer {
+    inject @PlanetRepository
+    unmarshall to @PlanetMessage
+}
+{code}
+
+h2. Add Second Consumer
+
+Often it is not possible to unmarshall the incoming XML directly to existing persistent Domain Objects. Then you need to unmarshall to intermediate non-persistent Value Objects. We will try this approach also. Let us add {{Moon}} as a new Entity.
+{code}
+Entity Planet {
+    String name key;
+    String message;
+    - Set<@Moon> moons opposite planet;
+
+    Repository PlanetRepository {
+        findByExample;
+        findByKeys;
+        save;
+    }
+}
+
+Entity Moon {
+    not aggregateRoot // belongs to Planet Aggregate
+    String name key;
+    - @Planet planet opposite moons;
+}
+{code}
+
+Add a Consumer to import Moon data.
+{code}
+Consumer MoonConsumer {
+    unmarshall to @MoonMessage
+}
+
+ValueObject MoonMessage {
+    package=consumer
+    not persistent
+    - List<@XmlMoon> moons
+}
+
+ValueObject XmlMoon {
+    package=consumer
+    not persistent
+    not immutable
+    String name required;
+    String planetName;
+}
+{code}
+
+The XML for this message can look like this:
+{code}
+<?xml version='1.0' encoding='UTF-8'?>
+<h:moon-message
+    xmlns:h='http://www.helloworld.org/' 
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+	xsi:schemaLocation='http://www.helloworld.org/ 
+	http://www.helloworld.org/schemas/moon-message.xsd'>
+  <moon name='Moon'><planet-name>Earth</planet-name></moon>
+  <moon name='Phobos'><planet-name>Mars</planet-name></moon>
+  <moon name='Deimos'><planet-name>Mars</planet-name></moon>
+</h:moon-message>
+{code}
+
+Note that the prefix {{Xml}} in {{XmlMoon}} is ignored in the mapping, and the XML element is named {{moon}}, not {{xml-moon}}.
+
+Write a test class for {{MoonMessageMapper}} in the same way as we did for {{PlanetMessageMapper}}.
+
+Add the following to {{MoonConsumerTest}}. Implement {{MoonConsumer}} and enjoy the feeling of {color:green}green{color} bar.
+
+{code:title=MoonConsumerTest}
+public class MoonConsumerTest extends AbstractDbUnitJpaTests {
+    private MessageConsumer moonConsumer;
+    private PlanetService planetService;
+
+    @Autowired
+    public void setMoonConsumer(MoonConsumer moonConsumer) {
+        this.moonConsumer = moonConsumer;
+    }
+
+    @Autowired
+    public void setPlanetService(PlanetService planetService) {
+        this.planetService = planetService;
+    }
+
+    @Test
+    public void testConsume() throws Exception {
+        int before = countRowsInTable("moon");
+        assertEquals(1, before);
+
+        String message = createMessage();
+        moonConsumer.consume(getServiceContext(), message);
+
+        // two new, one updated
+        int after = countRowsInTable("moon");
+        assertEquals(before + 2, after);
+
+        Planet earth = planetService.getPlanet(getServiceContext(), "Earth");
+        assertEquals(1, earth.getMoons().size());
+        Moon moon = earth.getMoons().iterator().next();
+        assertEquals("Moon", moon.getName());
+
+        Planet mars = planetService.getPlanet(getServiceContext(), "Mars");
+        assertEquals(2, mars.getMoons().size());
+        Set<String> marsMoonNames = (new PropertyCollector<String>("name")).
+            collectValues(mars.getMoons());
+        assertTrue(marsMoonNames.contains("Phobos"));
+        assertTrue(marsMoonNames.contains("Deimos"));
+    }
+
+    private String createMessage() {
+        String msg = "<?xml version='1.0' encoding='UTF-8'?>\n" +
+            "<h:moon-message \n" +
+            "    xmlns:h='http://www.helloworld.org/' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.helloworld.org/ http://www.helloworld.org/schemas/moon-message.xsd'" +
+            ">\n" +
+            "  <moon name='Moon'><planet-name>Earth</planet-name></moon>" +
+            "  <moon name='Phobos'><planet-name>Mars</planet-name></moon>" +
+            "  <moon name='Deimos'><planet-name>Mars</planet-name></moon>" +
+            "</h:moon-message>\n";
+
+        return msg;
+    }
+}
+{code}
+
+The test data in {{dbunit/MoonConsumerTest.xml}} can look like this:
+{code:title=MoonConsumerTest.xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset> 
+  <PLANET id="1" name="Earth" message="Hello from Earth" version="1" /> 
+  <PLANET id="2" name="Mars" message="Hello from Mars" version="1" /> 
+  <MOON id="1" name="Moon" planet="1" version="1" />
+</dataset>
+{code}
+
+h2. Try with Real Messages
+
+JUnit is great, but it is also exciting to try the real stuff. In this section we will deploy the application to JBoss and send real messages and store in the real database.
+
+Setup projects according to the [Java EE Tutorial|4. Archetype Tutorial (CSC)], if you haven't done so already. Build the EAR.  Setup database. Deploy EAR to JBoss. 
+
+The Message Driven Bean will send invalid messages, e.g. invalid XML schema validation, to a queue named {{universe.invalidMessageQueue}}. {{universe}} is the name of this application (defined in {{model.btdesign}}. Note that [Invalid Message Channel|http://www.enterpriseintegrationpatterns.com/InvalidMessageChannel.html] is not the same as [Dead Letter Channel|http://www.enterpriseintegrationpatterns.com/DeadLetterChannel.html].
+
+Before starting JBoss you need to add the invalid message queue to a JBoss configuration file. Add the following to {{server\default\deploy\jms\jbossmq-destinations-service.xml}}.
+{code}
+  <mbean code="org.jboss.mq.server.jmx.Queue"
+     name="jboss.mq.destination:service=Queue,name=universe.invalidMessageQueue">
+    <depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
+  </mbean>
+{code}
+
+Start JBoss!
+
+To send a message to JBoss you can use a main class like this.
+{code:title=SimpleSend}
+/**
+ * Simple main class to send a message to JBoss @ localhost.
+ * To be able to run this class you have to add the following two jars before other jars 
+ * in the classpath:
+ * <ul>
+ * <li>jboss-4.2.2.GA/client/jbossall-client.jar</li>
+ * <li>jboss-4.2.2.GA/client/log4j.jar</li>
+ * </ul>
+ */
+public class SimpleSend {
+
+    public static void main(String[] args) {
+
+        String message = createPlanetMessage();
+        String queueName = "queue/PlanetConsumer";
+//        String queueName = "queue/MoonConsumer";
+//        String message = createMoonMessage();
+        
+
+        QueueConnection queueConnection = null;
+
+        try {
+
+            // InitialContext for jboss
+            Properties properties = new Properties();
+            properties.put(Context.INITIAL_CONTEXT_FACTORY, 
+                    "org.jnp.interfaces.NamingContextFactory");
+            properties.put(Context.PROVIDER_URL, "jnp://localhost:1099");
+            InitialContext jndiContext = new InitialContext(properties);
+            
+            // lookup queue
+            QueueConnectionFactory queueConnectionFactory = 
+                (QueueConnectionFactory) jndiContext.lookup("ConnectionFactory");
+            Queue testQueue = (Queue) jndiContext.lookup(queueName);
+
+            queueConnection = queueConnectionFactory.createQueueConnection();
+            QueueSession queueSession = queueConnection.createQueueSession(false, 
+                    Session.AUTO_ACKNOWLEDGE);
+            QueueSender queueSender = queueSession.createSender(testQueue);
+            TextMessage textMessage = queueSession.createTextMessage();
+
+            textMessage.setText(message);
+            queueSender.send(textMessage);
+            System.out.println("Message sent");
+
+        } catch (NamingException nameEx) {
+            System.out.println("Naming error: " + nameEx);
+        } catch (javax.jms.JMSException jmsEx) {
+            System.out.println("JMS Exception: " + jmsEx.toString());
+        } finally {
+            if (queueConnection != null) {
+                try {
+                    queueConnection.close();
+                } catch (javax.jms.JMSException jmse) {
+                    // ignore
+                }
+            }
+        }
+    }
+    
+    private static String createPlanetMessage() {
+        String msg = "<?xml version='1.0' encoding='UTF-8'?>\n" +
+            "<h:planet-message \n" +
+            "    xmlns:h='http://www.helloworld.org/' " +
+            "xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' " +
+            "xsi:schemaLocation='http://www.helloworld.org/ " +
+            "http://www.helloworld.org/schemas/planet-message.xsd'" +
+            ">\n" +
+            "  <planet name='Mercury'><message>Hello from Mercury</message></planet>" +
+            "  <planet name='Venus'><message>Hello from Venus</message></planet>" +
+            "  <planet name='Earth'><message>Hello from Tellus</message></planet>" +
+            "  <planet name='Mars'><message>Hello from Mars</message></planet>" +
+            "</h:planet-message>\n";
+
+        return msg;
+    }
+    
+    private static String createMoonMessage() {
+        String msg = "<?xml version='1.0' encoding='UTF-8'?>\n" +
+            "<h:moon-message \n" +
+            "    xmlns:h='http://www.helloworld.org/' " +
+            "xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' " +
+            "xsi:schemaLocation='http://www.helloworld.org/ " +
+            "http://www.helloworld.org/schemas/moon-message.xsd'" +
+            ">\n" +
+            "  <moon name='Moon'><planet-name>Earth</planet-name></moon>" +
+            "  <moon name='Phobos'><planet-name>Mars</planet-name></moon>" +
+            "  <moon name='Deimos'><planet-name>Mars</planet-name></moon>" +
+            "</h:moon-message>\n";
+
+        return msg;
+    }
+}
+{code}
+
+To be able to run {{SimpleSend}} you have to add the following two jars before other jars in the classpath of the run confiuguration for SimpleSend:
+* jboss-4.2.2.GA/client/jbossall-client.jar
+* jboss-4.2.2.GA/client/log4j.jar
+
+Run {{SimpleSend}}.
+
+Open [http://localhost:8080/helloworld-web] in your browser to verify that the Planets from the incoming XML message have been stored. 
+
+Note that the default queue name is the same as the name of the Consumer, {{queue/PlanetConsumer}}. JBoss creates this queue automatically if it is not defined in {{jbossmq-destinations-service.xml}}. You can define another queue name in the DSL model.
+{code}
+Consumer PlanetConsumer {
+    inject @PlanetRepository
+    unmarshall to @PlanetMessage
+    queueName=queue/universe.planet
+}
+{code}
+
+h2. Source
+
+The complete source code for this tutorial is available in Subversion.
+
+Web Access (read only):
+* [http://fisheye3.cenqua.com/browse/fornax/trunk/cartridges/sculptor/sculptor-helloworld]
+
+Anonymous Access (read only):
+* [https://fornax.svn.sourceforge.net/svnroot/fornax/trunk/cartridges/sculptor/sculptor-helloworld]
+
+{rating:Rate this article}
