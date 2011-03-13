@@ -1,0 +1,51 @@
+Application Blog {
+    basePackage = org.fornax.cartridges.sculptor.test
+
+    Module core {
+    
+    	Service BlogPostService {
+    		getPostsInBlog delegates to BlogPostRepository.findPostsInBlog;
+    		getPostsWithGreatComments delegates to 
+    			BlogPostRepository.findPostsWithGreatComments;
+    	}
+
+        Entity BlogPost {
+            scaffold
+            - Blog inBlog
+            String slug key
+            String title
+            String body length="2000"
+            Date published nullable
+            - Author writtenBy
+            - List<Comment> comments opposite forPost
+            
+            Repository BlogPostRepository { 
+            	List<@BlogPost> findPostsInBlog(@Blog blog);
+            	List<@BlogPost> findPostsWithComments => AccessObject;
+            	List<@BlogPost> findPostsWithGreatComments;
+            	protected findByCondition;
+            }
+        }
+
+        ValueObject Comment {
+            not aggregateRoot
+            - BlogPost forPost opposite comments
+            String title
+            String body
+        }
+        
+        Entity Blog {
+            scaffold
+            String url key
+            String title
+            String intro length="300"
+            - Set<Author> writers
+        }
+
+        Entity Author {
+            scaffold
+            String name required
+            String emailAddress
+        }
+    }
+}

@@ -1,0 +1,21 @@
+import 'classpath:/model.btdesign' 
+
+gui Library for Library {
+	Module for media {
+		CreateTask for Library {
+			list media use attributes location, status
+		}
+		UpdateTask for Library {
+			list media use attributes location, status
+		}
+	}
+	Module for person {
+		ListTask for Person {
+			- name.first
+			- name.last
+			- birthDate
+			- sex
+			- ssn
+		}
+	}
+}

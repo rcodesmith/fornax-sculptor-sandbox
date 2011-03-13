@@ -1,0 +1,15 @@
+Application appengine {
+    basePackage=org.fornax.cartridges.sculptor.test
+
+    Module sample {
+    	
+    	Entity Planet {
+    		scaffold
+    		
+    		String name
+    		String message
+    	}
+    	
+    }
+       
+}
