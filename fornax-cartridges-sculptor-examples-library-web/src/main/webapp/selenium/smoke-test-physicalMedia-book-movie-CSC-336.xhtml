@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>smoke-test-physicalMedia-book-movie-CSC-336</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">smoke-test-physicalMedia-book-movie-CSC-336</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_status</td>
+	<td>PM9</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_location</td>
+	<td>PM9</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>back</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Book</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:book_title</td>
+	<td>B1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:book_isbn</td>
+	<td>B1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Create new Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Book</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:book_title</td>
+	<td>B2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:book_isbn</td>
+	<td>B2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Create new Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>B1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>B2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Movie</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_title</td>
+	<td>M1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_urlIMDB</td>
+	<td>M1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_playLength</td>
+	<td>11</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id21:movie_category</td>
+	<td>label=Action</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Create new Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>M1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Physical media created with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listBook</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>B2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>B1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listMovie</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>M1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>PM9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id20:j_id22:tbody_element']/tr/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=B2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=PM9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id26:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id25:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=B1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id25:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=M1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id25:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id24:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Edit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[@onclick=&quot;if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('j_id21'),{'j_id21:j_id85:2:j_id92':'j_id21:j_id85:2:j_id92','index':'2'},'');}return false&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id22:movie_playLength</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id22:movie_category</td>
+	<td>label=Comedy</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Update Movie confirmation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Update Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Physical medias</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listMovie</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id20:j_id22:tbody_element']/tr/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Detailed view of Movie with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>111</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>COMEDY</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id24:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Movies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Edit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Book</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id22:book_title</td>
+	<td>B3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id22:book_isbn</td>
+	<td>B3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Update Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Update Physical media confirmation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>B3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Physical medias</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Edit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Update Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:cancel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Physical medias</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id20:j_id22:tbody_element']/tr/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Detailed view of Physical media with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id24:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Physical medias</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Delete']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Are you sure you want to delete Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listMovie</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Movies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>M1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listBook</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Books</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

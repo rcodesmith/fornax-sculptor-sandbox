@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Create Person feature</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create Person feature</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/spring/person/createPerson</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:person_birthDate.day</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id20:person_birthDate.month</td>
+	<td>label=January</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:person_birthDate.year</td>
+	<td>1973</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id20:person_sex</td>
+	<td>label=Male</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:person_ssnNumber</td>
+	<td>7301227174</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:person_nameFirst</td>
+	<td>Andreas</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:person_nameLast</td>
+	<td>Källberg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Person created with id:</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

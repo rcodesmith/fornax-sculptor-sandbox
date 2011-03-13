@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>smoke-test-library-physicalMedia-CSC-335</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">smoke-test-library-physicalMedia-CSC-335</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:library_name</td>
+	<td>L1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Library created with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_location</td>
+	<td>PM1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_status</td>
+	<td>PM1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Physical media created with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_status</td>
+	<td>PM</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_location</td>
+	<td>PM2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>back</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_status</td>
+	<td>PM2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Physical media created with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id24:j_id26:tbody_element']/tr/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id24:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Libraries</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Edit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id21:ref_selectedMedia</td>
+	<td>label=PM1 | PM1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:addExistingMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Libraries</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id24:j_id26:tbody_element']/tr/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Detailed view of Library with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=PM1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Detailed view of Physical media with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id25:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id24:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:library_name</td>
+	<td>L2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id20:ref_selectedMedia</td>
+	<td>label=PM2 | PM2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:addExistingMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Library created with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id20:j_id22:tbody_element']/tr[2]/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=L2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Detailed view of Library with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>L2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id25:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Detailed view of Physical media with id</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id24:ok</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Physical medias</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id20:j_id22:tbody_element']/tr[2]/td[4]/a[1]/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id21:ref_selectedLibrary</td>
+	<td>label=L1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:addExistingLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Physical medias</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id24:j_id26:tbody_element']/tr/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>PM2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>PM1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tbody[@id='j_id24:j_id26:tbody_element']/tr[2]/td[3]/a[2]/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Are you sure you want to delete Library</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Libraries</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Delete']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Are you sure you want to delete Library</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/listPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>PM1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>PM2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Delete']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:yes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//img[@alt='Delete']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id22:yes</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

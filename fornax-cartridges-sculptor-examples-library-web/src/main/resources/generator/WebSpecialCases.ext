@@ -1,0 +1,6 @@
+import sculptormetamodel;
+import sculptorguimetamodel;
+
+extension extensions::helper;
+extension extensions::properties;
+extension extensions::dbhelper;

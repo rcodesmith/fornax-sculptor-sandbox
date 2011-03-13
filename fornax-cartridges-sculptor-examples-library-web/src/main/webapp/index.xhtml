@@ -1,0 +1,36 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html 	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a="ApplicationTaglib"
+>
+	<body>
+		<ui:composition template="WEB-INF/common/template.xhtml">
+			<ui:define name="content">
+				<h1><h:outputFormat value="#{msg['welcome.header']}">
+						<f:param value="#{msg['model.application.name']}" />
+					</h:outputFormat></h1>
+<p>
+<a href="#{request.contextPath}/spring/index.xhtml?locale=en">#{msg['language.en']}</a>
+&nbsp;&nbsp;&nbsp;
+<a href="#{request.contextPath}/spring/index.xhtml?locale=sv_SE">#{msg['language.sv']}</a>
+&nbsp;&nbsp;&nbsp;
+<a href="#{request.contextPath}/spring/index.xhtml?locale=es">#{msg['language.es']}</a>
+&nbsp;&nbsp;&nbsp;
+<!-- TODO : temporary commented away until we make it work
+<a href="#{request.contextPath}/spring/index.xhtml?theme=theme">#{msg['theme.default']}</a>
+&nbsp;&nbsp;&nbsp;
+<a href="#{request.contextPath}/spring/index.xhtml?theme=blue">#{msg['theme.blue']}</a>
+-->
+</p>
+<p>
+<img src="#{request.contextPath}/img/domainmodel.png" alt="Domain Model" border="0" />
+</p>
+			</ui:define>
+		</ui:composition>
+	</body>
+	</html>	
+	

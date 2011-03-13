@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>create-movie-cancel</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create-movie-cancel</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createPhysicalMedia</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_status</td>
+	<td>new</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:physicalMedia_location</td>
+	<td>foo</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Movie</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_title</td>
+	<td>foobar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_urlIMDB</td>
+	<td>foobar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_playLength</td>
+	<td>22</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id21:movie_category</td>
+	<td>label=Comedy</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:cancel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Create new Physical media</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create Movie</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_title</td>
+	<td>foobar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_urlIMDB</td>
+	<td>foobar</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id21:movie_playLength</td>
+	<td>33</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>j_id21:movie_category</td>
+	<td>label=Action</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id21:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>cancel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Create new Physical media</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

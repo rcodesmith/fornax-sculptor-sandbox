@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>create-library-validation</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create-library-validation</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:library_name</td>
+	<td>err</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>An internal fault occurred</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/spring/media/createLibrary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>j_id20:library_name</td>
+	<td>validation</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>j_id20:next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>save</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Create Library confirmation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Simulated validation exception</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

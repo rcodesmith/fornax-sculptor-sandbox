@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+    xmlns:ns0="http://www.w3.org/2001/XMLSchema-instance"
+    ns0:schemaLocation="http://www.springframework.org/schema/webflow   http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+    parent="media/listLibraryBase">
+    <view-state id="list">
+        <transition on="filterLibrary" to="listByFilter" />
+    </view-state>
+    <view-state id="listByFilter" model="listLibraryForm"
+        view="/WEB-INF/flows/media/listLibrary/list.xhtml" parent="media/listLibraryBase#list">
+        <on-render>
+            <evaluate
+                expression="listLibraryAction.findByFilter(flowRequestContext)" />
+        </on-render>
+        
+    </view-state>
+</flow>
