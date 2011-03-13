@@ -1,0 +1,113 @@
+Application Customer {
+    basePackage=org.customer
+
+    Module inquiry {
+    	
+    	Resource FrontResource {
+    		String show path="/front" return="front/index";
+    	}
+    	
+    	Resource InquiryResource {
+    		inject @InquiryService
+    		inject @OfferService
+    		createForm;
+    		create(@Inquiry inquiry, BindingResult result);
+    		show(IDTYPE id, ModelMap modelMap) throws InquiryNotFoundException;
+    		showAll => InquiryService.findAll;
+    		void sendInquiry(ModelMap modelMap, Long inquiryId, HttpServletResponse response) 
+    			throws java.io.IOException, InquiryNotFoundException
+    			POST path="/inquiry/sendInquiry";
+    	}
+    
+    	Service InquiryService {
+    		sendInquiry => @InquiryRepository.sendInquiry;
+    		findAll => @InquiryRepository.findAll;
+    	}
+    
+        Entity Inquiry {
+        	not optimisticLocking
+        	scaffold
+        	gap
+        	String message
+        	String ownerEmail nullable
+
+        	- Set<@Supplier> sentToSuppliers
+        	Boolean sendDone
+        	protected Integer sendAttemptCounter
+        
+        	Repository InquiryRepository {
+        		inject @SupplierRepository
+        		boolean sendInquiry(Key id) throws InquiryNotFoundException;
+        		findAll;
+        	}
+        }
+        
+        Resource OfferResource {
+        	inject @OfferService
+        	inject @InquiryService
+        	inject @SupplierService
+        	ModelAndView receiveOffer(long inquiryId, String message, String supplierName)
+            	throws InquiryNotFoundException, SupplierNotFoundException
+            	POST path="/inquiry/{inquiryId}/offer";
+            String show(Long inquiryId, Long offerId, ModelMap modelMap) 
+            	throws OfferNotFoundException, InquiryNotFoundException, SupplierNotFoundException
+            	path="/inquiry/{inquiryId}/offer/{offerId}";
+        }
+        
+        Service OfferService {
+        	save => @OfferRepository.save;
+        	findById => @OfferRepository.findById;
+        	findByRelatedInquiry => @OfferRepository.findByRelatedInquiry;
+        }
+        
+        Entity Offer {
+        	not optimisticLocking
+        	
+        	- @Supplier fromSupplier
+        	- @Inquiry relatedInquiry
+        	String message
+        	String supplierName
+        	
+        	Repository OfferRepository {
+        		Set<@Offer> findByRelatedInquiry(Key inquiryKey);
+        		save;
+        		findById;
+        		protected findByQuery;
+        	} 
+        }
+        
+        Resource SupplierResource {
+        	createForm;
+        	create(@SupplierForm supplier, BindingResult result);
+        	show => SupplierService.findById;
+        }
+        
+    	Service SupplierService {
+    		findByName => @SupplierRepository.findByKey;
+    		findById => @SupplierRepository.findById;
+    	}
+
+		Entity Supplier {
+			scaffold
+			String name key
+			String url
+			
+			Repository SupplierRepository {
+				findByKey;
+				findById;
+			}
+		}
+		
+		ValueObject SupplierForm {
+    		package=rest
+    		not persistent
+    		not immutable
+    		
+			String name
+			String url
+		}
+		
+		
+    }
+    
+}
