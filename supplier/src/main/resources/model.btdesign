@@ -1,0 +1,76 @@
+Application supplier {
+    basePackage=org.supplier
+
+
+	Module sales {
+		
+		Resource FrontResource {
+    		String show path="/front" return="front/index";
+    	}
+    	
+    	Resource InquiryResource {
+    		inject @SalesmanService
+    		createForm;
+    		ModelAndView receiveInquiry(String message, String customer, String replyUrl) POST;
+    		show => InquiryService.findById;
+    		showAll hint="params=filter=viewAll" => InquiryService.findAll;
+    		showLatest hint="params=filter=viewLatest" return="inquiry/showlist" 
+    			=> InquiryService.findLatestInquires;
+    		showUnHandled hint="params=filter=viewUnHandled" return="inquiry/showlist"
+    			=> InquiryService.findUnHandledInquires;
+    	}
+    	
+		Service InquiryService {
+          findLatestInquires => @InquiryRepository.findLatestInquires;
+          findUnHandledInquires => @InquiryRepository.findUnHandledInquires;
+          sendOfferToCustomer => @InquiryRepository.sendOfferToCustomer;
+          findById => @InquiryRepository.findById;
+          findAll => @InquiryRepository.findAll;
+        }
+   
+
+        Entity Inquiry {
+        	scaffold
+        	String message
+        	String customer
+        	String replyUrl
+        	- @Offer offer nullable
+        	Repository InquiryRepository {
+            	List<@Inquiry> findLatestInquires => AccessObject;
+            	List<@Inquiry> findUnHandledInquires => AccessObject;
+            	@Inquiry sendOfferToCustomer(@Inquiry inquiry);
+            	findById;
+            	findAll;
+          	}
+        }
+        
+        Resource OfferResource {
+        	inject @InquiryService
+        	createForm(Long id) path="/inquiry/{id}/offer/form" return="inquiry/createOffer";
+        	ModelAndView createOffer(Long id, String comment, String fee) POST path="/inquiry/{id}/offer";
+        	ModelAndView sendToCustomer(Long id, ModelMap modelMap) path="/inquiry/{id}/offer" hint="params=sendToCustomer=true";
+        	
+        }
+        
+        BasicType Offer {
+        	String fee
+        	String comment
+        	String isSent nullable
+        	String givenBy
+        }
+        
+        Resource SalesmanResource {
+        	scaffold
+        }
+        
+        Service SalesmanService {
+        }
+        
+        Entity Salesman {
+        	scaffold
+        	String name
+        	String emailAddress
+        }
+       
+    }
+}
