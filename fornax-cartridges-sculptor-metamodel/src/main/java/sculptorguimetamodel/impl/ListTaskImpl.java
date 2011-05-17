@@ -33,124 +33,124 @@ import sculptormetamodel.ServiceOperation;
  */
 public class ListTaskImpl extends UserTaskImpl implements ListTask {
 	/**
-     * The cached value of the '{@link #getSearchDOWith() <em>Search DO With</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSearchDOWith() <em>Search DO With</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSearchDOWith()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSearchDOWith()
+	 * @generated
+	 * @ordered
+	 */
 	protected ServiceOperation searchDOWith;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ListTaskImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptorguimetamodelPackage.Literals.LIST_TASK;
-    }
+		return SculptorguimetamodelPackage.Literals.LIST_TASK;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ServiceOperation getSearchDOWith() {
-        if (searchDOWith != null && searchDOWith.eIsProxy()) {
-            InternalEObject oldSearchDOWith = (InternalEObject)searchDOWith;
-            searchDOWith = (ServiceOperation)eResolveProxy(oldSearchDOWith);
-            if (searchDOWith != oldSearchDOWith) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH, oldSearchDOWith, searchDOWith));
-            }
-        }
-        return searchDOWith;
-    }
+		if (searchDOWith != null && searchDOWith.eIsProxy()) {
+			InternalEObject oldSearchDOWith = (InternalEObject)searchDOWith;
+			searchDOWith = (ServiceOperation)eResolveProxy(oldSearchDOWith);
+			if (searchDOWith != oldSearchDOWith) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH, oldSearchDOWith, searchDOWith));
+			}
+		}
+		return searchDOWith;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ServiceOperation basicGetSearchDOWith() {
-        return searchDOWith;
-    }
+		return searchDOWith;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setSearchDOWith(ServiceOperation newSearchDOWith) {
-        ServiceOperation oldSearchDOWith = searchDOWith;
-        searchDOWith = newSearchDOWith;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH, oldSearchDOWith, searchDOWith));
-    }
+		ServiceOperation oldSearchDOWith = searchDOWith;
+		searchDOWith = newSearchDOWith;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH, oldSearchDOWith, searchDOWith));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
-                if (resolve) return getSearchDOWith();
-                return basicGetSearchDOWith();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
+				if (resolve) return getSearchDOWith();
+				return basicGetSearchDOWith();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
-                setSearchDOWith((ServiceOperation)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
+				setSearchDOWith((ServiceOperation)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
-                setSearchDOWith((ServiceOperation)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
+				setSearchDOWith((ServiceOperation)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
-                return searchDOWith != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.LIST_TASK__SEARCH_DO_WITH:
+				return searchDOWith != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ListTaskImpl

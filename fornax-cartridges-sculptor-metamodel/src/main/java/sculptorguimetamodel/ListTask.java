@@ -26,29 +26,29 @@ import sculptormetamodel.ServiceOperation;
  */
 public interface ListTask extends UserTask {
 	/**
-     * Returns the value of the '<em><b>Search DO With</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Search DO With</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Search DO With</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Search DO With</em>' reference.
-     * @see #setSearchDOWith(ServiceOperation)
-     * @see sculptorguimetamodel.SculptorguimetamodelPackage#getListTask_SearchDOWith()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Search DO With</em>' reference.
+	 * @see #setSearchDOWith(ServiceOperation)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getListTask_SearchDOWith()
+	 * @model
+	 * @generated
+	 */
 	ServiceOperation getSearchDOWith();
 
 	/**
-     * Sets the value of the '{@link sculptorguimetamodel.ListTask#getSearchDOWith <em>Search DO With</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link sculptorguimetamodel.ListTask#getSearchDOWith <em>Search DO With</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Search DO With</em>' reference.
-     * @see #getSearchDOWith()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Search DO With</em>' reference.
+	 * @see #getSearchDOWith()
+	 * @generated
+	 */
 	void setSearchDOWith(ServiceOperation value);
 
 } // ListTask

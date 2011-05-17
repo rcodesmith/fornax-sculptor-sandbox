@@ -1,0 +1,7 @@
+target
+.checksum.txt
+.ignore-checksum.txt
+generated
+bin
+src-gen
+plugin.xml_gen

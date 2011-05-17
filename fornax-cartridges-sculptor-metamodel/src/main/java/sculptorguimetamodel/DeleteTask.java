@@ -27,55 +27,55 @@ import sculptormetamodel.ServiceOperation;
  */
 public interface DeleteTask extends UserTask {
 	/**
-     * Returns the value of the '<em><b>Find DO With</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Find DO With</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Find DO With</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Find DO With</em>' reference.
-     * @see #setFindDOWith(ServiceOperation)
-     * @see sculptorguimetamodel.SculptorguimetamodelPackage#getDeleteTask_FindDOWith()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Find DO With</em>' reference.
+	 * @see #setFindDOWith(ServiceOperation)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getDeleteTask_FindDOWith()
+	 * @model
+	 * @generated
+	 */
 	ServiceOperation getFindDOWith();
 
 	/**
-     * Sets the value of the '{@link sculptorguimetamodel.DeleteTask#getFindDOWith <em>Find DO With</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link sculptorguimetamodel.DeleteTask#getFindDOWith <em>Find DO With</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Find DO With</em>' reference.
-     * @see #getFindDOWith()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Find DO With</em>' reference.
+	 * @see #getFindDOWith()
+	 * @generated
+	 */
 	void setFindDOWith(ServiceOperation value);
 
 	/**
-     * Returns the value of the '<em><b>Delete DO With</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Delete DO With</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Delete DO With</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Delete DO With</em>' reference.
-     * @see #setDeleteDOWith(ServiceOperation)
-     * @see sculptorguimetamodel.SculptorguimetamodelPackage#getDeleteTask_DeleteDOWith()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Delete DO With</em>' reference.
+	 * @see #setDeleteDOWith(ServiceOperation)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getDeleteTask_DeleteDOWith()
+	 * @model
+	 * @generated
+	 */
 	ServiceOperation getDeleteDOWith();
 
 	/**
-     * Sets the value of the '{@link sculptorguimetamodel.DeleteTask#getDeleteDOWith <em>Delete DO With</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link sculptorguimetamodel.DeleteTask#getDeleteDOWith <em>Delete DO With</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Delete DO With</em>' reference.
-     * @see #getDeleteDOWith()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Delete DO With</em>' reference.
+	 * @see #getDeleteDOWith()
+	 * @generated
+	 */
 	void setDeleteDOWith(ServiceOperation value);
 
 } // DeleteTask

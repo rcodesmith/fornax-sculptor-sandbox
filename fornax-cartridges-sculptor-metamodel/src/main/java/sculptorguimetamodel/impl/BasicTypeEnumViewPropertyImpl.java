@@ -33,124 +33,124 @@ import sculptormetamodel.Reference;
  */
 public class BasicTypeEnumViewPropertyImpl extends EnumViewPropertyImpl implements BasicTypeEnumViewProperty {
 	/**
-     * The cached value of the '{@link #getBasicTypeReference() <em>Basic Type Reference</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBasicTypeReference() <em>Basic Type Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getBasicTypeReference()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBasicTypeReference()
+	 * @generated
+	 * @ordered
+	 */
 	protected Reference basicTypeReference;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected BasicTypeEnumViewPropertyImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptorguimetamodelPackage.Literals.BASIC_TYPE_ENUM_VIEW_PROPERTY;
-    }
+		return SculptorguimetamodelPackage.Literals.BASIC_TYPE_ENUM_VIEW_PROPERTY;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Reference getBasicTypeReference() {
-        if (basicTypeReference != null && basicTypeReference.eIsProxy()) {
-            InternalEObject oldBasicTypeReference = (InternalEObject)basicTypeReference;
-            basicTypeReference = (Reference)eResolveProxy(oldBasicTypeReference);
-            if (basicTypeReference != oldBasicTypeReference) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE, oldBasicTypeReference, basicTypeReference));
-            }
-        }
-        return basicTypeReference;
-    }
+		if (basicTypeReference != null && basicTypeReference.eIsProxy()) {
+			InternalEObject oldBasicTypeReference = (InternalEObject)basicTypeReference;
+			basicTypeReference = (Reference)eResolveProxy(oldBasicTypeReference);
+			if (basicTypeReference != oldBasicTypeReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE, oldBasicTypeReference, basicTypeReference));
+			}
+		}
+		return basicTypeReference;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Reference basicGetBasicTypeReference() {
-        return basicTypeReference;
-    }
+		return basicTypeReference;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setBasicTypeReference(Reference newBasicTypeReference) {
-        Reference oldBasicTypeReference = basicTypeReference;
-        basicTypeReference = newBasicTypeReference;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE, oldBasicTypeReference, basicTypeReference));
-    }
+		Reference oldBasicTypeReference = basicTypeReference;
+		basicTypeReference = newBasicTypeReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE, oldBasicTypeReference, basicTypeReference));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
-                if (resolve) return getBasicTypeReference();
-                return basicGetBasicTypeReference();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
+				if (resolve) return getBasicTypeReference();
+				return basicGetBasicTypeReference();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
-                setBasicTypeReference((Reference)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
+				setBasicTypeReference((Reference)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
-                setBasicTypeReference((Reference)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
+				setBasicTypeReference((Reference)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
-                return basicTypeReference != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY__BASIC_TYPE_REFERENCE:
+				return basicTypeReference != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //BasicTypeEnumViewPropertyImpl

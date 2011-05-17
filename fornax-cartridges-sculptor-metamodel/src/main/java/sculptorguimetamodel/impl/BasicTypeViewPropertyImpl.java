@@ -35,183 +35,183 @@ import sculptormetamodel.Reference;
  */
 public class BasicTypeViewPropertyImpl extends ViewDataPropertyImpl implements BasicTypeViewProperty {
     /**
-     * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReference()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReference()
+	 * @generated
+	 * @ordered
+	 */
     protected Reference reference;
 
     /**
-     * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAttribute()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAttribute()
+	 * @generated
+	 * @ordered
+	 */
     protected Attribute attribute;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected BasicTypeViewPropertyImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptorguimetamodelPackage.Literals.BASIC_TYPE_VIEW_PROPERTY;
-    }
+		return SculptorguimetamodelPackage.Literals.BASIC_TYPE_VIEW_PROPERTY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Reference getReference() {
-        if (reference != null && reference.eIsProxy()) {
-            InternalEObject oldReference = (InternalEObject)reference;
-            reference = (Reference)eResolveProxy(oldReference);
-            if (reference != oldReference) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE, oldReference, reference));
-            }
-        }
-        return reference;
-    }
+		if (reference != null && reference.eIsProxy()) {
+			InternalEObject oldReference = (InternalEObject)reference;
+			reference = (Reference)eResolveProxy(oldReference);
+			if (reference != oldReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE, oldReference, reference));
+			}
+		}
+		return reference;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Reference basicGetReference() {
-        return reference;
-    }
+		return reference;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setReference(Reference newReference) {
-        Reference oldReference = reference;
-        reference = newReference;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE, oldReference, reference));
-    }
+		Reference oldReference = reference;
+		reference = newReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE, oldReference, reference));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Attribute getAttribute() {
-        if (attribute != null && attribute.eIsProxy()) {
-            InternalEObject oldAttribute = (InternalEObject)attribute;
-            attribute = (Attribute)eResolveProxy(oldAttribute);
-            if (attribute != oldAttribute) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE, oldAttribute, attribute));
-            }
-        }
-        return attribute;
-    }
+		if (attribute != null && attribute.eIsProxy()) {
+			InternalEObject oldAttribute = (InternalEObject)attribute;
+			attribute = (Attribute)eResolveProxy(oldAttribute);
+			if (attribute != oldAttribute) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE, oldAttribute, attribute));
+			}
+		}
+		return attribute;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Attribute basicGetAttribute() {
-        return attribute;
-    }
+		return attribute;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setAttribute(Attribute newAttribute) {
-        Attribute oldAttribute = attribute;
-        attribute = newAttribute;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE, oldAttribute, attribute));
-    }
+		Attribute oldAttribute = attribute;
+		attribute = newAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE, oldAttribute, attribute));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
-                if (resolve) return getReference();
-                return basicGetReference();
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
-                if (resolve) return getAttribute();
-                return basicGetAttribute();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
+				if (resolve) return getReference();
+				return basicGetReference();
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
+				if (resolve) return getAttribute();
+				return basicGetAttribute();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
-                setReference((Reference)newValue);
-                return;
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
-                setAttribute((Attribute)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
+				setReference((Reference)newValue);
+				return;
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
+				setAttribute((Attribute)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
-                setReference((Reference)null);
-                return;
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
-                setAttribute((Attribute)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
+				setReference((Reference)null);
+				return;
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
+				setAttribute((Attribute)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
-                return reference != null;
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
-                return attribute != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__REFERENCE:
+				return reference != null;
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY__ATTRIBUTE:
+				return attribute != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //BasicTypeViewPropertyImpl

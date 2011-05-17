@@ -28,453 +28,589 @@ import sculptormetamodel.TypedElement;
  */
 public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	/**
-     * The cached model package.
-     * <!-- begin-user-doc -->
+	 * The cached model package.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected static SculptorguimetamodelPackage modelPackage;
 
 	/**
-     * Creates an instance of the adapter factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SculptorguimetamodelAdapterFactory() {
-        if (modelPackage == null) {
-            modelPackage = SculptorguimetamodelPackage.eINSTANCE;
-        }
-    }
+		if (modelPackage == null) {
+			modelPackage = SculptorguimetamodelPackage.eINSTANCE;
+		}
+	}
 
 	/**
-     * Returns whether this factory is applicable for the type of the object.
-     * <!-- begin-user-doc -->
+	 * Returns whether this factory is applicable for the type of the object.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-     * @return whether this factory is applicable for the type of the object.
-     * @generated
-     */
+	 * @return whether this factory is applicable for the type of the object.
+	 * @generated
+	 */
 	public boolean isFactoryForType(Object object) {
-        if (object == modelPackage) {
-            return true;
-        }
-        if (object instanceof EObject) {
-            return ((EObject)object).eClass().getEPackage() == modelPackage;
-        }
-        return false;
-    }
+		if (object == modelPackage) {
+			return true;
+		}
+		if (object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
+		}
+		return false;
+	}
 
 	/**
-     * The switch that delegates to the <code>createXXX</code> methods.
-     * <!-- begin-user-doc -->
+	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SculptorguimetamodelSwitch modelSwitch =
 		new SculptorguimetamodelSwitch() {
-            public Object caseGuiApplication(GuiApplication object) {
-                return createGuiApplicationAdapter();
-            }
-            public Object caseGuiModule(GuiModule object) {
-                return createGuiModuleAdapter();
-            }
-            public Object caseUserTask(UserTask object) {
-                return createUserTaskAdapter();
-            }
-            public Object caseCreateTask(CreateTask object) {
-                return createCreateTaskAdapter();
-            }
-            public Object caseUpdateTask(UpdateTask object) {
-                return createUpdateTaskAdapter();
-            }
-            public Object caseViewTask(ViewTask object) {
-                return createViewTaskAdapter();
-            }
-            public Object caseListTask(ListTask object) {
-                return createListTaskAdapter();
-            }
-            public Object caseDeleteTask(DeleteTask object) {
-                return createDeleteTaskAdapter();
-            }
-            public Object caseSubTaskTransition(SubTaskTransition object) {
-                return createSubTaskTransitionAdapter();
-            }
-            public Object caseViewDataProperty(ViewDataProperty object) {
-                return createViewDataPropertyAdapter();
-            }
-            public Object caseTmpReferenceHolder(TmpReferenceHolder object) {
-                return createTmpReferenceHolderAdapter();
-            }
-            public Object caseTmpSubTaskTransitionHolder(TmpSubTaskTransitionHolder object) {
-                return createTmpSubTaskTransitionHolderAdapter();
-            }
-            public Object caseReferenceTarget(ReferenceTarget object) {
-                return createReferenceTargetAdapter();
-            }
-            public Object caseReferenceViewProperty(ReferenceViewProperty object) {
-                return createReferenceViewPropertyAdapter();
-            }
-            public Object caseAttributeViewProperty(AttributeViewProperty object) {
-                return createAttributeViewPropertyAdapter();
-            }
-            public Object caseBasicTypeViewProperty(BasicTypeViewProperty object) {
-                return createBasicTypeViewPropertyAdapter();
-            }
-            public Object caseEnumViewProperty(EnumViewProperty object) {
-                return createEnumViewPropertyAdapter();
-            }
-            public Object caseBasicTypeEnumViewProperty(BasicTypeEnumViewProperty object) {
-                return createBasicTypeEnumViewPropertyAdapter();
-            }
-            public Object caseUserTaskGroup(UserTaskGroup object) {
-                return createUserTaskGroupAdapter();
-            }
-            public Object caseDerivedReferenceViewProperty(DerivedReferenceViewProperty object) {
-                return createDerivedReferenceViewPropertyAdapter();
-            }
-            public Object caseAddTask(AddTask object) {
-                return createAddTaskAdapter();
-            }
-            public Object caseNamedElement(NamedElement object) {
-                return createNamedElementAdapter();
-            }
-            public Object defaultCase(EObject object) {
-                return createEObjectAdapter();
-            }
-        };
+			public Object caseGuiApplication(GuiApplication object) {
+				return createGuiApplicationAdapter();
+			}
+			public Object caseGuiModule(GuiModule object) {
+				return createGuiModuleAdapter();
+			}
+			public Object caseUserTask(UserTask object) {
+				return createUserTaskAdapter();
+			}
+			public Object caseCreateTask(CreateTask object) {
+				return createCreateTaskAdapter();
+			}
+			public Object caseUpdateTask(UpdateTask object) {
+				return createUpdateTaskAdapter();
+			}
+			public Object caseViewTask(ViewTask object) {
+				return createViewTaskAdapter();
+			}
+			public Object caseListTask(ListTask object) {
+				return createListTaskAdapter();
+			}
+			public Object caseDeleteTask(DeleteTask object) {
+				return createDeleteTaskAdapter();
+			}
+			public Object caseSubTaskTransition(SubTaskTransition object) {
+				return createSubTaskTransitionAdapter();
+			}
+			public Object caseViewDataProperty(ViewDataProperty object) {
+				return createViewDataPropertyAdapter();
+			}
+			public Object caseTmpReferenceHolder(TmpReferenceHolder object) {
+				return createTmpReferenceHolderAdapter();
+			}
+			public Object caseTmpSubTaskTransitionHolder(TmpSubTaskTransitionHolder object) {
+				return createTmpSubTaskTransitionHolderAdapter();
+			}
+			public Object caseReferenceTarget(ReferenceTarget object) {
+				return createReferenceTargetAdapter();
+			}
+			public Object caseReferenceViewProperty(ReferenceViewProperty object) {
+				return createReferenceViewPropertyAdapter();
+			}
+			public Object caseAttributeViewProperty(AttributeViewProperty object) {
+				return createAttributeViewPropertyAdapter();
+			}
+			public Object caseBasicTypeViewProperty(BasicTypeViewProperty object) {
+				return createBasicTypeViewPropertyAdapter();
+			}
+			public Object caseEnumViewProperty(EnumViewProperty object) {
+				return createEnumViewPropertyAdapter();
+			}
+			public Object caseBasicTypeEnumViewProperty(BasicTypeEnumViewProperty object) {
+				return createBasicTypeEnumViewPropertyAdapter();
+			}
+			public Object caseUserTaskGroup(UserTaskGroup object) {
+				return createUserTaskGroupAdapter();
+			}
+			public Object caseDerivedReferenceViewProperty(DerivedReferenceViewProperty object) {
+				return createDerivedReferenceViewPropertyAdapter();
+			}
+			public Object caseAddTask(AddTask object) {
+				return createAddTaskAdapter();
+			}
+			public Object caseView(View object) {
+				return createViewAdapter();
+			}
+			public Object caseWidget(Widget object) {
+				return createWidgetAdapter();
+			}
+			public Object caseInputTextWidget(InputTextWidget object) {
+				return createInputTextWidgetAdapter();
+			}
+			public Object caseInformationalTextWidget(InformationalTextWidget object) {
+				return createInformationalTextWidgetAdapter();
+			}
+			public Object caseButtonWidget(ButtonWidget object) {
+				return createButtonWidgetAdapter();
+			}
+			public Object caseViewAttributeReference(ViewAttributeReference object) {
+				return createViewAttributeReferenceAdapter();
+			}
+			public Object casePropertyReference(PropertyReference object) {
+				return createPropertyReferenceAdapter();
+			}
+			public Object casePropertyReferringWidget(PropertyReferringWidget object) {
+				return createPropertyReferringWidgetAdapter();
+			}
+			public Object caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
+			}
+			public Object defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
-     * Creates an adapter for the <code>target</code>.
-     * <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param target the object to adapt.
-     * @return the adapter for the <code>target</code>.
-     * @generated
-     */
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
 	public Adapter createAdapter(Notifier target) {
-        return (Adapter)modelSwitch.doSwitch((EObject)target);
-    }
+		return (Adapter)modelSwitch.doSwitch((EObject)target);
+	}
 
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.GuiApplication
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiApplication
+	 * @generated
+	 */
 	public Adapter createGuiApplicationAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiModule <em>Gui Module</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiModule <em>Gui Module</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.GuiModule
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiModule
+	 * @generated
+	 */
 	public Adapter createGuiModuleAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.UserTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UserTask
+	 * @generated
+	 */
 	public Adapter createUserTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.CreateTask <em>Create Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.CreateTask <em>Create Task</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.CreateTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.CreateTask
+	 * @generated
+	 */
 	public Adapter createCreateTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UpdateTask <em>Update Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UpdateTask <em>Update Task</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.UpdateTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UpdateTask
+	 * @generated
+	 */
 	public Adapter createUpdateTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewTask <em>View Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewTask <em>View Task</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.ViewTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ViewTask
+	 * @generated
+	 */
 	public Adapter createViewTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ListTask <em>List Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ListTask <em>List Task</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.ListTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ListTask
+	 * @generated
+	 */
 	public Adapter createListTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.DeleteTask <em>Delete Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.DeleteTask <em>Delete Task</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.DeleteTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.DeleteTask
+	 * @generated
+	 */
 	public Adapter createDeleteTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.SubTaskTransition <em>Sub Task Transition</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.SubTaskTransition <em>Sub Task Transition</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.SubTaskTransition
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.SubTaskTransition
+	 * @generated
+	 */
 	public Adapter createSubTaskTransitionAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewDataProperty <em>View Data Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewDataProperty <em>View Data Property</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.ViewDataProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ViewDataProperty
+	 * @generated
+	 */
 	public Adapter createViewDataPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TmpReferenceHolder <em>Tmp Reference Holder</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TmpReferenceHolder <em>Tmp Reference Holder</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.TmpReferenceHolder
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.TmpReferenceHolder
+	 * @generated
+	 */
 	public Adapter createTmpReferenceHolderAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TmpSubTaskTransitionHolder <em>Tmp Sub Task Transition Holder</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TmpSubTaskTransitionHolder <em>Tmp Sub Task Transition Holder</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.TmpSubTaskTransitionHolder
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.TmpSubTaskTransitionHolder
+	 * @generated
+	 */
 	public Adapter createTmpSubTaskTransitionHolderAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ReferenceTarget <em>Reference Target</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ReferenceTarget <em>Reference Target</em>}'.
+	 * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.ReferenceTarget
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ReferenceTarget
+	 * @generated
+	 */
     public Adapter createReferenceTargetAdapter() {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ReferenceViewProperty <em>Reference View Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ReferenceViewProperty <em>Reference View Property</em>}'.
+	 * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.ReferenceViewProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ReferenceViewProperty
+	 * @generated
+	 */
     public Adapter createReferenceViewPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.AttributeViewProperty <em>Attribute View Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.AttributeViewProperty <em>Attribute View Property</em>}'.
+	 * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.AttributeViewProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.AttributeViewProperty
+	 * @generated
+	 */
     public Adapter createAttributeViewPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.BasicTypeViewProperty <em>Basic Type View Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.BasicTypeViewProperty <em>Basic Type View Property</em>}'.
+	 * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.BasicTypeViewProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.BasicTypeViewProperty
+	 * @generated
+	 */
     public Adapter createBasicTypeViewPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.EnumViewProperty <em>Enum View Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.EnumViewProperty <em>Enum View Property</em>}'.
+	 * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.EnumViewProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.EnumViewProperty
+	 * @generated
+	 */
     public Adapter createEnumViewPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.BasicTypeEnumViewProperty <em>Basic Type Enum View Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.BasicTypeEnumViewProperty <em>Basic Type Enum View Property</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.BasicTypeEnumViewProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.BasicTypeEnumViewProperty
+	 * @generated
+	 */
 	public Adapter createBasicTypeEnumViewPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 				/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UserTaskGroup <em>User Task Group</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UserTaskGroup <em>User Task Group</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.UserTaskGroup
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UserTaskGroup
+	 * @generated
+	 */
 	public Adapter createUserTaskGroupAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 				/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.DerivedReferenceViewProperty <em>Derived Reference View Property</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.DerivedReferenceViewProperty <em>Derived Reference View Property</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.DerivedReferenceViewProperty
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.DerivedReferenceViewProperty
+	 * @generated
+	 */
 	public Adapter createDerivedReferenceViewPropertyAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 				/**
-     * Creates a new adapter for an object of class '{@link sculptorguimetamodel.AddTask <em>Add Task</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.AddTask <em>Add Task</em>}'.
+	 * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptorguimetamodel.AddTask
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.AddTask
+	 * @generated
+	 */
     public Adapter createAddTaskAdapter() {
-        return null;
-    }
+		return null;
+	}
 
                 /**
-     * Creates a new adapter for an object of class '{@link sculptormetamodel.NamedElement <em>Named Element</em>}'.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.View <em>View</em>}'.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see sculptormetamodel.NamedElement
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.View
+	 * @generated
+	 */
+	public Adapter createViewAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.Widget <em>Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.Widget
+	 * @generated
+	 */
+	public Adapter createWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.InputTextWidget <em>Input Text Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.InputTextWidget
+	 * @generated
+	 */
+	public Adapter createInputTextWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.InformationalTextWidget <em>Informational Text Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.InformationalTextWidget
+	 * @generated
+	 */
+	public Adapter createInformationalTextWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ButtonWidget <em>Button Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ButtonWidget
+	 * @generated
+	 */
+	public Adapter createButtonWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewAttributeReference <em>View Attribute Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ViewAttributeReference
+	 * @generated
+	 */
+	public Adapter createViewAttributeReferenceAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PropertyReference <em>Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.PropertyReference
+	 * @generated
+	 */
+	public Adapter createPropertyReferenceAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PropertyReferringWidget <em>Property Referring Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.PropertyReferringWidget
+	 * @generated
+	 */
+	public Adapter createPropertyReferringWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.NamedElement
+	 * @generated
+	 */
 	public Adapter createNamedElementAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Creates a new adapter for the default case.
-     * <!-- begin-user-doc -->
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @generated
-     */
+	 * @return the new adapter.
+	 * @generated
+	 */
 	public Adapter createEObjectAdapter() {
-        return null;
-    }
+		return null;
+	}
 
 } //SculptorguimetamodelAdapterFactory

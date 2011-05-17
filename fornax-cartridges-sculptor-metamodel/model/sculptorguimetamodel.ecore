@@ -17,6 +17,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="application" eType="#//GuiApplication"
         eOpposite="#//GuiApplication/modules"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//Module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="views" upperBound="-1"
+        eType="#//View" containment="true" eOpposite="#//View/module"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -110,5 +112,28 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AddTask" eSuperTypes="#//UserTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="findDOWith" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//GuiModule"
+        eOpposite="#//GuiModule/views"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" lowerBound="1"
+        upperBound="-1" eType="#//Widget" containment="true" eOpposite="#//Widget/view"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View" eOpposite="#//View/widgets"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InformationalTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ButtonWidget" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewAttributeReference" eSuperTypes="#//PropertyReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass sculptormetamodel.ecore#//Attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyReference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyReferringWidget" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="#//PropertyReference"/>
   </eClassifiers>
 </ecore:EPackage>

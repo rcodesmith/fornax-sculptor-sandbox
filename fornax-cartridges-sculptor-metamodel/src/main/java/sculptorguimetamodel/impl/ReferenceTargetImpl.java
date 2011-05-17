@@ -36,183 +36,183 @@ import sculptormetamodel.Reference;
  */
 public class ReferenceTargetImpl extends EObjectImpl implements ReferenceTarget {
     /**
-     * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReference()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReference()
+	 * @generated
+	 * @ordered
+	 */
     protected Reference reference;
 
     /**
-     * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTarget()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
     protected DomainObject target;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ReferenceTargetImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptorguimetamodelPackage.Literals.REFERENCE_TARGET;
-    }
+		return SculptorguimetamodelPackage.Literals.REFERENCE_TARGET;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Reference getReference() {
-        if (reference != null && reference.eIsProxy()) {
-            InternalEObject oldReference = (InternalEObject)reference;
-            reference = (Reference)eResolveProxy(oldReference);
-            if (reference != oldReference) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE, oldReference, reference));
-            }
-        }
-        return reference;
-    }
+		if (reference != null && reference.eIsProxy()) {
+			InternalEObject oldReference = (InternalEObject)reference;
+			reference = (Reference)eResolveProxy(oldReference);
+			if (reference != oldReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE, oldReference, reference));
+			}
+		}
+		return reference;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Reference basicGetReference() {
-        return reference;
-    }
+		return reference;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setReference(Reference newReference) {
-        Reference oldReference = reference;
-        reference = newReference;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE, oldReference, reference));
-    }
+		Reference oldReference = reference;
+		reference = newReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE, oldReference, reference));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DomainObject getTarget() {
-        if (target != null && target.eIsProxy()) {
-            InternalEObject oldTarget = (InternalEObject)target;
-            target = (DomainObject)eResolveProxy(oldTarget);
-            if (target != oldTarget) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET, oldTarget, target));
-            }
-        }
-        return target;
-    }
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (DomainObject)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DomainObject basicGetTarget() {
-        return target;
-    }
+		return target;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setTarget(DomainObject newTarget) {
-        DomainObject oldTarget = target;
-        target = newTarget;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET, oldTarget, target));
-    }
+		DomainObject oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET, oldTarget, target));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
-                if (resolve) return getReference();
-                return basicGetReference();
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
-                if (resolve) return getTarget();
-                return basicGetTarget();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
+				if (resolve) return getReference();
+				return basicGetReference();
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
-                setReference((Reference)newValue);
-                return;
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
-                setTarget((DomainObject)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
+				setReference((Reference)newValue);
+				return;
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
+				setTarget((DomainObject)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
-                setReference((Reference)null);
-                return;
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
-                setTarget((DomainObject)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
+				setReference((Reference)null);
+				return;
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
+				setTarget((DomainObject)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
-                return reference != null;
-            case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
-                return target != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__REFERENCE:
+				return reference != null;
+			case SculptorguimetamodelPackage.REFERENCE_TARGET__TARGET:
+				return target != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ReferenceTargetImpl

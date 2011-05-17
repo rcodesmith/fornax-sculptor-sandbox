@@ -23,8 +23,10 @@ DslGuiModule:
 		(userTasks+=DslUserTask)*
 		(skipUserTasks+=DslSkipUserTask)*
 		(skipDomainObjects+=DslSkipDomainObject)*
+		(views+=DslView)*
 	'}';
 
+	 
 DslUserTask:
 	DslCreateTask | DslViewTask | DslUpdateTask | DslDeleteTask | DslListTask | DslAddTask;
 
@@ -162,3 +164,49 @@ DslSkipListTask :
 DslSkipAddTask :
 	'skip' 'AddTask' 'for' for=[mm::DslSimpleDomainObject]; 
 
+
+
+
+
+
+DslView:
+	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])?
+		(findWith = DslFindWith)? "{"
+		("contents" "{"
+			(widgets+=DslWidget)*
+		"}"
+		)?
+	'}';
+
+
+DslWidget : 
+	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget;
+	
+// | DslTableWidget;
+	
+DslInputTextWidget :
+	'inputText' name=ID  '{'
+		('label' '=' label=STRING)?
+	'}';
+// (forProperty=DslForProperty)?
+
+	
+	
+DslButtonWidget :
+	'button' name=ID '{'
+		('label' '=' label=STRING)?
+		('image' '=' image=STRING)?
+	'}';
+	
+DslInformationalTextWidget :
+	'informationalText' name=ID  '{'
+		('label' '=' label=STRING)?	
+	'}';
+//	
+//DslForProperty :
+//	'for property' domainObj=[mm::DslSimpleDomainObject] '.' property=[mm::DslProperty];
+//
+//DslTableWidget :
+//	'table' name=ID (forProperty=DslForProperty)? '{'
+//	'}';
+//	

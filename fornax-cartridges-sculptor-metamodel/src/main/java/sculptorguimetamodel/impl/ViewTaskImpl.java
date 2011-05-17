@@ -33,124 +33,124 @@ import sculptormetamodel.ServiceOperation;
  */
 public class ViewTaskImpl extends UserTaskImpl implements ViewTask {
 	/**
-     * The cached value of the '{@link #getFindDOWith() <em>Find DO With</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFindDOWith() <em>Find DO With</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getFindDOWith()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFindDOWith()
+	 * @generated
+	 * @ordered
+	 */
 	protected ServiceOperation findDOWith;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ViewTaskImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptorguimetamodelPackage.Literals.VIEW_TASK;
-    }
+		return SculptorguimetamodelPackage.Literals.VIEW_TASK;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ServiceOperation getFindDOWith() {
-        if (findDOWith != null && findDOWith.eIsProxy()) {
-            InternalEObject oldFindDOWith = (InternalEObject)findDOWith;
-            findDOWith = (ServiceOperation)eResolveProxy(oldFindDOWith);
-            if (findDOWith != oldFindDOWith) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH, oldFindDOWith, findDOWith));
-            }
-        }
-        return findDOWith;
-    }
+		if (findDOWith != null && findDOWith.eIsProxy()) {
+			InternalEObject oldFindDOWith = (InternalEObject)findDOWith;
+			findDOWith = (ServiceOperation)eResolveProxy(oldFindDOWith);
+			if (findDOWith != oldFindDOWith) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH, oldFindDOWith, findDOWith));
+			}
+		}
+		return findDOWith;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ServiceOperation basicGetFindDOWith() {
-        return findDOWith;
-    }
+		return findDOWith;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setFindDOWith(ServiceOperation newFindDOWith) {
-        ServiceOperation oldFindDOWith = findDOWith;
-        findDOWith = newFindDOWith;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH, oldFindDOWith, findDOWith));
-    }
+		ServiceOperation oldFindDOWith = findDOWith;
+		findDOWith = newFindDOWith;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH, oldFindDOWith, findDOWith));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
-                if (resolve) return getFindDOWith();
-                return basicGetFindDOWith();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
+				if (resolve) return getFindDOWith();
+				return basicGetFindDOWith();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
-                setFindDOWith((ServiceOperation)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
+				setFindDOWith((ServiceOperation)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
-                setFindDOWith((ServiceOperation)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
+				setFindDOWith((ServiceOperation)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
-                return findDOWith != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW_TASK__FIND_DO_WITH:
+				return findDOWith != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ViewTaskImpl

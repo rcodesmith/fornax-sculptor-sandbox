@@ -63,6 +63,8 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	setName(module.for.name) ->
 	setFor(module.for.transform()) ->
 	setHint(module.hint) ->
+	
+	views.addAll(module.views.transformView(module.for.transform())) ->
 	userTasks.addAll(module.userTasks.transformTask(module.for.transform()));
 	
 create sculptorguimetamodel::UserTask this transformTask(DslUserTask task, Module module) :
@@ -266,4 +268,39 @@ ViewDataProperty transformDslGuiPreviewBasicTypeProperty(DslAttribute prop, DslG
 ViewDataProperty transformDslGuiPreviewBasicTypeProperty(DslReference prop, DslGuiPreviewProperty dslGuiProp, UserTask previewTask) :
 	prop.transform().transformBasicTypeEnumProperty((Reference) dslGuiProp.for.transform(), previewTask);
 
+
+//
+// View related transformations
+//
+
+create sculptorguimetamodel::View this transformView(DslView view, Module module) :
+	let domainObject = module.domainObjects.select(e | e.name == view.for.name).first() :
+	setModule(((DslGuiModule) view.eContainer).transformModule()) ->
+	setName(view.name) ->
+	setFor(domainObject) ->
+	widgets.addAll(view.widgets.transformWidget(module));
+
+create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
+	error("Unexpected call to transformWidget(DslWidget): " + widget);
+	
+create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+//	setFor(propertyReference(widget.for));
+	
+//PropertyReference propertyReference(DslAttribute attribute) :
+//	let ref = new ViewAttributeReference :
+//		ref.setAttribute(attribute)
+	
+create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+	
+create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
 	

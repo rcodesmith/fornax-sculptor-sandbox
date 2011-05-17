@@ -25,294 +25,382 @@ import sculptorguimetamodel.*;
  */
 public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements SculptorguimetamodelFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static SculptorguimetamodelFactory init() {
-        try {
-            SculptorguimetamodelFactory theSculptorguimetamodelFactory = (SculptorguimetamodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.fornax-platform.org/sculptorgui"); 
-            if (theSculptorguimetamodelFactory != null) {
-                return theSculptorguimetamodelFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new SculptorguimetamodelFactoryImpl();
-    }
+		try {
+			SculptorguimetamodelFactory theSculptorguimetamodelFactory = (SculptorguimetamodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.fornax-platform.org/sculptorgui"); 
+			if (theSculptorguimetamodelFactory != null) {
+				return theSculptorguimetamodelFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SculptorguimetamodelFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SculptorguimetamodelFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case SculptorguimetamodelPackage.GUI_APPLICATION: return createGuiApplication();
-            case SculptorguimetamodelPackage.GUI_MODULE: return createGuiModule();
-            case SculptorguimetamodelPackage.USER_TASK: return createUserTask();
-            case SculptorguimetamodelPackage.CREATE_TASK: return createCreateTask();
-            case SculptorguimetamodelPackage.UPDATE_TASK: return createUpdateTask();
-            case SculptorguimetamodelPackage.VIEW_TASK: return createViewTask();
-            case SculptorguimetamodelPackage.LIST_TASK: return createListTask();
-            case SculptorguimetamodelPackage.DELETE_TASK: return createDeleteTask();
-            case SculptorguimetamodelPackage.SUB_TASK_TRANSITION: return createSubTaskTransition();
-            case SculptorguimetamodelPackage.VIEW_DATA_PROPERTY: return createViewDataProperty();
-            case SculptorguimetamodelPackage.TMP_REFERENCE_HOLDER: return createTmpReferenceHolder();
-            case SculptorguimetamodelPackage.TMP_SUB_TASK_TRANSITION_HOLDER: return createTmpSubTaskTransitionHolder();
-            case SculptorguimetamodelPackage.REFERENCE_TARGET: return createReferenceTarget();
-            case SculptorguimetamodelPackage.REFERENCE_VIEW_PROPERTY: return createReferenceViewProperty();
-            case SculptorguimetamodelPackage.ATTRIBUTE_VIEW_PROPERTY: return createAttributeViewProperty();
-            case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY: return createBasicTypeViewProperty();
-            case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY: return createEnumViewProperty();
-            case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY: return createBasicTypeEnumViewProperty();
-            case SculptorguimetamodelPackage.USER_TASK_GROUP: return createUserTaskGroup();
-            case SculptorguimetamodelPackage.DERIVED_REFERENCE_VIEW_PROPERTY: return createDerivedReferenceViewProperty();
-            case SculptorguimetamodelPackage.ADD_TASK: return createAddTask();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case SculptorguimetamodelPackage.GUI_APPLICATION: return createGuiApplication();
+			case SculptorguimetamodelPackage.GUI_MODULE: return createGuiModule();
+			case SculptorguimetamodelPackage.USER_TASK: return createUserTask();
+			case SculptorguimetamodelPackage.CREATE_TASK: return createCreateTask();
+			case SculptorguimetamodelPackage.UPDATE_TASK: return createUpdateTask();
+			case SculptorguimetamodelPackage.VIEW_TASK: return createViewTask();
+			case SculptorguimetamodelPackage.LIST_TASK: return createListTask();
+			case SculptorguimetamodelPackage.DELETE_TASK: return createDeleteTask();
+			case SculptorguimetamodelPackage.SUB_TASK_TRANSITION: return createSubTaskTransition();
+			case SculptorguimetamodelPackage.VIEW_DATA_PROPERTY: return createViewDataProperty();
+			case SculptorguimetamodelPackage.TMP_REFERENCE_HOLDER: return createTmpReferenceHolder();
+			case SculptorguimetamodelPackage.TMP_SUB_TASK_TRANSITION_HOLDER: return createTmpSubTaskTransitionHolder();
+			case SculptorguimetamodelPackage.REFERENCE_TARGET: return createReferenceTarget();
+			case SculptorguimetamodelPackage.REFERENCE_VIEW_PROPERTY: return createReferenceViewProperty();
+			case SculptorguimetamodelPackage.ATTRIBUTE_VIEW_PROPERTY: return createAttributeViewProperty();
+			case SculptorguimetamodelPackage.BASIC_TYPE_VIEW_PROPERTY: return createBasicTypeViewProperty();
+			case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY: return createEnumViewProperty();
+			case SculptorguimetamodelPackage.BASIC_TYPE_ENUM_VIEW_PROPERTY: return createBasicTypeEnumViewProperty();
+			case SculptorguimetamodelPackage.USER_TASK_GROUP: return createUserTaskGroup();
+			case SculptorguimetamodelPackage.DERIVED_REFERENCE_VIEW_PROPERTY: return createDerivedReferenceViewProperty();
+			case SculptorguimetamodelPackage.ADD_TASK: return createAddTask();
+			case SculptorguimetamodelPackage.VIEW: return createView();
+			case SculptorguimetamodelPackage.WIDGET: return createWidget();
+			case SculptorguimetamodelPackage.INPUT_TEXT_WIDGET: return createInputTextWidget();
+			case SculptorguimetamodelPackage.INFORMATIONAL_TEXT_WIDGET: return createInformationalTextWidget();
+			case SculptorguimetamodelPackage.BUTTON_WIDGET: return createButtonWidget();
+			case SculptorguimetamodelPackage.VIEW_ATTRIBUTE_REFERENCE: return createViewAttributeReference();
+			case SculptorguimetamodelPackage.PROPERTY_REFERENCE: return createPropertyReference();
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET: return createPropertyReferringWidget();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public GuiApplication createGuiApplication() {
-        GuiApplicationImpl guiApplication = new GuiApplicationImpl();
-        return guiApplication;
-    }
+		GuiApplicationImpl guiApplication = new GuiApplicationImpl();
+		return guiApplication;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public GuiModule createGuiModule() {
-        GuiModuleImpl guiModule = new GuiModuleImpl();
-        return guiModule;
-    }
+		GuiModuleImpl guiModule = new GuiModuleImpl();
+		return guiModule;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public UserTask createUserTask() {
-        UserTaskImpl userTask = new UserTaskImpl();
-        return userTask;
-    }
+		UserTaskImpl userTask = new UserTaskImpl();
+		return userTask;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public CreateTask createCreateTask() {
-        CreateTaskImpl createTask = new CreateTaskImpl();
-        return createTask;
-    }
+		CreateTaskImpl createTask = new CreateTaskImpl();
+		return createTask;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public UpdateTask createUpdateTask() {
-        UpdateTaskImpl updateTask = new UpdateTaskImpl();
-        return updateTask;
-    }
+		UpdateTaskImpl updateTask = new UpdateTaskImpl();
+		return updateTask;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ViewTask createViewTask() {
-        ViewTaskImpl viewTask = new ViewTaskImpl();
-        return viewTask;
-    }
+		ViewTaskImpl viewTask = new ViewTaskImpl();
+		return viewTask;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ListTask createListTask() {
-        ListTaskImpl listTask = new ListTaskImpl();
-        return listTask;
-    }
+		ListTaskImpl listTask = new ListTaskImpl();
+		return listTask;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DeleteTask createDeleteTask() {
-        DeleteTaskImpl deleteTask = new DeleteTaskImpl();
-        return deleteTask;
-    }
+		DeleteTaskImpl deleteTask = new DeleteTaskImpl();
+		return deleteTask;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SubTaskTransition createSubTaskTransition() {
-        SubTaskTransitionImpl subTaskTransition = new SubTaskTransitionImpl();
-        return subTaskTransition;
-    }
+		SubTaskTransitionImpl subTaskTransition = new SubTaskTransitionImpl();
+		return subTaskTransition;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ViewDataProperty createViewDataProperty() {
-        ViewDataPropertyImpl viewDataProperty = new ViewDataPropertyImpl();
-        return viewDataProperty;
-    }
+		ViewDataPropertyImpl viewDataProperty = new ViewDataPropertyImpl();
+		return viewDataProperty;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TmpReferenceHolder createTmpReferenceHolder() {
-        TmpReferenceHolderImpl tmpReferenceHolder = new TmpReferenceHolderImpl();
-        return tmpReferenceHolder;
-    }
+		TmpReferenceHolderImpl tmpReferenceHolder = new TmpReferenceHolderImpl();
+		return tmpReferenceHolder;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TmpSubTaskTransitionHolder createTmpSubTaskTransitionHolder() {
-        TmpSubTaskTransitionHolderImpl tmpSubTaskTransitionHolder = new TmpSubTaskTransitionHolderImpl();
-        return tmpSubTaskTransitionHolder;
-    }
+		TmpSubTaskTransitionHolderImpl tmpSubTaskTransitionHolder = new TmpSubTaskTransitionHolderImpl();
+		return tmpSubTaskTransitionHolder;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ReferenceTarget createReferenceTarget() {
-        ReferenceTargetImpl referenceTarget = new ReferenceTargetImpl();
-        return referenceTarget;
-    }
+		ReferenceTargetImpl referenceTarget = new ReferenceTargetImpl();
+		return referenceTarget;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ReferenceViewProperty createReferenceViewProperty() {
-        ReferenceViewPropertyImpl referenceViewProperty = new ReferenceViewPropertyImpl();
-        return referenceViewProperty;
-    }
+		ReferenceViewPropertyImpl referenceViewProperty = new ReferenceViewPropertyImpl();
+		return referenceViewProperty;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public AttributeViewProperty createAttributeViewProperty() {
-        AttributeViewPropertyImpl attributeViewProperty = new AttributeViewPropertyImpl();
-        return attributeViewProperty;
-    }
+		AttributeViewPropertyImpl attributeViewProperty = new AttributeViewPropertyImpl();
+		return attributeViewProperty;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BasicTypeViewProperty createBasicTypeViewProperty() {
-        BasicTypeViewPropertyImpl basicTypeViewProperty = new BasicTypeViewPropertyImpl();
-        return basicTypeViewProperty;
-    }
+		BasicTypeViewPropertyImpl basicTypeViewProperty = new BasicTypeViewPropertyImpl();
+		return basicTypeViewProperty;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EnumViewProperty createEnumViewProperty() {
-        EnumViewPropertyImpl enumViewProperty = new EnumViewPropertyImpl();
-        return enumViewProperty;
-    }
+		EnumViewPropertyImpl enumViewProperty = new EnumViewPropertyImpl();
+		return enumViewProperty;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public BasicTypeEnumViewProperty createBasicTypeEnumViewProperty() {
-        BasicTypeEnumViewPropertyImpl basicTypeEnumViewProperty = new BasicTypeEnumViewPropertyImpl();
-        return basicTypeEnumViewProperty;
-    }
+		BasicTypeEnumViewPropertyImpl basicTypeEnumViewProperty = new BasicTypeEnumViewPropertyImpl();
+		return basicTypeEnumViewProperty;
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public UserTaskGroup createUserTaskGroup() {
-        UserTaskGroupImpl userTaskGroup = new UserTaskGroupImpl();
-        return userTaskGroup;
-    }
+		UserTaskGroupImpl userTaskGroup = new UserTaskGroupImpl();
+		return userTaskGroup;
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DerivedReferenceViewProperty createDerivedReferenceViewProperty() {
-        DerivedReferenceViewPropertyImpl derivedReferenceViewProperty = new DerivedReferenceViewPropertyImpl();
-        return derivedReferenceViewProperty;
-    }
+		DerivedReferenceViewPropertyImpl derivedReferenceViewProperty = new DerivedReferenceViewPropertyImpl();
+		return derivedReferenceViewProperty;
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public AddTask createAddTask() {
-        AddTaskImpl addTask = new AddTaskImpl();
-        return addTask;
-    }
+		AddTaskImpl addTask = new AddTaskImpl();
+		return addTask;
+	}
 
                 /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	public View createView() {
+		ViewImpl view = new ViewImpl();
+		return view;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Widget createWidget() {
+		WidgetImpl widget = new WidgetImpl();
+		return widget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InputTextWidget createInputTextWidget() {
+		InputTextWidgetImpl inputTextWidget = new InputTextWidgetImpl();
+		return inputTextWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InformationalTextWidget createInformationalTextWidget() {
+		InformationalTextWidgetImpl informationalTextWidget = new InformationalTextWidgetImpl();
+		return informationalTextWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ButtonWidget createButtonWidget() {
+		ButtonWidgetImpl buttonWidget = new ButtonWidgetImpl();
+		return buttonWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ViewAttributeReference createViewAttributeReference() {
+		ViewAttributeReferenceImpl viewAttributeReference = new ViewAttributeReferenceImpl();
+		return viewAttributeReference;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference createPropertyReference() {
+		PropertyReferenceImpl propertyReference = new PropertyReferenceImpl();
+		return propertyReference;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReferringWidget createPropertyReferringWidget() {
+		PropertyReferringWidgetImpl propertyReferringWidget = new PropertyReferringWidgetImpl();
+		return propertyReferringWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelPackage getSculptorguimetamodelPackage() {
-        return (SculptorguimetamodelPackage)getEPackage();
-    }
+		return (SculptorguimetamodelPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	public static SculptorguimetamodelPackage getPackage() {
-        return SculptorguimetamodelPackage.eINSTANCE;
-    }
+		return SculptorguimetamodelPackage.eINSTANCE;
+	}
 
 } //SculptorguimetamodelFactoryImpl

@@ -33,124 +33,124 @@ import sculptormetamodel.Reference;
  */
 public class EnumViewPropertyImpl extends ViewDataPropertyImpl implements EnumViewProperty {
     /**
-     * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReference()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReference()
+	 * @generated
+	 * @ordered
+	 */
     protected Reference reference;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EnumViewPropertyImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptorguimetamodelPackage.Literals.ENUM_VIEW_PROPERTY;
-    }
+		return SculptorguimetamodelPackage.Literals.ENUM_VIEW_PROPERTY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Reference getReference() {
-        if (reference != null && reference.eIsProxy()) {
-            InternalEObject oldReference = (InternalEObject)reference;
-            reference = (Reference)eResolveProxy(oldReference);
-            if (reference != oldReference) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE, oldReference, reference));
-            }
-        }
-        return reference;
-    }
+		if (reference != null && reference.eIsProxy()) {
+			InternalEObject oldReference = (InternalEObject)reference;
+			reference = (Reference)eResolveProxy(oldReference);
+			if (reference != oldReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE, oldReference, reference));
+			}
+		}
+		return reference;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Reference basicGetReference() {
-        return reference;
-    }
+		return reference;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setReference(Reference newReference) {
-        Reference oldReference = reference;
-        reference = newReference;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE, oldReference, reference));
-    }
+		Reference oldReference = reference;
+		reference = newReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE, oldReference, reference));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
-                if (resolve) return getReference();
-                return basicGetReference();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
+				if (resolve) return getReference();
+				return basicGetReference();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
-                setReference((Reference)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
+				setReference((Reference)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
-                setReference((Reference)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
+				setReference((Reference)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
-                return reference != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptorguimetamodelPackage.ENUM_VIEW_PROPERTY__REFERENCE:
+				return reference != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //EnumViewPropertyImpl
