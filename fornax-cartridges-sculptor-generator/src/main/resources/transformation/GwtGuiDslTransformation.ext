@@ -1,0 +1,69 @@
+/*
+ * Copyright 2007 The Fornax Project Team, including the original 
+ * author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+import sculptorguidsl;
+import sculptordsl;
+import sculptormetamodel;
+import sculptorguimetamodel;
+
+extension org::fornax::cartridges::sculptor::dsl::ModelLoadExtensions;
+ 
+extension transformation::DslTransformation;
+extension transformation::Transformation;
+//extension transformation::DefaultGuiDslTransformation;
+//extension transformation::GuiTransformation;
+extension transformation::GuiDslTransformation;
+extension extensions::helper;
+extension extensions::guihelper;
+extension extensions::properties;
+
+
+//
+// View related transformations
+//
+
+create sculptorguimetamodel::View this transformView(DslView view, Module module) :
+	let domainObject = module.domainObjects.select(e | e.name == view.for.name).first() :
+	setModule(((DslGuiModule) view.eContainer).transformModule()) ->
+	setName(view.name) ->
+	setFor(domainObject) ->
+	widgets.addAll(view.widgets.transformWidget(module));
+
+create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
+	error("Unexpected call to transformWidget(DslWidget): " + widget);
+	
+create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+//	setFor(propertyReference(widget.for));
+	
+//PropertyReference propertyReference(DslAttribute attribute) :
+//	let ref = new ViewAttributeReference :
+//		ref.setAttribute(attribute)
+	
+create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+	
+create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+	
