@@ -180,15 +180,14 @@ DslView:
 
 
 DslWidget : 
-	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget;
+	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget;
 	
-// | DslTableWidget;
 	
 DslInputTextWidget :
-	'inputText' name=ID  '{'
+	'inputText' name=ID  (forProperty=DslForProperty)? '{'
 		('label' '=' label=STRING)?
 	'}';
-// (forProperty=DslForProperty)?
+ 
 
 	
 	
@@ -199,14 +198,14 @@ DslButtonWidget :
 	'}';
 	
 DslInformationalTextWidget :
-	'informationalText' name=ID  '{'
+	'informationalText' name=ID  (forProperty=DslForProperty)? '{'
 		('label' '=' label=STRING)?	
 	'}';
-//	
-//DslForProperty :
-//	'for property' domainObj=[mm::DslSimpleDomainObject] '.' property=[mm::DslProperty];
-//
-//DslTableWidget :
-//	'table' name=ID (forProperty=DslForProperty)? '{'
-//	'}';
-//	
+	
+DslForProperty :
+	'forProperty' domainObj=[mm::DslSimpleDomainObject] '.' property=[mm::DslProperty];
+
+DslTableWidget :
+	'table' name=ID (forProperty=DslForProperty)? '{'
+	'}';
+	
