@@ -160,6 +160,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object casePropertyReferringWidget(PropertyReferringWidget object) {
 				return createPropertyReferringWidgetAdapter();
 			}
+			public Object caseTableWidget(TableWidget object) {
+				return createTableWidgetAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -584,6 +587,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyReferringWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TableWidget <em>Table Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.TableWidget
+	 * @generated
+	 */
+	public Adapter createTableWidgetAdapter() {
 		return null;
 	}
 

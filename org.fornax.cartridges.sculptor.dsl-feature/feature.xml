@@ -2,7 +2,7 @@
 <feature
       id="org.fornax.cartridges.sculptor.dsl"
       label="Sculptor DSL Feature"
-      version="2.0.0.5"
+      version="2.0.0.6"
       provider-name="Fornax Platform">
 
    <description url="http://fornax-platform.org/cp/x/aAQ">
@@ -35,28 +35,28 @@ and limitations under the License.
          id="org.fornax.cartridges.sculptor.dsl"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.0.5"
          unpack="false"/>
 
    <plugin
          id="org.fornax.cartridges.sculptor.dsl.ui"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.0.5"
          unpack="false"/>
 
    <plugin
          id="org.fornax.cartridges.sculptor.gui.dsl"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.0.6"
          unpack="false"/>
 
    <plugin
          id="org.fornax.cartridges.sculptor.gui.dsl.ui"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.0.5"
          unpack="false"/>
 
 </feature>

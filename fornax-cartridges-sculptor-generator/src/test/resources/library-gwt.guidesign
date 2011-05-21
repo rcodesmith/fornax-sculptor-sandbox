@@ -3,10 +3,27 @@ import 'classpath:/library.btdesign'
 
 gui LibraryWeb for Library {
 
-	Module for media {
-		
-	}
 	Module for person {
+		
+		View PersonForm for Person {
+			> @PersonService
+	
+			contents {
+				inputText nameField {
+					label = "Name"
+				}
+				table table1 {
+					label = "Table uno"
+				}
+				
+				button saveButton {
+					label = "Save"
+				}
+				
+				informationalText info1 {
+					label = "Info Numero Uno"
+				}
+			}
+		}
 	}
-
 }

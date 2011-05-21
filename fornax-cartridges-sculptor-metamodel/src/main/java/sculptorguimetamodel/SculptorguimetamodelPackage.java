@@ -2047,13 +2047,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int VIEW__FOR = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 																/**
+	 * The feature id for the '<em><b>Service Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+																/**
 	 * The number of structural features of the '<em>View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int VIEW_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 																/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
@@ -2457,6 +2466,79 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEW_ATTRIBUTE_REFERENCE_FEATURE_COUNT = PROPERTY_REFERENCE_FEATURE_COUNT + 1;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.TableWidgetImpl <em>Table Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.TableWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTableWidget()
+	 * @generated
+	 */
+	int TABLE_WIDGET = 29;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+																/**
+	 * The number of structural features of the '<em>Table Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
 
 																/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -3284,6 +3366,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getView_For();
 
 																/**
+	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.View#getServiceDependencies <em>Service Dependencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Service Dependencies</em>'.
+	 * @see sculptorguimetamodel.View#getServiceDependencies()
+	 * @see #getView()
+	 * @generated
+	 */
+	EReference getView_ServiceDependencies();
+
+																/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.Widget <em>Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3407,6 +3500,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyReferringWidget_For();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.TableWidget <em>Table Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Widget</em>'.
+	 * @see sculptorguimetamodel.TableWidget
+	 * @generated
+	 */
+	EClass getTableWidget();
 
 																/**
 	 * Returns the factory that creates the instances of the model.
@@ -4091,6 +4194,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference VIEW__FOR = eINSTANCE.getView_For();
 
 																																/**
+		 * The meta object literal for the '<em><b>Service Dependencies</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VIEW__SERVICE_DEPENDENCIES = eINSTANCE.getView_ServiceDependencies();
+
+																																/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4199,6 +4310,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_REFERRING_WIDGET__FOR = eINSTANCE.getPropertyReferringWidget_For();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TableWidgetImpl <em>Table Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.TableWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTableWidget()
+		 * @generated
+		 */
+		EClass TABLE_WIDGET = eINSTANCE.getTableWidget();
 
 	}
 

@@ -170,13 +170,18 @@ DslSkipAddTask :
 
 
 DslView:
-	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])?
-		(findWith = DslFindWith)? "{"
+	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+		(serviceDependencies+=DslGuiServiceDependency)*
+
 		("contents" "{"
 			(widgets+=DslWidget)*
 		"}"
 		)?
 	'}';
+
+
+DslGuiServiceDependency :
+  ('>'|'inject') ("@"dependency=[mm::DslService]);
 
 
 DslWidget : 
@@ -207,5 +212,6 @@ DslForProperty :
 
 DslTableWidget :
 	'table' name=ID (forProperty=DslForProperty)? '{'
+		('label' '=' label=STRING)?	
 	'}';
 	

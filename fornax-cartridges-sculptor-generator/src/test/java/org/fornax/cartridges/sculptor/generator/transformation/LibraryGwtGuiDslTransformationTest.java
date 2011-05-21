@@ -17,11 +17,14 @@ import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
+import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.ListTask;
 import sculptorguimetamodel.ReferenceViewProperty;
 import sculptorguimetamodel.UpdateTask;
 import sculptorguimetamodel.UserTask;
+import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewTask;
+import sculptormetamodel.DomainObject;
 import sculptormetamodel.Module;
 import sculptormetamodel.Service;
 import sculptormetamodel.ServiceOperation;
@@ -50,13 +53,6 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         assertEquals("LibraryWeb", guiApp.getName());
     }
 
-    @Test
-    public void assertModules() {
-        EList modules = guiApp.getModules();
-        assertNotNull(modules);
-        assertEquals(2, modules.size());
-        assertOneAndOnlyOne(modules, "media", "person");
-    }
 
     @Test
     public void assertMediaModule() {
@@ -72,33 +68,29 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
                 "listMediaCharacter", "addMediaCharacter", "viewReview", "createReview", "viewComment", "createComment");
     }
 
-
     @Test
-    public void assertListLibraryTask() {
-        assertListTask("Library", "media", "name");
+    public void assertReviewFormView() {
+        View personForm = (View) getNamedElement("PersonForm", personModule().getViews());
+        assertNotNull(personForm);
+        
+        DomainObject forObj = personForm.getFor();
+        assertNotNull(forObj);
+        assertEquals("Person", forObj.getName());
+        
+        assertEquals(1, personForm.getServiceDependencies().size());
+        assertOneAndOnlyOne(personForm.getServiceDependencies(), "PersonService");
+        Service svc = (Service)personForm.getServiceDependencies().get(0);
+        
+        EList widgets = personForm.getWidgets();
+        assertEquals(4, widgets.size());
+        assertOneAndOnlyOne(widgets, "nameField", "table1", "saveButton", "info1");
+        InputTextWidget nameField = (InputTextWidget)widgets.get(0);
+        assertEquals("Name", nameField.getLabel());
+        
+        
     }
 
-
-    @Test
-    public void assertUpdatePhysicalMedia() {
-        assertUpdateTask("PhysicalMedia", "media", new String[] { "status", "location" }, new String[] {
-                "viewLibrarySubtask", "addLibrarySubtask", "createMovieSubtask", "viewMovieSubtask",
-                "updateMovieSubtask", "addMovieSubtask", "createBookSubtask", "viewBookSubtask", "updateBookSubtask",
-                "addBookSubtask" });
-        UpdateTask task = (UpdateTask) getNamedElement("updatePhysicalMedia", mediaModule().getUserTasks());
-
-        assertReferenceViewProperty("library", task.getViewProperties(), new String[] { "viewLibrarySubtask",
-                "addLibrarySubtask" }, new String[] { "name" }, "Library");
-
-        assertNotNull(task.getPopulateDOWith());
-        assertEquals("populateAssociations", task.getPopulateDOWith().getName());
-    }
-
-    @Test
-    public void assertMediaReferenceForCreatePhyicalMedia() {
-        assertMediaReferenceForCreateUpdatePhysicalMedia((CreateTask) getNamedElement("createPhysicalMedia",
-                mediaModule().getUserTasks()));
-    }
+    
 
     @Test
     public void assertMediaReferenceForUpdatePhyicalMedia() {

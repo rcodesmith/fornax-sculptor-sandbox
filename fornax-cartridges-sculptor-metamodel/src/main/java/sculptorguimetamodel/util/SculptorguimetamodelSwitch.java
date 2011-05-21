@@ -308,6 +308,15 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.TABLE_WIDGET: {
+				TableWidget tableWidget = (TableWidget)theEObject;
+				Object result = caseTableWidget(tableWidget);
+				if (result == null) result = casePropertyReferringWidget(tableWidget);
+				if (result == null) result = caseWidget(tableWidget);
+				if (result == null) result = caseNamedElement(tableWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -744,6 +753,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object casePropertyReferringWidget(PropertyReferringWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseTableWidget(TableWidget object) {
 		return null;
 	}
 

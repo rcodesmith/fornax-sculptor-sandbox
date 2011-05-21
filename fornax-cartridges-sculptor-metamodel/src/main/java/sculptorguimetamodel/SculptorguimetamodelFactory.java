@@ -287,6 +287,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	PropertyReferringWidget createPropertyReferringWidget();
 
 																/**
+	 * Returns a new object of class '<em>Table Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Widget</em>'.
+	 * @generated
+	 */
+	TableWidget createTableWidget();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

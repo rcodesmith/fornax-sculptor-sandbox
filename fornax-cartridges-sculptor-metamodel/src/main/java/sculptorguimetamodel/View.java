@@ -21,6 +21,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.View#getModule <em>Module</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getWidgets <em>Widgets</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getFor <em>For</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#getServiceDependencies <em>Service Dependencies</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +101,21 @@ public interface View extends NamedElement {
 	 * @generated
 	 */
 	void setFor(DomainObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Service Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link sculptormetamodel.Service}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Dependencies</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Dependencies</em>' reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_ServiceDependencies()
+	 * @model type="sculptormetamodel.Service"
+	 * @generated
+	 */
+	EList getServiceDependencies();
 
 } // View

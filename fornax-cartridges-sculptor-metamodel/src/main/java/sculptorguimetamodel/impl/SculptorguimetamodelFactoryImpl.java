@@ -89,6 +89,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.VIEW_ATTRIBUTE_REFERENCE: return createViewAttributeReference();
 			case SculptorguimetamodelPackage.PROPERTY_REFERENCE: return createPropertyReference();
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET: return createPropertyReferringWidget();
+			case SculptorguimetamodelPackage.TABLE_WIDGET: return createTableWidget();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -382,6 +383,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public PropertyReferringWidget createPropertyReferringWidget() {
 		PropertyReferringWidgetImpl propertyReferringWidget = new PropertyReferringWidgetImpl();
 		return propertyReferringWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableWidget createTableWidget() {
+		TableWidgetImpl tableWidget = new TableWidgetImpl();
+		return tableWidget;
 	}
 
 																/**

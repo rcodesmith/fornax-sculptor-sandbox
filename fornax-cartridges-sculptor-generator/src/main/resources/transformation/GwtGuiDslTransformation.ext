@@ -36,12 +36,16 @@ extension extensions::properties;
 // View related transformations
 //
 
+Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
+	module.services.select(s | s.name == dslServiceDep.dependency.name);
+
 create sculptorguimetamodel::View this transformView(DslView view, Module module) :
 	let domainObject = module.domainObjects.select(e | e.name == view.for.name).first() :
 	setModule(((DslGuiModule) view.eContainer).transformModule()) ->
 	setName(view.name) ->
 	setFor(domainObject) ->
-	widgets.addAll(view.widgets.transformWidget(module));
+	widgets.addAll(view.widgets.transformWidget(module)) ->
+	serviceDependencies.addAll(view.serviceDependencies.getMetamodelService(module));
 
 create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
@@ -66,4 +70,10 @@ create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInf
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
+	
+create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
 	

@@ -35,6 +35,7 @@ import sculptorguimetamodel.ReferenceViewProperty;
 import sculptorguimetamodel.SculptorguimetamodelFactory;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.SubTaskTransition;
+import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.TaskwType;
 import sculptorguimetamodel.TmpReferenceHolder;
 import sculptorguimetamodel.TmpSubTaskTransitionHolder;
@@ -258,6 +259,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass propertyReferringWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableWidgetEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1021,6 +1029,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getView_ServiceDependencies() {
+		return (EReference)viewEClass.getEStructuralFeatures().get(3);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWidget() {
 		return widgetEClass;
 	}
@@ -1122,6 +1139,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getPropertyReferringWidget_For() {
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTableWidget() {
+		return tableWidgetEClass;
 	}
 
 																/**
@@ -1250,6 +1276,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(viewEClass, VIEW__MODULE);
 		createEReference(viewEClass, VIEW__WIDGETS);
 		createEReference(viewEClass, VIEW__FOR);
+		createEReference(viewEClass, VIEW__SERVICE_DEPENDENCIES);
 
 		widgetEClass = createEClass(WIDGET);
 		createEReference(widgetEClass, WIDGET__VIEW);
@@ -1269,6 +1296,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		propertyReferringWidgetEClass = createEClass(PROPERTY_REFERRING_WIDGET);
 		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR);
+
+		tableWidgetEClass = createEClass(TABLE_WIDGET);
 	}
 
 	/**
@@ -1322,6 +1351,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		buttonWidgetEClass.getESuperTypes().add(this.getWidget());
 		viewAttributeReferenceEClass.getESuperTypes().add(this.getPropertyReference());
 		propertyReferringWidgetEClass.getESuperTypes().add(this.getWidget());
+		tableWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1422,6 +1452,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getView_Module(), this.getGuiModule(), this.getGuiModule_Views(), "module", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getView_Widgets(), this.getWidget(), this.getWidget_View(), "widgets", null, 1, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getView_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getView_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(widgetEClass, Widget.class, "Widget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidget_View(), this.getView(), this.getView_Widgets(), "view", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1441,6 +1472,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(propertyReferringWidgetEClass, PropertyReferringWidget.class, "PropertyReferringWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyReferringWidget_For(), this.getPropertyReference(), null, "for", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tableWidgetEClass, TableWidget.class, "TableWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

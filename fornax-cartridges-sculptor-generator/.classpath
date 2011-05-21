@@ -12,12 +12,13 @@
 	<classpathentry exported="true" kind="var" path="M2_REPO/org/fornax/utilities/fornax-utilities-formatter-xml/2.0.0/fornax-utilities-formatter-xml-2.0.0.jar"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/org/hybridlabs/hybridlabs-beautifier-m2t-xpand/2.1.1/hybridlabs-beautifier-m2t-xpand-2.1.1.jar"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/org/hybridlabs/hybridlabs-beautifier-core/2.1.1/hybridlabs-beautifier-core-2.1.1.jar"/>
-	<classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>	
+	<classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.fornax.cartridges.sculptor.dsl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.fornax.cartridges.sculptor.gui.dsl"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fornax-cartridges-sculptor-metamodel"/>
 	<classpathentry kind="output" path="target/classes"/>
