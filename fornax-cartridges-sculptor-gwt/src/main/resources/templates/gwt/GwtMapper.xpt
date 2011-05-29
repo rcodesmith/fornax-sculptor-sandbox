@@ -1,0 +1,196 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«DEFINE domainObjectUIMapperDispatch(GuiApplication guiApp) FOR Module»
+    «FILE javaFileName(this.dtoMapper() )»
+package «getDomainPackage(this)»;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+
+public class «name.toFirstUpper()»DtoMapper {
+
+	protected static jmultimethod.Multimethod mapToDomainMM = new jmultimethod.Multimethod("mapToDomain", «name.toFirstUpper()»DtoMapper.class);
+	protected static jmultimethod.Multimethod mapFromDomainMM = new jmultimethod.Multimethod("mapFromDomain", «name.toFirstUpper()»DtoMapper.class);
+
+
+	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.typeSelect(Entity).reject(e|e.abstract)»
+
+	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.select(e | ValueObject.isInstance(e) && !DomainEvent.isInstance(e) && !e.abstract)»
+
+	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.typeSelect(Enum)»
+
+}
+    «ENDFILE»
+    
+«ENDDEFINE»
+
+
+«DEFINE copyAttrToDomain FOR Attribute»
+	«IF isDateOrDateTime()»
+		domainObj.set«name.toFirstUpper()»(org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert(dtoObj.get«name.toFirstUpper()»(),
+			(«getTypeName()»)null));	
+	«ELSE»
+		domainObj.set«name.toFirstUpper()»(dtoObj.get«name.toFirstUpper()»());	
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE copyAttrFromDomain FOR Attribute»
+	«IF isDateOrDateTime()»
+		dtoObj.set«name.toFirstUpper()»(org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert(
+			domainObj.get«name.toFirstUpper()»(),
+			(«getGwtTypeName()»)null));	
+	«ELSE»
+		dtoObj.set«name.toFirstUpper()»(domainObj.get«name.toFirstUpper()»());
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE copyManyRefFromDomain FOR Reference»
+        {
+        	java.lang.Iterable<«getGwtTypeName()»> dtosIterable =
+        		com.google.common.collect.Iterables.transform(domainObj.get«name.toFirstUpper()»(), new Function<«getTypeName()», «getGwtTypeName()»>() {
+        		public «getGwtTypeName()» apply(
+        				«getTypeName()» from) {
+		    	    Object mappedDto = mapFromDomainMM.invoke(from);
+
+        			return («getGwtTypeName()»)mappedDto;
+        		}
+        	});
+        	dtoObj.replace«name.toFirstUpper()»(dtosIterable);
+        }
+«ENDDEFINE»
+
+«DEFINE copyOneRefFromDomain FOR Reference»
+		dtoObj.set«name.singular().toFirstUpper()»(«mapFromDomainCall()»(domainObj.get«name.singular().toFirstUpper()»()));
+«ENDDEFINE»
+
+«DEFINE copyManyRefToDomain FOR Reference»
+    	domainObj.removeAll«name.toFirstUpper()»();
+    	for («getGwtTypeName()» obj : dtoObj.get«name.toFirstUpper()»()) {
+    	    Object mappedDomain = mapToDomainMM.invoke(obj);
+    	
+    		domainObj.add«name.singular().toFirstUpper()»((«getTypeName()»)mappedDomain);
+		}
+«ENDDEFINE»
+
+«DEFINE copyOneRefToDomain FOR Reference»
+		domainObj.set«name.singular().toFirstUpper()»(«mapToDomainCall()»(dtoObj.get«name.singular().toFirstUpper()»()));
+«ENDDEFINE»
+
+
+
+«DEFINE mapperDispatchFn(GuiApplication guiApp) FOR DomainObject»
+
+	«EXPAND mapToDomain(guiApp) FOR this»
+	
+	public static «this.fqnDomain()» mapToDomain(«this.fqnGwtDto()» dtoObj) {
+		return map«name.toFirstUpper()»ToDomain(dtoObj);
+	}
+	
+	public static java.util.List<«this.fqnDomain()»> map«name.toFirstUpper()»ToDomain(java.util.List<«this.fqnGwtDto()»> dtoObjsList) {
+        return new java.util.ArrayList<«this.fqnDomain()»>(Lists.transform(dtoObjsList, new Function<«this.fqnGwtDto()», «this.fqnDomain()»>() {
+			public «this.fqnDomain()» apply(
+					«this.fqnGwtDto()» from) {
+				return map«name.toFirstUpper()»ToDomain(from);
+			}
+        }));
+	}
+
+	«EXPAND mapFromDomain(guiApp) FOR this»
+	
+	public static «this.fqnGwtDto()» mapFromDomain(«this.fqnDomain()» domainObj) {
+		return map«name.toFirstUpper()»FromDomain(domainObj);
+	}
+		
+	public static java.util.List<«this.fqnGwtDto()»> map«name.toFirstUpper()»FromDomain(java.util.List<«this.fqnDomain()»> domainObjsList) {
+        return new java.util.ArrayList<«this.fqnGwtDto()»>(com.google.common.collect.Lists.transform(domainObjsList, new Function<«this.fqnDomain()», «this.fqnGwtDto()»>() {
+			public «this.fqnGwtDto()» apply(
+					«this.fqnDomain()» from) {
+				return map«name.toFirstUpper()»FromDomain(from);
+			}
+        }));
+	}
+
+	
+«ENDDEFINE»
+
+«DEFINE mapToDomain(GuiApplication guiApp) FOR DomainObject»
+	/**
+	 * Map the «name» DTO to its corresponding domain object.
+	 */
+	@jmultimethod.Multi("mapToDomain")	 
+	public static «this.fqnDomain()» map«name.toFirstUpper()»ToDomain(«this.fqnGwtDto()» dtoObj) {
+		if(dtoObj == null) {
+			return null;
+		}
+		«this.fqnDomain()» domainObj = new «this.fqnDomain()»(); 
+		
+		«REM»Copy attributes«ENDREM»
+		«EXPAND copyAttrToDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
+		
+		«REM»Copy one-many«ENDREM»
+		«EXPAND copyManyRefToDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
+
+		«REM»Copy one-one«ENDREM»
+		«EXPAND copyOneRefToDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
+		
+		return domainObj;
+	}
+«ENDDEFINE»
+
+«DEFINE mapFromDomain(GuiApplication guiApp) FOR DomainObject»
+	/**
+	 * Map the «name» domain object to its corresponding DTO.
+	 */
+	@jmultimethod.Multi("mapFromDomain")	  
+	public static «this.fqnGwtDto()» map«name.toFirstUpper()»FromDomain(«this.fqnDomain()» domainObj) {
+		if(domainObj == null) {
+			return null;
+		}
+
+		«this.fqnGwtDto()» dtoObj = new «this.fqnGwtDto()»(); 
+		
+		«REM»Copy attributes«ENDREM»
+		«EXPAND copyAttrFromDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
+		
+		«REM»Copy one-many«ENDREM»
+		«EXPAND copyManyRefFromDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
+				
+		«REM»Copy one-one«ENDREM»
+		«EXPAND copyOneRefFromDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
+		
+		return dtoObj;
+	}
+
+«ENDDEFINE»
+
+«DEFINE mapToDomain(GuiApplication guiApp) FOR Enum»
+	/**
+	 * Map the «name» DTO to its corresponding Enum domain object.
+	 */
+	@jmultimethod.Multi("mapToDomain")	 
+	public static «this.fqnDomain()» map«name.toFirstUpper()»ToDomain(«this.fqnGwtDto()» dtoObj) {
+		
+		«this.fqnDomain()» domainObj = «this.fqnDomain()».valueOf(dtoObj.name()); 
+		
+		return domainObj;
+	}
+«ENDDEFINE»
+
+«DEFINE mapFromDomain(GuiApplication guiApp) FOR Enum»
+	/**
+	 * Map the «name» Enum domain object to its corresponding DTO.
+	 */
+	@jmultimethod.Multi("mapFromDomain")	  
+	public static «this.fqnGwtDto()» map«name.toFirstUpper()»FromDomain(«this.fqnDomain()» domainObj) {
+		«this.fqnGwtDto()» dtoObj = «this.fqnGwtDto()».valueOf(domainObj.name()); 
+		
+		return dtoObj;
+	}
+
+«ENDDEFINE»

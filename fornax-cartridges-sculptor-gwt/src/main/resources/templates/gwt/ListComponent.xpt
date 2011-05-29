@@ -1,0 +1,211 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«DEFINE listComponents FOR GuiApplication»
+
+	«EXPAND listCompositeClass FOREACH this.modules.userTasks.typeSelect(ListTask)»
+	«EXPAND listCompositeTemplate FOREACH this.modules.userTasks.typeSelect(ListTask)»
+
+«ENDDEFINE»
+
+«DEFINE listCompositeTemplate FOR ListTask»
+«FILE gwtTableTemplateFilePath(this)»
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	
+	<g:VerticalPanel>
+
+		<p1:CellTable ui:field="cellTable" tableLayoutFixed="false" />
+
+		<g:Button ui:field="addButton">Add «this.for.name.toFirstUpper()»</g:Button>
+
+	</g:VerticalPanel>
+</ui:UiBinder> 
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE listCompositeClass FOR ListTask»
+«FILE javaFileName(fqnGwtTableWidgetBaseClass(this))»
+«javaHeader()»
+package «gwtWidgetsPackage(this)»;
+
+public abstract class «gwtTableWidgetBaseClass()» extends com.google.gwt.user.client.ui.Composite {
+
+    interface «gwtTableWidgetBaseClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<com.google.gwt.user.client.ui.Widget, «fqnGwtTableWidgetBaseClass()»> {}
+
+    private static «gwtTableWidgetBaseClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
+    	.create(«gwtTableWidgetBaseClass()»UiBinder.class);
+
+    private static final java.util.logging.Logger LOG =
+        java.util.logging.Logger.getLogger(«gwtTableWidgetBaseClass()».class.getName());
+
+	private com.google.gwt.event.shared.HandlerManager handlerManager = new com.google.gwt.event.shared.HandlerManager(this);
+
+	// Button to add a new entity
+	@com.google.gwt.uibinder.client.UiField
+	com.google.gwt.user.client.ui.Button addButton;
+	
+	// Cell table component to display «name.plural()»
+	@com.google.gwt.uibinder.client.UiField(provided = true)
+	com.google.gwt.user.cellview.client.CellTable<«fqnGwtDto(this.for)»> cellTable = new CellTable<«fqnGwtDto(this.for)»>();
+
+	final com.google.gwt.view.client.SingleSelectionModel<«fqnGwtDto(this.for)»> selectionModel = new com.google.gwt.view.client.SingleSelectionModel<«fqnGwtDto(this.for)»>();	
+
+
+	// Default constructor
+	public «gwtTableWidgetBaseClass()»() {
+		initWidget(getWidget());
+		
+		initTable();
+	}
+
+    protected com.google.gwt.event.shared.HandlerManager getHandlerManager() {
+		return handlerManager;
+	}
+	
+	public void fireEvent(com.google.gwt.event.shared.GwtEvent<?> event) {
+		handlerManager.fireEvent(event);
+	}
+
+
+	public com.google.gwt.user.cellview.client.CellTable<«fqnGwtDto(this.for)»> getCellTable() {
+		return cellTable;
+	}
+	
+    protected com.google.gwt.user.client.ui.Widget getWidget() {
+    	return uiBinder.createAndBindUi(this);
+    }
+
+
+	public void replaceData(java.util.Collection<«fqnGwtDto(this.for)»> newData) {
+		java.util.List<«fqnGwtDto(this.for)»> newDataList = new java.util.ArrayList<«fqnGwtDto(this.for)»>(newData);
+		replaceData(newDataList);
+	}
+	
+	public void replaceData(java.util.List<«fqnGwtDto(this.for)»> newDataList) {
+		getCellTable().setRowCount(newDataList.size());
+		getCellTable().setRowData(newDataList);
+	}
+	
+	public void clearData() {
+		replaceData(new java.util.ArrayList<«fqnGwtDto(this.for)»>());
+	}
+
+	protected void initTable() {
+		cellTable.setKeyboardSelectionPolicy(com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
+		
+	    // Add a selection model to handle user selection.	    
+	    cellTable.setSelectionModel(selectionModel);
+
+		«FOREACH viewProperties.reject(p | p.isSystemAttribute()) AS prop-»
+		// «prop.name» property
+		{
+			«EXPAND tableColumnDefinition FOR prop»
+
+			cellTable.addColumn(column, "«prop.name»");
+		}
+
+		«ENDFOREACH»
+
+		{		
+			com.google.gwt.user.cellview.client.Column<«fqnGwtDto(for)», String> column =
+				org.fornax.cartridges.sculptor.framework.gwt.client.GwtWidgetUtils.buildButtonColumn(
+					"Edit", new com.google.gwt.cell.client.FieldUpdater<«fqnGwtDto(for)», String>() {
+
+						public void update(int index, «fqnGwtDto(for)» object,
+								String value) {
+							// Value is the button value. Object is the row
+							// object.
+							fireEvent(new EditEvent(object));
+
+						}
+					});
+			cellTable.addColumn(column, "Edit");
+		}
+		
+		// Delete button
+		{
+			com.google.gwt.user.cellview.client.Column<«fqnGwtDto(for)», String> column =
+				org.fornax.cartridges.sculptor.framework.gwt.client.GwtWidgetUtils.buildButtonColumn(
+					"Delete", new com.google.gwt.cell.client.FieldUpdater<«fqnGwtDto(for)», String>() {
+
+						public void update(int index, «fqnGwtDto(for)» object,
+								String value) {
+							// Value is the button value. Object is the row
+							// object.
+							fireEvent(new org.fornax.cartridges.sculptor.framework.gwt.client.GwtCommandEvent(getDeleteCommand(object)));
+						}
+					});
+			cellTable.addColumn(column, "Delete");
+		}
+
+		
+	}
+	
+«REM»Don't attempt to generate a separate command if this domain object is a command«ENDREM»
+«IF !CommandEvent.isInstance(this.for)»
+	protected abstract «this.fqnDeleteCommand()» getDeleteCommand(«fqnGwtDto(for)» object);
+«ENDIF»
+
+
+	public void addSelectionChangeListener(com.google.gwt.view.client.SelectionChangeEvent.Handler handler) {
+		selectionModel.addSelectionChangeHandler(handler);
+	}
+
+	public «fqnGwtDto(this.for)» getSelectedObject() {
+		return selectionModel.getSelectedObject();
+	}
+
+	public com.google.gwt.event.shared.HandlerRegistration addEditHandler(org.fornax.cartridges.sculptor.framework.gwt.client.EditEvent.EditEventHandler handler) {
+		return getHandlerManager()
+				.addHandler(
+						org.fornax.cartridges.sculptor.framework.gwt.client.EditEvent.TYPE,
+						handler);
+	}
+	
+    public com.google.gwt.event.shared.HandlerRegistration addAddEntityHandler(org.fornax.cartridges.sculptor.framework.gwt.client.AddEntityEvent.AddEntityEventHandler handler) {
+        return getHandlerManager().addHandler(org.fornax.cartridges.sculptor.framework.gwt.client.AddEntityEvent.TYPE,
+            handler);
+    }
+
+    public com.google.gwt.event.shared.HandlerRegistration addCommandHandler(org.fornax.cartridges.sculptor.framework.gwt.client.GwtCommandEvent.GwtCommandEventHandler handler) {
+        return getHandlerManager().addHandler(org.fornax.cartridges.sculptor.framework.gwt.client.GwtCommandEvent.TYPE, handler);
+    }
+
+    @com.google.gwt.uibinder.client.UiHandler("addButton")
+    void onClick(com.google.gwt.event.dom.client.ClickEvent e) {
+    	if(LOG.isLoggable(java.util.logging.Level.FINER)) {
+    		LOG.finer("onClick(addCompanyButton: " + e + ")");
+    	}
+        fireEvent(new org.fornax.cartridges.sculptor.framework.gwt.client.AddEntityEvent());
+    }
+
+
+
+}
+
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE tableColumnDefinition FOR ViewDataProperty»
+	com.google.gwt.user.cellview.client.TextColumn<«fqnGwtDto(this.userTask.for)»> column = new com.google.gwt.user.cellview.client.TextColumn<«fqnGwtDto(this.userTask.for)»>() {
+		@Override
+		public String getValue(«fqnGwtDto(this.userTask.for)» object) {
+			«this.getGwtTypeName()» val = «getDtoPropertyPath("object")»;
+            return (val == null ? "" : val.toString());		
+		}
+	};
+«ENDDEFINE»

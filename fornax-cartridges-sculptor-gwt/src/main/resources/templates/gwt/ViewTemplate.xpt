@@ -1,0 +1,55 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+«DEFINE viewCompositeBaseTemplate FOR View»
+«FILE gwtTemplateFilePath(fqnGwtViewWidgetBaseClass(this))»
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:d="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel>
+			<g:FormPanel>
+				<g:VerticalPanel>
+				
+«FOREACH widgets AS widget»
+				<g:HorizontalPanel>		
+					«EXPAND widgetTemplate FOR widget»
+				</g:HorizontalPanel>	
+«ENDFOREACH»
+			
+				
+				</g:VerticalPanel>
+			</g:FormPanel>
+			
+		</g:VerticalPanel>
+		
+	</g:HTMLPanel>
+	
+</ui:UiBinder> 
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR InputTextWidget»
+	<g:Label text="«label»" />
+	<g:TextBox ui:field="«name»"  name="«name»"/>
+	
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR ButtonWidget»
+	<g:Button ui:field="«name»" text="«label»"></g:Button>
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR Widget»
+	<!-- Error - expected specific widget template -->
+«ENDDEFINE»

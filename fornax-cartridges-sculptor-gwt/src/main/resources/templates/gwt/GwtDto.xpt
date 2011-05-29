@@ -1,0 +1,591 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+«DEFINE gwtDto FOR GuiApplication»
+	«EXPAND gwtModule FOREACH this.modules»
+	
+«ENDDEFINE»
+
+«DEFINE gwtModule FOR GuiModule»
+	«EXPAND gwtDomainModule(this.application) FOREACH this.application.guiForApplication.modules.select(m | m.name == this.name)»
+	
+	
+«ENDDEFINE»
+
+
+«REM»
+	Domain module transformation
+«ENDREM»
+«DEFINE gwtDomainModule(GuiApplication guiApp) FOR Module»
+	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(Entity)»
+	«EXPAND gwtEnumDto(guiApp) FOREACH this.domainObjects.typeSelect(Enum)»
+	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(ValueObject)»
+	
+
+	«EXPAND GwtMapper::domainObjectUIMapperDispatch(guiApp)»
+
+«ENDDEFINE»
+
+«REM»
+	Enum transformation
+	Copied from templates::domain::DomainObject::domainObject for Enum
+«ENDREM»
+«DEFINE gwtEnumDto(GuiApplication guiApp) FOR Enum»
+    «FILE javaFileName(gwtDomainPackage(this) + "." + name)»
+«javaHeader()»
+package «gwtDomainPackage()»;
+
+/**
+ * Enum for «name»
+ */
+public enum «name» implements java.io.Serializable {
+	«EXPAND templates::domain::DomainObject::enumValue FOREACH values SEPARATOR ","»;
+
+	«EXPAND templates::domain::DomainObject::enumIdentifierMap»
+
+    «EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH attributes»
+    
+    «EXPAND enumNames FOR this»
+    «EXPAND templates::domain::DomainObject::enumConstructor»
+    «EXPAND templates::domain::DomainObject::enumFromIdentifierMethod»
+    «EXPAND templates::domain::DomainObjectAttribute::propertyGetter FOREACH attributes»
+    «EXPAND templates::domain::DomainObject::enumNamePropertyGetter»
+}
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE enumNames FOR Enum»
+    private final static java.util.List<String> enumNames = generateEnumNames();
+    
+    private final static java.util.List<String> generateEnumNames() {
+    	java.util.List<String> res = new java.util.ArrayList<String>();
+    	for («fqnGwtDto()» enumObj : values()) {
+			res.add(enumObj.getName());
+		}
+    	return res;
+    }
+    
+
+    public static java.util.List<String> getEnumNames() {
+    	return enumNames;
+    }
+    
+«ENDDEFINE»
+«REM»
+	One reference attribute
+	Copied from DomainObjectReference::oneReferenceAttribute
+«ENDREM»
+«DEFINE gwtOneReferenceAttribute FOR Reference»
+    «IF isValidationAnnotationToBeGenerated()»
+		«EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceValidationAnnotations»
+    «ENDIF»
+    private «IF transient»transient «ENDIF»«fqnGwtDto()» «name»;
+«ENDDEFINE»
+
+
+«DEFINE gwtOneReferenceAttribute(boolean annotations) FOR Reference»
+    «IF annotations»
+    	«EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceAttributeAnnotations»
+    «ENDIF»
+    private «IF transient»transient «ENDIF»«fqnGwtDto()» «name»«EXPAND templates::domain::DomainObjectReference::oneReferenceAttributeDefaultValue»;
+«ENDDEFINE»
+
+
+
+«REM»
+	START
+	Copied from DomainObjectReference.xpt and modified
+«ENDREM»
+«DEFINE oneReferenceAccessors FOR Reference»
+		«EXPAND oneReferenceGetter»
+	    «IF !changeable»
+	    	«EXPAND notChangeableOneReferenceSetter»
+	    «ELSE»
+	    	«EXPAND oneReferenceSetter»
+	    «ENDIF»
+
+«ENDDEFINE»
+
+«DEFINE oneReferenceGetter FOR Reference»
+	«EXPAND oneReferenceGetter(true)»
+«ENDDEFINE»
+
+«DEFINE oneReferenceGetter(boolean annotations) FOR Reference»
+    «formatJavaDoc()»
+    «IF annotations»
+    	«EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceGetterAnnotations»
+    «ENDIF»
+    «getVisibilityLitteralGetter()»«fqnGwtDto()» get«name.toFirstUpper()»() {
+        return «name»;
+    };
+«ENDDEFINE»
+
+«DEFINE oneReferenceIdGetter FOR Reference»
+    «formatJavaDoc()»
+    «getVisibilityLitteralGetter()»«getJavaType("IDTYPE")» get«name.toFirstUpper()»«unownedReferenceSuffix()»() {
+        return «name»«unownedReferenceSuffix()»;
+    };
+«ENDDEFINE»
+
+
+«DEFINE oneReferenceIdSetter FOR Reference»
+	«IF isSetterNeeded()»
+    «formatJavaDoc()»
+    «getVisibilityLitteralSetter()»void set«name.toFirstUpper()»«unownedReferenceSuffix()»(«getJavaType("IDTYPE")» «name»«unownedReferenceSuffix()») {
+        this.«name»«unownedReferenceSuffix()» = «name»«unownedReferenceSuffix()»;
+    };
+    «ENDIF»
+«ENDDEFINE»
+
+
+«DEFINE oneReferenceSetter FOR Reference»
+	«IF isSetterNeeded()»
+    «formatJavaDoc()»
+    «EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceSetterAnnotations»
+    «getVisibilityLitteralSetter()»void set«name.toFirstUpper()»(«fqnGwtDto()» «name») {
+        this.«name» = «name»;
+    };
+    «ENDIF»
+«ENDDEFINE»
+
+«DEFINE notChangeableOneReferenceSetter FOR Reference»
+    «IF isSetterNeeded()-»
+    «IF notChangeableReferenceSetterVisibility() == "private"-»
+    @SuppressWarnings("unused")
+    «ELSE -»
+    /**
+     * This reference can't be changed. Use constructor to assign value.
+     * However, some tools need setter methods and sometimes the
+     * referred object is not available at construction time. Therefore
+     * this method is visible, but the actual reference can't be changed
+     * once it is assigned.
+     */
+    «ENDIF -»
+    «EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceSetterAnnotations»
+    «notChangeableReferenceSetterVisibility()» void set«name.toFirstUpper()»(«fqnGwtDto()» «name») {
+        // it must be possible to set null when deleting objects
+        if ((«name» != null) && (this.«name» != null) && !this.«name».equals(«name»)) {
+            throw new IllegalArgumentException("Not allowed to change the «name» reference.");
+        }
+        this.«name» = «name»;
+    };
+    «ENDIF»
+«ENDDEFINE»
+
+
+«DEFINE manyReferenceAttribute FOR Reference»
+	«IF isUnownedReference()»
+	«ELSE»
+		«EXPAND templates::domain::DomainObjectReferenceAnnotation::manyReferenceAttributeAnnotations»
+	    private «getCollectionInterfaceType()»<«getGwtTypeName()»> «name» = new «getCollectionImplType()»<«getGwtTypeName()»>();
+    «ENDIF»
+«ENDDEFINE»
+
+
+
+«DEFINE manyReferenceAccessors FOR Reference»
+	«IF isUnownedReference()»
+	«ELSE»
+	    «EXPAND manyReferenceGetter»
+	    «EXPAND manyReferenceSetter»
+    «ENDIF»
+«ENDDEFINE»
+
+
+«DEFINE manyReferenceGetter FOR Reference»
+    «formatJavaDoc()»
+	«EXPAND templates::domain::DomainObjectReferenceAnnotation::manyReferenceGetterAnnotations»
+    «getVisibilityLitteralGetter()»«getCollectionInterfaceType()»<«getGwtTypeName()»> get«name.toFirstUpper()»() {
+        return «name»;
+    };
+«ENDDEFINE»
+
+«DEFINE manyReferenceSetter FOR Reference»
+    @SuppressWarnings("unused")
+    private void set«name.toFirstUpper()»(«getCollectionInterfaceType()»<«getGwtTypeName()»> «name») {
+        this.«name» = «name»;
+    }
+    
+    public void replace«name.toFirstUpper()»(java.lang.Iterable<«getGwtTypeName()»> new«name.toFirstUpper()») {
+    	this.«name».clear();
+    	for («getGwtTypeName()» obj : new«name.toFirstUpper()») {
+			this.«name».add(obj);
+		}
+    }
+«ENDDEFINE»
+
+«REM»
+END
+«ENDREM»
+
+
+
+«DEFINE domainObjectBase(GuiApplication guiApp) FOR DomainObject»
+    «LET attributes.exists(a | a.isUuid())  AS hasUuidAttribute -»
+    «FILE javaFileName(gwtDomainPackage(this) + "." + name )»
+«javaHeader()»
+package «gwtDomainPackage(this)»;
+
+	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
+public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
+	«EXPAND templates::domain::DomainObject::serialVersionUID»
+   	«EXPAND attribute FOREACH this.getAllBusinessAttributes()»
+
+    «EXPAND gwtOneReferenceAttribute FOREACH references.select(r | !r.many)»
+    «EXPAND manyReferenceAttribute FOREACH references.select(r | r.many)»
+
+	/**
+	 * Constructor
+	 */
+    public «name»() {
+    
+    }
+
+    «EXPAND gwtDtoPropertyConstructorBase»
+   	«EXPAND limitedConstructor»
+
+    «EXPAND propertyAccessors FOREACH this.getAllBusinessAttributes() »
+
+    «EXPAND oneReferenceAccessors FOREACH references.select(r | !r.many)»
+    «EXPAND manyReferenceAccessors FOREACH references.select(r | r.many)»
+    
+    «EXPAND templates::domain::DomainObject::toStringStyle»
+    «EXPAND templates::domain::DomainObject::acceptToString»
+    «EXPAND keyGetter»
+    
+    «EXPAND templates::domain::DomainObjectTrait::traitInstance(this) FOREACH traits.select(e | !e.operations.isEmpty)»
+    «EXPAND templates::domain::DomainObjectTrait::delegateToTraitMethod FOREACH operations.select(e | !e.abstract && e.hasHint("trait"))»
+    «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
+    
+    «EXPAND templates::domain::DomainObject::domainObjectHook»
+}
+    «ENDFILE»
+    «ENDLET»
+«ENDDEFINE»
+
+«REM»Copied from DomainObjectAttribute«ENDREM»
+«DEFINE attribute FOR Attribute»
+    «EXPAND attribute(true)»
+«ENDDEFINE»
+
+«DEFINE attribute(boolean annotations) FOR Attribute»
+	«IF annotations»
+		«EXPAND templates::domain::DomainObjectAttributeAnnotation::attributeAnnotations»
+	«ENDIF»
+    private «IF transient»transient «ENDIF»«getGwtTypeName()» «name»«IF collectionType != null» = new «getGwtImplTypeName()»()«ENDIF»«EXPAND templates::domain::DomainObjectAttribute::attributeDefaultValue»;
+«ENDDEFINE»
+
+
+«DEFINE propertyAccessors FOR Attribute»
+    «EXPAND propertyGetter»
+    «IF name == "id" && getDomainObject().isPersistent()»
+    	«EXPAND templates::domain::DomainObjectAttribute::idPropertySetter»
+    «ELSEIF !changeable && getTypeName().isPrimitiveType()»
+    	«EXPAND templates::domain::DomainObjectAttribute::notChangeablePrimitivePropertySetter»
+    «ELSEIF !changeable»
+    	«EXPAND notChangeablePropertySetter»
+    «ELSE»
+    	«EXPAND propertySetter»
+    «ENDIF»
+«ENDDEFINE»
+
+«DEFINE propertyGetter FOR Attribute»
+	«EXPAND propertyGetter(true)»
+«ENDDEFINE»
+
+«DEFINE propertyGetter(boolean annotations) FOR Attribute»
+    «formatJavaDoc()»
+    «IF annotations»
+    	«EXPAND templates::domain::DomainObjectAttributeAnnotation::propertyGetterAnnotations»
+    «ENDIF»
+    «getVisibilityLitteralGetter()»«getGwtTypeName()» «getGetAccessor()»() {
+        return «name»;
+    };
+«ENDDEFINE»
+
+«DEFINE propertySetter FOR Attribute»
+	«IF isSetterNeeded()»
+    «formatJavaDoc()»
+    «EXPAND templates::domain::DomainObjectAttributeAnnotation::propertySetterAnnotations»
+    «getVisibilityLitteralSetter()»void set«name.toFirstUpper()»(«getGwtTypeName()» «name») {
+        «IF isFullyAuditable() && !transient-»
+        receiveInternalAuditHandler().recordChange(«getDomainObject().name»Properties.«name»(), this.«name», «name»);
+        «ENDIF-»
+        this.«name» = «name»;
+    };
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE notChangeablePropertySetter FOR Attribute»
+    «IF isSetterNeeded()»
+    «IF notChangeablePropertySetterVisibility() == "private"-»
+    @SuppressWarnings("unused")
+    «ELSE-»
+    «EXPAND templates::domain::DomainObjectAttribute::notChangeablePropertySetterJavaDoc »
+    «ENDIF -»
+    «EXPAND templates::domain::DomainObjectAttributeAnnotation::propertySetterAnnotations»
+    «notChangeablePropertySetterVisibility()» void set«name.toFirstUpper()»(«getGwtTypeName()» «name») {
+        if ((this.«name» != null) && !this.«name».equals(«name»)) {
+            throw new IllegalArgumentException("Not allowed to change the «name» property.");
+        }
+        this.«name» = «name»;
+    };
+    «ENDIF»
+«ENDDEFINE»
+
+«REM»End of copied from DomainObjectAttribute«ENDREM»
+
+«REM»Copied from DomainObjectConstructor.xpt«ENDREM»
+«DEFINE gwtDtoPropertyConstructorBase FOR DomainObject»
+    «IF !getConstructorParameters().isEmpty -»
+    // here
+    public «name»(«EXPAND parameterTypeAndName FOREACH getConstructorParameters() SEPARATOR ","») {
+        «IF !getConstructorParameters().isEmpty -»
+        super(«FOREACH getSuperConstructorParameters() AS a SEPARATOR ","»«a.name»«ENDFOREACH»);
+        «ENDIF-»
+        «FOREACH getConstructorParameters().removeAll(getSuperConstructorParameters()) AS a-»
+	        «IF a.validateNotNullInConstructor() -»
+	        	«EXPAND templates::domain::DomainObjectConstructor::validateNotNull(a.name) -»
+	        «ENDIF-»
+	        «IF a.metaType == Reference && ((Reference) a).many -»
+	        	this.«a.name».addAll(«a.name»);
+	        «ELSE-»
+	        	this.«a.name» = «a.name»;
+	        «ENDIF-»
+        «ENDFOREACH -»
+    }
+    «ENDIF»
+«ENDDEFINE»
+
+«DEFINE parameterTypeAndName FOR NamedElement»
+«ENDDEFINE»
+
+«DEFINE parameterTypeAndName FOR TypedElement»
+«EXPAND templates::domain::DomainObjectConstructor::parameterAnnotations» «getGwtTypeName()» «name»
+«ENDDEFINE»
+
+«DEFINE parameterTypeAndName FOR Reference»
+«IF many-»
+«EXPAND templates::domain::DomainObjectConstructor::parameterAnnotations» «getCollectionInterfaceType()»<«getGwtTypeName()»> «name»
+«ELSE-»
+«EXPAND templates::domain::DomainObjectConstructor::parameterAnnotations» «getGwtTypeName()» «name»
+«ENDIF-»
+«ENDDEFINE»
+
+
+«DEFINE limitedConstructor FOR DomainObject»
+	«LET getConstructorParameters() AS allParameters»
+	«LET getLimitedConstructorParameters() AS parameters»
+    «IF !parameters.isEmpty && allParameters.size != parameters.size »
+    // here...
+    public «name»(«EXPAND parameterTypeAndName FOREACH parameters SEPARATOR ","») {
+        this(«FOREACH allParameters AS a SEPARATOR ","
+        	»«IF parameters.contains(a)»«a.name»«ELSE»null«ENDIF»«ENDFOREACH»);
+    }
+    «ENDIF»
+    «ENDLET»
+    «ENDLET»
+«ENDDEFINE»
+
+«DEFINE limitedConstructor FOR Event»
+	«EXPAND limitedEventConstructor»
+«ENDDEFINE»
+
+«DEFINE limitedEventConstructor FOR DomainObject»
+	«LET getConstructorParameters() AS allParameters»
+	«LET getLimitedConstructorParameters() AS parameters»
+    «IF !parameters.isEmpty && allParameters.size != parameters.size »
+    // here event
+    public «name»(«EXPAND parameterTypeAndName FOREACH parameters SEPARATOR ","») {
+        this(«FOREACH allParameters AS a SEPARATOR ","
+        	»«IF parameters.contains(a)»«a.name»«ELSE»null«ENDIF»«ENDFOREACH»);
+    }
+    «ENDIF»
+    «ENDLET»
+    
+    «LET getLimitedConstructorParameters().reject(e|e.name=="recorded") AS parameters2»
+    «IF !parameters2.isEmpty && allParameters.size != parameters2.size »
+    /**
+     * Current time is used for recorded timestamp
+     */ 
+    public «name»(«EXPAND parameterTypeAndName FOREACH parameters2 SEPARATOR ","») {
+        this(«FOREACH allParameters AS a SEPARATOR ","
+        	»«IF a.name=="recorded"»new «a.getGwtTypeName()»()«
+        	ELSEIF parameters2.contains(a)»«a.name»«
+        	ELSE»null«ENDIF»«ENDFOREACH»);
+    }
+    «ENDIF»
+    «ENDLET»
+    
+    «ENDLET»
+«ENDDEFINE»
+
+«REM»End of copied section«ENDREM»
+
+
+
+«DEFINE domainObject(GuiApplication guiApp) FOR Enum»
+    «FILE javaFileName(gwtDomainPackage(this) + "." + name)»
+«javaHeader()»
+package «gwtDomainPackage(this)»;
+
+/**
+ * Enum for «name»
+ */
+public enum «name» implements java.io.Serializable {
+	«EXPAND templates::domain::DomainObject::enumValue FOREACH values SEPARATOR ","»;
+
+	«EXPAND templates::domain::DomainObject::enumIdentifierMap»
+
+    «EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH attributes»
+    «EXPAND templates::domain::DomainObject::enumConstructor»
+    «EXPAND templates::domain::DomainObject::enumFromIdentifierMethod»
+    «EXPAND templates::domain::DomainObjectAttribute::propertyGetter FOREACH attributes»
+    «EXPAND templates::domain::DomainObject::enumNamePropertyGetter»
+}
+	«ENDFILE»
+«ENDDEFINE»
+
+
+
+
+«REM»Copied from DomainObjectKey«ENDREM»
+
+«DEFINE keyGetter FOR DomainObject»
+    «IF attributes.exists(a | a.isUuid()) »
+        /**
+         * This method is used by equals and hashCode.
+         * @return {{@link #getUuid}
+         */
+        public Object getKey() {
+            return getUuid();
+        }
+    «ELSEIF getNaturalKeyAttributes().isEmpty && getNaturalKeyReferences().isEmpty »
+    	«REM»No keys in this class, key implemented by extended class«ENDREM»
+    «ELSEIF getNaturalKeyReferences().size == 1 && getAllNaturalKeyReferences().size == 1 && getAllNaturalKeyAttributes().isEmpty »
+        /**
+         * This method is used by equals and hashCode.
+         * @return {@link #get«getNaturalKeyReferences().first().name.toFirstUpper()»}
+         */
+        public Object getKey() {
+            return get«getNaturalKeyReferences().first().name.toFirstUpper()»();
+        }
+    «ELSEIF getNaturalKeyAttributes().size == 1 && getAllNaturalKeyAttributes().size == 1 && getAllNaturalKeyReferences().isEmpty »
+        /**
+         * This method is used by equals and hashCode.
+         * @return {@link #«getGetAccessor(attributes.select(a | a.naturalKey).get(0))»}
+         */
+        public Object getKey() {
+            return «getGetAccessor(attributes.select(a | a.naturalKey).get(0))»();
+        }
+    «ELSEIF isDomainObjectCompositeKeyClassToBeGenerated() »
+        «EXPAND compositeKeyGetter»
+    «ELSE»
+    	«EXPAND compositeKeyEquals»
+        «EXPAND compositeKeyHashCode»
+    «ENDIF»
+«ENDDEFINE»
+
+«DEFINE compositeKeyGetter FOR DomainObject»
+        /**
+         * This method is used by equals and hashCode.
+         * @return {@link #get«name»Key}
+         */
+        public Object getKey() {
+            return get«name»Key();
+        }
+        
+        private transient «name»Key cached«name»Key;
+
+        /**
+         * The natural key for the domain object is
+         * a composite key consisting of several attributes.
+         */
+        public «name»Key get«name»Key() {
+        	if (cached«name»Key == null) {
+                cached«name»Key = new «name»Key(«FOREACH getAllNaturalKeys() AS a SEPARATOR ","»«a.getGetAccessor()»()«ENDFOREACH»);
+            }
+            return cached«name»Key;
+        }
+        «EXPAND compositeKey »
+«ENDDEFINE»
+
+«DEFINE compositeKey FOR DomainObject»
+«LET getAllNaturalKeys() AS allKeys»
+
+    /**
+     * This is the natural key for the domain object.
+     * It is a composite key consisting of several
+     * attributes.
+     */
+    public static class «name»Key {
+
+        «FOREACH getAllNaturalKeyAttributes() AS a»
+        «EXPAND templates::domain::DomainObjectAttribute::attribute(false) FOR a »
+        «ENDFOREACH»
+
+        «FOREACH getAllNaturalKeyReferences() AS ref»
+        «EXPAND gwtOneReferenceAttribute(false) FOR ref »
+        «ENDFOREACH»
+
+        public «name»Key(«EXPAND parameterTypeAndName FOREACH allKeys SEPARATOR ","») {
+            «FOREACH allKeys AS a -»
+            this.«a.name» = «a.name»;
+            «ENDFOREACH»
+        }
+
+		«REM»no annotations for composite key classes«ENDREM»
+        «EXPAND templates::domain::DomainObjectAttribute::propertyGetter(false) FOREACH getAllNaturalKeyAttributes()»
+        «EXPAND oneReferenceGetter(false) FOREACH getAllNaturalKeyReferences()»
+
+		«EXPAND compositeKeyEquals»
+        «EXPAND compositeKeyHashCode»
+
+    }
+«ENDLET»
+«ENDDEFINE»
+
+«DEFINE compositeKeyEquals FOR DomainObject»
+«LET getAllNaturalKeys() AS allKeys»
+«LET isDomainObjectCompositeKeyClassToBeGenerated() ? name + "Key" : name AS className»
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof «className»)) return false;
+
+            «className» other = («className») obj;
+
+            «FOREACH getAllNaturalKeyAttributes() AS a -»
+            	«IF a.getTypeName().isPrimitiveType() -»
+            if («getGetAccessor(a)»() != other.«getGetAccessor(a)»()) return false;
+            	«ELSE -»
+            if (!org.fornax.cartridges.sculptor.framework.gwt.client.util.GwtEqualsHelper.equals(«getGetAccessor(a)»(), other.«getGetAccessor(a)»())) return false;
+            	«ENDIF -»
+            «ENDFOREACH -»
+            «FOREACH getAllNaturalKeyReferences() AS r -»
+            if (!org.fornax.cartridges.sculptor.framework.gwt.client.util.GwtEqualsHelper.equals(«getGetAccessor(r)»(), other.«getGetAccessor(r)»())) return false;
+            «ENDFOREACH -»
+            return true;
+        }
+«ENDLET»
+«ENDLET»
+«ENDDEFINE»
+
+«DEFINE compositeKeyHashCode FOR DomainObject»
+«LET getAllNaturalKeys() AS allKeys»
+        @Override
+        public int hashCode() {
+            int result = 17;
+            «FOREACH allKeys AS a -»
+            result = 37 * result + org.fornax.cartridges.sculptor.framework.gwt.client.util.GwtEqualsHelper.computeHashCode(«getGetAccessor(a)»());
+            «ENDFOREACH -»
+            return result;
+        }
+«ENDLET»
+«ENDDEFINE»
+
+«REM»End of copy«ENDREM»

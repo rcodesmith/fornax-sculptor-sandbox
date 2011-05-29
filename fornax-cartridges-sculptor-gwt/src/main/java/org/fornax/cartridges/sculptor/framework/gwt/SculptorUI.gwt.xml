@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='sculptorui'>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+
+  <inherits name='com.google.gwt.activity.Activity' /> 
+
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='org.fornax.cartridges.sculptor.framework.gwt.client.SculptorUI'/>
+
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client'/>
+  <source path='shared'/>
+ 
+</module>

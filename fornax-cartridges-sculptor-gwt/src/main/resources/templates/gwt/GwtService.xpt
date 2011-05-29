@@ -1,0 +1,159 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«DEFINE gwtService(Module module) FOR GuiModule»
+	
+	«EXPAND gwtAsyncService(this) FOREACH this.views.getUsedServices().toSet().select(s|s != null)»
+	«EXPAND gwtSyncService(this) FOREACH this.views.getUsedServices().toSet().select(s|s != null)»
+	«EXPAND gwtServiceImpl(this, module) FOREACH this.views.getUsedServices().toSet().select(s|s != null)»
+
+
+«ENDDEFINE»
+
+
+«REM»Async interface«ENDREM»
+
+«DEFINE gwtAsyncService(GuiModule guiModule) FOR Service»
+
+    «FILE javaFileName(gwtServiceAsyncInterface(this))»
+    	package «gwtServiceAsyncInterfacePackage(this)»;
+    	
+		public interface «gwtServiceAsyncInterfaceName(this)» {
+		«EXPAND gwtAsyncServiceOperation FOREACH this.operations.select(op|op.isPublicVisibility())»
+«REM»
+«ENDREM»
+		
+		
+		}
+	«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE gwtAsyncServiceOperation FOR ServiceOperation»
+
+	public void «name»(«EXPAND anotParamTypeAndName FOREACH parameters SEPARATOR ","» «IF parameters != null && parameters.size > 0»,«ENDIF»
+	«LET getGwtTypeName() AS retTypeName»
+	com.google.gwt.user.client.rpc.AsyncCallback<«IF retTypeName == "void"»Void«ELSE»«retTypeName»«ENDIF»> callback);
+	«ENDLET»
+«ENDDEFINE»
+
+
+«REM»Parameter type and name«ENDREM»
+
+«DEFINE anotParamTypeAndName FOR Parameter»
+«getGwtTypeName()» «name»
+«ENDDEFINE»
+
+
+«REM»Sync interface«ENDREM»
+
+
+«DEFINE gwtSyncService(GuiModule guiModule) FOR Service»
+
+    «FILE javaFileName(gwtServiceSyncInterface(this))»
+    	package «gwtServiceSyncInterfacePackage(this)»;
+    	
+    	@com.google.gwt.user.client.rpc.RemoteServiceRelativePath("«name».gwt")
+    	@org.fornax.cartridges.sculptor.framework.gwt.shared.GwtRemoteService("«name».gwt")
+		public interface «gwtServiceSyncInterfaceName(this)» extends com.google.gwt.user.client.rpc.RemoteService {
+		«EXPAND gwtSyncServiceOperation FOREACH this.operations.select(op|op.isPublicVisibility())»
+«REM»
+«ENDREM»
+		
+		
+		}
+	«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE gwtSyncServiceOperation FOR ServiceOperation»
+
+	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName FOREACH parameters SEPARATOR ","»);
+«ENDDEFINE»
+
+
+
+
+
+
+«REM»Service implementation«ENDREM»
+
+
+«DEFINE gwtServiceImpl(GuiModule guiModule, Module module) FOR Service»
+
+    «FILE javaFileName(gwtServiceImpl(this))»
+    	package «gwtServiceImplPackage(this)»;
+    	
+    	import org.fornax.cartridges.sculptor.framework.gwt.shared.domain.ServiceTechnologyException;
+    	
+    	@org.springframework.stereotype.Service("Gwt«name»")
+		public class «gwtServiceImplName(this)» extends com.google.gwt.user.server.rpc.RemoteServiceServlet
+			implements «gwtServiceSyncInterface(this)» {
+
+    	/**
+		  * Default serialVersionUID
+		  */
+		private static final long serialVersionUID = 1L;
+		
+		private final static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(«gwtServiceImplName(this)».class);
+
+			
+		@org.springframework.beans.factory.annotation.Autowired
+		private «this.getServiceapiPackage()».«this.name» «name.toFirstLower()»;
+		
+		«EXPAND gwtServiceImplOperation(module) FOREACH this.operations.select(op|op.isPublicVisibility())»
+		}
+	«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE gwtServiceImplOperation(Module module) FOR ServiceOperation»
+
+	/**
+	 * Type is «type»
+	 * Domain object type name is «domainObjectType.name»
+	 * Type name is «getTypeName()»
+	 */
+	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName FOREACH parameters SEPARATOR ","») {
+	
+	log.debug("«name»()");
+	
+	try {
+	«LET this.getTypeName() AS typeName»
+		«IF typeName != null && typeName != 'void'»
+			«typeName» res =
+		«ENDIF»
+		«this.service.name.toFirstLower()».«name»(«EXPAND gwtServiceImplOperationParameter(module) FOREACH parameters SEPARATOR ","»);
+		
+		«IF typeName != null && typeName != 'void'»
+			
+			«IF domainObjectType != null»
+			return «module.dtoMapper()».map«domainObjectType.name»FromDomain(res);				
+			«ELSE»
+			return res;
+			«ENDIF»
+		«ENDIF»
+
+	«ENDLET»
+    	} catch(Exception e) {
+    		log.error("error calling «name»", e);
+    		throw new ServiceTechnologyException(e);
+    	}
+
+	
+	}
+«ENDDEFINE»
+
+«DEFINE gwtServiceImplOperationParameter(Module module) FOR Parameter»
+	«IF this.domainObjectType != null»
+		«module.dtoMapper()».map«domainObjectType.name»ToDomain(«this.name»)
+	«ELSE»
+		«this.name»
+	«ENDIF»
+«ENDDEFINE»
+

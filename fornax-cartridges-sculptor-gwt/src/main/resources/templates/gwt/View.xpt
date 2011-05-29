@@ -1,0 +1,134 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«DEFINE view(Module module) FOR GuiModule»
+	
+	«EXPAND viewBase FOREACH this.views»
+	«EXPAND viewImpl FOREACH this.views»
+
+	«EXPAND activityBase FOREACH this.views»
+	«EXPAND activityImpl FOREACH this.views»
+	
+	«EXPAND templates::gwt::ViewTemplate::viewCompositeBaseTemplate FOREACH this.views»
+«ENDDEFINE»
+
+
+«REM»View base class«ENDREM»
+«DEFINE viewBase FOR View»
+«FILE javaFileName(fqnGwtViewWidgetBaseClass())»
+
+package «gwtWidgetsPackage()»;
+
+public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Composite {
+
+
+    interface «gwtViewWidgetBaseClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<Widget, «fqnGwtViewWidgetBaseClass()»> {}
+
+    private static «gwtViewWidgetBaseClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
+    	.create(«gwtViewWidgetBaseClass()»UiBinder.class);
+
+	public «gwtViewWidgetBaseClass()»() {
+		initWidget(getWidget());
+	}
+	
+    protected com.google.gwt.user.client.ui.Widget getWidget() {
+    	return uiBinder.createAndBindUi(this);
+    }
+    
+    «EXPAND widgetDeclaration FOREACH widgets»
+}
+
+«ENDFILE»
+
+«ENDDEFINE»
+
+«DEFINE widgetDeclaration FOR Widget»
+    @com.google.gwt.uibinder.client.UiField
+    «resolveGwtWidgetType()» «name»;
+    
+«ENDDEFINE»
+
+«REM»View impl class«ENDREM»
+«DEFINE viewImpl FOR View»
+«FILE javaFileName(fqnGwtViewWidgetImplClass(this)) TO_SRC»
+
+package «gwtWidgetsPackage()»;
+
+public class «gwtViewWidgetImplClass()» extends  «fqnGwtViewWidgetBaseClass()» implements «fqnViewWidgetImplInterface()» {
+
+	public «gwtViewWidgetImplClass()»() {
+		super();
+	}
+}
+
+«ENDFILE»
+
+«ENDDEFINE»
+
+
+«REM»Activity base class«ENDREM»
+«DEFINE activityBase FOR View»
+«FILE javaFileName(fqnActivityBaseClass())»
+
+package «gwtActivitiesPackage()»;
+
+public abstract class «gwtActivityBaseClass()» extends com.google.gwt.activity.shared.AbstractActivity {
+
+	«loggerDeclaration(gwtActivityBaseClass())»
+
+	private final com.google.gwt.event.shared.EventBus eventBus;
+	private final com.google.gwt.place.shared.PlaceController placeController;
+	
+	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
+	}
+
+	public «gwtActivityBaseClass()»(com.google.gwt.event.shared.EventBus eventBus,
+		com.google.gwt.place.shared.PlaceController placeController) {
+		super();
+		this.eventBus = eventBus;
+		this.placeController = placeController;
+	}
+
+
+	protected abstract void bind();
+
+}
+ 
+«ENDFILE»
+«ENDDEFINE» 
+
+«REM»Activity implementation class«ENDREM»
+«DEFINE activityImpl FOR View»
+«FILE javaFileName(fqnActivityImplClass()) TO_SRC»
+
+package «gwtActivitiesPackage()»;
+
+public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
+
+	«loggerDeclaration(gwtActivityImplClass())»
+	
+	«fqnViewWidgetImplInterface()» display;
+	
+	public interface «gwtViewWidgetImplInterface()» {
+		Widget asWidget();
+		
+	}
+
+	public «gwtActivityImplClass()»(«fqnViewWidgetImplInterface()» theDisplay,
+		com.google.gwt.event.shared.EventBus eventBus,
+		com.google.gwt.place.shared.PlaceController placeController) {
+		super(eventBus, placeController);
+		display = theDisplay;
+		
+		bind();
+	}
+
+}
+ 
+«ENDFILE»
+«ENDDEFINE» 

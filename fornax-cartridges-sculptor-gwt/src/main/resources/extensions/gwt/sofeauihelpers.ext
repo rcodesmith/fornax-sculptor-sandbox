@@ -1,0 +1,386 @@
+import sculptormetamodel;
+import sculptorguimetamodel;
+
+extension extensions::properties;
+extension extensions::helper;
+extension extensions::guihelper;
+
+	
+String getGwtExtendsLitteral(DomainObject domainObject) :
+	domainObject.getGwtExtendsClassName() == "" ?
+		"" :
+     	"extends " + domainObject.getGwtExtendsClassName();
+
+String getGwtExtendsClassName(DomainObject domainObject) :
+    (domainObject.extends == null) ?
+        (domainObject.extendsName == null ? domainObject.gwtDefaultExtendsClassName() : domainObject.extendsName) :
+        domainObject.extends.gwtDomainPackage() + "." + domainObject.extends.name;
+
+String gwtDefaultExtendsClassName(DomainObject domainObject) :
+	let result = defaultExtendsClass(domainObject.simpleMetaTypeName()) :
+	(result == "" ? abstractDomainObjectClass() : result);
+
+String gwtDefaultExtendsClassName(DataTransferObject domainObject) :
+	defaultExtendsClass(domainObject.simpleMetaTypeName());
+	
+String gwtDefaultExtendsClassName(Trait domainObject) :
+	defaultExtendsClass(domainObject.simpleMetaTypeName());
+	
+	
+
+//String getGwtDtoPackage(GuiApplication guiApp) :
+//    guiApp.basePackage + "." + subPackage("shared");
+
+//String getGwtDtoPackage(GuiModule guiMod) :
+//    guiMod.application.basePackage +  "." + "shared";
+
+	
+String getFieldUniqueCssId(ViewDataProperty property) :
+    property.userTask.name + property.name.toFirstUpper() + "Field";
+
+
+String gwtBasePackage(Module module) :
+   module.getBasePackage() + ".gwt";
+
+String gwtXmlFileName(Module module) :
+    module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.name.toFirstUpper() + "UI" + ".gwt.xml";
+    
+String moduleGwtMain(Module module) :
+    module.gwtBasePackage() + ".client." + module.name.toFirstUpper() + "UI";
+
+String gwtDomainPackage(Module module) :
+   gwtBasePackage(module) + ".shared.domain";
+
+//String gwtDomainPackage(Enum enum) :
+//   gwtDomainPackage(do.module);
+
+String gwtDomainPackage(DomainObject do) :
+   gwtDomainPackage(do.module);
+
+String fqnGwtDto(Reference ref) :
+	gwtDomainPackage(ref.to) + "." + ref.to.name;
+	
+// The fully qualified name for the domain class (not GWT DTO).
+String fqnDomain(DomainObject do) :
+	do.getDomainPackage() + "." + do.name;
+
+// The fully qualified GWT DTO class for a given domain object
+String fqnGwtDto(DomainObject do) :
+	do.gwtDomainPackage() + "." + do.name;
+
+
+Collection[Attribute] getAllBusinessAttributes(DomainObject domainObject) :
+	domainObject.getAllAttributes().select(attr|attr.name != "id" && attr.name != "version");
+
+// Get all the view data properties to be be displayed/edited..  Note this leaves out referred-to domain classes, including things like Plan Type
+Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
+	task.viewProperties.reject(p | p.metaType == ReferenceViewProperty || p.metaType == DerivedReferenceViewProperty || p.isSystemAttribute() || p.name == "version");
+	
+
+// Async interface helpers
+	
+gwtServiceAsyncInterfaceName(Service svc) :
+	"Gwt" + svc.name + "Async";
+	
+gwtServiceAsyncInterfacePackage(Service svc) :
+	gwtBasePackage(svc.module) + ".client";
+	
+gwtServiceAsyncInterface(Service svc) :
+	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
+
+// Sync interface helpers
+	
+gwtServiceSyncInterfaceName(Service svc) :
+	"Gwt" + svc.name;
+	
+gwtServiceSyncInterfacePackage(Service svc) :
+	gwtBasePackage(svc.module) + ".client";
+
+	
+gwtServiceSyncInterface(Service svc) :
+	gwtServiceSyncInterfacePackage(svc) + "." + gwtServiceSyncInterfaceName(svc);
+
+// Service impl helpers
+	
+gwtServiceImplName(Service svc) :
+	"Gwt" + svc.name + "Impl";
+	
+gwtServiceImplPackage(Service svc) :
+	gwtBasePackage(svc.module) + ".server";
+	
+gwtServiceImpl(Service svc) :
+	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
+
+
+// Get GWT DTO type name corresponding to given typed element (e.g. operation with return type)
+String getGwtTypeName(DomainObjectTypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.DomainObjectTypedElement);
+    
+String getGwtTypeName(Reference ref) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.Reference);
+
+String getGwtTypeName(TypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.TypedElement);
+
+String getGwtTypeName(ViewDataProperty prop) :
+	null;
+
+String getGwtTypeName(AttributeViewProperty prop) :
+	prop.attribute.getGwtTypeName();
+
+String getGwtTypeName(BasicTypeViewProperty prop) :
+	prop.attribute.getGwtTypeName();
+
+
+
+String getGwtImplTypeName(TypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getImplTypeName(sculptormetamodel.TypedElement);
+
+
+    
+// Package for all view-related widget classes
+gwtWidgetsPackage(View view) :
+	gwtBasePackage(view.module.for) + ".client.view";
+
+
+
+// Package for all task-related widget classes
+gwtWidgetsPackage(UserTask task) :
+	gwtBasePackage(task.for.module) + ".client";
+
+// Get the template file path given the fqn of the corresponding widget class 
+String gwtTemplateFilePath(String widgetClassFqn) :
+    widgetClassFqn.replaceAll("\\.", "/") + ".ui.xml";
+
+	
+
+// Fully qualified name of GWT table widget class corresponding to the given task
+String fqnGwtTableWidgetClass(ListTask task) :
+	task.gwtWidgetsPackage() + "." + task.gwtTableWidgetClass() ;
+
+// GWT table widget class relative name
+String gwtTableWidgetClass(ListTask task) :
+	plural(task.for.name) + "Table";
+
+
+
+
+
+
+// Fully qualified name of GWT table widget base class corresponding to the given task
+String fqnGwtTableWidgetBaseClass(ListTask task) :
+	task.gwtWidgetsPackage() + "." + task.gwtTableWidgetBaseClass() ;
+
+// GWT table widget class relative name
+String gwtTableWidgetBaseClass(ListTask task) :
+	plural(task.for.name) + "TableBase";
+
+// Get the table template file path for the given List task
+String gwtTableTemplateFilePath(ListTask task) :
+	gwtTemplateFilePath(fqnGwtTableWidgetBaseClass(task));
+	
+
+
+// GWT edit form widget class relative name
+String gwtEditFormWidgetBaseClass(UserTask task) :
+	task.for.name + "EditFormBase";
+
+// Fully qualified name of GWT edit form widget base class corresponding to the given task
+String fqnGwtEditFormWidgetBaseClass(UserTask task) :
+	task.gwtWidgetsPackage() + "." + task.gwtEditFormWidgetBaseClass() ;
+	
+// Get the edit form base template file path for the given  task
+String gwtEditFormBaseTemplateFilePath(UserTask task) :
+	gwtTemplateFilePath(fqnGwtEditFormWidgetBaseClass(task));
+	
+	
+String getAttributeType(ViewDataProperty prop) :
+	null;
+
+String getAttributeType(AttributeViewProperty prop) :
+	prop.attribute.type;
+
+String getAttributeType(BasicTypeViewProperty prop) :
+	prop.attribute.type;
+
+	
+String resolveGwtWidgetType(ViewDataProperty prop) :
+	if (prop.isDateOrDateTime()) then
+		"com.google.gwt.user.datepicker.client.DateBox" // com.google.gwt.user.datepicker.client.DateBox
+	else if (prop.isBoolean()) then
+		"com.google.gwt.user.client.ui.CheckBox"
+	else 
+		"com.google.gwt.user.client.ui.TextBox";
+		
+Boolean widgetHasNameProp(ViewDataProperty prop) :
+	if (prop.isDateOrDateTime()) then
+		false
+	else
+		true;
+
+// Copied from guihelper.ext
+boolean isDateOrDateTime(Attribute attr) :
+	{"Date", "DateTime", "Timestamp"}.contains(attr.type);
+
+// my own addition
+boolean isBoolean(ViewDataProperty prop) :
+	{"Boolean"}.contains(prop.getAttributeType());
+
+String resolveGwtWidgetBinderReference(ViewDataProperty prop) :
+	if (prop.isDateOrDateTime()) then
+		"d:DateBox" // com.google.gwt.user.datepicker.client.DateBox
+	else if (prop.isBoolean()) then
+		"g:CheckBox"
+	else 
+		"g:TextBox";
+
+String fieldName(ViewDataProperty prop) :
+	prop.name + "Field";
+
+	
+String getDtoPropertyPath(ViewDataProperty property, String objName) :
+	objName + ".get" + property.name.toFirstUpper() + "()";
+
+String getDtoPropertyPath(BasicTypeViewProperty property, String objName) :
+	"(" + objName + ".get" + property.reference.name.toFirstUpper() + "()" + "== null ? null : " +
+	objName + ".get" + property.reference.name.toFirstUpper() + "()" + '.' + "get" + property.attribute.name.toFirstUpper() + "())";
+
+String getDtoPropertyPath(BasicTypeEnumViewProperty property, String objName) :
+	"(" + objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + "== null ? null : " +
+	objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + '.' + "get" + property.reference.name.toFirstUpper() + "())";
+
+
+
+String fqnAddCommand(UserTask task) :
+	gwtDomainPackage(task.for.module) + "." + "Add" + task.for.name.toFirstUpper();
+	 
+String fqnDeleteCommand(UserTask task) :
+	gwtDomainPackage(task.for.module) + "." + "Delete" + task.for.name.toFirstUpper();
+	 
+	 
+//
+// General functions
+//
+String loggerDeclaration(String relativeClassName) :
+    "private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(" + relativeClassName + ".class.getName());";
+
+	 
+	 
+	 
+//
+// Mapping-related functions
+//
+
+String mapToDomainCall(Reference ref) :
+	dtoMapper(ref.to.module) + ".mapToDomain";
+
+String mapFromDomainCall(Reference ref) :
+	dtoMapper(ref.to.module) + ".mapFromDomain";
+	
+// Package for server-side domain mapper classes
+String gwtDomainMaperPackage(DomainObject do) :
+	do.getDomainPackage();
+
+// Fully qualified class of mapper for given Module
+String dtoMapper(Module module) :
+	module.getDomainPackage() + "." + module.name.toFirstUpper() + "DtoMapper";
+
+
+
+////////////////////////////////////////////////////////////////////////////
+// View-related functions
+////////////////////////////////////////////////////////////////////////////
+
+// GWT view widget base class relative name
+String gwtViewWidgetBaseClass(View view) :
+	view.name + "Base";
+
+// GWT view widget base interface relative name
+String gwtViewWidgetImplInterface(View view) :
+	"I" + view.name.toFirstUpper();
+
+// Fully qualified name of GWT view widget interface
+String fqnViewWidgetImplInterface(View view) :
+	view.fqnActivityImplClass() + "." + view.gwtViewWidgetImplInterface();
+
+	
+// GWT view widget impl class relative name
+String gwtViewWidgetImplClass(View view) :
+	view.name;
+
+// Fully qualified name of GWT widget base class corresponding to the given view
+String fqnGwtViewWidgetBaseClass(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseClass() ;
+
+// Fully qualified name of GWT widget impl class corresponding to the given view
+String fqnGwtViewWidgetImplClass(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetImplClass() ;
+
+
+
+String resolveGwtWidgetType(Widget widget) :
+	error("Unexpected call to resolveGwtWidgetType: " + widget);
+	
+String resolveGwtWidgetType(InputTextWidget widget) :
+	"com.google.gwt.user.client.ui.TextBox";
+
+String resolveGwtWidgetType(InformationalTextWidget widget) :
+	"com.google.gwt.user.client.ui.TextBox";
+
+String resolveGwtWidgetType(ButtonWidget widget) :
+	"com.google.gwt.user.client.ui.Button";
+
+	
+	
+Set[Service] getUsedServices(View view) :
+	{}.addAll(view.serviceDependencies);
+//	(task.getPrimaryService() == null ? {} : {}.add(task.getPrimaryService())).
+//		addAll(task.getServicesToSelectDomainObjects()).toSet();
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// Activity related functions
+//////////////////////////////////////////////////////////////////////////////
+
+// Package for all activity-related classes
+gwtActivitiesPackage(View view) :
+	gwtBasePackage(view.module.for) + ".client.activity";
+
+
+// GWT activity base class relative name
+String gwtActivityBaseClass(View view) :
+	view.name + "ActivityBase";
+
+// GWT activity impl class relative name
+String gwtActivityImplClass(View view) :
+	view.name + "Activity";
+
+// Fully qualified activity base class
+String fqnActivityBaseClass(View view) :
+	view.gwtActivitiesPackage() + "." + view.gwtActivityBaseClass() ;
+
+// Fully qualified activity impl class
+String fqnActivityImplClass(View view) :
+	view.gwtActivitiesPackage() + "." + view.gwtActivityImplClass() ;
+
+// Fully qualified activity impl class name
+
+
+
+///////////////////////////////////////////////////////////////
+// Event-related functions
+///////////////////////////////////////////////////////////////
+    
+// Package for all event-related widget classes
+gwtEventsPackage(GuiEvent event) :
+	gwtBasePackage(event.module.for) + ".client";
+	
+// GWT event base class relative name
+String gwtEventBaseClass(GuiEvent event) :
+	event.name;
+
+fqnGwtEventBaseClass(GuiEvent event) :
+	event.gwtEventBaseClass();
+	
+	

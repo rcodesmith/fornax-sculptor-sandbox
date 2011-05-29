@@ -1,0 +1,14 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«DEFINE GwtGui FOR GuiApplication»
+	«EXPAND templates::gwt::GwtDto::gwtDto FOR this»
+	«EXPAND templates::gwt::GwtUiModule::gwtUiModule»
+	
+
+«ENDDEFINE»

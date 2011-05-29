@@ -1,0 +1,64 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+«DEFINE gwtUiModule FOR GuiApplication»
+	«EXPAND gwtUiModule FOREACH this.modules»
+	
+«ENDDEFINE»
+
+«DEFINE gwtUiModule FOR GuiModule»
+	«LET this.application.guiForApplication.modules.select(m | m.name == this.name).get(0) AS module»
+		«EXPAND gwtConfig(module)»
+		«EXPAND gwtMainModuleClass(module)»
+		
+		«EXPAND GwtService::gwtService(module)»
+		
+		«EXPAND View::view(module)»
+		
+	«ENDLET»
+«ENDDEFINE»
+
+
+«DEFINE gwtConfig(Module module) FOR GuiModule»
+«FILE gwtXmlFileName(module)»<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='«module.name.toFirstUpper() + "UI"»'>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+
+  <inherits name='com.google.gwt.activity.Activity' />
+  
+  <inherits name="org.fornax.cartridges.sculptor.framework.gwt.SculptorUI"/>
+
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='«module.moduleGwtMain()»'/>
+
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client'/>
+  <source path='shared'/>
+ 
+</module>
+
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE gwtMainModuleClass(Module module) FOR GuiModule»
+«FILE javaFileName(module.moduleGwtMain())»
+package «module.gwtBasePackage() + ".client"»;
+
+import com.google.gwt.core.client.EntryPoint;
+
+public class «module.name.toFirstUpper() + "UI"» implements EntryPoint {
+
+	public void onModuleLoad() {
+	}
+
+}
+«ENDFILE»
+«ENDDEFINE»
+
+

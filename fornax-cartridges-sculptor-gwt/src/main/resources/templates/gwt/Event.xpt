@@ -1,0 +1,41 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«DEFINE view(Module module) FOR GuiModule»
+	«EXPAND eventBase FOREACH this.events»
+
+
+«ENDDEFINE»
+
+
+«REM»View base class«ENDREM»
+«DEFINE eventBase FOR GuiEvent»
+«FILE javaFileName(fqnGwtEventBaseClass())»
+
+package «gwtEventsPackage()»;
+
+public class «gwtEventBaseClass()» extends com.google.gwt.user.client.ui.Composite {
+
+
+    interface «gwtViewWidgetBaseClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<Widget, «fqnGwtViewWidgetBaseClass()»> {}
+
+    private static «gwtViewWidgetBaseClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
+    	.create(«gwtViewWidgetBaseClass()»UiBinder.class);
+
+	public «gwtViewWidgetBaseClass()»() {
+		initWidget(getWidget());
+	}
+	
+    protected com.google.gwt.user.client.ui.Widget getWidget() {
+    	return uiBinder.createAndBindUi(this);
+    }
+    
+    «EXPAND widgetDeclaration FOREACH widgets»
+}
+
+«ENDFILE»
