@@ -24,6 +24,7 @@ DslGuiModule:
 		(skipUserTasks+=DslSkipUserTask)*
 		(skipDomainObjects+=DslSkipDomainObject)*
 		(views+=DslView)*
+		(events+=DslGuiEvent)*
 	'}';
 
 	 
@@ -170,8 +171,10 @@ DslSkipAddTask :
 
 
 DslView:
+  (doc=STRING)?
 	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
 		(serviceDependencies+=DslGuiServiceDependency)*
+		(publishedEvents+=DslPublishedEvent)*
 
 		("contents" "{"
 			(widgets+=DslWidget)*
@@ -179,6 +182,8 @@ DslView:
 		)?
 	'}';
 
+DslPublishedEvent :
+	'publish' event=[mm::DslEvent];
 
 DslGuiServiceDependency :
   ('>'|'inject') ("@"dependency=[mm::DslService]);
@@ -189,6 +194,7 @@ DslWidget :
 	
 	
 DslInputTextWidget :
+  (doc=STRING)?
 	'inputText' name=ID  (forProperty=DslForProperty)? '{'
 		('label' '=' label=STRING)?
 	'}';
@@ -197,21 +203,55 @@ DslInputTextWidget :
 	
 	
 DslButtonWidget :
+  (doc=STRING)?
 	'button' name=ID '{'
 		('label' '=' label=STRING)?
 		('image' '=' image=STRING)?
 	'}';
 	
 DslInformationalTextWidget :
-	'informationalText' name=ID  (forProperty=DslForProperty)? '{'
-		('label' '=' label=STRING)?	
+  (doc=STRING)?
+	'informationalText' name=ID (forProperty=DslForProperty)? '{'
+		('label' '=' label=STRING)?
 	'}';
 	
 DslForProperty :
 	'forProperty' domainObj=[mm::DslSimpleDomainObject] '.' property=[mm::DslProperty];
 
 DslTableWidget :
-	'table' name=ID (forProperty=DslForProperty)? '{'
+  (doc=STRING)?
+	'table' name=ID ('for' for=[mm::DslSimpleDomainObject])? (forProperty=DslForProperty)? '{'
 		('label' '=' label=STRING)?	
+		
+		("columns" "{"
+			(columns+=DslTableColumn)*
+		"}")?
 	'}';
 	
+DslTableColumn :
+	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (forProperty=DslForProperty)? ";" ;
+	
+DslColumnType :
+	("Text"|"Button");
+	
+DslGuiEvent :
+  (doc=STRING)?
+  "Event" name=ID "{"
+    ((attributes+=DslGuiAttribute))*
+  "}";
+  
+  
+DslGuiAttribute :
+  (doc=STRING)?
+  (type=DslGuiType  name=ID
+	) (";")?;
+
+
+DslGuiType :
+  ("String"|"int"|"Integer"|"long"|"Long"|"boolean"|"Boolean"|"Date"|"DateTime"|"Timestamp"|"BigDecimal"|"BigInteger"|
+  	"double"|"Double"|"float"|"Float"|"Key"|"PagingPagarameter"|"PagedResult"|"Blob"|"Clob"|
+  	DslGuiJavaIdentifier);
+
+DslGuiJavaIdentifier :
+  (ID ("." ID)*);
+  

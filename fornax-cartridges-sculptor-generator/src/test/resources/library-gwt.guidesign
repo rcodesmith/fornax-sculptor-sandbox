@@ -25,5 +25,27 @@ gui LibraryWeb for Library {
 				}
 			}
 		}
+		
+		View TableView {
+			
+			contents {
+				table mytable for Person {
+					label="My Table"
+					
+					columns {
+						name type=Text;
+					}
+				}
+			}
+		}
+		
+		
+		"This is some MyEvent1 documentation"
+		Event MyEvent1 {
+			String attr1;
+			
+			"This is some documentation"
+			Integer attr2;
+		}
 	}
 }

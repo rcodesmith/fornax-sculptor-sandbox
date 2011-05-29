@@ -19,6 +19,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//Module"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="views" upperBound="-1"
         eType="#//View" containment="true" eOpposite="#//View/module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//GuiEvent" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -136,7 +138,24 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyReferringWidget" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forProperty" eType="#//PropertyReference"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TableWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableWidget" eSuperTypes="#//PropertyReferringWidget">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//TableColumn" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiEvent" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//GuiModule"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//GuiAttribute" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiAttribute" eSuperTypes="sculptormetamodel.ecore#//TypedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="#//GuiEvent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableColumn" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forProperty" eType="#//PropertyReference"/>
+  </eClassifiers>
 </ecore:EPackage>

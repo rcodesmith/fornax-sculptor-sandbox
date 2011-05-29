@@ -72,8 +72,31 @@ create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInf
 	setLabel(widget.label);
 	
 create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module) :
+	let domainObject = module.domainObjects.select(e | e.name == widget.for.name).first() :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setName(widget.name) ->
-	setLabel(widget.label);
+	setLabel(widget.label) ->
+	setFor(domainObject) ->
+	columns.addAll(widget.columns.transformColumn(module));
 
+create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col, Module module) :
+	setName(col.name)->
+	setLabel(col.label) ->
+	setColumnType(col.columnType);
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiEvent related transformations
+//////////////////////////////////////////////////////////////////////////////////
+create sculptorguimetamodel::GuiEvent this transformEvent(DslGuiEvent event, Module module) :
+	setName(event.name) ->
+	setDoc(event.doc) ->
+	attributes.addAll(event.attributes.transformAttribute(module));
+	
+create sculptorguimetamodel::GuiAttribute this transformAttribute(DslGuiAttribute attr, Module module) :
+	setName(attr.name) ->
+	setDoc(attr.doc) ->
+	setType(attr.type);
+	
+	
 	

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import sculptorguimetamodel.GuiApplication;
+import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.UserTask;
@@ -44,6 +45,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getApplication <em>Application</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getViews <em>Views</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,6 +101,16 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * @ordered
 	 */
 	protected EList views;
+
+				/**
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList events;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -247,6 +259,18 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getEvents() {
+		if (events == null) {
+			events = new EObjectContainmentEList(GuiEvent.class, this, SculptorguimetamodelPackage.GUI_MODULE__EVENTS);
+		}
+		return events;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
@@ -274,6 +298,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return basicSetApplication(null, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__VIEWS:
 				return ((InternalEList)getViews()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
+				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -309,6 +335,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return basicGetFor();
 			case SculptorguimetamodelPackage.GUI_MODULE__VIEWS:
 				return getViews();
+			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
+				return getEvents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -337,6 +365,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getViews().clear();
 				getViews().addAll((Collection)newValue);
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
+				getEvents().clear();
+				getEvents().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -363,6 +395,9 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__VIEWS:
 				getViews().clear();
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
+				getEvents().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -384,6 +419,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return for_ != null;
 			case SculptorguimetamodelPackage.GUI_MODULE__VIEWS:
 				return views != null && !views.isEmpty();
+			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
+				return events != null && !events.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

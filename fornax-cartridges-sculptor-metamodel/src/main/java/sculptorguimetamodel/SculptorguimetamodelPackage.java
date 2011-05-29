@@ -218,13 +218,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__VIEWS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 				/**
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__EVENTS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+				/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -2184,13 +2193,13 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int PROPERTY_REFERRING_WIDGET__LABEL = WIDGET__LABEL;
 
 																/**
-	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REFERRING_WIDGET__FOR = WIDGET_FEATURE_COUNT + 0;
+	int PROPERTY_REFERRING_WIDGET__FOR_PROPERTY = WIDGET_FEATURE_COUNT + 0;
 
 																/**
 	 * The number of structural features of the '<em>Property Referring Widget</em>' class.
@@ -2257,13 +2266,13 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INPUT_TEXT_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
 
 																/**
-	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_TEXT_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+	int INPUT_TEXT_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
 
 																/**
 	 * The number of structural features of the '<em>Input Text Widget</em>' class.
@@ -2330,13 +2339,13 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INFORMATIONAL_TEXT_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
 
 																/**
-	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFORMATIONAL_TEXT_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+	int INFORMATIONAL_TEXT_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
 
 																/**
 	 * The number of structural features of the '<em>Informational Text Widget</em>' class.
@@ -2523,13 +2532,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
 
 																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
 	 * The feature id for the '<em><b>For</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+	int TABLE_WIDGET__FOR = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
+	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__COLUMNS = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 1;
 
 																/**
 	 * The number of structural features of the '<em>Table Widget</em>' class.
@@ -2538,7 +2565,226 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+	int TABLE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 2;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiEventImpl <em>Gui Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GuiEventImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiEvent()
+	 * @generated
+	 */
+	int GUI_EVENT = 30;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_EVENT__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_EVENT__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_EVENT__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
+
+																/**
+	 * The feature id for the '<em><b>Module</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_EVENT__MODULE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+																/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_EVENT__ATTRIBUTES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+																/**
+	 * The number of structural features of the '<em>Gui Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_EVENT_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiAttributeImpl <em>Gui Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GuiAttributeImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiAttribute()
+	 * @generated
+	 */
+	int GUI_ATTRIBUTE = 31;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__NAME = SculptormetamodelPackage.TYPED_ELEMENT__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__DOC = SculptormetamodelPackage.TYPED_ELEMENT__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__HINT = SculptormetamodelPackage.TYPED_ELEMENT__HINT;
+
+																/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__TYPE = SculptormetamodelPackage.TYPED_ELEMENT__TYPE;
+
+																/**
+	 * The feature id for the '<em><b>Collection Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__COLLECTION_TYPE = SculptormetamodelPackage.TYPED_ELEMENT__COLLECTION_TYPE;
+
+																/**
+	 * The feature id for the '<em><b>Map Key Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__MAP_KEY_TYPE = SculptormetamodelPackage.TYPED_ELEMENT__MAP_KEY_TYPE;
+
+																/**
+	 * The feature id for the '<em><b>Event</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE__EVENT = SculptormetamodelPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+																/**
+	 * The number of structural features of the '<em>Gui Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ATTRIBUTE_FEATURE_COUNT = SculptormetamodelPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.TableColumnImpl <em>Table Column</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.TableColumnImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTableColumn()
+	 * @generated
+	 */
+	int TABLE_COLUMN = 32;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__LABEL = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+																/**
+	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__COLUMN_TYPE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__FOR_PROPERTY = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+																/**
+	 * The number of structural features of the '<em>Table Column</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 																/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -2647,6 +2893,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGuiModule_Views();
+
+				/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Events</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getEvents()
+	 * @see #getGuiModule()
+	 * @generated
+	 */
+	EReference getGuiModule_Events();
 
 				/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
@@ -3491,15 +3748,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getPropertyReferringWidget();
 
 																/**
-	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PropertyReferringWidget#getFor <em>For</em>}'.
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PropertyReferringWidget#getForProperty <em>For Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>For</em>'.
-	 * @see sculptorguimetamodel.PropertyReferringWidget#getFor()
+	 * @return the meta object for the reference '<em>For Property</em>'.
+	 * @see sculptorguimetamodel.PropertyReferringWidget#getForProperty()
 	 * @see #getPropertyReferringWidget()
 	 * @generated
 	 */
-	EReference getPropertyReferringWidget_For();
+	EReference getPropertyReferringWidget_ForProperty();
 
 																/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.TableWidget <em>Table Widget</em>}'.
@@ -3510,6 +3767,124 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTableWidget();
+
+																/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.TableWidget#getFor <em>For</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For</em>'.
+	 * @see sculptorguimetamodel.TableWidget#getFor()
+	 * @see #getTableWidget()
+	 * @generated
+	 */
+	EReference getTableWidget_For();
+
+																/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.TableWidget#getColumns <em>Columns</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Columns</em>'.
+	 * @see sculptorguimetamodel.TableWidget#getColumns()
+	 * @see #getTableWidget()
+	 * @generated
+	 */
+	EReference getTableWidget_Columns();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiEvent <em>Gui Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gui Event</em>'.
+	 * @see sculptorguimetamodel.GuiEvent
+	 * @generated
+	 */
+	EClass getGuiEvent();
+
+																/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.GuiEvent#getModule <em>Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Module</em>'.
+	 * @see sculptorguimetamodel.GuiEvent#getModule()
+	 * @see #getGuiEvent()
+	 * @generated
+	 */
+	EReference getGuiEvent_Module();
+
+																/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiEvent#getAttributes <em>Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
+	 * @see sculptorguimetamodel.GuiEvent#getAttributes()
+	 * @see #getGuiEvent()
+	 * @generated
+	 */
+	EReference getGuiEvent_Attributes();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiAttribute <em>Gui Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gui Attribute</em>'.
+	 * @see sculptorguimetamodel.GuiAttribute
+	 * @generated
+	 */
+	EClass getGuiAttribute();
+
+																/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.GuiAttribute#getEvent <em>Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Event</em>'.
+	 * @see sculptorguimetamodel.GuiAttribute#getEvent()
+	 * @see #getGuiAttribute()
+	 * @generated
+	 */
+	EReference getGuiAttribute_Event();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.TableColumn <em>Table Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Column</em>'.
+	 * @see sculptorguimetamodel.TableColumn
+	 * @generated
+	 */
+	EClass getTableColumn();
+
+																/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.TableColumn#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see sculptorguimetamodel.TableColumn#getLabel()
+	 * @see #getTableColumn()
+	 * @generated
+	 */
+	EAttribute getTableColumn_Label();
+
+																/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.TableColumn#getColumnType <em>Column Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Column Type</em>'.
+	 * @see sculptorguimetamodel.TableColumn#getColumnType()
+	 * @see #getTableColumn()
+	 * @generated
+	 */
+	EAttribute getTableColumn_ColumnType();
+
+																/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.TableColumn#getForProperty <em>For Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For Property</em>'.
+	 * @see sculptorguimetamodel.TableColumn#getForProperty()
+	 * @see #getTableColumn()
+	 * @generated
+	 */
+	EReference getTableColumn_ForProperty();
 
 																/**
 	 * Returns the factory that creates the instances of the model.
@@ -3616,6 +3991,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__VIEWS = eINSTANCE.getGuiModule_Views();
+
+								/**
+		 * The meta object literal for the '<em><b>Events</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_MODULE__EVENTS = eINSTANCE.getGuiModule_Events();
 
 								/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -4304,12 +4687,12 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EClass PROPERTY_REFERRING_WIDGET = eINSTANCE.getPropertyReferringWidget();
 
 																																/**
-		 * The meta object literal for the '<em><b>For</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>For Property</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_REFERRING_WIDGET__FOR = eINSTANCE.getPropertyReferringWidget_For();
+		EReference PROPERTY_REFERRING_WIDGET__FOR_PROPERTY = eINSTANCE.getPropertyReferringWidget_ForProperty();
 
 																																/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TableWidgetImpl <em>Table Widget</em>}' class.
@@ -4320,6 +4703,100 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TABLE_WIDGET = eINSTANCE.getTableWidget();
+
+																																/**
+		 * The meta object literal for the '<em><b>For</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_WIDGET__FOR = eINSTANCE.getTableWidget_For();
+
+																																/**
+		 * The meta object literal for the '<em><b>Columns</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_WIDGET__COLUMNS = eINSTANCE.getTableWidget_Columns();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiEventImpl <em>Gui Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GuiEventImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiEvent()
+		 * @generated
+		 */
+		EClass GUI_EVENT = eINSTANCE.getGuiEvent();
+
+																																/**
+		 * The meta object literal for the '<em><b>Module</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_EVENT__MODULE = eINSTANCE.getGuiEvent_Module();
+
+																																/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_EVENT__ATTRIBUTES = eINSTANCE.getGuiEvent_Attributes();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiAttributeImpl <em>Gui Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GuiAttributeImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiAttribute()
+		 * @generated
+		 */
+		EClass GUI_ATTRIBUTE = eINSTANCE.getGuiAttribute();
+
+																																/**
+		 * The meta object literal for the '<em><b>Event</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_ATTRIBUTE__EVENT = eINSTANCE.getGuiAttribute_Event();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TableColumnImpl <em>Table Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.TableColumnImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTableColumn()
+		 * @generated
+		 */
+		EClass TABLE_COLUMN = eINSTANCE.getTableColumn();
+
+																																/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_COLUMN__LABEL = eINSTANCE.getTableColumn_Label();
+
+																																/**
+		 * The meta object literal for the '<em><b>Column Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_COLUMN__COLUMN_TYPE = eINSTANCE.getTableColumn_ColumnType();
+
+																																/**
+		 * The meta object literal for the '<em><b>For Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_COLUMN__FOR_PROPERTY = eINSTANCE.getTableColumn_ForProperty();
 
 	}
 

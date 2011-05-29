@@ -17,5 +17,7 @@ import sculptorguimetamodel.PropertyReference;
 public interface PropertyReferringWidgetValidator {
 	boolean validate();
 
+	boolean validateForProperty(PropertyReference value);
+
 	boolean validateFor(PropertyReference value);
 }

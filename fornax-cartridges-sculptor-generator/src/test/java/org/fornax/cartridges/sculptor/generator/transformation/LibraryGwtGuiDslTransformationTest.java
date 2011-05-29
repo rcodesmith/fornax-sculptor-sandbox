@@ -16,14 +16,17 @@ import org.junit.Test;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.GuiApplication;
+import sculptorguimetamodel.GuiAttribute;
+import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.ListTask;
 import sculptorguimetamodel.ReferenceViewProperty;
+import sculptorguimetamodel.TableColumn;
+import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.UpdateTask;
 import sculptorguimetamodel.UserTask;
 import sculptorguimetamodel.View;
-import sculptorguimetamodel.ViewTask;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Module;
 import sculptormetamodel.Service;
@@ -55,17 +58,27 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 
 
     @Test
-    public void assertMediaModule() {
-        GuiModule module = mediaModule();
-        assertEquals("media", module.getName());
-        assertEquals("media", module.getFor().getName());
-        // tasks objects
-        assertOneAndOnlyOne(module.getUserTasks(), "createLibrary", "viewLibrary", "updateLibrary", "deleteLibrary",
-                "listLibrary", "addLibrary", "createPhysicalMedia", "viewPhysicalMedia", "updatePhysicalMedia",
-                "deletePhysicalMedia", "listPhysicalMedia", "addPhysicalMedia", "createBook", "viewBook", "updateBook",
-                "listBook", "addBook", "createMovie", "viewMovie", "updateMovie", "listMovie", "addMovie",
-                "createEngagement", "viewEngagement", "createMediaCharacter", "viewMediaCharacter",
-                "listMediaCharacter", "addMediaCharacter", "viewReview", "createReview", "viewComment", "createComment");
+    public void assertTableView() {
+    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
+    	assertNotNull(tableView);
+    	
+        EList widgets = tableView.getWidgets();
+        TableWidget table = (TableWidget)widgets.get(0);    	
+    	assertEquals("My Table", table.getLabel());
+    	
+    	DomainObject person = table.getFor();
+    	assertNotNull(person);
+    	assertEquals("Person", person.getName());
+    	
+    	EList tableCols = table.getColumns();
+    	assertNotNull(tableCols);
+        assertOneAndOnlyOne(tableCols, "name");
+        
+        TableColumn nameCol = (TableColumn)tableCols.get(0);
+        assertNotNull(nameCol);
+        
+        assertEquals("Text", nameCol.getColumnType());
+    	
     }
 
     @Test
@@ -86,17 +99,30 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         assertOneAndOnlyOne(widgets, "nameField", "table1", "saveButton", "info1");
         InputTextWidget nameField = (InputTextWidget)widgets.get(0);
         assertEquals("Name", nameField.getLabel());
-        
-        
+           
     }
-
-    
 
     @Test
-    public void assertMediaReferenceForUpdatePhyicalMedia() {
-        assertMediaReferenceForCreateUpdatePhysicalMedia((UpdateTask) getNamedElement("updatePhysicalMedia",
-                mediaModule().getUserTasks()));
+    public void assertMyEvent1() {
+    	GuiEvent event = (GuiEvent) getNamedElement("MyEvent1", personModule().getEvents());
+    	assertNotNull(event);
+    	assertEquals("MyEvent1", event.getName());
+    	assertEquals("This is some MyEvent1 documentation", event.getDoc());
+    	
+    	assertEquals(2, event.getAttributes().size());
+    	GuiAttribute attr1 = (GuiAttribute) getNamedElement("attr1", event.getAttributes());
+    	assertNotNull(attr1);
+    	assertEquals("attr1", attr1.getName());
+    	assertNull(attr1.getDoc());
+    	assertEquals("String", attr1.getType());
+    	
     }
+
+//    @Test
+//    public void assertMediaReferenceForUpdatePhyicalMedia() {
+//        assertMediaReferenceForCreateUpdatePhysicalMedia((UpdateTask) getNamedElement("updatePhysicalMedia",
+//                mediaModule().getUserTasks()));
+//    }
 
     private void assertMediaReferenceForCreateUpdatePhysicalMedia(UserTask task) {
         // not possible to use assertReferenceViewProperty for media reference,
@@ -137,128 +163,128 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         }
     }
 
-    @Test
-    public void assertViewPhysicalMedia() {
-        ViewTask task = (ViewTask) getNamedElement("viewPhysicalMedia", mediaModule().getUserTasks());
-        assertAttributeViewProperty("status", task.getViewProperties());
-        assertAttributeViewProperty("location", task.getViewProperties());
+//    @Test
+//    public void assertViewPhysicalMedia() {
+//        ViewTask task = (ViewTask) getNamedElement("viewPhysicalMedia", mediaModule().getUserTasks());
+//        assertAttributeViewProperty("status", task.getViewProperties());
+//        assertAttributeViewProperty("location", task.getViewProperties());
+//
+//        assertReferenceViewProperty("library", task.getViewProperties(), new String[] { "viewLibrarySubtask" },
+//                new String[] { "name" }, "Library");
+//
+//        assertOneAndOnlyOne(task.getSubTaskTransitions(), "viewLibrarySubtask", "viewMovieSubtask", "viewBookSubtask");
+//
+//    }
+//
+//    @Test
+//    public void assertListPhysicalMedia() {
+//        assertListTask("PhysicalMedia", "media", "status", "location");
+//    }
+//
+//    @Test
+//    public void assertViewMovie() {
+//        ViewTask task = (ViewTask) getNamedElement("viewMovie", mediaModule().getUserTasks());
+//
+//        assertOneAndOnlyOne(task.getViewProperties(), "urlIMDB", "playLength", "category", "title", "physicalMedia",
+//                "engagements", "mediaCharacters");
+//        assertAttributeViewProperty("urlIMDB", task.getViewProperties());
+//        assertAttributeViewProperty("playLength", task.getViewProperties());
+//        assertAttributeViewProperty("title", task.getViewProperties());
+//
+//        assertEnumViewProperty("category", task.getViewProperties());
+//
+//        assertOneAndOnlyOne(task.getSubTaskTransitions(), "viewPhysicalMediaSubtask", "viewEngagementSubtask",
+//                "viewMediaCharacterSubtask");
+//
+//        assertReferenceViewProperty("physicalMedia", task.getViewProperties(),
+//                new String[] { "viewPhysicalMediaSubtask" }, new String[] { "status", "location" }, "PhysicalMedia");
+//        assertReferenceViewProperty("engagements", task.getViewProperties(), new String[] { "viewEngagementSubtask" },
+//                new String[] { "role" }, "Engagement");
+//        assertReferenceViewProperty("mediaCharacters", task.getViewProperties(),
+//                new String[] { "viewMediaCharacterSubtask" }, new String[] { "name" }, "MediaCharacter");
+//    }
 
-        assertReferenceViewProperty("library", task.getViewProperties(), new String[] { "viewLibrarySubtask" },
-                new String[] { "name" }, "Library");
+//    @Test
+//    public void assertCreateBook() {
+//        assertCreateTask("Book", "media", new String[] { "isbn", "title" }, new String[] { "viewPhysicalMediaSubtask",
+//                "addPhysicalMediaSubtask", "viewEngagementSubtask", "createEngagementSubtask",
+//                "createMediaCharacterSubtask", "viewMediaCharacterSubtask", "addMediaCharacterSubtask" },
+//                DONT_VALIDATE_SERVICE_OPERATION);
+//
+//        CreateTask task = (CreateTask) getNamedElement("createBook", mediaModule().getUserTasks());
+//
+//        assertReferenceViewProperty("physicalMedia", task.getViewProperties(), new String[] {
+//                "viewPhysicalMediaSubtask", "addPhysicalMediaSubtask" }, new String[] { "status", "location" },
+//                "PhysicalMedia");
+//        assertReferenceViewProperty("engagements", task.getViewProperties(), new String[] { "viewEngagementSubtask",
+//                "createEngagementSubtask", }, new String[] { "role" }, "Engagement");
+//
+//        assertNull(task.getPopulateDOWith());
+//    }
+//
+//    @Test
+//    public void assertCreateMovie() {
+//        assertCreateTask("Movie", "media", new String[] { "urlIMDB", "title" }, new String[] {
+//                "viewPhysicalMediaSubtask", "addPhysicalMediaSubtask", "viewEngagementSubtask",
+//                "createEngagementSubtask", "createMediaCharacterSubtask", "viewMediaCharacterSubtask",
+//                "addMediaCharacterSubtask" }, DONT_VALIDATE_SERVICE_OPERATION);
+//
+//        CreateTask task = (CreateTask) getNamedElement("createMovie", mediaModule().getUserTasks());
+//
+//        assertReferenceViewProperty("physicalMedia", task.getViewProperties(), new String[] {
+//                "viewPhysicalMediaSubtask", "addPhysicalMediaSubtask" }, new String[] { "status", "location" },
+//                "PhysicalMedia");
+//        assertReferenceViewProperty("engagements", task.getViewProperties(), new String[] { "viewEngagementSubtask",
+//                "createEngagementSubtask" }, new String[] { "role" }, "Engagement");
+//    }
+//
+//
+//    @Test
+//    public void assertMediaReferenceForCreateEngagement() {
+//        UserTask task = (UserTask) getNamedElement("createEngagement", mediaModule().getUserTasks());
+//        ReferenceViewProperty mediaRefProp = namedReferenceViewProperty("media", task.getViewProperties());
+//        assertEquals("Media", mediaRefProp.getTarget().getName());
+//        assertEquals("media", mediaRefProp.getReference().getName());
+//        assertOneAndOnlyOne(mediaRefProp.getPreviewProperties(), "isbn", "title", "urlIMDB", "playLength", "category");
+//
+//        List<ReferenceViewProperty> mediaProps = elementsOfType(ReferenceViewProperty.class,
+//                namedElements("media", task.getViewProperties()));
+//        assertEquals(3, mediaProps.size());
+//        List<DerivedReferenceViewProperty> mediaDerivedRefProps = elementsOfType(DerivedReferenceViewProperty.class,
+//                mediaProps);
+//        assertEquals(2, mediaDerivedRefProps.size());
+//
+//        for (DerivedReferenceViewProperty each : mediaDerivedRefProps) {
+//            if ("Book".equals(each.getTarget().getName())) {
+//                assertReferenceViewProperty("media", each, new String[] { "viewBookSubtask", "addBookSubtask" },
+//                        new String[] { "isbn", "title" }, "Book");
+//            } else if ("Movie".equals(each.getTarget().getName())) {
+//                assertReferenceViewProperty("media", each, new String[] { "viewMovieSubtask", "addMovieSubtask" },
+//                        new String[] { "urlIMDB", "title", "playLength", "category" }, "Movie");
+//            } else {
+//                assertTrue("Unexpected DerivedReferenceViewProperty for media: " + each.getTarget().getName(), false);
+//            }
+//        }
+//    }
 
-        assertOneAndOnlyOne(task.getSubTaskTransitions(), "viewLibrarySubtask", "viewMovieSubtask", "viewBookSubtask");
-
-    }
-
-    @Test
-    public void assertListPhysicalMedia() {
-        assertListTask("PhysicalMedia", "media", "status", "location");
-    }
-
-    @Test
-    public void assertViewMovie() {
-        ViewTask task = (ViewTask) getNamedElement("viewMovie", mediaModule().getUserTasks());
-
-        assertOneAndOnlyOne(task.getViewProperties(), "urlIMDB", "playLength", "category", "title", "physicalMedia",
-                "engagements", "mediaCharacters");
-        assertAttributeViewProperty("urlIMDB", task.getViewProperties());
-        assertAttributeViewProperty("playLength", task.getViewProperties());
-        assertAttributeViewProperty("title", task.getViewProperties());
-
-        assertEnumViewProperty("category", task.getViewProperties());
-
-        assertOneAndOnlyOne(task.getSubTaskTransitions(), "viewPhysicalMediaSubtask", "viewEngagementSubtask",
-                "viewMediaCharacterSubtask");
-
-        assertReferenceViewProperty("physicalMedia", task.getViewProperties(),
-                new String[] { "viewPhysicalMediaSubtask" }, new String[] { "status", "location" }, "PhysicalMedia");
-        assertReferenceViewProperty("engagements", task.getViewProperties(), new String[] { "viewEngagementSubtask" },
-                new String[] { "role" }, "Engagement");
-        assertReferenceViewProperty("mediaCharacters", task.getViewProperties(),
-                new String[] { "viewMediaCharacterSubtask" }, new String[] { "name" }, "MediaCharacter");
-    }
-
-    @Test
-    public void assertCreateBook() {
-        assertCreateTask("Book", "media", new String[] { "isbn", "title" }, new String[] { "viewPhysicalMediaSubtask",
-                "addPhysicalMediaSubtask", "viewEngagementSubtask", "createEngagementSubtask",
-                "createMediaCharacterSubtask", "viewMediaCharacterSubtask", "addMediaCharacterSubtask" },
-                DONT_VALIDATE_SERVICE_OPERATION);
-
-        CreateTask task = (CreateTask) getNamedElement("createBook", mediaModule().getUserTasks());
-
-        assertReferenceViewProperty("physicalMedia", task.getViewProperties(), new String[] {
-                "viewPhysicalMediaSubtask", "addPhysicalMediaSubtask" }, new String[] { "status", "location" },
-                "PhysicalMedia");
-        assertReferenceViewProperty("engagements", task.getViewProperties(), new String[] { "viewEngagementSubtask",
-                "createEngagementSubtask", }, new String[] { "role" }, "Engagement");
-
-        assertNull(task.getPopulateDOWith());
-    }
-
-    @Test
-    public void assertCreateMovie() {
-        assertCreateTask("Movie", "media", new String[] { "urlIMDB", "title" }, new String[] {
-                "viewPhysicalMediaSubtask", "addPhysicalMediaSubtask", "viewEngagementSubtask",
-                "createEngagementSubtask", "createMediaCharacterSubtask", "viewMediaCharacterSubtask",
-                "addMediaCharacterSubtask" }, DONT_VALIDATE_SERVICE_OPERATION);
-
-        CreateTask task = (CreateTask) getNamedElement("createMovie", mediaModule().getUserTasks());
-
-        assertReferenceViewProperty("physicalMedia", task.getViewProperties(), new String[] {
-                "viewPhysicalMediaSubtask", "addPhysicalMediaSubtask" }, new String[] { "status", "location" },
-                "PhysicalMedia");
-        assertReferenceViewProperty("engagements", task.getViewProperties(), new String[] { "viewEngagementSubtask",
-                "createEngagementSubtask" }, new String[] { "role" }, "Engagement");
-    }
-
-
-    @Test
-    public void assertMediaReferenceForCreateEngagement() {
-        UserTask task = (UserTask) getNamedElement("createEngagement", mediaModule().getUserTasks());
-        ReferenceViewProperty mediaRefProp = namedReferenceViewProperty("media", task.getViewProperties());
-        assertEquals("Media", mediaRefProp.getTarget().getName());
-        assertEquals("media", mediaRefProp.getReference().getName());
-        assertOneAndOnlyOne(mediaRefProp.getPreviewProperties(), "isbn", "title", "urlIMDB", "playLength", "category");
-
-        List<ReferenceViewProperty> mediaProps = elementsOfType(ReferenceViewProperty.class,
-                namedElements("media", task.getViewProperties()));
-        assertEquals(3, mediaProps.size());
-        List<DerivedReferenceViewProperty> mediaDerivedRefProps = elementsOfType(DerivedReferenceViewProperty.class,
-                mediaProps);
-        assertEquals(2, mediaDerivedRefProps.size());
-
-        for (DerivedReferenceViewProperty each : mediaDerivedRefProps) {
-            if ("Book".equals(each.getTarget().getName())) {
-                assertReferenceViewProperty("media", each, new String[] { "viewBookSubtask", "addBookSubtask" },
-                        new String[] { "isbn", "title" }, "Book");
-            } else if ("Movie".equals(each.getTarget().getName())) {
-                assertReferenceViewProperty("media", each, new String[] { "viewMovieSubtask", "addMovieSubtask" },
-                        new String[] { "urlIMDB", "title", "playLength", "category" }, "Movie");
-            } else {
-                assertTrue("Unexpected DerivedReferenceViewProperty for media: " + each.getTarget().getName(), false);
-            }
-        }
-    }
-
-    @Test
-    public void assertViewEngagement() {
-        ViewTask task = (ViewTask) getNamedElement("viewEngagement", mediaModule().getUserTasks());
-        assertAttributeViewProperty("role", task.getViewProperties());
-
-        assertOneAndOnlyOne(task.getSubTaskTransitions(), "viewPersonSubtask", "viewMovieSubtask", "viewBookSubtask");
-
-        assertReferenceViewProperty("person", task.getViewProperties(), new String[] { "viewPersonSubtask" },
-                new String[] { "ssnNumber", "ssnCountry", "nameFirst", "nameLast", "sex", "birthDate" }, "Person");
-
-    }
-
-    @Test
-    public void assertPersonModule() {
-        GuiModule module = personModule();
-        assertOneAndOnlyOne(module.getUserTasks(), "viewPerson", "createPerson", "updatePerson", "deletePerson",
-                "listPerson", "addPerson");
-    }
+//    @Test
+//    public void assertViewEngagement() {
+//        ViewTask task = (ViewTask) getNamedElement("viewEngagement", mediaModule().getUserTasks());
+//        assertAttributeViewProperty("role", task.getViewProperties());
+//
+//        assertOneAndOnlyOne(task.getSubTaskTransitions(), "viewPersonSubtask", "viewMovieSubtask", "viewBookSubtask");
+//
+//        assertReferenceViewProperty("person", task.getViewProperties(), new String[] { "viewPersonSubtask" },
+//                new String[] { "ssnNumber", "ssnCountry", "nameFirst", "nameLast", "sex", "birthDate" }, "Person");
+//
+//    }
+//
+//    @Test
+//    public void assertPersonModule() {
+//        GuiModule module = personModule();
+//        assertOneAndOnlyOne(module.getUserTasks(), "viewPerson", "createPerson", "updatePerson", "deletePerson",
+//                "listPerson", "addPerson");
+//    }
 
 
     private GuiModule mediaModule() {

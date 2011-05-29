@@ -24,6 +24,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getApplication <em>Application</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getViews <em>Views</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
  *
@@ -147,5 +148,21 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getViews();
+
+				/**
+	 * Returns the value of the '<em><b>Events</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.GuiEvent}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Events</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Events()
+	 * @model type="sculptorguimetamodel.GuiEvent" containment="true"
+	 * @generated
+	 */
+	EList getEvents();
 
 } // GuiModule

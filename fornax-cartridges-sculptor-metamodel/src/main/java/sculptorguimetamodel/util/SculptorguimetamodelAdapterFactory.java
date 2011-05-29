@@ -163,8 +163,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseTableWidget(TableWidget object) {
 				return createTableWidgetAdapter();
 			}
+			public Object caseGuiEvent(GuiEvent object) {
+				return createGuiEventAdapter();
+			}
+			public Object caseGuiAttribute(GuiAttribute object) {
+				return createGuiAttributeAdapter();
+			}
+			public Object caseTableColumn(TableColumn object) {
+				return createTableColumnAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
+			}
+			public Object caseTypedElement(TypedElement object) {
+				return createTypedElementAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -605,6 +617,48 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiEvent <em>Gui Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiEvent
+	 * @generated
+	 */
+	public Adapter createGuiEventAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiAttribute <em>Gui Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiAttribute
+	 * @generated
+	 */
+	public Adapter createGuiAttributeAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TableColumn <em>Table Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.TableColumn
+	 * @generated
+	 */
+	public Adapter createTableColumnAdapter() {
+		return null;
+	}
+
+																/**
 	 * Creates a new adapter for an object of class '{@link sculptormetamodel.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -615,6 +669,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.TypedElement <em>Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.TypedElement
+	 * @generated
+	 */
+	public Adapter createTypedElementAdapter() {
 		return null;
 	}
 

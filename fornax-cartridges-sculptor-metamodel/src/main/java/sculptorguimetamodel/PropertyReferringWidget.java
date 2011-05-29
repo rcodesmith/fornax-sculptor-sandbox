@@ -15,7 +15,7 @@ package sculptorguimetamodel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getFor <em>For</em>}</li>
+ *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForProperty <em>For Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,29 +25,29 @@ package sculptorguimetamodel;
  */
 public interface PropertyReferringWidget extends Widget {
 	/**
-	 * Returns the value of the '<em><b>For</b></em>' reference.
+	 * Returns the value of the '<em><b>For Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>For</em>' reference isn't clear,
+	 * If the meaning of the '<em>For Property</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>For</em>' reference.
-	 * @see #setFor(PropertyReference)
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_For()
+	 * @return the value of the '<em>For Property</em>' reference.
+	 * @see #setForProperty(PropertyReference)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_ForProperty()
 	 * @model
 	 * @generated
 	 */
-	PropertyReference getFor();
+	PropertyReference getForProperty();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getFor <em>For</em>}' reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getForProperty <em>For Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>For</em>' reference.
-	 * @see #getFor()
+	 * @param value the new value of the '<em>For Property</em>' reference.
+	 * @see #getForProperty()
 	 * @generated
 	 */
-	void setFor(PropertyReference value);
+	void setForProperty(PropertyReference value);
 
 } // PropertyReferringWidget

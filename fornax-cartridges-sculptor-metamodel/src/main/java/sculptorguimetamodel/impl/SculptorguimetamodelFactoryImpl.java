@@ -90,6 +90,9 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.PROPERTY_REFERENCE: return createPropertyReference();
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET: return createPropertyReferringWidget();
 			case SculptorguimetamodelPackage.TABLE_WIDGET: return createTableWidget();
+			case SculptorguimetamodelPackage.GUI_EVENT: return createGuiEvent();
+			case SculptorguimetamodelPackage.GUI_ATTRIBUTE: return createGuiAttribute();
+			case SculptorguimetamodelPackage.TABLE_COLUMN: return createTableColumn();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -393,6 +396,36 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public TableWidget createTableWidget() {
 		TableWidgetImpl tableWidget = new TableWidgetImpl();
 		return tableWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuiEvent createGuiEvent() {
+		GuiEventImpl guiEvent = new GuiEventImpl();
+		return guiEvent;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuiAttribute createGuiAttribute() {
+		GuiAttributeImpl guiAttribute = new GuiAttributeImpl();
+		return guiAttribute;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableColumn createTableColumn() {
+		TableColumnImpl tableColumn = new TableColumnImpl();
+		return tableColumn;
 	}
 
 																/**

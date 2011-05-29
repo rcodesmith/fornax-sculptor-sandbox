@@ -296,6 +296,33 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	TableWidget createTableWidget();
 
 																/**
+	 * Returns a new object of class '<em>Gui Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gui Event</em>'.
+	 * @generated
+	 */
+	GuiEvent createGuiEvent();
+
+																/**
+	 * Returns a new object of class '<em>Gui Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gui Attribute</em>'.
+	 * @generated
+	 */
+	GuiAttribute createGuiAttribute();
+
+																/**
+	 * Returns a new object of class '<em>Table Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Column</em>'.
+	 * @generated
+	 */
+	TableColumn createTableColumn();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
