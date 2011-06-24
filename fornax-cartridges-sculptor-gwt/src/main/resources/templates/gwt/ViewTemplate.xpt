@@ -46,10 +46,20 @@
 	
 «ENDDEFINE»
 
+«DEFINE widgetTemplate FOR InformationalTextWidget»
+	<g:Label text="«label»" />
+	<g:TextBox ui:field="«name»"  name="«name»" readOnly="true"/>
+	
+«ENDDEFINE»
+
 «DEFINE widgetTemplate FOR ButtonWidget»
 	<g:Button ui:field="«name»" text="«label»"></g:Button>
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR Widget»
 	<!-- Error - expected specific widget template -->
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR TableWidget»
+	<p1:CellTable ui:field="«name»" tableLayoutFixed="false" />
 «ENDDEFINE»

@@ -50,16 +50,41 @@ create sculptorguimetamodel::View this transformView(DslView view, Module module
 create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
 	
+create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
 create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-//	setFor(propertyReference(widget.for));
-	
-//PropertyReference propertyReference(DslAttribute attribute) :
-//	let ref = new ViewAttributeReference :
-//		ref.setAttribute(attribute)
+create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
 	
 create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
@@ -89,11 +114,13 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col
 // GuiEvent related transformations
 //////////////////////////////////////////////////////////////////////////////////
 create sculptorguimetamodel::GuiEvent this transformEvent(DslGuiEvent event, Module module) :
+	setModule(((DslGuiModule) event.eContainer).transformModule()) ->
 	setName(event.name) ->
 	setDoc(event.doc) ->
 	attributes.addAll(event.attributes.transformAttribute(module));
 	
 create sculptorguimetamodel::GuiAttribute this transformAttribute(DslGuiAttribute attr, Module module) :
+	setEvent(((DslEvent) attr.eContainer).transformEvent(module)) ->
 	setName(attr.name) ->
 	setDoc(attr.doc) ->
 	setType(attr.type);

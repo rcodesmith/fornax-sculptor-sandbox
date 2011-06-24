@@ -211,7 +211,15 @@ String resolveGwtWidgetType(ViewDataProperty prop) :
 		"com.google.gwt.user.client.ui.CheckBox"
 	else 
 		"com.google.gwt.user.client.ui.TextBox";
-		
+
+// Relative name of the DTO class that a table is for
+DomainObject tableForClass(TableWidget table) :
+	table.for;
+
+// Fully qualified name of the DTO class that a table is for
+String fqnTableForClass(TableWidget table) :
+	fqnGwtDto(tableForClass(table));
+
 Boolean widgetHasNameProp(ViewDataProperty prop) :
 	if (prop.isDateOrDateTime()) then
 		false
@@ -296,10 +304,18 @@ String gwtViewWidgetBaseClass(View view) :
 	view.name + "Base";
 
 // GWT view widget base interface relative name
+String gwtViewWidgetBaseInterface(View view) :
+	"I" + view.gwtViewWidgetBaseClass();
+
+// Fully qualified name of GWT view widget interface
+String fqnViewWidgetBaseInterface(View view) :
+	view.fqnActivityBaseClass() + "." + view.gwtViewWidgetBaseInterface();
+
+// GWT view widget impl interface relative name
 String gwtViewWidgetImplInterface(View view) :
 	"I" + view.name.toFirstUpper();
 
-// Fully qualified name of GWT view widget interface
+// Fully qualified name of GWT view widget impl interface
 String fqnViewWidgetImplInterface(View view) :
 	view.fqnActivityImplClass() + "." + view.gwtViewWidgetImplInterface();
 
@@ -374,13 +390,13 @@ String fqnActivityImplClass(View view) :
     
 // Package for all event-related widget classes
 gwtEventsPackage(GuiEvent event) :
-	gwtBasePackage(event.module.for) + ".client";
+	gwtBasePackage(event.module.for) + ".client.event";
 	
 // GWT event base class relative name
 String gwtEventBaseClass(GuiEvent event) :
-	event.name;
+	event.name + "Base";
 
 fqnGwtEventBaseClass(GuiEvent event) :
-	event.gwtEventBaseClass();
+	event.gwtEventsPackage() + "." + event.gwtEventBaseClass();
 	
 	

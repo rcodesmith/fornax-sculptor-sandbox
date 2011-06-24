@@ -2787,6 +2787,444 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_COLUMN_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.TextAreaWidgetImpl <em>Text Area Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.TextAreaWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTextAreaWidget()
+	 * @generated
+	 */
+	int TEXT_AREA_WIDGET = 33;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
+	 * The number of structural features of the '<em>Text Area Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.AutocompleteWidgetImpl <em>Autocomplete Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.AutocompleteWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getAutocompleteWidget()
+	 * @generated
+	 */
+	int AUTOCOMPLETE_WIDGET = 34;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
+	 * The number of structural features of the '<em>Autocomplete Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.RadioButtonsWidgetImpl <em>Radio Buttons Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.RadioButtonsWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getRadioButtonsWidget()
+	 * @generated
+	 */
+	int RADIO_BUTTONS_WIDGET = 35;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
+	 * The number of structural features of the '<em>Radio Buttons Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.RichTextAreaWidgetImpl <em>Rich Text Area Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.RichTextAreaWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getRichTextAreaWidget()
+	 * @generated
+	 */
+	int RICH_TEXT_AREA_WIDGET = 36;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
+	 * The number of structural features of the '<em>Rich Text Area Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.InputDateWidgetImpl <em>Input Date Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.InputDateWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getInputDateWidget()
+	 * @generated
+	 */
+	int INPUT_DATE_WIDGET = 37;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
+	 * The number of structural features of the '<em>Input Date Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.NumberSpinnerWidgetImpl <em>Number Spinner Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.NumberSpinnerWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getNumberSpinnerWidget()
+	 * @generated
+	 */
+	int NUMBER_SPINNER_WIDGET = 38;
+
+																/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+																/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+																/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+																/**
+	 * The feature id for the '<em><b>View</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+																/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+																/**
+	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+
+																/**
+	 * The number of structural features of the '<em>Number Spinner Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+																/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3887,6 +4325,66 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getTableColumn_ForProperty();
 
 																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.TextAreaWidget <em>Text Area Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Text Area Widget</em>'.
+	 * @see sculptorguimetamodel.TextAreaWidget
+	 * @generated
+	 */
+	EClass getTextAreaWidget();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.AutocompleteWidget <em>Autocomplete Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Autocomplete Widget</em>'.
+	 * @see sculptorguimetamodel.AutocompleteWidget
+	 * @generated
+	 */
+	EClass getAutocompleteWidget();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.RadioButtonsWidget <em>Radio Buttons Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Radio Buttons Widget</em>'.
+	 * @see sculptorguimetamodel.RadioButtonsWidget
+	 * @generated
+	 */
+	EClass getRadioButtonsWidget();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.RichTextAreaWidget <em>Rich Text Area Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rich Text Area Widget</em>'.
+	 * @see sculptorguimetamodel.RichTextAreaWidget
+	 * @generated
+	 */
+	EClass getRichTextAreaWidget();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.InputDateWidget <em>Input Date Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Input Date Widget</em>'.
+	 * @see sculptorguimetamodel.InputDateWidget
+	 * @generated
+	 */
+	EClass getInputDateWidget();
+
+																/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.NumberSpinnerWidget <em>Number Spinner Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Number Spinner Widget</em>'.
+	 * @see sculptorguimetamodel.NumberSpinnerWidget
+	 * @generated
+	 */
+	EClass getNumberSpinnerWidget();
+
+																/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4797,6 +5295,66 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE_COLUMN__FOR_PROPERTY = eINSTANCE.getTableColumn_ForProperty();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TextAreaWidgetImpl <em>Text Area Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.TextAreaWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTextAreaWidget()
+		 * @generated
+		 */
+		EClass TEXT_AREA_WIDGET = eINSTANCE.getTextAreaWidget();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.AutocompleteWidgetImpl <em>Autocomplete Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.AutocompleteWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getAutocompleteWidget()
+		 * @generated
+		 */
+		EClass AUTOCOMPLETE_WIDGET = eINSTANCE.getAutocompleteWidget();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.RadioButtonsWidgetImpl <em>Radio Buttons Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.RadioButtonsWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getRadioButtonsWidget()
+		 * @generated
+		 */
+		EClass RADIO_BUTTONS_WIDGET = eINSTANCE.getRadioButtonsWidget();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.RichTextAreaWidgetImpl <em>Rich Text Area Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.RichTextAreaWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getRichTextAreaWidget()
+		 * @generated
+		 */
+		EClass RICH_TEXT_AREA_WIDGET = eINSTANCE.getRichTextAreaWidget();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.InputDateWidgetImpl <em>Input Date Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.InputDateWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getInputDateWidget()
+		 * @generated
+		 */
+		EClass INPUT_DATE_WIDGET = eINSTANCE.getInputDateWidget();
+
+																																/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.NumberSpinnerWidgetImpl <em>Number Spinner Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.NumberSpinnerWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getNumberSpinnerWidget()
+		 * @generated
+		 */
+		EClass NUMBER_SPINNER_WIDGET = eINSTANCE.getNumberSpinnerWidget();
 
 	}
 

@@ -93,6 +93,12 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.GUI_EVENT: return createGuiEvent();
 			case SculptorguimetamodelPackage.GUI_ATTRIBUTE: return createGuiAttribute();
 			case SculptorguimetamodelPackage.TABLE_COLUMN: return createTableColumn();
+			case SculptorguimetamodelPackage.TEXT_AREA_WIDGET: return createTextAreaWidget();
+			case SculptorguimetamodelPackage.AUTOCOMPLETE_WIDGET: return createAutocompleteWidget();
+			case SculptorguimetamodelPackage.RADIO_BUTTONS_WIDGET: return createRadioButtonsWidget();
+			case SculptorguimetamodelPackage.RICH_TEXT_AREA_WIDGET: return createRichTextAreaWidget();
+			case SculptorguimetamodelPackage.INPUT_DATE_WIDGET: return createInputDateWidget();
+			case SculptorguimetamodelPackage.NUMBER_SPINNER_WIDGET: return createNumberSpinnerWidget();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -426,6 +432,66 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public TableColumn createTableColumn() {
 		TableColumnImpl tableColumn = new TableColumnImpl();
 		return tableColumn;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TextAreaWidget createTextAreaWidget() {
+		TextAreaWidgetImpl textAreaWidget = new TextAreaWidgetImpl();
+		return textAreaWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AutocompleteWidget createAutocompleteWidget() {
+		AutocompleteWidgetImpl autocompleteWidget = new AutocompleteWidgetImpl();
+		return autocompleteWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RadioButtonsWidget createRadioButtonsWidget() {
+		RadioButtonsWidgetImpl radioButtonsWidget = new RadioButtonsWidgetImpl();
+		return radioButtonsWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RichTextAreaWidget createRichTextAreaWidget() {
+		RichTextAreaWidgetImpl richTextAreaWidget = new RichTextAreaWidgetImpl();
+		return richTextAreaWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InputDateWidget createInputDateWidget() {
+		InputDateWidgetImpl inputDateWidget = new InputDateWidgetImpl();
+		return inputDateWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NumberSpinnerWidget createNumberSpinnerWidget() {
+		NumberSpinnerWidgetImpl numberSpinnerWidget = new NumberSpinnerWidgetImpl();
+		return numberSpinnerWidget;
 	}
 
 																/**

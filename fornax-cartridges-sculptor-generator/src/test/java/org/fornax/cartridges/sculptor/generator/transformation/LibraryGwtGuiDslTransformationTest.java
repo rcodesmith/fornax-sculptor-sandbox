@@ -13,6 +13,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.GuiApplication;
@@ -82,7 +83,7 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     }
 
     @Test
-    public void assertReviewFormView() {
+    public void assertPersonFormView() {
         View personForm = (View) getNamedElement("PersonForm", personModule().getViews());
         assertNotNull(personForm);
         
@@ -95,11 +96,15 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         Service svc = (Service)personForm.getServiceDependencies().get(0);
         
         EList widgets = personForm.getWidgets();
-        assertEquals(4, widgets.size());
-        assertOneAndOnlyOne(widgets, "nameField", "table1", "saveButton", "info1");
+        assertEquals(6, widgets.size());
+        assertOneAndOnlyOne(widgets, "nameField", "table1", "saveButton", "info1", "textArea1", "autocomp1");
+        
         InputTextWidget nameField = (InputTextWidget)widgets.get(0);
         assertEquals("Name", nameField.getLabel());
-           
+
+        AutocompleteWidget autoComp = (AutocompleteWidget)widgets.get(5);
+        assertEquals("Auto complete one", autoComp.getLabel());
+
     }
 
     @Test

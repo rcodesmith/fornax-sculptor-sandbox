@@ -158,4 +158,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forProperty" eType="#//PropertyReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextAreaWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AutocompleteWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RadioButtonsWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RichTextAreaWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InputDateWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberSpinnerWidget" eSuperTypes="#//PropertyReferringWidget"/>
 </ecore:EPackage>

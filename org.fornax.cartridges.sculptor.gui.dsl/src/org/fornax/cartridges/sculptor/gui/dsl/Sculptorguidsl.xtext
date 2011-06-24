@@ -190,17 +190,52 @@ DslGuiServiceDependency :
 
 
 DslWidget : 
-	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget;
+	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget | DslRichTextAreaWidget | 
+	DslAutocompleteWidget | DslRadioButtonsWidget;
 	
 	
 DslInputTextWidget :
   (doc=STRING)?
-	'inputText' name=ID  (forProperty=DslForProperty)? '{'
+	'inputText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+		('label' '=' label=STRING)?
+	'}';
+	
+DslTextAreaWidget :
+  (doc=STRING)?
+	'textArea' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+		('label' '=' label=STRING)?
+	'}';
+
+DslAutocompleteWidget :
+  (doc=STRING)?
+	'autocomplete' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+		('label' '=' label=STRING)?
+	'}';
+
+DslRadioButtonsWidget :
+  (doc=STRING)?
+	'radioButtons' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+		('label' '=' label=STRING)?
+	'}';
+
+DslRichTextAreaWidget :
+  (doc=STRING)?
+	'richText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+		('label' '=' label=STRING)?
+	'}';
+
+DslInputDateWidget :
+  (doc=STRING)?
+	'inputDate' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
 	'}';
  
-
-	
+ DslNumberSpinnerWidget :
+ (doc=STRING)?
+	'numberSpinner' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+		('label' '=' label=STRING)?
+	'}';
+ 
 	
 DslButtonWidget :
   (doc=STRING)?
@@ -211,7 +246,7 @@ DslButtonWidget :
 	
 DslInformationalTextWidget :
   (doc=STRING)?
-	'informationalText' name=ID (forProperty=DslForProperty)? '{'
+	'informationalText' name=ID ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
 	'}';
 	
@@ -220,7 +255,7 @@ DslForProperty :
 
 DslTableWidget :
   (doc=STRING)?
-	'table' name=ID ('for' for=[mm::DslSimpleDomainObject])? (forProperty=DslForProperty)? '{'
+	'table' name=ID ('for' for=[mm::DslSimpleDomainObject])? ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?	
 		
 		("columns" "{"

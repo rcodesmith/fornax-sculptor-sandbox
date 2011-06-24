@@ -323,6 +323,60 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	TableColumn createTableColumn();
 
 																/**
+	 * Returns a new object of class '<em>Text Area Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Text Area Widget</em>'.
+	 * @generated
+	 */
+	TextAreaWidget createTextAreaWidget();
+
+																/**
+	 * Returns a new object of class '<em>Autocomplete Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Autocomplete Widget</em>'.
+	 * @generated
+	 */
+	AutocompleteWidget createAutocompleteWidget();
+
+																/**
+	 * Returns a new object of class '<em>Radio Buttons Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Radio Buttons Widget</em>'.
+	 * @generated
+	 */
+	RadioButtonsWidget createRadioButtonsWidget();
+
+																/**
+	 * Returns a new object of class '<em>Rich Text Area Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rich Text Area Widget</em>'.
+	 * @generated
+	 */
+	RichTextAreaWidget createRichTextAreaWidget();
+
+																/**
+	 * Returns a new object of class '<em>Input Date Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Input Date Widget</em>'.
+	 * @generated
+	 */
+	InputDateWidget createInputDateWidget();
+
+																/**
+	 * Returns a new object of class '<em>Number Spinner Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Number Spinner Widget</em>'.
+	 * @generated
+	 */
+	NumberSpinnerWidget createNumberSpinnerWidget();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -19,6 +19,8 @@
 		
 		«EXPAND View::view(module)»
 		
+		«EXPAND Event::events(module)»
+		
 	«ENDLET»
 «ENDDEFINE»
 

@@ -49,6 +49,7 @@
 		<module>../fornax-cartridges-sculptor-framework-web</module>
 		<module>../fornax-cartridges-sculptor-mongodb</module>
 		<module>../fornax-cartridges-sculptor-smartclient-bt</module>
+		<module>../fornax-cartridges-sculptor-gwt</module>
 
 		<module>../fornax-cartridges-sculptor-archetype</module>
 		<module>../fornax-cartridges-sculptor-archetype-jsf</module>

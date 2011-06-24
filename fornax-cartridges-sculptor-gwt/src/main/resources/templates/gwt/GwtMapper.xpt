@@ -56,7 +56,9 @@ public class «name.toFirstUpper()»DtoMapper {
         		com.google.common.collect.Iterables.transform(domainObj.get«name.toFirstUpper()»(), new Function<«getTypeName()», «getGwtTypeName()»>() {
         		public «getGwtTypeName()» apply(
         				«getTypeName()» from) {
-		    	    Object mappedDto = mapFromDomainMM.invoke(from);
+		    	    Object mappedDto = mapFromDomainMM.invoke(null, from);
+//		    	    if(mappedDto == null) {
+//		    	    	throw new IllegalArgumentException("Was unable to map " + from
 
         			return («getGwtTypeName()»)mappedDto;
         		}
@@ -72,7 +74,7 @@ public class «name.toFirstUpper()»DtoMapper {
 «DEFINE copyManyRefToDomain FOR Reference»
     	domainObj.removeAll«name.toFirstUpper()»();
     	for («getGwtTypeName()» obj : dtoObj.get«name.toFirstUpper()»()) {
-    	    Object mappedDomain = mapToDomainMM.invoke(obj);
+    	    Object mappedDomain = mapToDomainMM.invoke(null, obj);
     	
     		domainObj.add«name.singular().toFirstUpper()»((«getTypeName()»)mappedDomain);
 		}

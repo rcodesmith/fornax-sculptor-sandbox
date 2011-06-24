@@ -1,0 +1,133 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«REM»Activity base class«ENDREM»
+«DEFINE activityBase FOR View»
+«FILE javaFileName(fqnActivityBaseClass())»
+
+package «gwtActivitiesPackage()»;
+
+public abstract class «gwtActivityBaseClass()» extends com.google.gwt.activity.shared.AbstractActivity {
+
+	«loggerDeclaration(gwtActivityBaseClass())»
+
+	private final com.google.gwt.event.shared.EventBus eventBus;
+	private final com.google.gwt.place.shared.PlaceController placeController;
+	
+	private final «gwtViewWidgetBaseInterface()» baseDisplay;
+	
+	«EXPAND serviceDeclaration FOREACH serviceDependencies»
+
+	public interface «gwtViewWidgetBaseInterface()» {
+		com.google.gwt.user.client.ui.Widget asWidget();
+		
+		«EXPAND widgetInterfaceDeclarations FOREACH widgets»
+		
+	}
+	
+	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
+	}
+
+	public «gwtActivityBaseClass()»(com.google.gwt.event.shared.EventBus eventBus,
+		«gwtViewWidgetBaseInterface()» theBaseDisplay,
+		com.google.gwt.place.shared.PlaceController placeController) {
+		super();
+		
+		this.baseDisplay = theBaseDisplay;
+		this.eventBus = eventBus;
+		this.placeController = placeController;
+	}
+
+
+	public void clearData() {
+		«EXPAND widgetClearCall FOREACH widgets»
+	}
+	
+	protected abstract void bind();
+
+}
+ 
+«ENDFILE»
+«ENDDEFINE» 
+
+
+«REM»Methods to clear data from widgets«ENDREM»
+«DEFINE widgetClearCall FOR Widget»
+«ENDDEFINE»
+
+«DEFINE widgetClearCall FOR InputTextWidget»
+	baseDisplay.get«name.toFirstUpper()»HasText().setText("");
+«ENDDEFINE»
+
+«DEFINE widgetClearCall FOR TableWidget»
+    baseDisplay.get«name.toFirstUpper()»HasData().setRowData(0, new java.util.ArrayList<«fqnTableForClass()»>());
+«ENDDEFINE»
+
+
+
+«REM»Declarations that must be added to the view interface for ecah widget«ENDREM»
+«DEFINE widgetInterfaceDeclarations FOR Widget»
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR TableWidget»
+	com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
+	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+«ENDDEFINE»
+
+
+«REM»Declaration of service interface to be used by activity«ENDREM»
+«DEFINE serviceDeclaration FOR Service»
+    /**
+     * Create a remote service proxy to talk to the server-side «name» service.
+     */
+    protected final «gwtServiceAsyncInterface()» «name.toFirstLower()» = com.google.gwt.core.client.GWT
+                    .create(«gwtServiceAsyncInterface()».class);
+
+«ENDDEFINE»
+
+
+
+
+«REM»Activity implementation class«ENDREM»
+«DEFINE activityImpl FOR View»
+«FILE javaFileName(fqnActivityImplClass()) TO_SRC»
+
+package «gwtActivitiesPackage()»;
+
+public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
+
+	«loggerDeclaration(gwtActivityImplClass())»
+	
+	«fqnViewWidgetImplInterface()» display;
+	
+	public interface «gwtViewWidgetImplInterface()» extends «fqnViewWidgetBaseInterface()» {
+	}
+
+	public «gwtActivityImplClass()»(«fqnViewWidgetImplInterface()» theDisplay,
+		com.google.gwt.event.shared.EventBus eventBus,
+		com.google.gwt.place.shared.PlaceController placeController) {
+		super(eventBus, theDisplay, placeController);
+		display = theDisplay;
+		
+		bind();
+	}
+	
+	protected void bind() {
+	}
+
+}
+ 
+«ENDFILE»
+«ENDDEFINE» 

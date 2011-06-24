@@ -339,6 +339,60 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.TEXT_AREA_WIDGET: {
+				TextAreaWidget textAreaWidget = (TextAreaWidget)theEObject;
+				Object result = caseTextAreaWidget(textAreaWidget);
+				if (result == null) result = casePropertyReferringWidget(textAreaWidget);
+				if (result == null) result = caseWidget(textAreaWidget);
+				if (result == null) result = caseNamedElement(textAreaWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.AUTOCOMPLETE_WIDGET: {
+				AutocompleteWidget autocompleteWidget = (AutocompleteWidget)theEObject;
+				Object result = caseAutocompleteWidget(autocompleteWidget);
+				if (result == null) result = casePropertyReferringWidget(autocompleteWidget);
+				if (result == null) result = caseWidget(autocompleteWidget);
+				if (result == null) result = caseNamedElement(autocompleteWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.RADIO_BUTTONS_WIDGET: {
+				RadioButtonsWidget radioButtonsWidget = (RadioButtonsWidget)theEObject;
+				Object result = caseRadioButtonsWidget(radioButtonsWidget);
+				if (result == null) result = casePropertyReferringWidget(radioButtonsWidget);
+				if (result == null) result = caseWidget(radioButtonsWidget);
+				if (result == null) result = caseNamedElement(radioButtonsWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.RICH_TEXT_AREA_WIDGET: {
+				RichTextAreaWidget richTextAreaWidget = (RichTextAreaWidget)theEObject;
+				Object result = caseRichTextAreaWidget(richTextAreaWidget);
+				if (result == null) result = casePropertyReferringWidget(richTextAreaWidget);
+				if (result == null) result = caseWidget(richTextAreaWidget);
+				if (result == null) result = caseNamedElement(richTextAreaWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.INPUT_DATE_WIDGET: {
+				InputDateWidget inputDateWidget = (InputDateWidget)theEObject;
+				Object result = caseInputDateWidget(inputDateWidget);
+				if (result == null) result = casePropertyReferringWidget(inputDateWidget);
+				if (result == null) result = caseWidget(inputDateWidget);
+				if (result == null) result = caseNamedElement(inputDateWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.NUMBER_SPINNER_WIDGET: {
+				NumberSpinnerWidget numberSpinnerWidget = (NumberSpinnerWidget)theEObject;
+				Object result = caseNumberSpinnerWidget(numberSpinnerWidget);
+				if (result == null) result = casePropertyReferringWidget(numberSpinnerWidget);
+				if (result == null) result = caseWidget(numberSpinnerWidget);
+				if (result == null) result = caseNamedElement(numberSpinnerWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -835,6 +889,96 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseTableColumn(TableColumn object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text Area Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text Area Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseTextAreaWidget(TextAreaWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Autocomplete Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Autocomplete Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseAutocompleteWidget(AutocompleteWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Radio Buttons Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Radio Buttons Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseRadioButtonsWidget(RadioButtonsWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rich Text Area Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rich Text Area Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseRichTextAreaWidget(RichTextAreaWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input Date Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input Date Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseInputDateWidget(InputDateWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Number Spinner Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Number Spinner Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseNumberSpinnerWidget(NumberSpinnerWidget object) {
 		return null;
 	}
 

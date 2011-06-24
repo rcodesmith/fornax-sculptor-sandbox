@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import sculptorguimetamodel.AddTask;
 import sculptorguimetamodel.AttributeViewProperty;
+import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.BasicTypeEnumViewProperty;
 import sculptorguimetamodel.BasicTypeViewProperty;
 import sculptorguimetamodel.ButtonWidget;
@@ -28,17 +29,22 @@ import sculptorguimetamodel.GuiAttribute;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InformationalTextWidget;
+import sculptorguimetamodel.InputDateWidget;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.ListTask;
+import sculptorguimetamodel.NumberSpinnerWidget;
 import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
+import sculptorguimetamodel.RadioButtonsWidget;
 import sculptorguimetamodel.ReferenceTarget;
 import sculptorguimetamodel.ReferenceViewProperty;
+import sculptorguimetamodel.RichTextAreaWidget;
 import sculptorguimetamodel.SculptorguimetamodelFactory;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.SubTaskTransition;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
+import sculptorguimetamodel.TextAreaWidget;
 import sculptorguimetamodel.TaskwType;
 import sculptorguimetamodel.TmpReferenceHolder;
 import sculptorguimetamodel.TmpSubTaskTransitionHolder;
@@ -290,6 +296,48 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass tableColumnEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass textAreaWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass autocompleteWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass radioButtonsWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass richTextAreaWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inputDateWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass numberSpinnerWidgetEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1287,6 +1335,60 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTextAreaWidget() {
+		return textAreaWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAutocompleteWidget() {
+		return autocompleteWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRadioButtonsWidget() {
+		return radioButtonsWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRichTextAreaWidget() {
+		return richTextAreaWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInputDateWidget() {
+		return inputDateWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNumberSpinnerWidget() {
+		return numberSpinnerWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -1445,6 +1547,18 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__LABEL);
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__COLUMN_TYPE);
 		createEReference(tableColumnEClass, TABLE_COLUMN__FOR_PROPERTY);
+
+		textAreaWidgetEClass = createEClass(TEXT_AREA_WIDGET);
+
+		autocompleteWidgetEClass = createEClass(AUTOCOMPLETE_WIDGET);
+
+		radioButtonsWidgetEClass = createEClass(RADIO_BUTTONS_WIDGET);
+
+		richTextAreaWidgetEClass = createEClass(RICH_TEXT_AREA_WIDGET);
+
+		inputDateWidgetEClass = createEClass(INPUT_DATE_WIDGET);
+
+		numberSpinnerWidgetEClass = createEClass(NUMBER_SPINNER_WIDGET);
 	}
 
 	/**
@@ -1502,6 +1616,12 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		guiEventEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		guiAttributeEClass.getESuperTypes().add(theSculptormetamodelPackage.getTypedElement());
 		tableColumnEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		textAreaWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		autocompleteWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		radioButtonsWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		richTextAreaWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		inputDateWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		numberSpinnerWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1639,6 +1759,18 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEAttribute(getTableColumn_Label(), ecorePackage.getEString(), "label", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableColumn_ColumnType(), ecorePackage.getEString(), "columnType", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTableColumn_ForProperty(), this.getPropertyReference(), null, "forProperty", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(textAreaWidgetEClass, TextAreaWidget.class, "TextAreaWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(autocompleteWidgetEClass, AutocompleteWidget.class, "AutocompleteWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(radioButtonsWidgetEClass, RadioButtonsWidget.class, "RadioButtonsWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(richTextAreaWidgetEClass, RichTextAreaWidget.class, "RichTextAreaWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(inputDateWidgetEClass, InputDateWidget.class, "InputDateWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(numberSpinnerWidgetEClass, NumberSpinnerWidget.class, "NumberSpinnerWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -23,6 +23,14 @@ gui LibraryWeb for Library {
 				informationalText info1 {
 					label = "Info Numero Uno"
 				}
+				
+				textArea textArea1 {
+					label = "Text area uno"
+				}
+				
+				autocomplete autocomp1 forProperty ssn {
+					label = "Auto complete one"
+				}
 			}
 		}
 		

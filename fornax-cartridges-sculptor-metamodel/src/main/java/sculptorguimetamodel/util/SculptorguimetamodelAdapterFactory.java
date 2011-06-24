@@ -172,6 +172,24 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseTableColumn(TableColumn object) {
 				return createTableColumnAdapter();
 			}
+			public Object caseTextAreaWidget(TextAreaWidget object) {
+				return createTextAreaWidgetAdapter();
+			}
+			public Object caseAutocompleteWidget(AutocompleteWidget object) {
+				return createAutocompleteWidgetAdapter();
+			}
+			public Object caseRadioButtonsWidget(RadioButtonsWidget object) {
+				return createRadioButtonsWidgetAdapter();
+			}
+			public Object caseRichTextAreaWidget(RichTextAreaWidget object) {
+				return createRichTextAreaWidgetAdapter();
+			}
+			public Object caseInputDateWidget(InputDateWidget object) {
+				return createInputDateWidgetAdapter();
+			}
+			public Object caseNumberSpinnerWidget(NumberSpinnerWidget object) {
+				return createNumberSpinnerWidgetAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -655,6 +673,90 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTableColumnAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.TextAreaWidget <em>Text Area Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.TextAreaWidget
+	 * @generated
+	 */
+	public Adapter createTextAreaWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.AutocompleteWidget <em>Autocomplete Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.AutocompleteWidget
+	 * @generated
+	 */
+	public Adapter createAutocompleteWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.RadioButtonsWidget <em>Radio Buttons Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.RadioButtonsWidget
+	 * @generated
+	 */
+	public Adapter createRadioButtonsWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.RichTextAreaWidget <em>Rich Text Area Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.RichTextAreaWidget
+	 * @generated
+	 */
+	public Adapter createRichTextAreaWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.InputDateWidget <em>Input Date Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.InputDateWidget
+	 * @generated
+	 */
+	public Adapter createInputDateWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.NumberSpinnerWidget <em>Number Spinner Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.NumberSpinnerWidget
+	 * @generated
+	 */
+	public Adapter createNumberSpinnerWidgetAdapter() {
 		return null;
 	}
 

@@ -11,8 +11,8 @@
 	«EXPAND viewBase FOREACH this.views»
 	«EXPAND viewImpl FOREACH this.views»
 
-	«EXPAND activityBase FOREACH this.views»
-	«EXPAND activityImpl FOREACH this.views»
+	«EXPAND templates::gwt::Activity::activityBase FOREACH this.views»
+	«EXPAND templates::gwt::Activity::activityImpl FOREACH this.views»
 	
 	«EXPAND templates::gwt::ViewTemplate::viewCompositeBaseTemplate FOREACH this.views»
 «ENDDEFINE»
@@ -26,32 +26,111 @@ package «gwtWidgetsPackage()»;
 
 public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Composite {
 
+	«loggerDeclaration(gwtViewWidgetBaseClass())»
 
-    interface «gwtViewWidgetBaseClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<Widget, «fqnGwtViewWidgetBaseClass()»> {}
+    interface «gwtViewWidgetBaseClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<com.google.gwt.user.client.ui.Widget, «fqnGwtViewWidgetBaseClass()»> {}
 
     private static «gwtViewWidgetBaseClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
     	.create(«gwtViewWidgetBaseClass()»UiBinder.class);
 
 	public «gwtViewWidgetBaseClass()»() {
 		initWidget(getWidget());
+		
+		«EXPAND widgetInitCalls FOREACH widgets»
 	}
 	
     protected com.google.gwt.user.client.ui.Widget getWidget() {
     	return uiBinder.createAndBindUi(this);
     }
     
+    
     «EXPAND widgetDeclaration FOREACH widgets»
+    
+    «EXPAND widgetMethods FOREACH widgets»
 }
 
 «ENDFILE»
 
 «ENDDEFINE»
 
+«REM»Calls to widget initialization functions on construction«ENDREM»
+«DEFINE widgetInitCalls FOR Widget»
+«ENDDEFINE»
+
+«DEFINE widgetInitCalls FOR WidgetTable»
+
+	// Initialize «name» table (columns, etc)
+	init«name.toFirstUpper()»Table();
+«ENDDEFINE»
+
+
+«REM»Widget misc. methods«ENDREM»
+
+«DEFINE widgetMethods FOR TableWidget»
+    public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData) {
+        java.util.List<«fqnTableForClass()»> newDataList = new java.util.ArrayList<«fqnTableForClass()»>(newData);
+        replace«name.toFirstUpper()»Data(newDataList);
+    }
+
+    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList) {
+        «name».setRowCount(newDataList.size());
+        «name».setRowData(newDataList);
+    }
+
+    public void clear«name.toFirstUpper()»Data() {
+        replace«name.toFirstUpper()»Data(new java.util.ArrayList<«fqnTableForClass()»>());
+    }
+
+	/**
+	  * Initialize table columns
+	  * to be overridden by implementation class.
+	  */
+    protected void init«name.toFirstUpper()»Table() {
+    }
+    
+
+	public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData() {
+		return «name»;
+	}
+	
+	
+
+«ENDDEFINE»
+
+«DEFINE widgetMethods FOR ButtonWidget»
+	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
+		return «name»;
+	}
+«ENDDEFINE»
+
+«DEFINE widgetMethods FOR InputTextWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
+		return «name»;
+	}
+«ENDDEFINE»
+
+«DEFINE widgetMethods FOR Widget»
+«ENDDEFINE»
+
+«REM»Widget delarations«ENDREM»
 «DEFINE widgetDeclaration FOR Widget»
     @com.google.gwt.uibinder.client.UiField
     «resolveGwtWidgetType()» «name»;
     
 «ENDDEFINE»
+
+
+«DEFINE widgetDeclaration FOR TableWidget»
+
+    // «name» cell table
+    @com.google.gwt.uibinder.client.UiField(provided = true)
+    com.google.gwt.user.cellview.client.CellTable<«fqnTableForClass()»> «name» = new com.google.gwt.user.cellview.client.CellTable<«fqnTableForClass()»>();
+    final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
+        new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
+
+«ENDDEFINE»
+
+
 
 «REM»View impl class«ENDREM»
 «DEFINE viewImpl FOR View»
@@ -61,74 +140,27 @@ package «gwtWidgetsPackage()»;
 
 public class «gwtViewWidgetImplClass()» extends  «fqnGwtViewWidgetBaseClass()» implements «fqnViewWidgetImplInterface()» {
 
+	«loggerDeclaration(gwtViewWidgetImplClass())»
+
 	public «gwtViewWidgetImplClass()»() {
 		super();
 	}
+	
+	// Uncomment the following if you need to override the template
+	/*
+    interface «gwtViewWidgetImplClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<com.google.gwt.user.client.ui.Widget, «fqnGwtViewWidgetImplClass()»> {}
+
+    private static «gwtViewWidgetImplClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
+    	.create(«gwtViewWidgetImplClass()»UiBinder.class);
+
+    protected com.google.gwt.user.client.ui.Widget getWidget() {
+    	return uiBinder.createAndBindUi(this);
+    }
+
+	*/
 }
 
 «ENDFILE»
 
 «ENDDEFINE»
 
-
-«REM»Activity base class«ENDREM»
-«DEFINE activityBase FOR View»
-«FILE javaFileName(fqnActivityBaseClass())»
-
-package «gwtActivitiesPackage()»;
-
-public abstract class «gwtActivityBaseClass()» extends com.google.gwt.activity.shared.AbstractActivity {
-
-	«loggerDeclaration(gwtActivityBaseClass())»
-
-	private final com.google.gwt.event.shared.EventBus eventBus;
-	private final com.google.gwt.place.shared.PlaceController placeController;
-	
-	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
-	}
-
-	public «gwtActivityBaseClass()»(com.google.gwt.event.shared.EventBus eventBus,
-		com.google.gwt.place.shared.PlaceController placeController) {
-		super();
-		this.eventBus = eventBus;
-		this.placeController = placeController;
-	}
-
-
-	protected abstract void bind();
-
-}
- 
-«ENDFILE»
-«ENDDEFINE» 
-
-«REM»Activity implementation class«ENDREM»
-«DEFINE activityImpl FOR View»
-«FILE javaFileName(fqnActivityImplClass()) TO_SRC»
-
-package «gwtActivitiesPackage()»;
-
-public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
-
-	«loggerDeclaration(gwtActivityImplClass())»
-	
-	«fqnViewWidgetImplInterface()» display;
-	
-	public interface «gwtViewWidgetImplInterface()» {
-		Widget asWidget();
-		
-	}
-
-	public «gwtActivityImplClass()»(«fqnViewWidgetImplInterface()» theDisplay,
-		com.google.gwt.event.shared.EventBus eventBus,
-		com.google.gwt.place.shared.PlaceController placeController) {
-		super(eventBus, placeController);
-		display = theDisplay;
-		
-		bind();
-	}
-
-}
- 
-«ENDFILE»
-«ENDDEFINE» 
