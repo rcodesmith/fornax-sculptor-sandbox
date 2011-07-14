@@ -1,0 +1,51 @@
+Application Psa {
+    basePackage=com.lfg.rs.psa
+
+	Module order {
+		enum OrderStatus {
+			String title
+
+			NEW("New"),
+			FULFILLED("Fulfilled")
+		}
+		
+		Entity Order {
+			gap
+			aggregateRoot
+			
+			String orderId key length="14";
+			
+			- @OrderStatus status required;
+			
+			- Bag<@OrderHistory> history required orderby="changeDate asc" <-> order;
+			
+		}
+
+		Entity OrderHistory {			
+			belongsTo Order
+			
+			- @Order order <-> history;
+			Date changeDate required;
+		}
+	}
+	
+	Module coreevents{
+		
+		DomainEvent OrderEvent {
+			String orderId length="14" required
+		}
+		
+		DomainEvent OrderAdded extends OrderEvent {
+			Date orderDate;
+		}
+	}
+	
+	Module orderupdate {
+		
+		Service OrderUpdateService {
+			@OrderAdded recordAdded(DateTime occurred, @Order order)
+				publish to orderChannel;
+		}
+	}
+	
+}
