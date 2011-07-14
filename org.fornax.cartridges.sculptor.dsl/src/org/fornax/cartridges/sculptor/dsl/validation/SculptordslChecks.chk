@@ -53,6 +53,10 @@ context DslParameter#parameterType if parameterType != null && parameterType.dom
 	this.parameterType.domainObjectsForType().size == 0;
 	
 
+context  DslDomainObject if attributes.size > 0 && extends() != null
+	ERROR "Class has an attribute with the same name as a base class member." :
+	! this.attributes.exists(a|a.getSameNameProperty(this.extends()).size > 0);
+
 
 
 

@@ -126,6 +126,15 @@ private Collection[DslReference] getSuperAllReferences(DslValueObject domainObje
         {} :
         domainObject.extends().getAllReferences();
 
+Collection[DslAnyProperty] getAllProperties(DslDomainObject domainObject) :
+	domainObject.getAllReferences().
+		addAll(domainObject.getAllAttributes());
+
+DslAnyProperty getSameNameProperty(DslAnyProperty prop, DslDomainObject domainObject) :
+	domainObject.getAllProperties().
+		select(p|p.name == prop.name);
+		
+	
 private Collection[DslDtoReference] getSuperAllReferences(DslDataTransferObject domainObject) :
     (domainObject.extends() == null) ?
         {} :

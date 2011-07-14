@@ -447,6 +447,21 @@ public class SculptordslJavaValidator extends AbstractSculptordslJavaValidator {
     }
 
     @Check
+    public void checkEnumAttributeName(DslEnum dslEnum) {
+    	if (dslEnum.getAttributes().isEmpty()) {
+    		return;
+    	}
+    	
+    	for (DslEnumAttribute attr : dslEnum.getAttributes()) {
+			if("name".equals(attr.getName())) {
+				error("An Enum cannot have an attribute named 'name'.  Please choose another name for the attribute.", SculptordslPackage.DSL_ENUM__ATTRIBUTES);
+				return;
+			}
+		}
+    }
+    
+    
+    @Check
     public void checkGap(DslService service) {
         if (service.isGapClass() && service.isNoGapClass()) {
             error("Unclear specification of gap", SculptordslPackage.DSL_SERVICE__NO_GAP_CLASS);

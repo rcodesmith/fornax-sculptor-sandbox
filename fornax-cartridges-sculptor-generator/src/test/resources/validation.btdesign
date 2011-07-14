@@ -1,0 +1,31 @@
+Application ValidationApp {
+	basePackage=org.dto
+
+
+	Module animals {
+
+		// Enum shouldn't have an attribute named 'name'
+		enum AnimalStatus {
+			String name;
+
+			ACTIVE("Active"), SEPARATED("Separated")
+		}
+
+		
+		Entity Animal {
+			String animalId key length="14";
+
+			String name;
+		}
+
+		Entity Fish extends Animal {
+			String name;
+		}
+		
+		Entity Bird extends Animal {
+			double wingSpan;
+		}
+
+	}
+
+}
