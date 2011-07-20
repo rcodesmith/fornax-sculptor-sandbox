@@ -36,7 +36,7 @@
 
 «DEFINE gwtAsyncServiceOperation FOR ServiceOperation»
 
-	public void «name»(«EXPAND anotParamTypeAndName FOREACH parameters SEPARATOR ","» «IF parameters != null && parameters.size > 0»,«ENDIF»
+	public void «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","» «IF parameters != null && parameters.size > 0»,«ENDIF»
 	«LET getGwtTypeName() AS retTypeName»
 	com.google.gwt.user.client.rpc.AsyncCallback<«IF retTypeName == "void"»Void«ELSE»«retTypeName»«ENDIF»> callback);
 	«ENDLET»
@@ -45,8 +45,8 @@
 
 «REM»Parameter type and name«ENDREM»
 
-«DEFINE anotParamTypeAndName FOR Parameter»
-«getGwtTypeName()» «name»
+«DEFINE anotParamTypeAndName(Module module) FOR Parameter»
+«getGwtParameterTypeName(this, module)» «name»
 «ENDDEFINE»
 
 
@@ -73,7 +73,7 @@
 
 «DEFINE gwtSyncServiceOperation FOR ServiceOperation»
 
-	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName FOREACH parameters SEPARATOR ","»);
+	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","»);
 «ENDDEFINE»
 
 
@@ -119,7 +119,7 @@
 	 * Domain object type name is «domainObjectType.name»
 	 * Type name is «getTypeName()»
 	 */
-	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName FOREACH parameters SEPARATOR ","») {
+	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","») {
 	
 	log.debug("«name»()");
 	
@@ -150,10 +150,6 @@
 «ENDDEFINE»
 
 «DEFINE gwtServiceImplOperationParameter(Module module) FOR Parameter»
-	«IF this.domainObjectType != null»
-		«module.dtoMapper()».map«domainObjectType.name»ToDomain(«this.name»)
-	«ELSE»
-		«this.name»
-	«ENDIF»
+		«this.getMapToDomainExpression()»
 «ENDDEFINE»
 

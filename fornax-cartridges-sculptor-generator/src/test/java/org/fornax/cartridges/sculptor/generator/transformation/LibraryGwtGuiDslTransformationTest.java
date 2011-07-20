@@ -129,44 +129,44 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 //                mediaModule().getUserTasks()));
 //    }
 
-    private void assertMediaReferenceForCreateUpdatePhysicalMedia(UserTask task) {
-        // not possible to use assertReferenceViewProperty for media reference,
-        // since there are derived reference props
-
-        ReferenceViewProperty mediaRefProp = namedReferenceViewProperty("media", task.getViewProperties());
-        assertEquals("Media", mediaRefProp.getTarget().getName());
-        assertEquals("media", mediaRefProp.getReference().getName());
-        assertOneAndOnlyOne(mediaRefProp.getPreviewProperties(), "isbn", "title", "urlIMDB", "playLength", "category");
-
-        List<ReferenceViewProperty> mediaProps = elementsOfType(ReferenceViewProperty.class,
-                namedElements("media", task.getViewProperties()));
-        assertEquals(3, mediaProps.size());
-        List<DerivedReferenceViewProperty> mediaDerivedRefProps = elementsOfType(DerivedReferenceViewProperty.class,
-                mediaProps);
-        assertEquals(2, mediaDerivedRefProps.size());
-
-        for (DerivedReferenceViewProperty each : mediaDerivedRefProps) {
-            if ("Book".equals(each.getTarget().getName())) {
-                assertEquals("Media", each.getDerivedFrom().getTarget().getName());
-                assertEquals("media", each.getReference().getName());
-                assertAttributeViewProperty("isbn", each.getPreviewProperties());
-                assertAttributeViewProperty("title", each.getPreviewProperties());
-                assertReferenceViewProperty("media", each, new String[] { "createBookSubtask", "viewBookSubtask",
-                        "updateBookSubtask", "addBookSubtask" }, new String[] { "isbn", "title" }, "Book");
-            } else if ("Movie".equals(each.getTarget().getName())) {
-                assertEquals("Media", each.getDerivedFrom().getTarget().getName());
-                assertEquals("media", each.getReference().getName());
-                assertAttributeViewProperty("urlIMDB", each.getPreviewProperties());
-                assertAttributeViewProperty("title", each.getPreviewProperties());
-                assertAttributeViewProperty("playLength", each.getPreviewProperties());
-                assertReferenceViewProperty("media", each, new String[] { "createMovieSubtask", "viewMovieSubtask",
-                        "updateMovieSubtask", "addMovieSubtask" }, new String[] { "urlIMDB", "title", "playLength",
-                        "category" }, "Movie");
-            } else {
-                assertTrue("Unexpected DerivedReferenceViewProperty for media: " + each.getTarget().getName(), false);
-            }
-        }
-    }
+//    private void assertMediaReferenceForCreateUpdatePhysicalMedia(UserTask task) {
+//        // not possible to use assertReferenceViewProperty for media reference,
+//        // since there are derived reference props
+//
+//        ReferenceViewProperty mediaRefProp = namedReferenceViewProperty("media", task.getViewProperties());
+//        assertEquals("Media", mediaRefProp.getTarget().getName());
+//        assertEquals("media", mediaRefProp.getReference().getName());
+//        assertOneAndOnlyOne(mediaRefProp.getPreviewProperties(), "isbn", "title", "urlIMDB", "playLength", "category");
+//
+//        List<ReferenceViewProperty> mediaProps = elementsOfType(ReferenceViewProperty.class,
+//                namedElements("media", task.getViewProperties()));
+//        assertEquals(3, mediaProps.size());
+//        List<DerivedReferenceViewProperty> mediaDerivedRefProps = elementsOfType(DerivedReferenceViewProperty.class,
+//                mediaProps);
+//        assertEquals(2, mediaDerivedRefProps.size());
+//
+//        for (DerivedReferenceViewProperty each : mediaDerivedRefProps) {
+//            if ("Book".equals(each.getTarget().getName())) {
+//                assertEquals("Media", each.getDerivedFrom().getTarget().getName());
+//                assertEquals("media", each.getReference().getName());
+//                assertAttributeViewProperty("isbn", each.getPreviewProperties());
+//                assertAttributeViewProperty("title", each.getPreviewProperties());
+//                assertReferenceViewProperty("media", each, new String[] { "createBookSubtask", "viewBookSubtask",
+//                        "updateBookSubtask", "addBookSubtask" }, new String[] { "isbn", "title" }, "Book");
+//            } else if ("Movie".equals(each.getTarget().getName())) {
+//                assertEquals("Media", each.getDerivedFrom().getTarget().getName());
+//                assertEquals("media", each.getReference().getName());
+//                assertAttributeViewProperty("urlIMDB", each.getPreviewProperties());
+//                assertAttributeViewProperty("title", each.getPreviewProperties());
+//                assertAttributeViewProperty("playLength", each.getPreviewProperties());
+//                assertReferenceViewProperty("media", each, new String[] { "createMovieSubtask", "viewMovieSubtask",
+//                        "updateMovieSubtask", "addMovieSubtask" }, new String[] { "urlIMDB", "title", "playLength",
+//                        "category" }, "Movie");
+//            } else {
+//                assertTrue("Unexpected DerivedReferenceViewProperty for media: " + each.getTarget().getName(), false);
+//            }
+//        }
+//    }
 
 //    @Test
 //    public void assertViewPhysicalMedia() {
@@ -292,87 +292,87 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 //    }
 
 
-    private GuiModule mediaModule() {
-        return (GuiModule) getNamedElement("media", guiApp.getModules());
-    }
+//    private GuiModule mediaModule() {
+//        return (GuiModule) getNamedElement("media", guiApp.getModules());
+//    }
 
     private GuiModule personModule() {
         return (GuiModule) getNamedElement("person", guiApp.getModules());
     }
 
-    private void assertListTask(String domainObjectName, String moduleName, String... attributeNames) {
-        ListTask task = (ListTask) getNamedElement("list" + domainObjectName,
-                ((GuiModule) getNamedElement(moduleName, guiApp.getModules())).getUserTasks());
-
-        assertEquals("list" + domainObjectName, task.getName());
-        assertEquals("list", task.getTaskType());
-        assertEquals(domainObjectName, task.getFor().getName());
-
-        assertEquals("findAll", task.getSearchDOWith().getName());
-        assertEquals(domainObjectName + "Service", task.getSearchDOWith().getService().getName());
-        Module businessModule = (Module) getNamedElement(moduleName, task.getModule().getApplication()
-                .getGuiForApplication().getModules());
-        Service service = (Service) getNamedElement(domainObjectName + "Service", businessModule.getServices());
-        assertSame(service, task.getSearchDOWith().getService());
-        ServiceOperation operation = (ServiceOperation) getNamedElement("findAll", service.getOperations());
-        assertSame(operation, task.getSearchDOWith());
-        assertOneAndOnlyOne(task.getViewProperties(), attributeNames);
-        for (String attribute : attributeNames) {
-            assertAttributeViewProperty(attribute, task.getViewProperties());
-        }
-        assertEquals(3, task.getSubTaskTransitions().size());
-        assertOneAndOnlyOne(task.getSubTaskTransitions(), "view subtask", "update subtask", "delete subtask");
-
-    }
-
-    private void assertCreateTask(String domainObjectName, String moduleName, String[] attributeNames,
-            String[] subtaskNames, boolean assertServiceOperation) {
-        CreateTask task = (CreateTask) getNamedElement("create" + domainObjectName,
-                ((GuiModule) getNamedElement(moduleName, guiApp.getModules())).getUserTasks());
-        assertEquals("create" + domainObjectName, task.getName());
-        assertEquals("create", task.getTaskType());
-        assertEquals(domainObjectName, task.getFor().getName());
-
-        if (assertServiceOperation) {
-            assertEquals("save", task.getCreateDOWith().getName());
-            assertEquals(domainObjectName + "Service", task.getCreateDOWith().getService().getName());
-            Module businessModule = (Module) getNamedElement(moduleName, task.getModule().getApplication()
-                    .getGuiForApplication().getModules());
-            Service service = (Service) getNamedElement(domainObjectName + "Service", businessModule.getServices());
-            assertSame(service, task.getCreateDOWith().getService());
-            ServiceOperation operation = (ServiceOperation) getNamedElement("save", service.getOperations());
-            assertSame(operation, task.getCreateDOWith());
-        }
-        for (String attributeName : attributeNames) {
-            assertAttributeViewProperty(attributeName, task.getViewProperties());
-        }
-
-        assertOneAndOnlyOne(task.getSubTaskTransitions(), subtaskNames);
-
-    }
-
-    private void assertUpdateTask(String domainObjectName, String moduleName, String[] attributeNames,
-            String[] subtaskNames) {
-        UpdateTask task = (UpdateTask) getNamedElement("update" + domainObjectName,
-                ((GuiModule) getNamedElement(moduleName, guiApp.getModules())).getUserTasks());
-        assertEquals("update" + domainObjectName, task.getName());
-        assertEquals("update", task.getTaskType());
-        assertEquals(domainObjectName, task.getFor().getName());
-
-        assertEquals("save", task.getUpdateDOWith().getName());
-        assertEquals(domainObjectName + "Service", task.getUpdateDOWith().getService().getName());
-        Module businessModule = (Module) getNamedElement(moduleName, task.getModule().getApplication()
-                .getGuiForApplication().getModules());
-        Service service = (Service) getNamedElement(domainObjectName + "Service", businessModule.getServices());
-        assertSame(service, task.getUpdateDOWith().getService());
-        ServiceOperation operation = (ServiceOperation) getNamedElement("save", service.getOperations());
-        assertSame(operation, task.getUpdateDOWith());
-        for (String attributeName : attributeNames) {
-            assertAttributeViewProperty(attributeName, task.getViewProperties());
-        }
-
-        assertOneAndOnlyOne(task.getSubTaskTransitions(), subtaskNames);
-
-    }
+//    private void assertListTask(String domainObjectName, String moduleName, String... attributeNames) {
+//        ListTask task = (ListTask) getNamedElement("list" + domainObjectName,
+//                ((GuiModule) getNamedElement(moduleName, guiApp.getModules())).getUserTasks());
+//
+//        assertEquals("list" + domainObjectName, task.getName());
+//        assertEquals("list", task.getTaskType());
+//        assertEquals(domainObjectName, task.getFor().getName());
+//
+//        assertEquals("findAll", task.getSearchDOWith().getName());
+//        assertEquals(domainObjectName + "Service", task.getSearchDOWith().getService().getName());
+//        Module businessModule = (Module) getNamedElement(moduleName, task.getModule().getApplication()
+//                .getGuiForApplication().getModules());
+//        Service service = (Service) getNamedElement(domainObjectName + "Service", businessModule.getServices());
+//        assertSame(service, task.getSearchDOWith().getService());
+//        ServiceOperation operation = (ServiceOperation) getNamedElement("findAll", service.getOperations());
+//        assertSame(operation, task.getSearchDOWith());
+//        assertOneAndOnlyOne(task.getViewProperties(), attributeNames);
+//        for (String attribute : attributeNames) {
+//            assertAttributeViewProperty(attribute, task.getViewProperties());
+//        }
+//        assertEquals(3, task.getSubTaskTransitions().size());
+//        assertOneAndOnlyOne(task.getSubTaskTransitions(), "view subtask", "update subtask", "delete subtask");
+//
+//    }
+//
+//    private void assertCreateTask(String domainObjectName, String moduleName, String[] attributeNames,
+//            String[] subtaskNames, boolean assertServiceOperation) {
+//        CreateTask task = (CreateTask) getNamedElement("create" + domainObjectName,
+//                ((GuiModule) getNamedElement(moduleName, guiApp.getModules())).getUserTasks());
+//        assertEquals("create" + domainObjectName, task.getName());
+//        assertEquals("create", task.getTaskType());
+//        assertEquals(domainObjectName, task.getFor().getName());
+//
+//        if (assertServiceOperation) {
+//            assertEquals("save", task.getCreateDOWith().getName());
+//            assertEquals(domainObjectName + "Service", task.getCreateDOWith().getService().getName());
+//            Module businessModule = (Module) getNamedElement(moduleName, task.getModule().getApplication()
+//                    .getGuiForApplication().getModules());
+//            Service service = (Service) getNamedElement(domainObjectName + "Service", businessModule.getServices());
+//            assertSame(service, task.getCreateDOWith().getService());
+//            ServiceOperation operation = (ServiceOperation) getNamedElement("save", service.getOperations());
+//            assertSame(operation, task.getCreateDOWith());
+//        }
+//        for (String attributeName : attributeNames) {
+//            assertAttributeViewProperty(attributeName, task.getViewProperties());
+//        }
+//
+//        assertOneAndOnlyOne(task.getSubTaskTransitions(), subtaskNames);
+//
+//    }
+//
+//    private void assertUpdateTask(String domainObjectName, String moduleName, String[] attributeNames,
+//            String[] subtaskNames) {
+//        UpdateTask task = (UpdateTask) getNamedElement("update" + domainObjectName,
+//                ((GuiModule) getNamedElement(moduleName, guiApp.getModules())).getUserTasks());
+//        assertEquals("update" + domainObjectName, task.getName());
+//        assertEquals("update", task.getTaskType());
+//        assertEquals(domainObjectName, task.getFor().getName());
+//
+//        assertEquals("save", task.getUpdateDOWith().getName());
+//        assertEquals(domainObjectName + "Service", task.getUpdateDOWith().getService().getName());
+//        Module businessModule = (Module) getNamedElement(moduleName, task.getModule().getApplication()
+//                .getGuiForApplication().getModules());
+//        Service service = (Service) getNamedElement(domainObjectName + "Service", businessModule.getServices());
+//        assertSame(service, task.getUpdateDOWith().getService());
+//        ServiceOperation operation = (ServiceOperation) getNamedElement("save", service.getOperations());
+//        assertSame(operation, task.getUpdateDOWith());
+//        for (String attributeName : attributeNames) {
+//            assertAttributeViewProperty(attributeName, task.getViewProperties());
+//        }
+//
+//        assertOneAndOnlyOne(task.getSubTaskTransitions(), subtaskNames);
+//
+//    }
 
 }

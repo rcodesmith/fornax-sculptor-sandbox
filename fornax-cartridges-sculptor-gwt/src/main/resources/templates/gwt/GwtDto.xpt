@@ -5,6 +5,9 @@
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::sofeauihelpers»
 
+«REM»TODO: Looks like when iterating over members attributes, we're including base class attributes
+which is causing attributes to get masked.«ENDREM»
+
 «DEFINE gwtDto FOR GuiApplication»
 	«EXPAND gwtModule FOREACH this.modules»
 	
@@ -233,7 +236,7 @@ package «gwtDomainPackage(this)»;
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
 public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
-   	«EXPAND attribute FOREACH this.getAllBusinessAttributes()»
+   	«EXPAND attribute FOREACH attributes»
 
     «EXPAND gwtOneReferenceAttribute FOREACH references.select(r | !r.many)»
     «EXPAND manyReferenceAttribute FOREACH references.select(r | r.many)»
@@ -248,7 +251,7 @@ public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
     «EXPAND gwtDtoPropertyConstructorBase»
    	«EXPAND limitedConstructor»
 
-    «EXPAND propertyAccessors FOREACH this.getAllBusinessAttributes() »
+    «EXPAND propertyAccessors FOREACH attributes »
 
     «EXPAND oneReferenceAccessors FOREACH references.select(r | !r.many)»
     «EXPAND manyReferenceAccessors FOREACH references.select(r | r.many)»

@@ -1,16 +1,26 @@
 package org.fornax.cartridges.sculptor.gwt.generator.util;
 
+import org.eclipse.emf.common.util.EList;
 import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
+import sculptormetamodel.Application;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
+import sculptormetamodel.Module;
+import sculptormetamodel.Parameter;
 import sculptormetamodel.Reference;
+import sculptormetamodel.Service;
+import sculptormetamodel.ServiceOperation;
 import sculptormetamodel.TypedElement;
 
 public class GwtGenerationHelper {
 
-    // Copied from GenerationHelper
+    private static final String GWT_DOMAIN_PKG = ".gwt.shared.domain";
+
+
+
+	// Copied from GenerationHelper
     private static String getJavaTypeOrVoid(String type) {
         if (type == null || type.equals("")) {
             return "void";
@@ -31,6 +41,7 @@ public class GwtGenerationHelper {
     	
         String javaType = GeneratorProperties.getJavaType(modelType);
         if (javaType == null) {
+        	
             return modelType;
         } else {
             return javaType;
@@ -43,7 +54,7 @@ public class GwtGenerationHelper {
     public static String getDomainPackage(DomainObject domainObject) {
     	String basePkg = GenerationHelper.getBasePackage(domainObject.getModule());
     	
-    	return basePkg + ".gwt.shared.domain";
+    	return basePkg + GWT_DOMAIN_PKG;
     }
     
     
@@ -56,14 +67,120 @@ public class GwtGenerationHelper {
         return getDomainPackage(ref.getTo()) + "." + ref.getTo().getName();
     }
 
+    private static Module findModuleMatchingModuleBasePkg(Parameter parameter) {
+    	String typeName = parameter.getType();
+    	if(typeName == null || !typeName.contains(".")) {
+    		return null;
+    	}
+    	ServiceOperation op = (ServiceOperation)parameter.eContainer();
+    	Service service = (Service)op.eContainer();
+    	Application app = service.getModule().getApplication();
+    	EList<Module> modules = app.getModules();
+    	
+    	for (Module module : modules) {
+    		String baseDomainPkg = GenerationHelper.getDomainPackage(module);
+    		
+    		if(typeName.startsWith(baseDomainPkg)) {
+    			return module;
+    		}
+		}
+    	return null;
+    	
+    }
+    
+    public static boolean isMappableType(Parameter parameter) {
+        if(parameter.getDomainObjectType() != null)
+        	return true;
+        
+        String typeName = parameter.getType();
+        // TODO: Following is a hack
+        if(typeName != null && typeName.contains(".domain.")) {
+        	return true;
+        }
+        
+        return false;
+        
+    }
+    
+    private static String translateBasicTypes(Parameter parameter) {
+    	// TODO: Reuse other code that derives GWT domain package.  Must be used in GwtDto.xpt
+    	String typeName = parameter.getType();
+    	
+    	Module module = findModuleMatchingModuleBasePkg(parameter);
+    	if(module == null) {
+    		return typeName;
+    	}
+
+    	String domainBasePkg = GenerationHelper.getDomainPackage(module);
+    	String basePkg = GenerationHelper.getBasePackage(module);
+    	String gwtBasePkg = basePkg + GWT_DOMAIN_PKG;
+
+        if(!typeName.startsWith(gwtBasePkg)) {
+        	String relName = typeName.substring(domainBasePkg.length() + 1);
+        	return gwtBasePkg + "." + relName;
+        }
+        return typeName;
+	
+    }
+    
+    public static String toFirstUpper(String v) {
+    	return v.substring(0, 1).toUpperCase() + v.substring(1);
+    }
+    
+    public static String dtoMapper(Module module) {
+    	return GenerationHelper.getDomainPackage(module) + "." + toFirstUpper(module.getName()) + "DtoMapper";
+    }
+    
+    public static String getMapToDomainExpression(Parameter parameter) {
+    	if(isMappableType(parameter)) {
+    		DomainObject domainObject = parameter.getDomainObjectType();
+    		Module module;
+    		String typeRelName;
+    		if(domainObject != null) {
+    			module = domainObject.getModule();
+    			typeRelName = domainObject.getName();
+    		} else {
+    			module = findModuleMatchingModuleBasePkg(parameter);
+    			typeRelName = parameter.getType().substring(parameter.getType().lastIndexOf(".") + 1);
+    		}
+			return dtoMapper(module) + "." + "map" + typeRelName + "ToDomain(" + parameter.getName() + ")";
+    	}
+    	return parameter.getName();
+    }
+    /**
+     * Special method to get GWT-translated type name of an operation parameter
+     * @param parameter
+     * @param module
+     * @return
+     */
+    public static String getParamaterTypeName(Parameter parameter, Module module) {
+    	GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName(" + parameter.getType() + ")");
+    	// TODO: Make this translation more efficient - would like to do it only if other type processing fails.
+        String typeName = translateBasicTypes(parameter);
+    	GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName() translated typeName=" + typeName);
+        if(typeName != null && !typeName.equals(parameter.getType())) {
+        	// Was translated
+        	return typeName;
+        }
+        else {
+        	return getTypeName(parameter, true);
+        }
+    	
+    }
+    
     public static String getTypeName(DomainObjectTypedElement element, boolean surroundWithCollectionType) {
+    	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName(" + element.getType() + ")");
+    	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() domainObjectType = " + element.getDomainObjectType());
+    	
         String typeName = getJavaTypeOrVoid(element.getType());
+        
         String type = typeName;
         String domainObjectTypeName = null;
         if (element.getDomainObjectType() != null) {
             domainObjectTypeName = getJavaTypeOrVoid(getDomainPackage(element.getDomainObjectType()) + "."
                     + element.getDomainObjectType().getName());
             type = domainObjectTypeName;
+        	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() trace 1.  type = " + type);
         }
 
         if (typeName != null && !typeName.equals("void") && domainObjectTypeName != null

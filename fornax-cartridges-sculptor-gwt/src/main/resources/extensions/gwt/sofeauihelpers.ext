@@ -111,6 +111,8 @@ gwtServiceImplPackage(Service svc) :
 gwtServiceImpl(Service svc) :
 	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
 
+String getGwtParameterTypeName(Parameter e, Module module) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getParamaterTypeName(sculptormetamodel.Parameter, sculptormetamodel.Module);
 
 // Get GWT DTO type name corresponding to given typed element (e.g. operation with return type)
 String getGwtTypeName(DomainObjectTypedElement e) :
@@ -291,9 +293,15 @@ String gwtDomainMaperPackage(DomainObject do) :
 
 // Fully qualified class of mapper for given Module
 String dtoMapper(Module module) :
-	module.getDomainPackage() + "." + module.name.toFirstUpper() + "DtoMapper";
+	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.dtoMapper(sculptormetamodel.Module);
 
+boolean isMappableType(Parameter parameter) :
+	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.isMappableType(sculptormetamodel.Parameter);
 
+String getMapToDomainExpression(Parameter parameter) :
+	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getMapToDomainExpression(sculptormetamodel.Parameter);
+
+    
 
 ////////////////////////////////////////////////////////////////////////////
 // View-related functions
