@@ -1,0 +1,4 @@
+
+Maven repository to be published to github based on:
+http://chkal.blogspot.com/2010/09/maven-repositories-on-github.html
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <plugins>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype</name>
+      <prefix>fornax-cartridges-sculptor-archetype</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for JSF Web App</name>
+      <prefix>fornax-cartridges-sculptor-archetype-jsf</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-jsf</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for EAR</name>
+      <prefix>fornax-cartridges-sculptor-archetype-ear</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-ear</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for parent project</name>
+      <prefix>fornax-cartridges-sculptor-archetype-parent</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-parent</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for standalone project</name>
+      <prefix>fornax-cartridges-sculptor-archetype-standalone</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-standalone</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for appengine project</name>
+      <prefix>fornax-cartridges-sculptor-archetype-appengine</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-appengine</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for pure EJB3</name>
+      <prefix>fornax-cartridges-sculptor-archetype-pure-ejb3</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-pure-ejb3</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for smartclient project</name>
+      <prefix>fornax-cartridges-sculptor-archetype-smartclient</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-smartclient</artifactId>
+    </plugin>
+    <plugin>
+      <name>Fornax Cartridge: Sculptor Maven Archetype for mongoDB business tier</name>
+      <prefix>fornax-cartridges-sculptor-archetype-mongodb</prefix>
+      <artifactId>fornax-cartridges-sculptor-archetype-mongodb</artifactId>
+    </plugin>
+  </plugins>
+</metadata>
