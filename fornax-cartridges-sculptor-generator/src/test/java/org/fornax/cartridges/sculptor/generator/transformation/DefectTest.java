@@ -38,6 +38,11 @@ public class DefectTest extends TransformationTestBase {
 	}
 
 	@Test
+	public void assertEmpty() {
+		
+	}
+	
+	//@Test
 	public void assertEntityConstructorParamsOrderConsistent() {
 
 		Entity order = (Entity) this.getNamedElement("Order", module()
