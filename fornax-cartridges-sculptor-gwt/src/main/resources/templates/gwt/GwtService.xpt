@@ -7,11 +7,11 @@
 
 
 «DEFINE gwtService(Module module) FOR GuiModule»
-	
-	«EXPAND gwtAsyncService(this) FOREACH this.views.getUsedServices().toSet().select(s|s != null)»
-	«EXPAND gwtSyncService(this) FOREACH this.views.getUsedServices().toSet().select(s|s != null)»
-	«EXPAND gwtServiceImpl(this, module) FOREACH this.views.getUsedServices().toSet().select(s|s != null)»
-
+	«LET this.getAllUsedServices() AS services»
+		«EXPAND gwtAsyncService(this) FOREACH services»
+		«EXPAND gwtSyncService(this) FOREACH services»
+		«EXPAND gwtServiceImpl(this, module) FOREACH services»
+	«ENDLET»
 
 «ENDDEFINE»
 

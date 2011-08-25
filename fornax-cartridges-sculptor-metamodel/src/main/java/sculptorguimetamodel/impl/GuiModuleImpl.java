@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -31,6 +32,7 @@ import sculptorguimetamodel.UserTask;
 
 import sculptorguimetamodel.View;
 import sculptormetamodel.Module;
+import sculptormetamodel.Service;
 import sculptormetamodel.impl.NamedElementImpl;
 
 /**
@@ -46,6 +48,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getViews <em>Views</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getEvents <em>Events</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceDependencies <em>Service Dependencies</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,6 +114,16 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * @ordered
 	 */
 	protected EList events;
+
+				/**
+	 * The cached value of the '{@link #getServiceDependencies() <em>Service Dependencies</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceDependencies()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList serviceDependencies;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -271,6 +284,18 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getServiceDependencies() {
+		if (serviceDependencies == null) {
+			serviceDependencies = new EObjectResolvingEList(Service.class, this, SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES);
+		}
+		return serviceDependencies;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
@@ -337,6 +362,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return getViews();
 			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
 				return getEvents();
+			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
+				return getServiceDependencies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,6 +396,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getEvents().clear();
 				getEvents().addAll((Collection)newValue);
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
+				getServiceDependencies().clear();
+				getServiceDependencies().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -398,6 +429,9 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
 				getEvents().clear();
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
+				getServiceDependencies().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -421,6 +455,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return views != null && !views.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
 				return events != null && !events.isEmpty();
+			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
+				return serviceDependencies != null && !serviceDependencies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

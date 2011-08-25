@@ -507,6 +507,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGuiModule_ServiceDependencies() {
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(6);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUserTask() {
 		return userTaskEClass;
 	}
@@ -1424,6 +1433,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiModuleEClass, GUI_MODULE__FOR);
 		createEReference(guiModuleEClass, GUI_MODULE__VIEWS);
 		createEReference(guiModuleEClass, GUI_MODULE__EVENTS);
+		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_DEPENDENCIES);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__SUB_TASK_TRANSITIONS);
@@ -1636,6 +1646,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_For(), theSculptormetamodelPackage.getModule(), null, "for", null, 0, 1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Views(), this.getView(), this.getView_Module(), "views", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Events(), this.getGuiEvent(), null, "events", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_SubTaskTransitions(), this.getSubTaskTransition(), null, "subTaskTransitions", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

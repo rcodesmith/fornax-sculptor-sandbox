@@ -25,6 +25,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getViews <em>Views</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
  * </ul>
  * </p>
  *
@@ -164,5 +165,21 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getEvents();
+
+				/**
+	 * Returns the value of the '<em><b>Service Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link sculptormetamodel.Service}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Dependencies</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Dependencies</em>' reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_ServiceDependencies()
+	 * @model type="sculptormetamodel.Service"
+	 * @generated
+	 */
+	EList getServiceDependencies();
 
 } // GuiModule

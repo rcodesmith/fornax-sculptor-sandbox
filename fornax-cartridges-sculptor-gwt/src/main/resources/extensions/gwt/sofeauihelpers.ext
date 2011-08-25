@@ -5,6 +5,18 @@ extension extensions::properties;
 extension extensions::helper;
 extension extensions::guihelper;
 
+
+
+// Get all of the Services that are used, either at the module or view level
+Set[Module] getAllUsedServices(GuiModule guiModule) :
+	let list = {} :
+	list.addAll(guiModule.views.getUsedServices().toSet().select(s|s != null)) ->
+	list.addAll(guiModule.getUsedServices()) ->
+	debugTrace("all services list: " + list) ->
+	list.toSet();
+
+
+
 	
 String getGwtExtendsLitteral(DomainObject domainObject) :
 	domainObject.getGwtExtendsClassName() == "" ?
@@ -44,7 +56,13 @@ String gwtBasePackage(Module module) :
 
 String gwtXmlFileName(Module module) :
     module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.name.toFirstUpper() + "UI" + ".gwt.xml";
-    
+   
+String getModuleConfigName(Module module) :
+	module.name.toFirstUpper() + "UI";
+
+String fqnModuleConfig(Module module) :
+	module.gwtBasePackage() + "." + module.getModuleConfigName();
+   
 String moduleGwtMain(Module module) :
     module.gwtBasePackage() + ".client." + module.name.toFirstUpper() + "UI";
 
@@ -124,6 +142,7 @@ String getGwtTypeName(Reference ref) :
 String getGwtTypeName(TypedElement e) :
     JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.TypedElement);
 
+
 String getGwtTypeName(ViewDataProperty prop) :
 	null;
 
@@ -165,13 +184,16 @@ String gwtTableWidgetClass(ListTask task) :
 	plural(task.for.name) + "Table";
 
 
-
+Set[Module] getDependedUponModules(Module module) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.DependencyUtil.getDependedUponModules(sculptormetamodel.Module);
+	
 
 
 
 // Fully qualified name of GWT table widget base class corresponding to the given task
 String fqnGwtTableWidgetBaseClass(ListTask task) :
 	task.gwtWidgetsPackage() + "." + task.gwtTableWidgetBaseClass() ;
+
 
 // GWT table widget class relative name
 String gwtTableWidgetBaseClass(ListTask task) :
@@ -355,6 +377,10 @@ String resolveGwtWidgetType(ButtonWidget widget) :
 	"com.google.gwt.user.client.ui.Button";
 
 	
+
+Set[Service] getUsedServices(GuiModule module) :
+	module.serviceDependencies;
+
 	
 Set[Service] getUsedServices(View view) :
 	{}.addAll(view.serviceDependencies);

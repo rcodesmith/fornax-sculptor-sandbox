@@ -20,6 +20,7 @@ DslImport :
 DslGuiModule:
 	'Module' 'for' for=[mm::DslModule] '{'
 		("hint" "=" hint=STRING)?
+		(serviceDependencies+=DslGuiServiceDependency)*
 		(userTasks+=DslUserTask)*
 		(skipUserTasks+=DslSkipUserTask)*
 		(skipDomainObjects+=DslSkipDomainObject)*

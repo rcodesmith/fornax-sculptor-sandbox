@@ -28,4 +28,6 @@ public interface GuiModuleValidator {
 	boolean validateViews(EList value);
 
 	boolean validateEvents(EList value);
+
+	boolean validateServiceDependencies(EList value);
 }

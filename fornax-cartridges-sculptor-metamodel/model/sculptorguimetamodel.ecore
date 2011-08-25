@@ -21,6 +21,8 @@
         eType="#//View" containment="true" eOpposite="#//View/module"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
         eType="#//GuiEvent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceDependencies" upperBound="-1"
+        eType="ecore:EClass sculptormetamodel.ecore#//Service"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"

@@ -227,13 +227,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__EVENTS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 				/**
+	 * The feature id for the '<em><b>Service Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+				/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -3344,6 +3353,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getGuiModule_Events();
 
 				/**
+	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Service Dependencies</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getServiceDependencies()
+	 * @see #getGuiModule()
+	 * @generated
+	 */
+	EReference getGuiModule_ServiceDependencies();
+
+				/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4497,6 +4517,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__EVENTS = eINSTANCE.getGuiModule_Events();
+
+								/**
+		 * The meta object literal for the '<em><b>Service Dependencies</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_MODULE__SERVICE_DEPENDENCIES = eINSTANCE.getGuiModule_ServiceDependencies();
 
 								/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.

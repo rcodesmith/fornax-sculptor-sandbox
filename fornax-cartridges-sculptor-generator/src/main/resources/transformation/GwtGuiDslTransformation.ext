@@ -39,6 +39,7 @@ extension extensions::properties;
 Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
 	module.services.select(s | s.name == dslServiceDep.dependency.name);
 
+// TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
 create sculptorguimetamodel::View this transformView(DslView view, Module module) :
 	let domainObject = module.domainObjects.select(e | e.name == view.for.name).first() :
 	setModule(((DslGuiModule) view.eContainer).transformModule()) ->

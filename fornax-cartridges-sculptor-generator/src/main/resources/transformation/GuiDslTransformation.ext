@@ -55,16 +55,27 @@ create sculptorguimetamodel::GuiApplication this transform(DslGuiApplication gui
 	modules.userTasks.transformSubtaskTransitions() -> 
 	modules.userTasks.transformRelatedTransitions();
 
+
+
+
+
 checkIdAttribute(UserTask task) :
 	if (task.for.getIdAttribute() == null) then 
 		error("You must define id attribute for " + task.for.name);
-	
+
+// Added by ron	
+Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
+	module.services.select(s | s.name == dslServiceDep.dependency.name);
+
+// TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
 create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module) :
 	setApplication(((DslGuiApplication) module.eContainer).transform()) ->
 	setName(module.for.name) ->
 	setFor(module.for.transform()) ->
 	setHint(module.hint) ->
 	
+//	module.for.transform().modules.addAll() ->
+	serviceDependencies.addAll(module.serviceDependencies.getMetamodelService(module.for.transform())) ->
 	views.addAll(module.views.transformView(module.for.transform())) ->
 	events.addAll(module.events.transformEvent(module.for.transform())) ->
 	userTasks.addAll(module.userTasks.transformTask(module.for.transform()));

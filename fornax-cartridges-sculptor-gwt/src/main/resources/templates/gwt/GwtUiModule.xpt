@@ -27,13 +27,19 @@
 
 «DEFINE gwtConfig(Module module) FOR GuiModule»
 «FILE gwtXmlFileName(module)»<?xml version="1.0" encoding="UTF-8"?>
-<module rename-to='«module.name.toFirstUpper() + "UI"»'>
+<module rename-to='«module.getModuleConfigName()»'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
 
   <inherits name='com.google.gwt.activity.Activity' />
   
   <inherits name="org.fornax.cartridges.sculptor.framework.gwt.SculptorUI"/>
+
+«FOREACH module.getDependedUponModules() AS depMod»
+  <inherits name="«depMod.fqnModuleConfig()»"/>
+«ENDFOREACH»
+
+
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='«module.moduleGwtMain()»'/>

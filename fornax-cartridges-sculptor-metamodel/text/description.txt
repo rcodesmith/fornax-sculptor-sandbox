@@ -19,6 +19,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference for : Module
     Reference views : View<<0..*>>
     Reference events : GuiEvent<<0..*>>
+    Reference serviceDependencies : Service<<0..*>>
 
   Class UserTask -> NamedElement
     Reference subTaskTransitions : SubTaskTransition<<0..*>>

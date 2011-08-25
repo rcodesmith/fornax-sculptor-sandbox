@@ -3,7 +3,9 @@ import 'classpath:/library.btdesign'
 
 gui LibraryWeb for Library {
 
+	
 	Module for person {
+		> @PersonService
 		
 		View PersonForm for Person {
 			> @PersonService
