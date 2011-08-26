@@ -32,6 +32,8 @@
   <inherits name='com.google.gwt.user.User'/>
 
   <inherits name='com.google.gwt.activity.Activity' />
+
+  «EXPAND additionalModuleImports FOR this» 
   
   <inherits name="org.fornax.cartridges.sculptor.framework.gwt.SculptorUI"/>
 
@@ -53,6 +55,9 @@
 «ENDFILE»
 «ENDDEFINE»
 
+«REM»Any additional imports you want for your generated module can go here«ENDREM»
+«DEFINE additionalModuleImports FOR GuiModule»
+«ENDDEFINE»
 
 «DEFINE gwtMainModuleClass(Module module) FOR GuiModule»
 «FILE javaFileName(module.moduleGwtMain())»
