@@ -12,8 +12,8 @@ Set[Module] getAllUsedServices(GuiModule guiModule) :
 	let list = {} :
 	list.addAll(guiModule.views.getUsedServices().toSet().select(s|s != null)) ->
 	list.addAll(guiModule.getUsedServices()) ->
-	debugTrace("all services list: " + list) ->
 	list.toSet();
+//	debugTrace("all services list: " + list) ->
 
 
 
@@ -236,6 +236,8 @@ String resolveGwtWidgetType(ViewDataProperty prop) :
 	else 
 		"com.google.gwt.user.client.ui.TextBox";
 
+
+
 // Relative name of the DTO class that a table is for
 DomainObject tableForClass(TableWidget table) :
 	table.for;
@@ -252,7 +254,18 @@ Boolean widgetHasNameProp(ViewDataProperty prop) :
 
 // Copied from guihelper.ext
 boolean isDateOrDateTime(Attribute attr) :
-	{"Date", "DateTime", "Timestamp"}.contains(attr.type);
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.isDateOrDateTime(sculptormetamodel.Attribute);
+
+//	{"Date", "DateTime", "Timestamp", "LocalDate", "Time", "java.util.Date"}.contains(attr.type);
+//	debugTrace("type is: " + attr.type) ->
+
+String getToDomainConversionExpression(TypedElement attr, String dtoAccessorExpr, String domainObjAccessorExpr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getToDomainConversionExpression(sculptormetamodel.TypedElement, java.lang.String, java.lang.String);
+
+String getToDtoConversionExpression(TypedElement attr, String domainObjAccessorExpr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getToDtoConversionExpression(sculptormetamodel.TypedElement, java.lang.String);
+
+
 
 // my own addition
 boolean isBoolean(ViewDataProperty prop) :
@@ -430,7 +443,20 @@ gwtEventsPackage(GuiEvent event) :
 String gwtEventBaseClass(GuiEvent event) :
 	event.name + "Base";
 
+
 fqnGwtEventBaseClass(GuiEvent event) :
 	event.gwtEventsPackage() + "." + event.gwtEventBaseClass();
+
+fqnGwtEventClass(GuiEvent event) :
+	event.gwtEventsPackage() + "." + event.gwtEventClass();
 	
+// GWT event handler class relative name
+String gwtEventHandlerClass(GuiEvent event) :
+	event.name + "Handler";	
+
+String fqnEventHandlerClass(GuiEvent event) :
+	gwtEventsPackage(event) + "." + gwtEventBaseClass(event) + "." + gwtEventHandlerClass(event);
 	
+// GWT event concrete class relative name
+String gwtEventClass(GuiEvent event) :
+	event.name;

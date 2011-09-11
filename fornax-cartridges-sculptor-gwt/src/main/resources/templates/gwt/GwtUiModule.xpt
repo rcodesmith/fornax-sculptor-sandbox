@@ -13,7 +13,6 @@
 «DEFINE gwtUiModule FOR GuiModule»
 	«LET this.application.guiForApplication.modules.select(m | m.name == this.name).get(0) AS module»
 		«EXPAND gwtConfig(module)»
-		«EXPAND gwtMainModuleClass(module)»
 		
 		«EXPAND GwtService::gwtService(module)»
 		
@@ -44,7 +43,9 @@
 
 
   <!-- Specify the app entry point class.                         -->
+  <!--
   <entry-point class='«module.moduleGwtMain()»'/>
+-->
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>

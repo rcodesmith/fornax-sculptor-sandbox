@@ -5,6 +5,7 @@ import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
 import sculptormetamodel.Application;
+import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
 import sculptormetamodel.Module;
@@ -20,6 +21,28 @@ public class GwtGenerationHelper {
 
 
 
+    public static String getToDtoConversionExpression(TypedElement attribute, String domainAccessorExpr) {
+    	if(isDateOrDateTime(attribute)) {
+    		return "org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert("
+    			+ domainAccessorExpr
+    			+ ",(java.util.Date)null)";
+    	}
+    	else {
+    		return domainAccessorExpr;
+    	}    	
+    }
+    
+    public static String getToDomainConversionExpression(TypedElement attribute, String dtoAccessorExpr, String domainAccessorExpr) {
+    	if(isDateOrDateTime(attribute)) {
+    		return "org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert("
+    			+ dtoAccessorExpr
+    			+ "," + domainAccessorExpr + ")";
+    	}
+    	else {
+    		return dtoAccessorExpr;
+    	}    	
+    }
+    
 	// Copied from GenerationHelper
     private static String getJavaTypeOrVoid(String type) {
         if (type == null || type.equals("")) {
@@ -127,6 +150,23 @@ public class GwtGenerationHelper {
     	return v.substring(0, 1).toUpperCase() + v.substring(1);
     }
     
+    public static boolean isDateOrDateTime(TypedElement attr) {
+    	
+    	final String[] dateTypes = {"Date", "DateTime", "Timestamp", "LocalDate", "Time", "java.util.Date"};
+    	
+    	String attrType = attr.getType();
+    	if(attrType == null) {
+    		return false;
+    	}
+    	
+    	for (String typeName : dateTypes) {
+			if(typeName.equals(attrType)) {
+				return true;
+			}
+		}
+    	return false;
+    }
+	
     public static String dtoMapper(Module module) {
     	return GenerationHelper.getDomainPackage(module) + "." + toFirstUpper(module.getName()) + "DtoMapper";
     }
@@ -144,8 +184,10 @@ public class GwtGenerationHelper {
     			typeRelName = parameter.getType().substring(parameter.getType().lastIndexOf(".") + 1);
     		}
 			return dtoMapper(module) + "." + "map" + typeRelName + "ToDomain(" + parameter.getName() + ")";
+    	} else {
+    		// One of the built-in types, but may still require conversion (e.g. JODA date to j.u.Date).
+    		return getToDomainConversionExpression(parameter, parameter.getName(), parameter.getType());
     	}
-    	return parameter.getName();
     }
     /**
      * Special method to get GWT-translated type name of an operation parameter
@@ -157,7 +199,7 @@ public class GwtGenerationHelper {
     	GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName(" + parameter.getType() + ")");
     	// TODO: Make this translation more efficient - would like to do it only if other type processing fails.
         String typeName = translateBasicTypes(parameter);
-    	GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName() translated typeName=" + typeName);
+    	//GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName() translated typeName=" + typeName);
         if(typeName != null && !typeName.equals(parameter.getType())) {
         	// Was translated
         	return typeName;
@@ -169,8 +211,8 @@ public class GwtGenerationHelper {
     }
     
     public static String getTypeName(DomainObjectTypedElement element, boolean surroundWithCollectionType) {
-    	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName(" + element.getType() + ")");
-    	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() domainObjectType = " + element.getDomainObjectType());
+    	//GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName(" + element.getType() + ")");
+    	//GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() domainObjectType = " + element.getDomainObjectType());
     	
         String typeName = getJavaTypeOrVoid(element.getType());
         
@@ -180,7 +222,7 @@ public class GwtGenerationHelper {
             domainObjectTypeName = getJavaTypeOrVoid(getDomainPackage(element.getDomainObjectType()) + "."
                     + element.getDomainObjectType().getName());
             type = domainObjectTypeName;
-        	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() trace 1.  type = " + type);
+        //	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() trace 1.  type = " + type);
         }
 
         if (typeName != null && !typeName.equals("void") && domainObjectTypeName != null

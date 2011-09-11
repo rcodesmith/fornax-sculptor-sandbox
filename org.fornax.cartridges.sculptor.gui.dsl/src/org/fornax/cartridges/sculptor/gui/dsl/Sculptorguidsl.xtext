@@ -273,8 +273,9 @@ DslColumnType :
 DslGuiEvent :
   (doc=STRING)?
   "Event" name=ID "{"
-    ((attributes+=DslGuiAttribute))*
+    ((attributes+=DslGuiAttribute) )*
   "}";
+  
   
   
 DslGuiAttribute :
@@ -290,4 +291,21 @@ DslGuiType :
 
 DslGuiJavaIdentifier :
   (ID ("." ID)*);
+  
+//DslGuiReference :
+//  (doc=STRING)?
+//  REF (collectionType=mm::DslCollectionType"<")? (("@")?domainObjectType=[mm::DslSimpleDomainObject]) (">")? name=ID
+//    (((notChangeable?=NOT "changeable") | ("changeable"))? &
+//     ((required?="required") | (NOT "required"))? &
+//     (((nullable?="nullable") | (NOT "nullable")) ("=" nullableMessage=STRING)?)? &
+//     ("hint" "=" hint=STRING)? &
+//     ((notEmpty?="notEmpty") ("=" notEmptyMessage=STRING)?)? &
+//     ("size" "=" size=STRING)? &
+//     ((valid?="valid") ("=" validMessage=STRING)?)? &
+//     ("validate" "=" validate=STRING)? )
+//    (";")?;
+    
+
+terminal REF :
+  ('-'|'reference');
   

@@ -286,7 +286,7 @@ public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
 «DEFINE propertyAccessors FOR Attribute»
     «EXPAND propertyGetter»
     «IF name == "id" && getDomainObject().isPersistent()»
-    	«EXPAND templates::domain::DomainObjectAttribute::idPropertySetter»
+    	«EXPAND idPropertySetter»
     «ELSEIF !changeable && getTypeName().isPrimitiveType()»
     	«EXPAND templates::domain::DomainObjectAttribute::notChangeablePrimitivePropertySetter»
     «ELSEIF !changeable»
@@ -295,6 +295,21 @@ public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
     	«EXPAND propertySetter»
     «ENDIF»
 «ENDDEFINE»
+
+«REM»Overridden here so we can change visibility«ENDREM»
+«DEFINE idPropertySetter FOR Attribute»
+    /**
+     * The id is not intended to be changed or assigned manually, but
+     * for test purpose it is allowed to assign the id.
+     */
+    public void set«name.toFirstUpper()»(«getTypeName()» «name») {
+        if ((this.«name» != null) && !this.«name».equals(«name»)) {
+            throw new IllegalArgumentException("Not allowed to change the id property.");
+        }
+        this.«name» = «name»;
+    };
+«ENDDEFINE»
+
 
 «DEFINE propertyGetter FOR Attribute»
 	«EXPAND propertyGetter(true)»

@@ -32,22 +32,11 @@ public class «name.toFirstUpper()»DtoMapper {
 
 
 «DEFINE copyAttrToDomain FOR Attribute»
-	«IF isDateOrDateTime()»
-		domainObj.set«name.toFirstUpper()»(org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert(dtoObj.get«name.toFirstUpper()»(),
-			(«getTypeName()»)null));	
-	«ELSE»
-		domainObj.set«name.toFirstUpper()»(dtoObj.get«name.toFirstUpper()»());	
-	«ENDIF»
+	domainObj.set«name.toFirstUpper()»(«this.getToDomainConversionExpression("dtoObj." + this.getGetAccessor() + "()", "domainObj." + this.getGetAccessor() + "()" )»);
 «ENDDEFINE»
 
 «DEFINE copyAttrFromDomain FOR Attribute»
-	«IF isDateOrDateTime()»
-		dtoObj.set«name.toFirstUpper()»(org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert(
-			domainObj.get«name.toFirstUpper()»(),
-			(«getGwtTypeName()»)null));	
-	«ELSE»
-		dtoObj.set«name.toFirstUpper()»(domainObj.get«name.toFirstUpper()»());
-	«ENDIF»
+	dtoObj.set«name.toFirstUpper()»(«this.getToDtoConversionExpression("domainObj." + this.getGetAccessor() + "()")»);
 «ENDDEFINE»
 
 «DEFINE copyManyRefFromDomain FOR Reference»
