@@ -8,10 +8,8 @@ package sculptorguimetamodel.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import sculptorguimetamodel.AddTask;
@@ -25,7 +23,6 @@ import sculptorguimetamodel.DeleteTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.EnumViewProperty;
 import sculptorguimetamodel.GuiApplication;
-import sculptorguimetamodel.GuiAttribute;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InformationalTextWidget;
@@ -45,7 +42,6 @@ import sculptorguimetamodel.SubTaskTransition;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.TextAreaWidget;
-import sculptorguimetamodel.TaskwType;
 import sculptorguimetamodel.TmpReferenceHolder;
 import sculptorguimetamodel.TmpSubTaskTransitionHolder;
 import sculptorguimetamodel.UpdateTask;
@@ -55,7 +51,6 @@ import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewAttributeReference;
 import sculptorguimetamodel.ViewDataProperty;
 import sculptorguimetamodel.ViewTask;
-
 import sculptorguimetamodel.Widget;
 import sculptormetamodel.SculptormetamodelPackage;
 
@@ -282,13 +277,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass guiEventEClass = null;
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass guiAttributeEClass = null;
 
 																/**
 	 * <!-- begin-user-doc -->
@@ -1272,35 +1260,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGuiEvent_Module() {
+	public EReference getGuiEvent_GuiModule() {
 		return (EReference)guiEventEClass.getEStructuralFeatures().get(0);
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGuiEvent_Attributes() {
-		return (EReference)guiEventEClass.getEStructuralFeatures().get(1);
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getGuiAttribute() {
-		return guiAttributeEClass;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGuiAttribute_Event() {
-		return (EReference)guiAttributeEClass.getEStructuralFeatures().get(0);
 	}
 
 																/**
@@ -1547,11 +1508,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(tableWidgetEClass, TABLE_WIDGET__COLUMNS);
 
 		guiEventEClass = createEClass(GUI_EVENT);
-		createEReference(guiEventEClass, GUI_EVENT__MODULE);
-		createEReference(guiEventEClass, GUI_EVENT__ATTRIBUTES);
-
-		guiAttributeEClass = createEClass(GUI_ATTRIBUTE);
-		createEReference(guiAttributeEClass, GUI_ATTRIBUTE__EVENT);
+		createEReference(guiEventEClass, GUI_EVENT__GUI_MODULE);
 
 		tableColumnEClass = createEClass(TABLE_COLUMN);
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__LABEL);
@@ -1623,8 +1580,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		viewAttributeReferenceEClass.getESuperTypes().add(this.getPropertyReference());
 		propertyReferringWidgetEClass.getESuperTypes().add(this.getWidget());
 		tableWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
-		guiEventEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
-		guiAttributeEClass.getESuperTypes().add(theSculptormetamodelPackage.getTypedElement());
+		guiEventEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
 		tableColumnEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		textAreaWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		autocompleteWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
@@ -1645,7 +1601,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_Application(), this.getGuiApplication(), this.getGuiApplication_Modules(), "application", null, 0, 1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_For(), theSculptormetamodelPackage.getModule(), null, "for", null, 0, 1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Views(), this.getView(), this.getView_Module(), "views", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGuiModule_Events(), this.getGuiEvent(), null, "events", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_Events(), this.getGuiEvent(), this.getGuiEvent_GuiModule(), "events", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1760,11 +1716,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getTableWidget_Columns(), this.getTableColumn(), null, "columns", null, 0, -1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(guiEventEClass, GuiEvent.class, "GuiEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGuiEvent_Module(), this.getGuiModule(), null, "module", null, 0, 1, GuiEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGuiEvent_Attributes(), this.getGuiAttribute(), null, "attributes", null, 0, -1, GuiEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(guiAttributeEClass, GuiAttribute.class, "GuiAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGuiAttribute_Event(), this.getGuiEvent(), null, "event", null, 1, 1, GuiAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiEvent_GuiModule(), this.getGuiModule(), this.getGuiModule_Events(), "guiModule", null, 1, 1, GuiEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableColumnEClass, TableColumn.class, "TableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTableColumn_Label(), ecorePackage.getEString(), "label", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

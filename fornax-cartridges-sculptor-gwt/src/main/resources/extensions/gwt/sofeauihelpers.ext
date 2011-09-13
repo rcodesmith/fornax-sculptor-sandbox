@@ -142,6 +142,10 @@ String getGwtTypeName(Reference ref) :
 String getGwtTypeName(TypedElement e) :
     JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.TypedElement);
 
+String getGwtTypeName(NamedElement e) :
+	error("getGwtTypeName(NamedElement) called, which means the following object was unexpected: " + e) ->
+	null;
+
 
 String getGwtTypeName(ViewDataProperty prop) :
 	null;
@@ -254,7 +258,7 @@ Boolean widgetHasNameProp(ViewDataProperty prop) :
 
 // Copied from guihelper.ext
 boolean isDateOrDateTime(Attribute attr) :
-    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.isDateOrDateTime(sculptormetamodel.Attribute);
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.isDateOrDateTime(sculptormetamodel.TypedElement);
 
 //	{"Date", "DateTime", "Timestamp", "LocalDate", "Time", "java.util.Date"}.contains(attr.type);
 //	debugTrace("type is: " + attr.type) ->
@@ -437,7 +441,7 @@ String fqnActivityImplClass(View view) :
     
 // Package for all event-related widget classes
 gwtEventsPackage(GuiEvent event) :
-	gwtBasePackage(event.module.for) + ".client.event";
+	gwtBasePackage(event.guiModule.for) + ".client.event";
 	
 // GWT event base class relative name
 String gwtEventBaseClass(GuiEvent event) :

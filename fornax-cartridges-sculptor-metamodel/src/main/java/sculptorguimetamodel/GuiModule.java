@@ -153,6 +153,7 @@ public interface GuiModule extends NamedElement {
 				/**
 	 * Returns the value of the '<em><b>Events</b></em>' containment reference list.
 	 * The list contents are of type {@link sculptorguimetamodel.GuiEvent}.
+	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiEvent#getGuiModule <em>Gui Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear,
@@ -161,7 +162,8 @@ public interface GuiModule extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Events</em>' containment reference list.
 	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Events()
-	 * @model type="sculptorguimetamodel.GuiEvent" containment="true"
+	 * @see sculptorguimetamodel.GuiEvent#getGuiModule
+	 * @model type="sculptorguimetamodel.GuiEvent" opposite="guiModule" containment="true"
 	 * @generated
 	 */
 	EList getEvents();

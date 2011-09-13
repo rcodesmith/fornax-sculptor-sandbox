@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import sculptorguimetamodel.*;
 
+import sculptormetamodel.DomainObject;
 import sculptormetamodel.NamedElement;
 import sculptormetamodel.TypedElement;
 
@@ -320,15 +321,8 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.GUI_EVENT: {
 				GuiEvent guiEvent = (GuiEvent)theEObject;
 				Object result = caseGuiEvent(guiEvent);
+				if (result == null) result = caseDomainObject(guiEvent);
 				if (result == null) result = caseNamedElement(guiEvent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SculptorguimetamodelPackage.GUI_ATTRIBUTE: {
-				GuiAttribute guiAttribute = (GuiAttribute)theEObject;
-				Object result = caseGuiAttribute(guiAttribute);
-				if (result == null) result = caseTypedElement(guiAttribute);
-				if (result == null) result = caseNamedElement(guiAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -863,21 +857,6 @@ public class SculptorguimetamodelSwitch {
 	}
 
 																/**
-	 * Returns the result of interpreting the object as an instance of '<em>Gui Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Gui Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseGuiAttribute(GuiAttribute object) {
-		return null;
-	}
-
-																/**
 	 * Returns the result of interpreting the object as an instance of '<em>Table Column</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -998,17 +977,17 @@ public class SculptorguimetamodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Domain Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Domain Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTypedElement(TypedElement object) {
+	public Object caseDomainObject(DomainObject object) {
 		return null;
 	}
 

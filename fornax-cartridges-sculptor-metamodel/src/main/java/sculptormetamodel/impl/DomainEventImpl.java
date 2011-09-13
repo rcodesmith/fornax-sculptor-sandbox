@@ -22,21 +22,21 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class DomainEventImpl extends EventImpl implements DomainEvent {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected DomainEventImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.DOMAIN_EVENT;
-    }
+		return SculptormetamodelPackage.Literals.DOMAIN_EVENT;
+	}
 
 } //DomainEventImpl

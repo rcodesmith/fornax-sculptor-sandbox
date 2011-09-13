@@ -37,276 +37,276 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class RepositoryOperationImpl extends OperationImpl implements RepositoryOperation {
     /**
-     * The default value of the '{@link #isDelegateToAccessObject() <em>Delegate To Access Object</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isDelegateToAccessObject() <em>Delegate To Access Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isDelegateToAccessObject()
-     * @generated
-     * @ordered
-     */
+	 * @see #isDelegateToAccessObject()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean DELEGATE_TO_ACCESS_OBJECT_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isDelegateToAccessObject() <em>Delegate To Access Object</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isDelegateToAccessObject() <em>Delegate To Access Object</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isDelegateToAccessObject()
-     * @generated
-     * @ordered
-     */
+	 * @see #isDelegateToAccessObject()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean delegateToAccessObject = DELEGATE_TO_ACCESS_OBJECT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAccessObjectName() <em>Access Object Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAccessObjectName() <em>Access Object Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getAccessObjectName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAccessObjectName()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String ACCESS_OBJECT_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getAccessObjectName() <em>Access Object Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAccessObjectName() <em>Access Object Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getAccessObjectName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAccessObjectName()
+	 * @generated
+	 * @ordered
+	 */
 	protected String accessObjectName = ACCESS_OBJECT_NAME_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected RepositoryOperationImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.REPOSITORY_OPERATION;
-    }
+		return SculptormetamodelPackage.Literals.REPOSITORY_OPERATION;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean isDelegateToAccessObject() {
-        return delegateToAccessObject;
-    }
+		return delegateToAccessObject;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setDelegateToAccessObject(boolean newDelegateToAccessObject) {
-        boolean oldDelegateToAccessObject = delegateToAccessObject;
-        delegateToAccessObject = newDelegateToAccessObject;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT, oldDelegateToAccessObject, delegateToAccessObject));
-    }
+		boolean oldDelegateToAccessObject = delegateToAccessObject;
+		delegateToAccessObject = newDelegateToAccessObject;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT, oldDelegateToAccessObject, delegateToAccessObject));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Repository getRepository() {
-        if (eContainerFeatureID() != SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY) return null;
-        return (Repository)eContainer();
-    }
+		if (eContainerFeatureID() != SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY) return null;
+		return (Repository)eContainer();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetRepository(Repository newRepository, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newRepository, SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newRepository, SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY, msgs);
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setRepository(Repository newRepository) {
-        if (newRepository != eInternalContainer() || (eContainerFeatureID() != SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY && newRepository != null)) {
-            if (EcoreUtil.isAncestor(this, newRepository))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newRepository != null)
-                msgs = ((InternalEObject)newRepository).eInverseAdd(this, SculptormetamodelPackage.REPOSITORY__OPERATIONS, Repository.class, msgs);
-            msgs = basicSetRepository(newRepository, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY, newRepository, newRepository));
-    }
+		if (newRepository != eInternalContainer() || (eContainerFeatureID() != SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY && newRepository != null)) {
+			if (EcoreUtil.isAncestor(this, newRepository))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newRepository != null)
+				msgs = ((InternalEObject)newRepository).eInverseAdd(this, SculptormetamodelPackage.REPOSITORY__OPERATIONS, Repository.class, msgs);
+			msgs = basicSetRepository(newRepository, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY, newRepository, newRepository));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getAccessObjectName() {
-        return accessObjectName;
-    }
+		return accessObjectName;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setAccessObjectName(String newAccessObjectName) {
-        String oldAccessObjectName = accessObjectName;
-        accessObjectName = newAccessObjectName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME, oldAccessObjectName, accessObjectName));
-    }
+		String oldAccessObjectName = accessObjectName;
+		accessObjectName = newAccessObjectName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME, oldAccessObjectName, accessObjectName));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetRepository((Repository)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetRepository((Repository)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                return basicSetRepository(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				return basicSetRepository(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                return eInternalContainer().eInverseRemove(this, SculptormetamodelPackage.REPOSITORY__OPERATIONS, Repository.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				return eInternalContainer().eInverseRemove(this, SculptormetamodelPackage.REPOSITORY__OPERATIONS, Repository.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
-                return isDelegateToAccessObject() ? Boolean.TRUE : Boolean.FALSE;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                return getRepository();
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
-                return getAccessObjectName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
+				return isDelegateToAccessObject() ? Boolean.TRUE : Boolean.FALSE;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				return getRepository();
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
+				return getAccessObjectName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
-                setDelegateToAccessObject(((Boolean)newValue).booleanValue());
-                return;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                setRepository((Repository)newValue);
-                return;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
-                setAccessObjectName((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
+				setDelegateToAccessObject(((Boolean)newValue).booleanValue());
+				return;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				setRepository((Repository)newValue);
+				return;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
+				setAccessObjectName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
-                setDelegateToAccessObject(DELEGATE_TO_ACCESS_OBJECT_EDEFAULT);
-                return;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                setRepository((Repository)null);
-                return;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
-                setAccessObjectName(ACCESS_OBJECT_NAME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
+				setDelegateToAccessObject(DELEGATE_TO_ACCESS_OBJECT_EDEFAULT);
+				return;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				setRepository((Repository)null);
+				return;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
+				setAccessObjectName(ACCESS_OBJECT_NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
-                return delegateToAccessObject != DELEGATE_TO_ACCESS_OBJECT_EDEFAULT;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
-                return getRepository() != null;
-            case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
-                return ACCESS_OBJECT_NAME_EDEFAULT == null ? accessObjectName != null : !ACCESS_OBJECT_NAME_EDEFAULT.equals(accessObjectName);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__DELEGATE_TO_ACCESS_OBJECT:
+				return delegateToAccessObject != DELEGATE_TO_ACCESS_OBJECT_EDEFAULT;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__REPOSITORY:
+				return getRepository() != null;
+			case SculptormetamodelPackage.REPOSITORY_OPERATION__ACCESS_OBJECT_NAME:
+				return ACCESS_OBJECT_NAME_EDEFAULT == null ? accessObjectName != null : !ACCESS_OBJECT_NAME_EDEFAULT.equals(accessObjectName);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (delegateToAccessObject: ");
-        result.append(delegateToAccessObject);
-        result.append(", accessObjectName: ");
-        result.append(accessObjectName);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (delegateToAccessObject: ");
+		result.append(delegateToAccessObject);
+		result.append(", accessObjectName: ");
+		result.append(accessObjectName);
+		result.append(')');
+		return result.toString();
+	}
 
 } //RepositoryOperationImpl

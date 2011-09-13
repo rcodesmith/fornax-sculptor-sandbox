@@ -22,21 +22,21 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class DataTransferObjectImpl extends ValueObjectImpl implements DataTransferObject {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected DataTransferObjectImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.DATA_TRANSFER_OBJECT;
-    }
+		return SculptormetamodelPackage.Literals.DATA_TRANSFER_OBJECT;
+	}
 
 } //DataTransferObjectImpl

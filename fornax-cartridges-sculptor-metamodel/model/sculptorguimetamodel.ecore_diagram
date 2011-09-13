@@ -915,34 +915,20 @@
     <children xmi:type="notation:BasicCompartment" xmi:id="_4PMloYewEeC-wKlhCx9iaQ" type="7001">
       <styles xmi:type="notation:SortingStyle" xmi:id="_4PMlooewEeC-wKlhCx9iaQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_4PMlo4ewEeC-wKlhCx9iaQ"/>
+      <layoutConstraint xmi:type="notation:Ratio" xmi:id="_tsN0ENzsEeCXma-p6OVy_g" value="0.23076923076923078"/>
     </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4PMlpIewEeC-wKlhCx9iaQ" type="7002">
+    <children xmi:type="notation:BasicCompartment" xmi:id="_4PMlpIewEeC-wKlhCx9iaQ" type="7002" collapsed="true">
       <styles xmi:type="notation:SortingStyle" xmi:id="_4PNMsIewEeC-wKlhCx9iaQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_4PNMsYewEeC-wKlhCx9iaQ"/>
+      <layoutConstraint xmi:type="notation:Ratio" xmi:id="_tsN0EdzsEeCXma-p6OVy_g" value="0.23076923076923078"/>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_4PNMsoewEeC-wKlhCx9iaQ" type="7003">
       <styles xmi:type="notation:SortingStyle" xmi:id="_4PNMs4ewEeC-wKlhCx9iaQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_4PNMtIewEeC-wKlhCx9iaQ"/>
+      <layoutConstraint xmi:type="notation:Ratio" xmi:id="_tsN0EtzsEeCXma-p6OVy_g" value="0.23076923076923078"/>
     </children>
     <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//GuiEvent"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4PL-koewEeC-wKlhCx9iaQ" x="297" y="783"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_2WtgkYfdEeCSlte0e8KlCg" type="2001" fontName="Lucida Grande">
-    <children xmi:type="notation:DecorationNode" xmi:id="_2WuHoIfdEeCSlte0e8KlCg" type="5001"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_2WuHoYfdEeCSlte0e8KlCg" type="7001">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_2WuusIfdEeCSlte0e8KlCg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_2WuusYfdEeCSlte0e8KlCg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_2WuusofdEeCSlte0e8KlCg" type="7002">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_2Wuus4fdEeCSlte0e8KlCg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_2WuutIfdEeCSlte0e8KlCg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_2WuutYfdEeCSlte0e8KlCg" type="7003">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_2WuutofdEeCSlte0e8KlCg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_2Wuut4fdEeCSlte0e8KlCg"/>
-    </children>
-    <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//GuiAttribute"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2WtgkofdEeCSlte0e8KlCg" x="397" y="862"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4PL-koewEeC-wKlhCx9iaQ" x="333" y="828"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_0ulCMImrEeCr5Ib_PSg4Jw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_0ulpQImrEeCr5Ib_PSg4Jw" type="5001"/>
@@ -1971,12 +1957,6 @@
     <element xsi:nil="true"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ELlqAoPeEeCZ3YYWGf5fvQ" points="[1, -26, -47, 278]$[-15, -311, -63, -7]"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_7pLZMIewEeC-wKlhCx9iaQ" type="4004" source="_4PL-kYewEeC-wKlhCx9iaQ" target="_ROemYJuFEdyh6bSqbZDPvw">
-    <styles xmi:type="notation:FontStyle" xmi:id="_7pLZMYewEeC-wKlhCx9iaQ" fontName="Lucida Grande"/>
-    <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7pLZMoewEeC-wKlhCx9iaQ" points="[29, -18, -1052, 627]$[1060, -643, -21, 2]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_7pN1cIewEeC-wKlhCx9iaQ" id="(0.24705882352941178,0.5576923076923077)"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="_oOqZ4IezEeC-wKlhCx9iaQ" type="4003" source="_cASd4JnqEdy7x7OBzvTH4A" target="_4PL-kYewEeC-wKlhCx9iaQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_oOqZ44ezEeC-wKlhCx9iaQ" type="6002">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_oOqZ5IezEeC-wKlhCx9iaQ" y="40"/>
@@ -1988,45 +1968,6 @@
     <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiModule/events"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oOqZ4oezEeC-wKlhCx9iaQ" points="[-12, 13, 544, -621]$[-551, 660, 5, 26]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oOuEQIezEeC-wKlhCx9iaQ" id="(0.5564516129032258,0.7796610169491526)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_IE5LoIe0EeC-wKlhCx9iaQ" type="4002" source="_4PL-kYewEeC-wKlhCx9iaQ" target="_cASd4JnqEdy7x7OBzvTH4A">
-    <children xmi:type="notation:DecorationNode" xmi:id="_IE5ysIe0EeC-wKlhCx9iaQ" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_IE5ysYe0EeC-wKlhCx9iaQ" y="40"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_IE5ysoe0EeC-wKlhCx9iaQ" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_IE5ys4e0EeC-wKlhCx9iaQ" y="60"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_IE5LoYe0EeC-wKlhCx9iaQ" fontName="Lucida Grande"/>
-    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiEvent/module"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_IE5Looe0EeC-wKlhCx9iaQ" points="[21, -26, -528, 634]$[545, -689, -4, -29]"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_oTcksIfeEeCSlte0e8KlCg" type="4004" source="_2WtgkYfdEeCSlte0e8KlCg" target="_xX7uwJuIEdyh6bSqbZDPvw">
-    <styles xmi:type="notation:FontStyle" xmi:id="_oTcksYfeEeCSlte0e8KlCg" fontName="Lucida Grande"/>
-    <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oTcksofeEeCSlte0e8KlCg" points="[37, -24, -812, 514]$[854, -564, 5, -26]"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_q-UPgIfeEeCSlte0e8KlCg" type="4003" source="_4PL-kYewEeC-wKlhCx9iaQ" target="_2WtgkYfdEeCSlte0e8KlCg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_q-UPg4feEeCSlte0e8KlCg" type="6002">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_q-UPhIfeEeCSlte0e8KlCg" y="40"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_q-U2kIfeEeCSlte0e8KlCg" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_q-U2kYfeEeCSlte0e8KlCg" y="60"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_q-UPgYfeEeCSlte0e8KlCg" fontName="Lucida Grande"/>
-    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiEvent/attributes"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_q-UPgofeEeCSlte0e8KlCg" points="[29, 24, -49, -43]$[71, 64, -7, -3]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_q-XS0IfeEeCSlte0e8KlCg" id="(0.0958904109589041,0.2692307692307692)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_zFX2MIfeEeCSlte0e8KlCg" type="4002" source="_2WtgkYfdEeCSlte0e8KlCg" target="_4PL-kYewEeC-wKlhCx9iaQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_zFYdQIfeEeCSlte0e8KlCg" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_zFYdQYfeEeCSlte0e8KlCg" y="40"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_zFYdQofeEeCSlte0e8KlCg" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_zFYdQ4feEeCSlte0e8KlCg" y="60"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_zFX2MYfeEeCSlte0e8KlCg" fontName="Lucida Grande"/>
-    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiAttribute/event"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zFX2MofeEeCSlte0e8KlCg" points="[-29, -26, 78, 53]$[-78, -84, 29, -5]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_lky_oImrEeCr5Ib_PSg4Jw" type="4002" source="_5e0lUYPdEeCZ3YYWGf5fvQ" target="_4kuDQJqQEdy7x7OBzvTH4A">
     <children xmi:type="notation:DecorationNode" xmi:id="_lkzmsImrEeCr5Ib_PSg4Jw" type="6001">
@@ -2100,5 +2041,32 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_yQ-yUY1kEeCjgM-Uuo_M7Q" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_yQ-yUo1kEeCjgM-Uuo_M7Q" points="[4, 26, -51, -230]$[15, 230, -40, -26]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_NIjKAdzrEeCXma-p6OVy_g" type="4002" source="_cASd4JnqEdy7x7OBzvTH4A" target="_sVL2MJqOEdy7x7OBzvTH4A">
+    <children xmi:type="notation:DecorationNode" xmi:id="_NIk_MNzrEeCXma-p6OVy_g" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_NIk_MdzrEeCXma-p6OVy_g" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_NIlmQNzrEeCXma-p6OVy_g" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_NIlmQdzrEeCXma-p6OVy_g" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_NIjxENzrEeCXma-p6OVy_g" fontName="Lucida Grande"/>
+    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiModule/serviceDependencies"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NIjxEdzrEeCXma-p6OVy_g" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_cxgJ8NztEeCXma-p6OVy_g" type="4004" source="_4PL-kYewEeC-wKlhCx9iaQ" target="_4kuDQJqQEdy7x7OBzvTH4A">
+    <styles xmi:type="notation:FontStyle" xmi:id="_cxgJ8dztEeCXma-p6OVy_g" fontName="Lucida Grande"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cxgJ8tztEeCXma-p6OVy_g" points="[29, -17, -907, 523]$[930, -514, -6, 26]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Vtq_kN1VEeCLi8lxkUrmRw" type="4002" source="_4PL-kYewEeC-wKlhCx9iaQ" target="_cASd4JnqEdy7x7OBzvTH4A">
+    <children xmi:type="notation:DecorationNode" xmi:id="_VtrmoN1VEeCLi8lxkUrmRw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Vtrmod1VEeCLi8lxkUrmRw" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Vtrmot1VEeCLi8lxkUrmRw" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Vtrmo91VEeCLi8lxkUrmRw" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Vtq_kd1VEeCLi8lxkUrmRw" fontName="Lucida Grande"/>
+    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiEvent/guiModule"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Vtq_kt1VEeCLi8lxkUrmRw" points="[19, -26, -512, 679]$[482, -675, -49, 30]"/>
   </edges>
 </notation:Diagram>

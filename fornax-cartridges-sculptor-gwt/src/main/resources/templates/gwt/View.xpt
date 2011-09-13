@@ -57,7 +57,7 @@ public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Co
 «DEFINE widgetInitCalls FOR Widget»
 «ENDDEFINE»
 
-«DEFINE widgetInitCalls FOR WidgetTable»
+«DEFINE widgetInitCalls FOR TableWidget»
 
 	// Initialize «name» table (columns, etc)
 	init«name.toFirstUpper()»Table();

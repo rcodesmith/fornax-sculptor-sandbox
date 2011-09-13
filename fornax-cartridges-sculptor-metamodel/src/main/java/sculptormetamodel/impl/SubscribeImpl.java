@@ -32,184 +32,184 @@ import sculptormetamodel.Subscribe;
  */
 public class SubscribeImpl extends EObjectImpl implements Subscribe {
     /**
-     * The default value of the '{@link #getEventBus() <em>Event Bus</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getEventBus() <em>Event Bus</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEventBus()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEventBus()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String EVENT_BUS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getEventBus() <em>Event Bus</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEventBus() <em>Event Bus</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEventBus()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEventBus()
+	 * @generated
+	 * @ordered
+	 */
     protected String eventBus = EVENT_BUS_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getTopic() <em>Topic</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTopic() <em>Topic</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTopic()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTopic()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String TOPIC_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getTopic() <em>Topic</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTopic() <em>Topic</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTopic()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTopic()
+	 * @generated
+	 * @ordered
+	 */
     protected String topic = TOPIC_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SubscribeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.SUBSCRIBE;
-    }
+		return SculptormetamodelPackage.Literals.SUBSCRIBE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getEventBus() {
-        return eventBus;
-    }
+		return eventBus;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setEventBus(String newEventBus) {
-        String oldEventBus = eventBus;
-        eventBus = newEventBus;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS, oldEventBus, eventBus));
-    }
+		String oldEventBus = eventBus;
+		eventBus = newEventBus;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS, oldEventBus, eventBus));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getTopic() {
-        return topic;
-    }
+		return topic;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setTopic(String newTopic) {
-        String oldTopic = topic;
-        topic = newTopic;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.SUBSCRIBE__TOPIC, oldTopic, topic));
-    }
+		String oldTopic = topic;
+		topic = newTopic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.SUBSCRIBE__TOPIC, oldTopic, topic));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
-                return getEventBus();
-            case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
-                return getTopic();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
+				return getEventBus();
+			case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
+				return getTopic();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
-                setEventBus((String)newValue);
-                return;
-            case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
-                setTopic((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
+				setEventBus((String)newValue);
+				return;
+			case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
+				setTopic((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
-                setEventBus(EVENT_BUS_EDEFAULT);
-                return;
-            case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
-                setTopic(TOPIC_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
+				setEventBus(EVENT_BUS_EDEFAULT);
+				return;
+			case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
+				setTopic(TOPIC_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
-                return EVENT_BUS_EDEFAULT == null ? eventBus != null : !EVENT_BUS_EDEFAULT.equals(eventBus);
-            case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
-                return TOPIC_EDEFAULT == null ? topic != null : !TOPIC_EDEFAULT.equals(topic);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.SUBSCRIBE__EVENT_BUS:
+				return EVENT_BUS_EDEFAULT == null ? eventBus != null : !EVENT_BUS_EDEFAULT.equals(eventBus);
+			case SculptormetamodelPackage.SUBSCRIBE__TOPIC:
+				return TOPIC_EDEFAULT == null ? topic != null : !TOPIC_EDEFAULT.equals(topic);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (eventBus: ");
-        result.append(eventBus);
-        result.append(", topic: ");
-        result.append(topic);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (eventBus: ");
+		result.append(eventBus);
+		result.append(", topic: ");
+		result.append(topic);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SubscribeImpl

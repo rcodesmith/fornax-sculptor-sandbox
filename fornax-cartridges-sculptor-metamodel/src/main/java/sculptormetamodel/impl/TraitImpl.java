@@ -22,21 +22,21 @@ import sculptormetamodel.Trait;
  */
 public class TraitImpl extends DomainObjectImpl implements Trait {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected TraitImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.TRAIT;
-    }
+		return SculptormetamodelPackage.Literals.TRAIT;
+	}
 
 } //TraitImpl

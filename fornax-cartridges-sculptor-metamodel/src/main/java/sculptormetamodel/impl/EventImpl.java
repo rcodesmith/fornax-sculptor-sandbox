@@ -22,21 +22,21 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public abstract class EventImpl extends ValueObjectImpl implements Event {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EventImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.EVENT;
-    }
+		return SculptormetamodelPackage.Literals.EVENT;
+	}
 
 } //EventImpl

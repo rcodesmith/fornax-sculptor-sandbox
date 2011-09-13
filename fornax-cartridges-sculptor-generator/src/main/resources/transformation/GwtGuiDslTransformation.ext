@@ -115,13 +115,13 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col
 // GuiEvent related transformations
 //////////////////////////////////////////////////////////////////////////////////
 create sculptorguimetamodel::GuiEvent this transformEvent(DslGuiEvent event, Module module) :
-	setModule(((DslGuiModule) event.eContainer).transformModule()) ->
+	setGuiModule(((DslGuiModule) event.eContainer).transformModule()) ->
 	setName(event.name) ->
 	setDoc(event.doc) ->
 	attributes.addAll(event.attributes.transformAttribute(module));
 	
-create sculptorguimetamodel::GuiAttribute this transformAttribute(DslGuiAttribute attr, Module module) :
-	setEvent(((DslEvent) attr.eContainer).transformEvent(module)) ->
+create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr, Module module) :
+//	setEvent(((DslEvent) attr.eContainer).transformEvent(module)) ->
 	setName(attr.name) ->
 	setDoc(attr.doc) ->
 	setType(attr.type);

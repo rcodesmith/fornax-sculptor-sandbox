@@ -305,15 +305,6 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	GuiEvent createGuiEvent();
 
 																/**
-	 * Returns a new object of class '<em>Gui Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Gui Attribute</em>'.
-	 * @generated
-	 */
-	GuiAttribute createGuiAttribute();
-
-																/**
 	 * Returns a new object of class '<em>Table Column</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

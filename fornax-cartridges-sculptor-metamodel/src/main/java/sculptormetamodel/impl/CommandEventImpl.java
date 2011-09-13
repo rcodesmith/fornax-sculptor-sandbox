@@ -22,21 +22,21 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class CommandEventImpl extends EventImpl implements CommandEvent {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CommandEventImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.COMMAND_EVENT;
-    }
+		return SculptormetamodelPackage.Literals.COMMAND_EVENT;
+	}
 
 } //CommandEventImpl

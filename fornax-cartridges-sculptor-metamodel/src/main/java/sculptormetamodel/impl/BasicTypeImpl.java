@@ -22,21 +22,21 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class BasicTypeImpl extends ValueObjectImpl implements BasicType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected BasicTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.BASIC_TYPE;
-    }
+		return SculptormetamodelPackage.Literals.BASIC_TYPE;
+	}
 
 } //BasicTypeImpl

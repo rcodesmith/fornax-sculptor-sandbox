@@ -6,24 +6,21 @@
  */
 package sculptorguimetamodel.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import sculptorguimetamodel.GuiAttribute;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 
-import sculptormetamodel.impl.NamedElementImpl;
+import sculptormetamodel.impl.DomainObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,34 +29,13 @@ import sculptormetamodel.impl.NamedElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sculptorguimetamodel.impl.GuiEventImpl#getModule <em>Module</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.GuiEventImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiEventImpl#getGuiModule <em>Gui Module</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
-	/**
-	 * The cached value of the '{@link #getModule() <em>Module</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getModule()
-	 * @generated
-	 * @ordered
-	 */
-	protected GuiModule module;
-
-	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList attributes;
-
+public class GuiEventImpl extends DomainObjectImpl implements GuiEvent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,16 +59,40 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuiModule getModule() {
-		if (module != null && module.eIsProxy()) {
-			InternalEObject oldModule = (InternalEObject)module;
-			module = (GuiModule)eResolveProxy(oldModule);
-			if (module != oldModule) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.GUI_EVENT__MODULE, oldModule, module));
-			}
+	public GuiModule getGuiModule() {
+		if (eContainerFeatureID() != SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE) return null;
+		return (GuiModule)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGuiModule(GuiModule newGuiModule, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newGuiModule, SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGuiModule(GuiModule newGuiModule) {
+		if (newGuiModule != eInternalContainer() || (eContainerFeatureID() != SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE && newGuiModule != null)) {
+			if (EcoreUtil.isAncestor(this, newGuiModule))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGuiModule != null)
+				msgs = ((InternalEObject)newGuiModule).eInverseAdd(this, SculptorguimetamodelPackage.GUI_MODULE__EVENTS, GuiModule.class, msgs);
+			msgs = basicSetGuiModule(newGuiModule, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return module;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE, newGuiModule, newGuiModule));
 	}
 
 	/**
@@ -100,32 +100,14 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuiModule basicGetModule() {
-		return module;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setModule(GuiModule newModule) {
-		GuiModule oldModule = module;
-		module = newModule;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_EVENT__MODULE, oldModule, module));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList getAttributes() {
-		if (attributes == null) {
-			attributes = new EObjectContainmentEList(GuiAttribute.class, this, SculptorguimetamodelPackage.GUI_EVENT__ATTRIBUTES);
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGuiModule((GuiModule)otherEnd, msgs);
 		}
-		return attributes;
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -135,8 +117,8 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_EVENT__ATTRIBUTES:
-				return ((InternalEList)getAttributes()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				return basicSetGuiModule(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -146,13 +128,23 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				return eInternalContainer().eInverseRemove(this, SculptorguimetamodelPackage.GUI_MODULE__EVENTS, GuiModule.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_EVENT__MODULE:
-				if (resolve) return getModule();
-				return basicGetModule();
-			case SculptorguimetamodelPackage.GUI_EVENT__ATTRIBUTES:
-				return getAttributes();
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				return getGuiModule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -164,12 +156,8 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_EVENT__MODULE:
-				setModule((GuiModule)newValue);
-				return;
-			case SculptorguimetamodelPackage.GUI_EVENT__ATTRIBUTES:
-				getAttributes().clear();
-				getAttributes().addAll((Collection)newValue);
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				setGuiModule((GuiModule)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,11 +170,8 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_EVENT__MODULE:
-				setModule((GuiModule)null);
-				return;
-			case SculptorguimetamodelPackage.GUI_EVENT__ATTRIBUTES:
-				getAttributes().clear();
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				setGuiModule((GuiModule)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -199,10 +184,8 @@ public class GuiEventImpl extends NamedElementImpl implements GuiEvent {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_EVENT__MODULE:
-				return module != null;
-			case SculptorguimetamodelPackage.GUI_EVENT__ATTRIBUTES:
-				return attributes != null && !attributes.isEmpty();
+			case SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE:
+				return getGuiModule() != null;
 		}
 		return super.eIsSet(featureID);
 	}

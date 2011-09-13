@@ -274,7 +274,7 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 */
 	public EList getEvents() {
 		if (events == null) {
-			events = new EObjectContainmentEList(GuiEvent.class, this, SculptorguimetamodelPackage.GUI_MODULE__EVENTS);
+			events = new EObjectContainmentWithInverseEList(GuiEvent.class, this, SculptorguimetamodelPackage.GUI_MODULE__EVENTS, SculptorguimetamodelPackage.GUI_EVENT__GUI_MODULE);
 		}
 		return events;
 	}
@@ -306,6 +306,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return basicSetApplication((GuiApplication)otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__VIEWS:
 				return ((InternalEList)getViews()).basicAdd(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
+				return ((InternalEList)getEvents()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}

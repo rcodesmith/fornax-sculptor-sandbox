@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/fornax-cartridges-sculptor-metamodel"/>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/4.6/junit-4.6.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/ch/qos/logback/logback-classic/0.9.28/logback-classic-0.9.28.jar"/>
@@ -20,6 +21,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/org.fornax.cartridges.sculptor.dsl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.fornax.cartridges.sculptor.gui.dsl"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/fornax-cartridges-sculptor-metamodel"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

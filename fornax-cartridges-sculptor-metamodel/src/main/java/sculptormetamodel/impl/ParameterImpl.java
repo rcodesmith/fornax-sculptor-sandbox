@@ -22,21 +22,21 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class ParameterImpl extends DomainObjectTypedElementImpl implements Parameter {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ParameterImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.PARAMETER;
-    }
+		return SculptormetamodelPackage.Literals.PARAMETER;
+	}
 
 } //ParameterImpl

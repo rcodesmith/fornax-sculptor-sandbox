@@ -91,7 +91,6 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET: return createPropertyReferringWidget();
 			case SculptorguimetamodelPackage.TABLE_WIDGET: return createTableWidget();
 			case SculptorguimetamodelPackage.GUI_EVENT: return createGuiEvent();
-			case SculptorguimetamodelPackage.GUI_ATTRIBUTE: return createGuiAttribute();
 			case SculptorguimetamodelPackage.TABLE_COLUMN: return createTableColumn();
 			case SculptorguimetamodelPackage.TEXT_AREA_WIDGET: return createTextAreaWidget();
 			case SculptorguimetamodelPackage.AUTOCOMPLETE_WIDGET: return createAutocompleteWidget();
@@ -412,16 +411,6 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public GuiEvent createGuiEvent() {
 		GuiEventImpl guiEvent = new GuiEventImpl();
 		return guiEvent;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GuiAttribute createGuiAttribute() {
-		GuiAttributeImpl guiAttribute = new GuiAttributeImpl();
-		return guiAttribute;
 	}
 
 																/**

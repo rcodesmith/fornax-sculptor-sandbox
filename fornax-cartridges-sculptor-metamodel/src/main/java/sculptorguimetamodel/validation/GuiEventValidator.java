@@ -18,6 +18,8 @@ import sculptorguimetamodel.GuiModule;
 public interface GuiEventValidator {
 	boolean validate();
 
+	boolean validateGuiModule(GuiModule value);
+
 	boolean validateModule(GuiModule value);
 
 	boolean validateAttributes(EList value);

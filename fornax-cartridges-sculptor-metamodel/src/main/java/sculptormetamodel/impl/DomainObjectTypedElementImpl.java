@@ -32,124 +32,124 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class DomainObjectTypedElementImpl extends TypedElementImpl implements DomainObjectTypedElement {
     /**
-     * The cached value of the '{@link #getDomainObjectType() <em>Domain Object Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDomainObjectType() <em>Domain Object Type</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getDomainObjectType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDomainObjectType()
+	 * @generated
+	 * @ordered
+	 */
 	protected DomainObject domainObjectType;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected DomainObjectTypedElementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.DOMAIN_OBJECT_TYPED_ELEMENT;
-    }
+		return SculptormetamodelPackage.Literals.DOMAIN_OBJECT_TYPED_ELEMENT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DomainObject getDomainObjectType() {
-        if (domainObjectType != null && domainObjectType.eIsProxy()) {
-            InternalEObject oldDomainObjectType = (InternalEObject)domainObjectType;
-            domainObjectType = (DomainObject)eResolveProxy(oldDomainObjectType);
-            if (domainObjectType != oldDomainObjectType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE, oldDomainObjectType, domainObjectType));
-            }
-        }
-        return domainObjectType;
-    }
+		if (domainObjectType != null && domainObjectType.eIsProxy()) {
+			InternalEObject oldDomainObjectType = (InternalEObject)domainObjectType;
+			domainObjectType = (DomainObject)eResolveProxy(oldDomainObjectType);
+			if (domainObjectType != oldDomainObjectType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE, oldDomainObjectType, domainObjectType));
+			}
+		}
+		return domainObjectType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DomainObject basicGetDomainObjectType() {
-        return domainObjectType;
-    }
+		return domainObjectType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setDomainObjectType(DomainObject newDomainObjectType) {
-        DomainObject oldDomainObjectType = domainObjectType;
-        domainObjectType = newDomainObjectType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE, oldDomainObjectType, domainObjectType));
-    }
+		DomainObject oldDomainObjectType = domainObjectType;
+		domainObjectType = newDomainObjectType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE, oldDomainObjectType, domainObjectType));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
-                if (resolve) return getDomainObjectType();
-                return basicGetDomainObjectType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
+				if (resolve) return getDomainObjectType();
+				return basicGetDomainObjectType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
-                setDomainObjectType((DomainObject)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
+				setDomainObjectType((DomainObject)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
-                setDomainObjectType((DomainObject)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
+				setDomainObjectType((DomainObject)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
-                return domainObjectType != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE:
+				return domainObjectType != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //DomainObjectTypedElementImpl

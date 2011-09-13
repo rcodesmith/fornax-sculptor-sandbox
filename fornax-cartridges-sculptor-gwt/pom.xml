@@ -123,6 +123,13 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		
+		<dependency>
+        	<groupId>org.fornax.utilities</groupId>
+        	<artifactId>fornax-utilities-xtendtools</artifactId>
+        	<version>1.0.0</version>
+		</dependency>
+    
    </dependencies>
   
   <build>

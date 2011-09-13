@@ -132,12 +132,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference for : DomainObject
     Reference columns : TableColumn<<0..*>>
 
-  Class GuiEvent -> NamedElement
-    Reference module : GuiModule
-    Reference attributes : GuiAttribute<<0..*>>
-
-  Class GuiAttribute -> TypedElement
-    Reference event : GuiEvent<<1..1>>
+  Class GuiEvent -> DomainObject
+    Reference guiModule : GuiModule<<1..1>>
 
   Class TableColumn -> NamedElement
     Attribute label : EString

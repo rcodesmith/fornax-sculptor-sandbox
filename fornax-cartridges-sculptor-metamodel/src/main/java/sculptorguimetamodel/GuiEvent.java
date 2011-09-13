@@ -6,8 +6,7 @@
  */
 package sculptorguimetamodel;
 
-import org.eclipse.emf.common.util.EList;
-import sculptormetamodel.NamedElement;
+import sculptormetamodel.DomainObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +16,7 @@ import sculptormetamodel.NamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sculptorguimetamodel.GuiEvent#getModule <em>Module</em>}</li>
- *   <li>{@link sculptorguimetamodel.GuiEvent#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiEvent#getGuiModule <em>Gui Module</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,47 +24,33 @@ import sculptormetamodel.NamedElement;
  * @model
  * @generated
  */
-public interface GuiEvent extends NamedElement {
+public interface GuiEvent extends DomainObject {
+
 	/**
-	 * Returns the value of the '<em><b>Module</b></em>' reference.
+	 * Returns the value of the '<em><b>Gui Module</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Module</em>' reference isn't clear,
+	 * If the meaning of the '<em>Gui Module</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Module</em>' reference.
-	 * @see #setModule(GuiModule)
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiEvent_Module()
-	 * @model
+	 * @return the value of the '<em>Gui Module</em>' container reference.
+	 * @see #setGuiModule(GuiModule)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiEvent_GuiModule()
+	 * @see sculptorguimetamodel.GuiModule#getEvents
+	 * @model opposite="events" required="true" transient="false"
 	 * @generated
 	 */
-	GuiModule getModule();
+	GuiModule getGuiModule();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.GuiEvent#getModule <em>Module</em>}' reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.GuiEvent#getGuiModule <em>Gui Module</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Module</em>' reference.
-	 * @see #getModule()
+	 * @param value the new value of the '<em>Gui Module</em>' container reference.
+	 * @see #getGuiModule()
 	 * @generated
 	 */
-	void setModule(GuiModule value);
-
-	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link sculptorguimetamodel.GuiAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attributes</em>' containment reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiEvent_Attributes()
-	 * @model type="sculptorguimetamodel.GuiAttribute" containment="true"
-	 * @generated
-	 */
-	EList getAttributes();
-
+	void setGuiModule(GuiModule value);
 } // GuiEvent

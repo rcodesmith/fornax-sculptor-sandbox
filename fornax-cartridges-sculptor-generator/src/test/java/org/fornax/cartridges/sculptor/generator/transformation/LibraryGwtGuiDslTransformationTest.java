@@ -12,13 +12,13 @@ import org.junit.Test;
 
 import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.GuiApplication;
-import sculptorguimetamodel.GuiAttribute;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.View;
+import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Service;
 
@@ -43,6 +43,7 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 
     @Test
     public void assertApplication() {
+    	assertNotNull(guiApp);
         assertEquals("LibraryWeb", guiApp.getName());
     }
 
@@ -117,7 +118,7 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     	assertEquals("This is some MyEvent1 documentation", event.getDoc());
     	
     	assertEquals(2, event.getAttributes().size());
-    	GuiAttribute attr1 = (GuiAttribute) getNamedElement("attr1", event.getAttributes());
+    	Attribute attr1 = (Attribute) getNamedElement("attr1", event.getAttributes());
     	assertNotNull(attr1);
     	assertEquals("attr1", attr1.getName());
     	assertNull(attr1.getDoc());

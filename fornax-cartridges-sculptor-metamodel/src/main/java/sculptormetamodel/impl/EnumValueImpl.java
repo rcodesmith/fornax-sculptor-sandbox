@@ -37,111 +37,111 @@ import sculptormetamodel.SculptormetamodelPackage;
  */
 public class EnumValueImpl extends NamedElementImpl implements EnumValue {
 	/**
-     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getParameters()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList parameters;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EnumValueImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass() {
-        return SculptormetamodelPackage.Literals.ENUM_VALUE;
-    }
+		return SculptormetamodelPackage.Literals.ENUM_VALUE;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList getParameters() {
-        if (parameters == null) {
-            parameters = new EObjectContainmentEList(EnumConstructorParameter.class, this, SculptormetamodelPackage.ENUM_VALUE__PARAMETERS);
-        }
-        return parameters;
-    }
+		if (parameters == null) {
+			parameters = new EObjectContainmentEList(EnumConstructorParameter.class, this, SculptormetamodelPackage.ENUM_VALUE__PARAMETERS);
+		}
+		return parameters;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
-                return ((InternalEList)getParameters()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
+				return ((InternalEList)getParameters()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
-                return getParameters();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
+				return getParameters();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
-                getParameters().clear();
-                getParameters().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
-                getParameters().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
+				getParameters().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
-                return parameters != null && !parameters.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SculptormetamodelPackage.ENUM_VALUE__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //EnumValueImpl
