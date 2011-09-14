@@ -124,7 +124,15 @@ create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr
 //	setEvent(((DslEvent) attr.eContainer).transformEvent(module)) ->
 	setName(attr.name) ->
 	setDoc(attr.doc) ->
-	setType(attr.type);
+	setType(attr.type.translateGwtTypeName());
+	
+	
+//////////////////////////////////////////////////////////////////////////////////
+// Transformation helper functions.  Currently overlapped with sofeauihelpers.ext
+//////////////////////////////////////////////////////////////////////////////////
+String translateGwtTypeName(String typeStr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(java.lang.String);
+
 	
 	
 	

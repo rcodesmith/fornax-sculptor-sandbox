@@ -146,6 +146,19 @@ String getGwtTypeName(NamedElement e) :
 	error("getGwtTypeName(NamedElement) called, which means the following object was unexpected: " + e) ->
 	null;
 
+String translateGwtType(TypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtType(sculptormetamodel.TypedElement);
+
+String translateGwtTypeName(String typeStr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(java.lang.String);
+
+//String translateGwtTypeName(DslGuiAttribute) :
+//    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(sculptormetamodel.Attribute, java.lang.String);
+
+
+//attr.translateGwtTypeName
+
+
 
 String getGwtTypeName(ViewDataProperty prop) :
 	null;

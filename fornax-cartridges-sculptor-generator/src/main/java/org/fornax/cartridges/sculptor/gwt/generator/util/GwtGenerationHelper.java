@@ -262,14 +262,11 @@ public class GwtGenerationHelper {
     // Copied from GenerationHelper
     // For cases where the implementation type differs from the declared type.
     private static String getJavaTypeImpl(String modelType) {
-    	// Added by Ron.  Change to use something like GeneratorProperties
-    	if("Date".equals(modelType)) {
-    		return "java.util.Date";
-    	} else if ("DateTime".equals(modelType)){
-    		return "java.util.Date";
-    	} else if ("Timestamp".equals(modelType)) {
-    		return "java.util.Date";
+    	String newType = translateGwtTypeName(modelType);
+    	if(newType != null && !newType.equals(modelType)) {
+    		return newType;
     	}
+    	
         String javaType = GeneratorProperties.getJavaTypeImpl(modelType);
         if (javaType == null) {
             return getJavaType(modelType);
@@ -278,7 +275,27 @@ public class GwtGenerationHelper {
         }
     }
 
+    public static String translateGwtType(TypedElement elem) {
+    	return translateGwtTypeName(elem.getType());
+    }
     
+    public static String translateGwtTypeName(String modelType) {
+    	// Added by Ron.  Change to use something like GeneratorProperties
+    	if("Date".equals(modelType)) {
+    		return "java.util.Date";
+    	} else if ("DateTime".equals(modelType)){
+    		return "java.util.Date";
+    	} else if ("Timestamp".equals(modelType)) {
+    		return "java.util.Date";
+    	} else {
+    		return modelType;
+    	}
+    	
+    }
+    
+    public static String translateGwtTypeName(Attribute attr, String modelType) {
+    	return translateGwtTypeName(modelType);
+    }    
     
     // Copied from GenerationHelper
     public static String getImplTypeName(TypedElement element) {

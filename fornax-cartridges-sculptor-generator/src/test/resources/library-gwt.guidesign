@@ -56,6 +56,10 @@ gui LibraryWeb for Library {
 			
 			"This is some documentation"
 			Integer attr2;
+			
+			Date date1;
+			
+			DateTime dateTime1;
 		}
 	}
 }
