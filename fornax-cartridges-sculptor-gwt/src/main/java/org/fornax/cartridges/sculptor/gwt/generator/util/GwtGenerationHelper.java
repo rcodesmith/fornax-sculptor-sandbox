@@ -5,7 +5,6 @@ import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
 import sculptormetamodel.Application;
-import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
 import sculptormetamodel.Module;
@@ -14,6 +13,7 @@ import sculptormetamodel.Reference;
 import sculptormetamodel.Service;
 import sculptormetamodel.ServiceOperation;
 import sculptormetamodel.TypedElement;
+import sculptormetamodel.impl.ServiceOperationImpl;
 
 public class GwtGenerationHelper {
 
@@ -275,7 +275,7 @@ public class GwtGenerationHelper {
         }
     }
 
-    public static String translateGwtType(String modelType) {
+    public static String translateGwtTypeName(String modelType) {
     	// Added by Ron.  Change to use something like GeneratorProperties
     	if("Date".equals(modelType)) {
     		return "java.util.Date";
@@ -286,7 +286,6 @@ public class GwtGenerationHelper {
     	} else {
     		return modelType;
     	}
-    	
     }
     
     
@@ -296,4 +295,12 @@ public class GwtGenerationHelper {
         return surroundWithCollectionType(type, element, true);
     }
 
+    
+    
+    // Model transformation functions
+    
+//    public static ServiceOperation transformServiceProxyOperation(ServiceOperation domainOperation) {
+//    	ServiceOperationImpl proxyOp = new ServiceOperationImpl();
+//    	
+//    }
 }

@@ -100,33 +100,37 @@ Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
 gwtServiceAsyncInterfaceName(Service svc) :
 	"Gwt" + svc.name + "Async";
 	
-gwtServiceAsyncInterfacePackage(Service svc) :
-	gwtBasePackage(svc.module) + ".client";
+gwtServiceAsyncInterfacePackage(ServiceProxy svc) :
+	gwtBasePackage(svc.for.module) + ".client";
 	
-gwtServiceAsyncInterface(Service svc) :
+gwtServiceAsyncInterface(ServiceProxy svc) :
 	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
 
 // Sync interface helpers
 	
-gwtServiceSyncInterfaceName(Service svc) :
+gwtServiceSyncInterfaceName(ServiceProxy svc) :
 	"Gwt" + svc.name;
 	
-gwtServiceSyncInterfacePackage(Service svc) :
-	gwtBasePackage(svc.module) + ".client";
+gwtServiceSyncInterfacePackage(ServiceProxy svc) :
+	gwtBasePackage(svc.for.module) + ".client";
 
 	
-gwtServiceSyncInterface(Service svc) :
+gwtServiceSyncInterface(ServiceProxy svc) :
 	gwtServiceSyncInterfacePackage(svc) + "." + gwtServiceSyncInterfaceName(svc);
 
 // Service impl helpers
 	
-gwtServiceImplName(Service svc) :
+gwtServiceImplName(ServiceProxy svc) :
 	"Gwt" + svc.name + "Impl";
 	
-gwtServiceImplPackage(Service svc) :
-	gwtBasePackage(svc.module) + ".server";
+gwtServiceImplPackage(ServiceProxy svc) :
+	gwtBasePackage(svc.for.module) + ".server";
 	
-gwtServiceImpl(Service svc) :
+gwtServiceImpl(ServiceProxy svc) :
+	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
+
+gwtServiceImplFqn(ServiceProxy svc) :
+	debugTrace("Module: " + svc.module) ->
 	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
 
 String getGwtParameterTypeName(Parameter e, Module module) :

@@ -75,7 +75,9 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	setHint(module.hint) ->
 	
 //	module.for.transform().modules.addAll() ->
+	// Added by ron for GWT:
 	serviceDependencies.addAll(module.serviceDependencies.getMetamodelService(module.for.transform())) ->
+	serviceProxies.addAll(module.serviceDependencies.transformServiceProxy(module.for.transform())) ->
 	views.addAll(module.views.transformView(module.for.transform())) ->
 	events.addAll(module.events.transformEvent(module.for.transform())) ->
 	userTasks.addAll(module.userTasks.transformTask(module.for.transform()));

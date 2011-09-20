@@ -5,3 +5,7 @@ generated
 bin
 src-gen
 plugin.xml_gen
+fornax-cartridges-sculptor-smartclient-bt
+fornax-cartridges-sculptor-metamodel.edit
+fornax-cartridges-sculptor-metamodel.editor
+fornax-cartridges-sculptor-metamodel.tests

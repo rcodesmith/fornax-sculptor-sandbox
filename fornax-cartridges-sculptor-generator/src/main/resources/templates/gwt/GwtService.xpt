@@ -7,10 +7,10 @@
 
 
 «DEFINE gwtService(Module module) FOR GuiModule»
-	«LET this.getAllUsedServices() AS services»
-		«EXPAND gwtAsyncService(this) FOREACH services»
-		«EXPAND gwtSyncService(this) FOREACH services»
-		«EXPAND gwtServiceImpl(this, module) FOREACH services»
+	«LET this.serviceProxies AS serviceProxies»
+		«EXPAND gwtAsyncService FOREACH serviceProxies»
+		«EXPAND gwtSyncService FOREACH serviceProxies»
+		«EXPAND gwtServiceImpl FOREACH serviceProxies»
 	«ENDLET»
 
 «ENDDEFINE»
@@ -18,7 +18,7 @@
 
 «REM»Async interface«ENDREM»
 
-«DEFINE gwtAsyncService(GuiModule guiModule) FOR Service»
+«DEFINE gwtAsyncService FOR ServiceProxy»
 
     «FILE javaFileName(gwtServiceAsyncInterface(this))»
     	package «gwtServiceAsyncInterfacePackage(this)»;
@@ -53,7 +53,7 @@
 «REM»Sync interface«ENDREM»
 
 
-«DEFINE gwtSyncService(GuiModule guiModule) FOR Service»
+«DEFINE gwtSyncService FOR ServiceProxy»
 
     «FILE javaFileName(gwtServiceSyncInterface(this))»
     	package «gwtServiceSyncInterfacePackage(this)»;
@@ -84,9 +84,13 @@
 «REM»Service implementation«ENDREM»
 
 
-«DEFINE gwtServiceImpl(GuiModule guiModule, Module module) FOR Service»
+«DEFINE gwtServiceImpl FOR ServiceProxy»
+	«EXPAND gwtServiceImpl((GuiModule)this.eContainer, ((GuiModule)this.eContainer).for) FOR this»
+«ENDDEFINE»
 
-    «FILE javaFileName(gwtServiceImpl(this))»
+«DEFINE gwtServiceImpl(GuiModule guiModule, Module module) FOR ServiceProxy»
+
+    «FILE javaFileName(gwtServiceImplFqn(this))»
     	package «gwtServiceImplPackage(this)»;
     	
     	import org.fornax.cartridges.sculptor.framework.gwt.shared.domain.ServiceTechnologyException;
@@ -104,12 +108,18 @@
 
 			
 		@org.springframework.beans.factory.annotation.Autowired
-		private «this.getServiceapiPackage()».«this.name» «name.toFirstLower()»;
+		private «this.for.getServiceapiPackage()».«this.name» «name.toFirstLower()»;
 		
 		«EXPAND gwtServiceImplOperation(module) FOREACH this.operations.select(op|op.isPublicVisibility())»
 		}
 	«ENDFILE»
 «ENDDEFINE»
+
+
+«DEFINE gwtServiceImplOperation FOR ServiceOperation»
+	«EXPAND gwtServiceImplOperation(this.getModule()) FOR this»
+«ENDDEFINE»
+
 
 
 «DEFINE gwtServiceImplOperation(Module module) FOR ServiceOperation»

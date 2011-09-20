@@ -1,7 +1,8 @@
 package org.fornax.cartridges.sculptor.generator.gwt;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -79,14 +80,16 @@ public class GuiEventTest extends TransformationTestBase {
 		Assert.assertTrue(javaCode.contains("private String attr1;"));
 		
 		Assert.assertTrue(javaCode.contains("private java.util.Date date1;"));
+		
+		assertTrue(javaCode.contains("public java.util.Date getDate1()"));
+		
+		assertTrue(javaCode.contains("public void setDate1(java.util.Date date1) {"));
 	}
-
 	
 	protected String getFileText(String filePath) {
 		File f = new File(
 				TEMP, filePath);
-		return getFileText(f);
-		
+		return getFileText(f);		
 	}
 
 	protected String getFileText(File textFile) {

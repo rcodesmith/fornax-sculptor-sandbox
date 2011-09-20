@@ -33,11 +33,55 @@ extension extensions::properties;
 
 
 //
-// View related transformations
+// Service proxy-related transformations
 //
 
 Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
-	module.services.select(s | s.name == dslServiceDep.dependency.name);
+	module.services.select(s | s.name == dslServiceDep.dependency.name).first();
+
+
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+	let domainService = getMetamodelService(dslServiceDep, module) :
+	setFor(domainService) ->
+	setName(domainService.name) ->
+	setDoc(domainService.doc) ->
+	setModule(module) ->
+	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation()) ->
+	debugTrace("transformServiceProxy: module = " + module) ->
+	debugTrace("transformServiceProxy: domain service module = " + this.for.module);
+
+
+// 	operations.addAll(domainServiceOp.operations.transformServiceProxyOperation());
+ 	
+ 	
+create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation) :
+//	setService(((DslService) operation.eContainer).transform()) ->
+	setFor(domainOperation) ->
+    setDoc(domainOperation.doc) ->
+    setName(domainOperation.name) ->
+    setVisibility(domainOperation.visibility) ->
+    parameters.addAll(domainOperation.parameters.reject(p | p.type == "org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContext").transformGwtServiceOperationParam()) ->
+    setCollectionType(domainOperation.collectionType) ->
+    setMapKeyType(domainOperation.mapKeyType) ->
+    setType(domainOperation.type) ->
+    setDomainObjectType(domainOperation.domainObjectType) ->
+    setThrows(domainOperation.throws) ->
+    setHint(domainOperation.hint);
+
+
+Parameter transformGwtServiceOperationParam(Parameter param) :
+	let newParam = new Parameter :
+		newParam.setCollectionType(param.collectionType) ->
+		newParam.setDoc(param.doc) ->
+		newParam.setDomainObjectType(param.domainObjectType) ->
+		newParam.setHint(param.hint) ->
+		newParam.setMapKeyType(param.mapKeyType) ->
+		newParam.setName(param.name) ->
+		newParam.setType(param.type);
+
+//
+// View related transformations
+//
 
 // TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
 create sculptorguimetamodel::View this transformView(DslView view, Module module) :

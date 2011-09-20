@@ -14,7 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import sculptorguimetamodel.*;
 
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.DomainObjectTypedElement;
 import sculptormetamodel.NamedElement;
+import sculptormetamodel.Operation;
+import sculptormetamodel.Service;
+import sculptormetamodel.ServiceOperation;
 import sculptormetamodel.TypedElement;
 
 /**
@@ -384,6 +388,25 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = casePropertyReferringWidget(numberSpinnerWidget);
 				if (result == null) result = caseWidget(numberSpinnerWidget);
 				if (result == null) result = caseNamedElement(numberSpinnerWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.SERVICE_PROXY: {
+				ServiceProxy serviceProxy = (ServiceProxy)theEObject;
+				Object result = caseServiceProxy(serviceProxy);
+				if (result == null) result = caseService(serviceProxy);
+				if (result == null) result = caseNamedElement(serviceProxy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.SERVICE_PROXY_OPERATION: {
+				ServiceProxyOperation serviceProxyOperation = (ServiceProxyOperation)theEObject;
+				Object result = caseServiceProxyOperation(serviceProxyOperation);
+				if (result == null) result = caseServiceOperation(serviceProxyOperation);
+				if (result == null) result = caseOperation(serviceProxyOperation);
+				if (result == null) result = caseDomainObjectTypedElement(serviceProxyOperation);
+				if (result == null) result = caseTypedElement(serviceProxyOperation);
+				if (result == null) result = caseNamedElement(serviceProxyOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -962,6 +985,36 @@ public class SculptorguimetamodelSwitch {
 	}
 
 																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Proxy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseServiceProxy(ServiceProxy object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Proxy Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Proxy Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseServiceProxyOperation(ServiceProxyOperation object) {
+		return null;
+	}
+
+																/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -988,6 +1041,81 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseDomainObject(DomainObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseService(Service object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseTypedElement(TypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Domain Object Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Domain Object Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseDomainObjectTypedElement(DomainObjectTypedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseOperation(Operation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseServiceOperation(ServiceOperation object) {
 		return null;
 	}
 

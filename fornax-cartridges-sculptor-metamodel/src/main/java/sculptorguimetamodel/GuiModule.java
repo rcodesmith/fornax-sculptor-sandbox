@@ -26,6 +26,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getViews <em>Views</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getServiceProxies <em>Service Proxies</em>}</li>
  * </ul>
  * </p>
  *
@@ -183,5 +184,21 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getServiceDependencies();
+
+				/**
+	 * Returns the value of the '<em><b>Service Proxies</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.ServiceProxy}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Proxies</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Proxies</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_ServiceProxies()
+	 * @model type="sculptorguimetamodel.ServiceProxy" containment="true"
+	 * @generated
+	 */
+	EList getServiceProxies();
 
 } // GuiModule

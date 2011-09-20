@@ -4,6 +4,7 @@ ApplicationPart Person {
         Service PersonService {
           findPersonByName => PersonRepository.findPersonByName;
           PagedResult<@Person> findPaged(String name, PagingParameter pagingParameter);
+          List<@Person> findByDate(Date entryDate);
         }
      
         Entity Person {

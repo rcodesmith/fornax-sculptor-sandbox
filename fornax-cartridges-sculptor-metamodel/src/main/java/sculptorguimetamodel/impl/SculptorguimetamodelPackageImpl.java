@@ -38,6 +38,8 @@ import sculptorguimetamodel.ReferenceViewProperty;
 import sculptorguimetamodel.RichTextAreaWidget;
 import sculptorguimetamodel.SculptorguimetamodelFactory;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
+import sculptorguimetamodel.ServiceProxy;
+import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.SubTaskTransition;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
@@ -328,6 +330,20 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	private EClass numberSpinnerWidgetEClass = null;
 
 																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass serviceProxyEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass serviceProxyOperationEClass = null;
+
+																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -497,6 +513,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getGuiModule_ServiceDependencies() {
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(6);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGuiModule_ServiceProxies() {
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(7);
 	}
 
 				/**
@@ -1359,6 +1384,42 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getServiceProxy() {
+		return serviceProxyEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServiceProxy_For() {
+		return (EReference)serviceProxyEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getServiceProxyOperation() {
+		return serviceProxyOperationEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServiceProxyOperation_For() {
+		return (EReference)serviceProxyOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -1395,6 +1456,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiModuleEClass, GUI_MODULE__VIEWS);
 		createEReference(guiModuleEClass, GUI_MODULE__EVENTS);
 		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_DEPENDENCIES);
+		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_PROXIES);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__SUB_TASK_TRANSITIONS);
@@ -1526,6 +1588,12 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		inputDateWidgetEClass = createEClass(INPUT_DATE_WIDGET);
 
 		numberSpinnerWidgetEClass = createEClass(NUMBER_SPINNER_WIDGET);
+
+		serviceProxyEClass = createEClass(SERVICE_PROXY);
+		createEReference(serviceProxyEClass, SERVICE_PROXY__FOR);
+
+		serviceProxyOperationEClass = createEClass(SERVICE_PROXY_OPERATION);
+		createEReference(serviceProxyOperationEClass, SERVICE_PROXY_OPERATION__FOR);
 	}
 
 	/**
@@ -1588,6 +1656,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		richTextAreaWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		inputDateWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		numberSpinnerWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		serviceProxyEClass.getESuperTypes().add(theSculptormetamodelPackage.getService());
+		serviceProxyOperationEClass.getESuperTypes().add(theSculptormetamodelPackage.getServiceOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1603,6 +1673,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_Views(), this.getView(), this.getView_Module(), "views", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Events(), this.getGuiEvent(), this.getGuiEvent_GuiModule(), "events", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_ServiceProxies(), this.getServiceProxy(), null, "serviceProxies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_SubTaskTransitions(), this.getSubTaskTransition(), null, "subTaskTransitions", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1734,6 +1805,12 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(inputDateWidgetEClass, InputDateWidget.class, "InputDateWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(numberSpinnerWidgetEClass, NumberSpinnerWidget.class, "NumberSpinnerWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(serviceProxyEClass, ServiceProxy.class, "ServiceProxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServiceProxy_For(), theSculptormetamodelPackage.getService(), null, "for", null, 1, 1, ServiceProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serviceProxyOperationEClass, ServiceProxyOperation.class, "ServiceProxyOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServiceProxyOperation_For(), theSculptormetamodelPackage.getServiceOperation(), null, "for", null, 1, 1, ServiceProxyOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

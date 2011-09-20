@@ -45,6 +45,9 @@ public class «gwtEventBaseClass()» extends com.google.gwt.event.shared.GwtEvent<
 	«EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH attributes»
 	
 
+	«EXPAND templates::domain::DomainObjectAttribute::propertyAccessors FOREACH attributes»
+
+
 }
 
 «ENDFILE»

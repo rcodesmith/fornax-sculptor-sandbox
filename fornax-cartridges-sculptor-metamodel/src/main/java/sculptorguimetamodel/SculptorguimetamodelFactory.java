@@ -368,6 +368,24 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	NumberSpinnerWidget createNumberSpinnerWidget();
 
 																/**
+	 * Returns a new object of class '<em>Service Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Proxy</em>'.
+	 * @generated
+	 */
+	ServiceProxy createServiceProxy();
+
+																/**
+	 * Returns a new object of class '<em>Service Proxy Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Proxy Operation</em>'.
+	 * @generated
+	 */
+	ServiceProxyOperation createServiceProxyOperation();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

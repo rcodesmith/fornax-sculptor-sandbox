@@ -65,10 +65,14 @@
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/3.0.4.RELEASE/spring-web-3.0.4.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-web/3.0.4.RELEASE/spring-web-3.0.4.RELEASE-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/antlr/stringtemplate/3.1-b1/stringtemplate-3.1-b1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" sourcepath="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fornax-cartridges-sculptor-generator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/fornax-cartridges-sculptor-metamodel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.fornax.cartridges.sculptor.dsl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.fornax.cartridges.sculptor.gui.dsl"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

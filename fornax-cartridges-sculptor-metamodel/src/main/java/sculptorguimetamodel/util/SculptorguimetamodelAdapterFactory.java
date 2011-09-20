@@ -16,7 +16,11 @@ import org.eclipse.emf.ecore.EObject;
 import sculptorguimetamodel.*;
 
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.DomainObjectTypedElement;
 import sculptormetamodel.NamedElement;
+import sculptormetamodel.Operation;
+import sculptormetamodel.Service;
+import sculptormetamodel.ServiceOperation;
 import sculptormetamodel.TypedElement;
 
 /**
@@ -188,11 +192,32 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseNumberSpinnerWidget(NumberSpinnerWidget object) {
 				return createNumberSpinnerWidgetAdapter();
 			}
+			public Object caseServiceProxy(ServiceProxy object) {
+				return createServiceProxyAdapter();
+			}
+			public Object caseServiceProxyOperation(ServiceProxyOperation object) {
+				return createServiceProxyOperationAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
 			public Object caseDomainObject(DomainObject object) {
 				return createDomainObjectAdapter();
+			}
+			public Object caseService(Service object) {
+				return createServiceAdapter();
+			}
+			public Object caseTypedElement(TypedElement object) {
+				return createTypedElementAdapter();
+			}
+			public Object caseDomainObjectTypedElement(DomainObjectTypedElement object) {
+				return createDomainObjectTypedElementAdapter();
+			}
+			public Object caseOperation(Operation object) {
+				return createOperationAdapter();
+			}
+			public Object caseServiceOperation(ServiceOperation object) {
+				return createServiceOperationAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -745,6 +770,34 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ServiceProxy <em>Service Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ServiceProxy
+	 * @generated
+	 */
+	public Adapter createServiceProxyAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ServiceProxyOperation <em>Service Proxy Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ServiceProxyOperation
+	 * @generated
+	 */
+	public Adapter createServiceProxyOperationAdapter() {
+		return null;
+	}
+
+																/**
 	 * Creates a new adapter for an object of class '{@link sculptormetamodel.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -769,6 +822,76 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDomainObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.Service <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.Service
+	 * @generated
+	 */
+	public Adapter createServiceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.TypedElement <em>Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.TypedElement
+	 * @generated
+	 */
+	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.DomainObjectTypedElement <em>Domain Object Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.DomainObjectTypedElement
+	 * @generated
+	 */
+	public Adapter createDomainObjectTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.Operation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.Operation
+	 * @generated
+	 */
+	public Adapter createOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.ServiceOperation <em>Service Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.ServiceOperation
+	 * @generated
+	 */
+	public Adapter createServiceOperationAdapter() {
 		return null;
 	}
 

@@ -235,13 +235,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Service Proxies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__SERVICE_PROXIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -3314,6 +3323,306 @@ public interface SculptorguimetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ServiceProxyImpl <em>Service Proxy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ServiceProxyImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getServiceProxy()
+	 * @generated
+	 */
+	int SERVICE_PROXY = 38;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__NAME = SculptormetamodelPackage.SERVICE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__DOC = SculptormetamodelPackage.SERVICE__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__HINT = SculptormetamodelPackage.SERVICE__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__OPERATIONS = SculptormetamodelPackage.SERVICE__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Repository Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__REPOSITORY_DEPENDENCIES = SculptormetamodelPackage.SERVICE__REPOSITORY_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Module</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__MODULE = SculptormetamodelPackage.SERVICE__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Other Dependencies</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__OTHER_DEPENDENCIES = SculptormetamodelPackage.SERVICE__OTHER_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Service Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__SERVICE_DEPENDENCIES = SculptormetamodelPackage.SERVICE__SERVICE_DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Gap Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__GAP_CLASS = SculptormetamodelPackage.SERVICE__GAP_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Web Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__WEB_SERVICE = SculptormetamodelPackage.SERVICE__WEB_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Remote Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__REMOTE_INTERFACE = SculptormetamodelPackage.SERVICE__REMOTE_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Local Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__LOCAL_INTERFACE = SculptormetamodelPackage.SERVICE__LOCAL_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Subscribe</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__SUBSCRIBE = SculptormetamodelPackage.SERVICE__SUBSCRIBE;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__FOR = SculptormetamodelPackage.SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Service Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_FEATURE_COUNT = SculptormetamodelPackage.SERVICE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ServiceProxyOperationImpl <em>Service Proxy Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ServiceProxyOperationImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getServiceProxyOperation()
+	 * @generated
+	 */
+	int SERVICE_PROXY_OPERATION = 39;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__NAME = SculptormetamodelPackage.SERVICE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__DOC = SculptormetamodelPackage.SERVICE_OPERATION__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__HINT = SculptormetamodelPackage.SERVICE_OPERATION__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__TYPE = SculptormetamodelPackage.SERVICE_OPERATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Collection Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__COLLECTION_TYPE = SculptormetamodelPackage.SERVICE_OPERATION__COLLECTION_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Map Key Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__MAP_KEY_TYPE = SculptormetamodelPackage.SERVICE_OPERATION__MAP_KEY_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Domain Object Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__DOMAIN_OBJECT_TYPE = SculptormetamodelPackage.SERVICE_OPERATION__DOMAIN_OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Throws</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__THROWS = SculptormetamodelPackage.SERVICE_OPERATION__THROWS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__VISIBILITY = SculptormetamodelPackage.SERVICE_OPERATION__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__PARAMETERS = SculptormetamodelPackage.SERVICE_OPERATION__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Publish</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__PUBLISH = SculptormetamodelPackage.SERVICE_OPERATION__PUBLISH;
+
+	/**
+	 * The feature id for the '<em><b>Delegate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__DELEGATE = SculptormetamodelPackage.SERVICE_OPERATION__DELEGATE;
+
+	/**
+	 * The feature id for the '<em><b>Service</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__SERVICE = SculptormetamodelPackage.SERVICE_OPERATION__SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Service Delegate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__SERVICE_DELEGATE = SculptormetamodelPackage.SERVICE_OPERATION__SERVICE_DELEGATE;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION__FOR = SculptormetamodelPackage.SERVICE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Service Proxy Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY_OPERATION_FEATURE_COUNT = SculptormetamodelPackage.SERVICE_OPERATION_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3442,6 +3751,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGuiModule_ServiceDependencies();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getServiceProxies <em>Service Proxies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Service Proxies</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getServiceProxies()
+	 * @see #getGuiModule()
+	 * @generated
+	 */
+	EReference getGuiModule_ServiceProxies();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
@@ -4453,6 +4773,48 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getNumberSpinnerWidget();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ServiceProxy <em>Service Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Proxy</em>'.
+	 * @see sculptorguimetamodel.ServiceProxy
+	 * @generated
+	 */
+	EClass getServiceProxy();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.ServiceProxy#getFor <em>For</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For</em>'.
+	 * @see sculptorguimetamodel.ServiceProxy#getFor()
+	 * @see #getServiceProxy()
+	 * @generated
+	 */
+	EReference getServiceProxy_For();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ServiceProxyOperation <em>Service Proxy Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Proxy Operation</em>'.
+	 * @see sculptorguimetamodel.ServiceProxyOperation
+	 * @generated
+	 */
+	EClass getServiceProxyOperation();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.ServiceProxyOperation#getFor <em>For</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For</em>'.
+	 * @see sculptorguimetamodel.ServiceProxyOperation#getFor()
+	 * @see #getServiceProxyOperation()
+	 * @generated
+	 */
+	EReference getServiceProxyOperation_For();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4573,6 +4935,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__SERVICE_DEPENDENCIES = eINSTANCE.getGuiModule_ServiceDependencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Proxies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_MODULE__SERVICE_PROXIES = eINSTANCE.getGuiModule_ServiceProxies();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -5405,6 +5775,42 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NUMBER_SPINNER_WIDGET = eINSTANCE.getNumberSpinnerWidget();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ServiceProxyImpl <em>Service Proxy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ServiceProxyImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getServiceProxy()
+		 * @generated
+		 */
+		EClass SERVICE_PROXY = eINSTANCE.getServiceProxy();
+
+		/**
+		 * The meta object literal for the '<em><b>For</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_PROXY__FOR = eINSTANCE.getServiceProxy_For();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ServiceProxyOperationImpl <em>Service Proxy Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ServiceProxyOperationImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getServiceProxyOperation()
+		 * @generated
+		 */
+		EClass SERVICE_PROXY_OPERATION = eINSTANCE.getServiceProxyOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>For</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_PROXY_OPERATION__FOR = eINSTANCE.getServiceProxyOperation_For();
 
 	}
 
