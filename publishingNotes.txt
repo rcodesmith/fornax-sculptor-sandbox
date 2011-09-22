@@ -1,0 +1,19 @@
+perl -pi -e 's/2.0.0-gwt/2.0.1-gwt/g' */pom.xml
+  582  cd fornax-cartridges-sculptor-parent
+  583  mvn clean install
+
+git commit -a -m 'upped version to 2.0.1-gwt'
+
+git push origin my-extensions
+
+mvn deploy -DaltDeploymentRepository=pub-scupltor::default::file:///Users/ron/Documents/3rdPartySrc/sculptor-dev/fornax-sculptor-sandbox-pages/repository
+
+
+in /Users/ron/Documents/3rdPartySrc/sculptor-dev/fornax-sculptor-sandbox-pages:
+update-directory-index.sh
+git add repository
+
+git commit -a -m 'version 2.0.1-gwt'
+
+git push origin gh-pages
+
