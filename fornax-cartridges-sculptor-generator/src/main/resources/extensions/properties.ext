@@ -214,6 +214,9 @@ String mapPropertyEditor(String modelType) :
 boolean hasProjectNature(String nature) :
 	JAVA org.fornax.cartridges.sculptor.generator.util.GeneratorProperties.hasProjectNature(java.lang.String);
 
+boolean isGuiDefaultsToBeCreated() :
+	getBooleanProperty("gui.createDefaults");
+	
 boolean isJSFCrudGuiToBeGenerated() :
 	getBooleanProperty("generate.jsfCrudGui");
 

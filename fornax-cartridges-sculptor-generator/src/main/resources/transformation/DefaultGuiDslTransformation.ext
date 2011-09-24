@@ -32,32 +32,39 @@ extension org::fornax::cartridges::sculptor::dsl::Extensions;
 
 
 addDefault(DslGuiApplication gui, Application app) :
-	// if no modules have been added in the gui dsl, add default based on business dsl
-	addDefaultModules(gui) ->
+	if isGuiDefaultsToBeCreated() then {
+	
+		// if no modules have been added in the gui dsl, add default based on business dsl
+		addDefaultModules(gui) ->
 
-	// TODO - future release
-	//moveTopTasks(gui) ->
+		// TODO - future release
+		//moveTopTasks(gui) ->
 
-	// Basic types might need modification if the shortcut syntax have been used, for example:
-	// 'ssn' instead of 'ssn.country' and ssn.number'. In that case 'ssn' is removed and
-	// 'ssn.country' and 'ssn.number' are added.
-	gui.modules.userTasks.modifyBasicTypes() ->
+		// Basic types might need modification if the shortcut syntax have been used, for example:
+		// 'ssn' instead of 'ssn.country' and ssn.number'. In that case 'ssn' is removed and
+		// 'ssn.country' and 'ssn.number' are added.
+		gui.modules.userTasks.modifyBasicTypes() ->
 	
-	// if no tasks have been added in the gui dsl, add default based on business dsl
-	gui.modules.addDefaultTasks(gui) ->
+		// if no tasks have been added in the gui dsl, add default based on business dsl
+		gui.modules.addDefaultTasks(gui) ->
 	
-	// if no view properties have been added in the gui dsl, add default based on business dsl
-	gui.modules.userTasks.addDefaultDslGuiViewProperties() ->
+		// if no view properties have been added in the gui dsl, add default based on business dsl
+		gui.modules.userTasks.addDefaultDslGuiViewProperties() ->
 	
-	// if user has added a spec for listing a reference, this reference should also be in the 
-	// viewProperties list for the task
-	gui.modules.userTasks.addMissingReferences() ->
+		// if user has added a spec for listing a reference, this reference should also be in the 
+		// viewProperties list for the task
+		gui.modules.userTasks.addMissingReferences() ->
 
-	// if no list subtasks have been added in the gui dsl, add default based on business dsl
-	gui.modules.userTasks.addDefaultListSubtasks() ->
+		// if no list subtasks have been added in the gui dsl, add default based on business dsl
+		gui.modules.userTasks.addDefaultListSubtasks() ->
 	
-	// add system attributes
-	gui.modules.userTasks.addSystemAttributes();
+		// add system attributes
+		gui.modules.userTasks.addSystemAttributes()
+	}
+	
+	else {
+		null
+	};
 	
 	
 addDefaultModules(DslGuiApplication gui) :
