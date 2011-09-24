@@ -46,6 +46,8 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     @BeforeClass
     public static void before() throws Exception {
         System.setProperty("project.nature", "business-tier, rcp");
+        System.setProperty("gui.createDefaults", "false");
+        
         initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
         guiApp = (GuiApplication) ctx.get("guiModel");
         

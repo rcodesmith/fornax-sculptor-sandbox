@@ -45,6 +45,13 @@ ApplicationPart Person {
         	NORWAY,
         	DENMARK
         }
+        
+        
+        CommandEvent CreatePersonCmd {
+        	not persistent
+        	
+        	- @Ssn ssn;
+        }
     }
   
    
