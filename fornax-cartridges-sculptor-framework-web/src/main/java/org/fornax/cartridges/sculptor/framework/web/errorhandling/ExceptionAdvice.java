@@ -20,13 +20,14 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.ConstraintViolation;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.fornax.cartridges.sculptor.framework.errorhandling.ApplicationException;
 import org.fornax.cartridges.sculptor.framework.errorhandling.OptimisticLockingException;
 import org.fornax.cartridges.sculptor.framework.errorhandling.SystemException;
 import org.fornax.cartridges.sculptor.framework.errorhandling.ValidationException;
-import org.hibernate.validator.InvalidValue;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.remoting.RemoteAccessException;
 import org.springframework.webflow.execution.RequestContext;
@@ -139,11 +140,11 @@ public class ExceptionAdvice implements MethodInterceptor {
         requestContext.getMessageContext().addMessage(
                 new MessageBuilder().error().code(e.getErrorCode()).defaultText(e.getMessage()).build());
         if (e.getInvalidValues() != null) {
-            for (InvalidValue each : e.getInvalidValues()) {
+            for (ConstraintViolation<?> each : e.getInvalidValues()) {
 
                 requestContext.getMessageContext().addMessage(
                         new MessageBuilder().error().code(
-                                each.getBeanClass() + "." + each.getPropertyName() + ".invalidValue").defaultText(
+                                each.getRootBeanClass().getName() + "." + each.getPropertyPath().toString() + ".invalidValue").defaultText(
                                 each.toString()).build());
 
             }

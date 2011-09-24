@@ -19,11 +19,11 @@ package org.fornax.cartridges.sculptor.framework.validation.validator;
 
 import java.util.Map;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
 import org.fornax.cartridges.sculptor.framework.errorhandling.ValidationException;
 import org.fornax.cartridges.sculptor.framework.validation.ValidationUtils;
-import org.hibernate.validator.ClassValidator;
-import org.hibernate.validator.InvalidStateException;
-import org.hibernate.validator.InvalidValue;
 
 
 /**
@@ -32,41 +32,44 @@ import org.hibernate.validator.InvalidValue;
  * @author Oliver Ringel
  *
  */
-public class DomainObjectValidator<T> extends ClassValidator<T> {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Constructor
-	 *
-	 * @param beanClass
-	 */
-	public DomainObjectValidator(Class<T> beanClass) {
-		super(beanClass);
-	}
-
-	/**
-	 * Throws an InvalidDomainObjectException if bean validation fails
-	 *
-	 * @param bean bean to validate
-	 */
-	@Override
-	public void assertValid(T bean) {
-	    try {
-	        super.assertValid(bean);
-	    } catch (InvalidStateException e) {
-	        ValidationException ex = new ValidationException(e.getMessage());
-	        ex.setInvalidValues(e.getInvalidValues());
-	        throw ex;
-	    }
-	}
-
-	/**
-	 * Handling invalid values as map
-	 *
-	 * @param bean bean to validate
-	 * @return map containing invalid properties
-	 */
-	public Map<String, InvalidValue> getInvalidValuesAsMap(T bean) {
-		return ValidationUtils.getInvalidValuesAsMap(getInvalidValues(bean));
-	}
+public class DomainObjectValidator {
 }
+//
+//public class DomainObjectValidator<T> extends ClassValidator<T> {
+//	private static final long serialVersionUID = 1L;
+//
+//	/**
+//	 * Constructor
+//	 *
+//	 * @param beanClass
+//	 */
+//	public DomainObjectValidator(Class<T> beanClass) {
+//		super(beanClass);
+//	}
+//
+//	/**
+//	 * Throws an InvalidDomainObjectException if bean validation fails
+//	 *
+//	 * @param bean bean to validate
+//	 */
+//	@Override
+//	public void assertValid(T bean) {
+//	    try {
+//	        super.assertValid(bean);
+//	    } catch (ConstraintViolationException e) {
+//	        ValidationException ex = new ValidationException(e.getMessage());
+//	        ex.setInvalidValues(e.getConstraintViolations());
+//	        throw ex;
+//	    }
+//	}
+//
+//	/**
+//	 * Handling invalid values as map
+//	 *
+//	 * @param bean bean to validate
+//	 * @return map containing invalid properties
+//	 */
+//	public Map<String, ConstraintViolation> getInvalidValuesAsMap(T bean) {
+//		return ValidationUtils.getInvalidValuesAsMap(getInvalidValues(bean));
+//	}
+//}

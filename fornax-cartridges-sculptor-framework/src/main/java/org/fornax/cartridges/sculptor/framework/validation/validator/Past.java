@@ -18,13 +18,14 @@ package org.fornax.cartridges.sculptor.framework.validation.validator;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.hibernate.validator.ValidatorClass;
+import javax.validation.Constraint;
 
 /**
  * Check that a Date, a Calendar, LocalDate and DateTime or a string
@@ -32,8 +33,8 @@ import org.hibernate.validator.ValidatorClass;
  * 
  */
 @Documented
-@ValidatorClass(PastValidator.class)
-@Target({ METHOD, FIELD })
+@Constraint(validatedBy = PastValidator.class)
+@Target({ METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 public @interface Past {
     String message() default "{validator.past}";

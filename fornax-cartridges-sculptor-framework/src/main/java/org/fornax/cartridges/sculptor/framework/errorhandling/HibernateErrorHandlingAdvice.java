@@ -27,7 +27,7 @@ import java.sql.SQLException;
 import org.hibernate.HibernateException;
 import org.hibernate.StaleObjectStateException;
 import org.hibernate.StaleStateException;
-import org.hibernate.validator.InvalidStateException;
+import javax.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.ThrowsAdvice;
@@ -54,13 +54,13 @@ public class HibernateErrorHandlingAdvice implements ThrowsAdvice {
     /**
      * handles Hibernate validation exception
      */
-    public void afterThrowing(Method m, Object[] args, Object target, InvalidStateException e) {
+    public void afterThrowing(Method m, Object[] args, Object target, ConstraintViolationException e) {
         Logger log = LoggerFactory.getLogger(target.getClass());
         LogMessage message = new LogMessage(mapLogCode(ValidationException.ERROR_CODE), excMessage(e));
         log.debug("{}", message);
         ValidationException newException = new ValidationException(e.getMessage());
         newException.setLogged(true);
-        newException.setInvalidValues(e.getInvalidValues());
+        newException.setInvalidValues(e.getConstraintViolations());
         throw newException;
     }
 

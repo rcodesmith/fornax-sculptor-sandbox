@@ -20,7 +20,7 @@ package org.fornax.cartridges.sculptor.framework.validation;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hibernate.validator.InvalidValue;
+import javax.validation.ConstraintViolation;
 
 
 /**
@@ -36,11 +36,11 @@ public class ValidationUtils {
 	 * @param bean bean to validate
 	 * @return map containing invalid properties
 	 */
-	public static Map<String, InvalidValue> getInvalidValuesAsMap(InvalidValue[] invalidValues)
+	public static Map<String, ConstraintViolation<?>> getInvalidValuesAsMap(ConstraintViolation<?>[] invalidValues)
 	{
-		Map<String, InvalidValue> invalidValuesMap = new HashMap<String, InvalidValue>();
-		for (InvalidValue invalidValue : invalidValues) {
-			invalidValuesMap.put(invalidValue.getPropertyPath(), invalidValue);
+		Map<String, ConstraintViolation<?>> invalidValuesMap = new HashMap<String, ConstraintViolation<?>>();
+		for (ConstraintViolation<?> invalidValue : invalidValues) {
+			invalidValuesMap.put(invalidValue.getPropertyPath().toString(), invalidValue);
 		}
 		return invalidValuesMap;
 	}
