@@ -27,6 +27,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceProxies <em>Service Proxies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}</li>
  * </ul>
  * </p>
  *
@@ -200,5 +201,21 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getServiceProxies();
+
+				/**
+	 * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.GuiCommand}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commands</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commands</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Commands()
+	 * @model type="sculptorguimetamodel.GuiCommand" containment="true"
+	 * @generated
+	 */
+	EList getCommands();
 
 } // GuiModule

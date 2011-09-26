@@ -4,6 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
+import sculptorguimetamodel.GuiModule;
 import sculptormetamodel.Application;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
@@ -19,6 +20,22 @@ public class GwtGenerationHelper {
 
     private static final String GWT_DOMAIN_PKG = ".gwt.shared.domain";
 
+
+	public static String getGwtPackage(GuiModule guiModule) {
+        return getClientPackage(guiModule, GeneratorProperties.getProperty("package.gwt"));
+    }
+
+	private static String getClientPackage(GuiModule guiModule, String subPackage) {
+        String base = guiModule.getBasePackage();
+        if (base == null) {
+            base = guiModule.getApplication().getBasePackage();
+            if (guiModule.getName() != null && !guiModule.getName().equals("")) {
+                base += "." + guiModule.getName();
+            }
+            base += "." + subPackage;
+        }
+        return base;
+    }
 
 
     public static String getToDtoConversionExpression(TypedElement attribute, String domainAccessorExpr) {

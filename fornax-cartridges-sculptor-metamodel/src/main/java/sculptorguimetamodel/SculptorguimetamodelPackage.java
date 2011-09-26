@@ -244,13 +244,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__SERVICE_PROXIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Commands</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__COMMANDS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -3623,6 +3632,224 @@ public interface SculptorguimetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiCommandImpl <em>Gui Command</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GuiCommandImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiCommand()
+	 * @generated
+	 */
+	int GUI_COMMAND = 40;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__NAME = SculptormetamodelPackage.DOMAIN_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__DOC = SculptormetamodelPackage.DOMAIN_OBJECT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__HINT = SculptormetamodelPackage.DOMAIN_OBJECT__HINT;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__REFERENCES = SculptormetamodelPackage.DOMAIN_OBJECT__REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Extends</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__EXTENDS = SculptormetamodelPackage.DOMAIN_OBJECT__EXTENDS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__ATTRIBUTES = SculptormetamodelPackage.DOMAIN_OBJECT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__ABSTRACT = SculptormetamodelPackage.DOMAIN_OBJECT__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Repository</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__REPOSITORY = SculptormetamodelPackage.DOMAIN_OBJECT__REPOSITORY;
+
+	/**
+	 * The feature id for the '<em><b>Module</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__MODULE = SculptormetamodelPackage.DOMAIN_OBJECT__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Optimistic Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__OPTIMISTIC_LOCKING = SculptormetamodelPackage.DOMAIN_OBJECT__OPTIMISTIC_LOCKING;
+
+	/**
+	 * The feature id for the '<em><b>Cache</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__CACHE = SculptormetamodelPackage.DOMAIN_OBJECT__CACHE;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__PACKAGE = SculptormetamodelPackage.DOMAIN_OBJECT__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Database Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__DATABASE_TABLE = SculptormetamodelPackage.DOMAIN_OBJECT__DATABASE_TABLE;
+
+	/**
+	 * The feature id for the '<em><b>Extends Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__EXTENDS_NAME = SculptormetamodelPackage.DOMAIN_OBJECT__EXTENDS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__VALIDATE = SculptormetamodelPackage.DOMAIN_OBJECT__VALIDATE;
+
+	/**
+	 * The feature id for the '<em><b>Gap Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__GAP_CLASS = SculptormetamodelPackage.DOMAIN_OBJECT__GAP_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__INHERITANCE = SculptormetamodelPackage.DOMAIN_OBJECT__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Discriminator Column Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__DISCRIMINATOR_COLUMN_VALUE = SculptormetamodelPackage.DOMAIN_OBJECT__DISCRIMINATOR_COLUMN_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Aggregate Root</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__AGGREGATE_ROOT = SculptormetamodelPackage.DOMAIN_OBJECT__AGGREGATE_ROOT;
+
+	/**
+	 * The feature id for the '<em><b>Belongs To Aggregate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__BELONGS_TO_AGGREGATE = SculptormetamodelPackage.DOMAIN_OBJECT__BELONGS_TO_AGGREGATE;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__OPERATIONS = SculptormetamodelPackage.DOMAIN_OBJECT__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Traits</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__TRAITS = SculptormetamodelPackage.DOMAIN_OBJECT__TRAITS;
+
+	/**
+	 * The number of structural features of the '<em>Gui Command</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3762,6 +3989,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGuiModule_ServiceProxies();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Commands</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getCommands()
+	 * @see #getGuiModule()
+	 * @generated
+	 */
+	EReference getGuiModule_Commands();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
@@ -4815,6 +5053,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getServiceProxyOperation_For();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiCommand <em>Gui Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gui Command</em>'.
+	 * @see sculptorguimetamodel.GuiCommand
+	 * @generated
+	 */
+	EClass getGuiCommand();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4943,6 +5191,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__SERVICE_PROXIES = eINSTANCE.getGuiModule_ServiceProxies();
+
+		/**
+		 * The meta object literal for the '<em><b>Commands</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_MODULE__COMMANDS = eINSTANCE.getGuiModule_Commands();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -5811,6 +6067,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SERVICE_PROXY_OPERATION__FOR = eINSTANCE.getServiceProxyOperation_For();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiCommandImpl <em>Gui Command</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GuiCommandImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiCommand()
+		 * @generated
+		 */
+		EClass GUI_COMMAND = eINSTANCE.getGuiCommand();
 
 	}
 

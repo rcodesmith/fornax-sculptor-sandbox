@@ -4,6 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
+import sculptorguimetamodel.GuiModule;
 import sculptormetamodel.Application;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
@@ -125,6 +126,9 @@ public class GwtGenerationHelper {
         
     }
     
+    
+
+	
     private static String translateBasicTypes(Parameter parameter) {
     	// TODO: Reuse other code that derives GWT domain package.  Must be used in GwtDto.xpt
     	String typeName = parameter.getType();

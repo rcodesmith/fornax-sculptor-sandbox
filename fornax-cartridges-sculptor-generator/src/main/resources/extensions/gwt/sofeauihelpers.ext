@@ -32,11 +32,20 @@ String gwtDefaultExtendsClassName(DomainObject domainObject) :
 	let result = defaultExtendsClass(domainObject.simpleMetaTypeName()) :
 	(result == "" ? abstractDomainObjectClass() : result);
 
+
+
 String gwtDefaultExtendsClassName(DataTransferObject domainObject) :
 	defaultExtendsClass(domainObject.simpleMetaTypeName());
 	
 String gwtDefaultExtendsClassName(Trait domainObject) :
 	defaultExtendsClass(domainObject.simpleMetaTypeName());
+
+String gwtDefaultExtendsClassName(GuiCommand domainObject) :
+	let result = defaultExtendsClass(domainObject.simpleMetaTypeName()) :
+	(result == "" ? abstractGwtCommandClass() : result);
+
+String abstractGwtCommandClass() :
+	fw("gwt.shared.domain.AbstractGwtCommand");
 	
 	
 
@@ -53,6 +62,12 @@ String getFieldUniqueCssId(ViewDataProperty property) :
 
 String gwtBasePackage(Module module) :
    module.getBasePackage() + ".gwt";
+   
+
+
+String getGwtPackage(GuiModule guiModule) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getGwtPackage(sculptorguimetamodel.GuiModule);
+
 
 String gwtXmlFileName(Module module) :
     module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.name.toFirstUpper() + "UI" + ".gwt.xml";
@@ -69,11 +84,18 @@ String moduleGwtMain(Module module) :
 String gwtDomainPackage(Module module) :
    gwtBasePackage(module) + ".shared.domain";
 
+String gwtDomainPackage(GuiModule module) :
+   getGwtPackage(module) + ".shared.domain";
+
+
 //String gwtDomainPackage(Enum enum) :
 //   gwtDomainPackage(do.module);
 
 String gwtDomainPackage(DomainObject do) :
    gwtDomainPackage(do.module);
+
+String gwtDomainPackage(GuiCommand do) :
+   gwtDomainPackage((GuiModule)do.eContainer);
 
 String fqnGwtDto(Reference ref) :
 	gwtDomainPackage(ref.to) + "." + ref.to.name;
@@ -130,7 +152,7 @@ gwtServiceImpl(ServiceProxy svc) :
 	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
 
 gwtServiceImplFqn(ServiceProxy svc) :
-	debugTrace("Module: " + svc.module) ->
+//	debugTrace("Module: " + svc.module) ->
 	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
 
 String getGwtParameterTypeName(Parameter e, Module module) :

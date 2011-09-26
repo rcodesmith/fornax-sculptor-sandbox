@@ -21,6 +21,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference events : GuiEvent<<0..*>>
     Reference serviceDependencies : Service<<0..*>>
     Reference serviceProxies : ServiceProxy<<0..*>>
+    Reference commands : GuiCommand<<0..*>>
 
   Class UserTask -> NamedElement
     Reference subTaskTransitions : SubTaskTransition<<0..*>>
@@ -158,3 +159,5 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class ServiceProxyOperation -> ServiceOperation
     Reference for : ServiceOperation<<1..1>>
+
+  Class GuiCommand -> DomainObject

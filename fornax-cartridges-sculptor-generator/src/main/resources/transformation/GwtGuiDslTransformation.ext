@@ -32,6 +32,7 @@ extension extensions::guihelper;
 extension extensions::properties;
 
 
+
 //
 // Service proxy-related transformations
 //
@@ -170,6 +171,54 @@ create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr
 	setDoc(attr.doc) ->
 	setType(attr.type.translateGwtTypeName());
 	
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiCommand related transformations
+//////////////////////////////////////////////////////////////////////////////////
+create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent dslCmd, Module module) :
+	setName(dslCmd.name) ->
+	setDoc(dslCmd.doc) ->
+	attributes.addAll(dslCmd.attributes.transformToGwt()) ->
+	references.addAll(dslCmd.references.transformToGwt(this))
+	;
+	
+	
+create sculptormetamodel::Attribute this transformToGwt(DslAttribute attribute) :
+    setDoc(attribute.doc) ->
+    setName(attribute.name) ->
+    setType(attribute.type) ->
+    setCollectionType(convertCollectionTypeEnum(attribute.collectionType)) ->
+    setChangeable(!attribute.notChangeable) ->
+    setRequired(attribute.required) ->
+    setNullable(attribute.nullable) ->
+    setLength(attribute.length) ->
+    setValidate(attribute.handleValidation()) ->
+    setHint(attribute.hint) ->
+    setTransient(attribute.transient) ->
+    setVisibility(convertVisibility(attribute.visibility));
+
+create sculptormetamodel::Reference this transformToGwt(DslReference reference, DomainObject owner) :
+	setFrom(owner) ->
+    setDoc(reference.doc) ->
+    setName(reference.name) ->
+    setCollectionType(convertCollectionTypeEnum(reference.collectionType)) ->
+    setMany(reference.collectionType != null && reference.collectionType != DslCollectionType::None) ->
+    setChangeable(!reference.notChangeable) ->
+    setRequired(reference.required) ->
+    setNullable(reference.nullable) ->
+    setInverse(reference.inverse) ->
+    setCascade(reference.cascade) ->
+    setFetch(reference.fetch) ->
+    setOrderBy(reference.orderBy) ->
+    setTo(reference.domainObjectType.transform()) ->
+    setValidate(reference.handleValidation()) ->
+    setHint(reference.hint) ->
+    setTransient(reference.transient) ->
+    setVisibility(convertVisibility(reference.visibility)) ->
+    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null ?
+      setOpposite(reference.oppositeHolder.opposite.transform()):
+      null)
+    ;
 	
 //////////////////////////////////////////////////////////////////////////////////
 // Transformation helper functions.  Currently overlapped with sofeauihelpers.ext
@@ -179,4 +228,57 @@ String translateGwtTypeName(String typeStr) :
 
 	
 	
+//////////////////////////////////////////////////////////////////////////////////
+// DSL transformation helper functions.  Currently overlapped with DslTransformation.ext
+//////////////////////////////////////////////////////////////////////////////////
+private String convertCollectionTypeEnum(DslCollectionType collectionType) :
+	if (collectionType == null || collectionType == DslCollectionType::None) then
+		null
+	else
+		collectionType.toString();
+
+private String handleValidation(DslAttribute attribute) :
+    ((attribute.validate != null) ? attribute.validate : "") +
+	handleParameterizedAnnotation("range", "min,max,message", attribute.range, attribute.validate) +
+	handleParameterizedAnnotation("length", "max,min,message", attribute.length, attribute.validate) +
+	handleParameterizedAnnotation("digits", "integerDigits,fractionalDigits,message", attribute.digits, attribute.validate) +
+//	handleParameterizedAnnotation("size", "min,max,message", attribute.size, attribute.validate) +
+	handleBooleanAnnotation("assertTrue", attribute.assertTrue, attribute.assertTrueMessage, attribute.validate) +
+	handleBooleanAnnotation("assertFalse", attribute.assertFalse, attribute.assertFalseMessage, attribute.validate) +
+	handleBooleanAnnotation("creditCardNumber", attribute.creditCardNumber, attribute.creditCardNumberMessage, attribute.validate) +
+	handleBooleanAnnotation("ean", attribute.ean, attribute.eanMessage, attribute.validate) +
+	handleBooleanAnnotation("email", attribute.email, attribute.emailMessage, attribute.validate) +
+	handleBooleanAnnotation("notNull", !attribute.nullable && !attribute.type.isPrimitiveType(), attribute.nullableMessage, attribute.validate) +
+	handleBooleanAnnotation("notEmpty", attribute.notEmpty, attribute.notEmptyMessage, attribute.validate) +
+	handleBooleanAnnotation("future", attribute.future, attribute.futureMessage, attribute.validate) +
+	handleBooleanAnnotation("past", attribute.past, attribute.pastMessage, attribute.validate) +
+	handleSimpleAnnotation("min", attribute.min, attribute.validate) +
+	handleSimpleAnnotation("max", attribute.max, attribute.validate) +
+	// TODO: add missing parameter 'flags', needs special handling
+	handleParameterizedAnnotation("pattern", "regex,message", attribute.pattern, attribute.validate)
+	// TODO: add support for 'patterns' annotation
+	;
+
+private String handleValidation(DslReference reference) :
+    ((reference.validate != null) ? reference.validate : "") +
+	handleParameterizedAnnotation("size", "min,max,message", reference.size, reference.validate) +
+	handleBooleanAnnotation("notNull", !reference.nullable, reference.nullableMessage, reference.validate) +
+	handleBooleanAnnotation("notEmpty", reference.notEmpty, reference.notEmptyMessage, reference.validate) +
+	handleBooleanAnnotation("valid", reference.valid, reference.validMessage, reference.validate)
+	;
+
+private String handleParameterizedAnnotation(String annotation, String parameterNames, String parameters, String validate) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.handleParameterizedAnnotation(java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+
+private String handleSimpleAnnotation(String annotation, String value, String validate) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.handleSimpleAnnotation(java.lang.String, java.lang.String, java.lang.String);
+
+private String handleBooleanAnnotation(String annotation, Boolean value, String message, String validate) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.handleBooleanAnnotation(java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String);
+
+private String convertVisibility(DslVisibility dslVisibility) :
+	dslVisibility == null ?
+		"public" :
+		dslVisibility.toString();
+
 	

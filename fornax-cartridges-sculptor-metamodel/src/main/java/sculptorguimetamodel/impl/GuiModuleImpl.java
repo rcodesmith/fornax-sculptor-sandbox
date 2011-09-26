@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import sculptorguimetamodel.GuiApplication;
+import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
@@ -51,6 +52,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceProxies <em>Service Proxies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getCommands <em>Commands</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,6 +138,16 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * @ordered
 	 */
 	protected EList serviceProxies;
+
+				/**
+	 * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommands()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList commands;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -320,6 +332,18 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getCommands() {
+		if (commands == null) {
+			commands = new EObjectContainmentEList(GuiCommand.class, this, SculptorguimetamodelPackage.GUI_MODULE__COMMANDS);
+		}
+		return commands;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
@@ -353,6 +377,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
 				return ((InternalEList)getServiceProxies()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
+				return ((InternalEList)getCommands()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -394,6 +420,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return getServiceDependencies();
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
 				return getServiceProxies();
+			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
+				return getCommands();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -434,6 +462,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getServiceProxies().clear();
 				getServiceProxies().addAll((Collection)newValue);
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
+				getCommands().clear();
+				getCommands().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -469,6 +501,9 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
 				getServiceProxies().clear();
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
+				getCommands().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -496,6 +531,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return serviceDependencies != null && !serviceDependencies.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
 				return serviceProxies != null && !serviceProxies.isEmpty();
+			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
+				return commands != null && !commands.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

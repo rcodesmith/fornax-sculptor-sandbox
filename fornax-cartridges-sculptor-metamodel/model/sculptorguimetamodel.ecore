@@ -25,6 +25,8 @@
         eType="ecore:EClass sculptormetamodel.ecore#//Service"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serviceProxies" upperBound="-1"
         eType="#//ServiceProxy" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
+        eType="#//GuiCommand" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -170,4 +172,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="ServiceProxyOperation" eSuperTypes="sculptormetamodel.ecore#//ServiceOperation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" lowerBound="1" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiCommand" eSuperTypes="sculptormetamodel.ecore#//DomainObject"/>
 </ecore:EPackage>

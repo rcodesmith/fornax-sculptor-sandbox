@@ -37,6 +37,7 @@ public class GuiEventTest extends TransformationTestBase {
 	public static void before() throws Exception {
 		System.setProperty("project.nature", "business-tier, rcp");
 		System.setProperty("datetime.library", "joda");
+        System.setProperty("gui.createDefaults", "false");
 		initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
 		guiApp = (GuiApplication) ctx.get("guiModel");
 
@@ -47,6 +48,9 @@ public class GuiEventTest extends TransformationTestBase {
 	@AfterClass
 	public static void after() {
 		System.getProperties().remove("project.nature");
+		System.getProperties().remove("datetime.library");
+		System.getProperties().remove("gui.createDefaults");
+		
 
 	}
 

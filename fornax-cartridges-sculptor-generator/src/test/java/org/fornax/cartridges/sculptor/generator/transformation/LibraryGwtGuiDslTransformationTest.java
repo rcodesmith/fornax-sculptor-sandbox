@@ -2,6 +2,8 @@ package org.fornax.cartridges.sculptor.generator.transformation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,6 +22,7 @@ import org.junit.Test;
 
 import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.GuiApplication;
+import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.ServiceProxy;
@@ -27,8 +30,10 @@ import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.View;
+import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Parameter;
+import sculptormetamodel.Reference;
 import sculptormetamodel.Service;
 
 //@Ignore("Skip this test now, due to problems when running from maven")
@@ -46,7 +51,9 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     @BeforeClass
     public static void before() throws Exception {
         System.setProperty("project.nature", "business-tier, rcp");
+		System.setProperty("datetime.library", "joda");
         System.setProperty("gui.createDefaults", "false");
+        System.setProperty("package.gwt", "gwt");
         
         initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
         guiApp = (GuiApplication) ctx.get("guiModel");
@@ -59,6 +66,10 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     @AfterClass
     public static void after() {
         System.getProperties().remove("project.nature");
+		System.getProperties().remove("datetime.library");
+		System.getProperties().remove("gui.createDefaults");
+		System.getProperties().remove("package.gwt");
+
     }
 
     @Test
@@ -228,6 +239,73 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		
 	}
 	
+	@Test
+	public void assertCommand() {
+		EList cmds = personModule().getCommands();
+		assertEquals(1, cmds.size());
+		
+		GuiCommand cmd = (GuiCommand)getNamedElement("CreatePersonCmd", cmds);
+		assertNotNull(cmd);
+		assertEquals("CreatePersonCmd", cmd.getName());
+		
+		assertNull(cmd.getExtends());
+		assertNull(cmd.getExtendsName());
+		
+		
+		EList attrs = cmd.getAttributes();
+		assertEquals(1, attrs.size());
+		
+		Attribute birthDate = (Attribute)getNamedElement("birthDate", attrs);
+		assertNotNull(birthDate);
+		assertEquals("birthDate", birthDate.getName());
+		
+		EList refs = cmd.getReferences();
+		assertEquals(1, refs.size());
+		
+		Reference ssn = (Reference)getNamedElement("ssn", refs);
+		assertNotNull(ssn);
+		assertEquals("ssn", ssn.getName());
+		assertSame(cmd, ssn.getFrom());
+		
+		DomainObject ssnDto = ssn.getTo();
+		assertNotNull(ssnDto);
+		System.out.println("SSN DTO: " + ssnDto);
+		
+		// Right now, SSN object still belongs to module
+//		assertNull(ssnDto.getModule());
+		
+	}
+	
+	
+	@Test
+	public void assertGwtCommandBaseJavaCode() {
+		GuiCommand cmd = (GuiCommand)getNamedElement("CreatePersonCmd", personModule().getCommands());
+		
+		XpandUnit.xpand("templates::gwt::GwtCommand::gwtCommandBase", cmd,
+				new HashMap<String, Object>(), TEMP);
+
+		
+		String javaCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/shared/domain/CreatePersonCmd.java");
+
+		assertMatchesRegexp(javaCode, "package org\\.fornax\\.cartridges\\.sculptor\\.examples\\.library\\.person\\.gwt\\.shared\\.domain\\;");
+		assertContains(javaCode, "public class CreatePersonCmd extends org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractGwtCommand implements java.io.Serializable {");
+//		assertMatchesRegexp(javaCode, "public void findPersonByName\\(\\s*String name\\s*,\\s*com.google.gwt.user.client.rpc.AsyncCallback\\<java\\.util\\.List\\<org\\.fornax\\.cartridges\\.sculptor\\.examples\\.library\\.person\\.gwt\\.shared\\.domain\\.Person\\>\\> callback\\)\\;");
+		
+		// Make sure joda time types not being used
+		assertContains(javaCode, "private java.util.Date birthDate;");
+		
+		assertContains(javaCode, "private org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn;");
+		
+		assertContains(javaCode, "public java.util.Date getBirthDate() {");
+		
+		assertContains(javaCode, "public void setBirthDate(java.util.Date birthDate) {");
+
+		assertContains(javaCode, "public org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn getSsn() {");
+		assertContains(javaCode, "public void setSsn(org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn) {");
+	}
+
+	
+	
 	protected void validateServiceOperation(ServiceProxyOperation op, String expectedName, int expectedNumParams) {
 		assertEquals(expectedName, op.getName());
 		assertEquals(expectedName, op.getFor().getName());
@@ -258,10 +336,13 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 
 	protected void assertMatchesRegexp(String text, String regexp) {
 		Pattern p = Pattern.compile(regexp);
-		Assert.assertTrue("Text did not contain pattern \"" + regexp  + "\"", p.matcher(text).find());
-		
+		Assert.assertTrue("Text did not contain pattern \"" + regexp  + "\"", p.matcher(text).find());		
 	}
-	
+
+	protected void assertContains(String text, String subStr) {
+		Assert.assertTrue("Text did not contain substring \"" + subStr  + "\"", text.contains(subStr));		
+	}
+
 	
     private GuiModule personModule() {
         return (GuiModule) getNamedElement("person", guiApp.getModules());

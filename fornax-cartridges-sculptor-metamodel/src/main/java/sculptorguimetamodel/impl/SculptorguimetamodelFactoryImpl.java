@@ -100,6 +100,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.NUMBER_SPINNER_WIDGET: return createNumberSpinnerWidget();
 			case SculptorguimetamodelPackage.SERVICE_PROXY: return createServiceProxy();
 			case SculptorguimetamodelPackage.SERVICE_PROXY_OPERATION: return createServiceProxyOperation();
+			case SculptorguimetamodelPackage.GUI_COMMAND: return createGuiCommand();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -503,6 +504,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public ServiceProxyOperation createServiceProxyOperation() {
 		ServiceProxyOperationImpl serviceProxyOperation = new ServiceProxyOperationImpl();
 		return serviceProxyOperation;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuiCommand createGuiCommand() {
+		GuiCommandImpl guiCommand = new GuiCommandImpl();
+		return guiCommand;
 	}
 
 																/**

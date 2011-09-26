@@ -198,6 +198,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseServiceProxyOperation(ServiceProxyOperation object) {
 				return createServiceProxyOperationAdapter();
 			}
+			public Object caseGuiCommand(GuiCommand object) {
+				return createGuiCommandAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -794,6 +797,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServiceProxyOperationAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiCommand <em>Gui Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiCommand
+	 * @generated
+	 */
+	public Adapter createGuiCommandAdapter() {
 		return null;
 	}
 

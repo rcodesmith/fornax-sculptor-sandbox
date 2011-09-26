@@ -386,6 +386,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	ServiceProxyOperation createServiceProxyOperation();
 
 																/**
+	 * Returns a new object of class '<em>Gui Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gui Command</em>'.
+	 * @generated
+	 */
+	GuiCommand createGuiCommand();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

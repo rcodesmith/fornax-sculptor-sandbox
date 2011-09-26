@@ -1,0 +1,60 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+«DEFINE gwtCommand(Module module) FOR GuiModule»
+	«EXPAND gwtCommandBase FOREACH this.commands»
+
+«ENDDEFINE»
+
+«DEFINE gwtCommandBase FOR GuiCommand»
+    «LET attributes.exists(a | a.isUuid())  AS hasUuidAttribute -»
+    «FILE javaFileName(gwtDomainPackage(this) + "." + name )»
+«javaHeader()»
+package «gwtDomainPackage(this)»;
+
+	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
+public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
+	«EXPAND templates::domain::DomainObject::serialVersionUID»
+
+   	«EXPAND templates::gwt::GwtDto::attribute FOREACH attributes»
+
+    «EXPAND templates::gwt::GwtDto::gwtOneReferenceAttribute FOREACH references.select(r | !r.many)»
+    «EXPAND templates::gwt::GwtDto::manyReferenceAttribute FOREACH references.select(r | r.many)»
+
+
+	/**
+	 * Constructor
+	 */
+    public «name»() {
+    
+    }
+    
+    «EXPAND templates::gwt::GwtDto::gwtDtoPropertyConstructorBase»
+   	«EXPAND templates::gwt::GwtDto::limitedConstructor»
+
+    «EXPAND templates::gwt::GwtDto::propertyAccessors FOREACH attributes »
+
+    «EXPAND templates::gwt::GwtDto::oneReferenceAccessors FOREACH references.select(r | !r.many)»
+    «EXPAND templates::gwt::GwtDto::manyReferenceAccessors FOREACH references.select(r | r.many)»
+
+
+    «EXPAND templates::domain::DomainObject::toStringStyle»
+    «EXPAND templates::domain::DomainObject::acceptToString»
+    «EXPAND templates::gwt::GwtDto::keyGetter»
+    
+    «EXPAND templates::domain::DomainObjectTrait::traitInstance(this) FOREACH traits.select(e | !e.operations.isEmpty)»
+    «EXPAND templates::domain::DomainObjectTrait::delegateToTraitMethod FOREACH operations.select(e | !e.abstract && e.hasHint("trait"))»
+    «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
+    
+    «EXPAND templates::domain::DomainObject::domainObjectHook»
+
+
+
+}
+    «ENDFILE»
+    «ENDLET»
+«ENDDEFINE»
