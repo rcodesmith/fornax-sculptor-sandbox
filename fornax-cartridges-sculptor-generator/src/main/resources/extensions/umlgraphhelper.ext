@@ -38,7 +38,7 @@ boolean isAggregate(Reference ref) :
 	ref.isOneToMany() && ref.to.isEntityOrPersistentValueObject() && !ref.to.aggregateRoot;
 
 String dotFileName(Application app, Set[Module] focus, int detail) :
-	let detailPart = detail == 1 ? "" : (detail == 2 ? "-core-domain" : (detail == 3 ? "-overview" : "-dependencies")) :
+	let detailPart = detail == 0 ? "-entity" : (detail == 1 ? "" : (detail == 2 ? "-core-domain" : (detail == 3 ? "-overview" : "-dependencies"))) :
 	if (focus.size == app.visibleModules().size) then
 		"umlgraph" + detailPart + ".dot"
 	else 
@@ -135,11 +135,21 @@ private hasCoreDomainHint(NamedElement elem) :
 	elem.getHint("umlgraph") == "core";
 
 showCompartment(NamedElement elem, int detail) :
-	detail == 1 || (detail == 2 && elem.isCoreDomain());
+	detail <= 1 || (detail == 2 && elem.isCoreDomain());
 	
 String labeldistance(Reference ref) :
 	getProperty("umlgraph.labeldistance");
 
 String labelangle(Reference ref) :
 	getProperty("umlgraph.labelangle");
+	
+	
+boolean rejectFromDomain(xpand2::Type d, int detail) :
+	false;
+
+boolean rejectFromDomain(DomainObject d, int detail) :
+	detail == 0 ? CommandEvent.isInstance(d)  || !(Entity.isInstance(d) || ValueObject.isInstance(d)): false;
+
+boolean rejectFromDomain(BasicType d, int detail) :
+	false;
 	

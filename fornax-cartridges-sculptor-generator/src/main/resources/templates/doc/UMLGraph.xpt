@@ -5,6 +5,8 @@
 
 «DEFINE start FOR Application»
 	«LET visibleModules().toSet() AS mods»
+		«REM»detail 0 => all Domain (Entity, ValueObject) classes«ENDREM»
+		«EXPAND start(mods, 0)»
 		«REM»detail 1 => all«ENDREM»
 		«EXPAND start(mods, 1)»
 		«REM»detail 2 => core domain«ENDREM»
@@ -19,6 +21,7 @@
 		«IF mods.size > 1»
 			«FOREACH mods AS m»
 				«EXPAND start({m}.toSet(), 1)»
+				«EXPAND start({m}.toSet(), 0)»
 			«ENDFOREACH»
 		«ENDIF»
 	«ENDLET»
@@ -30,13 +33,16 @@
 	«EXPAND subGraphForModule(focus, detail) FOREACH focus.sortBy(e|e.name)»
 	«IF detail < 4»
 		«EXPAND InheritanceGraphProperties»
-		«EXPAND InheritanceToUML(focus, detail) FOREACH getAllDomainObjects().select(d|d.extends != null)»
+		«EXPAND InheritanceToUML(focus, detail) FOREACH getAllDomainObjects().select(d|d.extends != null).reject(e | e.rejectFromDomain(detail))»
 		«EXPAND RelationGraphProperties»
 		«EXPAND RelationToUML(focus, detail) FOREACH getAllReferences()
 			.reject(e | e.to.metaType == BasicType)
 			.reject(e | e.to.metaType == Enum)
+			.reject(e | e.to.metaType.rejectFromDomain(detail))
 			.sortBy(e | e.from.name + "->" + e.to.name + ": " + e.name)»
-		«EXPAND ServiceDependenciesToUML(focus, detail) FOREACH modules.services»
+		«IF detail > 0»
+			«EXPAND ServiceDependenciesToUML(focus, detail) FOREACH modules.services»
+		«ENDIF»		
 	«ELSE»
 		«EXPAND ModuleDependenciesToUML FOREACH focus»
 	«ENDIF»
@@ -68,9 +74,11 @@ digraph G {
 		subgraph cluster«name» {
 			label = "«name»"  
 			«IF focus.contains(this)»
-				«EXPAND ServiceToUML(focus, detail) FOREACH services.select(e|e.visible()).sortBy(e|e.name)»
-				«EXPAND ConsumerToUML(focus, detail) FOREACH consumers.select(e|e.visible()).sortBy(e|e.name)»
-				«EXPAND ObjectToUML(focus, detail) FOREACH domainObjects.select(e|e.visible()).sortBy(e|e.name)»
+				«IF detail > 0»		
+					«EXPAND ServiceToUML(focus, detail) FOREACH services.select(e|e.visible()).sortBy(e|e.name)»
+					«EXPAND ConsumerToUML(focus, detail) FOREACH consumers.select(e|e.visible()).sortBy(e|e.name)»
+				«ENDIF»
+				«EXPAND ObjectToUML(focus, detail) FOREACH domainObjects.select(e|e.visible()).reject(e | e.rejectFromDomain(detail)).sortBy(e|e.name)»
 			«ENDIF»
 		}
 	«ELSE»
@@ -252,7 +260,7 @@ digraph G {
 			edge [arrowtail="none" arrowhead = "open" «
 		ELSE -»
 	    	edge [arrowtail="none" arrowhead = "none" «
-		ENDIF »headlabel="«detail != 1 ? "" : this.referenceHeadLabel()»" taillabel="«detail != 1 ? "" : this.referenceTailLabel()»" labeldistance="«labeldistance()»" labelangle="«labelangle()»"]
+		ENDIF »headlabel="«detail > 1 ? "" : this.referenceHeadLabel()»" taillabel="«detail > 1 ? "" : this.referenceTailLabel()»" labeldistance="«labeldistance()»" labelangle="«labelangle()»"]
 	
 		«this.from.name» -> «this.to.name»
 	«ENDIF-»
