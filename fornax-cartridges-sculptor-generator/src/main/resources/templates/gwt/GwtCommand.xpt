@@ -5,16 +5,16 @@
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::sofeauihelpers»
 
-«DEFINE gwtCommand(Module module) FOR GuiModule»
+«DEFINE gwtCommands(Module module) FOR GuiModule»
 	«EXPAND gwtCommandBase FOREACH this.commands»
 
 «ENDDEFINE»
 
 «DEFINE gwtCommandBase FOR GuiCommand»
     «LET attributes.exists(a | a.isUuid())  AS hasUuidAttribute -»
-    «FILE javaFileName(gwtDomainPackage(this) + "." + name )»
+    «FILE javaFileName(gwtCommandPackage(this) + "." + name )»
 «javaHeader()»
-package «gwtDomainPackage(this)»;
+package «gwtCommandPackage(this)»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
 public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {

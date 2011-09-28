@@ -240,15 +240,17 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	}
 	
 	@Test
-	public void assertCommand() {
+	public void assertCreatePersonCommand() {
 		EList cmds = personModule().getCommands();
-		assertEquals(1, cmds.size());
+		assertEquals(2, cmds.size());
 		
 		GuiCommand cmd = (GuiCommand)getNamedElement("CreatePersonCmd", cmds);
 		assertNotNull(cmd);
 		assertEquals("CreatePersonCmd", cmd.getName());
 		
-		assertNull(cmd.getExtends());
+		GuiCommand ext = (GuiCommand)cmd.getExtends();
+		assertNotNull(ext);
+		assertEquals("PersonCmd", ext.getName());
 		assertNull(cmd.getExtendsName());
 		
 		
@@ -259,6 +261,18 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		assertNotNull(birthDate);
 		assertEquals("birthDate", birthDate.getName());
 		
+		
+		assertEquals(0, cmd.getReferences().size());
+		
+		
+	}
+	
+	@Test
+	public void assertPersonCmd() {
+		GuiCommand cmd = (GuiCommand)getNamedElement("PersonCmd", personModule().getCommands());
+		assertNotNull(cmd);
+		assertEquals("PersonCmd", cmd.getName());
+
 		EList refs = cmd.getReferences();
 		assertEquals(1, refs.size());
 		
@@ -273,32 +287,65 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		
 		// Right now, SSN object still belongs to module
 //		assertNull(ssnDto.getModule());
-		
+
 	}
 	
 	
 	@Test
-	public void assertGwtCommandBaseJavaCode() {
+	public void assertCreatePersonCmdCode() {
 		GuiCommand cmd = (GuiCommand)getNamedElement("CreatePersonCmd", personModule().getCommands());
 		
 		XpandUnit.xpand("templates::gwt::GwtCommand::gwtCommandBase", cmd,
 				new HashMap<String, Object>(), TEMP);
 
 		
-		String javaCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/shared/domain/CreatePersonCmd.java");
+		String javaCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/shared/command/CreatePersonCmd.java");
 
-		assertMatchesRegexp(javaCode, "package org\\.fornax\\.cartridges\\.sculptor\\.examples\\.library\\.person\\.gwt\\.shared\\.domain\\;");
-		assertContains(javaCode, "public class CreatePersonCmd extends org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractGwtCommand implements java.io.Serializable {");
+		assertMatchesRegexp(javaCode, "package org\\.fornax\\.cartridges\\.sculptor\\.examples\\.library\\.person\\.gwt\\.shared\\.command\\;");
+		assertContains(javaCode, "public class CreatePersonCmd extends org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.command.PersonCmd implements java.io.Serializable {");
 //		assertMatchesRegexp(javaCode, "public void findPersonByName\\(\\s*String name\\s*,\\s*com.google.gwt.user.client.rpc.AsyncCallback\\<java\\.util\\.List\\<org\\.fornax\\.cartridges\\.sculptor\\.examples\\.library\\.person\\.gwt\\.shared\\.domain\\.Person\\>\\> callback\\)\\;");
-		
+	
 		// Make sure joda time types not being used
 		assertContains(javaCode, "private java.util.Date birthDate;");
-		
-		assertContains(javaCode, "private org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn;");
 		
 		assertContains(javaCode, "public java.util.Date getBirthDate() {");
 		
 		assertContains(javaCode, "public void setBirthDate(java.util.Date birthDate) {");
+
+		// Verify properties constructor with base class call is there
+	    assertMatchesRegexp(javaCode, "\\Qpublic CreatePersonCmd(\\E\\s*"
+	    		+ "\\Qorg.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn\\E\\s*\\,\\s*"
+	    		+ "\\Qjava.util.Date birthDate\\E\\s*"
+	    		+ "\\Q) {\\E\\s*"
+	    		+ "\\Qsuper(ssn);\\E"
+	    		);
+	    
+	    // Shouldn't generate notNull checks in constructor
+	    assertNotContains(javaCode, "org.apache.commons.lang.Validate.notNull");
+	}
+
+	@Test
+	public void assertPersonCmdCode() {
+		GuiCommand cmd = (GuiCommand)getNamedElement("PersonCmd", personModule().getCommands());
+		
+		XpandUnit.xpand("templates::gwt::GwtCommand::gwtCommandBase", cmd,
+				new HashMap<String, Object>(), TEMP);
+
+		
+		String javaCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/shared/command/PersonCmd.java");
+
+		assertMatchesRegexp(javaCode, "package org\\.fornax\\.cartridges\\.sculptor\\.examples\\.library\\.person\\.gwt\\.shared\\.command\\;");
+		
+		assertContains(javaCode, "public class PersonCmd extends org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractGwtCommand implements java.io.Serializable {");
+		
+		assertContains(javaCode, "@org.hibernate.validator.NotNull");
+		assertContains(javaCode, "private org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn;");
+
+		assertMatchesRegexp(javaCode, "\\Qpublic PersonCmd(\\E\\s*"
+				+ "\\Qorg.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn\\E ssn\\s*\\) \\{\\s*"
+				+ "\\Qsuper();\\E\\s*"
+				+ "\\Qthis.ssn = ssn;\\E\\s*"
+				+ "\\}");
 
 		assertContains(javaCode, "public org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn getSsn() {");
 		assertContains(javaCode, "public void setSsn(org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn) {");
@@ -335,12 +382,16 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	}
 
 	protected void assertMatchesRegexp(String text, String regexp) {
-		Pattern p = Pattern.compile(regexp);
+		Pattern p = Pattern.compile(regexp, Pattern.MULTILINE);
 		Assert.assertTrue("Text did not contain pattern \"" + regexp  + "\"", p.matcher(text).find());		
 	}
 
 	protected void assertContains(String text, String subStr) {
 		Assert.assertTrue("Text did not contain substring \"" + subStr  + "\"", text.contains(subStr));		
+	}
+
+	protected void assertNotContains(String text, String subStr) {
+		Assert.assertFalse("Text contained substring \"" + subStr  + "\"", text.contains(subStr));		
 	}
 
 	

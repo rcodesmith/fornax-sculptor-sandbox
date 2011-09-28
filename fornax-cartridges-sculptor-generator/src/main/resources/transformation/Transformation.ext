@@ -24,6 +24,7 @@ extension transformation::RestTransformation;
 
 modify(Application app) :
 	initPropertiesHook() ->
+	
 	app.modules.domainObjects.typeSelect(Trait).modifyChangeable() ->
 	app.modules.domainObjects.mixin() ->
 	app.modules.getNonEnumDomainObjects().modifyUuid() -> 

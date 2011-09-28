@@ -19,6 +19,9 @@
 		«EXPAND View::view(module)»
 		
 		«EXPAND Event::events(module)»
+
+		«EXPAND GwtCommand::gwtCommands(module)»
+		
 		
 	«ENDLET»
 «ENDDEFINE»

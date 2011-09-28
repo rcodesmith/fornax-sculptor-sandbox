@@ -26,7 +26,7 @@ which is causing attributes to get masked.«ENDREM»
 «DEFINE gwtDomainModule(GuiApplication guiApp) FOR Module»
 	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(Entity)»
 	«EXPAND gwtEnumDto(guiApp) FOREACH this.domainObjects.typeSelect(Enum)»
-	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(ValueObject)»
+	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
 	
 
 	«EXPAND GwtMapper::domainObjectUIMapperDispatch(guiApp)»
@@ -360,15 +360,11 @@ public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
 «REM»Copied from DomainObjectConstructor.xpt«ENDREM»
 «DEFINE gwtDtoPropertyConstructorBase FOR DomainObject»
     «IF !getConstructorParameters().isEmpty -»
-    // here
     public «name»(«EXPAND parameterTypeAndName FOREACH getConstructorParameters() SEPARATOR ","») {
         «IF !getConstructorParameters().isEmpty -»
         super(«FOREACH getSuperConstructorParameters() AS a SEPARATOR ","»«a.name»«ENDFOREACH»);
         «ENDIF-»
         «FOREACH getConstructorParameters().removeAll(getSuperConstructorParameters()) AS a-»
-	        «IF a.validateNotNullInConstructor() -»
-	        	«EXPAND templates::domain::DomainObjectConstructor::validateNotNull(a.name) -»
-	        «ENDIF-»
 	        «IF a.metaType == Reference && ((Reference) a).many -»
 	        	this.«a.name».addAll(«a.name»);
 	        «ELSE-»

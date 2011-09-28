@@ -4,9 +4,11 @@ import org.eclipse.emf.common.util.EList;
 import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
+import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiModule;
 import sculptormetamodel.Application;
 import sculptormetamodel.Attribute;
+import sculptormetamodel.CommandEvent;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
 import sculptormetamodel.Module;
@@ -18,7 +20,9 @@ import sculptormetamodel.TypedElement;
 
 public class GwtGenerationHelper {
 
+	// TODO: These should be property-driven.  And look for overlap with sofeauihelpers
     private static final String GWT_DOMAIN_PKG = ".gwt.shared.domain";
+    private static final String GWT_CMD_PKG = ".gwt.shared.command";
 
 
 	public static String getGwtPackage(GuiModule guiModule) {
@@ -94,7 +98,11 @@ public class GwtGenerationHelper {
     public static String getDomainPackage(DomainObject domainObject) {
     	String basePkg = GenerationHelper.getBasePackage(domainObject.getModule());
     	
-    	return basePkg + GWT_DOMAIN_PKG;
+    	if(domainObject instanceof GuiCommand || domainObject instanceof CommandEvent) {
+    		return basePkg + GWT_CMD_PKG;    		
+    	} else {
+    		return basePkg + GWT_DOMAIN_PKG;
+    	}
     }
     
     

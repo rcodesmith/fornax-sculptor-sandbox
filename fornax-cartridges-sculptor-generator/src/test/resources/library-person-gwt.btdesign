@@ -46,13 +46,17 @@ ApplicationPart Person {
         	DENMARK
         }
         
-        
-        CommandEvent CreatePersonCmd {
+        CommandEvent PersonCmd {
         	not persistent
         	
-        	- @Ssn ssn;
+        	- @Ssn ssn required not nullable;
         	
-        	Date birthDate;
+        }
+        
+        CommandEvent CreatePersonCmd extends PersonCmd {
+        	not persistent
+        	
+        	Date birthDate required not nullable;
         }
     }
   

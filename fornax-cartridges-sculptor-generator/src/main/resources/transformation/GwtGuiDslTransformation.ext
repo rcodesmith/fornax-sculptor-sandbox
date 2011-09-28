@@ -32,6 +32,26 @@ extension extensions::guihelper;
 extension extensions::properties;
 
 
+// For any post-DSL transformations that need to occur
+modify(GuiModule guiModule) :
+	guiModule.commands.modifyExtends();
+
+
+// TODO: This will be needed for events as well
+// Copied & modified from Transformation.ext
+modifyExtends(GuiCommand cmd) :
+    if (cmd.extendsName != null) then
+        (let matchingDomainObject = findCommandByName(((GuiModule)cmd.eContainer).application, cmd.extendsName) :
+        if (matchingDomainObject != null) then
+            (cmd.setExtends(matchingDomainObject) ->
+            cmd.setExtendsName(null))); 
+
+// Copied & modified from Transformation.ext
+private DomainObject findCommandByName(GuiApplication app, String domainObjectName) : 
+    let match = app.modules.commands.select(e | e.name == domainObjectName) : 
+    match.isEmpty ? null : match.first();
+
+
 
 //
 // Service proxy-related transformations
@@ -172,11 +192,14 @@ create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr
 	setType(attr.type.translateGwtTypeName());
 	
 
+
 //////////////////////////////////////////////////////////////////////////////////
 // GuiCommand related transformations
 //////////////////////////////////////////////////////////////////////////////////
 create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent dslCmd, Module module) :
 	setName(dslCmd.name) ->
+	setExtends( dslCmd.extends != null ? dslCmd.extends.transformCommand(module) : null) ->
+	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
 	setDoc(dslCmd.doc) ->
 	attributes.addAll(dslCmd.attributes.transformToGwt()) ->
 	references.addAll(dslCmd.references.transformToGwt(this))
