@@ -5,20 +5,20 @@
   <version>2.0.2-gwt-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20110928.151353</timestamp>
-      <buildNumber>1</buildNumber>
+      <timestamp>20111004.193559</timestamp>
+      <buildNumber>3</buildNumber>
     </snapshot>
-    <lastUpdated>20110928151353</lastUpdated>
+    <lastUpdated>20111004193559</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>2.0.2-gwt-20110928.151353-1</value>
-        <updated>20110928151353</updated>
+        <value>2.0.2-gwt-20111004.193559-3</value>
+        <updated>20111004193559</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>2.0.2-gwt-20110928.151353-1</value>
-        <updated>20110928151353</updated>
+        <value>2.0.2-gwt-20111004.193559-3</value>
+        <updated>20111004193559</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
