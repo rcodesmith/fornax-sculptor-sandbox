@@ -109,6 +109,15 @@ public class GenerationHelper {
         }
     }
 
+    public static String getBuilderPackage(DomainObject domainObject) {
+        if (domainObject.getPackage() == null || domainObject.getPackage().equals("")) {
+            return getBuilderPackage(domainObject.getModule());
+        } else {
+            return concatPackage(getBasePackage(domainObject.getModule()), domainObject.getPackage());
+        }
+    }
+
+    
     public static String getDomainPackage(DataTransferObject dto) {
         if (dto.getPackage() == null || dto.getPackage().equals("")) {
             return getDtoPackage(dto.getModule());
@@ -171,6 +180,10 @@ public class GenerationHelper {
 
     public static String getDomainPackage(Module module) {
         return concatPackage(getBasePackage(module), GeneratorProperties.getDomainPackage());
+    }
+
+    public static String getBuilderPackage(Module module) {
+        return concatPackage(getBasePackage(module), GeneratorProperties.getBuilderPackage());
     }
 
     public static String getDtoPackage(Module module) {

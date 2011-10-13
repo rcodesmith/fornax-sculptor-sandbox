@@ -201,6 +201,7 @@ create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent ds
 	setExtends( dslCmd.extends != null ? dslCmd.extends.transformCommand(module) : null) ->
 	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
 	setDoc(dslCmd.doc) ->
+	setHint(dslCmd.hint) ->
 	attributes.addAll(dslCmd.attributes.transformToGwt()) ->
 	references.addAll(dslCmd.references.transformToGwt(this))
 	;

@@ -210,11 +210,21 @@
 		«IF mongoDb()»
 			«EXPAND manyReferenceLazyAttribute»
 		«ENDIF»
-	«ELSE»
-		«EXPAND DomainObjectReferenceAnnotation::manyReferenceAttributeAnnotations»
-	    private «IF transient»transient «ENDIF»«getCollectionInterfaceType()»<«getTypeName()»> «name» = new «getCollectionImplType()»<«getTypeName()»>();
+	«ELSE»		
+		«EXPAND manyReferenceAttribute(true)»
     «ENDIF»
 «ENDDEFINE»
+
+// TODO: Ron contribute this
+«DEFINE manyReferenceAttribute(boolean annotations) FOR Reference»
+	«IF annotations»
+		«EXPAND DomainObjectReferenceAnnotation::manyReferenceAttributeAnnotations»
+    «ENDIF»
+		
+    private «IF transient»transient «ENDIF»«getCollectionInterfaceType()»<«getTypeName()»> «name» = new «getCollectionImplType()»<«getTypeName()»>();
+«ENDDEFINE»
+
+
 
 «DEFINE manyReferenceIdsAttribute FOR Reference»
 	«IF isJpaProviderAppEngine() && isJpaAnnotationOnFieldToBeGenerated()»
@@ -280,8 +290,16 @@
 «ENDDEFINE»
 
 «DEFINE manyReferenceGetter FOR Reference»
+	«EXPAND manyReferenceGetter(true)»
+«ENDDEFINE»
+
+// RON TODO: Contribute this
+
+«DEFINE manyReferenceGetter(boolean annotations) FOR Reference»
     «formatJavaDoc()»
-	«EXPAND DomainObjectReferenceAnnotation::manyReferenceGetterAnnotations»
+	«IF annotations»
+		«EXPAND DomainObjectReferenceAnnotation::manyReferenceGetterAnnotations»
+    «ENDIF»
     «getVisibilityLitteralGetter()»«getCollectionInterfaceType()»<«getTypeName()»> get«name.toFirstUpper()»() {
         return «name»;
     };

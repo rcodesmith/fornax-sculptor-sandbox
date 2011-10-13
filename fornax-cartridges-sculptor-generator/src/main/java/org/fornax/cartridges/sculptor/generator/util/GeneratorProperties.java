@@ -582,6 +582,10 @@ public class GeneratorProperties {
         return getProperty("package.domain");
     }
 
+    public static String getBuilderPackage() {
+        return getProperty("package.builder");
+    }
+
     public static String getDtoPackage() {
         return getProperty("package.dto");
     }

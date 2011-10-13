@@ -9,6 +9,7 @@ Application Library {
           hint="serviceHint"
           findLibraryByName hint="serviceMethodHint" => LibraryRepository.findLibraryByName;
           findMediaByName => MediaRepository.findMediaByName;
+          findLibraryByNameAndDate => LibraryRepository.findLibraryByNameAndDate;
           findMediaByCharacter => MediaRepository.findMediaByCharacter;
           findPersonByName => PersonService.findPersonByName;
           saveLibrary;
@@ -26,6 +27,7 @@ Application Library {
             hint="repositoryHint"
             findByQuery hint="repoMethodHint";
             @Library findLibraryByName(String name) throws LibraryNotFoundException;
+            @Library findLibraryByNameAndDate(String name, Date effDate) throws LibraryNotFoundException;
           }
         }
         

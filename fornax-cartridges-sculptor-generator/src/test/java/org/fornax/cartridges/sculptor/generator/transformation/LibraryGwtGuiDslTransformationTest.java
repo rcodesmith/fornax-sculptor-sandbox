@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
+import org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper;
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -35,6 +36,7 @@ import sculptormetamodel.DomainObject;
 import sculptormetamodel.Parameter;
 import sculptormetamodel.Reference;
 import sculptormetamodel.Service;
+import sculptormetamodel.ServiceOperation;
 
 //@Ignore("Skip this test now, due to problems when running from maven")
 @SuppressWarnings("unchecked")
@@ -351,7 +353,20 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		assertContains(javaCode, "public void setSsn(org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn) {");
 	}
 
-	
+	@Test
+	public void assertGetMapToDomainExpressionForDate() {
+		Service svc = (Service)getNamedElement("PersonService", personModule().getFor().getServices());
+		assertNotNull(svc);
+		
+		ServiceOperation op = (ServiceOperation)getNamedElement("findByDate", svc.getOperations());
+		assertNotNull(op);
+		
+		Parameter param = (Parameter)getNamedElement("entryDate", op.getParameters());
+		assertNotNull(param);
+		
+		String expr = GwtGenerationHelper.getMapToDomainExpression(param);
+		assertEquals("org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convertToDate(entryDate)", expr);
+	}
 	
 	protected void validateServiceOperation(ServiceProxyOperation op, String expectedName, int expectedNumParams) {
 		assertEquals(expectedName, op.getName());

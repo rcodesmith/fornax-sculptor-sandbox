@@ -6,7 +6,7 @@
 «EXTENSION extensions::gwt::sofeauihelpers»
 
 «DEFINE gwtCommands(Module module) FOR GuiModule»
-	«EXPAND gwtCommandBase FOREACH this.commands»
+	«EXPAND gwtCommandBase FOREACH this.commandsToGenerate()»
 
 «ENDDEFINE»
 

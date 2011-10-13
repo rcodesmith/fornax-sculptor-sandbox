@@ -18,12 +18,16 @@ public class «name.toFirstUpper()»DtoMapper {
 	protected static jmultimethod.Multimethod mapToDomainMM = new jmultimethod.Multimethod("mapToDomain", «name.toFirstUpper()»DtoMapper.class);
 	protected static jmultimethod.Multimethod mapFromDomainMM = new jmultimethod.Multimethod("mapFromDomain", «name.toFirstUpper()»DtoMapper.class);
 
+	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.select(d|d.shouldBeMapped())»
 
+«REM»
 	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.typeSelect(Entity).reject(e|e.abstract)»
 
 	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.select(e | ValueObject.isInstance(e) && !DomainEvent.isInstance(e) && !e.abstract)»
 
 	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.typeSelect(Enum)»
+
+«ENDREM»	
 
 }
     «ENDFILE»
@@ -42,7 +46,7 @@ public class «name.toFirstUpper()»DtoMapper {
 «DEFINE copyManyRefFromDomain FOR Reference»
         {
         	java.lang.Iterable<«getGwtTypeName()»> dtosIterable =
-        		com.google.common.collect.Iterables.transform(domainObj.get«name.toFirstUpper()»(), new Function<«getTypeName()», «getGwtTypeName()»>() {
+        		com.google.common.collect.Iterables.transform(domainObj.«this.getGetAccessor()»(), new Function<«getTypeName()», «getGwtTypeName()»>() {
         		public «getGwtTypeName()» apply(
         				«getTypeName()» from) {
 		    	    Object mappedDto = mapFromDomainMM.invoke(null, from);
@@ -57,7 +61,7 @@ public class «name.toFirstUpper()»DtoMapper {
 «ENDDEFINE»
 
 «DEFINE copyOneRefFromDomain FOR Reference»
-		dtoObj.set«name.singular().toFirstUpper()»(«mapFromDomainCall()»(domainObj.get«name.singular().toFirstUpper()»()));
+		dtoObj.set«name.toFirstUpper()»(«mapFromDomainCall()»(domainObj.«this.getGetAccessor()»()));
 «ENDDEFINE»
 
 «DEFINE copyManyRefToDomain FOR Reference»
@@ -70,7 +74,7 @@ public class «name.toFirstUpper()»DtoMapper {
 «ENDDEFINE»
 
 «DEFINE copyOneRefToDomain FOR Reference»
-		domainObj.set«name.singular().toFirstUpper()»(«mapToDomainCall()»(dtoObj.get«name.singular().toFirstUpper()»()));
+		domainObj.set«name.toFirstUpper()»(«mapToDomainCall()»(dtoObj.«this.getGetAccessor()»()));
 «ENDDEFINE»
 
 
@@ -91,6 +95,8 @@ public class «name.toFirstUpper()»DtoMapper {
 			}
         }));
 	}
+	
+	
 
 	«EXPAND mapFromDomain(guiApp) FOR this»
 	
@@ -105,6 +111,28 @@ public class «name.toFirstUpper()»DtoMapper {
 				return map«name.toFirstUpper()»FromDomain(from);
 			}
         }));
+	}
+	
+	public static java.util.Set<«this.fqnGwtDto()»> map«name.toFirstUpper()»FromDomain(
+			java.util.Set<«this.fqnDomain()»> domainObjsSet) {
+
+		java.util.HashSet<«this.fqnGwtDto()»> newSet = new java.util.HashSet<«this.fqnGwtDto()»>();
+
+		java.lang.Iterable<«this.fqnGwtDto()»> transIter = com.google.common.collect.Iterables
+				.transform(
+						domainObjsSet,
+						new Function<«this.fqnDomain()», «this.fqnGwtDto()»>() {
+							@Override
+							public «this.fqnGwtDto()» apply(
+									«this.fqnDomain()» from) {
+								return map«name.toFirstUpper()»FromDomain(from);
+							}
+						});
+
+		for («this.fqnGwtDto()» toObj : transIter) {
+			newSet.add(toObj);
+		}
+		return newSet;
 	}
 
 	

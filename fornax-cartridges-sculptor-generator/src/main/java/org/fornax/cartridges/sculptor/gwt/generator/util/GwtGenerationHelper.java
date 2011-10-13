@@ -53,6 +53,19 @@ public class GwtGenerationHelper {
     	}    	
     }
     
+    public static String getToDomainParameterConversionExpression(TypedElement attribute, String dtoAccessorExpr, String domainType) {
+    	if(isDateOrDateTime(attribute)) {
+    		return "org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convertTo" + domainType + "("
+    			+ dtoAccessorExpr
+    			+ ")";
+    	}
+    	else {
+    		return dtoAccessorExpr;
+    	}    	
+    }
+
+
+    
     public static String getToDomainConversionExpression(TypedElement attribute, String dtoAccessorExpr, String domainAccessorExpr) {
     	if(isDateOrDateTime(attribute)) {
     		return "org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert("
@@ -211,7 +224,7 @@ public class GwtGenerationHelper {
 			return dtoMapper(module) + "." + "map" + typeRelName + "ToDomain(" + parameter.getName() + ")";
     	} else {
     		// One of the built-in types, but may still require conversion (e.g. JODA date to j.u.Date).
-    		return getToDomainConversionExpression(parameter, parameter.getName(), parameter.getType());
+    		return getToDomainParameterConversionExpression(parameter, parameter.getName(), parameter.getType());
     	}
     }
     /**
@@ -221,7 +234,7 @@ public class GwtGenerationHelper {
      * @return
      */
     public static String getParamaterTypeName(Parameter parameter, Module module) {
-    	GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName(" + parameter.getType() + ")");
+    	//GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName(" + parameter.getType() + ")");
     	// TODO: Make this translation more efficient - would like to do it only if other type processing fails.
         String typeName = translateBasicTypes(parameter);
     	//GenerationHelper.debugTrace("GwtGenerationHelper.getParamaterTypeName() translated typeName=" + typeName);
