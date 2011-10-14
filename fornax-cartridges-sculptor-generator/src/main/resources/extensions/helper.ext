@@ -380,10 +380,10 @@ cached String getBuilderPackage(DomainObject domainObject) :
     JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getBuilderPackage(sculptormetamodel.DomainObject);
 
 List[TypedElement] getBuilderAttributes(DomainObject domainObject) :
-	domainObject.attributes.select(a | !a.isUuid() && a != domainObject.getIdAttribute() && a.name != "version");
+	domainObject.getAllAttributes().select(a | !a.isUuid() && a != domainObject.getIdAttribute() && a.name != "version");
 
 List[Reference] getBuilderReferences(DomainObject domainObject) :
-	domainObject.references;
+	domainObject.getAllReferences();
 
 List[NamedElement] getBuilderProperties(DomainObject domainObject) :
 	domainObject.getBuilderAttributes()
@@ -395,19 +395,19 @@ String getBuilderClassName(String domainObjectName) :
 String getBuilderClassName(DomainObject domainObject) :
 	domainObject.name + "Builder";
 	
-String getBuilderExtendsClassName(DomainObject domainObject) :
-    (domainObject.extends == null) ?
-        (domainObject.extendsName == null ? domainObject.defaultBuilderExtendsClassName() : domainObject.extendsName + "Builder") :
-        domainObject.extends.getBuilderPackage() + "." + domainObject.extends.name + "Builder";
+//String getBuilderExtendsClassName(DomainObject domainObject) :
+//    (domainObject.extends == null) ?
+//        (domainObject.extendsName == null ? domainObject.defaultBuilderExtendsClassName() : domainObject.extendsName + "Builder") :
+//        domainObject.extends.getBuilderPackage() + "." + domainObject.extends.name + "Builder";
 
 
-String defaultBuilderExtendsClassName(DomainObject domainObject) :
-	"";
+//String defaultBuilderExtendsClassName(DomainObject domainObject) :
+//	"";
 	
-String getBuilderExtendsLitteral(DomainObject domainObject) :
-	domainObject.getBuilderExtendsClassName() == "" ?
-		"" :
-     	"extends " + domainObject.getBuilderExtendsClassName();
+//String getBuilderExtendsLitteral(DomainObject domainObject) :
+//	domainObject.getBuilderExtendsClassName() == "" ?
+//		"" :
+ //    	"extends " + domainObject.getBuilderExtendsClassName();
 
 
 boolean needsBuilder(DomainObject domainObject) :
