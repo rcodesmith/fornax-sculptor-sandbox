@@ -2082,13 +2082,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int VIEW__FOR = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Service Dependencies</b></em>' reference list.
+	 * The feature id for the '<em><b>Service Proxies</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int VIEW__SERVICE_PROXIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__PARAMETERS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>View</em>' class.
@@ -2097,7 +2106,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int VIEW_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
@@ -3850,6 +3859,89 @@ public interface SculptorguimetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ViewParameterImpl <em>View Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ViewParameterImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getViewParameter()
+	 * @generated
+	 */
+	int VIEW_PARAMETER = 41;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__NAME = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__DOC = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__HINT = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__TYPE = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Collection Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__COLLECTION_TYPE = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__COLLECTION_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Map Key Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__MAP_KEY_TYPE = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__MAP_KEY_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Domain Object Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__DOMAIN_OBJECT_TYPE = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT__DOMAIN_OBJECT_TYPE;
+
+	/**
+	 * The number of structural features of the '<em>View Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4719,15 +4811,26 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getView_For();
 
 	/**
-	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.View#getServiceDependencies <em>Service Dependencies</em>}'.
+	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.View#getServiceProxies <em>Service Proxies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Service Dependencies</em>'.
-	 * @see sculptorguimetamodel.View#getServiceDependencies()
+	 * @return the meta object for the reference list '<em>Service Proxies</em>'.
+	 * @see sculptorguimetamodel.View#getServiceProxies()
 	 * @see #getView()
 	 * @generated
 	 */
-	EReference getView_ServiceDependencies();
+	EReference getView_ServiceProxies();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.View#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
+	 * @see sculptorguimetamodel.View#getParameters()
+	 * @see #getView()
+	 * @generated
+	 */
+	EReference getView_Parameters();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.Widget <em>Widget</em>}'.
@@ -5061,6 +5164,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getGuiCommand();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ViewParameter <em>View Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>View Parameter</em>'.
+	 * @see sculptorguimetamodel.ViewParameter
+	 * @generated
+	 */
+	EClass getViewParameter();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -5777,12 +5890,20 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference VIEW__FOR = eINSTANCE.getView_For();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Dependencies</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Service Proxies</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VIEW__SERVICE_DEPENDENCIES = eINSTANCE.getView_ServiceDependencies();
+		EReference VIEW__SERVICE_PROXIES = eINSTANCE.getView_ServiceProxies();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VIEW__PARAMETERS = eINSTANCE.getView_Parameters();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
@@ -6077,6 +6198,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GUI_COMMAND = eINSTANCE.getGuiCommand();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ViewParameterImpl <em>View Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ViewParameterImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getViewParameter()
+		 * @generated
+		 */
+		EClass VIEW_PARAMETER = eINSTANCE.getViewParameter();
 
 	}
 

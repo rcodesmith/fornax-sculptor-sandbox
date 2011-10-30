@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -23,8 +24,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
+import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.View;
 
+import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Service;
@@ -40,7 +43,8 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getModule <em>Module</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getWidgets <em>Widgets</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getFor <em>For</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getServiceDependencies <em>Service Dependencies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getServiceProxies <em>Service Proxies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,15 +71,23 @@ public class ViewImpl extends NamedElementImpl implements View {
 	protected DomainObject for_;
 
 	/**
-	 * The cached value of the '{@link #getServiceDependencies() <em>Service Dependencies</em>}' reference list.
+	 * The cached value of the '{@link #getServiceProxies() <em>Service Proxies</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getServiceDependencies()
+	 * @see #getServiceProxies()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList serviceDependencies;
-
+	protected EList serviceProxies;
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList parameters;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,11 +202,23 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getServiceDependencies() {
-		if (serviceDependencies == null) {
-			serviceDependencies = new EObjectResolvingEList(Service.class, this, SculptorguimetamodelPackage.VIEW__SERVICE_DEPENDENCIES);
+	public EList getServiceProxies() {
+		if (serviceProxies == null) {
+			serviceProxies = new EObjectResolvingEList(ServiceProxy.class, this, SculptorguimetamodelPackage.VIEW__SERVICE_PROXIES);
 		}
-		return serviceDependencies;
+		return serviceProxies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getParameters() {
+		if (parameters == null) {
+			parameters = new EObjectContainmentEList(ViewParameter.class, this, SculptorguimetamodelPackage.VIEW__PARAMETERS);
+		}
+		return parameters;
 	}
 
 	/**
@@ -225,6 +249,8 @@ public class ViewImpl extends NamedElementImpl implements View {
 				return basicSetModule(null, msgs);
 			case SculptorguimetamodelPackage.VIEW__WIDGETS:
 				return ((InternalEList)getWidgets()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
+				return ((InternalEList)getParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -256,8 +282,10 @@ public class ViewImpl extends NamedElementImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				if (resolve) return getFor();
 				return basicGetFor();
-			case SculptorguimetamodelPackage.VIEW__SERVICE_DEPENDENCIES:
-				return getServiceDependencies();
+			case SculptorguimetamodelPackage.VIEW__SERVICE_PROXIES:
+				return getServiceProxies();
+			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
+				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,9 +307,13 @@ public class ViewImpl extends NamedElementImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				setFor((DomainObject)newValue);
 				return;
-			case SculptorguimetamodelPackage.VIEW__SERVICE_DEPENDENCIES:
-				getServiceDependencies().clear();
-				getServiceDependencies().addAll((Collection)newValue);
+			case SculptorguimetamodelPackage.VIEW__SERVICE_PROXIES:
+				getServiceProxies().clear();
+				getServiceProxies().addAll((Collection)newValue);
+				return;
+			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -303,8 +335,11 @@ public class ViewImpl extends NamedElementImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				setFor((DomainObject)null);
 				return;
-			case SculptorguimetamodelPackage.VIEW__SERVICE_DEPENDENCIES:
-				getServiceDependencies().clear();
+			case SculptorguimetamodelPackage.VIEW__SERVICE_PROXIES:
+				getServiceProxies().clear();
+				return;
+			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
+				getParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -323,8 +358,10 @@ public class ViewImpl extends NamedElementImpl implements View {
 				return widgets != null && !widgets.isEmpty();
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				return for_ != null;
-			case SculptorguimetamodelPackage.VIEW__SERVICE_DEPENDENCIES:
-				return serviceDependencies != null && !serviceDependencies.isEmpty();
+			case SculptorguimetamodelPackage.VIEW__SERVICE_PROXIES:
+				return serviceProxies != null && !serviceProxies.isEmpty();
+			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

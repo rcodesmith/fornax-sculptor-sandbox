@@ -127,8 +127,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" lowerBound="1"
         upperBound="-1" eType="#//Widget" containment="true" eOpposite="#//Widget/view"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceDependencies" upperBound="-1"
-        eType="ecore:EClass sculptormetamodel.ecore#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceProxies" upperBound="-1"
+        eType="#//ServiceProxy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//ViewParameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View" eOpposite="#//View/widgets"/>
@@ -173,4 +175,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" lowerBound="1" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiCommand" eSuperTypes="sculptormetamodel.ecore#//DomainObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewParameter" eSuperTypes="sculptormetamodel.ecore#//DomainObjectTypedElement"/>
 </ecore:EPackage>

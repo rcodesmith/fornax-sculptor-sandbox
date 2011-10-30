@@ -201,6 +201,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseGuiCommand(GuiCommand object) {
 				return createGuiCommandAdapter();
 			}
+			public Object caseViewParameter(ViewParameter object) {
+				return createViewParameterAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -811,6 +814,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGuiCommandAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewParameter <em>View Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ViewParameter
+	 * @generated
+	 */
+	public Adapter createViewParameterAdapter() {
 		return null;
 	}
 

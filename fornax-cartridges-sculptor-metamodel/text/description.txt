@@ -109,7 +109,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference module : GuiModule
     Reference widgets : Widget<<1..*>>
     Reference for : DomainObject
-    Reference serviceDependencies : Service<<0..*>>
+    Reference serviceProxies : ServiceProxy<<0..*>>
+    Reference parameters : ViewParameter<<0..*>>
 
   Class Widget -> NamedElement
     Reference view : View
@@ -161,3 +162,5 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference for : ServiceOperation<<1..1>>
 
   Class GuiCommand -> DomainObject
+
+  Class ViewParameter -> DomainObjectTypedElement

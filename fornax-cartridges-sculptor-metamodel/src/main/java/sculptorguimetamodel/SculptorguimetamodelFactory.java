@@ -395,6 +395,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	GuiCommand createGuiCommand();
 
 																/**
+	 * Returns a new object of class '<em>View Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View Parameter</em>'.
+	 * @generated
+	 */
+	ViewParameter createViewParameter();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

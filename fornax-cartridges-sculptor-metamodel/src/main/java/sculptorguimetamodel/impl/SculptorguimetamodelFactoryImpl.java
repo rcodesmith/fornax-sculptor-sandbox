@@ -101,6 +101,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.SERVICE_PROXY: return createServiceProxy();
 			case SculptorguimetamodelPackage.SERVICE_PROXY_OPERATION: return createServiceProxyOperation();
 			case SculptorguimetamodelPackage.GUI_COMMAND: return createGuiCommand();
+			case SculptorguimetamodelPackage.VIEW_PARAMETER: return createViewParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -514,6 +515,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public GuiCommand createGuiCommand() {
 		GuiCommandImpl guiCommand = new GuiCommandImpl();
 		return guiCommand;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ViewParameter createViewParameter() {
+		ViewParameterImpl viewParameter = new ViewParameterImpl();
+		return viewParameter;
 	}
 
 																/**

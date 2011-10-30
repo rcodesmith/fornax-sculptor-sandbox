@@ -21,7 +21,8 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.View#getModule <em>Module</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getWidgets <em>Widgets</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getFor <em>For</em>}</li>
- *   <li>{@link sculptorguimetamodel.View#getServiceDependencies <em>Service Dependencies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#getServiceProxies <em>Service Proxies</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,19 +104,35 @@ public interface View extends NamedElement {
 	void setFor(DomainObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Service Dependencies</b></em>' reference list.
-	 * The list contents are of type {@link sculptormetamodel.Service}.
+	 * Returns the value of the '<em><b>Service Proxies</b></em>' reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.ServiceProxy}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Service Dependencies</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Service Proxies</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Service Dependencies</em>' reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_ServiceDependencies()
-	 * @model type="sculptormetamodel.Service"
+	 * @return the value of the '<em>Service Proxies</em>' reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_ServiceProxies()
+	 * @model type="sculptorguimetamodel.ServiceProxy"
 	 * @generated
 	 */
-	EList getServiceDependencies();
+	EList getServiceProxies();
+
+	/**
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.ViewParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameters</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_Parameters()
+	 * @model type="sculptorguimetamodel.ViewParameter" containment="true"
+	 * @generated
+	 */
+	EList getParameters();
 
 } // View

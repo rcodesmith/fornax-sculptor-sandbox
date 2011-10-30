@@ -25,5 +25,9 @@ public interface ViewValidator {
 
 	boolean validateFor(DomainObject value);
 
+	boolean validateServiceProxies(EList value);
+
+	boolean validateParameters(EList value);
+
 	boolean validateServiceDependencies(EList value);
 }

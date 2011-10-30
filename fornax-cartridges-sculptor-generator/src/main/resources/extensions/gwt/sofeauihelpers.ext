@@ -143,6 +143,10 @@ gwtServiceAsyncInterfacePackage(ServiceProxy svc) :
 gwtServiceAsyncInterface(ServiceProxy svc) :
 	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
 
+// TODO: Get rid of the following once view service dependencies use ServiceProxy instead
+gwtServiceAsyncInterface(Service svc) :
+	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
+
 // Sync interface helpers
 	
 gwtServiceSyncInterfaceName(ServiceProxy svc) :

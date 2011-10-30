@@ -60,23 +60,54 @@ private DomainObject findCommandByName(GuiApplication app, String domainObjectNa
 Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
 	module.services.select(s | s.name == dslServiceDep.dependency.name).first();
 
-
+/*
 create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
 	let domainService = getMetamodelService(dslServiceDep, module) :
 	setFor(domainService) ->
 	setName(domainService.name) ->
 	setDoc(domainService.doc) ->
-	setModule(module) ->
-	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation()) ->
+	setModule(this.for.module) ->
+	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this)) ->
+	debugTrace("transformServiceProxy: service = " + domainService) ->
 	debugTrace("transformServiceProxy: module = " + module) ->
 	debugTrace("transformServiceProxy: domain service module = " + this.for.module);
+*/
+
+
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+	let domainService = getMetamodelService(dslServiceDep, module) :
+//	debugTrace("transformServiceProxy: service = " + domainService) ->
+//	debugTrace("transformServiceProxy: module = " + module) ->
+	setFor(domainService) ->
+	setName(domainService.name) ->
+	setDoc(domainService.doc) ->
+	setModule(module) ->
+	debugTrace("transformServiceProxy: this module = " + this.module) ->
+	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+//	operations.addAll(domainService.operations.transformServiceProxyOperation(this));
+
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(Service domainService, Module module, DslModule dslModule) :
+	debugTrace("transformServiceProxy: service = " + domainService) ->
+	debugTrace("transformServiceProxy: module = " + module) ->
+	setFor(domainService) ->
+	setName(domainService.name) ->
+	setDoc(domainService.doc) ->
+	setModule(dslModule.transform()) ->
+	debugTrace("transformServiceProxy: this module = " + this.module) ->
+	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+//	operations.addAll(domainService.operations.transformServiceProxyOperation(this));
 
 
 // 	operations.addAll(domainServiceOp.operations.transformServiceProxyOperation());
  	
  	
-create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation) :
+create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation,
+	Service service) :
 //	setService(((DslService) operation.eContainer).transform()) ->
+	debugTrace("transformServiceProxyOperation: name=" + domainOperation.name ) ->
+	setService(service) ->
+	debugTrace("transformServiceProxyOperation: service=" + this.service) ->
+	debugTrace("transformServiceProxyOperation: service.module=" + this.service.module) ->
 	setFor(domainOperation) ->
     setDoc(domainOperation.doc) ->
     setName(domainOperation.name) ->
@@ -87,7 +118,8 @@ create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOpe
     setType(domainOperation.type) ->
     setDomainObjectType(domainOperation.domainObjectType) ->
     setThrows(domainOperation.throws) ->
-    setHint(domainOperation.hint);
+    setHint(domainOperation.hint) ->
+	debugTrace("transformServiceProxyOperation: this=" + this );
 
 
 Parameter transformGwtServiceOperationParam(Parameter param) :
@@ -105,66 +137,69 @@ Parameter transformGwtServiceOperationParam(Parameter param) :
 //
 
 // TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
-create sculptorguimetamodel::View this transformView(DslView view, Module module) :
+create sculptorguimetamodel::View this transformView(DslView view, Module module, DslModule dslModule) :
 	let domainObject = module.domainObjects.select(e | e.name == view.for.name).first() :
 	setModule(((DslGuiModule) view.eContainer).transformModule()) ->
 	setName(view.name) ->
 	setFor(domainObject) ->
-	widgets.addAll(view.widgets.transformWidget(module)) ->
-	serviceDependencies.addAll(view.serviceDependencies.getMetamodelService(module));
+	widgets.addAll(view.widgets.transformWidget(module, dslModule)) ->
+	debugTrace("transformView: module = " + module ) ->
+//	serviceProxies.addAll(view.serviceDependencies.getMetamodelService(module).transformServiceProxy(module, dslModule));
+	serviceProxies.addAll(view.serviceDependencies.transformServiceProxy(dslModule.transform()));
+	
 
-create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
+create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module, DslModule dslModule) :
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
 	
-create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 	
-create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 	
-create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 	
-create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module) :
+create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module, DslModule dslModule) :
 	let domainObject = module.domainObjects.select(e | e.name == widget.for.name).first() :
-	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
