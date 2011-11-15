@@ -1,0 +1,582 @@
+import sculptormetamodel;
+import sculptorguimetamodel;
+
+extension extensions::properties;
+extension extensions::helper;
+extension extensions::guihelper;
+
+
+
+// Get all of the Services that are used, either at the module or view level
+Set[Module] getAllUsedServices(GuiModule guiModule) :
+	let list = {} :
+	list.addAll(guiModule.views.getUsedServices().toSet().select(s|s != null)) ->
+	list.addAll(guiModule.getUsedServices()) ->
+	list.toSet();
+//	debugTrace("all services list: " + list) ->
+
+
+
+	
+String getGwtExtendsLitteral(DomainObject domainObject) :
+	domainObject.getGwtExtendsClassName() == "" ?
+		"" :
+     	"extends " + domainObject.getGwtExtendsClassName();
+
+String getGwtExtendsClassName(DomainObject domainObject) :
+    (domainObject.extends == null) ?
+        (domainObject.extendsName == null ? domainObject.gwtDefaultExtendsClassName() : domainObject.extendsName) :
+        domainObject.extends.gwtDomainPackage() + "." + domainObject.extends.name;
+
+String getGwtExtendsClassName(GuiCommand domainObject) :
+    (domainObject.extends == null) ?
+        (domainObject.extendsName == null ? domainObject.gwtDefaultExtendsClassName() : domainObject.extendsName) :
+        domainObject.extends.gwtCommandPackage() + "." + domainObject.extends.name;
+
+String gwtDefaultExtendsClassName(DomainObject domainObject) :
+	let result = defaultExtendsClass(domainObject.simpleMetaTypeName()) :
+	(result == "" ? abstractDomainObjectClass() : result);
+
+
+
+String gwtDefaultExtendsClassName(DataTransferObject domainObject) :
+	defaultExtendsClass(domainObject.simpleMetaTypeName());
+	
+String gwtDefaultExtendsClassName(Trait domainObject) :
+	defaultExtendsClass(domainObject.simpleMetaTypeName());
+
+String gwtDefaultExtendsClassName(GuiCommand domainObject) :
+	let result = defaultExtendsClass(domainObject.simpleMetaTypeName()) :
+	(result == "" ? abstractGwtCommandClass() : result);
+
+String abstractGwtCommandClass() :
+	fw("gwt.shared.domain.AbstractGwtCommand");
+	
+	
+
+//String getGwtDtoPackage(GuiApplication guiApp) :
+//    guiApp.basePackage + "." + subPackage("shared");
+
+//String getGwtDtoPackage(GuiModule guiMod) :
+//    guiMod.application.basePackage +  "." + "shared";
+
+	
+String getFieldUniqueCssId(ViewDataProperty property) :
+    property.userTask.name + property.name.toFirstUpper() + "Field";
+
+
+String gwtBasePackage(Module module) :
+   module.getBasePackage() + ".gwt";
+   
+
+
+String getGwtPackage(GuiModule guiModule) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getGwtPackage(sculptorguimetamodel.GuiModule);
+
+
+String gwtXmlFileName(Module module) :
+    module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.getModuleConfigName() + ".gwt.xml";
+   
+String getModuleConfigName(Module module) :
+	module.name.toFirstUpper() + "BaseUI";
+
+String fqnModuleConfig(Module module) :
+	module.gwtBasePackage() + "." + module.getModuleConfigName();
+   
+String moduleGwtMain(Module module) :
+    module.gwtBasePackage() + ".client." + module.name.toFirstUpper() + "UI";
+
+String gwtDomainPackage(Module module) :
+   gwtBasePackage(module) + ".shared.domain";
+
+String gwtDomainPackage(GuiModule module) :
+   getGwtPackage(module) + ".shared.domain";
+
+String gwtCommandPackage(GuiCommand cmd) :
+   getGwtPackage((GuiModule)cmd.eContainer) + ".shared.command";
+
+String gwtCommandPackage(CommandEvent cmd) :
+   gwtBasePackage(cmd.module) + ".shared.command";
+
+//String gwtDomainPackage(Enum enum) :
+//   gwtDomainPackage(do.module);
+
+String gwtDomainPackage(DomainObject do) :
+   gwtDomainPackage(do.module);
+
+String gwtDomainPackage(GuiCommand do) :
+   gwtDomainPackage((GuiModule)do.eContainer);
+
+String fqnGwtDto(Reference ref) :
+	gwtDomainPackage(ref.to) + "." + ref.to.name;
+	
+// The fully qualified name for the domain class (not GWT DTO).
+String fqnDomain(DomainObject do) :
+	do.getDomainPackage() + "." + do.name;
+
+// The fully qualified GWT DTO class for a given domain object
+String fqnGwtDto(DomainObject do) :
+	do.gwtDomainPackage() + "." + do.name;
+
+String fqnGwtDto(GuiCommand do) :
+	do.gwtCommandPackage() + "." + do.name;
+
+String fqnGwtDto(CommandEvent do) :
+	do.gwtCommandPackage() + "." + do.name;
+
+Collection[Attribute] getAllBusinessAttributes(DomainObject domainObject) :
+	domainObject.getAllAttributes().select(attr|attr.name != "id" && attr.name != "occurred" && attr.name != "recorded");
+
+// Get all the view data properties to be be displayed/edited..  Note this leaves out referred-to domain classes, including things like Plan Type
+Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
+	task.viewProperties.reject(p | p.metaType == ReferenceViewProperty || p.metaType == DerivedReferenceViewProperty || p.isSystemAttribute() || p.name == "version");
+	
+
+// Async interface helpers
+	
+gwtServiceAsyncInterfaceName(Service svc) :
+	"Gwt" + svc.name + "Async";
+	
+gwtServiceAsyncInterfacePackage(ServiceProxy svc) :
+	gwtBasePackage(svc.for.module) + ".client";
+	
+gwtServiceAsyncInterface(ServiceProxy svc) :
+	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
+
+// TODO: Get rid of the following once view service dependencies use ServiceProxy instead
+gwtServiceAsyncInterface(Service svc) :
+	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
+
+// Sync interface helpers
+	
+gwtServiceSyncInterfaceName(ServiceProxy svc) :
+	"Gwt" + svc.name;
+	
+gwtServiceSyncInterfacePackage(ServiceProxy svc) :
+	gwtBasePackage(svc.for.module) + ".client";
+
+	
+gwtServiceSyncInterface(ServiceProxy svc) :
+	gwtServiceSyncInterfacePackage(svc) + "." + gwtServiceSyncInterfaceName(svc);
+
+// Service impl helpers
+	
+gwtServiceImplName(ServiceProxy svc) :
+	"Gwt" + svc.name + "Impl";
+	
+gwtServiceImplPackage(ServiceProxy svc) :
+	gwtBasePackage(svc.for.module) + ".server";
+	
+gwtServiceImpl(ServiceProxy svc) :
+	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
+
+gwtServiceImplFqn(ServiceProxy svc) :
+//	debugTrace("Module: " + svc.module) ->
+	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
+
+String getGwtParameterTypeName(Parameter e, Module module) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getParamaterTypeName(sculptormetamodel.Parameter, sculptormetamodel.Module);
+
+// Get GWT DTO type name corresponding to given typed element (e.g. operation with return type)
+String getGwtTypeName(DomainObjectTypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.DomainObjectTypedElement);
+    
+String getGwtTypeName(Reference ref) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.Reference);
+
+String getGwtTypeName(TypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getTypeName(sculptormetamodel.TypedElement);
+
+String getGwtTypeName(NamedElement e) :
+	error("getGwtTypeName(NamedElement) called, which means the following object was unexpected: " + e) ->
+	null;
+
+String translateGwtType(TypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtType(sculptormetamodel.TypedElement);
+
+String translateGwtTypeName(String typeStr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(java.lang.String);
+
+//String translateGwtTypeName(DslGuiAttribute) :
+//    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(sculptormetamodel.Attribute, java.lang.String);
+
+
+//attr.translateGwtTypeName
+
+
+
+String getGwtTypeName(ViewDataProperty prop) :
+	null;
+
+String getGwtTypeName(AttributeViewProperty prop) :
+	prop.attribute.getGwtTypeName();
+
+String getGwtTypeName(BasicTypeViewProperty prop) :
+	prop.attribute.getGwtTypeName();
+
+
+
+String getGwtImplTypeName(TypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getImplTypeName(sculptormetamodel.TypedElement);
+
+
+    
+// Package for all view-related widget classes
+gwtWidgetsPackage(View view) :
+	gwtBasePackage(view.module.for) + ".client.view";
+
+
+
+// Package for all task-related widget classes
+gwtWidgetsPackage(UserTask task) :
+	gwtBasePackage(task.for.module) + ".client";
+
+// Get the template file path given the fqn of the corresponding widget class 
+String gwtTemplateFilePath(String widgetClassFqn) :
+    widgetClassFqn.replaceAll("\\.", "/") + ".ui.xml";
+
+	
+
+// Fully qualified name of GWT table widget class corresponding to the given task
+String fqnGwtTableWidgetClass(ListTask task) :
+	task.gwtWidgetsPackage() + "." + task.gwtTableWidgetClass() ;
+
+// GWT table widget class relative name
+String gwtTableWidgetClass(ListTask task) :
+	plural(task.for.name) + "Table";
+
+
+Set[Module] getDependedUponModules(Module module) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.DependencyUtil.getDependedUponModules(sculptormetamodel.Module);
+	
+
+
+
+// Fully qualified name of GWT table widget base class corresponding to the given task
+String fqnGwtTableWidgetBaseClass(ListTask task) :
+	task.gwtWidgetsPackage() + "." + task.gwtTableWidgetBaseClass() ;
+
+
+// GWT table widget class relative name
+String gwtTableWidgetBaseClass(ListTask task) :
+	plural(task.for.name) + "TableBase";
+
+// Get the table template file path for the given List task
+String gwtTableTemplateFilePath(ListTask task) :
+	gwtTemplateFilePath(fqnGwtTableWidgetBaseClass(task));
+	
+
+
+// GWT edit form widget class relative name
+String gwtEditFormWidgetBaseClass(UserTask task) :
+	task.for.name + "EditFormBase";
+
+// Fully qualified name of GWT edit form widget base class corresponding to the given task
+String fqnGwtEditFormWidgetBaseClass(UserTask task) :
+	task.gwtWidgetsPackage() + "." + task.gwtEditFormWidgetBaseClass() ;
+	
+// Get the edit form base template file path for the given  task
+String gwtEditFormBaseTemplateFilePath(UserTask task) :
+	gwtTemplateFilePath(fqnGwtEditFormWidgetBaseClass(task));
+	
+	
+String getAttributeType(ViewDataProperty prop) :
+	null;
+
+String getAttributeType(AttributeViewProperty prop) :
+	prop.attribute.type;
+
+String getAttributeType(BasicTypeViewProperty prop) :
+	prop.attribute.type;
+
+	
+String resolveGwtWidgetType(ViewDataProperty prop) :
+	if (prop.isDateOrDateTime()) then
+		"com.google.gwt.user.datepicker.client.DateBox" // com.google.gwt.user.datepicker.client.DateBox
+	else if (prop.isBoolean()) then
+		"com.google.gwt.user.client.ui.CheckBox"
+	else 
+		"com.google.gwt.user.client.ui.TextBox";
+
+
+
+// Relative name of the DTO class that a table is for
+DomainObject tableForClass(TableWidget table) :
+	table.for;
+
+// Fully qualified name of the DTO class that a table is for
+String fqnTableForClass(TableWidget table) :
+	fqnGwtDto(tableForClass(table));
+
+Boolean widgetHasNameProp(ViewDataProperty prop) :
+	if (prop.isDateOrDateTime()) then
+		false
+	else
+		true;
+
+// Copied from guihelper.ext
+boolean isDateOrDateTime(Attribute attr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.isDateOrDateTime(sculptormetamodel.TypedElement);
+
+//	{"Date", "DateTime", "Timestamp", "LocalDate", "Time", "java.util.Date"}.contains(attr.type);
+//	debugTrace("type is: " + attr.type) ->
+
+String getToDomainConversionExpression(TypedElement attr, String dtoAccessorExpr, String domainObjAccessorExpr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getToDomainConversionExpression(sculptormetamodel.TypedElement, java.lang.String, java.lang.String);
+
+String getToDtoConversionExpression(TypedElement attr, String domainObjAccessorExpr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getToDtoConversionExpression(sculptormetamodel.TypedElement, java.lang.String);
+
+
+
+// my own addition
+boolean isBoolean(ViewDataProperty prop) :
+	{"Boolean"}.contains(prop.getAttributeType());
+
+String resolveGwtWidgetBinderReference(ViewDataProperty prop) :
+	if (prop.isDateOrDateTime()) then
+		"d:DateBox" // com.google.gwt.user.datepicker.client.DateBox
+	else if (prop.isBoolean()) then
+		"g:CheckBox"
+	else 
+		"g:TextBox";
+
+String fieldName(ViewDataProperty prop) :
+	prop.name + "Field";
+
+	
+String getDtoPropertyPath(ViewDataProperty property, String objName) :
+	objName + ".get" + property.name.toFirstUpper() + "()";
+
+String getDtoPropertyPath(BasicTypeViewProperty property, String objName) :
+	"(" + objName + ".get" + property.reference.name.toFirstUpper() + "()" + "== null ? null : " +
+	objName + ".get" + property.reference.name.toFirstUpper() + "()" + '.' + "get" + property.attribute.name.toFirstUpper() + "())";
+
+String getDtoPropertyPath(BasicTypeEnumViewProperty property, String objName) :
+	"(" + objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + "== null ? null : " +
+	objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + '.' + "get" + property.reference.name.toFirstUpper() + "())";
+
+
+
+String fqnAddCommand(UserTask task) :
+	gwtDomainPackage(task.for.module) + "." + "Add" + task.for.name.toFirstUpper();
+	 
+String fqnDeleteCommand(UserTask task) :
+	gwtDomainPackage(task.for.module) + "." + "Delete" + task.for.name.toFirstUpper();
+	 
+	 
+//
+// General functions
+//
+String loggerDeclaration(String relativeClassName) :
+    "private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(" + relativeClassName + ".class.getName());";
+
+	 
+	 
+	 
+//
+// Mapping-related functions
+//
+
+String mapToDomainCall(Reference ref) :
+	dtoMapper(ref.to.module) + ".mapToDomain";
+
+String mapFromDomainCall(Reference ref) :
+	dtoMapper(ref.to.module) + ".mapFromDomain";
+	
+// Package for server-side domain mapper classes
+String gwtDomainMaperPackage(DomainObject do) :
+	do.getDomainPackage();
+
+// Fully qualified class of mapper for given Module
+String dtoMapper(Module module) :
+	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.dtoMapper(sculptormetamodel.Module);
+
+boolean isMappableType(Parameter parameter) :
+	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.isMappableType(sculptormetamodel.Parameter);
+
+String getMapToDomainExpression(Parameter parameter) :
+	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getMapToDomainExpression(sculptormetamodel.Parameter);
+
+    
+
+////////////////////////////////////////////////////////////////////////////
+// View-related functions
+////////////////////////////////////////////////////////////////////////////
+
+// GWT view widget base class relative name
+String gwtViewWidgetBaseClass(View view) :
+	view.name.toFirstUpper() + "ViewBase";
+
+// GWT view base UI Binder class relative name
+String gwtViewWidgetBaseUiBinderClass(View view) :
+	view.gwtViewWidgetBaseClass() + "UiBinder";
+
+// Fully qualified name of GWT widget UI binder class corresponding to the given view
+String fqnViewWidgetBaseUiBinderClass(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseUiBinderClass() ;
+
+
+// GWT view widget interface relative name
+String gwtViewInterface(View view) :
+	view.name.toFirstUpper() + "View";
+
+// Fully qualified name of GWT view widgetinterface
+String fqnGwtViewInterface(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewInterface();
+
+// Fully qualified name of GWT view widget interface
+//String fqnViewWidgetBaseInterface(View view) :
+//	view.fqnActivityBaseClass() + "." + view.gwtViewWidgetBaseInterface();
+
+// GWT view widget impl interface relative name
+//String gwtViewWidgetInterface(View view) :
+//	view.name.toFirstUpper();
+
+	
+// GWT view widget impl class relative name
+String gwtViewWidgetImplClass(View view) :
+	view.name.toFirstUpper() + "ViewImpl";
+
+// Fully qualified name of GWT widget base class corresponding to the given view
+String fqnGwtViewWidgetBaseClass(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseClass() ;
+
+// Fully qualified name of GWT widget impl class corresponding to the given view
+String fqnGwtViewWidgetImplClass(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetImplClass() ;
+
+
+
+String resolveGwtWidgetType(Widget widget) :
+	error("Unexpected call to resolveGwtWidgetType: " + widget);
+	
+String resolveGwtWidgetType(InputTextWidget widget) :
+	"com.google.gwt.user.client.ui.TextBox";
+
+String resolveGwtWidgetType(InformationalTextWidget widget) :
+	"com.google.gwt.user.client.ui.TextBox";
+
+String resolveGwtWidgetType(ButtonWidget widget) :
+	"com.google.gwt.user.client.ui.Button";
+
+	
+
+Set[Service] getUsedServices(GuiModule module) :
+	module.serviceDependencies;
+
+	
+Set[Service] getUsedServices(View view) :
+	{}.addAll(view.serviceDependencies);
+//	(task.getPrimaryService() == null ? {} : {}.add(task.getPrimaryService())).
+//		addAll(task.getServicesToSelectDomainObjects()).toSet();
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// Activity related functions
+//////////////////////////////////////////////////////////////////////////////
+
+// Package for all activity-related classes
+gwtActivitiesPackage(View view) :
+	gwtBasePackage(view.module.for) + ".client.activity";
+
+
+// GWT activity base class relative name
+String gwtActivityBaseClass(View view) :
+	view.name + "ActivityBase";
+
+// Base class that should be used for all activities
+String gwtFrameworkActivityBaseClass(View view) :
+	"com.google.gwt.activity.shared.AbstractActivity";
+	
+// GWT activity impl class relative name
+String gwtActivityImplClass(View view) :
+	view.name + "Activity";
+
+// Fully qualified activity base class
+String fqnActivityBaseClass(View view) :
+	view.gwtActivitiesPackage() + "." + view.gwtActivityBaseClass() ;
+
+// Fully qualified activity impl class
+String fqnActivityImplClass(View view) :
+	view.gwtActivitiesPackage() + "." + view.gwtActivityImplClass() ;
+
+// Fully qualified activity impl class name
+
+
+//////////////////////////////////////////////////////////////////////////////
+// Place related functions
+//////////////////////////////////////////////////////////////////////////////
+
+// Package for all place-related classes
+gwtPlacesPackage(View view) :
+	gwtBasePackage(view.module.for) + ".client.place";
+
+
+// GWT place base class relative name
+String gwtPlaceBaseClass(View view) :
+	view.name + "Place";
+
+// Base class that should be used for all places
+String gwtFrameworkPlaceBaseClass(View view) :
+	"com.google.gwt.place.shared.Place";
+	
+// GWT place impl class relative name
+//String gwtPlaceImplClass(View view) :
+//	view.name + "Place";
+
+// Fully qualified place base class
+String fqnPlaceBaseClass(View view) :
+	view.gwtPlacesPackage() + "." + view.gwtPlaceBaseClass() ;
+
+// Fully qualified place impl class
+//String fqnPlaceImplClass(View view) :
+//	view.gwtPlacesPackage() + "." + view.gwtPlaceImplClass() ;
+
+
+
+
+///////////////////////////////////////////////////////////////
+// Event-related functions
+///////////////////////////////////////////////////////////////
+    
+// Package for all event-related widget classes
+gwtEventsPackage(GuiEvent event) :
+	gwtBasePackage(event.guiModule.for) + ".client.event";
+	
+// GWT event base class relative name
+String gwtEventBaseClass(GuiEvent event) :
+	event.name + "Base";
+
+
+fqnGwtEventBaseClass(GuiEvent event) :
+	event.gwtEventsPackage() + "." + event.gwtEventBaseClass();
+
+fqnGwtEventClass(GuiEvent event) :
+	event.gwtEventsPackage() + "." + event.gwtEventClass();
+	
+// GWT event handler class relative name
+String gwtEventHandlerClass(GuiEvent event) :
+	event.name + "Handler";	
+
+String fqnEventHandlerClass(GuiEvent event) :
+	gwtEventsPackage(event) + "." + gwtEventBaseClass(event) + "." + gwtEventHandlerClass(event);
+	
+// GWT event concrete class relative name
+String gwtEventClass(GuiEvent event) :
+	event.name;
+
+
+
+	
+Set[GuiCommand] commandsToGenerate(GuiModule module) :
+	module.commands.reject(c | c.getHint("gwt") == "skip");
+	
+
+// The set of domain objects for which GWT<->core mapping code should be generated
+boolean shouldBeMapped(DomainObject d) :
+	d.abstract == false &&
+	d.getHint("gwt") != "skip" &&
+	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
+	
