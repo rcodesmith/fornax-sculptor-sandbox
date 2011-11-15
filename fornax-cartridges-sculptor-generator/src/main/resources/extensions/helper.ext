@@ -411,8 +411,11 @@ String getBuilderClassName(DomainObject domainObject) :
 
 
 boolean needsBuilder(DomainObject domainObject) :
-	!Enum.isInstance(domainObject);
+	domainObject.abstract == false;
 
+boolean needsBuilder(Enum domainObject) :
+  false;
+  
 List[Reference] getBuilderReferences(DomainObject domainObject) :
 	domainObject.references.select(r | !r.many);
 
