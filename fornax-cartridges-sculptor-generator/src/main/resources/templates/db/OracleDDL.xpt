@@ -99,7 +99,7 @@ TABLESPACE «getHint("tablespace").toUpperCase()»«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE columns(boolean initialComma, Set[String] alreadyDone) FOR DomainObject-»
-«LET attributes.reject(e | e.transient || alreadyDone.contains(e.getDatabaseName())) 
+«LET attributes.reject(e | e.transient || alreadyDone.contains(e.getDatabaseName()) || e.isSystemAttributeToPutLast() ) 
 	AS currentAttributes -»
 «FOREACH currentAttributes AS e»«alreadyDone.add(e.getDatabaseName()) -> ""»«ENDFOREACH-»
 «LET getBasicTypeReferences().reject(e | e.transient || alreadyDone.contains(e.getDatabaseName())) 
@@ -114,6 +114,9 @@ TABLESPACE «getHint("tablespace").toUpperCase()»«ENDIF-»
 «LET references.select(r | !r.transient && !r.many && r.to.hasOwnDatabaseRepresentation()).reject(e | (e.isOneToOne() && e.isInverse()) || alreadyDone.contains(e.getDatabaseName()))
 	AS currentOneReferences -»
 «FOREACH currentOneReferences AS e»«alreadyDone.add(e.getDatabaseName()) -> ""»«ENDFOREACH-»
+«LET attributes.reject(e | e.transient || alreadyDone.contains(e.getDatabaseName()) || ! e.isSystemAttributeToPutLast() ) 
+	AS currentSystemAttributesToPutLast -»
+«FOREACH currentSystemAttributesToPutLast AS e»«alreadyDone.add(e.getDatabaseName()) -> ""»«ENDFOREACH-»
 «IF initialComma && !currentAttributes.isEmpty»,
 «ENDIF-»
 «EXPAND column("") FOREACH currentAttributes SEPARATOR ",\n"-»
@@ -129,6 +132,10 @@ TABLESPACE «getHint("tablespace").toUpperCase()»«ENDIF-»
 «IF ((initialComma || !currentAttributes.isEmpty) || !currentOneReferences.isEmpty || !currentUniManyToThisReferences.isEmpty || !currentBasicTypeReferences.isEmpty) && !currentEnumReferences.isEmpty -»,
 «ENDIF-»
 «EXPAND enumColumn("", false) FOREACH currentEnumReferences SEPARATOR ",\n"-»
+«IF ((initialComma || !currentAttributes.isEmpty) || !currentOneReferences.isEmpty || !currentUniManyToThisReferences.isEmpty || !currentBasicTypeReferences.isEmpty || !currentEnumReferences.isEmpty) && !currentSystemAttributesToPutLast.isEmpty -»,
+«ENDIF-»
+«EXPAND column("") FOREACH currentSystemAttributesToPutLast SEPARATOR ",\n"-»
+«ENDLET -»
 «ENDLET -»
 «ENDLET -»
 «ENDLET -»

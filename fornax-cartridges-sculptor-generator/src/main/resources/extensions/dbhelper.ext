@@ -187,6 +187,19 @@ Set[String] getJoinTableNames(DomainObject domainObject) :
 String getEnumDatabaseType(Reference ref) :
 	JAVA org.fornax.cartridges.sculptor.generator.util.DatabaseGenerationHelper.getEnumDatabaseType(sculptormetamodel.Reference);
 
+
+boolean isSystemAttributeToPutLast(Attribute attr) :
+	getSystemAttributesToPutLast().contains(attr.name);
+
+
+
+
+
+// TODO: Move to properties.ext
+cached Collection[String] getSystemAttributesToPutLast() :
+    getProperty("systemAttributesToPutLast").split(",");
+    
+    
 String getCascadeType(Reference ref) :
 	let values = ref.getCascade() == null ?
 		null :

@@ -87,7 +87,7 @@ public class DatabaseGenerationHelper {
             List<DomainObject> domainObjects = GenerationHelper.sortByName(m
                     .getDomainObjects());
             for (DomainObject d : domainObjects) {
-                if (isPersistent(d)) {
+                if (isPersistent(d) && includeInDdl(d)) {
                     all.add(d);
                 }
             }
@@ -95,6 +95,10 @@ public class DatabaseGenerationHelper {
         return all;
     }
 
+    private static boolean includeInDdl(DomainObject domainObj) {
+    	return !(domainObj.getHint() != null && domainObj.getHint().contains("skipddl"));
+    	
+    }
     private static void addClassRecursive(DomainObject domainObject,
             List<DomainObject> orderedClasses, Set<DomainObject> handledClasses) {
         if (handledClasses.contains(domainObject)) {
@@ -106,7 +110,7 @@ public class DatabaseGenerationHelper {
             return;
         }
 
-        if (!isPersistent(domainObject)) {
+        if (!isPersistent(domainObject) || ! includeInDdl(domainObject)) {
             // no tables for non persistent ValueObject
             return;
         }
@@ -372,7 +376,7 @@ public class DatabaseGenerationHelper {
         List<DomainObject> domainObjects = getAllDomainObjects(application);
         for (DomainObject domainObject : domainObjects) {
             for (Reference ref : getAllManyReferences(domainObject)) {
-                if (!isPersistent(ref.getTo())) {
+                if (!isPersistent(ref.getTo()) || !includeInDdl(ref.getTo())) {
                     // skip this reference, since it refers to a non persistent
                     // object
                     continue;
