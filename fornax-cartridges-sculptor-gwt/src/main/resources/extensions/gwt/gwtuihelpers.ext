@@ -388,6 +388,13 @@ String mapFromDomainCall(Reference ref) :
 String gwtDomainMaperPackage(DomainObject do) :
 	do.getDomainPackage();
 
+String mapperClassName(Module m) :
+	m.name.toFirstUpper() + "DtoMapper";
+	
+String fqnMapperClass(DomainObject m) :
+	m.getDomainPackage() + "." + m.mapperClassName();
+	
+
 // Fully qualified class of mapper for given Module
 String dtoMapper(Module module) :
 	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.dtoMapper(sculptormetamodel.Module);
@@ -397,6 +404,12 @@ boolean isMappableType(Parameter parameter) :
 
 String getMapToDomainExpression(Parameter parameter) :
 	JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getMapToDomainExpression(sculptormetamodel.Parameter);
+
+// The set of domain objects for which GWT<->core mapping code should be generated
+boolean shouldBeMapped(DomainObject d) :
+	d.getHint("gwt") != "skip" &&
+	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
+	
 
     
 
@@ -582,9 +595,3 @@ Set[GuiCommand] commandsToGenerate(GuiModule module) :
 	module.commands.reject(c | c.getHint("gwt") == "skip");
 	
 
-// The set of domain objects for which GWT<->core mapping code should be generated
-boolean shouldBeMapped(DomainObject d) :
-	d.abstract == false &&
-	d.getHint("gwt") != "skip" &&
-	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
-	

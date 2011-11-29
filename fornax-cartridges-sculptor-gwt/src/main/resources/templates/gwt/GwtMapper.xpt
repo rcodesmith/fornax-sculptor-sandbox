@@ -3,7 +3,7 @@
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
-«EXTENSION extensions::gwt::sofeauihelpers»
+«EXTENSION extensions::gwt::gwtuihelpers»
 
 
 «DEFINE domainObjectUIMapperDispatch(GuiApplication guiApp) FOR Module»
@@ -13,7 +13,9 @@ package «getDomainPackage(this)»;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
-public class «name.toFirstUpper()»DtoMapper {
+public class «this.mapperClassName()» {
+
+	private final static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(«this.mapperClassName()».class);
 
 	protected static jmultimethod.Multimethod mapToDomainMM = new jmultimethod.Multimethod("mapToDomain", «name.toFirstUpper()»DtoMapper.class);
 	protected static jmultimethod.Multimethod mapFromDomainMM = new jmultimethod.Multimethod("mapFromDomain", «name.toFirstUpper()»DtoMapper.class);
@@ -144,21 +146,32 @@ public class «name.toFirstUpper()»DtoMapper {
 	 */
 	@jmultimethod.Multi("mapToDomain")	 
 	public static «this.fqnDomain()» map«name.toFirstUpper()»ToDomain(«this.fqnGwtDto()» dtoObj) {
+		if(log.isDebugEnabled()) {
+			log.debug("map«name.toFirstUpper()»ToDomain(" + dtoObj + ")");
+		}
+		
 		if(dtoObj == null) {
 			return null;
 		}
-		«this.fqnDomain()» domainObj = new «this.fqnDomain()»(); 
 		
-		«REM»Copy attributes«ENDREM»
-		«EXPAND copyAttrToDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
+		«IF this.abstract»
+			«this.fqnDomain()» domainObj = («this.fqnDomain()»)mapToDomainMM.invoke(null, dtoObj);		
+		«ELSE»
+			«this.fqnDomain()» domainObj = new «this.fqnDomain()»(); 
 		
-		«REM»Copy one-many«ENDREM»
-		«EXPAND copyManyRefToDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
+			«REM»Copy attributes«ENDREM»
+			«EXPAND copyAttrToDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
+		
+			«REM»Copy one-many«ENDREM»
+			«EXPAND copyManyRefToDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
 
-		«REM»Copy one-one«ENDREM»
-		«EXPAND copyOneRefToDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
+			«REM»Copy one-one«ENDREM»
+			«EXPAND copyOneRefToDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
+		
+		«ENDIF»
 		
 		return domainObj;
+		
 	}
 «ENDDEFINE»
 
@@ -168,22 +181,34 @@ public class «name.toFirstUpper()»DtoMapper {
 	 */
 	@jmultimethod.Multi("mapFromDomain")	  
 	public static «this.fqnGwtDto()» map«name.toFirstUpper()»FromDomain(«this.fqnDomain()» domainObj) {
+	
+		if(log.isDebugEnabled()) {
+			log.debug("map«name.toFirstUpper()»FromDomain(" + domainObj + ")");
+		}
+
 		if(domainObj == null) {
 			return null;
 		}
 
-		«this.fqnGwtDto()» dtoObj = new «this.fqnGwtDto()»(); 
+		«IF this.abstract»
+			«this.fqnGwtDto()» dtoObj = («this.fqnGwtDto()»)mapFromDomainMM.invoke(null, domainObj);
+		«ELSE»
+
+			«this.fqnGwtDto()» dtoObj = new «this.fqnGwtDto()»(); 
 		
-		«REM»Copy attributes«ENDREM»
-		«EXPAND copyAttrFromDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
+			«REM»Copy attributes«ENDREM»
+			«EXPAND copyAttrFromDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
 		
-		«REM»Copy one-many«ENDREM»
-		«EXPAND copyManyRefFromDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
+			«REM»Copy one-many«ENDREM»
+			«EXPAND copyManyRefFromDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
 				
-		«REM»Copy one-one«ENDREM»
-		«EXPAND copyOneRefFromDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
-		
+			«REM»Copy one-one«ENDREM»
+			«EXPAND copyOneRefFromDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
+					
+		«ENDIF»
+
 		return dtoObj;
+
 	}
 
 «ENDDEFINE»

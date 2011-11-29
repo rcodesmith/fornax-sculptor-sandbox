@@ -501,10 +501,3 @@ String gwtEventClass(GuiEvent event) :
 Set[GuiCommand] commandsToGenerate(GuiModule module) :
 	module.commands.reject(c | c.getHint("gwt") == "skip");
 	
-
-// The set of domain objects for which GWT<->core mapping code should be generated
-boolean shouldBeMapped(DomainObject d) :
-	d.abstract == false &&
-	d.getHint("gwt") != "skip" &&
-	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
-	

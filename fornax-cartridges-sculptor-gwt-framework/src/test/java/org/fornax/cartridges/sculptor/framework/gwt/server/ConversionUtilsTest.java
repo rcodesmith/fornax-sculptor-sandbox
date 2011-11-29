@@ -5,12 +5,14 @@ import java.util.Date;
 
 import junit.framework.Assert;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
 public class ConversionUtilsTest {
 
 	LocalDate localDate = new LocalDate(2011, 4, 22);
+	Date date = localDate.toDateMidnight().toDate();
 	
 	@Test
 	public void assertConvertLocalDateToDate() {
@@ -24,5 +26,11 @@ public class ConversionUtilsTest {
 		Assert.assertEquals(3, cal.get(Calendar.MONTH));
 		Assert.assertEquals(22, cal.get(Calendar.DAY_OF_MONTH));
 		
+	}
+	
+	@Test
+	public void assertConvertDateToDateTimeNull() {
+		DateTime dt = ConversionUtils.convert((Date)null, new DateTime());
+		Assert.assertNull(dt);
 	}
 }

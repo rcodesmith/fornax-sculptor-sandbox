@@ -130,9 +130,15 @@
 	 * Type name is «getTypeName()»
 	 */
 	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","») {
-	
-	log.debug("«name»()");
-	
+
+	«IF parameters.size > 0»
+		if(log.isDebugEnabled()) {
+			log.debug("«name»(" + «FOREACH parameters AS p SEPARATOR ' + ", " + '»«p.name»«ENDFOREACH» + ")");	
+		} else
+	«ENDIF»	
+	if(log.isInfoEnabled()) {
+		log.debug("«name»()");
+	}
 	try {
 	«LET this.getTypeName() AS typeName»
 		«IF typeName != null && typeName != 'void'»
@@ -145,6 +151,10 @@
 			«IF domainObjectType != null»
 			return «module.dtoMapper()».map«domainObjectType.name»FromDomain(res);				
 			«ELSE»
+			
+			if(log.isInfoEnabled()) {
+				log.debug("«name»() returning");
+			}
 			return res;
 			«ENDIF»
 		«ENDIF»
