@@ -450,6 +450,9 @@ String fqnGwtViewWidgetImplClass(View view) :
 
 String resolveGwtWidgetType(Widget widget) :
 	error("Unexpected call to resolveGwtWidgetType: " + widget);
+
+String resolveGwtWidgetType(InputDateWidget widget) :
+	"com.google.gwt.user.client.ui.TextBox";
 	
 String resolveGwtWidgetType(InputTextWidget widget) :
 	"com.google.gwt.user.client.ui.TextBox";
@@ -459,6 +462,9 @@ String resolveGwtWidgetType(InformationalTextWidget widget) :
 
 String resolveGwtWidgetType(ButtonWidget widget) :
 	"com.google.gwt.user.client.ui.Button";
+	
+String resolveGwtWidgetType(LinkWidget widget) :
+	"com.google.gwt.user.client.ui.Anchor";
 
 	
 
@@ -487,8 +493,10 @@ String gwtActivityBaseClass(View view) :
 	view.name + "ActivityBase";
 
 // Base class that should be used for all activities
+// TODO: Make property
 String gwtFrameworkActivityBaseClass(View view) :
-	"com.google.gwt.activity.shared.AbstractActivity";
+	"org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<" + fqnPlaceBaseClass(view) + ">";
+//	"com.google.gwt.activity.shared.AbstractActivity";
 	
 // GWT activity impl class relative name
 String gwtActivityImplClass(View view) :

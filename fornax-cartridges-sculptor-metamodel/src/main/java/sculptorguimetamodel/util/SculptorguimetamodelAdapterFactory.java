@@ -204,6 +204,15 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseViewParameter(ViewParameter object) {
 				return createViewParameterAdapter();
 			}
+			public Object caseLinkWidget(LinkWidget object) {
+				return createLinkWidgetAdapter();
+			}
+			public Object caseWidgetsContainer(WidgetsContainer object) {
+				return createWidgetsContainerAdapter();
+			}
+			public Object caseSectionWidget(SectionWidget object) {
+				return createSectionWidgetAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -828,6 +837,48 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createViewParameterAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.LinkWidget <em>Link Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.LinkWidget
+	 * @generated
+	 */
+	public Adapter createLinkWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.WidgetsContainer <em>Widgets Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.WidgetsContainer
+	 * @generated
+	 */
+	public Adapter createWidgetsContainerAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.SectionWidget <em>Section Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.SectionWidget
+	 * @generated
+	 */
+	public Adapter createSectionWidgetAdapter() {
 		return null;
 	}
 

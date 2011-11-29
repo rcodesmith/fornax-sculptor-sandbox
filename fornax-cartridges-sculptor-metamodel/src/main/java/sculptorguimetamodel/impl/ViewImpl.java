@@ -30,6 +30,8 @@ import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.NamedElement;
+import sculptormetamodel.SculptormetamodelPackage;
 import sculptormetamodel.Service;
 import sculptormetamodel.impl.NamedElementImpl;
 
@@ -40,26 +42,80 @@ import sculptormetamodel.impl.NamedElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getName <em>Name</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getDoc <em>Doc</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getHint <em>Hint</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getModule <em>Module</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getWidgets <em>Widgets</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ViewImpl extends NamedElementImpl implements View {
+public class ViewImpl extends WidgetsContainerImpl implements View {
 	/**
-	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWidgets()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList widgets;
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDoc() <em>Doc</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDoc()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DOC_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDoc() <em>Doc</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDoc()
+	 * @generated
+	 * @ordered
+	 */
+	protected String doc = DOC_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getHint() <em>Hint</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHint()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String HINT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getHint() <em>Hint</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHint()
+	 * @generated
+	 * @ordered
+	 */
+	protected String hint = HINT_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getFor() <em>For</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -89,6 +145,24 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 */
 	protected EList parameters;
 	/**
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LABEL_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String label = LABEL_EDEFAULT;
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,6 +178,69 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 */
 	protected EClass eStaticClass() {
 		return SculptorguimetamodelPackage.Literals.VIEW;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDoc() {
+		return doc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDoc(String newDoc) {
+		String oldDoc = doc;
+		doc = newDoc;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__DOC, oldDoc, doc));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getHint() {
+		return hint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHint(String newHint) {
+		String oldHint = hint;
+		hint = newHint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__HINT, oldHint, hint));
 	}
 
 	/**
@@ -145,18 +282,6 @@ public class ViewImpl extends NamedElementImpl implements View {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__MODULE, newModule, newModule));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList getWidgets() {
-		if (widgets == null) {
-			widgets = new EObjectContainmentWithInverseEList(Widget.class, this, SculptorguimetamodelPackage.VIEW__WIDGETS, SculptorguimetamodelPackage.WIDGET__VIEW);
-		}
-		return widgets;
 	}
 
 	/**
@@ -226,14 +351,33 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLabel(String newLabel) {
+		String oldLabel = label;
+		label = newLabel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__LABEL, oldLabel, label));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetModule((GuiModule)otherEnd, msgs);
-			case SculptorguimetamodelPackage.VIEW__WIDGETS:
-				return ((InternalEList)getWidgets()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -247,8 +391,6 @@ public class ViewImpl extends NamedElementImpl implements View {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				return basicSetModule(null, msgs);
-			case SculptorguimetamodelPackage.VIEW__WIDGETS:
-				return ((InternalEList)getWidgets()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
 				return ((InternalEList)getParameters()).basicRemove(otherEnd, msgs);
 		}
@@ -275,10 +417,14 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW__NAME:
+				return getName();
+			case SculptorguimetamodelPackage.VIEW__DOC:
+				return getDoc();
+			case SculptorguimetamodelPackage.VIEW__HINT:
+				return getHint();
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				return getModule();
-			case SculptorguimetamodelPackage.VIEW__WIDGETS:
-				return getWidgets();
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				if (resolve) return getFor();
 				return basicGetFor();
@@ -286,6 +432,8 @@ public class ViewImpl extends NamedElementImpl implements View {
 				return getServiceProxies();
 			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
 				return getParameters();
+			case SculptorguimetamodelPackage.VIEW__LABEL:
+				return getLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,12 +445,17 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW__NAME:
+				setName((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.VIEW__DOC:
+				setDoc((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.VIEW__HINT:
+				setHint((String)newValue);
+				return;
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				setModule((GuiModule)newValue);
-				return;
-			case SculptorguimetamodelPackage.VIEW__WIDGETS:
-				getWidgets().clear();
-				getWidgets().addAll((Collection)newValue);
 				return;
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				setFor((DomainObject)newValue);
@@ -315,6 +468,9 @@ public class ViewImpl extends NamedElementImpl implements View {
 				getParameters().clear();
 				getParameters().addAll((Collection)newValue);
 				return;
+			case SculptorguimetamodelPackage.VIEW__LABEL:
+				setLabel((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -326,11 +482,17 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case SculptorguimetamodelPackage.VIEW__DOC:
+				setDoc(DOC_EDEFAULT);
+				return;
+			case SculptorguimetamodelPackage.VIEW__HINT:
+				setHint(HINT_EDEFAULT);
+				return;
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				setModule((GuiModule)null);
-				return;
-			case SculptorguimetamodelPackage.VIEW__WIDGETS:
-				getWidgets().clear();
 				return;
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				setFor((DomainObject)null);
@@ -340,6 +502,9 @@ public class ViewImpl extends NamedElementImpl implements View {
 				return;
 			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
 				getParameters().clear();
+				return;
+			case SculptorguimetamodelPackage.VIEW__LABEL:
+				setLabel(LABEL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -352,18 +517,79 @@ public class ViewImpl extends NamedElementImpl implements View {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case SculptorguimetamodelPackage.VIEW__DOC:
+				return DOC_EDEFAULT == null ? doc != null : !DOC_EDEFAULT.equals(doc);
+			case SculptorguimetamodelPackage.VIEW__HINT:
+				return HINT_EDEFAULT == null ? hint != null : !HINT_EDEFAULT.equals(hint);
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				return getModule() != null;
-			case SculptorguimetamodelPackage.VIEW__WIDGETS:
-				return widgets != null && !widgets.isEmpty();
 			case SculptorguimetamodelPackage.VIEW__FOR:
 				return for_ != null;
 			case SculptorguimetamodelPackage.VIEW__SERVICE_PROXIES:
 				return serviceProxies != null && !serviceProxies.isEmpty();
 			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
+			case SculptorguimetamodelPackage.VIEW__LABEL:
+				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == NamedElement.class) {
+			switch (derivedFeatureID) {
+				case SculptorguimetamodelPackage.VIEW__NAME: return SculptormetamodelPackage.NAMED_ELEMENT__NAME;
+				case SculptorguimetamodelPackage.VIEW__DOC: return SculptormetamodelPackage.NAMED_ELEMENT__DOC;
+				case SculptorguimetamodelPackage.VIEW__HINT: return SculptormetamodelPackage.NAMED_ELEMENT__HINT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == NamedElement.class) {
+			switch (baseFeatureID) {
+				case SculptormetamodelPackage.NAMED_ELEMENT__NAME: return SculptorguimetamodelPackage.VIEW__NAME;
+				case SculptormetamodelPackage.NAMED_ELEMENT__DOC: return SculptorguimetamodelPackage.VIEW__DOC;
+				case SculptormetamodelPackage.NAMED_ELEMENT__HINT: return SculptorguimetamodelPackage.VIEW__HINT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", doc: ");
+		result.append(doc);
+		result.append(", hint: ");
+		result.append(hint);
+		result.append(", label: ");
+		result.append(label);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ViewImpl

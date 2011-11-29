@@ -3,11 +3,12 @@
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
-«EXTENSION extensions::gwt::sofeauihelpers»
+«EXTENSION extensions::gwt::gwtuihelpers»
 
 
 «DEFINE view(Module module) FOR GuiModule»
-	
+
+	«EXPAND viewInterface FOREACH this.views»	
 	«EXPAND viewBase FOREACH this.views»
 	«EXPAND viewImpl FOREACH this.views»
 
@@ -15,7 +16,52 @@
 	«EXPAND templates::gwt::Activity::activityImpl FOREACH this.views»
 	
 	«EXPAND templates::gwt::ViewTemplate::viewCompositeBaseTemplate FOREACH this.views»
+	«EXPAND templates::gwt::Place::placeBase FOREACH this.views»
+	
+	
 «ENDDEFINE»
+
+
+«DEFINE viewInterface FOR View»
+
+
+«FILE javaFileName(fqnGwtViewInterface())»
+package «gwtWidgetsPackage()»;
+	public interface «gwtViewInterface()» extends com.google.gwt.user.client.ui.IsWidget {
+		public void initView();
+		
+		«EXPAND widgetInterfaceDeclarations FOREACH widgets»
+		
+	}
+	// «debugTrace("viewInterface for " + name)»
+
+«ENDFILE»
+«ENDDEFINE»
+
+«REM»Declarations that must be added to the view interface for ecah widget«ENDREM»
+«DEFINE widgetInterfaceDeclarations FOR Widget»
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR TableWidget»
+	public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
+	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR InputDateWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR LinkWidget»
+	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
+«ENDDEFINE»
+
 
 
 «REM»View base class«ENDREM»
@@ -24,11 +70,12 @@
 
 package «gwtWidgetsPackage()»;
 
-public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Composite {
+public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Composite
+	implements «fqnGwtViewInterface()» {
 
 	«loggerDeclaration(gwtViewWidgetBaseClass())»
 
-    interface «gwtViewWidgetBaseClass()»UiBinder extends com.google.gwt.uibinder.client.UiBinder<com.google.gwt.user.client.ui.Widget, «fqnGwtViewWidgetBaseClass()»> {}
+    interface «gwtViewWidgetBaseUiBinderClass()» extends com.google.gwt.uibinder.client.UiBinder<com.google.gwt.user.client.ui.Widget, «fqnGwtViewWidgetBaseClass()»> {}
 
     private static «gwtViewWidgetBaseClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
     	.create(«gwtViewWidgetBaseClass()»UiBinder.class);
@@ -43,6 +90,9 @@ public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Co
     	return uiBinder.createAndBindUi(this);
     }
     
+    public void initView() {
+    
+    }
     
     «EXPAND widgetDeclaration FOREACH widgets»
     
@@ -109,6 +159,19 @@ public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Co
 	}
 «ENDDEFINE»
 
+«DEFINE widgetMethods FOR InputDateWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
+		return «name»;
+	}
+«ENDDEFINE»
+
+«DEFINE widgetMethods FOR LinkWidget»
+	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
+		return «name»;
+	}
+«ENDDEFINE»
+
+
 «DEFINE widgetMethods FOR Widget»
 «ENDDEFINE»
 
@@ -135,10 +198,21 @@ public class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.client.ui.Co
 «REM»View impl class«ENDREM»
 «DEFINE viewImpl FOR View»
 «FILE javaFileName(fqnGwtViewWidgetImplClass(this)) TO_SRC»
+«EXPAND viewImplBody FOR this»
+«ENDFILE»
+«ENDDEFINE»
 
+«REM»View impl class - for unit tests«ENDREM»
+«DEFINE viewImplForUnitTest FOR View»
+«FILE javaFileName(fqnGwtViewWidgetImplClass(this))»
+«EXPAND viewImplBody FOR this»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE viewImplBody FOR View»
 package «gwtWidgetsPackage()»;
 
-public class «gwtViewWidgetImplClass()» extends  «fqnGwtViewWidgetBaseClass()» implements «fqnViewWidgetImplInterface()» {
+public class «gwtViewWidgetImplClass()» extends  «fqnGwtViewWidgetBaseClass()» implements «fqnGwtViewInterface()» {
 
 	«loggerDeclaration(gwtViewWidgetImplClass())»
 
@@ -159,8 +233,4 @@ public class «gwtViewWidgetImplClass()» extends  «fqnGwtViewWidgetBaseClass()» i
 
 	*/
 }
-
-«ENDFILE»
-
 «ENDDEFINE»
-

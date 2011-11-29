@@ -20,17 +20,21 @@
 «EXTENSION extensions::properties»
 
 «DEFINE oneReferenceAttribute FOR Reference»
+	«EXPAND oneReferenceAttribute(true) FOR this»
+«ENDDEFINE»
+
+«DEFINE oneReferenceAttribute(boolean annotations) FOR Reference»
 	«IF isUnownedReference()»
 		«EXPAND oneReferenceIdAttribute»
 		«IF mongoDb()»
 			«EXPAND oneReferenceLazyAttribute»
 		«ENDIF»
 	«ELSE»
-		«EXPAND oneReferenceAttribute(true)»
+		«EXPAND oneReferenceAttributeOwnedReference(annotations)»
 	«ENDIF»
 «ENDDEFINE»
 
-«DEFINE oneReferenceAttribute(boolean annotations) FOR Reference»
+«DEFINE oneReferenceAttributeOwnedReference(boolean annotations) FOR Reference»
     «IF annotations»
     	«EXPAND DomainObjectReferenceAnnotation::oneReferenceAttributeAnnotations»
     «ENDIF»

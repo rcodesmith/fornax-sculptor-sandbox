@@ -16,4 +16,6 @@ package sculptorguimetamodel.validation;
 public interface ViewParameterValidator {
 	boolean validate();
 
+	boolean validateNullable(boolean value);
+
 }

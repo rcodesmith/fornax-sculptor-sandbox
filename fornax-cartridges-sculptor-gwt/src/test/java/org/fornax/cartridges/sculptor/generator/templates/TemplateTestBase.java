@@ -53,12 +53,8 @@ public class TemplateTestBase extends TransformationTestBase {
 				.matcher(text).find());
 	}
 
-	/**
-	 * Assert that the given text contains the given text fragments, separated
-	 * by whitespace (including newline).
-	 */
 	protected void assertContainsConsecutiveFragments(String text,
-			String[] fragments) {
+			String... fragments) {
 		StringBuilder sb = new StringBuilder();
 
 		for (String fragment : fragments) {
@@ -66,6 +62,7 @@ public class TemplateTestBase extends TransformationTestBase {
 		}
 		assertMatchesRegexp(text, sb.toString());
 	}
+	
 
 	protected void assertNotContains(String text, String subStr) {
 		Assert.assertFalse("Text contained substring \"" + subStr + "\"",

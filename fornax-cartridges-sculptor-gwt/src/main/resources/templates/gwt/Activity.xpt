@@ -3,7 +3,7 @@
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
-«EXTENSION extensions::gwt::sofeauihelpers»
+«EXTENSION extensions::gwt::gwtuihelpers»
 
 
 «REM»Activity base class«ENDREM»
@@ -12,44 +12,76 @@
 
 package «gwtActivitiesPackage()»;
 
-public abstract class «gwtActivityBaseClass()» extends com.google.gwt.activity.shared.AbstractActivity {
+public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBaseClass()» {
 
 	«loggerDeclaration(gwtActivityBaseClass())»
 
-	private final com.google.gwt.event.shared.EventBus eventBus;
-	private final com.google.gwt.place.shared.PlaceController placeController;
+	protected final com.google.gwt.event.shared.EventBus eventBus;
+	protected final com.google.gwt.place.shared.PlaceController placeController;
 	
-	private final «gwtViewWidgetBaseInterface()» baseDisplay;
+	protected final «fqnGwtViewInterface()» view;
 	
-	«EXPAND serviceDeclaration FOREACH serviceDependencies»
-
-	public interface «gwtViewWidgetBaseInterface()» {
-		com.google.gwt.user.client.ui.Widget asWidget();
-		
-		«EXPAND widgetInterfaceDeclarations FOREACH widgets»
-		
-	}
-	
-	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
-	}
+	«EXPAND serviceDeclaration FOREACH serviceProxies»
 
 	public «gwtActivityBaseClass()»(com.google.gwt.event.shared.EventBus eventBus,
-		«gwtViewWidgetBaseInterface()» theBaseDisplay,
+		«gwtViewInterface()» theView,
 		com.google.gwt.place.shared.PlaceController placeController) {
 		super();
 		
-		this.baseDisplay = theBaseDisplay;
+		this.view = theView;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
 	}
 
 
+	/**
+	 *
+	 */
+	@Override
+	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
+		init();
+		bind();
+
+		//load model
+		loadModel();
+		
+		//set the view widget into the panel
+		panel.setWidget(getViewAsWidget());
+		
+		registerValidators();
+	}
+
+	protected abstract void registerValidators();
+	
+	protected void init() {
+		getView().initView();
+		
+		populateFromPlace();
+		
+	}
+
+	protected abstract void populateFromPlace();
+
+	/**
+	 * Bind to the view (register event handlers, etc) 
+	 */
+	protected abstract void bind();
+	
+	protected abstract void loadModel();
+	
+	protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {
+		return view.asWidget();
+	}
+	
+	protected «gwtViewInterface()» getView() {
+		return view;
+	}
+	
+
 	public void clearData() {
 		«EXPAND widgetClearCall FOREACH widgets»
 	}
 	
-	protected abstract void bind();
-
 }
  
 «ENDFILE»
@@ -61,30 +93,14 @@ public abstract class «gwtActivityBaseClass()» extends com.google.gwt.activity.s
 «ENDDEFINE»
 
 «DEFINE widgetClearCall FOR InputTextWidget»
-	baseDisplay.get«name.toFirstUpper()»HasText().setText("");
+	view.get«name.toFirstUpper()»HasText().setText("");
 «ENDDEFINE»
+
 
 «DEFINE widgetClearCall FOR TableWidget»
-    baseDisplay.get«name.toFirstUpper()»HasData().setRowData(0, new java.util.ArrayList<«fqnTableForClass()»>());
+    view.get«name.toFirstUpper()»HasData().setRowData(0, new java.util.ArrayList<«fqnTableForClass()»>());
 «ENDDEFINE»
 
-
-
-«REM»Declarations that must be added to the view interface for ecah widget«ENDREM»
-«DEFINE widgetInterfaceDeclarations FOR Widget»
-«ENDDEFINE»
-
-«DEFINE widgetInterfaceDeclarations FOR TableWidget»
-	com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
-«ENDDEFINE»
-
-«DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
-	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
-«ENDDEFINE»
-
-«DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
-	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
-«ENDDEFINE»
 
 
 «REM»Declaration of service interface to be used by activity«ENDREM»
@@ -103,19 +119,26 @@ public abstract class «gwtActivityBaseClass()» extends com.google.gwt.activity.s
 «REM»Activity implementation class«ENDREM»
 «DEFINE activityImpl FOR View»
 «FILE javaFileName(fqnActivityImplClass()) TO_SRC»
+«EXPAND activityImplBody FOR this»
+«ENDFILE»
+«ENDDEFINE» 
 
+«DEFINE activityImplForUnitTest FOR View»
+«FILE javaFileName(fqnActivityImplClass())»
+«EXPAND activityImplBody FOR this»
+«ENDFILE»
+«ENDDEFINE» 
+
+«DEFINE activityImplBody FOR View»
 package «gwtActivitiesPackage()»;
 
 public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
 
 	«loggerDeclaration(gwtActivityImplClass())»
 	
-	«fqnViewWidgetImplInterface()» display;
+	«fqnGwtViewInterface()» display;
 	
-	public interface «gwtViewWidgetImplInterface()» extends «fqnViewWidgetBaseInterface()» {
-	}
-
-	public «gwtActivityImplClass()»(«fqnViewWidgetImplInterface()» theDisplay,
+	public «gwtActivityImplClass()»(«fqnGwtViewInterface()» theDisplay,
 		com.google.gwt.event.shared.EventBus eventBus,
 		com.google.gwt.place.shared.PlaceController placeController) {
 		super(eventBus, theDisplay, placeController);
@@ -128,6 +151,4 @@ public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
 	}
 
 }
- 
-«ENDFILE»
-«ENDDEFINE» 
+«ENDDEFINE»

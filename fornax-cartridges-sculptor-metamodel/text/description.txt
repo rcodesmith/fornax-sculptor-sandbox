@@ -105,12 +105,12 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class AddTask -> UserTask
     Reference findDOWith : ServiceOperation
 
-  Class View -> NamedElement
+  Class View -> WidgetsContainer, NamedElement
     Reference module : GuiModule
-    Reference widgets : Widget<<1..*>>
     Reference for : DomainObject
     Reference serviceProxies : ServiceProxy<<0..*>>
     Reference parameters : ViewParameter<<0..*>>
+    Attribute label : EString
 
   Class Widget -> NamedElement
     Reference view : View
@@ -163,4 +163,13 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class GuiCommand -> DomainObject
 
-  Class ViewParameter -> DomainObjectTypedElement
+  Class ViewParameter -> TypedElement
+    Attribute nullable : EBoolean
+
+  Class LinkWidget -> Widget
+    Reference toView : View
+
+  Class WidgetsContainer
+    Reference widgets : Widget<<0..*>>
+
+  Class SectionWidget -> Widget, WidgetsContainer

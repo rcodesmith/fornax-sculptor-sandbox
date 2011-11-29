@@ -27,28 +27,26 @@ import sculptormetamodel.NamedElement;
  */
 public interface Widget extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>View</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.View#getWidgets <em>Widgets</em>}'.
+	 * Returns the value of the '<em><b>View</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>View</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>View</em>' container reference.
+	 * @return the value of the '<em>View</em>' reference.
 	 * @see #setView(View)
 	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getWidget_View()
-	 * @see sculptorguimetamodel.View#getWidgets
-	 * @model opposite="widgets" transient="false"
+	 * @model
 	 * @generated
 	 */
 	View getView();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.Widget#getView <em>View</em>}' container reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.Widget#getView <em>View</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>View</em>' container reference.
+	 * @param value the new value of the '<em>View</em>' reference.
 	 * @see #getView()
 	 * @generated
 	 */

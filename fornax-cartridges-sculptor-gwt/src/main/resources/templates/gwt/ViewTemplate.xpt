@@ -3,7 +3,7 @@
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
-«EXTENSION extensions::gwt::sofeauihelpers»
+«EXTENSION extensions::gwt::gwtuihelpers»
 
 «DEFINE viewCompositeBaseTemplate FOR View»
 «FILE gwtTemplateFilePath(fqnGwtViewWidgetBaseClass(this))»
@@ -42,8 +42,12 @@
 
 «DEFINE widgetTemplate FOR InputTextWidget»
 	<g:Label text="«label»" />
-	<g:TextBox ui:field="«name»"  name="«name»"/>
-	
+	<g:TextBox ui:field="«name»"  name="«name»"/>	
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR InputDateWidget»
+	<g:Label text="«label»" />
+	<g:TextBox ui:field="«name»"  name="«name»"/>	
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR InformationalTextWidget»
@@ -62,4 +66,8 @@
 
 «DEFINE widgetTemplate FOR TableWidget»
 	<p1:CellTable ui:field="«name»" tableLayoutFixed="false" />
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR LinkWidget»
+	<g:Anchor ui:field="«name»" text="«label»" HTML="«label»"></g:Anchor>
 «ENDDEFINE»

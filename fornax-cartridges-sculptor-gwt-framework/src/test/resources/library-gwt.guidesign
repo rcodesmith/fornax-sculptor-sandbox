@@ -1,0 +1,81 @@
+import "classpath:/library-person-gwt.btdesign"
+import "classpath:/library-gwt.btdesign"
+
+gui LibraryWeb for Library {
+
+	
+	Module for person {
+		> @PersonService
+		
+		View PersonForm for Person {
+			> @PersonService
+	
+			parameters {
+				Long personId not nullable;
+				String displayMode nullable;
+			}
+			
+			contents {
+				inputText nameField {
+					label = "Name"
+				}
+				table table1 {
+					label = "Table uno"
+				}
+				
+				button saveButton {
+					label = "Save"
+				}
+				
+				informationalText info1 {
+					label = "Info Numero Uno"
+				}
+				
+				textArea textArea1 {
+					label = "Text area uno"
+				}
+				
+//				autocomplete autocomp1 forProperty ssn {
+//					label = "Auto complete one"
+//				}
+			}
+		}
+		
+		View TableView {
+			
+			contents {
+				inputText nameField {
+					label = "Name"
+				}
+
+				informationalText info1 {
+					label = "Info Numero Uno"
+				}
+
+				table mytable for Person {
+					label="My Table"
+					
+					columns {
+						name type=Text;
+					}
+				}
+				button saveButton {
+					label = "Save"
+				}
+			}
+		}
+		
+		
+		"This is some MyEvent1 documentation"
+		Event MyEvent1 {
+			String attr1;
+			
+			"This is some documentation"
+			Integer attr2;
+			
+			Date date1;
+			
+			DateTime dateTime1;
+		}
+	}
+}

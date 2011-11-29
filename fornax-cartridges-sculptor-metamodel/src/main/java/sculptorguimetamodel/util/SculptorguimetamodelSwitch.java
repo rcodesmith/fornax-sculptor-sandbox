@@ -255,6 +255,7 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.VIEW: {
 				View view = (View)theEObject;
 				Object result = caseView(view);
+				if (result == null) result = caseWidgetsContainer(view);
 				if (result == null) result = caseNamedElement(view);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -421,9 +422,31 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.VIEW_PARAMETER: {
 				ViewParameter viewParameter = (ViewParameter)theEObject;
 				Object result = caseViewParameter(viewParameter);
-				if (result == null) result = caseDomainObjectTypedElement(viewParameter);
 				if (result == null) result = caseTypedElement(viewParameter);
 				if (result == null) result = caseNamedElement(viewParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.LINK_WIDGET: {
+				LinkWidget linkWidget = (LinkWidget)theEObject;
+				Object result = caseLinkWidget(linkWidget);
+				if (result == null) result = caseWidget(linkWidget);
+				if (result == null) result = caseNamedElement(linkWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.WIDGETS_CONTAINER: {
+				WidgetsContainer widgetsContainer = (WidgetsContainer)theEObject;
+				Object result = caseWidgetsContainer(widgetsContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.SECTION_WIDGET: {
+				SectionWidget sectionWidget = (SectionWidget)theEObject;
+				Object result = caseSectionWidget(sectionWidget);
+				if (result == null) result = caseWidget(sectionWidget);
+				if (result == null) result = caseWidgetsContainer(sectionWidget);
+				if (result == null) result = caseNamedElement(sectionWidget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1058,6 +1081,51 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseViewParameter(ViewParameter object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Link Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Link Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseLinkWidget(LinkWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Widgets Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Widgets Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseWidgetsContainer(WidgetsContainer object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Section Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Section Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSectionWidget(SectionWidget object) {
 		return null;
 	}
 

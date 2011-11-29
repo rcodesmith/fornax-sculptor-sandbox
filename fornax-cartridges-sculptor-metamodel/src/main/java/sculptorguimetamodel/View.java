@@ -19,10 +19,10 @@ import sculptormetamodel.NamedElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link sculptorguimetamodel.View#getModule <em>Module</em>}</li>
- *   <li>{@link sculptorguimetamodel.View#getWidgets <em>Widgets</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,7 +30,7 @@ import sculptormetamodel.NamedElement;
  * @model
  * @generated
  */
-public interface View extends NamedElement {
+public interface View extends WidgetsContainer, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Module</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiModule#getViews <em>Views</em>}'.
@@ -58,24 +58,6 @@ public interface View extends NamedElement {
 	 * @generated
 	 */
 	void setModule(GuiModule value);
-
-	/**
-	 * Returns the value of the '<em><b>Widgets</b></em>' containment reference list.
-	 * The list contents are of type {@link sculptorguimetamodel.Widget}.
-	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.Widget#getView <em>View</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Widgets</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Widgets</em>' containment reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_Widgets()
-	 * @see sculptorguimetamodel.Widget#getView
-	 * @model type="sculptorguimetamodel.Widget" opposite="view" containment="true" required="true"
-	 * @generated
-	 */
-	EList getWidgets();
 
 	/**
 	 * Returns the value of the '<em><b>For</b></em>' reference.
@@ -134,5 +116,31 @@ public interface View extends NamedElement {
 	 * @generated
 	 */
 	EList getParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Label</em>' attribute.
+	 * @see #setLabel(String)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_Label()
+	 * @model
+	 * @generated
+	 */
+	String getLabel();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.View#getLabel <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Label</em>' attribute.
+	 * @see #getLabel()
+	 * @generated
+	 */
+	void setLabel(String value);
 
 } // View

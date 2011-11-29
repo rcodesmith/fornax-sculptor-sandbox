@@ -38,6 +38,15 @@ import sculptormetamodel.impl.NamedElementImpl;
  */
 public class WidgetImpl extends NamedElementImpl implements Widget {
 	/**
+	 * The cached value of the '{@link #getView() <em>View</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getView()
+	 * @generated
+	 * @ordered
+	 */
+	protected View view;
+	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,8 +89,15 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * @generated
 	 */
 	public View getView() {
-		if (eContainerFeatureID() != SculptorguimetamodelPackage.WIDGET__VIEW) return null;
-		return (View)eContainer();
+		if (view != null && view.eIsProxy()) {
+			InternalEObject oldView = (InternalEObject)view;
+			view = (View)eResolveProxy(oldView);
+			if (view != oldView) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.WIDGET__VIEW, oldView, view));
+			}
+		}
+		return view;
 	}
 
 	/**
@@ -89,9 +105,8 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetView(View newView, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newView, SculptorguimetamodelPackage.WIDGET__VIEW, msgs);
-		return msgs;
+	public View basicGetView() {
+		return view;
 	}
 
 	/**
@@ -100,19 +115,10 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * @generated
 	 */
 	public void setView(View newView) {
-		if (newView != eInternalContainer() || (eContainerFeatureID() != SculptorguimetamodelPackage.WIDGET__VIEW && newView != null)) {
-			if (EcoreUtil.isAncestor(this, newView))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newView != null)
-				msgs = ((InternalEObject)newView).eInverseAdd(this, SculptorguimetamodelPackage.VIEW__WIDGETS, View.class, msgs);
-			msgs = basicSetView(newView, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET__VIEW, newView, newView));
+		View oldView = view;
+		view = newView;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET__VIEW, oldView, view));
 	}
 
 	/**
@@ -141,51 +147,11 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SculptorguimetamodelPackage.WIDGET__VIEW:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetView((View)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SculptorguimetamodelPackage.WIDGET__VIEW:
-				return basicSetView(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SculptorguimetamodelPackage.WIDGET__VIEW:
-				return eInternalContainer().eInverseRemove(this, SculptorguimetamodelPackage.VIEW__WIDGETS, View.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.WIDGET__VIEW:
-				return getView();
+				if (resolve) return getView();
+				return basicGetView();
 			case SculptorguimetamodelPackage.WIDGET__LABEL:
 				return getLabel();
 		}
@@ -234,7 +200,7 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.WIDGET__VIEW:
-				return getView() != null;
+				return view != null;
 			case SculptorguimetamodelPackage.WIDGET__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		}

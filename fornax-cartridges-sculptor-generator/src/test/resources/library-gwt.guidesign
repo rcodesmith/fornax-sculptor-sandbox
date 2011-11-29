@@ -9,7 +9,11 @@ gui LibraryWeb for Library {
 		
 		View PersonForm for Person {
 //			> @PersonService
-	
+			
+			parameters {
+				String command not nullable;
+				Integer id nullable;
+			}
 			contents {
 				inputText nameField {
 					label = "Name"
@@ -37,7 +41,9 @@ gui LibraryWeb for Library {
 		}
 		
 		View TableView {
-			
+			parameters {
+				String param1;
+			}
 			contents {
 				table mytable for Person {
 					label="My Table"
@@ -49,6 +55,19 @@ gui LibraryWeb for Library {
 			}
 		}
 		
+
+		View Menu {
+			contents {
+				link personLink toView PersonForm {
+					label = "Person Form"
+				}
+				
+				link mediaBrowseLink toView MediaBrowse {
+					label = "Media Browse"
+				}
+
+			}
+		}
 		
 		"This is some MyEvent1 documentation"
 		Event MyEvent1 {
@@ -62,4 +81,19 @@ gui LibraryWeb for Library {
 			DateTime dateTime1;
 		}
 	}
+	
+	Module for media {
+		View MediaBrowse {
+			contents {
+				table libraryTable for Library {
+					label="Library Table"
+					
+					columns {
+						name type=Text;
+					}
+				}
+			}
+		}
+	}
+
 }

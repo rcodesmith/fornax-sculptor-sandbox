@@ -12,8 +12,7 @@ import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.View;
 
-public class GwtViewTemplateTest extends TemplateTestBase {
-	
+public class GwtActivityTemplateTest extends TemplateTestBase {
     private static GuiApplication guiApp;
 
     
@@ -46,10 +45,20 @@ public class GwtViewTemplateTest extends TemplateTestBase {
     public void assertTableViewBaseCode() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	
-        XpandUnit.xpand("templates::gwt::View::viewBase", tableView,
+        XpandUnit.xpand("templates::gwt::Activity::activityBase", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewBase.java");
+        String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/TableViewActivityBase.java");
+        
+        assertContains(activityBaseCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
+        
+        assertContains(activityBaseCode, "public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place.TableViewPlace>");
+        
+        assertContains(activityBaseCode, "protected final org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView view;");
+        
+        assertContains(activityBaseCode, "protected abstract void populateFromPlace();");
+        
+        assertContains(activityBaseCode, "protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {");
     }
-    
+
 }

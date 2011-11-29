@@ -464,34 +464,6 @@ Set[Service] getUsedServices(View view) :
 
 
 
-//////////////////////////////////////////////////////////////////////////////
-// Activity related functions
-//////////////////////////////////////////////////////////////////////////////
-
-// Package for all activity-related classes
-gwtActivitiesPackage(View view) :
-	gwtBasePackage(view.module.for) + ".client.activity";
-
-
-// GWT activity base class relative name
-String gwtActivityBaseClass(View view) :
-	view.name + "ActivityBase";
-
-// GWT activity impl class relative name
-String gwtActivityImplClass(View view) :
-	view.name + "Activity";
-
-// Fully qualified activity base class
-String fqnActivityBaseClass(View view) :
-	view.gwtActivitiesPackage() + "." + view.gwtActivityBaseClass() ;
-
-// Fully qualified activity impl class
-String fqnActivityImplClass(View view) :
-	view.gwtActivitiesPackage() + "." + view.gwtActivityImplClass() ;
-
-// Fully qualified activity impl class name
-
-
 
 ///////////////////////////////////////////////////////////////
 // Event-related functions

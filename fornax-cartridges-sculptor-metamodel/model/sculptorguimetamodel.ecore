@@ -121,19 +121,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="AddTask" eSuperTypes="#//UserTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="findDOWith" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//WidgetsContainer sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//GuiModule"
         eOpposite="#//GuiModule/views"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" lowerBound="1"
-        upperBound="-1" eType="#//Widget" containment="true" eOpposite="#//Widget/view"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serviceProxies" upperBound="-1"
         eType="#//ServiceProxy"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ViewParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View" eOpposite="#//View/widgets"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
@@ -175,5 +174,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" lowerBound="1" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiCommand" eSuperTypes="sculptormetamodel.ecore#//DomainObject"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewParameter" eSuperTypes="sculptormetamodel.ecore#//DomainObjectTypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewParameter" eSuperTypes="sculptormetamodel.ecore#//TypedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkWidget" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toView" eType="#//View"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WidgetsContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
+        eType="#//Widget" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SectionWidget" eSuperTypes="#//Widget #//WidgetsContainer"/>
 </ecore:EPackage>

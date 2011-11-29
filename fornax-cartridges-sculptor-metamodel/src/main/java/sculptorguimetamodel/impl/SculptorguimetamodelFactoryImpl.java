@@ -102,6 +102,9 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.SERVICE_PROXY_OPERATION: return createServiceProxyOperation();
 			case SculptorguimetamodelPackage.GUI_COMMAND: return createGuiCommand();
 			case SculptorguimetamodelPackage.VIEW_PARAMETER: return createViewParameter();
+			case SculptorguimetamodelPackage.LINK_WIDGET: return createLinkWidget();
+			case SculptorguimetamodelPackage.WIDGETS_CONTAINER: return createWidgetsContainer();
+			case SculptorguimetamodelPackage.SECTION_WIDGET: return createSectionWidget();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -525,6 +528,36 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public ViewParameter createViewParameter() {
 		ViewParameterImpl viewParameter = new ViewParameterImpl();
 		return viewParameter;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LinkWidget createLinkWidget() {
+		LinkWidgetImpl linkWidget = new LinkWidgetImpl();
+		return linkWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WidgetsContainer createWidgetsContainer() {
+		WidgetsContainerImpl widgetsContainer = new WidgetsContainerImpl();
+		return widgetsContainer;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SectionWidget createSectionWidget() {
+		SectionWidgetImpl sectionWidget = new SectionWidgetImpl();
+		return sectionWidget;
 	}
 
 																/**

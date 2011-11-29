@@ -21,16 +21,17 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InputTextWidget;
+import sculptorguimetamodel.LinkWidget;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.View;
+import sculptorguimetamodel.ViewParameter;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Parameter;
@@ -104,6 +105,22 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         assertEquals("Text", nameCol.getColumnType());
     	
     }
+    
+    @Test
+    public void assertMediaBrowseView() {
+    	GuiModule mediaBrowseModule = mediaModule();
+    	
+        View view = (View) getNamedElement("MediaBrowse", mediaBrowseModule.getViews());
+        assertNotNull(view);
+        
+        EList widgets = view.getWidgets();
+        TableWidget table = (TableWidget)widgets.get(0);    	
+    	assertEquals("Library Table", table.getLabel());
+    	
+    	DomainObject library = table.getFor();
+    	assertNotNull(library);
+    	assertEquals("Library", library.getName());
+    }
 
     @Test
     public void assertPersonModule() {
@@ -117,6 +134,24 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     	
     }
     
+    @Test
+    public void assertMenuView() {
+        View menuView = (View) getNamedElement("Menu", personModule().getViews());
+        assertNotNull(menuView);
+        
+        EList widgets = menuView.getWidgets();
+        assertEquals(2, widgets.size());
+        assertOneAndOnlyOne(widgets, "personLink", "mediaBrowseLink");
+        
+    	LinkWidget personLink = (LinkWidget)widgets.get(0);
+    	assertEquals("Person Form", personLink.getLabel());
+    	assertEquals("PersonForm", personLink.getToView().getName());
+    	
+    	LinkWidget mediaBrowseLink = (LinkWidget)widgets.get(1);
+    	assertEquals("Media Browse", mediaBrowseLink.getLabel());
+    	assertEquals("MediaBrowse", mediaBrowseLink.getToView().getName());
+
+    }
     
     @Test
     public void assertPersonFormView() {
@@ -126,6 +161,19 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         DomainObject forObj = personForm.getFor();
         assertNotNull(forObj);
         assertEquals("Person", forObj.getName());
+        
+        assertEquals(2, personForm.getParameters().size());
+
+        ViewParameter commandParam = (ViewParameter) personForm.getParameters().get(0);
+        assertNotNull(commandParam);
+        assertEquals("String", commandParam.getType());
+        assertEquals(Boolean.FALSE, commandParam.isNullable());
+
+        ViewParameter idParam = (ViewParameter) personForm.getParameters().get(1);
+        assertNotNull(idParam);
+        assertEquals("Integer", idParam.getType());
+        assertEquals(Boolean.TRUE, idParam.isNullable());
+        
         
 //        assertEquals(1, personForm.getServiceProxies().size());
 //        assertOneAndOnlyOne(personForm.getServiceProxies(), "PersonService");
@@ -416,6 +464,10 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	
     private GuiModule personModule() {
         return (GuiModule) getNamedElement("person", guiApp.getModules());
+    }
+
+    private GuiModule mediaModule() {
+        return (GuiModule) getNamedElement("media", guiApp.getModules());
     }
 
 

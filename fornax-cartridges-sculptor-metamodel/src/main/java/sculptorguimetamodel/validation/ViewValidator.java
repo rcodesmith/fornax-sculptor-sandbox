@@ -29,5 +29,7 @@ public interface ViewValidator {
 
 	boolean validateParameters(EList value);
 
+	boolean validateLabel(String value);
+
 	boolean validateServiceDependencies(EList value);
 }

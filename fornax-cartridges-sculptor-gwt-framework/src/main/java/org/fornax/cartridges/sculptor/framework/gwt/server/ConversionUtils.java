@@ -8,11 +8,11 @@ import org.joda.time.LocalDate;
 public class ConversionUtils {
 	
 	public static Date convert(DateTime from, Date targetDummy) {
-		return from.toDate();
+		return (from==null ? null : from.toDate());
 	}
 
 	public static Date convertToDate(DateTime from) {
-		return from.toDate();
+		return (from==null ? null : from.toDate());
 	}
 
 	public static DateTime convert(DateTime from, DateTime targetDummy) {
@@ -32,27 +32,27 @@ public class ConversionUtils {
 	}
 
 	public static DateTime convert(Date from, DateTime targetDummy) {
-		return new DateTime(from);
+		return (from==null ? null : new DateTime(from));
 	}
 	
 	public static DateTime convertToDateTime(Date from) {
-		return new DateTime(from);
+		return (from==null ? null : new DateTime(from));
 	}
 
 	public static LocalDate convert(Date from, LocalDate targetDummy) {
-		return new LocalDate(from);
+		return (from==null ? null : new LocalDate(from));
 	}
 
 	public static LocalDate convertToLocalDate(Date from) {
-		return new LocalDate(from);
+		return (from==null ? null : new LocalDate(from));
 	}
 
 	public static Date convert(LocalDate from, Date targetDummy) {
-		return from.toDateMidnight().toDate();
+		return (from==null ? null : from.toDateMidnight().toDate());
 	}
 
 	public static Date convertToDate(LocalDate from) {
-		return from.toDateMidnight().toDate();
+		return (from==null ? null : from.toDateMidnight().toDate());
 	}
 
 }

@@ -34,14 +34,13 @@ public abstract class TransformationTestBase {
             "createdBy", "createdDate", "updatedBy", "updatedDate", "lastUpdated", "lastUpdatedBy"));
     protected static WorkflowContext ctx;
 
-    public static void initWorkflowContext(String workflowFile) throws Exception {
+    public static void initWorkflowContext(String workflowFile, Map<String, ?> globalVars) throws Exception {
         try {
             String wfFile = workflowFile;
             assertNotNull(wfFile);
             Map<String, String> properties = new HashMap<String, String>();
-            Map<String, ?> slotContents = new HashMap<String, Object>();
             WorkflowRunner runner = new WorkflowRunner();
-            runner.run(wfFile, new NullProgressMonitor(), properties, slotContents);
+            runner.run(wfFile, new NullProgressMonitor(), properties, globalVars);
             ctx = runner.getContext();
             assertNotNull(ctx);
         } catch (Exception e) {
@@ -53,6 +52,12 @@ public abstract class TransformationTestBase {
         }
 
     }
+
+    public static void initWorkflowContext(String workflowFile) throws Exception {
+        Map<String, ?> slotContents = new HashMap<String, Object>();
+    	initWorkflowContext(workflowFile, slotContents);
+    }
+    
 
     protected void assertOneAndOnlyOne(EList listOfNamedElements, String... expectedNames) {
         Set<String> expectedOnes = new HashSet<String>(Arrays.asList(expectedNames));

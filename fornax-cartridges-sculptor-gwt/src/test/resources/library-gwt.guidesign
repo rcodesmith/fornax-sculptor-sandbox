@@ -7,9 +7,25 @@ gui LibraryWeb for Library {
 	Module for person {
 		> @PersonService
 		
+		View Menu {
+			contents {
+				link personLink toView PersonForm {
+					label = "Person Form"
+				}
+				link mediaBrowseLink toView MediaBrowse {
+					label = "Media Browse"
+				}
+			}
+		}
+		
 		View PersonForm for Person {
 			> @PersonService
 	
+			parameters {
+				Long personId not nullable;
+				String displayMode nullable;
+			}
+			
 			contents {
 				inputText nameField {
 					label = "Name"
@@ -30,15 +46,23 @@ gui LibraryWeb for Library {
 					label = "Text area uno"
 				}
 				
-				autocomplete autocomp1 forProperty ssn {
-					label = "Auto complete one"
-				}
+//				autocomplete autocomp1 forProperty ssn {
+//					label = "Auto complete one"
+//				}
 			}
 		}
 		
 		View TableView {
 			
 			contents {
+				inputText nameField {
+					label = "Name"
+				}
+
+				informationalText info1 {
+					label = "Info Numero Uno"
+				}
+
 				table mytable for Person {
 					label="My Table"
 					
@@ -46,10 +70,13 @@ gui LibraryWeb for Library {
 						name type=Text;
 					}
 				}
+				button saveButton {
+					label = "Save"
+				}
 			}
 		}
 		
-		
+
 		"This is some MyEvent1 documentation"
 		Event MyEvent1 {
 			String attr1;
@@ -62,4 +89,12 @@ gui LibraryWeb for Library {
 			DateTime dateTime1;
 		}
 	}
+	
+	Module for media {
+		View MediaBrowse {
+			
+		}
+	}
+	
+	
 }

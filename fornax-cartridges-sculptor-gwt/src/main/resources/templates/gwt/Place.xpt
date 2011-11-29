@@ -1,0 +1,97 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::gwtuihelpers»
+
+
+«REM»Place base class«ENDREM»
+«DEFINE placeBase FOR View»
+«FILE javaFileName(fqnPlaceBaseClass())»
+
+package «gwtPlacesPackage()»;
+
+public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
+
+	«EXPAND attribute FOREACH parameters»
+	
+	«IF parameters.size > 0»
+	private «gwtPlaceBaseClass()»() {
+	}
+	«ENDIF»
+	
+	public «gwtPlaceBaseClass()»(«EXPAND parameterTypeAndName FOREACH parameters SEPARATOR ","») {
+		«FOREACH parameters AS param»
+			this.«param.name» = «param.name»;
+		«ENDFOREACH»
+	
+	}
+	
+	«EXPAND accessors FOREACH parameters»
+	
+	
+	public static class Tokenizer implements com.google.gwt.place.shared.PlaceTokenizer<«gwtPlaceBaseClass()»> {
+		@java.lang.Override
+		public «gwtPlaceBaseClass()» getPlace(String token) {
+			String[] params = token.split("!");
+			if(params.length == 0) {
+				return null;
+			}
+			
+			«gwtPlaceBaseClass()» place = new «gwtPlaceBaseClass()»();
+			
+			«FOREACH parameters AS param ITERATOR iter»
+				if(params.length >= «iter.counter1») {
+					place.set«param.name.toFirstUpper()»(params[«iter.counter0»].trim());
+				} else {
+					return place;
+				}
+				
+			«ENDFOREACH»
+			return place;
+		}
+		
+		@java.lang.Override
+		public String getToken(«gwtPlaceBaseClass()» place) {
+			StringBuilder sb = new StringBuilder();
+			«FOREACH parameters AS param ITERATOR iter»
+			«REM»TODO: Should use converterutils instead of toString«ENDREM»
+			sb.append(place.«param.name» == null? "" : place.«param.name».toString());
+			sb.append("!");
+			«ENDFOREACH»
+			
+			return sb.toString();
+		}
+	
+	}
+}
+
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE parameterTypeAndName FOR ViewParameter»
+«getTypeName()» «name»
+«ENDDEFINE»
+
+«DEFINE attribute FOR ViewParameter»
+	private «getTypeName()» «name»;
+«ENDDEFINE»
+
+
+«DEFINE accessors FOR ViewParameter»
+	public «getTypeName()» get«name.toFirstUpper()»() {
+		return «name»;
+	}
+	
+	public void set«name.toFirstUpper()»(«getTypeName()» «name») {
+		this.«name» = «name»;
+	}
+	
+	«IF getTypeName() != "String"»
+	public void set«name.toFirstUpper()»(String «name») {
+		this.«name» = org.fornax.cartridges.sculptor.framework.gwt.client.util.GwtConvertUtils.convert(«name», («getTypeName()»)null); 
+	}
+	«ENDIF»
+«ENDDEFINE»

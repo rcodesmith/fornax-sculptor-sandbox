@@ -404,6 +404,33 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	ViewParameter createViewParameter();
 
 																/**
+	 * Returns a new object of class '<em>Link Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Link Widget</em>'.
+	 * @generated
+	 */
+	LinkWidget createLinkWidget();
+
+																/**
+	 * Returns a new object of class '<em>Widgets Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Widgets Container</em>'.
+	 * @generated
+	 */
+	WidgetsContainer createWidgetsContainer();
+
+																/**
+	 * Returns a new object of class '<em>Section Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Section Widget</em>'.
+	 * @generated
+	 */
+	SectionWidget createSectionWidget();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

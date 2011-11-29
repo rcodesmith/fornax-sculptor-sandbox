@@ -43,6 +43,8 @@
     «ENDIF»
 «ENDDEFINE»
 
+
+
 «DEFINE propertyConstructorBaseIdReferences FOR DomainObject»
     «IF !getConstructorParameters().isEmpty && getConstructorParameters().exists(e|e.isUnownedReference()) -»
     public «name»«IF gapClass»Base«ENDIF»(«EXPAND parameterTypeAndNameIdReference FOREACH getConstructorParameters() SEPARATOR ","») {

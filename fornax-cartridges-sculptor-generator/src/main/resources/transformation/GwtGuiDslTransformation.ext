@@ -142,15 +142,29 @@ create sculptorguimetamodel::View this transformView(DslView view, Module module
 	setModule(((DslGuiModule) view.eContainer).transformModule()) ->
 	setName(view.name) ->
 	setFor(domainObject) ->
+	parameters.addAll(view.parameters.transform()) ->
 	widgets.addAll(view.widgets.transformWidget(module, dslModule)) ->
-	debugTrace("transformView: module = " + module ) ->
+//	debugTrace("transformView: module = " + module ) ->
 //	serviceProxies.addAll(view.serviceDependencies.getMetamodelService(module).transformServiceProxy(module, dslModule));
 	serviceProxies.addAll(view.serviceDependencies.transformServiceProxy(dslModule.transform()));
 	
 
+create sculptorguimetamodel::ViewParameter this transform(DslViewParameter dslParam) :
+	setDoc(dslParam.doc) ->
+	setName(dslParam.name) ->
+	setType(dslParam.type) ->
+	setNullable(dslParam.nullable);
+	
 create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module, DslModule dslModule) :
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
-	
+
+create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module, DslModule dslModule) :
+	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
+	setToView(widget.toView.transformView(module, dslModule)) ->
+	setName(widget.name) ->
+	setLabel(widget.label);
+
+		
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module, DslModule dslModule) :
 	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
 	setName(widget.name) ->
@@ -198,8 +212,12 @@ create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInf
 	setLabel(widget.label);
 	
 create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module, DslModule dslModule) :
+	let view = ((DslView) widget.eContainer).transformView(module, dslModule) :
 	let domainObject = module.domainObjects.select(e | e.name == widget.for.name).first() :
-	setView(((DslView) widget.eContainer).transformView(module, dslModule)) ->
+	setView(view) ->
+	debugTrace("transforming " + widget.name) ->
+	debugTrace("table.for = " + domainObject) ->
+	debugTrace("Module domain objs: " + module.domainObjects.name) ->
 	setName(widget.name) ->
 	setLabel(widget.label) ->
 	setFor(domainObject) ->

@@ -166,22 +166,28 @@ DslSkipListTask :
 DslSkipAddTask :
 	'skip' 'AddTask' 'for' for=[mm::DslSimpleDomainObject]; 
 
-
-
-
-
-
 DslView:
   (doc=STRING)?
 	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+		('label' '=' label=STRING)?
 		(serviceDependencies+=DslGuiServiceDependency)*
 		(publishedEvents+=DslPublishedEvent)*
+
+		("parameters" "{"
+			(parameters+=DslViewParameter)*
+		"}"
+		)?
 
 		("contents" "{"
 			(widgets+=DslWidget)*
 		"}"
 		)?
 	'}';
+
+DslViewParameter :
+  (doc=STRING)?
+  (type=DslGuiType  name=ID ((nullable?="nullable") | (NOT "nullable"))?
+	) (";")?;
 
 DslPublishedEvent :
 	'publish' event=[mm::DslEvent];
@@ -191,10 +197,20 @@ DslGuiServiceDependency :
 
 
 DslWidget : 
-	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget | DslRichTextAreaWidget | 
-	DslAutocompleteWidget | DslRadioButtonsWidget;
+	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget
+	| DslRichTextAreaWidget | DslAutocompleteWidget | DslRadioButtonsWidget | DslLinkWidget | DslSectionWidget;
 	
-	
+
+DslSectionWidget :
+  (doc=STRING)?
+	"section" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+		('label' '=' label=STRING)?
+		("contents" "{"
+			(widgets+=DslWidget)*
+		"}"
+		)?
+	'}';
+		
 DslInputTextWidget :
   (doc=STRING)?
 	'inputText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
@@ -250,6 +266,12 @@ DslInformationalTextWidget :
 	'informationalText' name=ID ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
 	'}';
+
+DslLinkWidget :
+  (doc=STRING)?
+	'link' name=ID ('toView' toView=[DslView])? '{'
+		('label' '=' label=STRING)?
+	'}';
 	
 DslForProperty :
 	'forProperty' domainObj=[mm::DslSimpleDomainObject] '.' property=[mm::DslProperty];
@@ -268,22 +290,21 @@ DslTableColumn :
 	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (forProperty=DslForProperty)? ";" ;
 	
 DslColumnType :
-	("Text"|"Button");
+	("Text"|"Button"|"Date"|"Custom");
 	
 DslGuiEvent :
   (doc=STRING)?
   "Event" name=ID "{"
     ((attributes+=DslGuiAttribute) )*
   "}";
-  
-  
-  
+
 DslGuiAttribute :
   (doc=STRING)?
   (type=DslGuiType  name=ID
 	) (";")?;
 
 
+// TODO: This probably needs to be reduced down - not all are appropriate?
 DslGuiType :
   ("String"|"int"|"Integer"|"long"|"Long"|"boolean"|"Boolean"|"Date"|"DateTime"|"Timestamp"|"BigDecimal"|"BigInteger"|
   	"double"|"Double"|"float"|"Float"|"Key"|"PagingPagarameter"|"PagedResult"|"Blob"|"Clob"|
@@ -308,4 +329,7 @@ DslGuiJavaIdentifier :
 
 terminal REF :
   ('-'|'reference');
+
+terminal NOT :
+  ('!'|'not');
   
