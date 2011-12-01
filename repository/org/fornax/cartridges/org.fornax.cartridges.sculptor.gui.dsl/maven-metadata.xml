@@ -3,14 +3,15 @@
   <groupId>org.fornax.cartridges</groupId>
   <artifactId>org.fornax.cartridges.sculptor.gui.dsl</artifactId>
   <versioning>
-    <release>2.0.3-gwt</release>
+    <release>2.0.4-gwt</release>
     <versions>
       <version>2.0.0</version>
       <version>2.0.0-gwt</version>
       <version>2.0.1-gwt</version>
       <version>2.0.2-gwt-SNAPSHOT</version>
       <version>2.0.3-gwt</version>
+      <version>2.0.4-gwt</version>
     </versions>
-    <lastUpdated>20111129144538</lastUpdated>
+    <lastUpdated>20111201140746</lastUpdated>
   </versioning>
 </metadata>
