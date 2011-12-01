@@ -144,7 +144,9 @@ public class «this.mapperClassName()» {
 	/**
 	 * Map the «name» DTO to its corresponding domain object.
 	 */
+	«IF !this.abstract»	 
 	@jmultimethod.Multi("mapToDomain")	 
+	«ENDIF»
 	public static «this.fqnDomain()» map«name.toFirstUpper()»ToDomain(«this.fqnGwtDto()» dtoObj) {
 		if(log.isDebugEnabled()) {
 			log.debug("map«name.toFirstUpper()»ToDomain(" + dtoObj + ")");
@@ -179,7 +181,9 @@ public class «this.mapperClassName()» {
 	/**
 	 * Map the «name» domain object to its corresponding DTO.
 	 */
+	«IF !this.abstract»	 
 	@jmultimethod.Multi("mapFromDomain")	  
+	«ENDIF»
 	public static «this.fqnGwtDto()» map«name.toFirstUpper()»FromDomain(«this.fqnDomain()» domainObj) {
 	
 		if(log.isDebugEnabled()) {
