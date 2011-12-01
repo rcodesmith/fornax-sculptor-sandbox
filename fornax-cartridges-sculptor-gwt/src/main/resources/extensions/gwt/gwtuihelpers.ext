@@ -391,8 +391,8 @@ String gwtDomainMaperPackage(DomainObject do) :
 String mapperClassName(Module m) :
 	m.name.toFirstUpper() + "DtoMapper";
 	
-String fqnMapperClass(DomainObject m) :
-	m.getDomainPackage() + "." + m.mapperClassName();
+//String fqnMapperClass(DomainObject m) :
+//	m.getDomainPackage() + "." + m.mapperClassName();
 	
 
 // Fully qualified class of mapper for given Module

@@ -26,13 +26,13 @@ package «getBuilderPackage()»;
 
 	/**
 	  * Builder for «name» class.
-	  * Yo.
 	  */
 	public class «getBuilderClassName()»  {
 	
 		«EXPAND templates::domain::DomainObjectAttribute::attribute(false) FOREACH getBuilderAttributes()»
 		
 	    «EXPAND templates::domain::DomainObjectReference::oneReferenceAttribute(false) FOREACH this.getBuilderReferences().select(r| !r.many)»
+	    
 	    «EXPAND templates::domain::DomainObjectReference::manyReferenceAttribute(false) FOREACH this.getBuilderReferences().select(r| r.many)»
 
 		/**
@@ -50,7 +50,6 @@ package «getBuilderPackage()»;
 		
 			«FOREACH getBuilderAttributes().addAll(getBuilderReferences()).select(p | (!p.changeable || p.required)) AS p»
 				«EXPAND assignAttributeInConstructor FOR p»
-			//	this.«p.name» = «p.name»;
 			«ENDFOREACH»
 		}
 		«ENDIF»
@@ -91,8 +90,6 @@ package «getBuilderPackage()»;
 «DEFINE assignAttributeInConstructor FOR NamedElement»
 	        «IF metaType == Reference && ((Reference) this).many -»
 	        	this.«name».addAll(«name»);
-	        «ELSEIF isUnownedReference() && mongoDb() -»
-	        	this.«name» = «name»;
 	        «ELSE-»
 	        	this.«name» = «name»;
 	        «ENDIF-»
