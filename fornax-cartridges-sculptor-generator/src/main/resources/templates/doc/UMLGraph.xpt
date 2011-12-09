@@ -38,7 +38,10 @@
 		«EXPAND RelationToUML(focus, detail) FOREACH getAllReferences()
 			.reject(e | e.to.metaType == BasicType)
 			.reject(e | e.to.metaType == Enum)
+			.reject(e | e.to.isPersistent() == false)
+			.reject(e | e.from.isPersistent() == false)
 			.reject(e | e.to.metaType.rejectFromDomain(detail))
+			.reject(e | e.from.metaType.rejectFromDomain(detail))
 			.sortBy(e | e.from.name + "->" + e.to.name + ": " + e.name)»
 		«IF detail > 0»
 			«EXPAND ServiceDependenciesToUML(focus, detail) FOREACH modules.services»

@@ -148,7 +148,7 @@ boolean rejectFromDomain(xpand2::Type d, int detail) :
 	false;
 
 boolean rejectFromDomain(DomainObject d, int detail) :
-	detail == 0 ? CommandEvent.isInstance(d)  || !(Entity.isInstance(d) || ValueObject.isInstance(d)): false;
+	detail == 0 ? CommandEvent.isInstance(d)  || DomainEvent.isInstance(d) || !(Entity.isInstance(d) || ValueObject.isInstance(d)) || d.isPersistent() == false: false;
 
 boolean rejectFromDomain(BasicType d, int detail) :
 	false;
