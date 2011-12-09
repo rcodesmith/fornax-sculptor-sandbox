@@ -60,5 +60,32 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
         
         assertContains(activityBaseCode, "protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {");
     }
+    
+    
+    @Test
+    public void assertMenuViewBaseCode() throws IOException {
+    	View tableView = (View) getNamedElement("Menu", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::Activity::activityBase", tableView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/MenuActivityBase.java");
+        
+        assertContainsConsecutiveFragments(activityBaseCode,
+        	"protected void bind() {",
+        	"bindPersonLink();",
+        	"bindMediaBrowseLink();",
+        	"}");
+        
+        assertContainsConsecutiveFragments(activityBaseCode,
+        	"	protected void bindPersonLink() {",
+        	"view.getPersonLinkHasClickHandlers().addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {",
+        	"@java.lang.Override",
+        	"public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {",
+			"placeController.goTo(new org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place.PersonFormPlace());",
+			"}",
+			"});",
+        	"}");
+    }
 
 }

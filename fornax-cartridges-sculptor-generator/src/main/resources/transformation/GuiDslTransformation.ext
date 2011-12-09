@@ -84,7 +84,7 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->
 	
 	userTasks.addAll(module.userTasks.transformTask(module.for.transform())) ->
-	views.addAll(module.views.transformView(module.for.transform(), module.for));
+	views.addAll(module.views.transformView(module.for.transform()));
 	
 create sculptorguimetamodel::UserTask this transformTask(DslUserTask task, Module module) :
 	error("Unexpected call to transform(DslUserTask): " + task);

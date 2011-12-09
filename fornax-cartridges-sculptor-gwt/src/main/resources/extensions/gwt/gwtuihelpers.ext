@@ -127,6 +127,9 @@ String fqnGwtDto(CommandEvent do) :
 Collection[Attribute] getAllBusinessAttributes(DomainObject domainObject) :
 	domainObject.getAllAttributes().select(attr|attr.name != "id" && attr.name != "occurred" && attr.name != "recorded");
 
+Collection[Reference] getAllBusinessReferences(DomainObject domainObject) :
+	domainObject.getAllReferences();
+
 // Get all the view data properties to be be displayed/edited..  Note this leaves out referred-to domain classes, including things like Plan Type
 Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
 	task.viewProperties.reject(p | p.metaType == ReferenceViewProperty || p.metaType == DerivedReferenceViewProperty || p.isSystemAttribute() || p.name == "version");
@@ -411,6 +414,11 @@ boolean shouldBeMapped(DomainObject d) :
 	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
 	
 
+////////////////////////////////////////////////////////////////////////////
+// Widget naming-related functions
+////////////////////////////////////////////////////////////////////////////
+String widgetClickHandlersExpr(Widget w) :
+	"get" + w.name.toFirstUpper() + "HasClickHandlers()";
     
 
 ////////////////////////////////////////////////////////////////////////////
@@ -551,11 +559,16 @@ String gwtFrameworkPlaceBaseClass(View view) :
 String fqnPlaceBaseClass(View view) :
 	view.gwtPlacesPackage() + "." + view.gwtPlaceBaseClass() ;
 
+// Until we're generating gap class
+String fqnPlaceClass(View view) :
+	fqnPlaceBaseClass(view);
+
 // Fully qualified place impl class
 //String fqnPlaceImplClass(View view) :
 //	view.gwtPlacesPackage() + "." + view.gwtPlaceImplClass() ;
 
-
+Collection[ViewParameter] requiredParameters(View view) :
+	view.parameters.select(p | !p.nullable);
 
 
 ///////////////////////////////////////////////////////////////

@@ -26,6 +26,7 @@
 
 
 «FILE javaFileName(fqnGwtViewInterface())»
+	// «debugTrace("viewInterface for " + name + " beginning")»
 package «gwtWidgetsPackage()»;
 	public interface «gwtViewInterface()» extends com.google.gwt.user.client.ui.IsWidget {
 		public void initView();
@@ -33,7 +34,7 @@ package «gwtWidgetsPackage()»;
 		«EXPAND widgetInterfaceDeclarations FOREACH widgets»
 		
 	}
-	// «debugTrace("viewInterface for " + name)»
+	// «debugTrace("viewInterface for " + name + " ending")»
 
 «ENDFILE»
 «ENDDEFINE»
@@ -59,7 +60,7 @@ package «gwtWidgetsPackage()»;
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR LinkWidget»
-	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
+	public com.google.gwt.event.dom.client.HasClickHandlers «widgetClickHandlersExpr()»;
 «ENDDEFINE»
 
 

@@ -3,6 +3,23 @@ import "classpath:/library-gwt.btdesign"
 
 gui LibraryWeb for Library {
 
+	Module for main {
+
+		View Menu {
+			contents {
+				link mediaBrowseLink toView MediaBrowse {
+					label = "Media Browse"
+				}
+				
+				link personLink toView PersonForm {
+					label = "Person Form"
+				}
+				
+
+			}
+		}
+
+	}
 	
 	Module for person {
 		> @PersonService
@@ -45,8 +62,8 @@ gui LibraryWeb for Library {
 				String param1;
 			}
 			contents {
-				table mytable for Person {
-					label="My Table"
+				table personTable for Person {
+					label="Person Table"
 					
 					columns {
 						name type=Text;
@@ -55,19 +72,6 @@ gui LibraryWeb for Library {
 			}
 		}
 		
-
-		View Menu {
-			contents {
-				link personLink toView PersonForm {
-					label = "Person Form"
-				}
-				
-				link mediaBrowseLink toView MediaBrowse {
-					label = "Media Browse"
-				}
-
-			}
-		}
 		
 		"This is some MyEvent1 documentation"
 		Event MyEvent1 {
@@ -84,6 +88,10 @@ gui LibraryWeb for Library {
 	
 	Module for media {
 		View MediaBrowse {
+			parameters {
+				String libraryId;
+			}
+
 			contents {
 				table libraryTable for Library {
 					label="Library Table"
@@ -92,6 +100,14 @@ gui LibraryWeb for Library {
 						name type=Text;
 					}
 				}
+				inputText libraryId {
+					label = "Library ID"
+				}
+
+				inputText name {
+					label = "Name"
+				}
+
 			}
 		}
 	}

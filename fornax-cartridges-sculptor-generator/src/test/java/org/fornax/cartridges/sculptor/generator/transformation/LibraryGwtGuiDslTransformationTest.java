@@ -32,6 +32,7 @@ import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewParameter;
+import sculptorguimetamodel.Widget;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Parameter;
@@ -89,7 +90,7 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     	
         EList widgets = tableView.getWidgets();
         TableWidget table = (TableWidget)widgets.get(0);    	
-    	assertEquals("My Table", table.getLabel());
+    	assertEquals("Person Table", table.getLabel());
     	
     	DomainObject person = table.getFor();
     	assertNotNull(person);
@@ -113,7 +114,10 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         View view = (View) getNamedElement("MediaBrowse", mediaBrowseModule.getViews());
         assertNotNull(view);
         
-        EList widgets = view.getWidgets();
+        EList<Widget> widgets = view.getWidgets();
+        
+        assertEquals(3, widgets.size());
+        
         TableWidget table = (TableWidget)widgets.get(0);    	
     	assertEquals("Library Table", table.getLabel());
     	
@@ -136,18 +140,18 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     
     @Test
     public void assertMenuView() {
-        View menuView = (View) getNamedElement("Menu", personModule().getViews());
+        View menuView = (View) getNamedElement("Menu", mainModule().getViews());
         assertNotNull(menuView);
         
         EList widgets = menuView.getWidgets();
         assertEquals(2, widgets.size());
         assertOneAndOnlyOne(widgets, "personLink", "mediaBrowseLink");
         
-    	LinkWidget personLink = (LinkWidget)widgets.get(0);
+    	LinkWidget personLink = (LinkWidget)widgets.get(1);
     	assertEquals("Person Form", personLink.getLabel());
     	assertEquals("PersonForm", personLink.getToView().getName());
     	
-    	LinkWidget mediaBrowseLink = (LinkWidget)widgets.get(1);
+    	LinkWidget mediaBrowseLink = (LinkWidget)widgets.get(0);
     	assertEquals("Media Browse", mediaBrowseLink.getLabel());
     	assertEquals("MediaBrowse", mediaBrowseLink.getToView().getName());
 
@@ -462,6 +466,10 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	}
 
 	
+    private GuiModule mainModule() {
+        return (GuiModule) getNamedElement("main", guiApp.getModules());
+    }
+    
     private GuiModule personModule() {
         return (GuiModule) getNamedElement("person", guiApp.getModules());
     }

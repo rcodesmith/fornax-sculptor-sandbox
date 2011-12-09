@@ -3,6 +3,10 @@ import "classpath:/library-person-gwt.btdesign"
 Application Library {
     basePackage = org.fornax.cartridges.sculptor.examples.library
  
+ 	Module main {
+ 		
+ 	}
+ 	
     Module media {
    
         Service LibraryService {

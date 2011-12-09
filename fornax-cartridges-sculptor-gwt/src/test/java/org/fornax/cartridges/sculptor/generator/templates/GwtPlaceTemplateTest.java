@@ -61,8 +61,8 @@ public class GwtPlaceTemplateTest extends TemplateTestBase {
 		assertContains(placeBaseCode, "private String displayMode;");
 
 		assertContainsConsecutiveFragments(placeBaseCode,
-				"public PersonFormPlace(", "Long personId", ",",
-				"String displayMode", ") {");
+				"public PersonFormPlace(", "Long personId",
+				") {");
 
 		//
 		// assertContains(activityBaseCode,

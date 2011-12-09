@@ -65,7 +65,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	/**
 	 * Bind to the view (register event handlers, etc) 
 	 */
-	protected abstract void bind();
+	protected void bind() {
+	«FOREACH widgets AS w»
+		bind«w.name.toFirstUpper()»();
+	«ENDFOREACH»
+	}
+	
+	«EXPAND widgetBindMethod FOREACH widgets»
 	
 	protected abstract void loadModel();
 	
@@ -87,6 +93,27 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «ENDFILE»
 «ENDDEFINE» 
 
+«REM»Methods to bind activity to view«ENDREM»
+«DEFINE widgetBindMethod FOR Widget»
+	protected void bind«this.name.toFirstUpper()»() {	
+	}
+
+«ENDDEFINE»
+
+«DEFINE widgetBindMethod FOR LinkWidget»
+«IF this.toView != null»
+
+	protected void bind«this.name.toFirstUpper()»() {
+   	view.«widgetClickHandlersExpr()».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
+			
+			@java.lang.Override
+			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
+				placeController.goTo(new «this.toView.fqnPlaceClass()»());
+			}
+		});
+	}
+«ENDIF»
+«ENDDEFINE»
 
 «REM»Methods to clear data from widgets«ENDREM»
 «DEFINE widgetClearCall FOR Widget»

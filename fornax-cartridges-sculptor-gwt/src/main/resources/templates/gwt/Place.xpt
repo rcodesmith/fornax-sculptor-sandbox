@@ -16,13 +16,14 @@ public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 
 	«EXPAND attribute FOREACH parameters»
 	
-	«IF parameters.size > 0»
+	// «requiredParameters()»
+	«IF requiredParameters().size > 0»
 	private «gwtPlaceBaseClass()»() {
 	}
 	«ENDIF»
 	
-	public «gwtPlaceBaseClass()»(«EXPAND parameterTypeAndName FOREACH parameters SEPARATOR ","») {
-		«FOREACH parameters AS param»
+	public «gwtPlaceBaseClass()»(«EXPAND parameterTypeAndName FOREACH requiredParameters() SEPARATOR ","») {
+		«FOREACH requiredParameters() AS param»
 			this.«param.name» = «param.name»;
 		«ENDFOREACH»
 	
