@@ -258,6 +258,7 @@ create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr
 //////////////////////////////////////////////////////////////////////////////////
 create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent dslCmd, Module module) :
 	setName(dslCmd.name) ->
+	setAbstract(dslCmd.abstract) ->
 	setExtends( dslCmd.extends != null ? dslCmd.extends.transformCommand(module) : null) ->
 	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
 	setDoc(dslCmd.doc) ->

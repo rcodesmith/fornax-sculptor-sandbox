@@ -3,7 +3,7 @@
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
-«EXTENSION extensions::gwt::sofeauihelpers»
+«EXTENSION extensions::gwt::gwtuihelpers»
 
 «DEFINE gwtCommands(Module module) FOR GuiModule»
 	«EXPAND gwtCommandBase FOREACH this.commandsToGenerate()»
@@ -17,10 +17,10 @@
 package «gwtCommandPackage(this)»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
-public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
+public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
 
-   	«EXPAND templates::gwt::GwtDto::attribute FOREACH attributes»
+   	«EXPAND templates::gwt::GwtDto::attribute FOREACH getGwtDtoAttributes()»
 
     «EXPAND templates::gwt::GwtDto::gwtOneReferenceAttribute FOREACH references.select(r | !r.many)»
     «EXPAND templates::gwt::GwtDto::manyReferenceAttribute FOREACH references.select(r | r.many)»
