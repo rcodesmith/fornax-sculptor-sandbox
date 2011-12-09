@@ -234,7 +234,7 @@ END
 package «gwtDomainPackage(this)»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
-public class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
+public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
    	«EXPAND attribute FOREACH attributes»
 
