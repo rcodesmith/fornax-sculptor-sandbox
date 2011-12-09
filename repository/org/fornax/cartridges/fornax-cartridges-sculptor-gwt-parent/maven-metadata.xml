@@ -3,10 +3,11 @@
   <groupId>org.fornax.cartridges</groupId>
   <artifactId>fornax-cartridges-sculptor-gwt-parent</artifactId>
   <versioning>
-    <release>2.0.4-gwt</release>
+    <release>2.0.5-gwt</release>
     <versions>
       <version>2.0.4-gwt</version>
+      <version>2.0.5-gwt</version>
     </versions>
-    <lastUpdated>20111201140642</lastUpdated>
+    <lastUpdated>20111209144801</lastUpdated>
   </versioning>
 </metadata>
