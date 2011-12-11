@@ -12,3 +12,13 @@ fornax-cartridges-sculptor-metamodel.tests
 fornax-cartridges-sculptor-gwt-framework/.settings/
 fornax-cartridges-sculptor-framework/.settings/
 fornax-cartridges-sculptor-generator/.externalToolBuilders/
+org.fornax.cartridges.sculptor.gui.dsl.tests
+org.fornax.cartridges.sculptor.gui.dsl.edit
+org.fornax.cartridges.sculptor.dsl.edit
+org.fornax.cartridges.sculptor.dsl-update-site/artifacts.jar
+org.fornax.cartridges.sculptor.dsl-update-site/content.jar
+org.fornax.cartridges.sculptor.dsl.editor
+org.fornax.cartridges.sculptor.gui.dsl.editor
+org.fornax.cartridges.sculptor.dsl.tests
+org.fornax.cartridges.sculptor.dsl/text/description.txt
+org.fornax.cartridges.sculptor.gui.dsl/text/description.txt
