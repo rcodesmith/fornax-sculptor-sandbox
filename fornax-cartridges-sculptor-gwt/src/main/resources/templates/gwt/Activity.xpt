@@ -39,6 +39,8 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	 */
 	@Override
 	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
+		LOG.info("start()");
+		
 		init();
 		bind();
 
@@ -54,6 +56,8 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	protected abstract void registerValidators();
 	
 	protected void init() {
+		LOG.info("init()");
+		
 		getView().initView();
 		
 		populateFromPlace();

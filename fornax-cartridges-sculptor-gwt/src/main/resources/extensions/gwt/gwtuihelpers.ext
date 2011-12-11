@@ -128,7 +128,8 @@ Collection[Attribute] getGwtDtoAttributes(DomainObject domainObject) :
 	domainObject.attributes.select(attr|attr.name != "createdDate" && attr.name != "createdBy" && attr.name != "lastUpdated" && attr.name != "lastUpdatedBy");
 
 Collection[Attribute] getAllBusinessAttributes(DomainObject domainObject) :
-	domainObject.getAllAttributes().select(attr|attr.name != "id" && attr.name != "occurred" && attr.name != "recorded");
+	domainObject.getAllAttributes().select(attr|attr.name != "id" && attr.name != "occurred" && attr.name != "recorded" 
+		&& attr.name != "createdBy" && attr.name != "createdDate" && attr.name != "lastUpdated" && attr.name != "lastUpdatedBy");
 
 Collection[Reference] getAllBusinessReferences(DomainObject domainObject) :
 	domainObject.getAllReferences();

@@ -279,7 +279,8 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 	«IF annotations»
 		«EXPAND templates::domain::DomainObjectAttributeAnnotation::attributeAnnotations»
 	«ENDIF»
-    private «IF transient»transient «ENDIF»«getGwtTypeName()» «name»«IF collectionType != null» = new «getGwtImplTypeName()»()«ENDIF»«EXPAND templates::domain::DomainObjectAttribute::attributeDefaultValue»;
+    private «IF transient && !hasHint("gwtpasstransient")»transient «ENDIF»«getGwtTypeName()» «name»«IF collectionType != null» = new «getGwtImplTypeName()»()«ENDIF»«EXPAND templates::domain::DomainObjectAttribute::attributeDefaultValue»;
+
 «ENDDEFINE»
 
 
@@ -299,13 +300,9 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 «REM»Overridden here so we can change visibility«ENDREM»
 «DEFINE idPropertySetter FOR Attribute»
     /**
-     * The id is not intended to be changed or assigned manually, but
-     * for test purpose it is allowed to assign the id.
+     * In GWT views, we sometimes use the ID to hold temporary IDs, so allow them to be changed.
      */
     public void set«name.toFirstUpper()»(«getTypeName()» «name») {
-        if ((this.«name» != null) && !this.«name».equals(«name»)) {
-            throw new IllegalArgumentException("Not allowed to change the id property.");
-        }
         this.«name» = «name»;
     };
 «ENDDEFINE»
