@@ -195,6 +195,11 @@ public enum «name» implements java.io.Serializable {
 	«ELSE»
 	    «EXPAND manyReferenceGetter»
 	    «EXPAND manyReferenceSetter»
+	    
+	    «REM»
+	    «EXPAND templates::domain::DomainObjectReference::additionalManyReferenceAccessors»
+	    «ENDREM»
+	    
     «ENDIF»
 «ENDDEFINE»
 
