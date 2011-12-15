@@ -1187,7 +1187,7 @@
       <styles xmi:type="notation:SortingStyle" xmi:id="_ArWu2BhaEeGGYaS04SiVVQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_ArWu2RhaEeGGYaS04SiVVQ"/>
     </children>
-    <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//SectionWidget"/>
+    <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//PanelWidget"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ArWHwRhaEeGGYaS04SiVVQ" x="189" y="171"/>
   </children>
   <styles xmi:type="notation:PageStyle" xmi:id="_ogxVUJhdEdyBcOPcAwQcIw"/>

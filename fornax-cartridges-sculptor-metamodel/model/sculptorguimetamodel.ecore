@@ -184,5 +184,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
         eType="#//Widget" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SectionWidget" eSuperTypes="#//Widget #//WidgetsContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//Widget #//WidgetsContainer"/>
 </ecore:EPackage>

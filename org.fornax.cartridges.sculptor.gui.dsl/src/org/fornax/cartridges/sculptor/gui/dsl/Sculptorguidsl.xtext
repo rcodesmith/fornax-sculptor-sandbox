@@ -198,12 +198,13 @@ DslGuiServiceDependency :
 
 DslWidget : 
 	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget
-	| DslRichTextAreaWidget | DslAutocompleteWidget | DslRadioButtonsWidget | DslLinkWidget | DslSectionWidget;
+	| DslRichTextAreaWidget | DslAutocompleteWidget | DslRadioButtonsWidget | DslLinkWidget | DslPanelWidget;
 	
 
-DslSectionWidget :
+
+DslPanelWidget :
   (doc=STRING)?
-	"section" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+	"panel" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
 		('label' '=' label=STRING)?
 		("contents" "{"
 			(widgets+=DslWidget)*
@@ -287,13 +288,14 @@ DslTableWidget :
 	'}';
 	
 DslTableColumn :
-	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (forProperty=DslForProperty)? ";" ;
+	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (forProperty=DslForProperty)?
+		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))? ";" ;
 	
 DslColumnType :
 	("Text"|"Button"|"Date"|"Custom");
 	
 DslGuiEvent :
-  (doc=STRING)?
+  (doc=STRING)? 
   "Event" name=ID "{"
     ((attributes+=DslGuiAttribute) )*
   "}";
