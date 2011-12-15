@@ -51,7 +51,7 @@ public class «this.mapperClassName()» {
         		com.google.common.collect.Iterables.transform(domainObj.«this.getGetAccessor()»(), new Function<«getTypeName()», «getGwtTypeName()»>() {
         		public «getGwtTypeName()» apply(
         				«getTypeName()» from) {
-		    	    Object mappedDto = mapFromDomainMM.invoke(null, from);
+		    	    Object mappedDto = «mapFromDomainCall()»(from);
 //		    	    if(mappedDto == null) {
 //		    	    	throw new IllegalArgumentException("Was unable to map " + from
 
@@ -69,7 +69,7 @@ public class «this.mapperClassName()» {
 «DEFINE copyManyRefToDomain FOR Reference»
     	domainObj.removeAll«name.toFirstUpper()»();
     	for («getGwtTypeName()» obj : dtoObj.get«name.toFirstUpper()»()) {
-    	    Object mappedDomain = mapToDomainMM.invoke(null, obj);
+    	    Object mappedDomain = «mapToDomainCall()»(obj);
     	
     		domainObj.add«name.singular().toFirstUpper()»((«getTypeName()»)mappedDomain);
 		}
@@ -224,6 +224,10 @@ public class «this.mapperClassName()» {
 	@jmultimethod.Multi("mapToDomain")	 
 	public static «this.fqnDomain()» map«name.toFirstUpper()»ToDomain(«this.fqnGwtDto()» dtoObj) {
 		
+		if(dtoObj == null) {
+			return null;
+		}
+		
 		«this.fqnDomain()» domainObj = «this.fqnDomain()».valueOf(dtoObj.name()); 
 		
 		return domainObj;
@@ -236,6 +240,11 @@ public class «this.mapperClassName()» {
 	 */
 	@jmultimethod.Multi("mapFromDomain")	  
 	public static «this.fqnGwtDto()» map«name.toFirstUpper()»FromDomain(«this.fqnDomain()» domainObj) {
+	
+		if(domainObj == null) {
+			return null;
+		}
+		
 		«this.fqnGwtDto()» dtoObj = «this.fqnGwtDto()».valueOf(domainObj.name()); 
 		
 		return dtoObj;
