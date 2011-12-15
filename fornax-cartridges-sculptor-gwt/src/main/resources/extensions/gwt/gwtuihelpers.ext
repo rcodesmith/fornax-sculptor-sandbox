@@ -74,18 +74,6 @@ String getGwtPackage(GuiModule guiModule) :
     JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getGwtPackage(sculptorguimetamodel.GuiModule);
 
 
-String gwtXmlFileName(Module module) :
-    module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.getModuleConfigName() + ".gwt.xml";
-   
-String getModuleConfigName(Module module) :
-	module.name.toFirstUpper() + "BaseUI";
-
-String fqnModuleConfig(Module module) :
-	module.gwtBasePackage() + "." + module.getModuleConfigName();
-   
-String moduleGwtMain(Module module) :
-    module.gwtBasePackage() + ".client." + module.name.toFirstUpper() + "UI";
-
 String gwtDomainPackage(Module module) :
    gwtBasePackage(module) + ".shared.domain";
 
@@ -138,8 +126,9 @@ Collection[Reference] getAllBusinessReferences(DomainObject domainObject) :
 Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
 	task.viewProperties.reject(p | p.metaType == ReferenceViewProperty || p.metaType == DerivedReferenceViewProperty || p.isSystemAttribute() || p.name == "version");
 	
-
+/////////////////////////////////////////////////////////////////////
 // Async interface helpers
+/////////////////////////////////////////////////////////////////////
 	
 gwtServiceAsyncInterfaceName(Service svc) :
 	"Gwt" + svc.name + "Async";
@@ -416,6 +405,34 @@ String getMapToDomainExpression(Parameter parameter) :
 boolean shouldBeMapped(DomainObject d) :
 	d.getHint("gwt") != "skip" &&
 	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
+
+
+////////////////////////////////////////////////////////////////////////////
+// GWT module XML config related functions
+////////////////////////////////////////////////////////////////////////////
+
+String gwtXmlFileName(Module module) :
+    module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.getModuleConfigName() + ".gwt.xml";
+
+String gwtImplXmlFileName(Module module) :
+    module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.getModuleImplConfigName() + ".gwt.xml";
+   
+String getModuleConfigName(Module module) :
+	module.name.toFirstUpper() + "BaseUI";
+
+String getModuleImplConfigName(Module module) :
+	module.name.toFirstUpper() + "UI";
+
+
+
+String fqnModuleConfig(Module module) :
+	module.gwtBasePackage() + "." + module.getModuleConfigName();
+   
+String fqnImplModuleConfig(Module module) :
+	module.gwtBasePackage() + "." + module.getModuleImplConfigName();
+
+String moduleGwtMain(Module module) :
+    module.gwtBasePackage() + ".client." + module.name.toFirstUpper() + "UI";
 	
 
 ////////////////////////////////////////////////////////////////////////////

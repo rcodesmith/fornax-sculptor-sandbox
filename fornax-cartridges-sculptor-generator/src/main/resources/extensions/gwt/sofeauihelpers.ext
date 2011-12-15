@@ -79,6 +79,9 @@ String gwtXmlFileName(Module module) :
    
 String getModuleConfigName(Module module) :
 	module.name.toFirstUpper() + "BaseUI";
+	
+String getModuleImplConfigName(Module module) :
+	module.name.toFirstUpper() + "UI";
 
 String fqnModuleConfig(Module module) :
 	module.gwtBasePackage() + "." + module.getModuleConfigName();

@@ -3,7 +3,7 @@
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
-«EXTENSION extensions::gwt::sofeauihelpers»
+«EXTENSION extensions::gwt::gwtuihelpers»
 
 «DEFINE gwtUiModule FOR GuiApplication»
 	«EXPAND gwtUiModule FOREACH this.modules»
@@ -13,6 +13,7 @@
 «DEFINE gwtUiModule FOR GuiModule»
 	«LET this.application.guiForApplication.modules.select(m | m.name == this.name).get(0) AS module»
 		«EXPAND gwtConfig(module)»
+		«EXPAND gwtImplConfig(module)»
 		
 		«EXPAND GwtService::gwtService(module)»
 		
@@ -27,6 +28,38 @@
 «ENDDEFINE»
 
 
+«REM»Generate "impl" .ui.xml module file«ENDREM»
+«DEFINE gwtImplConfig(Module module) FOR GuiModule»
+«FILE gwtImplXmlFileName(module) TO_SRC»<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='«module.getModuleImplConfigName()»'>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+
+  <inherits name='com.google.gwt.activity.Activity' />
+
+  <inherits name="org.fornax.cartridges.sculptor.framework.gwt.SculptorUI"/>
+
+«FOREACH module.getDependedUponModules() AS depMod»
+  <inherits name="«depMod.fqnImplModuleConfig()»"/>
+«ENDFOREACH»
+
+  <!-- Specify the app entry point class.                         -->
+  <!--
+  <entry-point class='«module.moduleGwtMain()»'/>
+-->
+
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client'/>
+  <source path='shared'/>
+ 
+</module>
+
+«ENDFILE»
+«ENDDEFINE»
+
+
+
+«REM»Generate base .ui.xml module file«ENDREM»
 «DEFINE gwtConfig(Module module) FOR GuiModule»
 «FILE gwtXmlFileName(module)»<?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='«module.getModuleConfigName()»'>
@@ -58,6 +91,7 @@
 
 «ENDFILE»
 «ENDDEFINE»
+
 
 «REM»Any additional imports you want for your generated module can go here«ENDREM»
 «DEFINE additionalModuleImports FOR GuiModule»
