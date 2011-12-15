@@ -12,6 +12,9 @@
 
 package «gwtActivitiesPackage()»;
 
+/**
+  * Activity base class for view «name».
+  */
 public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBaseClass()» {
 
 	«loggerDeclaration(gwtActivityBaseClass())»
@@ -25,12 +28,17 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 	public «gwtActivityBaseClass()»(com.google.gwt.event.shared.EventBus eventBus,
 		«gwtViewInterface()» theView,
-		com.google.gwt.place.shared.PlaceController placeController) {
+		com.google.gwt.place.shared.PlaceController placeController
+		«EXPAND serviceConstructorArgs FOR this») {
 		super();
 		
 		this.view = theView;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
+		
+		«FOREACH serviceProxies AS service»
+		this.«service.name.toFirstLower()» = «service.name.toFirstLower()»;
+		«ENDFOREACH»
 	}
 
 
@@ -97,6 +105,18 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «ENDFILE»
 «ENDDEFINE» 
 
+
+«REM»Declaration of service constructor arguments, with leading ,«ENDREM»
+«DEFINE serviceConstructorArgs FOR View»
+«IF this.serviceProxies.size > 0»
+,
+«FOREACH this.serviceProxies AS service SEPARATOR ","»
+«service.gwtServiceAsyncInterface()» «service.name.toFirstLower()»
+«ENDFOREACH»
+«ENDIF»
+«ENDDEFINE»
+
+
 «REM»Methods to bind activity to view«ENDREM»
 «DEFINE widgetBindMethod FOR Widget»
 	protected void bind«this.name.toFirstUpper()»() {	
@@ -129,7 +149,11 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 
 «DEFINE widgetClearCall FOR TableWidget»
-    view.get«name.toFirstUpper()»HasData().setRowData(0, new java.util.ArrayList<«fqnTableForClass()»>());
+	«IF this.for == null»
+		// No clear method since table has no domain object assigned in model
+	«ELSE»
+    	view.get«name.toFirstUpper()»HasData().setRowData(0, new java.util.ArrayList<«fqnTableForClass()»>());	
+	«ENDIF»
 «ENDDEFINE»
 
 
@@ -139,8 +163,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
     /**
      * Create a remote service proxy to talk to the server-side «name» service.
      */
-    protected final «gwtServiceAsyncInterface()» «name.toFirstLower()» = com.google.gwt.core.client.GWT
-                    .create(«gwtServiceAsyncInterface()».class);
+    protected final «gwtServiceAsyncInterface()» «name.toFirstLower()»;
 
 «ENDDEFINE»
 
@@ -169,10 +192,14 @@ public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
 	
 	«fqnGwtViewInterface()» display;
 	
+	@com.google.inject.Inject
 	public «gwtActivityImplClass()»(«fqnGwtViewInterface()» theDisplay,
 		com.google.gwt.event.shared.EventBus eventBus,
-		com.google.gwt.place.shared.PlaceController placeController) {
-		super(eventBus, theDisplay, placeController);
+		com.google.gwt.place.shared.PlaceController placeController
+		«EXPAND serviceConstructorArgs FOR this») {
+		super(eventBus, theDisplay, placeController
+		«IF serviceProxies.size > 0»,«FOREACH serviceProxies AS service SEPARATOR ", "»«service.name.toFirstLower()»«ENDFOREACH»«ENDIF»
+		);
 		display = theDisplay;
 		
 		bind();

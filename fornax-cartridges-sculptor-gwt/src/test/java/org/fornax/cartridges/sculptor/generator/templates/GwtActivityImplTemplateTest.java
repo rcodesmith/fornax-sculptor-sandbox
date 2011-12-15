@@ -42,7 +42,7 @@ public class GwtActivityImplTemplateTest extends TemplateTestBase {
     }
 
     @Test
-    public void assertTableViewBaseCode() throws IOException {
+    public void assertTableViewImplCode() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	
         XpandUnit.xpand("templates::gwt::Activity::activityImplForUnitTest", tableView,
@@ -54,7 +54,15 @@ public class GwtActivityImplTemplateTest extends TemplateTestBase {
         
         assertContains(activityBaseCode, "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView display;");
         
-        
+    }
+    
+    @Test
+    public void assertPersonFormImplCode() {
+    	View personFormView = (View) getNamedElement("PersonForm", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::Activity::activityImplForUnitTest", personFormView,
+                new HashMap<String, Object>(), getXpandTempDir());
+    	
     }
 
 }
