@@ -300,6 +300,16 @@ DslGuiEvent :
     ((attributes+=DslGuiAttribute) )*
   "}";
 
+DslPopulatePanel :
+  (doc=STRING)?
+  "UiBehavior" "PopulatePanel" name=ID "{"
+    'panel' '=' panel=[DslPanelWidget]
+	panel=panel1
+	withCurrSelection=table1
+
+  "}";
+
+	
 DslGuiAttribute :
   (doc=STRING)?
   (type=DslGuiType  name=ID

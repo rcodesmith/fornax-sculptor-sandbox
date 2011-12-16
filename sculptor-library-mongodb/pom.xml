@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.fornax.cartridges</groupId>
         <artifactId>sculptor-library-mongodb-parent</artifactId>
-        <version>2.0.5-gwt</version>
+        <version>2.0.6-gwt-SNAPSHOT</version>
         <relativePath>../sculptor-library-mongodb-parent/</relativePath>
     </parent>
     <artifactId>sculptor-library-mongodb</artifactId>
