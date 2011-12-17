@@ -113,14 +113,14 @@ String fqnGwtDto(CommandEvent do) :
 	do.gwtCommandPackage() + "." + do.name;
 
 Collection[Attribute] getGwtDtoAttributes(DomainObject domainObject) :
-	domainObject.attributes.select(attr|attr.name != "createdDate" && attr.name != "createdBy" && attr.name != "lastUpdated" && attr.name != "lastUpdatedBy");
+	domainObject.attributes.select(attr|attr.generateGwt() && attr.name != "createdDate" && attr.name != "createdBy" && attr.name != "lastUpdated" && attr.name != "lastUpdatedBy");
 
 Collection[Attribute] getAllBusinessAttributes(DomainObject domainObject) :
-	domainObject.getAllAttributes().select(attr|attr.name != "id" && attr.name != "occurred" && attr.name != "recorded" 
+	domainObject.getAllAttributes().select(attr|attr.generateGwt() && attr.name != "id" && attr.name != "occurred" && attr.name != "recorded" 
 		&& attr.name != "createdBy" && attr.name != "createdDate" && attr.name != "lastUpdated" && attr.name != "lastUpdatedBy");
 
 Collection[Reference] getAllBusinessReferences(DomainObject domainObject) :
-	domainObject.getAllReferences();
+	domainObject.getAllReferences().select(r| r.generateGwt());
 
 // Get all the view data properties to be be displayed/edited..  Note this leaves out referred-to domain classes, including things like Plan Type
 Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
@@ -367,8 +367,24 @@ String fqnDeleteCommand(UserTask task) :
 String loggerDeclaration(String relativeClassName) :
     "private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(" + relativeClassName + ".class.getName());";
 
-	 
-	 
+boolean generateGwt(DomainObject d) :
+	d.getHint("gwt") != "skip";
+
+boolean generateGwt(Reference r) :
+	r.getHint("gwt") != "skip";
+
+boolean generateGwt(Attribute a) :
+	a.getHint("gwt") != "skip";
+
+List[DomainObject] gwtDomainObjects(Module m):
+	m.domainObjects.select(d|d.generateGwt());
+
+List[Attribute] gwtAttributes(DomainObject d):
+	d.attributes.select(a|a.generateGwt());
+
+List[Reference] gwtReference(DomainObject d):
+	d.references.select(r|r.generateGwt());
+
 	 
 //
 // Mapping-related functions
@@ -403,8 +419,9 @@ String getMapToDomainExpression(Parameter parameter) :
 
 // The set of domain objects for which GWT<->core mapping code should be generated
 boolean shouldBeMapped(DomainObject d) :
-	d.getHint("gwt") != "skip" &&
+	 generateGwt(d) &&
 	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
+
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -626,6 +643,6 @@ String gwtEventClass(GuiEvent event) :
 
 	
 Set[GuiCommand] commandsToGenerate(GuiModule module) :
-	module.commands.reject(c | c.getHint("gwt") == "skip");
+	module.commands.reject(c | ! generateGwt(c));
 	
 

@@ -204,10 +204,10 @@ public class «this.mapperClassName()» {
 			«EXPAND copyAttrFromDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
 		
 			«REM»Copy one-many«ENDREM»
-			«EXPAND copyManyRefFromDomain FOREACH references.select(r | r.many).reject(r | r.isUnownedReference())»
+			«EXPAND copyManyRefFromDomain FOREACH getAllBusinessReferences().select(r | r.many).reject(r | r.isUnownedReference())»
 				
 			«REM»Copy one-one«ENDREM»
-			«EXPAND copyOneRefFromDomain FOREACH references.select(r | !r.many).reject(r | r.isUnownedReference())»
+			«EXPAND copyOneRefFromDomain FOREACH getAllBusinessReferences().select(r | !r.many).reject(r | r.isUnownedReference())»
 					
 		«ENDIF»
 

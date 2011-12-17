@@ -24,9 +24,9 @@ which is causing attributes to get masked.«ENDREM»
 	Domain module transformation
 «ENDREM»
 «DEFINE gwtDomainModule(GuiApplication guiApp) FOR Module»
-	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(Entity)»
-	«EXPAND gwtEnumDto(guiApp) FOREACH this.domainObjects.typeSelect(Enum)»
-	«EXPAND domainObjectBase(guiApp) FOREACH this.domainObjects.typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
+	«EXPAND domainObjectBase(guiApp) FOREACH this.gwtDomainObjects().typeSelect(Entity)»
+	«EXPAND gwtEnumDto(guiApp) FOREACH this.gwtDomainObjects().typeSelect(Enum)»
+	«EXPAND domainObjectBase(guiApp) FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
 	
 
 	«EXPAND GwtMapper::domainObjectUIMapperDispatch(guiApp)»
@@ -50,12 +50,12 @@ public enum «name» implements java.io.Serializable {
 
 	«EXPAND templates::domain::DomainObject::enumIdentifierMap»
 
-    «EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH attributes»
+    «EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH gwtAttributes()»
     
     «EXPAND enumNames FOR this»
     «EXPAND templates::domain::DomainObject::enumConstructor»
     «EXPAND templates::domain::DomainObject::enumFromIdentifierMethod»
-    «EXPAND templates::domain::DomainObjectAttribute::propertyGetter FOREACH attributes»
+    «EXPAND templates::domain::DomainObjectAttribute::propertyGetter FOREACH gwtAttributes()»
     «EXPAND templates::domain::DomainObject::enumNamePropertyGetter»
 }
 	«ENDFILE»
@@ -243,8 +243,8 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
    	«EXPAND attribute FOREACH getGwtDtoAttributes()»
 
-    «EXPAND gwtOneReferenceAttribute FOREACH references.select(r | !r.many)»
-    «EXPAND manyReferenceAttribute FOREACH references.select(r | r.many)»
+    «EXPAND gwtOneReferenceAttribute FOREACH getAllBusinessReferences().select(r | !r.many)»
+    «EXPAND manyReferenceAttribute FOREACH getAllBusinessReferences().select(r | r.many)»
 
 	/**
 	 * Constructor
@@ -258,8 +258,8 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 
     «EXPAND propertyAccessors FOREACH getGwtDtoAttributes() »
 
-    «EXPAND oneReferenceAccessors FOREACH references.select(r | !r.many)»
-    «EXPAND manyReferenceAccessors FOREACH references.select(r | r.many)»
+    «EXPAND oneReferenceAccessors FOREACH getAllBusinessReferences().select(r | !r.many)»
+    «EXPAND manyReferenceAccessors FOREACH getAllBusinessReferences().select(r | r.many)»
     
     «EXPAND templates::domain::DomainObject::toStringStyle»
     «EXPAND templates::domain::DomainObject::acceptToString»
@@ -457,10 +457,10 @@ public enum «name» implements java.io.Serializable {
 
 	«EXPAND templates::domain::DomainObject::enumIdentifierMap»
 
-    «EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH attributes»
+    «EXPAND templates::domain::DomainObjectAttribute::attribute FOREACH gwtAttributes()»
     «EXPAND templates::domain::DomainObject::enumConstructor»
     «EXPAND templates::domain::DomainObject::enumFromIdentifierMethod»
-    «EXPAND templates::domain::DomainObjectAttribute::propertyGetter FOREACH attributes»
+    «EXPAND templates::domain::DomainObjectAttribute::propertyGetter FOREACH gwtAttributes()»
     «EXPAND templates::domain::DomainObject::enumNamePropertyGetter»
 }
 	«ENDFILE»
