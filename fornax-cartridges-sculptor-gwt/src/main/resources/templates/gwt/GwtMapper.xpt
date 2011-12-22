@@ -20,6 +20,7 @@ public class «this.mapperClassName()» {
 	protected static jmultimethod.Multimethod mapToDomainMM = new jmultimethod.Multimethod("mapToDomain", «name.toFirstUpper()»DtoMapper.class);
 	protected static jmultimethod.Multimethod mapFromDomainMM = new jmultimethod.Multimethod("mapFromDomain", «name.toFirstUpper()»DtoMapper.class);
 
+	
 	«EXPAND mapperDispatchFn(guiApp) FOREACH this.domainObjects.select(d|d.shouldBeMapped())»
 
 «REM»

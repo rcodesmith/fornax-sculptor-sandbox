@@ -6,6 +6,8 @@
  */
 package sculptorguimetamodel.validation;
 
+import org.eclipse.emf.common.util.EList;
+import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.View;
 
 /**
@@ -20,4 +22,8 @@ public interface WidgetValidator {
 	boolean validateView(View value);
 
 	boolean validateLabel(String value);
+
+	boolean validateBehaviorBindings(EList value);
+
+	boolean validateEnabled(UiCondition value);
 }

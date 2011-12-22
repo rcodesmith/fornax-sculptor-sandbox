@@ -334,6 +334,8 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.TABLE_COLUMN: {
 				TableColumn tableColumn = (TableColumn)theEObject;
 				Object result = caseTableColumn(tableColumn);
+				if (result == null) result = casePropertyReferringWidget(tableColumn);
+				if (result == null) result = caseWidget(tableColumn);
 				if (result == null) result = caseNamedElement(tableColumn);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -441,12 +443,62 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SculptorguimetamodelPackage.SECTION_WIDGET: {
-				SectionWidget sectionWidget = (SectionWidget)theEObject;
-				Object result = caseSectionWidget(sectionWidget);
-				if (result == null) result = caseWidget(sectionWidget);
-				if (result == null) result = caseWidgetsContainer(sectionWidget);
-				if (result == null) result = caseNamedElement(sectionWidget);
+			case SculptorguimetamodelPackage.PANEL_WIDGET: {
+				PanelWidget panelWidget = (PanelWidget)theEObject;
+				Object result = casePanelWidget(panelWidget);
+				if (result == null) result = caseWidget(panelWidget);
+				if (result == null) result = caseWidgetsContainer(panelWidget);
+				if (result == null) result = caseNamedElement(panelWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.UI_BEHAVIOR: {
+				UiBehavior uiBehavior = (UiBehavior)theEObject;
+				Object result = caseUiBehavior(uiBehavior);
+				if (result == null) result = caseNamedElement(uiBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.POPULATE_PANEL_BEHAVIOR: {
+				PopulatePanelBehavior populatePanelBehavior = (PopulatePanelBehavior)theEObject;
+				Object result = casePopulatePanelBehavior(populatePanelBehavior);
+				if (result == null) result = caseUiBehavior(populatePanelBehavior);
+				if (result == null) result = caseNamedElement(populatePanelBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.NAVIGATE_TO_VIEW_BEHAVIOR: {
+				NavigateToViewBehavior navigateToViewBehavior = (NavigateToViewBehavior)theEObject;
+				Object result = caseNavigateToViewBehavior(navigateToViewBehavior);
+				if (result == null) result = caseUiBehavior(navigateToViewBehavior);
+				if (result == null) result = caseNamedElement(navigateToViewBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING: {
+				BehaviorBinding behaviorBinding = (BehaviorBinding)theEObject;
+				Object result = caseBehaviorBinding(behaviorBinding);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.ON_CLICK_BINDING: {
+				OnClickBinding onClickBinding = (OnClickBinding)theEObject;
+				Object result = caseOnClickBinding(onClickBinding);
+				if (result == null) result = caseBehaviorBinding(onClickBinding);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.ON_HOVER_BINDING: {
+				OnHoverBinding onHoverBinding = (OnHoverBinding)theEObject;
+				Object result = caseOnHoverBinding(onHoverBinding);
+				if (result == null) result = caseBehaviorBinding(onHoverBinding);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.UI_CONDITION: {
+				UiCondition uiCondition = (UiCondition)theEObject;
+				Object result = caseUiCondition(uiCondition);
+				if (result == null) result = caseNamedElement(uiCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1115,17 +1167,122 @@ public class SculptorguimetamodelSwitch {
 	}
 
 																/**
-	 * Returns the result of interpreting the object as an instance of '<em>Section Widget</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Panel Widget</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Section Widget</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Panel Widget</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSectionWidget(SectionWidget object) {
+	public Object casePanelWidget(PanelWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ui Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ui Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseUiBehavior(UiBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Populate Panel Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Populate Panel Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object casePopulatePanelBehavior(PopulatePanelBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigate To View Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigate To View Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseNavigateToViewBehavior(NavigateToViewBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavior Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavior Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseBehaviorBinding(BehaviorBinding object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>On Click Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>On Click Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseOnClickBinding(OnClickBinding object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>On Hover Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>On Hover Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseOnHoverBinding(OnHoverBinding object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ui Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ui Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseUiCondition(UiCondition object) {
 		return null;
 	}
 

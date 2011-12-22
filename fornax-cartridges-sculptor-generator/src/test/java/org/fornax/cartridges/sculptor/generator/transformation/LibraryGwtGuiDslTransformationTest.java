@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
@@ -26,6 +25,9 @@ import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
+import sculptorguimetamodel.OnClickBinding;
+import sculptorguimetamodel.PanelWidget;
+import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.TableColumn;
@@ -98,13 +100,38 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     	
     	EList tableCols = table.getColumns();
     	assertNotNull(tableCols);
-        assertOneAndOnlyOne(tableCols, "name");
+        assertOneAndOnlyOne(tableCols, "name", "edit");
         
         TableColumn nameCol = (TableColumn)tableCols.get(0);
+        assertEquals("name", nameCol.getName());
         assertNotNull(nameCol);
-        
         assertEquals("Text", nameCol.getColumnType());
-    	
+        assertEquals(true, nameCol.isFilterable());
+        assertEquals(true, nameCol.isSortable());
+
+        TableColumn editCol = (TableColumn)tableCols.get(1);
+        assertNotNull(editCol);
+        assertEquals("Button", editCol.getColumnType());
+        assertEquals(1, editCol.getBehaviorBindings().size());
+        assertEquals(false, editCol.isFilterable());
+        assertEquals(false, editCol.isSortable());
+
+        OnClickBinding onClick = (OnClickBinding)editCol.getBehaviorBindings().get(0);
+        assertEquals(1, onClick.getBehaviors().size());
+        PopulatePanelBehavior populatePanel = (PopulatePanelBehavior)onClick.getBehaviors().get(0);
+        assertEquals("personDetailsPanel", populatePanel.getPanel().getName());
+        
+        
+    }
+    
+    @Test
+    public void assertEmptyPersonDetailsPanel() {
+    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
+
+    	PanelWidget emptyPane = (PanelWidget) getNamedElement("personDetailsEmptyPanel", tableView.getWidgets());
+    	assertNotNull(emptyPane);
+    	assertEquals(0, emptyPane.getWidgets().size());
+    	assertEquals("this is an empty panel", emptyPane.getDoc());
     }
     
     @Test
@@ -306,12 +333,34 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		assertEquals("org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convertToDate(entryDate)", expr);
 	}
 	
+	@Test
+	public void assertBehaviors() {
+		assertEquals(1, personModule().getBehaviors().size());
+		
+        assertOneAndOnlyOne(personModule().getBehaviors(), "populatePersonDetailsPanel");
+
+	}
+	
+	@Test
+	public void assertPopulatePersonDetailsBehavior() {
+		PopulatePanelBehavior populatePersonDetailsPanel = (PopulatePanelBehavior)getNamedElement("populatePersonDetailsPanel", personModule().getBehaviors());
+		assertNotNull(populatePersonDetailsPanel);
+		
+		assertEquals("Populate the person details panel", populatePersonDetailsPanel.getDoc());
+		assertEquals("personDetailsPanel", populatePersonDetailsPanel.getPanel().getName());
+		
+	}
+	
+	
+	
+	
 	protected void validateServiceOperation(ServiceProxyOperation op, String expectedName, int expectedNumParams) {
 		assertEquals(expectedName, op.getName());
 		assertEquals(expectedName, op.getFor().getName());
 		assertEquals(expectedNumParams, op.getParameters().size());
 		
 	}
+	
 	
 	protected String getFileText(String filePath) {
 		File f = new File(
@@ -334,6 +383,7 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		return null;
 	}
 
+	
 	protected void assertMatchesRegexp(String text, String regexp) {
 		Pattern p = Pattern.compile(regexp, Pattern.MULTILINE);
 		Assert.assertTrue("Text did not contain pattern \"" + regexp  + "\"", p.matcher(text).find());		

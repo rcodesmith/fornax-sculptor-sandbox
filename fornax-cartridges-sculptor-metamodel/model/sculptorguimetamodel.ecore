@@ -27,6 +27,10 @@
         eType="#//ServiceProxy" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//GuiCommand" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
+        eType="#//UiBehavior" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+        eType="#//UiCondition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -134,6 +138,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorBindings" lowerBound="1"
+        upperBound="-1" eType="#//BehaviorBinding"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enabled" eType="#//UiCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="InformationalTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
@@ -156,10 +163,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" lowerBound="1"
         eType="#//GuiModule" eOpposite="#//GuiModule/events"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TableColumn" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableColumn" eSuperTypes="#//PropertyReferringWidget">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forProperty" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filterable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TextAreaWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="AutocompleteWidget" eSuperTypes="#//PropertyReferringWidget"/>
@@ -184,5 +191,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
         eType="#//Widget" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//Widget #//WidgetsContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//Widget #//WidgetsContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UiBehavior" eSuperTypes="sculptormetamodel.ecore#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PopulatePanelBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="panel" lowerBound="1" eType="#//PanelWidget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigateToViewBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" lowerBound="1" eType="#//View"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" lowerBound="1"
+        upperBound="-1" eType="#//UiBehavior"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnClickBinding" eSuperTypes="#//BehaviorBinding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OnHoverBinding" eSuperTypes="#//BehaviorBinding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UiCondition" eSuperTypes="sculptormetamodel.ecore#//NamedElement"/>
 </ecore:EPackage>

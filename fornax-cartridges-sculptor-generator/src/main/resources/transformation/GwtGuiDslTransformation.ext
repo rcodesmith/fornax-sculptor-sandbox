@@ -140,12 +140,7 @@ Parameter transformGwtServiceOperationParam(Parameter param) :
 create sculptorguimetamodel::View this transformView(DslView view, Module module) :
 	let domainObject = module.domainObjects.select(e | e.name == view.for.name).first() :
 	debugTrace("======================================================= transforming view! " + view.name) ->
-	debugTrace("this=" + this) ->
-	debugTrace("dslView=" + view) ->
-	debugTrace("module=" + module) ->	
-	debugTrace("view.for = " + domainObject) ->
-	debugTrace("view.parameters = " + view.parameters) ->
-	debugTrace("Module domain objs: " + module.domainObjects.name) ->
+	setDoc(view.doc) ->
 	setName(view.name) ->
 	setFor(domainObject) ->
 	parameters.addAll(view.parameters.transform()) ->
@@ -161,6 +156,12 @@ create sculptorguimetamodel::ViewParameter this transform(DslViewParameter dslPa
 	setName(dslParam.name) ->
 	setType(dslParam.type) ->
 	setNullable(dslParam.nullable);
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiEvent related transformations
+//////////////////////////////////////////////////////////////////////////////////
 	
 create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
@@ -174,47 +175,56 @@ create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widge
 		
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
 	
 create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 	
 create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 	
@@ -222,9 +232,8 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 	let view = ((DslView) widget.eContainer).transformView(module) :
 	let domainObject = module.domainObjects.select(e | e.name == widget.for.name).first() :
 	setView(view) ->
+	setDoc(widget.doc) ->
 	debugTrace("********************************************** transforming " + widget.name) ->
-	debugTrace("table.for = " + domainObject) ->
-	debugTrace("Module domain objs: " + module.domainObjects.name) ->
 	setName(widget.name) ->
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
@@ -233,12 +242,25 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col, Module module) :
 	setName(col.name)->
 	setLabel(col.label) ->
-	setColumnType(col.columnType);
+	setColumnType(col.columnType) ->
+	setSortable(col.sortable) ->
+	setFilterable(col.filterable) ->
+	behaviorBindings.addAll(col.behaviorBindings.transform(module));
+
+create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :
+	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setDoc(widget.doc) ->
+	setName(widget.name) ->	
+	setLabel(widget.label) ->
+	setFor(widget.for == null ? null : widget.for.transform()) ->
+	widgets.addAll(widget.widgets.transformWidget(module));
+	
 
 
 //////////////////////////////////////////////////////////////////////////////////
 // GuiEvent related transformations
 //////////////////////////////////////////////////////////////////////////////////
+
 create sculptorguimetamodel::GuiEvent this transformEvent(DslGuiEvent event, Module module) :
 	setGuiModule(((DslGuiModule) event.eContainer).transformModule()) ->
 	setName(event.name) ->
@@ -304,7 +326,30 @@ create sculptormetamodel::Reference this transformToGwt(DslReference reference, 
       setOpposite(reference.oppositeHolder.opposite.transform()):
       null)
     ;
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// UiBehavior related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+create sculptorguimetamodel::UiBehavior this transformBehavior(DslUiBehavior behavior, Module module) :
+	error("Unexpected call to transformBehavior(DslUiBehavior)");
+
+create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPopulatePanelBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setName(behavior.name) ->
+	setPanel(behavior.panel.transformWidget(module));
 	
+create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding binding, Module module) :
+	error("Unexpected call to transform(DslBehaviorBinding)");
+	
+create sculptorguimetamodel::OnClickBinding this transform(DslOnClick binding, Module module) :
+	behaviors.addAll(binding.behaviors.transformBehavior(module));
+
+create sculptorguimetamodel::OnHoverBinding this transform(DslOnHover binding, Module module) :
+	behaviors.addAll(binding.behaviors.transformBehavior(module));
+	
+		
 //////////////////////////////////////////////////////////////////////////////////
 // Transformation helper functions.  Currently overlapped with sofeauihelpers.ext
 //////////////////////////////////////////////////////////////////////////////////
@@ -365,5 +410,7 @@ private String convertVisibility(DslVisibility dslVisibility) :
 	dslVisibility == null ?
 		"public" :
 		dslVisibility.toString();
+
+
 
 	

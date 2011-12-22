@@ -22,6 +22,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference serviceDependencies : Service<<0..*>>
     Reference serviceProxies : ServiceProxy<<0..*>>
     Reference commands : GuiCommand<<0..*>>
+    Reference behaviors : UiBehavior<<0..*>>
+    Reference conditions : UiCondition<<0..*>>
 
   Class UserTask -> NamedElement
     Reference subTaskTransitions : SubTaskTransition<<0..*>>
@@ -115,6 +117,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class Widget -> NamedElement
     Reference view : View
     Attribute label : EString
+    Reference behaviorBindings : BehaviorBinding<<1..*>>
+    Reference enabled : UiCondition
 
   Class InputTextWidget -> PropertyReferringWidget
 
@@ -138,10 +142,10 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class GuiEvent -> DomainObject
     Reference guiModule : GuiModule<<1..1>>
 
-  Class TableColumn -> NamedElement
-    Attribute label : EString
+  Class TableColumn -> PropertyReferringWidget
     Attribute columnType : EString
-    Reference forProperty : PropertyReference
+    Attribute filterable : EBoolean
+    Attribute sortable : EBoolean
 
   Class TextAreaWidget -> PropertyReferringWidget
 
@@ -172,4 +176,22 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class WidgetsContainer
     Reference widgets : Widget<<0..*>>
 
-  Class SectionWidget -> Widget, WidgetsContainer
+  Class PanelWidget -> Widget, WidgetsContainer
+    Reference for : DomainObject
+
+  Class UiBehavior -> NamedElement
+
+  Class PopulatePanelBehavior -> UiBehavior
+    Reference panel : PanelWidget<<1..1>>
+
+  Class NavigateToViewBehavior -> UiBehavior
+    Reference view : View<<1..1>>
+
+  Class BehaviorBinding
+    Reference behaviors : UiBehavior<<1..*>>
+
+  Class OnClickBinding -> BehaviorBinding
+
+  Class OnHoverBinding -> BehaviorBinding
+
+  Class UiCondition -> NamedElement

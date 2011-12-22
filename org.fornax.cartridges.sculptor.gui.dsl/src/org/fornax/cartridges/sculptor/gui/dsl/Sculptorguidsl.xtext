@@ -26,6 +26,7 @@ DslGuiModule:
 		(skipDomainObjects+=DslSkipDomainObject)*
 		(views+=DslView)*
 		(events+=DslGuiEvent)*
+		(behaviors+=DslUiBehavior)*
 	'}';
 
 	 
@@ -216,42 +217,49 @@ DslInputTextWidget :
   (doc=STRING)?
 	'inputText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
 	
 DslTextAreaWidget :
   (doc=STRING)?
 	'textArea' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslAutocompleteWidget :
   (doc=STRING)?
 	'autocomplete' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslRadioButtonsWidget :
   (doc=STRING)?
 	'radioButtons' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslRichTextAreaWidget :
   (doc=STRING)?
 	'richText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslInputDateWidget :
   (doc=STRING)?
 	'inputDate' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
  
  DslNumberSpinnerWidget :
  (doc=STRING)?
 	'numberSpinner' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
 	'}';
  
 	
@@ -260,6 +268,8 @@ DslButtonWidget :
 	'button' name=ID '{'
 		('label' '=' label=STRING)?
 		('image' '=' image=STRING)?
+		('enabled' enabled=[DslUiCondition])?
+		(onClick=DslOnClick)?
 	'}';
 	
 DslInformationalTextWidget :
@@ -272,6 +282,8 @@ DslLinkWidget :
   (doc=STRING)?
 	'link' name=ID ('toView' toView=[DslView])? '{'
 		('label' '=' label=STRING)?
+		('enabled' enabled=[DslUiCondition])?
+		(onClick=DslOnClick)?
 	'}';
 	
 DslForProperty :
@@ -289,7 +301,20 @@ DslTableWidget :
 	
 DslTableColumn :
 	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (forProperty=DslForProperty)?
-		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))? ";" ;
+		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))?
+		(behaviorBindings+=DslOnClick)? (behaviorBindings+=DslOnHover)? ";" ;
+
+
+DslBehaviorBinding :
+	DslOnClick | DslOnHover;
+	
+DslOnClick :
+	'onClick' '=' behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*;
+
+DslOnHover :
+	'onHover' '=' behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*;
+
+	
 	
 DslColumnType :
 	("Text"|"Button"|"Date"|"Custom");
@@ -300,13 +325,31 @@ DslGuiEvent :
     ((attributes+=DslGuiAttribute) )*
   "}";
 
-DslPopulatePanel :
+
+//////////////////////////////////////////////////////////////
+// Behaviors
+//////////////////////////////////////////////////////////////
+
+DslUiBehavior :
+	DslPopulatePanelBehavior | DslNavigateToViewBehavior;
+	
+DslPopulatePanelBehavior :
   (doc=STRING)?
   "UiBehavior" "PopulatePanel" name=ID "{"
-    'panel' '=' panel=[DslPanelWidget]
-	panel=panel1
-	withCurrSelection=table1
+    'panel' '=' panel=[DslPanelWidget]    
+  "}";
 
+DslNavigateToViewBehavior :
+  (doc=STRING)?
+  "UiBehavior" "NavigateToView" name=ID "{"
+    'view' '=' view=[DslView]
+  "}";
+
+
+
+DslUiCondition :
+  (doc=STRING)?
+  "Condition" name=ID "{"
   "}";
 
 	

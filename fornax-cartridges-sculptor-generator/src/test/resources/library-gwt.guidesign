@@ -34,6 +34,7 @@ gui LibraryWeb for Library {
 			contents {
 				inputText nameField {
 					label = "Name"
+					
 				}
 				table table1 {
 					label = "Table uno"
@@ -66,10 +67,25 @@ gui LibraryWeb for Library {
 					label="Person Table"
 					
 					columns {
-						name type=Text;
+						name type=Text filterable sortable;
+						edit type=Button onClick=populatePersonDetailsPanel;
+					}
+				}
+				
+				panel personDetailsPanel {
+					contents {
+						
+					}
+				}
+				
+				"this is an empty panel"
+				panel personDetailsEmptyPanel {
+					contents {
+						
 					}
 				}
 			}
+			
 		}
 		
 		
@@ -83,6 +99,11 @@ gui LibraryWeb for Library {
 			Date date1;
 			
 			DateTime dateTime1;
+		}
+		
+		"Populate the person details panel"
+		UiBehavior PopulatePanel populatePersonDetailsPanel {
+			panel=personDetailsPanel
 		}
 	}
 	

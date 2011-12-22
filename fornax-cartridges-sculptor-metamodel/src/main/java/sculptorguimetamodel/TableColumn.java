@@ -16,9 +16,9 @@ import sculptormetamodel.NamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sculptorguimetamodel.TableColumn#getLabel <em>Label</em>}</li>
  *   <li>{@link sculptorguimetamodel.TableColumn#getColumnType <em>Column Type</em>}</li>
- *   <li>{@link sculptorguimetamodel.TableColumn#getForProperty <em>For Property</em>}</li>
+ *   <li>{@link sculptorguimetamodel.TableColumn#isFilterable <em>Filterable</em>}</li>
+ *   <li>{@link sculptorguimetamodel.TableColumn#isSortable <em>Sortable</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,33 +26,7 @@ import sculptormetamodel.NamedElement;
  * @model
  * @generated
  */
-public interface TableColumn extends NamedElement {
-	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Label</em>' attribute.
-	 * @see #setLabel(String)
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getTableColumn_Label()
-	 * @model
-	 * @generated
-	 */
-	String getLabel();
-
-	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.TableColumn#getLabel <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Label</em>' attribute.
-	 * @see #getLabel()
-	 * @generated
-	 */
-	void setLabel(String value);
-
+public interface TableColumn extends PropertyReferringWidget {
 	/**
 	 * Returns the value of the '<em><b>Column Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -80,29 +54,55 @@ public interface TableColumn extends NamedElement {
 	void setColumnType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>For Property</b></em>' reference.
+	 * Returns the value of the '<em><b>Filterable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>For Property</em>' reference isn't clear,
+	 * If the meaning of the '<em>Filterable</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>For Property</em>' reference.
-	 * @see #setForProperty(PropertyReference)
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getTableColumn_ForProperty()
+	 * @return the value of the '<em>Filterable</em>' attribute.
+	 * @see #setFilterable(boolean)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getTableColumn_Filterable()
 	 * @model
 	 * @generated
 	 */
-	PropertyReference getForProperty();
+	boolean isFilterable();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.TableColumn#getForProperty <em>For Property</em>}' reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.TableColumn#isFilterable <em>Filterable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>For Property</em>' reference.
-	 * @see #getForProperty()
+	 * @param value the new value of the '<em>Filterable</em>' attribute.
+	 * @see #isFilterable()
 	 * @generated
 	 */
-	void setForProperty(PropertyReference value);
+	void setFilterable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Sortable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sortable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sortable</em>' attribute.
+	 * @see #setSortable(boolean)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getTableColumn_Sortable()
+	 * @model
+	 * @generated
+	 */
+	boolean isSortable();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.TableColumn#isSortable <em>Sortable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sortable</em>' attribute.
+	 * @see #isSortable()
+	 * @generated
+	 */
+	void setSortable(boolean value);
 
 } // TableColumn

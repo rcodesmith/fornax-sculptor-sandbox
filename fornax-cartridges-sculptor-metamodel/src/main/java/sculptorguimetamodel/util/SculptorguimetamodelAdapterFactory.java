@@ -210,8 +210,29 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseWidgetsContainer(WidgetsContainer object) {
 				return createWidgetsContainerAdapter();
 			}
-			public Object caseSectionWidget(SectionWidget object) {
-				return createSectionWidgetAdapter();
+			public Object casePanelWidget(PanelWidget object) {
+				return createPanelWidgetAdapter();
+			}
+			public Object caseUiBehavior(UiBehavior object) {
+				return createUiBehaviorAdapter();
+			}
+			public Object casePopulatePanelBehavior(PopulatePanelBehavior object) {
+				return createPopulatePanelBehaviorAdapter();
+			}
+			public Object caseNavigateToViewBehavior(NavigateToViewBehavior object) {
+				return createNavigateToViewBehaviorAdapter();
+			}
+			public Object caseBehaviorBinding(BehaviorBinding object) {
+				return createBehaviorBindingAdapter();
+			}
+			public Object caseOnClickBinding(OnClickBinding object) {
+				return createOnClickBindingAdapter();
+			}
+			public Object caseOnHoverBinding(OnHoverBinding object) {
+				return createOnHoverBindingAdapter();
+			}
+			public Object caseUiCondition(UiCondition object) {
+				return createUiConditionAdapter();
 			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
@@ -869,16 +890,114 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 																/**
-	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.SectionWidget <em>Section Widget</em>}'.
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PanelWidget <em>Panel Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see sculptorguimetamodel.SectionWidget
+	 * @see sculptorguimetamodel.PanelWidget
 	 * @generated
 	 */
-	public Adapter createSectionWidgetAdapter() {
+	public Adapter createPanelWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UiBehavior <em>Ui Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UiBehavior
+	 * @generated
+	 */
+	public Adapter createUiBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PopulatePanelBehavior <em>Populate Panel Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.PopulatePanelBehavior
+	 * @generated
+	 */
+	public Adapter createPopulatePanelBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.NavigateToViewBehavior <em>Navigate To View Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.NavigateToViewBehavior
+	 * @generated
+	 */
+	public Adapter createNavigateToViewBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.BehaviorBinding <em>Behavior Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.BehaviorBinding
+	 * @generated
+	 */
+	public Adapter createBehaviorBindingAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.OnClickBinding <em>On Click Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.OnClickBinding
+	 * @generated
+	 */
+	public Adapter createOnClickBindingAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.OnHoverBinding <em>On Hover Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.OnHoverBinding
+	 * @generated
+	 */
+	public Adapter createOnHoverBindingAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UiCondition <em>Ui Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UiCondition
+	 * @generated
+	 */
+	public Adapter createUiConditionAdapter() {
 		return null;
 	}
 

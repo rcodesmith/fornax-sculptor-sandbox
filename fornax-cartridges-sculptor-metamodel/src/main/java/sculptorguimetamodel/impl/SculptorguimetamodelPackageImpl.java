@@ -17,6 +17,7 @@ import sculptorguimetamodel.AttributeViewProperty;
 import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.BasicTypeEnumViewProperty;
 import sculptorguimetamodel.BasicTypeViewProperty;
+import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.ButtonWidget;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.DeleteTask;
@@ -31,7 +32,12 @@ import sculptorguimetamodel.InputDateWidget;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
 import sculptorguimetamodel.ListTask;
+import sculptorguimetamodel.NavigateToViewBehavior;
 import sculptorguimetamodel.NumberSpinnerWidget;
+import sculptorguimetamodel.OnClickBinding;
+import sculptorguimetamodel.OnHoverBinding;
+import sculptorguimetamodel.PanelWidget;
+import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.RadioButtonsWidget;
@@ -49,6 +55,8 @@ import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.TextAreaWidget;
 import sculptorguimetamodel.TmpReferenceHolder;
 import sculptorguimetamodel.TmpSubTaskTransitionHolder;
+import sculptorguimetamodel.UiBehavior;
+import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.UpdateTask;
 import sculptorguimetamodel.UserTask;
 import sculptorguimetamodel.UserTaskGroup;
@@ -381,7 +389,56 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass sectionWidgetEClass = null;
+	private EClass panelWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass uiBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass populatePanelBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass navigateToViewBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass behaviorBindingEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass onClickBindingEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass onHoverBindingEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass uiConditionEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -571,6 +628,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getGuiModule_Commands() {
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(8);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGuiModule_Behaviors() {
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(9);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGuiModule_Conditions() {
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(10);
 	}
 
 				/**
@@ -1226,6 +1301,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getWidget_BehaviorBindings() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(2);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWidget_Enabled() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(3);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInputTextWidget() {
 		return inputTextWidgetEClass;
 	}
@@ -1361,7 +1454,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTableColumn_Label() {
+	public EAttribute getTableColumn_ColumnType() {
 		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1370,7 +1463,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTableColumn_ColumnType() {
+	public EAttribute getTableColumn_Filterable() {
 		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1379,8 +1472,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTableColumn_ForProperty() {
-		return (EReference)tableColumnEClass.getEStructuralFeatures().get(2);
+	public EAttribute getTableColumn_Sortable() {
+		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(2);
 	}
 
 																/**
@@ -1541,8 +1634,107 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSectionWidget() {
-		return sectionWidgetEClass;
+	public EClass getPanelWidget() {
+		return panelWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPanelWidget_For() {
+		return (EReference)panelWidgetEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUiBehavior() {
+		return uiBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPopulatePanelBehavior() {
+		return populatePanelBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPopulatePanelBehavior_Panel() {
+		return (EReference)populatePanelBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNavigateToViewBehavior() {
+		return navigateToViewBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNavigateToViewBehavior_View() {
+		return (EReference)navigateToViewBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBehaviorBinding() {
+		return behaviorBindingEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviorBinding_Behaviors() {
+		return (EReference)behaviorBindingEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOnClickBinding() {
+		return onClickBindingEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOnHoverBinding() {
+		return onHoverBindingEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUiCondition() {
+		return uiConditionEClass;
 	}
 
 																/**
@@ -1588,6 +1780,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_DEPENDENCIES);
 		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_PROXIES);
 		createEReference(guiModuleEClass, GUI_MODULE__COMMANDS);
+		createEReference(guiModuleEClass, GUI_MODULE__BEHAVIORS);
+		createEReference(guiModuleEClass, GUI_MODULE__CONDITIONS);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__SUB_TASK_TRANSITIONS);
@@ -1681,6 +1875,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		widgetEClass = createEClass(WIDGET);
 		createEReference(widgetEClass, WIDGET__VIEW);
 		createEAttribute(widgetEClass, WIDGET__LABEL);
+		createEReference(widgetEClass, WIDGET__BEHAVIOR_BINDINGS);
+		createEReference(widgetEClass, WIDGET__ENABLED);
 
 		inputTextWidgetEClass = createEClass(INPUT_TEXT_WIDGET);
 
@@ -1705,9 +1901,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiEventEClass, GUI_EVENT__GUI_MODULE);
 
 		tableColumnEClass = createEClass(TABLE_COLUMN);
-		createEAttribute(tableColumnEClass, TABLE_COLUMN__LABEL);
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__COLUMN_TYPE);
-		createEReference(tableColumnEClass, TABLE_COLUMN__FOR_PROPERTY);
+		createEAttribute(tableColumnEClass, TABLE_COLUMN__FILTERABLE);
+		createEAttribute(tableColumnEClass, TABLE_COLUMN__SORTABLE);
 
 		textAreaWidgetEClass = createEClass(TEXT_AREA_WIDGET);
 
@@ -1738,7 +1934,25 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		widgetsContainerEClass = createEClass(WIDGETS_CONTAINER);
 		createEReference(widgetsContainerEClass, WIDGETS_CONTAINER__WIDGETS);
 
-		sectionWidgetEClass = createEClass(SECTION_WIDGET);
+		panelWidgetEClass = createEClass(PANEL_WIDGET);
+		createEReference(panelWidgetEClass, PANEL_WIDGET__FOR);
+
+		uiBehaviorEClass = createEClass(UI_BEHAVIOR);
+
+		populatePanelBehaviorEClass = createEClass(POPULATE_PANEL_BEHAVIOR);
+		createEReference(populatePanelBehaviorEClass, POPULATE_PANEL_BEHAVIOR__PANEL);
+
+		navigateToViewBehaviorEClass = createEClass(NAVIGATE_TO_VIEW_BEHAVIOR);
+		createEReference(navigateToViewBehaviorEClass, NAVIGATE_TO_VIEW_BEHAVIOR__VIEW);
+
+		behaviorBindingEClass = createEClass(BEHAVIOR_BINDING);
+		createEReference(behaviorBindingEClass, BEHAVIOR_BINDING__BEHAVIORS);
+
+		onClickBindingEClass = createEClass(ON_CLICK_BINDING);
+
+		onHoverBindingEClass = createEClass(ON_HOVER_BINDING);
+
+		uiConditionEClass = createEClass(UI_CONDITION);
 	}
 
 	/**
@@ -1795,7 +2009,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		propertyReferringWidgetEClass.getESuperTypes().add(this.getWidget());
 		tableWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		guiEventEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
-		tableColumnEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		tableColumnEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		textAreaWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		autocompleteWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		radioButtonsWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
@@ -1807,8 +2021,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		guiCommandEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
 		viewParameterEClass.getESuperTypes().add(theSculptormetamodelPackage.getTypedElement());
 		linkWidgetEClass.getESuperTypes().add(this.getWidget());
-		sectionWidgetEClass.getESuperTypes().add(this.getWidget());
-		sectionWidgetEClass.getESuperTypes().add(this.getWidgetsContainer());
+		panelWidgetEClass.getESuperTypes().add(this.getWidget());
+		panelWidgetEClass.getESuperTypes().add(this.getWidgetsContainer());
+		uiBehaviorEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		populatePanelBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		navigateToViewBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		onClickBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
+		onHoverBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
+		uiConditionEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1826,6 +2046,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_ServiceProxies(), this.getServiceProxy(), null, "serviceProxies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Commands(), this.getGuiCommand(), null, "commands", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_Conditions(), this.getUiCondition(), null, "conditions", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_SubTaskTransitions(), this.getSubTaskTransition(), null, "subTaskTransitions", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1919,6 +2141,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(widgetEClass, Widget.class, "Widget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidget_View(), this.getView(), null, "view", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_Label(), ecorePackage.getEString(), "label", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_BehaviorBindings(), this.getBehaviorBinding(), null, "behaviorBindings", null, 1, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_Enabled(), this.getUiCondition(), null, "enabled", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputTextWidgetEClass, InputTextWidget.class, "InputTextWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1943,9 +2167,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiEvent_GuiModule(), this.getGuiModule(), this.getGuiModule_Events(), "guiModule", null, 1, 1, GuiEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableColumnEClass, TableColumn.class, "TableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTableColumn_Label(), ecorePackage.getEString(), "label", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableColumn_ColumnType(), ecorePackage.getEString(), "columnType", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTableColumn_ForProperty(), this.getPropertyReference(), null, "forProperty", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableColumn_Filterable(), ecorePackage.getEBoolean(), "filterable", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableColumn_Sortable(), ecorePackage.getEBoolean(), "sortable", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textAreaWidgetEClass, TextAreaWidget.class, "TextAreaWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1976,7 +2200,25 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(widgetsContainerEClass, WidgetsContainer.class, "WidgetsContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidgetsContainer_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, WidgetsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sectionWidgetEClass, SectionWidget.class, "SectionWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(panelWidgetEClass, PanelWidget.class, "PanelWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPanelWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, PanelWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(uiBehaviorEClass, UiBehavior.class, "UiBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(populatePanelBehaviorEClass, PopulatePanelBehavior.class, "PopulatePanelBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPopulatePanelBehavior_Panel(), this.getPanelWidget(), null, "panel", null, 1, 1, PopulatePanelBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(navigateToViewBehaviorEClass, NavigateToViewBehavior.class, "NavigateToViewBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNavigateToViewBehavior_View(), this.getView(), null, "view", null, 1, 1, NavigateToViewBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(behaviorBindingEClass, BehaviorBinding.class, "BehaviorBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviorBinding_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 1, -1, BehaviorBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(onClickBindingEClass, OnClickBinding.class, "OnClickBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(onHoverBindingEClass, OnHoverBinding.class, "OnHoverBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(uiConditionEClass, UiCondition.class, "UiCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -104,7 +104,14 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.VIEW_PARAMETER: return createViewParameter();
 			case SculptorguimetamodelPackage.LINK_WIDGET: return createLinkWidget();
 			case SculptorguimetamodelPackage.WIDGETS_CONTAINER: return createWidgetsContainer();
-			case SculptorguimetamodelPackage.SECTION_WIDGET: return createSectionWidget();
+			case SculptorguimetamodelPackage.PANEL_WIDGET: return createPanelWidget();
+			case SculptorguimetamodelPackage.UI_BEHAVIOR: return createUiBehavior();
+			case SculptorguimetamodelPackage.POPULATE_PANEL_BEHAVIOR: return createPopulatePanelBehavior();
+			case SculptorguimetamodelPackage.NAVIGATE_TO_VIEW_BEHAVIOR: return createNavigateToViewBehavior();
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING: return createBehaviorBinding();
+			case SculptorguimetamodelPackage.ON_CLICK_BINDING: return createOnClickBinding();
+			case SculptorguimetamodelPackage.ON_HOVER_BINDING: return createOnHoverBinding();
+			case SculptorguimetamodelPackage.UI_CONDITION: return createUiCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -555,9 +562,79 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SectionWidget createSectionWidget() {
-		SectionWidgetImpl sectionWidget = new SectionWidgetImpl();
-		return sectionWidget;
+	public PanelWidget createPanelWidget() {
+		PanelWidgetImpl panelWidget = new PanelWidgetImpl();
+		return panelWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UiBehavior createUiBehavior() {
+		UiBehaviorImpl uiBehavior = new UiBehaviorImpl();
+		return uiBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PopulatePanelBehavior createPopulatePanelBehavior() {
+		PopulatePanelBehaviorImpl populatePanelBehavior = new PopulatePanelBehaviorImpl();
+		return populatePanelBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NavigateToViewBehavior createNavigateToViewBehavior() {
+		NavigateToViewBehaviorImpl navigateToViewBehavior = new NavigateToViewBehaviorImpl();
+		return navigateToViewBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BehaviorBinding createBehaviorBinding() {
+		BehaviorBindingImpl behaviorBinding = new BehaviorBindingImpl();
+		return behaviorBinding;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OnClickBinding createOnClickBinding() {
+		OnClickBindingImpl onClickBinding = new OnClickBindingImpl();
+		return onClickBinding;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OnHoverBinding createOnHoverBinding() {
+		OnHoverBindingImpl onHoverBinding = new OnHoverBindingImpl();
+		return onHoverBinding;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UiCondition createUiCondition() {
+		UiConditionImpl uiCondition = new UiConditionImpl();
+		return uiCondition;
 	}
 
 																/**

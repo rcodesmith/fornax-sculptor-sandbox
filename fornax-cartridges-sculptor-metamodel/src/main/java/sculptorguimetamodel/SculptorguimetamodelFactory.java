@@ -422,13 +422,76 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	WidgetsContainer createWidgetsContainer();
 
 																/**
-	 * Returns a new object of class '<em>Section Widget</em>'.
+	 * Returns a new object of class '<em>Panel Widget</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Section Widget</em>'.
+	 * @return a new object of class '<em>Panel Widget</em>'.
 	 * @generated
 	 */
-	SectionWidget createSectionWidget();
+	PanelWidget createPanelWidget();
+
+																/**
+	 * Returns a new object of class '<em>Ui Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ui Behavior</em>'.
+	 * @generated
+	 */
+	UiBehavior createUiBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Populate Panel Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Populate Panel Behavior</em>'.
+	 * @generated
+	 */
+	PopulatePanelBehavior createPopulatePanelBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Navigate To View Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigate To View Behavior</em>'.
+	 * @generated
+	 */
+	NavigateToViewBehavior createNavigateToViewBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Behavior Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavior Binding</em>'.
+	 * @generated
+	 */
+	BehaviorBinding createBehaviorBinding();
+
+																/**
+	 * Returns a new object of class '<em>On Click Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>On Click Binding</em>'.
+	 * @generated
+	 */
+	OnClickBinding createOnClickBinding();
+
+																/**
+	 * Returns a new object of class '<em>On Hover Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>On Hover Binding</em>'.
+	 * @generated
+	 */
+	OnHoverBinding createOnHoverBinding();
+
+																/**
+	 * Returns a new object of class '<em>Ui Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ui Condition</em>'.
+	 * @generated
+	 */
+	UiCondition createUiCondition();
 
 																/**
 	 * Returns the package supported by this factory.

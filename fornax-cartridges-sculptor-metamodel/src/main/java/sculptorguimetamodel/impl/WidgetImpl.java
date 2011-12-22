@@ -6,7 +6,9 @@
  */
 package sculptorguimetamodel.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,9 +16,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import sculptorguimetamodel.BehaviorBinding;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import sculptorguimetamodel.SculptorguimetamodelPackage;
+import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.View;
 import sculptorguimetamodel.Widget;
 
@@ -31,6 +36,8 @@ import sculptormetamodel.impl.NamedElementImpl;
  * <ul>
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getView <em>View</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getBehaviorBindings <em>Behavior Bindings</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getEnabled <em>Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,6 +71,26 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * @ordered
 	 */
 	protected String label = LABEL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBehaviorBindings() <em>Behavior Bindings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehaviorBindings()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList behaviorBindings;
+
+	/**
+	 * The cached value of the '{@link #getEnabled() <em>Enabled</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected UiCondition enabled;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,6 +174,56 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getBehaviorBindings() {
+		if (behaviorBindings == null) {
+			behaviorBindings = new EObjectResolvingEList(BehaviorBinding.class, this, SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS);
+		}
+		return behaviorBindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UiCondition getEnabled() {
+		if (enabled != null && enabled.eIsProxy()) {
+			InternalEObject oldEnabled = (InternalEObject)enabled;
+			enabled = (UiCondition)eResolveProxy(oldEnabled);
+			if (enabled != oldEnabled) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.WIDGET__ENABLED, oldEnabled, enabled));
+			}
+		}
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UiCondition basicGetEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(UiCondition newEnabled) {
+		UiCondition oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET__ENABLED, oldEnabled, enabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.WIDGET__VIEW:
@@ -154,6 +231,11 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 				return basicGetView();
 			case SculptorguimetamodelPackage.WIDGET__LABEL:
 				return getLabel();
+			case SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS:
+				return getBehaviorBindings();
+			case SculptorguimetamodelPackage.WIDGET__ENABLED:
+				if (resolve) return getEnabled();
+				return basicGetEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,6 +252,13 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 				return;
 			case SculptorguimetamodelPackage.WIDGET__LABEL:
 				setLabel((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS:
+				getBehaviorBindings().clear();
+				getBehaviorBindings().addAll((Collection)newValue);
+				return;
+			case SculptorguimetamodelPackage.WIDGET__ENABLED:
+				setEnabled((UiCondition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,6 +277,12 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 			case SculptorguimetamodelPackage.WIDGET__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
+			case SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS:
+				getBehaviorBindings().clear();
+				return;
+			case SculptorguimetamodelPackage.WIDGET__ENABLED:
+				setEnabled((UiCondition)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,6 +298,10 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 				return view != null;
 			case SculptorguimetamodelPackage.WIDGET__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			case SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS:
+				return behaviorBindings != null && !behaviorBindings.isEmpty();
+			case SculptorguimetamodelPackage.WIDGET__ENABLED:
+				return enabled != null;
 		}
 		return super.eIsSet(featureID);
 	}

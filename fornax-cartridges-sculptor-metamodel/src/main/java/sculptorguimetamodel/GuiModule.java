@@ -28,6 +28,8 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getBehaviors <em>Behaviors</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getConditions <em>Conditions</em>}</li>
  * </ul>
  * </p>
  *
@@ -217,5 +219,37 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getCommands();
+
+				/**
+	 * Returns the value of the '<em><b>Behaviors</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.UiBehavior}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Behaviors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Behaviors</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Behaviors()
+	 * @model type="sculptorguimetamodel.UiBehavior" containment="true"
+	 * @generated
+	 */
+	EList getBehaviors();
+
+				/**
+	 * Returns the value of the '<em><b>Conditions</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.UiCondition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Conditions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Conditions</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Conditions()
+	 * @model type="sculptorguimetamodel.UiCondition" containment="true"
+	 * @generated
+	 */
+	EList getConditions();
 
 } // GuiModule

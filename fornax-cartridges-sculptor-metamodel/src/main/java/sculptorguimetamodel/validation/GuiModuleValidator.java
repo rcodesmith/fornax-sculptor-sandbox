@@ -34,4 +34,8 @@ public interface GuiModuleValidator {
 	boolean validateServiceProxies(EList value);
 
 	boolean validateCommands(EList value);
+
+	boolean validateBehaviors(EList value);
+
+	boolean validateConditions(EList value);
 }
