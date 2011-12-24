@@ -112,6 +112,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.ON_CLICK_BINDING: return createOnClickBinding();
 			case SculptorguimetamodelPackage.ON_HOVER_BINDING: return createOnHoverBinding();
 			case SculptorguimetamodelPackage.UI_CONDITION: return createUiCondition();
+			case SculptorguimetamodelPackage.GUI_DTO: return createGuiDto();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -635,6 +636,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public UiCondition createUiCondition() {
 		UiConditionImpl uiCondition = new UiConditionImpl();
 		return uiCondition;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuiDto createGuiDto() {
+		GuiDtoImpl guiDto = new GuiDtoImpl();
+		return guiDto;
 	}
 
 																/**

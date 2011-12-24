@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
+import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
@@ -57,6 +58,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getDtos <em>Dtos</em>}</li>
  * </ul>
  * </p>
  *
@@ -172,6 +174,16 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * @ordered
 	 */
 	protected EList conditions;
+
+				/**
+	 * The cached value of the '{@link #getDtos() <em>Dtos</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDtos()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList dtos;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -392,6 +404,18 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getDtos() {
+		if (dtos == null) {
+			dtos = new EObjectContainmentEList(GuiDto.class, this, SculptorguimetamodelPackage.GUI_MODULE__DTOS);
+		}
+		return dtos;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
@@ -431,6 +455,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return ((InternalEList)getBehaviors()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				return ((InternalEList)getConditions()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
+				return ((InternalEList)getDtos()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -478,6 +504,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return getBehaviors();
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				return getConditions();
+			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
+				return getDtos();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -530,6 +558,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getConditions().clear();
 				getConditions().addAll((Collection)newValue);
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
+				getDtos().clear();
+				getDtos().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -574,6 +606,9 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				getConditions().clear();
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
+				getDtos().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -607,6 +642,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return behaviors != null && !behaviors.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				return conditions != null && !conditions.isEmpty();
+			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
+				return dtos != null && !dtos.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

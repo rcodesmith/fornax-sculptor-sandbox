@@ -24,6 +24,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference commands : GuiCommand<<0..*>>
     Reference behaviors : UiBehavior<<0..*>>
     Reference conditions : UiCondition<<0..*>>
+    Reference dtos : GuiDto<<0..*>>
 
   Class UserTask -> NamedElement
     Reference subTaskTransitions : SubTaskTransition<<0..*>>
@@ -195,3 +196,6 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class OnHoverBinding -> BehaviorBinding
 
   Class UiCondition -> NamedElement
+
+  Class GuiDto -> DomainObject
+    Reference for : DomainObject

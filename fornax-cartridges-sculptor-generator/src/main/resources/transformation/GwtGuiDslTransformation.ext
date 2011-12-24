@@ -57,8 +57,12 @@ private DomainObject findCommandByName(GuiApplication app, String domainObjectNa
 // Service proxy-related transformations
 //
 
+// TODO: For next two methods, is there something I can use that immediately returns first?
 Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
 	module.services.select(s | s.name == dslServiceDep.dependency.name).first();
+
+DomainObject getDomainObject(DslGuiDto dslGuiDto, Module module) :
+	module.domainObjects.select(d | d.name == dslGuiDto.for.name).first();
 
 /*
 create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
@@ -76,29 +80,46 @@ create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServi
 
 create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
 	let domainService = getMetamodelService(dslServiceDep, module) :
+		setFor(domainService) ->
+		setName(domainService.name) ->
+		setDoc(domainService.doc) ->
+		setModule(module) ->
+		operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+
+//create sculptorguimetamodel::ServiceProxy this transformServiceProxy(Service domainService, Module module) :
 //	debugTrace("transformServiceProxy: service = " + domainService) ->
 //	debugTrace("transformServiceProxy: module = " + module) ->
-	setFor(domainService) ->
-	setName(domainService.name) ->
-	setDoc(domainService.doc) ->
-	setModule(module) ->
-	debugTrace("transformServiceProxy: this module = " + this.module) ->
-	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
-//	operations.addAll(domainService.operations.transformServiceProxyOperation(this));
-
-create sculptorguimetamodel::ServiceProxy this transformServiceProxy(Service domainService, Module module) :
-	debugTrace("transformServiceProxy: service = " + domainService) ->
-	debugTrace("transformServiceProxy: module = " + module) ->
-	setFor(domainService) ->
-	setName(domainService.name) ->
-	setDoc(domainService.doc) ->
-	setModule(module) ->
-	debugTrace("transformServiceProxy: this module = " + this.module) ->
-	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
-//	operations.addAll(domainService.operations.transformServiceProxyOperation(this));
+//	setFor(domainService) ->
+//	setName(domainService.name) ->
+//	setDoc(domainService.doc) ->
+//	setModule(module) ->
+//	debugTrace("transformServiceProxy: this module = " + this.module) ->
+//	operations.addAll(domainService.operations.select(o | domainService.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
 
 
 // 	operations.addAll(domainServiceOp.operations.transformServiceProxyOperation());
+//create sculptorguimetamodel::GuiDto this transformGuiDto(DslGuiDto dslGuiDto, Module module) :
+//	let domainObj = getDomainObject(dslGuiDto, module) :
+//	setFor(domainObj) ->
+//	setModule(module) ->
+//    setDoc(domainObj.doc) ->
+//    setName(domainObj.name) ->
+//    setPackage(domainObj.package) ->
+//    setAbstract(domainObj.abstract) ->
+//    setOptimisticLocking(domainObj.optimisticLocking) ->
+//    setImmutable(domainObj.immutable) ->
+//    setCache(domainObj.cache) ->
+//    setDatabaseTable(domainObj.databaseTable) ->
+//    setValidate(domainObj.validate) ->
+//    setHint(domainObj.hint) ->
+//    setGapClass(domainObj.gapClass) ->
+//    setInheritance(domainObject.createInheritance()) ->
+//    attributes.addAll(domainObject.attributes.transform()) ->
+//    references.addAll(domainObject.references.transform()) ->
+//    operations.addAll(domainObject.operations.transform()) ->
+//    domainObject.transformExtends(this) ->
+//    traits.addAll(domainObject.traits.transform());
+
  	
  	
 create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation,

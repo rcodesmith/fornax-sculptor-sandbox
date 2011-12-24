@@ -494,6 +494,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	UiCondition createUiCondition();
 
 																/**
+	 * Returns a new object of class '<em>Gui Dto</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gui Dto</em>'.
+	 * @generated
+	 */
+	GuiDto createGuiDto();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -19,6 +19,7 @@ DslImport :
 	
 DslGuiModule:
 	'Module' 'for' for=[mm::DslModule] '{'
+		("basePackage" "=" basePackage=DslGuiJavaIdentifier )?
 		("hint" "=" hint=STRING)?
 		(serviceDependencies+=DslGuiServiceDependency)*
 		(userTasks+=DslUserTask)*
@@ -27,6 +28,7 @@ DslGuiModule:
 		(views+=DslView)*
 		(events+=DslGuiEvent)*
 		(behaviors+=DslUiBehavior)*
+		(dtos+=DslGuiDto)*
 	'}';
 
 	 
@@ -197,6 +199,7 @@ DslGuiServiceDependency :
   ('>'|'inject') ("@"dependency=[mm::DslService]);
 
 
+
 DslWidget : 
 	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget
 	| DslRichTextAreaWidget | DslAutocompleteWidget | DslRadioButtonsWidget | DslLinkWidget | DslPanelWidget;
@@ -323,6 +326,12 @@ DslGuiEvent :
   (doc=STRING)? 
   "Event" name=ID "{"
     ((attributes+=DslGuiAttribute) )*
+  "}";
+
+DslGuiDto :
+  (doc=STRING)? 
+  "GuiDto" 'for' ("@"for=[mm::DslDomainObject]) "{"
+  	((gapClass?="gap") | (noGapClass?="nogap"))?
   "}";
 
 

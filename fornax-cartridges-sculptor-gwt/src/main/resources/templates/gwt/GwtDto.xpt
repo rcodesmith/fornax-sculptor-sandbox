@@ -24,14 +24,22 @@ which is causing attributes to get masked.«ENDREM»
 	Domain module transformation
 «ENDREM»
 «DEFINE gwtDomainModule(GuiApplication guiApp) FOR Module»
-	«EXPAND domainObjectBase(guiApp) FOREACH this.gwtDomainObjects().typeSelect(Entity)»
+	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(Entity)»
 	«EXPAND gwtEnumDto(guiApp) FOREACH this.gwtDomainObjects().typeSelect(Enum)»
-	«EXPAND domainObjectBase(guiApp) FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
+	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
 	
 
 	«EXPAND GwtMapper::domainObjectUIMapperDispatch(guiApp)»
 
 «ENDDEFINE»
+
+«DEFINE domainObject FOR DomainObject»
+	«IF gapClass»
+ 	   «EXPAND domainObjectSubclass»
+    «ENDIF»
+    «EXPAND domainObjectBase»
+«ENDDEFINE»
+
 
 «REM»
 	Enum transformation
@@ -83,17 +91,11 @@ public enum «name» implements java.io.Serializable {
 	Copied from DomainObjectReference::oneReferenceAttribute
 «ENDREM»
 «DEFINE gwtOneReferenceAttribute FOR Reference»
-    «IF isValidationAnnotationToBeGenerated()»
-		«EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceValidationAnnotations»
-    «ENDIF»
     private «IF transient»transient «ENDIF»«fqnGwtDto()» «name»;
 «ENDDEFINE»
 
 
 «DEFINE gwtOneReferenceAttribute(boolean annotations) FOR Reference»
-    «IF annotations»
-    	«EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceAttributeAnnotations»
-    «ENDIF»
     private «IF transient»transient «ENDIF»«fqnGwtDto()» «name»«EXPAND templates::domain::DomainObjectReference::oneReferenceAttributeDefaultValue»;
 «ENDDEFINE»
 
@@ -119,9 +121,6 @@ public enum «name» implements java.io.Serializable {
 
 «DEFINE oneReferenceGetter(boolean annotations) FOR Reference»
     «formatJavaDoc()»
-    «IF annotations»
-    	«EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceGetterAnnotations»
-    «ENDIF»
     «getVisibilityLitteralGetter()»«fqnGwtDto()» get«name.toFirstUpper()»() {
         return «name»;
     };
@@ -148,7 +147,6 @@ public enum «name» implements java.io.Serializable {
 «DEFINE oneReferenceSetter FOR Reference»
 	«IF isSetterNeeded()»
     «formatJavaDoc()»
-    «EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceSetterAnnotations»
     «getVisibilityLitteralSetter()»void set«name.toFirstUpper()»(«fqnGwtDto()» «name») {
         this.«name» = «name»;
     };
@@ -168,7 +166,6 @@ public enum «name» implements java.io.Serializable {
      * once it is assigned.
      */
     «ENDIF -»
-    «EXPAND templates::domain::DomainObjectReferenceAnnotation::oneReferenceSetterAnnotations»
     «notChangeableReferenceSetterVisibility()» void set«name.toFirstUpper()»(«fqnGwtDto()» «name») {
         // it must be possible to set null when deleting objects
         if ((«name» != null) && (this.«name» != null) && !this.«name».equals(«name»)) {
@@ -183,7 +180,6 @@ public enum «name» implements java.io.Serializable {
 «DEFINE manyReferenceAttribute FOR Reference»
 	«IF isUnownedReference()»
 	«ELSE»
-		«EXPAND templates::domain::DomainObjectReferenceAnnotation::manyReferenceAttributeAnnotations»
 	    private «getCollectionInterfaceType()»<«getGwtTypeName()»> «name» = new «getCollectionImplType()»<«getGwtTypeName()»>();
     «ENDIF»
 «ENDDEFINE»
@@ -206,7 +202,6 @@ public enum «name» implements java.io.Serializable {
 
 «DEFINE manyReferenceGetter FOR Reference»
     «formatJavaDoc()»
-	«EXPAND templates::domain::DomainObjectReferenceAnnotation::manyReferenceGetterAnnotations»
     «getVisibilityLitteralGetter()»«getCollectionInterfaceType()»<«getGwtTypeName()»> get«name.toFirstUpper()»() {
         return «name»;
     };
@@ -232,14 +227,49 @@ END
 
 
 
-«DEFINE domainObjectBase(GuiApplication guiApp) FOR DomainObject»
+
+«DEFINE domainObjectSubclass FOR DomainObject»
+	«FILE javaFileName(gwtDomainPackage(this) + "." + name) TO_SRC»
+		«EXPAND domainObjectSubclassBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE domainObjectSubclassBody FOR DomainObject»
+	«javaHeader()»
+	package «gwtDomainPackage()»;
+
+	«EXPAND templates::domain::DomainObject::domainObjectSubclassJavaDoc»
+	public «getAbstractLiteral()»class «name» extends «name»Base {
+		«EXPAND templates::domain::DomainObject::serialVersionUID»
+		«IF getLimitedConstructorParameters().isEmpty»public«ELSE»protected«ENDIF» «name»() {
+	    }
+
+		«EXPAND templates::domain::DomainObjectConstructor::propertyConstructorSubclass»
+		«EXPAND templates::domain::DomainObjectConstructor::limitedConstructor»
+    
+		«EXPAND templates::domain::DomainObject::domainObjectSubclassImplMethod FOREACH operations.select(e | e.isImplementedInGapClass())»
+		
+
+	}
+
+«ENDDEFINE»
+
+
+«DEFINE domainObjectSubclassForUnitTest FOR DomainObject»
+	«FILE javaFileName(gwtDomainPackage(this) + "." + name)»
+		«EXPAND domainObjectSubclassBody FOR this»
+	«ENDFILE»
+«ENDDEFINE» 
+
+
+«DEFINE domainObjectBase FOR DomainObject»
     «LET attributes.exists(a | a.isUuid())  AS hasUuidAttribute -»
-    «FILE javaFileName(gwtDomainPackage(this) + "." + name )»
+    «FILE javaFileName(gwtDomainPackage(this) + "." + baseClassName() )»
 «javaHeader()»
 package «gwtDomainPackage(this)»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
-public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements java.io.Serializable {
+public «getAbstractLiteral()» class «baseClassName()» «getGwtExtendsLitteral()» implements java.io.Serializable {
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
    	«EXPAND attribute FOREACH getGwtDtoAttributes()»
 
@@ -269,11 +299,15 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
     «EXPAND templates::domain::DomainObjectTrait::delegateToTraitMethod FOREACH operations.select(e | !e.abstract && e.hasHint("trait"))»
     «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
     
+    «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
+
     «EXPAND templates::domain::DomainObject::domainObjectHook»
+    
 }
     «ENDFILE»
     «ENDLET»
 «ENDDEFINE»
+
 
 «REM»Copied from DomainObjectAttribute«ENDREM»
 «DEFINE attribute FOR Attribute»
@@ -281,9 +315,6 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 «ENDDEFINE»
 
 «DEFINE attribute(boolean annotations) FOR Attribute»
-	«IF annotations»
-		«EXPAND templates::domain::DomainObjectAttributeAnnotation::attributeAnnotations»
-	«ENDIF»
     private «IF transient && !hasHint("gwtpasstransient")»transient «ENDIF»«getGwtTypeName()» «name»«IF collectionType != null» = new «getGwtImplTypeName()»()«ENDIF»«EXPAND templates::domain::DomainObjectAttribute::attributeDefaultValue»;
 
 «ENDDEFINE»
@@ -319,9 +350,6 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 
 «DEFINE propertyGetter(boolean annotations) FOR Attribute»
     «formatJavaDoc()»
-    «IF annotations»
-    	«EXPAND templates::domain::DomainObjectAttributeAnnotation::propertyGetterAnnotations»
-    «ENDIF»
     «getVisibilityLitteralGetter()»«getGwtTypeName()» «getGetAccessor()»() {
         return «name»;
     };
@@ -330,7 +358,6 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 «DEFINE propertySetter FOR Attribute»
 	«IF isSetterNeeded()»
     «formatJavaDoc()»
-    «EXPAND templates::domain::DomainObjectAttributeAnnotation::propertySetterAnnotations»
     «getVisibilityLitteralSetter()»void set«name.toFirstUpper()»(«getGwtTypeName()» «name») {
         «IF isFullyAuditable() && !transient-»
         receiveInternalAuditHandler().recordChange(«getDomainObject().name»Properties.«name»(), this.«name», «name»);
@@ -347,7 +374,6 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
     «ELSE-»
     «EXPAND templates::domain::DomainObjectAttribute::notChangeablePropertySetterJavaDoc »
     «ENDIF -»
-    «EXPAND templates::domain::DomainObjectAttributeAnnotation::propertySetterAnnotations»
     «notChangeablePropertySetterVisibility()» void set«name.toFirstUpper()»(«getGwtTypeName()» «name») {
         if ((this.«name» != null) && !this.«name».equals(«name»)) {
             throw new IllegalArgumentException("Not allowed to change the «name» property.");
@@ -381,14 +407,14 @@ public «getAbstractLitteral()» class «name» «getGwtExtendsLitteral()» implements
 «ENDDEFINE»
 
 «DEFINE parameterTypeAndName FOR TypedElement»
-«EXPAND templates::domain::DomainObjectConstructor::parameterAnnotations» «getGwtTypeName()» «name»
+«getGwtTypeName()» «name»
 «ENDDEFINE»
 
 «DEFINE parameterTypeAndName FOR Reference»
 «IF many-»
-«EXPAND templates::domain::DomainObjectConstructor::parameterAnnotations» «getCollectionInterfaceType()»<«getGwtTypeName()»> «name»
+«getCollectionInterfaceType()»<«getGwtTypeName()»> «name»
 «ELSE-»
-«EXPAND templates::domain::DomainObjectConstructor::parameterAnnotations» «getGwtTypeName()» «name»
+«getGwtTypeName()» «name»
 «ENDIF-»
 «ENDDEFINE»
 
@@ -603,5 +629,24 @@ public enum «name» implements java.io.Serializable {
         }
 «ENDLET»
 «ENDDEFINE»
+
+«DEFINE domainObjectSubclassImplMethod FOR DomainObjectOperation»
+	«getVisibilityLitteral()» «getTypeName()» «name»(«EXPAND methodParameterTypeAndName FOREACH parameters SEPARATOR ","») «
+    EXPAND templates::common::Exception::throws» {
+    	// TODO Auto-generated method stub
+        throw new UnsupportedOperationException("«name» not implemented");
+     }
+«ENDDEFINE»
+
+«DEFINE abstractMethod FOR DomainObjectOperation»
+	«formatJavaDoc()»
+	abstract «getVisibilityLitteral()» «getTypeName()» «name»(«EXPAND methodParameterTypeAndName FOREACH parameters SEPARATOR ", "») «
+    EXPAND templates::common::Exception::throws»;
+«ENDDEFINE»
+
+«DEFINE methodParameterTypeAndName FOR Parameter»
+«getTypeName()» «name»
+«ENDDEFINE»
+
 
 «REM»End of copy«ENDREM»

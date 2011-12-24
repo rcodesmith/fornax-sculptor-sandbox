@@ -38,4 +38,6 @@ public interface GuiModuleValidator {
 	boolean validateBehaviors(EList value);
 
 	boolean validateConditions(EList value);
+
+	boolean validateDtos(EList value);
 }

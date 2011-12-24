@@ -271,13 +271,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__CONDITIONS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Dtos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__DTOS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -4736,6 +4745,232 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UI_CONDITION_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiDtoImpl <em>Gui Dto</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GuiDtoImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiDto()
+	 * @generated
+	 */
+	int GUI_DTO = 52;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__NAME = SculptormetamodelPackage.DOMAIN_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__DOC = SculptormetamodelPackage.DOMAIN_OBJECT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__HINT = SculptormetamodelPackage.DOMAIN_OBJECT__HINT;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__REFERENCES = SculptormetamodelPackage.DOMAIN_OBJECT__REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Extends</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__EXTENDS = SculptormetamodelPackage.DOMAIN_OBJECT__EXTENDS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__ATTRIBUTES = SculptormetamodelPackage.DOMAIN_OBJECT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__ABSTRACT = SculptormetamodelPackage.DOMAIN_OBJECT__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Repository</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__REPOSITORY = SculptormetamodelPackage.DOMAIN_OBJECT__REPOSITORY;
+
+	/**
+	 * The feature id for the '<em><b>Module</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__MODULE = SculptormetamodelPackage.DOMAIN_OBJECT__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Optimistic Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__OPTIMISTIC_LOCKING = SculptormetamodelPackage.DOMAIN_OBJECT__OPTIMISTIC_LOCKING;
+
+	/**
+	 * The feature id for the '<em><b>Cache</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__CACHE = SculptormetamodelPackage.DOMAIN_OBJECT__CACHE;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__PACKAGE = SculptormetamodelPackage.DOMAIN_OBJECT__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Database Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__DATABASE_TABLE = SculptormetamodelPackage.DOMAIN_OBJECT__DATABASE_TABLE;
+
+	/**
+	 * The feature id for the '<em><b>Extends Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__EXTENDS_NAME = SculptormetamodelPackage.DOMAIN_OBJECT__EXTENDS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__VALIDATE = SculptormetamodelPackage.DOMAIN_OBJECT__VALIDATE;
+
+	/**
+	 * The feature id for the '<em><b>Gap Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__GAP_CLASS = SculptormetamodelPackage.DOMAIN_OBJECT__GAP_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__INHERITANCE = SculptormetamodelPackage.DOMAIN_OBJECT__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Discriminator Column Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__DISCRIMINATOR_COLUMN_VALUE = SculptormetamodelPackage.DOMAIN_OBJECT__DISCRIMINATOR_COLUMN_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Aggregate Root</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__AGGREGATE_ROOT = SculptormetamodelPackage.DOMAIN_OBJECT__AGGREGATE_ROOT;
+
+	/**
+	 * The feature id for the '<em><b>Belongs To Aggregate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__BELONGS_TO_AGGREGATE = SculptormetamodelPackage.DOMAIN_OBJECT__BELONGS_TO_AGGREGATE;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__OPERATIONS = SculptormetamodelPackage.DOMAIN_OBJECT__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Traits</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__TRAITS = SculptormetamodelPackage.DOMAIN_OBJECT__TRAITS;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__FOR = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Gui Dto</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4908,6 +5143,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGuiModule_Conditions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getDtos <em>Dtos</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dtos</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getDtos()
+	 * @see #getGuiModule()
+	 * @generated
+	 */
+	EReference getGuiModule_Dtos();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
@@ -6191,6 +6437,27 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getUiCondition();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiDto <em>Gui Dto</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gui Dto</em>'.
+	 * @see sculptorguimetamodel.GuiDto
+	 * @generated
+	 */
+	EClass getGuiDto();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.GuiDto#getFor <em>For</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For</em>'.
+	 * @see sculptorguimetamodel.GuiDto#getFor()
+	 * @see #getGuiDto()
+	 * @generated
+	 */
+	EReference getGuiDto_For();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6343,6 +6610,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__CONDITIONS = eINSTANCE.getGuiModule_Conditions();
+
+		/**
+		 * The meta object literal for the '<em><b>Dtos</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_MODULE__DTOS = eINSTANCE.getGuiModule_Dtos();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -7411,6 +7686,24 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UI_CONDITION = eINSTANCE.getUiCondition();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiDtoImpl <em>Gui Dto</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GuiDtoImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiDto()
+		 * @generated
+		 */
+		EClass GUI_DTO = eINSTANCE.getGuiDto();
+
+		/**
+		 * The meta object literal for the '<em><b>For</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_DTO__FOR = eINSTANCE.getGuiDto_For();
 
 	}
 

@@ -50,6 +50,8 @@ Application Library {
           - Set<@Engagement> engagements <-> media
           - Set<@MediaCharacter> mediaCharacters <-> existsInMedia
           
+          def String getDisplayTitle();
+          
           Repository MediaRepository {
             > @MediaCharacterRepository
             int getNumberOfMovies(Long libraryId) => AccessObject;

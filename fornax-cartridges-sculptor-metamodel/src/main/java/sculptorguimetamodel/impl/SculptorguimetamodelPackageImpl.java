@@ -25,6 +25,7 @@ import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.EnumViewProperty;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
+import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InformationalTextWidget;
@@ -441,6 +442,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	private EClass uiConditionEClass = null;
 
 																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass guiDtoEClass = null;
+
+																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -646,6 +654,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getGuiModule_Conditions() {
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(10);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGuiModule_Dtos() {
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(11);
 	}
 
 				/**
@@ -1742,6 +1759,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGuiDto() {
+		return guiDtoEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGuiDto_For() {
+		return (EReference)guiDtoEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -1782,6 +1817,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiModuleEClass, GUI_MODULE__COMMANDS);
 		createEReference(guiModuleEClass, GUI_MODULE__BEHAVIORS);
 		createEReference(guiModuleEClass, GUI_MODULE__CONDITIONS);
+		createEReference(guiModuleEClass, GUI_MODULE__DTOS);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__SUB_TASK_TRANSITIONS);
@@ -1953,6 +1989,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		onHoverBindingEClass = createEClass(ON_HOVER_BINDING);
 
 		uiConditionEClass = createEClass(UI_CONDITION);
+
+		guiDtoEClass = createEClass(GUI_DTO);
+		createEReference(guiDtoEClass, GUI_DTO__FOR);
 	}
 
 	/**
@@ -2029,6 +2068,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		onClickBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
 		onHoverBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
 		uiConditionEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		guiDtoEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2048,6 +2088,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_Commands(), this.getGuiCommand(), null, "commands", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Conditions(), this.getUiCondition(), null, "conditions", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_Dtos(), this.getGuiDto(), null, "dtos", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_SubTaskTransitions(), this.getSubTaskTransition(), null, "subTaskTransitions", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2219,6 +2260,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(onHoverBindingEClass, OnHoverBinding.class, "OnHoverBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(uiConditionEClass, UiCondition.class, "UiCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(guiDtoEClass, GuiDto.class, "GuiDto", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGuiDto_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, GuiDto.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

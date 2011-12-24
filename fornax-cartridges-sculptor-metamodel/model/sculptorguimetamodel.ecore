@@ -31,6 +31,8 @@
         eType="#//UiBehavior" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
         eType="#//UiCondition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dtos" upperBound="-1" eType="#//GuiDto"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -208,4 +210,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="OnClickBinding" eSuperTypes="#//BehaviorBinding"/>
   <eClassifiers xsi:type="ecore:EClass" name="OnHoverBinding" eSuperTypes="#//BehaviorBinding"/>
   <eClassifiers xsi:type="ecore:EClass" name="UiCondition" eSuperTypes="sculptormetamodel.ecore#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiDto" eSuperTypes="sculptormetamodel.ecore#//DomainObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
+  </eClassifiers>
 </ecore:EPackage>

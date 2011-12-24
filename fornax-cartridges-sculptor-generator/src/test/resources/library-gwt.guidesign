@@ -108,6 +108,8 @@ gui LibraryWeb for Library {
 	}
 	
 	Module for media {
+		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
+		
 		View MediaBrowse {
 			parameters {
 				String libraryId;

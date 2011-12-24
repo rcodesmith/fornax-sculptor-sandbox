@@ -30,6 +30,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getDtos <em>Dtos</em>}</li>
  * </ul>
  * </p>
  *
@@ -251,5 +252,21 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getConditions();
+
+				/**
+	 * Returns the value of the '<em><b>Dtos</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.GuiDto}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dtos</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dtos</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Dtos()
+	 * @model type="sculptorguimetamodel.GuiDto" containment="true"
+	 * @generated
+	 */
+	EList getDtos();
 
 } // GuiModule

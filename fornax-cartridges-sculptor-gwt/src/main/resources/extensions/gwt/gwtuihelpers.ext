@@ -17,7 +17,9 @@ Set[Module] getAllUsedServices(GuiModule guiModule) :
 
 
 
-	
+String baseClassName(DomainObject domainObject) :
+  domainObject.name + (domainObject.gapClass ? "Base" : "");
+
 String getGwtExtendsLitteral(DomainObject domainObject) :
 	domainObject.getGwtExtendsClassName() == "" ?
 		"" :

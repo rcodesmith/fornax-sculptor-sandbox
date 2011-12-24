@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 import org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper;
-import org.fornax.utilities.xtendtools.xunit.XpandUnit;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -47,11 +45,11 @@ import sculptormetamodel.ServiceOperation;
 public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	
 	
-    private static final boolean VALIDATE_SERVICE_OPERATION = true;
-    private static final boolean DONT_VALIDATE_SERVICE_OPERATION = false;
+//    private static final boolean VALIDATE_SERVICE_OPERATION = true;
+//    private static final boolean DONT_VALIDATE_SERVICE_OPERATION = false;
     private static GuiApplication guiApp;
 
-	private static File TEMP = new File("target/temp-xpandoutput");
+//	private static File TEMP = new File("target/temp-xpandoutput");
 
 
     @BeforeClass
@@ -64,8 +62,8 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
         guiApp = (GuiApplication) ctx.get("guiModel");
         
-		TEMP.mkdirs();
-		XpandUnit.initXpand(new EmfRegistryMetaModel());
+//		TEMP.mkdirs();
+//		XpandUnit.initXpand(new EmfRegistryMetaModel());
 
     }
 
@@ -132,6 +130,13 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     	assertNotNull(emptyPane);
     	assertEquals(0, emptyPane.getWidgets().size());
     	assertEquals("this is an empty panel", emptyPane.getDoc());
+    }
+    
+    @Test
+    public void assertMediaModule() {
+    	GuiModule mediaModule = mediaModule();
+    	
+    	assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt", mediaModule.getBasePackage());
     }
     
     @Test
@@ -362,11 +367,11 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	}
 	
 	
-	protected String getFileText(String filePath) {
-		File f = new File(
-				TEMP, filePath);
-		return getFileText(f);		
-	}
+//	protected String getFileText(String filePath) {
+//		File f = new File(
+//				TEMP, filePath);
+//		return getFileText(f);		
+//	}
 
 	protected String getFileText(File textFile) {
 		try {

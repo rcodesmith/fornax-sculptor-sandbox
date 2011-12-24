@@ -50,6 +50,9 @@ Application Library {
         abstract Entity Media {
           gap
           String title !changeable
+          
+          def String getDisplayTitle();
+          
           - Set<@PhysicalMedia> physicalMedia inverse <-> media
           - Set<@Engagement> engagements <-> media
           - Set<@MediaCharacter> mediaCharacters <-> existsInMedia
