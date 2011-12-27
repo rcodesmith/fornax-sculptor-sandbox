@@ -1,12 +1,10 @@
 package org.fornax.cartridges.sculptor.framework.errorhandling;
 
 import java.util.Map;
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
 
 import org.fornax.cartridges.sculptor.framework.errorhandling.annotation.ApplicationException;
 import org.fornax.cartridges.sculptor.framework.validation.ValidationUtils;
+import org.hibernate.validator.InvalidValue;
 
 /**
  * Thrown when the bean has violated one or several of its constraints
@@ -20,7 +18,7 @@ public class ValidationException extends SystemException {
     public static final String ERROR_CODE = ValidationException.class.getName();
 
     private String invalidValuesStr="";
-    private ConstraintViolation<?>[] invalidValues;
+    private InvalidValue[] invalidValues;
 
     public ValidationException(String message) {
         super(ERROR_CODE, message);
@@ -34,15 +32,16 @@ public class ValidationException extends SystemException {
         super(errorCode, message);
     }
 
-    public void setInvalidValues(Set<ConstraintViolation<?>> invalidValues) {
-		this.invalidValues = (ConstraintViolation[])invalidValues.toArray();
+    public void setInvalidValues(InvalidValue[] invalidValues) {
+    	invalidValuesStr=null;
+		this.invalidValues = invalidValues;
 	}
 
-    public ConstraintViolation<?>[] getInvalidValues() {
+    public InvalidValue[] getInvalidValues() {
         return invalidValues;
     }
 
-    public Map<String, ConstraintViolation<?>> getInvalidValuesAsMap() {
+    public Map<String, InvalidValue> getInvalidValuesAsMap() {
         return ValidationUtils.getInvalidValuesAsMap(invalidValues);
     }
 
@@ -52,7 +51,7 @@ public class ValidationException extends SystemException {
             StringBuilder invValues = new StringBuilder();
             for (int i = 0; i < invalidValues.length; i++) {
                 invValues.append(", ").append(invalidValues[i].getPropertyPath()).append("=").append(
-                        invalidValues[i].getInvalidValue());
+                        invalidValues[i].getValue());
             }
             invalidValuesStr = invValues.length() > 0 ? invValues.substring(2) : "";
         }

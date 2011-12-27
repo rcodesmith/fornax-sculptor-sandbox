@@ -16,7 +16,6 @@
  */
 package org.fornax.cartridges.sculptor.framework.validation.validator;
 
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -25,7 +24,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import javax.validation.Constraint;
+import org.hibernate.validator.ValidatorClass;
 
 /**
  * Check that a Date, a Calendar, LocalDate and DateTime or a string
@@ -33,8 +32,8 @@ import javax.validation.Constraint;
  * 
  */
 @Documented
-@Constraint(validatedBy = FutureValidator.class)
-@Target({ METHOD, FIELD, ANNOTATION_TYPE })
+@ValidatorClass(FutureValidator.class)
+@Target({ METHOD, FIELD })
 @Retention(RUNTIME)
 public @interface Future {
     String message() default "{validator.future}";

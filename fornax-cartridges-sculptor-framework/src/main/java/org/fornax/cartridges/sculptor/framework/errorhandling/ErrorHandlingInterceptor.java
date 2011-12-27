@@ -28,12 +28,12 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 
 import org.hibernate.HibernateException;
 import org.hibernate.StaleObjectStateException;
 import org.hibernate.StaleStateException;
+import org.hibernate.validator.InvalidStateException;
+import org.hibernate.validator.InvalidValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,7 +79,7 @@ public class ErrorHandlingInterceptor extends ErrorHandlingInterceptor2 {
         } catch (ApplicationException e) {
             afterThrowing(context.getMethod(), context.getParameters(), context.getTarget(), e);
             throw e;
-        } catch (ConstraintViolationException e) {
+        } catch (InvalidStateException e) {
             afterThrowing(context.getMethod(), context.getParameters(), context.getTarget(), e);
             throw e;
         } catch (SQLException e) {
@@ -110,22 +110,22 @@ public class ErrorHandlingInterceptor extends ErrorHandlingInterceptor2 {
     }
 
     /**
-     * handles javax.validation validation exception
+     * handles Hibernate validation exception
      */
-    public void afterThrowing(Method m, Object[] args, Object target, ConstraintViolationException e) {
+    public void afterThrowing(Method m, Object[] args, Object target, InvalidStateException e) {
 
         Logger log = LoggerFactory.getLogger(target.getClass());
 
         StringBuilder logText = new StringBuilder(excMessage(e));
-        if (e.getConstraintViolations() != null && e.getConstraintViolations().size() > 0) {
-            for (ConstraintViolation<?> each : e.getConstraintViolations()) {
+        if (e.getInvalidValues() != null && e.getInvalidValues().length > 0) {
+            for (InvalidValue each : e.getInvalidValues()) {
                 logText.append(" : ").append(each.getPropertyPath()).append(" ");
                 logText.append("'").append(each.getMessage()).append("'");
                 logText.append(" ");
                 logText.append(each.getPropertyPath()).append("=");
-                logText.append(each.getInvalidValue());
+                logText.append(each.getValue());
             }
-            logText.append(" rootBean=").append(e.getConstraintViolations().iterator().next().getRootBean());
+            logText.append(" rootBean=").append(e.getInvalidValues()[0].getRootBean());
         }
 
         if (isJmsContext()) {
@@ -139,7 +139,7 @@ public class ErrorHandlingInterceptor extends ErrorHandlingInterceptor2 {
 
         ValidationException newException = new ValidationException(excMessage(e));
         newException.setLogged(true);
-        newException.setInvalidValues(e.getConstraintViolations());
+        newException.setInvalidValues(e.getInvalidValues());
         throw newException;
     }
 

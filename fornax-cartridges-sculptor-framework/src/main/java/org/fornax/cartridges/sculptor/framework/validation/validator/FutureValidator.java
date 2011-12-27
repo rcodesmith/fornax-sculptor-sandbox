@@ -20,9 +20,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import org.hibernate.validator.Validator;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
@@ -30,7 +28,7 @@ import org.joda.time.LocalDate;
  * adds support for Joda-Time to built-in future validator
  * 
  */
-public class FutureValidator implements ConstraintValidator<Future, Object>, Serializable {
+public class FutureValidator implements Validator<Future>, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -41,7 +39,7 @@ public class FutureValidator implements ConstraintValidator<Future, Object>, Ser
      * add validation of LocalDate and DateTime
      */
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(Object value) {
         if (value == null)
             return true;
         if (value instanceof Date) {
@@ -56,6 +54,4 @@ public class FutureValidator implements ConstraintValidator<Future, Object>, Ser
             return false;
         }
     }
-
-
 }
