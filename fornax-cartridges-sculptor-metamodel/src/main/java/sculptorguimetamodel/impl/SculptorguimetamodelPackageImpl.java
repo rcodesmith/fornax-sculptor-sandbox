@@ -264,20 +264,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass viewAttributeReferenceEClass = null;
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass propertyReferenceEClass = null;
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass propertyReferringWidgetEClass = null;
 
 																/**
@@ -1372,33 +1358,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getViewAttributeReference() {
-		return viewAttributeReferenceEClass;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getViewAttributeReference_Attribute() {
-		return (EReference)viewAttributeReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPropertyReference() {
-		return propertyReferenceEClass;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPropertyReferringWidget() {
 		return propertyReferringWidgetEClass;
 	}
@@ -1408,8 +1367,26 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyReferringWidget_ForProperty() {
+	public EReference getPropertyReferringWidget_ForAttribute() {
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyReferringWidget_ForReference() {
+		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyReferringWidget_ForOp() {
+		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(2);
 	}
 
 																/**
@@ -1921,13 +1898,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		buttonWidgetEClass = createEClass(BUTTON_WIDGET);
 		createEAttribute(buttonWidgetEClass, BUTTON_WIDGET__IMAGE);
 
-		viewAttributeReferenceEClass = createEClass(VIEW_ATTRIBUTE_REFERENCE);
-		createEReference(viewAttributeReferenceEClass, VIEW_ATTRIBUTE_REFERENCE__ATTRIBUTE);
-
-		propertyReferenceEClass = createEClass(PROPERTY_REFERENCE);
-
 		propertyReferringWidgetEClass = createEClass(PROPERTY_REFERRING_WIDGET);
-		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_PROPERTY);
+		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE);
+		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_REFERENCE);
+		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_OP);
 
 		tableWidgetEClass = createEClass(TABLE_WIDGET);
 		createEReference(tableWidgetEClass, TABLE_WIDGET__FOR);
@@ -2044,7 +2018,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		inputTextWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		informationalTextWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		buttonWidgetEClass.getESuperTypes().add(this.getWidget());
-		viewAttributeReferenceEClass.getESuperTypes().add(this.getPropertyReference());
 		propertyReferringWidgetEClass.getESuperTypes().add(this.getWidget());
 		tableWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		guiEventEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
@@ -2192,13 +2165,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(buttonWidgetEClass, ButtonWidget.class, "ButtonWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getButtonWidget_Image(), ecorePackage.getEString(), "image", null, 0, 1, ButtonWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(viewAttributeReferenceEClass, ViewAttributeReference.class, "ViewAttributeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getViewAttributeReference_Attribute(), theSculptormetamodelPackage.getAttribute(), null, "attribute", null, 0, 1, ViewAttributeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(propertyReferenceEClass, PropertyReference.class, "PropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(propertyReferringWidgetEClass, PropertyReferringWidget.class, "PropertyReferringWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertyReferringWidget_ForProperty(), this.getPropertyReference(), null, "forProperty", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyReferringWidget_ForAttribute(), theSculptormetamodelPackage.getAttribute(), null, "forAttribute", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyReferringWidget_ForReference(), theSculptormetamodelPackage.getReference(), null, "forReference", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyReferringWidget_ForOp(), theSculptormetamodelPackage.getDomainObjectOperation(), null, "forOp", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableWidgetEClass, TableWidget.class, "TableWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTableWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -2052,7 +2052,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getWidgetsContainer()
 	 * @generated
 	 */
-	int WIDGETS_CONTAINER = 43;
+	int WIDGETS_CONTAINER = 41;
 
 	/**
 	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
@@ -2262,7 +2262,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPropertyReferringWidget()
 	 * @generated
 	 */
-	int PROPERTY_REFERRING_WIDGET = 28;
+	int PROPERTY_REFERRING_WIDGET = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2328,13 +2328,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int PROPERTY_REFERRING_WIDGET__ENABLED = WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REFERRING_WIDGET__FOR_PROPERTY = WIDGET_FEATURE_COUNT + 0;
+	int PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REFERRING_WIDGET__FOR_REFERENCE = WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REFERRING_WIDGET__FOR_OP = WIDGET_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Property Referring Widget</em>' class.
@@ -2343,7 +2361,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REFERRING_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+	int PROPERTY_REFERRING_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.InputTextWidgetImpl <em>Input Text Widget</em>}' class.
@@ -2419,13 +2437,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INPUT_TEXT_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_TEXT_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int INPUT_TEXT_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_TEXT_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_TEXT_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Input Text Widget</em>' class.
@@ -2510,13 +2546,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INFORMATIONAL_TEXT_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFORMATIONAL_TEXT_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int INFORMATIONAL_TEXT_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFORMATIONAL_TEXT_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFORMATIONAL_TEXT_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Informational Text Widget</em>' class.
@@ -2619,53 +2673,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int BUTTON_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link sculptorguimetamodel.impl.PropertyReferenceImpl <em>Property Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see sculptorguimetamodel.impl.PropertyReferenceImpl
-	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPropertyReference()
-	 * @generated
-	 */
-	int PROPERTY_REFERENCE = 27;
-
-	/**
-	 * The number of structural features of the '<em>Property Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_REFERENCE_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link sculptorguimetamodel.impl.ViewAttributeReferenceImpl <em>View Attribute Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see sculptorguimetamodel.impl.ViewAttributeReferenceImpl
-	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getViewAttributeReference()
-	 * @generated
-	 */
-	int VIEW_ATTRIBUTE_REFERENCE = 26;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_ATTRIBUTE_REFERENCE__ATTRIBUTE = PROPERTY_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>View Attribute Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_ATTRIBUTE_REFERENCE_FEATURE_COUNT = PROPERTY_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.TableWidgetImpl <em>Table Widget</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2673,7 +2680,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTableWidget()
 	 * @generated
 	 */
-	int TABLE_WIDGET = 29;
+	int TABLE_WIDGET = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2739,13 +2746,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int TABLE_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The feature id for the '<em><b>For</b></em>' reference.
@@ -2782,7 +2807,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiEvent()
 	 * @generated
 	 */
-	int GUI_EVENT = 30;
+	int GUI_EVENT = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3008,7 +3033,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTableColumn()
 	 * @generated
 	 */
-	int TABLE_COLUMN = 31;
+	int TABLE_COLUMN = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3074,13 +3099,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_COLUMN__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int TABLE_COLUMN__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
@@ -3126,7 +3169,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getTextAreaWidget()
 	 * @generated
 	 */
-	int TEXT_AREA_WIDGET = 32;
+	int TEXT_AREA_WIDGET = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3192,13 +3235,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TEXT_AREA_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_AREA_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int TEXT_AREA_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Text Area Widget</em>' class.
@@ -3217,7 +3278,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getAutocompleteWidget()
 	 * @generated
 	 */
-	int AUTOCOMPLETE_WIDGET = 33;
+	int AUTOCOMPLETE_WIDGET = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3283,13 +3344,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int AUTOCOMPLETE_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTOCOMPLETE_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int AUTOCOMPLETE_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Autocomplete Widget</em>' class.
@@ -3308,7 +3387,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getRadioButtonsWidget()
 	 * @generated
 	 */
-	int RADIO_BUTTONS_WIDGET = 34;
+	int RADIO_BUTTONS_WIDGET = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3374,13 +3453,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int RADIO_BUTTONS_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RADIO_BUTTONS_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int RADIO_BUTTONS_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Radio Buttons Widget</em>' class.
@@ -3399,7 +3496,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getRichTextAreaWidget()
 	 * @generated
 	 */
-	int RICH_TEXT_AREA_WIDGET = 35;
+	int RICH_TEXT_AREA_WIDGET = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3465,13 +3562,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int RICH_TEXT_AREA_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RICH_TEXT_AREA_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int RICH_TEXT_AREA_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Rich Text Area Widget</em>' class.
@@ -3490,7 +3605,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getInputDateWidget()
 	 * @generated
 	 */
-	int INPUT_DATE_WIDGET = 36;
+	int INPUT_DATE_WIDGET = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3556,13 +3671,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INPUT_DATE_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_DATE_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int INPUT_DATE_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Input Date Widget</em>' class.
@@ -3581,7 +3714,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getNumberSpinnerWidget()
 	 * @generated
 	 */
-	int NUMBER_SPINNER_WIDGET = 37;
+	int NUMBER_SPINNER_WIDGET = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3647,13 +3780,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int NUMBER_SPINNER_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>For Property</b></em>' reference.
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_SPINNER_WIDGET__FOR_PROPERTY = PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
+	int NUMBER_SPINNER_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
 
 	/**
 	 * The number of structural features of the '<em>Number Spinner Widget</em>' class.
@@ -3673,7 +3824,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getServiceProxy()
 	 * @generated
 	 */
-	int SERVICE_PROXY = 38;
+	int SERVICE_PROXY = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3818,7 +3969,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getServiceProxyOperation()
 	 * @generated
 	 */
-	int SERVICE_PROXY_OPERATION = 39;
+	int SERVICE_PROXY_OPERATION = 37;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3973,7 +4124,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiCommand()
 	 * @generated
 	 */
-	int GUI_COMMAND = 40;
+	int GUI_COMMAND = 38;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4191,7 +4342,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getViewParameter()
 	 * @generated
 	 */
-	int VIEW_PARAMETER = 41;
+	int VIEW_PARAMETER = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4274,7 +4425,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getLinkWidget()
 	 * @generated
 	 */
-	int LINK_WIDGET = 42;
+	int LINK_WIDGET = 40;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4366,7 +4517,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPanelWidget()
 	 * @generated
 	 */
-	int PANEL_WIDGET = 44;
+	int PANEL_WIDGET = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4466,7 +4617,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUiBehavior()
 	 * @generated
 	 */
-	int UI_BEHAVIOR = 45;
+	int UI_BEHAVIOR = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4512,7 +4663,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPopulatePanelBehavior()
 	 * @generated
 	 */
-	int POPULATE_PANEL_BEHAVIOR = 46;
+	int POPULATE_PANEL_BEHAVIOR = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4567,7 +4718,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getNavigateToViewBehavior()
 	 * @generated
 	 */
-	int NAVIGATE_TO_VIEW_BEHAVIOR = 47;
+	int NAVIGATE_TO_VIEW_BEHAVIOR = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4622,7 +4773,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getBehaviorBinding()
 	 * @generated
 	 */
-	int BEHAVIOR_BINDING = 48;
+	int BEHAVIOR_BINDING = 46;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
@@ -4650,7 +4801,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getOnClickBinding()
 	 * @generated
 	 */
-	int ON_CLICK_BINDING = 49;
+	int ON_CLICK_BINDING = 47;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
@@ -4678,7 +4829,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getOnHoverBinding()
 	 * @generated
 	 */
-	int ON_HOVER_BINDING = 50;
+	int ON_HOVER_BINDING = 48;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
@@ -4706,7 +4857,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUiCondition()
 	 * @generated
 	 */
-	int UI_CONDITION = 51;
+	int UI_CONDITION = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4752,7 +4903,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiDto()
 	 * @generated
 	 */
-	int GUI_DTO = 52;
+	int GUI_DTO = 50;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5990,37 +6141,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EAttribute getButtonWidget_Image();
 
 	/**
-	 * Returns the meta object for class '{@link sculptorguimetamodel.ViewAttributeReference <em>View Attribute Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>View Attribute Reference</em>'.
-	 * @see sculptorguimetamodel.ViewAttributeReference
-	 * @generated
-	 */
-	EClass getViewAttributeReference();
-
-	/**
-	 * Returns the meta object for the reference '{@link sculptorguimetamodel.ViewAttributeReference#getAttribute <em>Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Attribute</em>'.
-	 * @see sculptorguimetamodel.ViewAttributeReference#getAttribute()
-	 * @see #getViewAttributeReference()
-	 * @generated
-	 */
-	EReference getViewAttributeReference_Attribute();
-
-	/**
-	 * Returns the meta object for class '{@link sculptorguimetamodel.PropertyReference <em>Property Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Property Reference</em>'.
-	 * @see sculptorguimetamodel.PropertyReference
-	 * @generated
-	 */
-	EClass getPropertyReference();
-
-	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.PropertyReferringWidget <em>Property Referring Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6031,15 +6151,37 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getPropertyReferringWidget();
 
 	/**
-	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PropertyReferringWidget#getForProperty <em>For Property</em>}'.
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PropertyReferringWidget#getForAttribute <em>For Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>For Property</em>'.
-	 * @see sculptorguimetamodel.PropertyReferringWidget#getForProperty()
+	 * @return the meta object for the reference '<em>For Attribute</em>'.
+	 * @see sculptorguimetamodel.PropertyReferringWidget#getForAttribute()
 	 * @see #getPropertyReferringWidget()
 	 * @generated
 	 */
-	EReference getPropertyReferringWidget_ForProperty();
+	EReference getPropertyReferringWidget_ForAttribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PropertyReferringWidget#getForReference <em>For Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For Reference</em>'.
+	 * @see sculptorguimetamodel.PropertyReferringWidget#getForReference()
+	 * @see #getPropertyReferringWidget()
+	 * @generated
+	 */
+	EReference getPropertyReferringWidget_ForReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PropertyReferringWidget#getForOp <em>For Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For Op</em>'.
+	 * @see sculptorguimetamodel.PropertyReferringWidget#getForOp()
+	 * @see #getPropertyReferringWidget()
+	 * @generated
+	 */
+	EReference getPropertyReferringWidget_ForOp();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.TableWidget <em>Table Widget</em>}'.
@@ -7292,34 +7434,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EAttribute BUTTON_WIDGET__IMAGE = eINSTANCE.getButtonWidget_Image();
 
 		/**
-		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ViewAttributeReferenceImpl <em>View Attribute Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see sculptorguimetamodel.impl.ViewAttributeReferenceImpl
-		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getViewAttributeReference()
-		 * @generated
-		 */
-		EClass VIEW_ATTRIBUTE_REFERENCE = eINSTANCE.getViewAttributeReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VIEW_ATTRIBUTE_REFERENCE__ATTRIBUTE = eINSTANCE.getViewAttributeReference_Attribute();
-
-		/**
-		 * The meta object literal for the '{@link sculptorguimetamodel.impl.PropertyReferenceImpl <em>Property Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see sculptorguimetamodel.impl.PropertyReferenceImpl
-		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPropertyReference()
-		 * @generated
-		 */
-		EClass PROPERTY_REFERENCE = eINSTANCE.getPropertyReference();
-
-		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl <em>Property Referring Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7330,12 +7444,28 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EClass PROPERTY_REFERRING_WIDGET = eINSTANCE.getPropertyReferringWidget();
 
 		/**
-		 * The meta object literal for the '<em><b>For Property</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>For Attribute</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_REFERRING_WIDGET__FOR_PROPERTY = eINSTANCE.getPropertyReferringWidget_ForProperty();
+		EReference PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE = eINSTANCE.getPropertyReferringWidget_ForAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>For Reference</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_REFERRING_WIDGET__FOR_REFERENCE = eINSTANCE.getPropertyReferringWidget_ForReference();
+
+		/**
+		 * The meta object literal for the '<em><b>For Op</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_REFERRING_WIDGET__FOR_OP = eINSTANCE.getPropertyReferringWidget_ForOp();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TableWidgetImpl <em>Table Widget</em>}' class.

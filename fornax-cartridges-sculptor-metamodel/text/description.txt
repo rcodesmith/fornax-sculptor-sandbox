@@ -128,13 +128,10 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class ButtonWidget -> Widget
     Attribute image : EString
 
-  Class ViewAttributeReference -> PropertyReference
-    Reference attribute : Attribute
-
-  Class PropertyReference
-
   Class PropertyReferringWidget -> Widget
-    Reference forProperty : PropertyReference
+    Reference forAttribute : Attribute
+    Reference forReference : Reference
+    Reference forOp : DomainObjectOperation
 
   Class TableWidget -> PropertyReferringWidget
     Reference for : DomainObject

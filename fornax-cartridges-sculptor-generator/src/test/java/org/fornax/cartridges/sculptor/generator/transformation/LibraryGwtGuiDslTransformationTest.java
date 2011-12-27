@@ -229,9 +229,9 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         InputTextWidget nameField = (InputTextWidget)widgets.get(0);
         assertEquals("Name", nameField.getLabel());
 
-        assertNotNull(nameField.getForProperty());
-        ViewAttributeReference nameRef = (ViewAttributeReference)nameField.getForProperty();
-        nameRef.getAttribute();
+//        assertNotNull(nameField.getForProperty());
+//        ViewAttributeReference nameRef = (ViewAttributeReference)nameField.getForProperty();
+//        nameRef.getAttribute();
         
         
 //        AutocompleteWidget autoComp = (AutocompleteWidget)widgets.get(5);

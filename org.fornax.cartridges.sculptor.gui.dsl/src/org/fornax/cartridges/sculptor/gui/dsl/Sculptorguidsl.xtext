@@ -218,7 +218,7 @@ DslPanelWidget :
 		
 DslInputTextWidget :
   (doc=STRING)?
-	'inputText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'inputText' name=ID  (('forProperty' forProperty=[mm::DslAnyProperty]) | ('forOp' forOp=[mm::DslDomainObjectOperation]))? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';

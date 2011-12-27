@@ -6,6 +6,10 @@
  */
 package sculptorguimetamodel;
 
+import sculptormetamodel.Attribute;
+import sculptormetamodel.DomainObjectOperation;
+import sculptormetamodel.Reference;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +19,9 @@ package sculptorguimetamodel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForProperty <em>For Property</em>}</li>
+ *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForAttribute <em>For Attribute</em>}</li>
+ *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForReference <em>For Reference</em>}</li>
+ *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForOp <em>For Op</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,29 +31,81 @@ package sculptorguimetamodel;
  */
 public interface PropertyReferringWidget extends Widget {
 	/**
-	 * Returns the value of the '<em><b>For Property</b></em>' reference.
+	 * Returns the value of the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>For Property</em>' reference isn't clear,
+	 * If the meaning of the '<em>For Attribute</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>For Property</em>' reference.
-	 * @see #setForProperty(PropertyReference)
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_ForProperty()
+	 * @return the value of the '<em>For Attribute</em>' reference.
+	 * @see #setForAttribute(Attribute)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_ForAttribute()
 	 * @model
 	 * @generated
 	 */
-	PropertyReference getForProperty();
+	Attribute getForAttribute();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getForProperty <em>For Property</em>}' reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getForAttribute <em>For Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>For Property</em>' reference.
-	 * @see #getForProperty()
+	 * @param value the new value of the '<em>For Attribute</em>' reference.
+	 * @see #getForAttribute()
 	 * @generated
 	 */
-	void setForProperty(PropertyReference value);
+	void setForAttribute(Attribute value);
+
+	/**
+	 * Returns the value of the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For Reference</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For Reference</em>' reference.
+	 * @see #setForReference(Reference)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_ForReference()
+	 * @model
+	 * @generated
+	 */
+	Reference getForReference();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getForReference <em>For Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>For Reference</em>' reference.
+	 * @see #getForReference()
+	 * @generated
+	 */
+	void setForReference(Reference value);
+
+	/**
+	 * Returns the value of the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For Op</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For Op</em>' reference.
+	 * @see #setForOp(DomainObjectOperation)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_ForOp()
+	 * @model
+	 * @generated
+	 */
+	DomainObjectOperation getForOp();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getForOp <em>For Op</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>For Op</em>' reference.
+	 * @see #getForOp()
+	 * @generated
+	 */
+	void setForOp(DomainObjectOperation value);
 
 } // PropertyReferringWidget

@@ -308,7 +308,7 @@ create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWi
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
-	setForProperty(widget.forProperty == null ? null : widget.forProperty.transformSourceRef()) ->
+	//setForProperty(widget.forProperty == null ? null : widget.forProperty.transformSourceRef()) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::ViewAttributeReference this transformSourceRef(DslAnyProperty prop) :

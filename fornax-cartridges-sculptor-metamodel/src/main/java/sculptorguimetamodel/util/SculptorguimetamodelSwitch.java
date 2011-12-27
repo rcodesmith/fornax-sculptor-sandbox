@@ -293,19 +293,6 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SculptorguimetamodelPackage.VIEW_ATTRIBUTE_REFERENCE: {
-				ViewAttributeReference viewAttributeReference = (ViewAttributeReference)theEObject;
-				Object result = caseViewAttributeReference(viewAttributeReference);
-				if (result == null) result = casePropertyReference(viewAttributeReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SculptorguimetamodelPackage.PROPERTY_REFERENCE: {
-				PropertyReference propertyReference = (PropertyReference)theEObject;
-				Object result = casePropertyReference(propertyReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET: {
 				PropertyReferringWidget propertyReferringWidget = (PropertyReferringWidget)theEObject;
 				Object result = casePropertyReferringWidget(propertyReferringWidget);
@@ -901,36 +888,6 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseButtonWidget(ButtonWidget object) {
-		return null;
-	}
-
-																/**
-	 * Returns the result of interpreting the object as an instance of '<em>View Attribute Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>View Attribute Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseViewAttributeReference(ViewAttributeReference object) {
-		return null;
-	}
-
-																/**
-	 * Returns the result of interpreting the object as an instance of '<em>Property Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Property Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object casePropertyReference(PropertyReference object) {
 		return null;
 	}
 

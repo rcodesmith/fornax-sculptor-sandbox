@@ -86,8 +86,6 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.INPUT_TEXT_WIDGET: return createInputTextWidget();
 			case SculptorguimetamodelPackage.INFORMATIONAL_TEXT_WIDGET: return createInformationalTextWidget();
 			case SculptorguimetamodelPackage.BUTTON_WIDGET: return createButtonWidget();
-			case SculptorguimetamodelPackage.VIEW_ATTRIBUTE_REFERENCE: return createViewAttributeReference();
-			case SculptorguimetamodelPackage.PROPERTY_REFERENCE: return createPropertyReference();
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET: return createPropertyReferringWidget();
 			case SculptorguimetamodelPackage.TABLE_WIDGET: return createTableWidget();
 			case SculptorguimetamodelPackage.GUI_EVENT: return createGuiEvent();
@@ -376,26 +374,6 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public ButtonWidget createButtonWidget() {
 		ButtonWidgetImpl buttonWidget = new ButtonWidgetImpl();
 		return buttonWidget;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ViewAttributeReference createViewAttributeReference() {
-		ViewAttributeReferenceImpl viewAttributeReference = new ViewAttributeReferenceImpl();
-		return viewAttributeReference;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PropertyReference createPropertyReference() {
-		PropertyReferenceImpl propertyReference = new PropertyReferenceImpl();
-		return propertyReference;
 	}
 
 																/**

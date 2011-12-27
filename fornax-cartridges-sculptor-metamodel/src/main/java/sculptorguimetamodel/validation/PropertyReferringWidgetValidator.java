@@ -6,6 +6,9 @@
  */
 package sculptorguimetamodel.validation;
 
+import sculptormetamodel.Attribute;
+import sculptormetamodel.DomainObjectOperation;
+import sculptormetamodel.Reference;
 import sculptorguimetamodel.PropertyReference;
 
 /**
@@ -16,6 +19,12 @@ import sculptorguimetamodel.PropertyReference;
  */
 public interface PropertyReferringWidgetValidator {
 	boolean validate();
+
+	boolean validateForAttribute(Attribute value);
+
+	boolean validateForReference(Reference value);
+
+	boolean validateForOp(DomainObjectOperation value);
 
 	boolean validateForProperty(PropertyReference value);
 

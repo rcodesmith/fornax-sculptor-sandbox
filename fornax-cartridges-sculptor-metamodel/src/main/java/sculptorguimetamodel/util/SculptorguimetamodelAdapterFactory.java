@@ -156,12 +156,6 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseButtonWidget(ButtonWidget object) {
 				return createButtonWidgetAdapter();
 			}
-			public Object caseViewAttributeReference(ViewAttributeReference object) {
-				return createViewAttributeReferenceAdapter();
-			}
-			public Object casePropertyReference(PropertyReference object) {
-				return createPropertyReferenceAdapter();
-			}
 			public Object casePropertyReferringWidget(PropertyReferringWidget object) {
 				return createPropertyReferringWidgetAdapter();
 			}
@@ -637,34 +631,6 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createButtonWidgetAdapter() {
-		return null;
-	}
-
-																/**
-	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ViewAttributeReference <em>View Attribute Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see sculptorguimetamodel.ViewAttributeReference
-	 * @generated
-	 */
-	public Adapter createViewAttributeReferenceAdapter() {
-		return null;
-	}
-
-																/**
-	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PropertyReference <em>Property Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see sculptorguimetamodel.PropertyReference
-	 * @generated
-	 */
-	public Adapter createPropertyReferenceAdapter() {
 		return null;
 	}
 

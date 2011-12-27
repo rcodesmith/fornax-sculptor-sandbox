@@ -260,24 +260,6 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	ButtonWidget createButtonWidget();
 
 																/**
-	 * Returns a new object of class '<em>View Attribute Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>View Attribute Reference</em>'.
-	 * @generated
-	 */
-	ViewAttributeReference createViewAttributeReference();
-
-																/**
-	 * Returns a new object of class '<em>Property Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property Reference</em>'.
-	 * @generated
-	 */
-	PropertyReference createPropertyReference();
-
-																/**
 	 * Returns a new object of class '<em>Property Referring Widget</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
