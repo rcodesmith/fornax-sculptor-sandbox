@@ -11,7 +11,7 @@ import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
 
 public class LibraryGwtTemplateBaseTest  extends TemplateTestBase {
-    private static GuiApplication guiApp;
+    protected static GuiApplication guiApp;
 
 	protected static File TEMP = new File("target/temp-xpandoutput");
 

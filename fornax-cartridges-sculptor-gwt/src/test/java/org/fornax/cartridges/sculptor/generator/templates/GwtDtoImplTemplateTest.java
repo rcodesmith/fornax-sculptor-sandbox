@@ -1,16 +1,52 @@
 package org.fornax.cartridges.sculptor.generator.templates;
 
+import static org.fornax.cartridges.sculptor.generator.templates.LibraryGwtTemplateBaseTest.guiApp;
+
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import sculptorguimetamodel.GuiApplication;
 import sculptormetamodel.DomainObject;
 
 public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 
+    @BeforeClass
+    public static void before() throws Exception {
+        System.setProperty("project.nature", "presentation-tier");
+		System.setProperty("datetime.library", "joda");
+        System.setProperty("gui.createDefaults", "false");
+        System.setProperty("package.gwt", "gwt");
+        System.setProperty("gwt.dto.generate.gap", "true");
+        System.setProperty("gwt.enum.common.interfaces", "some.EnumInterface");
+        
+        System.setProperty("framework.domain.AbstractDomainObject", "org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractSimpleDomainObject");
+        System.setProperty("generate.jpa.annotation", "false");
+        initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
+        guiApp = (GuiApplication) ctx.get("guiModel");
+        
+		TEMP.mkdirs();
+		XpandUnit.initXpand(new EmfRegistryMetaModel());
+
+    }
+
+    @AfterClass
+    public static void after() {
+        System.getProperties().remove("project.nature");
+		System.getProperties().remove("datetime.library");
+		System.getProperties().remove("gui.createDefaults");
+		System.getProperties().remove("package.gwt");
+		System.getProperties().remove("gwt.enum.common.interfaces");
+
+    }
+
+    
 	// gwt.dto.generate.gap
 	
 	@Test
@@ -85,4 +121,20 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 
 	}
 
+	@Test
+	public void assertGenreEnum() throws IOException {
+		
+		sculptormetamodel.Enum enumObj = (sculptormetamodel.Enum) getNamedElement("Genre",
+				mediaModule().getFor().getDomainObjects());
+		Assert.assertNotNull(enumObj);
+		
+		XpandUnit.xpand("templates::gwt::GwtDto::gwtEnumDto", enumObj,
+				new HashMap<String, Object>(), getXpandTempDir());
+		String enumCode = getFileText("org/fornax/cartridges/sculptor/examples/library/media/gwt/shared/domain/Genre.java");
+
+		assertContainsConsecutiveFragments(enumCode, "public enum Genre", 
+			"implements java.io.Serializable",
+			",some.EnumInterface",
+			"{");
+	}
 }

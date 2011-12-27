@@ -25,7 +25,7 @@ which is causing attributes to get masked.«ENDREM»
 «ENDREM»
 «DEFINE gwtDomainModule(GuiApplication guiApp) FOR Module»
 	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(Entity)»
-	«EXPAND gwtEnumDto(guiApp) FOREACH this.gwtDomainObjects().typeSelect(Enum)»
+	«EXPAND gwtEnumDto FOREACH this.gwtDomainObjects().typeSelect(Enum)»
 	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
 	
 
@@ -45,7 +45,7 @@ which is causing attributes to get masked.«ENDREM»
 	Enum transformation
 	Copied from templates::domain::DomainObject::domainObject for Enum
 «ENDREM»
-«DEFINE gwtEnumDto(GuiApplication guiApp) FOR Enum»
+«DEFINE gwtEnumDto FOR Enum»
     «FILE javaFileName(gwtDomainPackage(this) + "." + name)»
 «javaHeader()»
 package «gwtDomainPackage()»;
@@ -53,7 +53,7 @@ package «gwtDomainPackage()»;
 /**
  * Enum for «name»
  */
-public enum «name» implements java.io.Serializable {
+public enum «name» «EXPAND enumCommonInterfaces FOR this» {
 	«EXPAND templates::domain::DomainObject::enumValue FOREACH values SEPARATOR ","»;
 
 	«EXPAND templates::domain::DomainObject::enumIdentifierMap»
@@ -68,6 +68,11 @@ public enum «name» implements java.io.Serializable {
 }
 	«ENDFILE»
 «ENDDEFINE»
+
+«DEFINE enumCommonInterfaces FOR Enum»
+implements «getEnumCommonInterfaces()»
+«ENDDEFINE»
+
 
 «DEFINE enumNames FOR Enum»
     private final static java.util.List<String> enumNames = generateEnumNames();
