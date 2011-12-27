@@ -32,9 +32,8 @@ gui LibraryWeb for Library {
 				Integer id nullable;
 			}
 			contents {
-				inputText nameField {
+				inputText nameField forProperty name {
 					label = "Name"
-					
 				}
 				table table1 {
 					label = "Table uno"

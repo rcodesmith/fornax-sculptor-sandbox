@@ -21,6 +21,7 @@ public class LibraryGwtTemplateBaseTest  extends TemplateTestBase {
 		System.setProperty("datetime.library", "joda");
         System.setProperty("gui.createDefaults", "false");
         System.setProperty("package.gwt", "gwt");
+        System.setProperty("gwt.dto.generate.gap", "true");
         
         System.setProperty("framework.domain.AbstractDomainObject", "org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractSimpleDomainObject");
         System.setProperty("generate.jpa.annotation", "false");

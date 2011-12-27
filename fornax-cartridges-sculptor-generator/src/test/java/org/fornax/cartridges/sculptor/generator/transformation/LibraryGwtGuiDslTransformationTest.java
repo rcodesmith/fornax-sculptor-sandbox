@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
+import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
@@ -31,10 +32,12 @@ import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.View;
+import sculptorguimetamodel.ViewAttributeReference;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.DomainObjectOperation;
 import sculptormetamodel.Parameter;
 import sculptormetamodel.Reference;
 import sculptormetamodel.Service;
@@ -59,14 +62,18 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         System.setProperty("gui.createDefaults", "false");
         System.setProperty("package.gwt", "gwt");
         
+        System.setProperty("ui.custom.guidto", "true");
+
         initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
         guiApp = (GuiApplication) ctx.get("guiModel");
+        
         
 //		TEMP.mkdirs();
 //		XpandUnit.initXpand(new EmfRegistryMetaModel());
 
     }
 
+    
     @AfterClass
     public static void after() {
         System.getProperties().remove("project.nature");
@@ -222,6 +229,11 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         InputTextWidget nameField = (InputTextWidget)widgets.get(0);
         assertEquals("Name", nameField.getLabel());
 
+        assertNotNull(nameField.getForProperty());
+        ViewAttributeReference nameRef = (ViewAttributeReference)nameField.getForProperty();
+        nameRef.getAttribute();
+        
+        
 //        AutocompleteWidget autoComp = (AutocompleteWidget)widgets.get(5);
 //        assertEquals("Auto complete one", autoComp.getLabel());
 
@@ -357,7 +369,35 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 	}
 	
 	
-	
+	@Test
+	public void assertGuiDtoMedia() {
+		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getDtos());
+		assertNotNull(media);
+		assertEquals(7, media.getAttributes().size());
+		
+		
+		assertEquals(3, media.getOperations().size());
+		
+		DomainObjectOperation getDisplayTitleOp = (DomainObjectOperation)media.getOperations().get(0);
+		assertEquals("getDisplayTitle", getDisplayTitleOp.getName());
+		assertEquals("String", getDisplayTitleOp.getType());
+		
+		DomainObjectOperation assignPhysicalMediaOp = (DomainObjectOperation)media.getOperations().get(1);
+		assertEquals("assignPhysicalMedia", assignPhysicalMediaOp.getName());
+		assertEquals("void", assignPhysicalMediaOp.getType());
+		assertEquals(1, assignPhysicalMediaOp.getParameters().size());
+		Parameter param1 = (Parameter)assignPhysicalMediaOp.getParameters().get(0);
+		assertNotNull(param1);
+		assertEquals("PhysicalMedia", param1.getDomainObjectType().getName());
+		// assignPhysicalMedia
+		
+		DomainObjectOperation getTopPhysicalMediaOp = (DomainObjectOperation)media.getOperations().get(2);
+		assertEquals("getTopPhysicalMedia", getTopPhysicalMediaOp.getName());
+		assertEquals(0, getTopPhysicalMediaOp.getParameters().size());
+		assertNull(getTopPhysicalMediaOp.getType());
+		assertEquals("PhysicalMedia", getTopPhysicalMediaOp.getDomainObjectType().getName());
+		
+	}
 	
 	protected void validateServiceOperation(ServiceProxyOperation op, String expectedName, int expectedNumParams) {
 		assertEquals(expectedName, op.getName());

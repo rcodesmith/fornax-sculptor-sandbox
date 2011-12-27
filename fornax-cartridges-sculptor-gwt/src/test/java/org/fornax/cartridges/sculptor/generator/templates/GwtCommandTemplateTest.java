@@ -59,7 +59,7 @@ public class GwtCommandTemplateTest extends LibraryGwtTemplateBaseTest {
 		
 		assertContainsConsecutiveFragments(javaCode, "public", "class PersonCmd extends org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractGwtCommand implements java.io.Serializable {");
 		
-		assertContains(javaCode, "@org.hibernate.validator.NotNull");
+//		assertContains(javaCode, "@org.hibernate.validator.NotNull");
 		assertContains(javaCode, "private org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn ssn;");
 
 		assertMatchesRegexp(javaCode, "\\Qpublic PersonCmd(\\E\\s*"

@@ -15,6 +15,7 @@
  * limitations under the License.
  */
  
+import properties;
 import sculptorguidsl;
 import sculptordsl;
 import sculptormetamodel;
@@ -85,7 +86,9 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	
 	userTasks.addAll(module.userTasks.transformTask(module.for.transform())) ->
 	views.addAll(module.views.transformView(module.for.transform())) ->
-	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform()));
+	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
+	
+	hasProperty("ui.custom.guidto") ? dtos.addAll(module.for.transform().domainObjects.transformGuiDto()) : null;
 	
 create sculptorguimetamodel::UserTask this transformTask(DslUserTask task, Module module) :
 	error("Unexpected call to transform(DslUserTask): " + task);

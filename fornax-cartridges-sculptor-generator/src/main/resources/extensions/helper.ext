@@ -333,7 +333,7 @@ private String visibilityImpl(String visibility) :
         default : visibility + " "
     };
 
-String getAbstractLiteral(DomainObject domainObject) :
+String getAbstractLitteral(DomainObject domainObject) :
     (domainObject.abstract)    ?
         "abstract " :
         "";

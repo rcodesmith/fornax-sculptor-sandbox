@@ -11,6 +11,8 @@ import sculptormetamodel.DomainObject;
 
 public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 
+	// gwt.dto.generate.gap
+	
 	@Test
 	public void assertMediaDtoSubclass() throws IOException {
 		DomainObject mediaObj = (DomainObject) getNamedElement("Media",
@@ -56,6 +58,13 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 
 		assertContainsConsecutiveFragments(dtoBaseCode, "public Media(",
 				"String title", ") {", "super();", "this.title = title;", "}");
+		
+		assertContains(dtoBaseCode, "public MediaBase() {");
+		
+		
+		assertContainsConsecutiveFragments(dtoBaseCode, "public Media("
+				,"String title"
+				,") {");
 	}
 	
 	@Test

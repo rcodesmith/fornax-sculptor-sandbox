@@ -34,7 +34,7 @@ which is causing attributes to get masked.«ENDREM»
 «ENDDEFINE»
 
 «DEFINE domainObject FOR DomainObject»
-	«IF gapClass»
+	«IF gapClass && gwtDtoGenerateGap()»
  	   «EXPAND domainObjectSubclass»
     «ENDIF»
     «EXPAND domainObjectBase»
@@ -239,7 +239,7 @@ END
 	package «gwtDomainPackage()»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectSubclassJavaDoc»
-	public «getAbstractLiteral()»class «name» extends «name»Base {
+	public «getAbstractLitteral()»class «name» extends «name»Base {
 		«EXPAND templates::domain::DomainObject::serialVersionUID»
 		«IF getLimitedConstructorParameters().isEmpty»public«ELSE»protected«ENDIF» «name»() {
 	    }
@@ -269,7 +269,7 @@ END
 package «gwtDomainPackage(this)»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
-public «getAbstractLiteral()» class «baseClassName()» «getGwtExtendsLitteral()» implements java.io.Serializable {
+public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()» implements java.io.Serializable {
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
    	«EXPAND attribute FOREACH getGwtDtoAttributes()»
 
@@ -279,7 +279,7 @@ public «getAbstractLiteral()» class «baseClassName()» «getGwtExtendsLitteral()» 
 	/**
 	 * Constructor
 	 */
-    public «name»() {
+    public «baseClassName()»() {
     
     }
 

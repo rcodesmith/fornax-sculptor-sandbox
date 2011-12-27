@@ -17,8 +17,12 @@ Set[Module] getAllUsedServices(GuiModule guiModule) :
 
 
 
+Boolean gwtDtoGenerateGap() :
+	getBooleanProperty("gwt.dto.generate.gap");
+
+
 String baseClassName(DomainObject domainObject) :
-  domainObject.name + (domainObject.gapClass ? "Base" : "");
+  domainObject.name + (domainObject.gapClass && gwtDtoGenerateGap() ? "Base" : "");
 
 String getGwtExtendsLitteral(DomainObject domainObject) :
 	domainObject.getGwtExtendsClassName() == "" ?

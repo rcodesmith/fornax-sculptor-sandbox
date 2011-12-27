@@ -53,6 +53,10 @@ Application Library {
           
           def String getDisplayTitle();
           
+          def void assignPhysicalMedia(@PhysicalMedia physMedia);
+          
+          def @PhysicalMedia getTopPhysicalMedia();
+          
           - Set<@PhysicalMedia> physicalMedia inverse <-> media
           - Set<@Engagement> engagements <-> media
           - Set<@MediaCharacter> mediaCharacters <-> existsInMedia

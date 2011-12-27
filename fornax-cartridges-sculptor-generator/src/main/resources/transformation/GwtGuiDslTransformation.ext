@@ -98,29 +98,109 @@ create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServi
 
 
 // 	operations.addAll(domainServiceOp.operations.transformServiceProxyOperation());
-//create sculptorguimetamodel::GuiDto this transformGuiDto(DslGuiDto dslGuiDto, Module module) :
-//	let domainObj = getDomainObject(dslGuiDto, module) :
-//	setFor(domainObj) ->
-//	setModule(module) ->
-//    setDoc(domainObj.doc) ->
-//    setName(domainObj.name) ->
-//    setPackage(domainObj.package) ->
-//    setAbstract(domainObj.abstract) ->
-//    setOptimisticLocking(domainObj.optimisticLocking) ->
-//    setImmutable(domainObj.immutable) ->
-//    setCache(domainObj.cache) ->
-//    setDatabaseTable(domainObj.databaseTable) ->
-//    setValidate(domainObj.validate) ->
-//    setHint(domainObj.hint) ->
-//    setGapClass(domainObj.gapClass) ->
-//    setInheritance(domainObject.createInheritance()) ->
-//    attributes.addAll(domainObject.attributes.transform()) ->
-//    references.addAll(domainObject.references.transform()) ->
-//    operations.addAll(domainObject.operations.transform()) ->
-//    domainObject.transformExtends(this) ->
+create sculptorguimetamodel::GuiDto this transformGuiDto(DomainObject domainObj) :
+	setFor(domainObj) ->
+    setDoc(domainObj.doc) ->
+    setName(domainObj.name) ->
+    setPackage(domainObj.package) ->
+//	setModule(domainObj.module) ->
+    setAbstract(domainObj.abstract) ->
+    setOptimisticLocking(domainObj.optimisticLocking) ->
+    setValidate(domainObj.validate) ->
+    setHint(domainObj.hint) ->
+    setGapClass(domainObj.gapClass) ->
+    attributes.addAll(domainObj.attributes.copy()) ->
+    references.addAll(domainObj.references.copy()) ->
+    operations.addAll(domainObj.operations.copy()) ->
+    setExtends(domainObj.extends != null ? domainObj.extends.transformGuiDto() : null) ->
 //    traits.addAll(domainObject.traits.transform());
+	debugTrace("Done with " + domainObj.name);
 
+
+create sculptormetamodel::Attribute this copy(sculptormetamodel::Attribute attribute) :
+    setDoc(attribute.doc) ->
+    setName(attribute.name) ->
+    setType(attribute.type) ->
+    setCollectionType(attribute.collectionType) ->
+    setNaturalKey(attribute.naturalKey) ->
+    setChangeable(attribute.changeable) ->
+    setRequired(attribute.required) ->
+    setNullable(attribute.nullable) ->
+    setLength(attribute.length) ->
+    setValidate(attribute.validate) ->
+    setHint(attribute.hint) ->
+    setTransient(attribute.transient) ->
+    setVisibility(attribute.visibility);
+//	debugTrace("Done with attr " + attribute.name);
+
+create sculptormetamodel::Reference this copy(sculptormetamodel::Reference reference) :
+	setFrom(((DslSimpleDomainObject) reference.eContainer).transformGuiDto()) ->
+    setDoc(reference.doc) ->
+    setName(reference.name) ->
+    setCollectionType(reference.collectionType) ->
+    setMany(reference.many) ->
+    setNaturalKey(reference.naturalKey) ->
+    setChangeable(reference.changeable) ->
+    setRequired(reference.required) ->
+    setNullable(reference.nullable) ->
+    setInverse(reference.inverse) ->
+    setOrderBy(reference.orderBy) ->
+    setTo(reference.to.transformGuiDto()) ->
+    setValidate(reference.validate) ->
+    setHint(reference.hint) ->
+    setTransient(reference.transient) ->
+    setVisibility(reference.visibility) ->
+    setOpposite(reference.opposite == null? null : reference.opposite.copy());
+//	debugTrace("Done with ref " + reference.name);
  	
+ 
+ create sculptormetamodel::DomainObjectOperation this copy(DomainObjectOperation operation) :
+	setDomainObject(((DslDomainObject) operation.eContainer).transformGuiDto()) ->
+    setDoc(operation.doc) ->
+    setName(operation.name) ->
+    setAbstract(operation.abstract) ->
+    setVisibility(operation.visibility) ->
+    parameters.addAll(operation.parameters.copy()) ->
+    setCollectionType(operation.collectionType) ->
+    setMapKeyType(operation.mapKeyType) ->
+    setType(operation.type) ->
+    setDomainObjectType(operation.domainObjectType == null ? null : operation.domainObjectType.transformGuiDto()) ->
+    setThrows(operation.throws) ->
+    setHint(operation.hint);
+//	debugTrace("Done with op " + operation.name);
+
+create sculptormetamodel::Parameter this copy(sculptormetamodel::Parameter parameter) :
+    setName(parameter.name) ->
+    setDoc(parameter.doc) ->
+    setCollectionType(parameter.collectionType) ->
+    setMapKeyType(parameter.mapKeyType) ->
+    setType(parameter.type) ->
+    setDomainObjectType(parameter.domainObjectType == null ? null :
+    	parameter.domainObjectType.transformGuiDto());
+
+    
+// Copied from DslTransformation.ext
+private String convertVisibility(DslVisibility dslVisibility) :
+	dslVisibility == null ?
+		"public" :
+		dslVisibility.toString();
+
+private String convertCollectionType(DslComplexType dslComplexType) :
+	if (dslComplexType == null) then
+		null
+	else if (dslComplexType.mapCollectionType != null) then
+		dslComplexType.mapCollectionType
+	else
+		convertCollectionTypeEnum(dslComplexType.collectionType);
+		
+private String convertCollectionTypeEnum(DslCollectionType collectionType) :
+	if (collectionType == null || collectionType == DslCollectionType::None) then
+		null
+	else
+		collectionType.toString();
+
+// End of Copied from DslTransformation.ext
+
  	
 create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation,
 	Service service) :
@@ -228,8 +308,12 @@ create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWi
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	setForProperty(widget.forProperty == null ? null : widget.forProperty.transformSourceRef()) ->
 	setLabel(widget.label);
 
+create sculptorguimetamodel::ViewAttributeReference this transformSourceRef(DslAnyProperty prop) :
+	debugTrace("Got prop " + prop.name);
+	
 create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
