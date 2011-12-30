@@ -199,12 +199,15 @@ DslGuiServiceDependency :
   ('>'|'inject') ("@"dependency=[mm::DslService]);
 
 
+///////////////////////////////////////////////////////////////////////////////////////
+// Widget definitions
+//////////////////////////////////////////////////////////////////////////////////////
+
 
 DslWidget : 
 	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget
 	| DslRichTextAreaWidget | DslAutocompleteWidget | DslRadioButtonsWidget | DslLinkWidget | DslPanelWidget;
 	
-
 
 DslPanelWidget :
   (doc=STRING)?
@@ -218,49 +221,49 @@ DslPanelWidget :
 		
 DslInputTextWidget :
   (doc=STRING)?
-	'inputText' name=ID  (('forProperty' forProperty=[mm::DslAnyProperty]) | ('forOp' forOp=[mm::DslDomainObjectOperation]))? '{'
+	'inputText' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 	
 DslTextAreaWidget :
   (doc=STRING)?
-	'textArea' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'textArea' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslAutocompleteWidget :
   (doc=STRING)?
-	'autocomplete' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'autocomplete' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslRadioButtonsWidget :
   (doc=STRING)?
-	'radioButtons' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'radioButtons' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslRichTextAreaWidget :
   (doc=STRING)?
-	'richText' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'richText' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslInputDateWidget :
   (doc=STRING)?
-	'inputDate' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'inputDate' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
  
  DslNumberSpinnerWidget :
  (doc=STRING)?
-	'numberSpinner' name=ID  ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'numberSpinner' name=ID  (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
@@ -274,12 +277,15 @@ DslButtonWidget :
 		('enabled' enabled=[DslUiCondition])?
 		(onClick=DslOnClick)?
 	'}';
-	
+
 DslInformationalTextWidget :
   (doc=STRING)?
-	'informationalText' name=ID ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'informationalText' name=ID (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?
 	'}';
+
+DslSourceReference :
+	('forOp' forOp=[mm::DslDomainObjectOperation]) | ('forProperty' forProperty=[mm::DslProperty]);
 
 DslLinkWidget :
   (doc=STRING)?
@@ -294,7 +300,7 @@ DslForProperty :
 
 DslTableWidget :
   (doc=STRING)?
-	'table' name=ID ('for' for=[mm::DslSimpleDomainObject])? ('forProperty' forProperty=[mm::DslAnyProperty])? '{'
+	'table' name=ID ('for' for=[mm::DslSimpleDomainObject])? (sourceRef = DslSourceReference)? '{'
 		('label' '=' label=STRING)?	
 		
 		("columns" "{"
@@ -303,10 +309,14 @@ DslTableWidget :
 	'}';
 	
 DslTableColumn :
-	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (forProperty=DslForProperty)?
+	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (sourceRef = DslSourceReference)?
 		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))?
 		(behaviorBindings+=DslOnClick)? (behaviorBindings+=DslOnHover)? ";" ;
 
+
+/////////////////////////////////////////////////////////////////////////
+// Behavior bindings
+/////////////////////////////////////////////////////////////////////////
 
 DslBehaviorBinding :
 	DslOnClick | DslOnHover;

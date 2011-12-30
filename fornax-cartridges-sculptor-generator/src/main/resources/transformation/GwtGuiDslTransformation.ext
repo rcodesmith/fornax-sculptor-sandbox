@@ -261,7 +261,7 @@ create sculptorguimetamodel::ViewParameter this transform(DslViewParameter dslPa
 
 
 //////////////////////////////////////////////////////////////////////////////////
-// GuiEvent related transformations
+// Widget-related transformations
 //////////////////////////////////////////////////////////////////////////////////
 	
 create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
@@ -278,39 +278,63 @@ create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberS
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
-	//setForProperty(widget.forProperty == null ? null : widget.forProperty.transformSourceRef()) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
+private transformSourceReference(PropertyReferringWidget propRefWidget, DslSourceReference sourceRef) :
+	debugTrace("Widget " + propRefWidget + " sourceRef = " + sourceRef) ->
+	if sourceRef != null then 
+		debugTrace("forProperty = " + sourceRef.forProperty);
+		
+//		debugTrace("forProperty name = " + sourceRef.forProperty.name) ->
+//		(sourceRef.forProperty != null ? sourceRef.forProperty.transform().transformSourceRefProp(propRefWidget) : null) ->
+//		(sourceRef.forProperty != null && DslReference.isInstance(sourceRef.forProperty) ? propRefWidget.setForReference(sourceRef.forProperty.transform()) : null) ->
+//		(sourceRef.forOp != null && DslDomainObjectOperation.isInstance(sourceRef.forOp) ? propRefWidget.setForOp(sourceRef.forOp.transform()) : null) ->
+//		debugTrace("forAttribute = " + propRefWidget.forAttribute) ->
+//		debugTrace("forReference = " + propRefWidget.forReference) ->
+//		debugTrace("forOp = " + propRefWidget.forOp);
+
+private transformSourceRefProp(Attribute attr, PropertyReferringWidget propRefWidget) :
+	propRefWidget.setForAttribute(attr);
+
+private transformSourceRefProp(Reference ref, PropertyReferringWidget propRefWidget) :
+	propRefWidget.setForReference(ref);
+	
 create sculptorguimetamodel::ViewAttributeReference this transformSourceRef(DslAnyProperty prop) :
 	debugTrace("Got prop " + prop.name);
 	
@@ -318,6 +342,7 @@ create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidg
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 	
@@ -331,6 +356,7 @@ create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInf
 	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setDoc(widget.doc) ->
 	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 	
 create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module) :
@@ -342,6 +368,7 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 	setName(widget.name) ->
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	columns.addAll(widget.columns.transformColumn(module));
 
 create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col, Module module) :
@@ -350,6 +377,7 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col
 	setColumnType(col.columnType) ->
 	setSortable(col.sortable) ->
 	setFilterable(col.filterable) ->
+	transformSourceReference(this, col.sourceRef) ->
 	behaviorBindings.addAll(col.behaviorBindings.transform(module));
 
 create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :

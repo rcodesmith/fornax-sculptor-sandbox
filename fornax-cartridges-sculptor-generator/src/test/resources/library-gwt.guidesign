@@ -35,6 +35,9 @@ gui LibraryWeb for Library {
 				inputText nameField forProperty name {
 					label = "Name"
 				}
+				inputText birthDateField  { // forProperty birthDate
+					label = "Birth Date"
+				}
 				table table1 {
 					label = "Table uno"
 				}
@@ -47,6 +50,9 @@ gui LibraryWeb for Library {
 					label = "Info Numero Uno"
 				}
 				
+				informationalText fullName forOp getDisplayName {
+					label = "Full name"
+				}
 				textArea textArea1 {
 					label = "Text area uno"
 				}
@@ -66,7 +72,10 @@ gui LibraryWeb for Library {
 					label="Person Table"
 					
 					columns {
-						name type=Text filterable sortable;
+						name type=Text forOp getDisplayName filterable sortable;
+						
+						birthDate type=Date; // forProperty birthDate
+
 						edit type=Button onClick=populatePersonDetailsPanel;
 					}
 				}

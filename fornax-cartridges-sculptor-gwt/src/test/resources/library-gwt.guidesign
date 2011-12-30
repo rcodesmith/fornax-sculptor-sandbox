@@ -67,7 +67,9 @@ gui LibraryWeb for Library {
 					label="My Table"
 					
 					columns {
-						name type=Text;
+						name type=Text forOp getDisplayName;
+						
+						birthDate type=Date; //forProperty birthDate
 					}
 				}
 				button saveButton {

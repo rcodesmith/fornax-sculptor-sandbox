@@ -654,3 +654,31 @@ Set[GuiCommand] commandsToGenerate(GuiModule module) :
 	module.commands.reject(c | ! generateGwt(c));
 	
 
+
+
+
+
+
+
+
+boolean hasSourceRef(PropertyReferringWidget widget) :
+	widget.forOp != null || widget.forAttribute != null || widget.forReference != null;
+	
+String getSourceRefExpression(PropertyReferringWidget widget, String instName) :
+	switch {
+		case widget.forOp != null : widget.forOp.getAccessor(instName)
+		
+		default : null
+	};
+		
+	
+
+// (widget.forOp != null ? widget.forOp.ge :
+//	widget.forAttribute != null ? widget.forAttribute.getGetAccessor() :
+//	widget.forReference != null ? widget.forReference.getGetAccessor() : null);
+
+	
+String getAccessor(DomainObjectOperation op, String instName) :
+	instName + "." + op.name + "()";
+	
+	

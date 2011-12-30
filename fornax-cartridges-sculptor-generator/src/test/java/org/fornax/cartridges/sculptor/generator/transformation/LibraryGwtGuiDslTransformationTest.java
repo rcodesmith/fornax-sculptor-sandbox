@@ -22,6 +22,7 @@ import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiModule;
+import sculptorguimetamodel.InformationalTextWidget;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
 import sculptorguimetamodel.OnClickBinding;
@@ -32,7 +33,6 @@ import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.View;
-import sculptorguimetamodel.ViewAttributeReference;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptormetamodel.Attribute;
@@ -96,25 +96,33 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
     	assertNotNull(tableView);
     	
         EList widgets = tableView.getWidgets();
-        TableWidget table = (TableWidget)widgets.get(0);    	
-    	assertEquals("Person Table", table.getLabel());
+        TableWidget personTable = (TableWidget)widgets.get(0);    	
+    	assertEquals("Person Table", personTable.getLabel());
     	
-    	DomainObject person = table.getFor();
+    	DomainObject person = personTable.getFor();
     	assertNotNull(person);
     	assertEquals("Person", person.getName());
     	
-    	EList tableCols = table.getColumns();
+    	EList tableCols = personTable.getColumns();
     	assertNotNull(tableCols);
-        assertOneAndOnlyOne(tableCols, "name", "edit");
+        assertOneAndOnlyOne(tableCols, "name", "birthDate", "edit");
         
         TableColumn nameCol = (TableColumn)tableCols.get(0);
         assertEquals("name", nameCol.getName());
-        assertNotNull(nameCol);
         assertEquals("Text", nameCol.getColumnType());
         assertEquals(true, nameCol.isFilterable());
         assertEquals(true, nameCol.isSortable());
+        //assertEquals("getDisplayName", nameCol.getForOp().getName());
 
-        TableColumn editCol = (TableColumn)tableCols.get(1);
+        TableColumn birthDateCol = (TableColumn)tableCols.get(1);
+        assertEquals("birthDate", birthDateCol.getName());
+        assertEquals("Date", birthDateCol.getColumnType());
+        assertEquals(false, birthDateCol.isFilterable());
+        assertEquals(false, birthDateCol.isSortable());
+        
+        //assertEquals("birthDate", birthDateCol.getForAttribute().getName());
+        
+        TableColumn editCol = (TableColumn)tableCols.get(2);
         assertNotNull(editCol);
         assertEquals("Button", editCol.getColumnType());
         assertEquals(1, editCol.getBehaviorBindings().size());
@@ -218,16 +226,34 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
         assertEquals(Boolean.TRUE, idParam.isNullable());
         
         
+        
 //        assertEquals(1, personForm.getServiceProxies().size());
 //        assertOneAndOnlyOne(personForm.getServiceProxies(), "PersonService");
 //        Service svc = (Service)personForm.getServiceProxies().get(0);
         
         EList widgets = personForm.getWidgets();
-        assertEquals(5, widgets.size());
-        assertOneAndOnlyOne(widgets, "nameField", "table1", "saveButton", "info1", "textArea1"); //"autocomp1"
+        assertEquals(7, widgets.size());
+        assertOneAndOnlyOne(widgets, "nameField", "birthDateField", "table1", "saveButton", "info1", "fullName", "textArea1"); //"autocomp1"
         
         InputTextWidget nameField = (InputTextWidget)widgets.get(0);
         assertEquals("Name", nameField.getLabel());
+        //assertNotNull(nameField.getForReference());
+//        assertEquals("name", nameField.getForReference().getName());
+
+        InputTextWidget birthDateField = (InputTextWidget)widgets.get(1);
+        assertEquals("Birth Date", birthDateField.getLabel());
+        //assertNotNull(birthDateField.getForAttribute());
+        //assertEquals("birthDate", birthDateField.getForAttribute().getName());
+
+        
+        InformationalTextWidget fullName = (InformationalTextWidget)widgets.get(5);
+        assertEquals("Full name", fullName.getLabel());
+//        assertNotNull(fullName.getForOp());
+//        assertEquals("getDisplayName", fullName.getForOp().getName());
+
+        
+        
+        // getDisplayName
 
 //        assertNotNull(nameField.getForProperty());
 //        ViewAttributeReference nameRef = (ViewAttributeReference)nameField.getForProperty();
