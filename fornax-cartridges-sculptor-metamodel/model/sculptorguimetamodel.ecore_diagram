@@ -2562,7 +2562,7 @@
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_iwg3wS0KEeG8KJtjbaMuPQ" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiModule/dtos"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iwg3wi0KEeG8KJtjbaMuPQ" points="[-20, 30, 470, -702]$[-490, 706, 0, -26]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iwg3wi0KEeG8KJtjbaMuPQ" points="[-19, 30, 471, -702]$[-218, 355, 272, -377]$[-472, 706, 18, -26]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_sD5k4C2dEeG8KJtjbaMuPQ" type="4002" source="_YkHVMS0KEeG8KJtjbaMuPQ" target="_4kuDQJqQEdy7x7OBzvTH4A">
     <children xmi:type="notation:DecorationNode" xmi:id="_sEDV4C2dEeG8KJtjbaMuPQ" type="6001">
@@ -2611,5 +2611,16 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_siDh4TBNEeGH37dDuICbSQ" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="sculptormetamodel.ecore#//DomainObject/operations"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_siDh4jBNEeGH37dDuICbSQ" points="[-7, 26, 68, -289]$[-69, 289, 6, -26]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_GaZ_MTScEeGzu5mZQulr_w" type="4002" source="_YkHVMS0KEeG8KJtjbaMuPQ" target="_cASd4JnqEdy7x7OBzvTH4A">
+    <children xmi:type="notation:DecorationNode" xmi:id="_GabNUDScEeGzu5mZQulr_w" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_GabNUTScEeGzu5mZQulr_w" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_GabNUjScEeGzu5mZQulr_w" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_GabNUzScEeGzu5mZQulr_w" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_GaamQDScEeGzu5mZQulr_w" fontName="Lucida Grande"/>
+    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiDto/guiModule"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_GaamQTScEeGzu5mZQulr_w" points="[14, -26, -476, 706]$[209, -368, -281, 364]$[467, -702, -23, 30]"/>
   </edges>
 </notation:Diagram>

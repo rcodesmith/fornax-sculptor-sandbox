@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -42,6 +43,10 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         return (GuiModule) getNamedElement("person", guiApp.getModules());
     }
 
+    private GuiModule mediaModule() {
+        return (GuiModule) getNamedElement("media", guiApp.getModules());
+    }
+
     @Test
     public void assertTableViewBaseCode() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
@@ -60,5 +65,18 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         		"private static TableViewViewBaseUiBinder uiBinder = com.google.gwt.core.client.GWT",
         		".create(TableViewViewBaseUiBinder.class);");
     }
-    
+
+    @Test
+    public void assertViewAltPkgBaseCode() throws IOException {
+    	View browseView = (View) getNamedElement("MediaBrowse", mediaModule().getViews());
+    	
+    	Assert.assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt", browseView.getModule().getBasePackage());
+    	
+        XpandUnit.xpand("templates::gwt::View::viewBase", browseView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/client/view/MediaBrowseViewBase.java");
+        
+    }
+
 }

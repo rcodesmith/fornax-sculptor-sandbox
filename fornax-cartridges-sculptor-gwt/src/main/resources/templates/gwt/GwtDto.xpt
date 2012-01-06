@@ -14,7 +14,7 @@ which is causing attributes to get masked.«ENDREM»
 «ENDDEFINE»
 
 «DEFINE gwtModule FOR GuiModule»
-	«EXPAND gwtDomainModule(this.application) FOREACH this.application.guiForApplication.modules.select(m | m.name == this.name)»
+	«EXPAND gwtDomainModule(this.application, this) FOREACH this.application.guiForApplication.modules.select(m | m.name == this.name)»
 	
 	
 «ENDDEFINE»
@@ -23,10 +23,12 @@ which is causing attributes to get masked.«ENDREM»
 «REM»
 	Domain module transformation
 «ENDREM»
-«DEFINE gwtDomainModule(GuiApplication guiApp) FOR Module»
-	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(Entity)»
+«DEFINE gwtDomainModule(GuiApplication guiApp, GuiModule guiModule) FOR Module»
+	«EXPAND domainObject FOREACH guiModule.dtos»
 	«EXPAND gwtEnumDto FOREACH this.gwtDomainObjects().typeSelect(Enum)»
+«REM»
 	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
+«ENDREM»
 	
 
 	«EXPAND GwtMapper::domainObjectUIMapperDispatch(guiApp)»

@@ -97,6 +97,7 @@ String gwtCommandPackage(CommandEvent cmd) :
 //String gwtDomainPackage(Enum enum) :
 //   gwtDomainPackage(do.module);
 
+
 String gwtDomainPackage(DomainObject do) :
    gwtDomainPackage(do.module);
 
@@ -227,7 +228,7 @@ String getGwtImplTypeName(TypedElement e) :
     
 // Package for all view-related widget classes
 gwtWidgetsPackage(View view) :
-	gwtBasePackage(view.module.for) + ".client.view";
+	getGwtPackage(view.module) + ".client.view";
 
 
 
@@ -507,6 +508,7 @@ String gwtViewWidgetImplClass(View view) :
 
 // Fully qualified name of GWT widget base class corresponding to the given view
 String fqnGwtViewWidgetBaseClass(View view) :
+	debugTrace("fqnGwtViewWidgetBaseClass basePackage : " + view.module.basePackage) ->
 	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseClass() ;
 
 // Fully qualified name of GWT widget impl class corresponding to the given view

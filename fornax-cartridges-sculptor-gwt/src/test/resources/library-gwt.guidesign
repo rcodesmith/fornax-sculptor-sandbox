@@ -67,7 +67,7 @@ gui LibraryWeb for Library {
 					label="My Table"
 					
 					columns {
-						name type=Text forOp getDisplayName;
+						name type=Text; //forOp getDisplayName
 						
 						birthDate type=Date; //forProperty birthDate
 					}
@@ -93,7 +93,7 @@ gui LibraryWeb for Library {
 	}
 	
 	Module for media {
-		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
+		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt
 		View MediaBrowse {
 			
 		}

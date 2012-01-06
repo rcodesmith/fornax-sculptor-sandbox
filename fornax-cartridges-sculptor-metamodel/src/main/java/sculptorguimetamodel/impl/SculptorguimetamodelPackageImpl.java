@@ -1754,6 +1754,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGuiDto_GuiModule() {
+		return (EReference)guiDtoEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -1966,6 +1975,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		guiDtoEClass = createEClass(GUI_DTO);
 		createEReference(guiDtoEClass, GUI_DTO__FOR);
+		createEReference(guiDtoEClass, GUI_DTO__GUI_MODULE);
 	}
 
 	/**
@@ -2061,7 +2071,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_Commands(), this.getGuiCommand(), null, "commands", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Conditions(), this.getUiCondition(), null, "conditions", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGuiModule_Dtos(), this.getGuiDto(), null, "dtos", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_Dtos(), this.getGuiDto(), this.getGuiDto_GuiModule(), "dtos", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_SubTaskTransitions(), this.getSubTaskTransition(), null, "subTaskTransitions", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2233,6 +2243,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(guiDtoEClass, GuiDto.class, "GuiDto", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGuiDto_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, GuiDto.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiDto_GuiModule(), this.getGuiModule(), this.getGuiModule_Dtos(), "guiModule", null, 0, 1, GuiDto.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

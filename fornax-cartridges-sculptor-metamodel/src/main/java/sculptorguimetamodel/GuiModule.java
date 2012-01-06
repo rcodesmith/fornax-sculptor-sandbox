@@ -256,6 +256,7 @@ public interface GuiModule extends NamedElement {
 				/**
 	 * Returns the value of the '<em><b>Dtos</b></em>' containment reference list.
 	 * The list contents are of type {@link sculptorguimetamodel.GuiDto}.
+	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dtos</em>' containment reference list isn't clear,
@@ -264,7 +265,8 @@ public interface GuiModule extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dtos</em>' containment reference list.
 	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Dtos()
-	 * @model type="sculptorguimetamodel.GuiDto" containment="true"
+	 * @see sculptorguimetamodel.GuiDto#getGuiModule
+	 * @model type="sculptorguimetamodel.GuiDto" opposite="guiModule" containment="true"
 	 * @generated
 	 */
 	EList getDtos();

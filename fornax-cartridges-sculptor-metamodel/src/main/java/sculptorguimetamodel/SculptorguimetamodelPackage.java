@@ -5113,13 +5113,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_DTO__FOR = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Gui Module</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__GUI_MODULE = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Gui Dto</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 1;
+	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -6600,6 +6609,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getGuiDto_For();
 
 	/**
+	 * Returns the meta object for the container reference '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Gui Module</em>'.
+	 * @see sculptorguimetamodel.GuiDto#getGuiModule()
+	 * @see #getGuiDto()
+	 * @generated
+	 */
+	EReference getGuiDto_GuiModule();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7834,6 +7854,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_DTO__FOR = eINSTANCE.getGuiDto_For();
+
+		/**
+		 * The meta object literal for the '<em><b>Gui Module</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_DTO__GUI_MODULE = eINSTANCE.getGuiDto_GuiModule();
 
 	}
 

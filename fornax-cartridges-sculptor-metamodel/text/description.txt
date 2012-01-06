@@ -196,3 +196,4 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class GuiDto -> DomainObject
     Reference for : DomainObject
+    Reference guiModule : GuiModule

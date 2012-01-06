@@ -6,6 +6,7 @@
  */
 package sculptorguimetamodel.validation;
 
+import sculptorguimetamodel.GuiModule;
 import sculptormetamodel.DomainObject;
 
 /**
@@ -18,4 +19,6 @@ public interface GuiDtoValidator {
 	boolean validate();
 
 	boolean validateFor(DomainObject value);
+
+	boolean validateGuiModule(GuiModule value);
 }
