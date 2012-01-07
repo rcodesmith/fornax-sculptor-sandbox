@@ -5,7 +5,7 @@
 
 «DEFINE start FOR Application»
 	«LET visibleModules().toSet() AS mods»
-		«REM»detail 0 => all Domain (Entity, ValueObject) classes«ENDREM»
+		«REM»detail 0 => persistent entity and value objects«ENDREM»
 		«EXPAND start(mods, 0)»
 		«REM»detail 1 => all«ENDREM»
 		«EXPAND start(mods, 1)»
@@ -20,7 +20,6 @@
 		«REM»Each module separatly«ENDREM»
 		«IF mods.size > 1»
 			«FOREACH mods AS m»
-				«EXPAND start({m}.toSet(), 1)»
 				«EXPAND start({m}.toSet(), 0)»
 			«ENDFOREACH»
 		«ENDIF»
@@ -38,14 +37,12 @@
 		«EXPAND RelationToUML(focus, detail) FOREACH getAllReferences()
 			.reject(e | e.to.metaType == BasicType)
 			.reject(e | e.to.metaType == Enum)
-			.reject(e | e.to.isPersistent() == false)
-			.reject(e | e.from.isPersistent() == false)
-			.reject(e | e.to.metaType.rejectFromDomain(detail))
-			.reject(e | e.from.metaType.rejectFromDomain(detail))
+			.reject(e | e.to.rejectFromDomain(detail))
+			.reject(e | e.from.rejectFromDomain(detail))
 			.sortBy(e | e.from.name + "->" + e.to.name + ": " + e.name)»
 		«IF detail > 0»
 			«EXPAND ServiceDependenciesToUML(focus, detail) FOREACH modules.services»
-		«ENDIF»		
+		«ENDIF»
 	«ELSE»
 		«EXPAND ModuleDependenciesToUML FOREACH focus»
 	«ENDIF»
@@ -77,7 +74,7 @@ digraph G {
 		subgraph cluster«name» {
 			label = "«name»"  
 			«IF focus.contains(this)»
-				«IF detail > 0»		
+				«IF detail > 0»
 					«EXPAND ServiceToUML(focus, detail) FOREACH services.select(e|e.visible()).sortBy(e|e.name)»
 					«EXPAND ConsumerToUML(focus, detail) FOREACH consumers.select(e|e.visible()).sortBy(e|e.name)»
 				«ENDIF»

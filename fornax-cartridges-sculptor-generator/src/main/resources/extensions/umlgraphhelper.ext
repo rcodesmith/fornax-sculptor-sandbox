@@ -142,14 +142,18 @@ String labeldistance(Reference ref) :
 
 String labelangle(Reference ref) :
 	getProperty("umlgraph.labelangle");
-	
-	
-boolean rejectFromDomain(xpand2::Type d, int detail) :
-	false;
 
+
+// rejectFromDomain(): Return true if the given domain object should be rejected from the diagram at the given level of detail
 boolean rejectFromDomain(DomainObject d, int detail) :
-	detail == 0 ? CommandEvent.isInstance(d)  || DomainEvent.isInstance(d) || !(Entity.isInstance(d) || ValueObject.isInstance(d)) || d.isPersistent() == false: false;
+	detail == 0 ? true : false;
 
-boolean rejectFromDomain(BasicType d, int detail) :
-	false;
-	
+boolean rejectFromDomain(Enum e, int detail) :
+	detail == 0 ? true : false;
+
+boolean rejectFromDomain(Entity e, int detail) :
+	detail == 0 ? e.isPersistent() == false : false;
+
+boolean rejectFromDomain(ValueObject v, int detail) :
+	detail == 0 ? v.isPersistent() == false : false;
+
