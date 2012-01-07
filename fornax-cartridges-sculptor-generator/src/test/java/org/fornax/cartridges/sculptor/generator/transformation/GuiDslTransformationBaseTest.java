@@ -6,7 +6,7 @@ import org.junit.BeforeClass;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
 
-public class GuiDslTransformationBaseTest extends TransformationTestBase {
+public abstract class GuiDslTransformationBaseTest extends TransformationTestBase {
 
 //  private static final boolean VALIDATE_SERVICE_OPERATION = true;
 //  private static final boolean DONT_VALIDATE_SERVICE_OPERATION = false;

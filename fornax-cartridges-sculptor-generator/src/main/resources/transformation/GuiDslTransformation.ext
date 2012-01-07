@@ -82,10 +82,10 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	hasProperty("ui.custom.guidto") ? dtos.addAll(module.for.domainObjects.typeSelect(DslEntity).transformToGui()) : null ->
 	// TODO: Put back
 	serviceProxies.addAll(module.serviceDependencies.transformServiceProxy(module.for.transform())) ->
-//	events.addAll(module.events.transformEvent(module.for.transform())) ->
-//	commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
-//	views.addAll(module.views.transformView(module.for.transform())) ->
-//	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
+	events.addAll(module.events.transformEvent(module.for.transform())) ->
+	commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
+	views.addAll(module.views.transformView(module.for.transform())) ->
+	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
 	debugTrace("Done with module " + module.for.name);
 	
 	
