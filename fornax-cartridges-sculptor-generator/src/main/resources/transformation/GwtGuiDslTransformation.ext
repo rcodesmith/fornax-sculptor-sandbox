@@ -32,10 +32,19 @@ extension extensions::guihelper;
 extension extensions::properties;
 
 
+//////////////////////////////////////////////////////////////////////////////////
+// GuiModule-level transformations
+//////////////////////////////////////////////////////////////////////////////////
+
 // For any post-DSL transformations that need to occur
 modify(GuiModule guiModule) :
 	guiModule.commands.modifyExtends() ->
 	guiModule.dtos.modify(guiModule);
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiDto-related transformations
+//////////////////////////////////////////////////////////////////////////////////
 
 // NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
 // Solution is to include those modules in the GUI model.  Consider adding a validation for this..
@@ -175,9 +184,114 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObj
 	initGuiDto(domainObject, this);
 
 
+//////////////////////////////////////////////////////////////////////////////////
+// GuiCommand-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+// TODO: This will be needed for events as well
+// Copied & modified from Transformation.ext
+modifyExtends(GuiCommand cmd) :
+    if (cmd.extendsName != null) then
+        (let matchingDomainObject = findCommandByName(((GuiModule)cmd.eContainer).application, cmd.extendsName) :
+        if (matchingDomainObject != null) then
+            (cmd.setExtends(matchingDomainObject) ->
+            cmd.setExtendsName(null))); 
+
+// Copied & modified from Transformation.ext
+private DomainObject findCommandByName(GuiApplication app, String domainObjectName) : 
+    let match = app.modules.commands.select(e | e.name == domainObjectName) : 
+    match.isEmpty ? null : match.first();
 
 
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// Service proxy-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+
+// TODO: For next two methods, is there something I can use that immediately returns first?
+Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
+	module.services.select(s | s.name == dslServiceDep.dependency.name).first();
+
+DomainObject getDomainObject(DslGuiDto dslGuiDto, Module module) :
+	module.domainObjects.select(d | d.name == dslGuiDto.for.name).first();
+
+/*
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+	let domainService = getMetamodelService(dslServiceDep, module) :
+	setFor(domainService) ->
+	setName(domainService.name) ->
+	setDoc(domainService.doc) ->
+	setModule(this.for.module) ->
+	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this)) ->
+	debugTrace("transformServiceProxy: service = " + domainService) ->
+	debugTrace("transformServiceProxy: module = " + module) ->
+	debugTrace("transformServiceProxy: domain service module = " + this.for.module);
+*/
+
+
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+	let domainService = getMetamodelService(dslServiceDep, module) :
+		setFor(domainService) ->
+		setName(domainService.name) ->
+		setDoc(domainService.doc) ->
+		setModule(module) ->
+		operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+
+//create sculptorguimetamodel::ServiceProxy this transformServiceProxy(Service domainService, Module module) :
+//	debugTrace("transformServiceProxy: service = " + domainService) ->
+//	debugTrace("transformServiceProxy: module = " + module) ->
+//	setFor(domainService) ->
+//	setName(domainService.name) ->
+//	setDoc(domainService.doc) ->
+//	setModule(module) ->
+//	debugTrace("transformServiceProxy: this module = " + this.module) ->
+//	operations.addAll(domainService.operations.select(o | domainService.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+
+
+
+create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation,
+	Service service) :
+//	setService(((DslService) operation.eContainer).transform()) ->
+	debugTrace("transformServiceProxyOperation: name=" + domainOperation.name ) ->
+	setService(service) ->
+	debugTrace("transformServiceProxyOperation: service=" + this.service) ->
+	debugTrace("transformServiceProxyOperation: service.module=" + this.service.module) ->
+	setFor(domainOperation) ->
+    setDoc(domainOperation.doc) ->
+    setName(domainOperation.name) ->
+    setVisibility(domainOperation.visibility) ->
+    parameters.addAll(domainOperation.parameters.reject(p | p.type == "org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContext").transformGwtServiceOperationParam()) ->
+    setCollectionType(domainOperation.collectionType) ->
+    setMapKeyType(domainOperation.mapKeyType) ->
+    setType(domainOperation.type) ->
+    setDomainObjectType(domainOperation.domainObjectType) ->
+    setThrows(domainOperation.throws) ->
+    setHint(domainOperation.hint) ->
+	debugTrace("transformServiceProxyOperation: this=" + this );
+
+
+Parameter transformGwtServiceOperationParam(Parameter param) :
+	let newParam = new Parameter :
+		newParam.setCollectionType(param.collectionType) ->
+		newParam.setDoc(param.doc) ->
+		newParam.setDomainObjectType(param.domainObjectType) ->
+		newParam.setHint(param.hint) ->
+		newParam.setMapKeyType(param.mapKeyType) ->
+		newParam.setName(param.name) ->
+		newParam.setType(param.type);
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
 // Copied from DslTransformation.ext
+//////////////////////////////////////////////////////////////////////////////////
+
 private String convertVisibility(DslVisibility dslVisibility) :
 	dslVisibility == null ?
 		"public" :

@@ -10,9 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import sculptorguimetamodel.GuiApplication;
@@ -20,48 +18,19 @@ import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.ServiceProxyOperation;
 import sculptormetamodel.Attribute;
+import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectOperation;
 import sculptormetamodel.Parameter;
+import sculptormetamodel.Reference;
 
 //@Ignore("Skip this test now, due to problems when running from maven")
 @SuppressWarnings("unchecked")
-public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
+public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 	
 	
-//    private static final boolean VALIDATE_SERVICE_OPERATION = true;
-//    private static final boolean DONT_VALIDATE_SERVICE_OPERATION = false;
-    private static GuiApplication guiApp;
 
 //	private static File TEMP = new File("target/temp-xpandoutput");
 
-
-    @BeforeClass
-    public static void before() throws Exception {
-        System.setProperty("project.nature", "business-tier, rcp");
-		System.setProperty("datetime.library", "joda");
-        System.setProperty("gui.createDefaults", "false");
-        System.setProperty("package.gwt", "gwt");
-        
-        System.setProperty("ui.custom.guidto", "true");
-
-        initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
-        guiApp = (GuiApplication) ctx.get("guiModel");
-        
-        
-//		TEMP.mkdirs();
-//		XpandUnit.initXpand(new EmfRegistryMetaModel());
-
-    }
-
-    
-    @AfterClass
-    public static void after() {
-        System.getProperties().remove("project.nature");
-		System.getProperties().remove("datetime.library");
-		System.getProperties().remove("gui.createDefaults");
-		System.getProperties().remove("package.gwt");
-
-    }
 
     @Test
     public void assertApplication() {
@@ -246,46 +215,6 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 //    }
 //
 //
-//	@Test
-//	public void assertServiceProxy() {
-//		ServiceProxy proxy = (ServiceProxy) getNamedElement("PersonService", personModule()
-//				.getServiceProxies());
-//		assertNotNull(proxy);
-//		assertNotNull(proxy.getFor());
-//		assertNotNull(proxy.getFor().getModule());
-//		
-//		GuiModule guiModule = (GuiModule)proxy.eContainer();
-//		assertNotNull(guiModule);
-//		
-////		assertEquals("blah", guiModule.getBasePackage());
-//		
-//		EList ops = proxy.getOperations();
-//		System.out.println(ops);
-//		assertEquals(3, ops.size());
-//
-//		ServiceProxyOperation op = (ServiceProxyOperation)ops.get(0);
-//		assertNotNull(op);
-//		
-////		System.out.println("Operation params:" + op.getParameters());
-//		validateServiceOperation(op, "findPersonByName", 1);
-//		Parameter p1 = (Parameter)op.getParameters().get(0);
-//		assertEquals("name", p1.getName());
-//		assertEquals("String", p1.getType());
-//		
-//		
-//		
-//		ServiceProxyOperation findByDateOp = (ServiceProxyOperation)ops.get(2);
-//		assertNotNull(findByDateOp);
-//		validateServiceOperation(findByDateOp, "findByDate", 1);
-//		
-//		assertEquals("Person", findByDateOp.getDomainObjectType().getName());
-//		assertEquals("List", findByDateOp.getCollectionType());
-//		
-//		Parameter entryDateParam = (Parameter)findByDateOp.getParameters().get(0);
-//		assertEquals("entryDate", entryDateParam.getName());
-////		assertEquals("java.util.Date", entryDateParam.getType());
-//
-//	}
 //	
 //	
 //	@Test
@@ -381,11 +310,19 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		assertNotNull(media);
 		assertEquals(1, media.getAttributes().size());
 		
+		Assert.assertTrue(media.isAbstract());
+		
 		Attribute titleAttr = (Attribute)media.getAttributes().get(0);
 		assertEquals("title", titleAttr.getName());
 		assertEquals("String", titleAttr.getType());
 		assertEquals(false, titleAttr.isChangeable());
 		
+	}
+	
+	@Test
+	public void assertDomainObjectOperation() {
+		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getDtos());
+
 		assertEquals(3, media.getOperations().size());
 		
 		DomainObjectOperation getDisplayTitleOp = (DomainObjectOperation)media.getOperations().get(0);
@@ -408,13 +345,25 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		assertNull(getTopPhysicalMediaOp.getType());
 		assertEquals("PhysicalMedia", getTopPhysicalMediaOp.getDomainObjectType().getName());
 		Assert.assertTrue(getTopPhysicalMediaOp.getDomainObjectType() instanceof GuiDto);
+
 	}
 	
-	protected void validateServiceOperation(ServiceProxyOperation op, String expectedName, int expectedNumParams) {
-		assertEquals(expectedName, op.getName());
-		assertEquals(expectedName, op.getFor().getName());
-		assertEquals(expectedNumParams, op.getParameters().size());
+	@Test
+	public void assertManyBiReference() {
+		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getDtos());
+
+		Reference physicalMediaRef = (Reference)getNamedElement("physicalMedia", media.getReferences());
+		assertNotNull(physicalMediaRef);
 		
+		Assert.assertSame(media, physicalMediaRef.getFrom());
+		DomainObject to = physicalMediaRef.getTo();
+		assertNotNull(to);
+		Assert.assertTrue(to instanceof GuiDto);
+		assertEquals("Set", physicalMediaRef.getCollectionType());
+		Assert.assertTrue(physicalMediaRef.isMany());
+		
+		Reference backRef = (Reference)getNamedElement("media", to.getReferences());
+		Assert.assertSame(physicalMediaRef.getOpposite(), backRef);
 	}
 	
 	
@@ -453,18 +402,6 @@ public class LibraryGwtGuiDslTransformationTest extends TransformationTestBase {
 		Assert.assertFalse("Text contained substring \"" + subStr  + "\"", text.contains(subStr));		
 	}
 
-	
-    private GuiModule mainModule() {
-        return (GuiModule) getNamedElement("main", guiApp.getModules());
-    }
-    
-    private GuiModule personModule() {
-        return (GuiModule) getNamedElement("person", guiApp.getModules());
-    }
-
-    private GuiModule mediaModule() {
-        return (GuiModule) getNamedElement("media", guiApp.getModules());
-    }
 
 
 }
