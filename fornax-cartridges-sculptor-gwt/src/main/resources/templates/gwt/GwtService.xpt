@@ -85,7 +85,7 @@
 
 
 «DEFINE gwtServiceImpl FOR ServiceProxy»
-	«EXPAND gwtServiceImpl((GuiModule)this.eContainer, ((GuiModule)this.eContainer).for) FOR this»
+	«EXPAND gwtServiceImpl(this.guiModule, this.eContainer) FOR this»
 «ENDDEFINE»
 
 «DEFINE gwtServiceImpl(GuiModule guiModule, Module module) FOR ServiceProxy»
@@ -109,21 +109,13 @@
 			
 		@org.springframework.beans.factory.annotation.Autowired
 		private «this.for.getServiceapiPackage()».«this.name» «name.toFirstLower()»;
-		
 		«EXPAND gwtServiceImplOperation(module) FOREACH this.operations.select(op|op.isPublicVisibility())»
+
 		}
 	«ENDFILE»
 «ENDDEFINE»
 
-
-«DEFINE gwtServiceImplOperation FOR ServiceOperation»
-	«EXPAND gwtServiceImplOperation(this.getModule()) FOR this»
-«ENDDEFINE»
-
-
-
 «DEFINE gwtServiceImplOperation(Module module) FOR ServiceOperation»
-
 	/**
 	 * Type is «type»
 	 * Domain object type name is «domainObjectType.name»
@@ -144,7 +136,7 @@
 		«IF typeName != null && typeName != 'void'»
 			«typeName» res =
 		«ENDIF»
-		«this.service.name.toFirstLower()».«name»(«EXPAND gwtServiceImplOperationParameter(module) FOREACH parameters SEPARATOR ","»);
+		«this.service.name.toFirstLower()».«name»(«EXPAND gwtServiceImplOperationParameter FOREACH parameters SEPARATOR ","»);
 		
 		«IF typeName != null && typeName != 'void'»
 			
@@ -167,9 +159,14 @@
 
 	
 	}
+
 «ENDDEFINE»
 
-«DEFINE gwtServiceImplOperationParameter(Module module) FOR Parameter»
+
+«DEFINE gwtServiceImplOperationParameter FOR Parameter»
 		«this.getMapToDomainExpression()»
 «ENDDEFINE»
+
+
+
 

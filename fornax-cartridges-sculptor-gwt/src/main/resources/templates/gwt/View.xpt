@@ -26,7 +26,6 @@
 
 
 «FILE javaFileName(fqnGwtViewInterface())»
-	// «debugTrace("viewInterface for " + name + " beginning")»
 package «gwtWidgetsPackage()»;
 	public interface «gwtViewInterface()» extends com.google.gwt.user.client.ui.IsWidget {
 		public void initView();
@@ -34,7 +33,6 @@ package «gwtWidgetsPackage()»;
 		«EXPAND widgetInterfaceDeclarations FOREACH widgets»
 		
 	}
-	// «debugTrace("viewInterface for " + name + " ending")»
 
 «ENDFILE»
 «ENDDEFINE»
@@ -251,6 +249,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «DEFINE widgetDeclaration FOR TableWidget»
 
     // «name» cell table
+    «debugTrace("widgetDeclaration() for table: " + this.name + " forModule = " + this.for.guiModule.for)»
     @com.google.gwt.uibinder.client.UiField(provided = true)
     com.google.gwt.user.cellview.client.CellTable<«fqnTableForClass()»> «name» = new com.google.gwt.user.cellview.client.CellTable<«fqnTableForClass()»>();
     final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =

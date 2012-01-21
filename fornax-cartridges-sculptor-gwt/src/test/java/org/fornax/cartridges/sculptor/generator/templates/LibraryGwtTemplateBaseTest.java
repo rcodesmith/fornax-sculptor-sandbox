@@ -22,6 +22,7 @@ public class LibraryGwtTemplateBaseTest  extends TemplateTestBase {
         System.setProperty("gui.createDefaults", "false");
         System.setProperty("package.gwt", "gwt");
         System.setProperty("gwt.dto.generate.gap", "true");
+        System.setProperty("ui.custom.guidto", "True");
         
         System.setProperty("framework.domain.AbstractDomainObject", "org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractSimpleDomainObject");
         System.setProperty("generate.jpa.annotation", "false");
@@ -39,6 +40,7 @@ public class LibraryGwtTemplateBaseTest  extends TemplateTestBase {
 		System.getProperties().remove("datetime.library");
 		System.getProperties().remove("gui.createDefaults");
 		System.getProperties().remove("package.gwt");
+		System.getProperties().remove("ui.custom.guidto");
 
     }
 

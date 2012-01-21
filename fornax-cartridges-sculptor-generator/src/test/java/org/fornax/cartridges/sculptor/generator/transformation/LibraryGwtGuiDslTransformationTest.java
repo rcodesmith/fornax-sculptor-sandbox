@@ -16,7 +16,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import sculptorguimetamodel.GuiDto;
+import sculptorguimetamodel.GuiEnum;
 import sculptorguimetamodel.GuiModule;
+import sculptorguimetamodel.StubModule;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectOperation;
@@ -46,6 +48,12 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
     	GuiModule mediaModule = mediaModule();
     	
     	assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt", mediaModule.getBasePackage());
+    	
+    	assertNotNull(mediaModule.getStubModule());
+    	Assert.assertTrue(mediaModule.getStubModule() instanceof StubModule);
+    	assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt", mediaModule.getStubModule().getBasePackage());
+    	Assert.assertSame(mediaModule.getStubModule().getStubFor(), mediaModule().getFor());
+    	Assert.assertSame(mediaModule.getStubModule().getGuiModule(), mediaModule);
     }
     
 
@@ -54,7 +62,11 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
     	GuiModule mod = personModule();
     	Assert.assertNotNull(mod);
     	
-    	EList serviceProxies = mod.getServiceProxies();
+    	assertNotNull(mod.getStubModule());
+    	
+    	assertEquals(null, mod.getStubModule().getBasePackage());
+    	
+    	EList serviceProxies = mod.getStubModule().getServices();
     	assertEquals(1, serviceProxies.size());
     	
         assertOneAndOnlyOne(serviceProxies, "PersonService");
@@ -84,7 +96,7 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 	
 	@Test
 	public void assertGuiDtoMedia() {
-		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getDtos());
+		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getStubModule().getDomainObjects());
 		assertNotNull(media);
 		assertEquals(1, media.getAttributes().size());
 		
@@ -95,11 +107,14 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		assertEquals("String", titleAttr.getType());
 		assertEquals(false, titleAttr.isChangeable());
 		
+		assertNotNull(media.getModule());
+		assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt", media.getModule().getBasePackage());
+		
 	}
 	
 	@Test
 	public void assertDomainObjectOperation() {
-		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getDtos());
+		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getStubModule().getDomainObjects());
 
 		assertEquals(3, media.getOperations().size());
 		
@@ -128,7 +143,7 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 	
 	@Test
 	public void assertManyBiReference() {
-		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getDtos());
+		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getStubModule().getDomainObjects());
 
 		Reference physicalMediaRef = (Reference)getNamedElement("physicalMedia", media.getReferences());
 		assertNotNull(physicalMediaRef);
@@ -144,6 +159,54 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		Assert.assertSame(physicalMediaRef.getOpposite(), backRef);
 	}
 	
+	@Test
+	public void assertBasicTypeReference() {
+		GuiDto ssn = (GuiDto)getNamedElement("Ssn", personModule().getStubModule().getDomainObjects());
+		assertNotNull(ssn);
+		assertEquals("person", ssn.getGuiModule().getName());
+		assertNotNull(ssn.getFor());
+		assertEquals("Ssn", ssn.getFor().getName());
+		
+		GuiDto person = (GuiDto)getNamedElement("Person", personModule().getStubModule().getDomainObjects());
+		assertNotNull(person);
+		
+		Reference ssnRef = (Reference)getNamedElement("ssn", person.getReferences());
+		assertNotNull(ssnRef);
+		Assert.assertSame(ssnRef.getTo(), ssn);
+	}
+	
+	@Test
+	public void assertDomainObj() {
+		GuiDto person = (GuiDto)getNamedElement("Person", personModule().getStubModule().getDomainObjects());
+		assertNotNull(person);
+		
+		assertNotNull(person.getFor());
+		assertEquals("Person", person.getFor().getName());
+		assertNotNull(person.getGuiModule());
+		
+	}
+	
+	@Test
+	public void assertExtends() {
+		GuiDto book = (GuiDto)getNamedElement("Book", mediaModule().getStubModule().getDomainObjects());
+		assertNotNull(book);
+		GuiDto media = (GuiDto)book.getExtends();
+		assertNotNull(media);
+		assertEquals("Media", media.getName());
+		
+	}
+	
+	@Test
+	public void assertGuiEnum() {
+		GuiEnum country = (GuiEnum)getNamedElement("Country", personModule().getStubModule().getDomainObjects());
+		assertNotNull(country);
+		
+		assertEquals("Country", country.getName());
+		
+		assertNotNull(country.getGuiModule());
+		
+		assertEquals(3, country.getValues().size());
+	}
 	
 //	protected String getFileText(String filePath) {
 //		File f = new File(
@@ -166,6 +229,7 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		return null;
 	}
 
+	
 	
 	protected void assertMatchesRegexp(String text, String regexp) {
 		Pattern p = Pattern.compile(regexp, Pattern.MULTILINE);

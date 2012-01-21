@@ -93,7 +93,10 @@ gui LibraryWeb for Library {
 	}
 	
 	Module for media {
-		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt
+		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
+		
+		> @MediaService
+		
 		View MediaBrowse {
 			
 		}

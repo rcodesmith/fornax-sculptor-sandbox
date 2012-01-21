@@ -20,11 +20,10 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference views : View<<0..*>>
     Reference events : GuiEvent<<0..*>>
     Reference serviceDependencies : Service<<0..*>>
-    Reference serviceProxies : ServiceProxy<<0..*>>
     Reference commands : GuiCommand<<0..*>>
     Reference behaviors : UiBehavior<<0..*>>
     Reference conditions : UiCondition<<0..*>>
-    Reference dtos : GuiDto<<0..*>>
+    Reference stubModule : StubModule
 
   Class UserTask -> NamedElement
     Reference subTaskTransitions : SubTaskTransition<<0..*>>
@@ -159,6 +158,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class ServiceProxy -> Service
     Reference for : Service<<1..1>>
+    Reference guiModule : GuiModule
 
   Class ServiceProxyOperation -> ServiceOperation
     Reference for : ServiceOperation<<1..1>>
@@ -197,3 +197,9 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class GuiDto -> DomainObject
     Reference for : DomainObject
     Reference guiModule : GuiModule
+
+  Class GuiEnum -> Enum, GuiDto
+
+  Class StubModule -> Module
+    Reference stubFor : Module
+    Reference guiModule : GuiModule<<1..1>>

@@ -4,7 +4,7 @@ import "classpath:/library-gwt.btdesign"
 gui LibraryWeb for Library {
 
 	Module for main {
-
+		
 		View Menu {
 			contents {
 				link mediaBrowseLink toView MediaBrowse {
@@ -25,7 +25,7 @@ gui LibraryWeb for Library {
 		> @PersonService
 		
 		View PersonForm for Person {
-//			> @PersonService
+			> @PersonService
 			
 			parameters {
 				String command not nullable;
@@ -118,7 +118,11 @@ gui LibraryWeb for Library {
 	Module for media {
 		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
 		
+		> @MediaService
+		
 		View MediaBrowse {
+			> @MediaService
+			
 			parameters {
 				String libraryId;
 			}

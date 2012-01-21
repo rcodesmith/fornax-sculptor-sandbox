@@ -53,28 +53,26 @@ public interface GuiDto extends DomainObject {
 	void setFor(DomainObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Gui Module</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiModule#getDtos <em>Dtos</em>}'.
+	 * Returns the value of the '<em><b>Gui Module</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gui Module</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gui Module</em>' container reference.
+	 * @return the value of the '<em>Gui Module</em>' reference.
 	 * @see #setGuiModule(GuiModule)
 	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiDto_GuiModule()
-	 * @see sculptorguimetamodel.GuiModule#getDtos
-	 * @model opposite="dtos" transient="false"
+	 * @model
 	 * @generated
 	 */
 	GuiModule getGuiModule();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}' container reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Gui Module</em>' container reference.
+	 * @param value the new value of the '<em>Gui Module</em>' reference.
 	 * @see #getGuiModule()
 	 * @generated
 	 */

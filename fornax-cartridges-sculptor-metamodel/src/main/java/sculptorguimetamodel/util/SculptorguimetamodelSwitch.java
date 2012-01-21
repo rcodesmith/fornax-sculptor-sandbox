@@ -15,6 +15,7 @@ import sculptorguimetamodel.*;
 
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
+import sculptormetamodel.Module;
 import sculptormetamodel.NamedElement;
 import sculptormetamodel.Operation;
 import sculptormetamodel.Service;
@@ -494,6 +495,24 @@ public class SculptorguimetamodelSwitch {
 				Object result = caseGuiDto(guiDto);
 				if (result == null) result = caseDomainObject(guiDto);
 				if (result == null) result = caseNamedElement(guiDto);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.GUI_ENUM: {
+				GuiEnum guiEnum = (GuiEnum)theEObject;
+				Object result = caseGuiEnum(guiEnum);
+				if (result == null) result = caseEnum(guiEnum);
+				if (result == null) result = caseGuiDto(guiEnum);
+				if (result == null) result = caseDomainObject(guiEnum);
+				if (result == null) result = caseNamedElement(guiEnum);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.STUB_MODULE: {
+				StubModule stubModule = (StubModule)theEObject;
+				Object result = caseStubModule(stubModule);
+				if (result == null) result = caseModule(stubModule);
+				if (result == null) result = caseNamedElement(stubModule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1267,6 +1286,36 @@ public class SculptorguimetamodelSwitch {
 	}
 
 																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gui Enum</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gui Enum</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseGuiEnum(GuiEnum object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Stub Module</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Stub Module</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseStubModule(StubModule object) {
+		return null;
+	}
+
+																/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1368,6 +1417,36 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseServiceOperation(ServiceOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enum</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enum</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEnum(sculptormetamodel.Enum object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Module</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Module</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseModule(Module object) {
 		return null;
 	}
 

@@ -6,9 +6,11 @@ extension extensions::helper;
 extension extensions::guihelper;
 
 
+String testoid() :
+	"test";
 
 // Get all of the Services that are used, either at the module or view level
-Set[Module] getAllUsedServices(GuiModule guiModule) :
+Set[Module] getAllUsedServices(sculptorguimetamodel::GuiModule guiModule) :
 	let list = {} :
 	list.addAll(guiModule.views.getUsedServices().toSet().select(s|s != null)) ->
 	list.addAll(guiModule.getUsedServices()) ->
@@ -36,6 +38,11 @@ String getGwtExtendsClassName(DomainObject domainObject) :
         (domainObject.extendsName == null ? domainObject.gwtDefaultExtendsClassName() : domainObject.extendsName) :
         domainObject.extends.gwtDomainPackage() + "." + domainObject.extends.name;
 
+// See getDomainPackage() in helper.ext - this is here to specialize the package returned for GuiDtos
+cached String getDomainPackage(GuiDto domainObject) :
+	domainObject.gwtDomainPackage();
+
+
 String getGwtExtendsClassName(GuiCommand domainObject) :
     (domainObject.extends == null) ?
         (domainObject.extendsName == null ? domainObject.gwtDefaultExtendsClassName() : domainObject.extendsName) :
@@ -60,7 +67,9 @@ String gwtDefaultExtendsClassName(GuiCommand domainObject) :
 String abstractGwtCommandClass() :
 	fw("gwt.shared.domain.AbstractGwtCommand");
 	
-	
+String gwtSubPackage() :
+	getProperty("package.gwt");
+
 
 //String getGwtDtoPackage(GuiApplication guiApp) :
 //    guiApp.basePackage + "." + subPackage("shared");
@@ -73,17 +82,22 @@ String getFieldUniqueCssId(ViewDataProperty property) :
     property.userTask.name + property.name.toFirstUpper() + "Field";
 
 
-String gwtBasePackage(Module module) :
-   module.getBasePackage() + ".gwt";
+String gwtBasePackage(GuiModule module) :
+	gwtBasePackage(module.stubModule);
+
+String gwtBasePackage(StubModule module) :
+	(module.basePackage != null ? module.basePackage : module.guiModule.application.basePackage + "." + module.name) + "." + gwtSubPackage(); 
    
 
-
+// Get the GWT base package for the given GUI module (up-to & including .gwt)
 String getGwtPackage(GuiModule guiModule) :
     JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getGwtPackage(sculptorguimetamodel.GuiModule);
 
 
-String gwtDomainPackage(Module module) :
-   gwtBasePackage(module) + ".shared.domain";
+String gwtDomainPackage(StubModule module) :
+   let res = gwtBasePackage(module) + ".shared.domain":
+   debugTrace("gwtDomainPackage() res=" + res) ->
+   res;
 
 String gwtDomainPackage(GuiModule module) :
    getGwtPackage(module) + ".shared.domain";
@@ -98,8 +112,14 @@ String gwtCommandPackage(CommandEvent cmd) :
 //   gwtDomainPackage(do.module);
 
 
+// TODO: Remove
 String gwtDomainPackage(DomainObject do) :
+	debugTrace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! BAD !!!!!!!!!!!!!!!! called gwtDomainPackage(DomainObject do) for " + do.name) -> 
    gwtDomainPackage(do.module);
+
+String gwtDomainPackage(GuiDto do) :
+	debugTrace("gwtDomainPackage(" + do + ") : guiModule = " + do.guiModule) ->
+   gwtDomainPackage(do.guiModule.stubModule);
 
 String gwtDomainPackage(GuiCommand do) :
    gwtDomainPackage((GuiModule)do.eContainer);
@@ -108,11 +128,12 @@ String fqnGwtDto(Reference ref) :
 	gwtDomainPackage(ref.to) + "." + ref.to.name;
 	
 // The fully qualified name for the domain class (not GWT DTO).
-String fqnDomain(DomainObject do) :
-	do.getDomainPackage() + "." + do.name;
+//String fqnDomain(DomainObject do) :
+//	do.getDomainPackage() + "." + do.name;
 
 // The fully qualified GWT DTO class for a given domain object
-String fqnGwtDto(DomainObject do) :
+String fqnGwtDto(GuiDto do) :
+	debugTrace("fqnGwtDto(" + do + ")") ->
 	do.gwtDomainPackage() + "." + do.name;
 
 String fqnGwtDto(GuiCommand do) :
@@ -143,7 +164,7 @@ gwtServiceAsyncInterfaceName(Service svc) :
 	"Gwt" + svc.name + "Async";
 	
 gwtServiceAsyncInterfacePackage(ServiceProxy svc) :
-	gwtBasePackage(svc.for.module) + ".client";
+	gwtBasePackage(svc.guiModule) + ".client";
 	
 gwtServiceAsyncInterface(ServiceProxy svc) :
 	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
@@ -158,7 +179,7 @@ gwtServiceSyncInterfaceName(ServiceProxy svc) :
 	"Gwt" + svc.name;
 	
 gwtServiceSyncInterfacePackage(ServiceProxy svc) :
-	gwtBasePackage(svc.for.module) + ".client";
+	gwtBasePackage(svc.guiModule) + ".client";
 
 	
 gwtServiceSyncInterface(ServiceProxy svc) :
@@ -170,7 +191,7 @@ gwtServiceImplName(ServiceProxy svc) :
 	"Gwt" + svc.name + "Impl";
 	
 gwtServiceImplPackage(ServiceProxy svc) :
-	gwtBasePackage(svc.for.module) + ".server";
+	gwtBasePackage(svc.guiModule) + ".server";
 	
 gwtServiceImpl(ServiceProxy svc) :
 	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
@@ -234,7 +255,7 @@ gwtWidgetsPackage(View view) :
 
 // Package for all task-related widget classes
 gwtWidgetsPackage(UserTask task) :
-	gwtBasePackage(task.for.module) + ".client";
+	gwtBasePackage(task.for) + ".client";
 
 // Get the template file path given the fqn of the corresponding widget class 
 String gwtTemplateFilePath(String widgetClassFqn) :
@@ -311,7 +332,10 @@ DomainObject tableForClass(TableWidget table) :
 
 // Fully qualified name of the DTO class that a table is for
 String fqnTableForClass(TableWidget table) :
-	fqnGwtDto(tableForClass(table));
+	let res = fqnGwtDto(table.for) : 
+	debugTrace("fqnTableForClass() : table.for = " + table.for) ->
+	debugTrace("fqnTableForClass() : res = " + res) ->
+	res; // tableForClass(table)
 
 Boolean widgetHasNameProp(ViewDataProperty prop) :
 	if (prop.isDateOrDateTime()) then
@@ -364,10 +388,10 @@ String getDtoPropertyPath(BasicTypeEnumViewProperty property, String objName) :
 
 
 String fqnAddCommand(UserTask task) :
-	gwtDomainPackage(task.for.module) + "." + "Add" + task.for.name.toFirstUpper();
+	gwtDomainPackage(task.for) + "." + "Add" + task.for.name.toFirstUpper();
 	 
 String fqnDeleteCommand(UserTask task) :
-	gwtDomainPackage(task.for.module) + "." + "Delete" + task.for.name.toFirstUpper();
+	gwtDomainPackage(task.for) + "." + "Delete" + task.for.name.toFirstUpper();
 	 
 	 
 //
@@ -554,7 +578,7 @@ Set[Service] getUsedServices(View view) :
 
 // Package for all activity-related classes
 gwtActivitiesPackage(View view) :
-	gwtBasePackage(view.module.for) + ".client.activity";
+	gwtBasePackage(view.module) + ".client.activity";
 
 
 // GWT activity base class relative name
@@ -588,7 +612,7 @@ String fqnActivityImplClass(View view) :
 
 // Package for all place-related classes
 gwtPlacesPackage(View view) :
-	gwtBasePackage(view.module.for) + ".client.place";
+	gwtBasePackage(view.module) + ".client.place";
 
 
 // GWT place base class relative name
@@ -625,7 +649,7 @@ Collection[ViewParameter] requiredParameters(View view) :
     
 // Package for all event-related widget classes
 gwtEventsPackage(GuiEvent event) :
-	gwtBasePackage(event.guiModule.for) + ".client.event";
+	gwtBasePackage(event.guiModule) + ".client.event";
 	
 // GWT event base class relative name
 String gwtEventBaseClass(GuiEvent event) :

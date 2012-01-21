@@ -65,8 +65,8 @@ String getFieldUniqueCssId(ViewDataProperty property) :
     property.userTask.name + property.name.toFirstUpper() + "Field";
 
 
-String gwtBasePackage(Module module) :
-   module.getBasePackage() + ".gwt";
+String gwtBasePackage(StubModule module) :
+   module.guiModule.getGwtPackage();
    
 
 
@@ -141,7 +141,7 @@ gwtServiceAsyncInterfaceName(Service svc) :
 	"Gwt" + svc.name + "Async";
 	
 gwtServiceAsyncInterfacePackage(ServiceProxy svc) :
-	gwtBasePackage(svc.for.module) + ".client";
+	gwtBasePackage(svc.module) + ".client";
 	
 gwtServiceAsyncInterface(ServiceProxy svc) :
 	gwtServiceAsyncInterfacePackage(svc) + "." + gwtServiceAsyncInterfaceName(svc);
@@ -156,7 +156,7 @@ gwtServiceSyncInterfaceName(ServiceProxy svc) :
 	"Gwt" + svc.name;
 	
 gwtServiceSyncInterfacePackage(ServiceProxy svc) :
-	gwtBasePackage(svc.for.module) + ".client";
+	gwtBasePackage(svc.module) + ".client";
 
 	
 gwtServiceSyncInterface(ServiceProxy svc) :
@@ -168,7 +168,7 @@ gwtServiceImplName(ServiceProxy svc) :
 	"Gwt" + svc.name + "Impl";
 	
 gwtServiceImplPackage(ServiceProxy svc) :
-	gwtBasePackage(svc.for.module) + ".server";
+	gwtBasePackage(svc.module) + ".server";
 	
 gwtServiceImpl(ServiceProxy svc) :
 	gwtServiceImplPackage(svc) + "." + gwtServiceImplName(svc);
@@ -504,3 +504,27 @@ String gwtEventClass(GuiEvent event) :
 Set[GuiCommand] commandsToGenerate(GuiModule module) :
 	module.commands.reject(c | c.getHint("gwt") == "skip");
 	
+
+////////////////////////////////////////////////////////////////////////////
+// GuiModule-related functions
+////////////////////////////////////////////////////////////////////////////
+GuiModule findModuleFor(GuiApplication guiApp, Module module):
+	guiApp.modules.selectFirst(m|m.for == module);
+
+ServiceProxy findServiceProxy(GuiModule module, String name) :
+	module.stubModule.services.selectFirst(e|e.name == name);
+	
+////////////////////////////////////////////////////////////////////////////
+// GuiDto-related functions
+////////////////////////////////////////////////////////////////////////////
+GuiDto findGuiDtoFor(GuiApplication guiApp, DomainObject domainObj):
+	guiApp.findModuleFor(domainObj.module).stubModule.domainObjects.selectFirst(d|d.name == domainObj.name);
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+// ServicePRoxy-related functions
+////////////////////////////////////////////////////////////////////////////
+
+

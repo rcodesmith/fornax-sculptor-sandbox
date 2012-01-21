@@ -1,7 +1,5 @@
 package org.fornax.cartridges.sculptor.generator.templates;
 
-import static org.fornax.cartridges.sculptor.generator.templates.LibraryGwtTemplateBaseTest.guiApp;
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -13,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import sculptorguimetamodel.GuiApplication;
+import sculptorguimetamodel.GuiDto;
 import sculptormetamodel.DomainObject;
 
 public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
@@ -23,11 +22,13 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 		System.setProperty("datetime.library", "joda");
         System.setProperty("gui.createDefaults", "false");
         System.setProperty("package.gwt", "gwt");
+        System.setProperty("ui.custom.guidto", "True");
         System.setProperty("gwt.dto.generate.gap", "true");
         System.setProperty("gwt.enum.common.interfaces", "some.EnumInterface");
-        
+
         System.setProperty("framework.domain.AbstractDomainObject", "org.fornax.cartridges.sculptor.framework.gwt.shared.domain.AbstractSimpleDomainObject");
         System.setProperty("generate.jpa.annotation", "false");
+        
         initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
         guiApp = (GuiApplication) ctx.get("guiModel");
         
@@ -42,6 +43,7 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 		System.getProperties().remove("datetime.library");
 		System.getProperties().remove("gui.createDefaults");
 		System.getProperties().remove("package.gwt");
+		System.getProperties().remove("ui.custom.guidto");
 		System.getProperties().remove("gwt.enum.common.interfaces");
 
     }
@@ -52,13 +54,16 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 	@Test
 	public void assertMediaDtoSubclass() throws IOException {
 		DomainObject mediaObj = (DomainObject) getNamedElement("Media",
-				mediaModule().getFor().getDomainObjects());
+				mediaModule().getStubModule().getDomainObjects());
 		Assert.assertNotNull(mediaObj);
+		Assert.assertTrue(mediaObj instanceof GuiDto);
+		Assert.assertNotNull(((GuiDto)mediaObj).getGuiModule());
+		
 		XpandUnit.xpand(
 				"templates::gwt::GwtDto::domainObjectSubclassForUnitTest",
 				mediaObj, new HashMap<String, Object>(), getXpandTempDir());
 
-		String dtoCode = getFileText("org/fornax/cartridges/sculptor/examples/library/media/gwt/shared/domain/Media.java");
+		String dtoCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/Media.java");
 		assertContains(dtoCode,
 		"public abstract class Media extends MediaBase {");
 		
@@ -81,12 +86,13 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 	@Test
 	public void assertDtoMediaBaseClass() throws IOException {
 		DomainObject mediaObj = (DomainObject) getNamedElement("Media",
-				mediaModule().getFor().getDomainObjects());
+				mediaModule().getStubModule().getDomainObjects());
 		Assert.assertNotNull(mediaObj);
+		Assert.assertTrue(mediaObj instanceof GuiDto);
 		XpandUnit.xpand("templates::gwt::GwtDto::domainObjectBase", mediaObj,
 				new HashMap<String, Object>(), getXpandTempDir());
 
-		String dtoBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/media/gwt/shared/domain/MediaBase.java");
+		String dtoBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/MediaBase.java");
 
 		Assert.assertFalse(dtoBaseCode.contains("@javax.persistence"));
 		Assert.assertFalse(dtoBaseCode.contains("@org.hibernate"));
@@ -106,17 +112,17 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 	@Test
 	public void assertDtoBookBaseClass() throws IOException {
 		DomainObject bookObj = (DomainObject) getNamedElement("Book",
-				mediaModule().getFor().getDomainObjects());
+				mediaModule().getStubModule().getDomainObjects());
 		Assert.assertNotNull(bookObj);
 		XpandUnit.xpand("templates::gwt::GwtDto::domainObjectBase", bookObj,
 				new HashMap<String, Object>(), getXpandTempDir());
 
-		String dtoBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/media/gwt/shared/domain/Book.java");
+		String dtoBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/Book.java");
 
 		Assert.assertFalse(dtoBaseCode.contains("@javax.persistence"));
 		Assert.assertFalse(dtoBaseCode.contains("@org.hibernate"));
 		
-		assertContains(dtoBaseCode, "public  class Book extends org.fornax.cartridges.sculptor.examples.library.media.gwt.shared.domain.Media implements java.io.Serializable");
+		assertContains(dtoBaseCode, "public  class Book extends org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt.shared.domain.Media implements java.io.Serializable");
 
 
 	}
@@ -125,12 +131,12 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 	public void assertGenreEnum() throws IOException {
 		
 		sculptormetamodel.Enum enumObj = (sculptormetamodel.Enum) getNamedElement("Genre",
-				mediaModule().getFor().getDomainObjects());
+				mediaModule().getStubModule().getDomainObjects());
 		Assert.assertNotNull(enumObj);
 		
 		XpandUnit.xpand("templates::gwt::GwtDto::gwtEnumDto", enumObj,
 				new HashMap<String, Object>(), getXpandTempDir());
-		String enumCode = getFileText("org/fornax/cartridges/sculptor/examples/library/media/gwt/shared/domain/Genre.java");
+		String enumCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/Genre.java");
 
 		assertContainsConsecutiveFragments(enumCode, "public enum Genre", 
 			"implements java.io.Serializable",

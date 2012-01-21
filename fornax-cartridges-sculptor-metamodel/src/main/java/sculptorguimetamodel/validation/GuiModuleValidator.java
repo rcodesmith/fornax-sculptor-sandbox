@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 
 import sculptorguimetamodel.GuiApplication;
 
+import sculptorguimetamodel.StubModule;
 import sculptormetamodel.Module;
 
 /**
@@ -39,5 +40,9 @@ public interface GuiModuleValidator {
 
 	boolean validateConditions(EList value);
 
+	boolean validateStubModule(StubModule value);
+
 	boolean validateDtos(EList value);
+
+	boolean validateStubModule(Module value);
 }

@@ -485,6 +485,24 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	GuiDto createGuiDto();
 
 																/**
+	 * Returns a new object of class '<em>Gui Enum</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gui Enum</em>'.
+	 * @generated
+	 */
+	GuiEnum createGuiEnum();
+
+																/**
+	 * Returns a new object of class '<em>Stub Module</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Stub Module</em>'.
+	 * @generated
+	 */
+	StubModule createStubModule();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

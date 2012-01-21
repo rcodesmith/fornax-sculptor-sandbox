@@ -26,11 +26,10 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getViews <em>Views</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
- *   <li>{@link sculptorguimetamodel.GuiModule#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getConditions <em>Conditions</em>}</li>
- *   <li>{@link sculptorguimetamodel.GuiModule#getDtos <em>Dtos</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getStubModule <em>Stub Module</em>}</li>
  * </ul>
  * </p>
  *
@@ -190,22 +189,6 @@ public interface GuiModule extends NamedElement {
 	EList getServiceDependencies();
 
 				/**
-	 * Returns the value of the '<em><b>Service Proxies</b></em>' containment reference list.
-	 * The list contents are of type {@link sculptorguimetamodel.ServiceProxy}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Service Proxies</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Service Proxies</em>' containment reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_ServiceProxies()
-	 * @model type="sculptorguimetamodel.ServiceProxy" containment="true"
-	 * @generated
-	 */
-	EList getServiceProxies();
-
-				/**
 	 * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
 	 * The list contents are of type {@link sculptorguimetamodel.GuiCommand}.
 	 * <!-- begin-user-doc -->
@@ -254,21 +237,29 @@ public interface GuiModule extends NamedElement {
 	EList getConditions();
 
 				/**
-	 * Returns the value of the '<em><b>Dtos</b></em>' containment reference list.
-	 * The list contents are of type {@link sculptorguimetamodel.GuiDto}.
-	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}'.
+	 * Returns the value of the '<em><b>Stub Module</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dtos</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Stub Module</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dtos</em>' containment reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Dtos()
-	 * @see sculptorguimetamodel.GuiDto#getGuiModule
-	 * @model type="sculptorguimetamodel.GuiDto" opposite="guiModule" containment="true"
+	 * @return the value of the '<em>Stub Module</em>' reference.
+	 * @see #setStubModule(StubModule)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_StubModule()
+	 * @model
 	 * @generated
 	 */
-	EList getDtos();
+	StubModule getStubModule();
+
+				/**
+	 * Sets the value of the '{@link sculptorguimetamodel.GuiModule#getStubModule <em>Stub Module</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stub Module</em>' reference.
+	 * @see #getStubModule()
+	 * @generated
+	 */
+	void setStubModule(StubModule value);
 
 } // GuiModule

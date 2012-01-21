@@ -23,6 +23,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		System.setProperty("datetime.library", "joda");
 		System.setProperty("gui.createDefaults", "false");
 		System.setProperty("package.gwt", "gwt");
+        System.setProperty("ui.custom.guidto", "True");
 
 		initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
 		guiApp = (GuiApplication) ctx.get("guiModel");
@@ -34,6 +35,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		System.getProperties().remove("datetime.library");
 		System.getProperties().remove("gui.createDefaults");
 		System.getProperties().remove("package.gwt");
+		System.getProperties().remove("ui.custom.guidto");
 
 	}
 

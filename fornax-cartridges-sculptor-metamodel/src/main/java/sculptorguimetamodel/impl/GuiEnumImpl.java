@@ -7,37 +7,39 @@
 package sculptorguimetamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import sculptorguimetamodel.GuiDto;
+import sculptorguimetamodel.GuiEnum;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 
 import sculptormetamodel.DomainObject;
 
-import sculptormetamodel.impl.DomainObjectImpl;
+import sculptormetamodel.impl.EnumImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Gui Dto</b></em>'.
+ * An implementation of the model object '<em><b>Gui Enum</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sculptorguimetamodel.impl.GuiDtoImpl#getFor <em>For</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.GuiDtoImpl#getGuiModule <em>Gui Module</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiEnumImpl#getFor <em>For</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiEnumImpl#getGuiModule <em>Gui Module</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
+public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 	/**
 	 * The cached value of the '{@link #getFor() <em>For</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -63,7 +65,7 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GuiDtoImpl() {
+	protected GuiEnumImpl() {
 		super();
 	}
 
@@ -73,7 +75,7 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SculptorguimetamodelPackage.Literals.GUI_DTO;
+		return SculptorguimetamodelPackage.Literals.GUI_ENUM;
 	}
 
 	/**
@@ -87,7 +89,7 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 			for_ = (DomainObject)eResolveProxy(oldFor);
 			if (for_ != oldFor) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.GUI_DTO__FOR, oldFor, for_));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.GUI_ENUM__FOR, oldFor, for_));
 			}
 		}
 		return for_;
@@ -111,7 +113,7 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 		DomainObject oldFor = for_;
 		for_ = newFor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_DTO__FOR, oldFor, for_));
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_ENUM__FOR, oldFor, for_));
 	}
 
 	/**
@@ -125,7 +127,7 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 			guiModule = (GuiModule)eResolveProxy(oldGuiModule);
 			if (guiModule != oldGuiModule) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE, oldGuiModule, guiModule));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE, oldGuiModule, guiModule));
 			}
 		}
 		return guiModule;
@@ -149,7 +151,7 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 		GuiModule oldGuiModule = guiModule;
 		guiModule = newGuiModule;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE, oldGuiModule, guiModule));
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE, oldGuiModule, guiModule));
 	}
 
 	/**
@@ -159,10 +161,10 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_DTO__FOR:
+			case SculptorguimetamodelPackage.GUI_ENUM__FOR:
 				if (resolve) return getFor();
 				return basicGetFor();
-			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
+			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				if (resolve) return getGuiModule();
 				return basicGetGuiModule();
 		}
@@ -176,10 +178,10 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_DTO__FOR:
+			case SculptorguimetamodelPackage.GUI_ENUM__FOR:
 				setFor((DomainObject)newValue);
 				return;
-			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
+			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				setGuiModule((GuiModule)newValue);
 				return;
 		}
@@ -193,10 +195,10 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_DTO__FOR:
+			case SculptorguimetamodelPackage.GUI_ENUM__FOR:
 				setFor((DomainObject)null);
 				return;
-			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
+			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				setGuiModule((GuiModule)null);
 				return;
 		}
@@ -210,12 +212,44 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.GUI_DTO__FOR:
+			case SculptorguimetamodelPackage.GUI_ENUM__FOR:
 				return for_ != null;
-			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
+			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				return guiModule != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //GuiDtoImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == GuiDto.class) {
+			switch (derivedFeatureID) {
+				case SculptorguimetamodelPackage.GUI_ENUM__FOR: return SculptorguimetamodelPackage.GUI_DTO__FOR;
+				case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE: return SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == GuiDto.class) {
+			switch (baseFeatureID) {
+				case SculptorguimetamodelPackage.GUI_DTO__FOR: return SculptorguimetamodelPackage.GUI_ENUM__FOR;
+				case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE: return SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+} //GuiEnumImpl

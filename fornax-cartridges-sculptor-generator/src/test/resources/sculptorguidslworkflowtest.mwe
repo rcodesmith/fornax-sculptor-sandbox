@@ -24,9 +24,19 @@
     
     <!-- Model transformation from DSL meta model to meta model -->
     <component id="guidslTransformation" class="org.eclipse.xtend.XtendComponent">
-    	<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"
+    	<metaModel id="metamodel" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"
         	useSingleGlobalResourceSet="true"/>
  	    <invoke value="transformation::GuiDslTransformation::transform(guiDslModel)"/>
         <outputSlot value="guiModel"/>
 	</component>
+	
+    <!-- Model transformation -->
+    <component id="guimodelTransformation" class="org.eclipse.xtend.XtendComponent">
+		<metaModel id="metamodel" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"
+        	useSingleGlobalResourceSet="true"/>
+ 	    <invoke value="transformation::GuiDslTransformation::modify(guiModel)"/>
+ 	    <outputSlot value="guiModel"/>
+	</component>
+    <!--
+-->
 </workflow>

@@ -55,8 +55,49 @@ create sculptorguimetamodel::GuiApplication this transform(DslGuiApplication gui
 	modules.userTasks.prepareTransformSubtaskTransitions() ->
 	modules.userTasks.transformSubtaskTransitions() -> 
 	modules.userTasks.transformRelatedTransitions() ->
-	modules.modify();
+	modules.modifyDsl();
 
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiModule-level transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+modify(GuiApplication guiApp) :
+	debugTrace("modify(GuiApplication) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") ->
+//	guiApp.modules.dtos.modify() ->
+//	guiApp.modules.dtos.assignStubModule() ->
+	guiApp;
+	
+// For any post-DSL transformations that need to occur
+modify(GuiModule guiModule) :
+//	guiModule.commands.modifyExtends();
+	guiModule.stubModule.domainObjects.modify(guiModule);
+
+
+create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslModule, DslGuiModule dslGuiModule) :
+	setStubFor(dslModule.transform()) ->
+	setGuiModule(dslGuiModule.transformModule()) ->
+    setApplication(getGlobalApplication()) ->  // TODO: Remove - don't think it does anything
+    debugTrace("!!! stub = " + this) ->
+	debugTrace("!@! app = " + application) ->
+    setBasePackage(dslGuiModule.basePackage) ->
+    setDoc(dslModule.doc) ->
+    setName(dslModule.name) ->
+    setHint(dslModule.hint) ->
+    domainObjects.addAll(dslModule.domainObjects.reject(e|DslEvent.isInstance(e)).transformToGui()) ->
+	services.addAll(dslGuiModule.serviceDependencies.transformServiceProxy());
+	// TODO: For some reason, the following is causing problems.  For now, require all services to be declared at module level
+//	services.addAll(dslGuiModule.views.serviceDependencies.transformServiceProxy().reject(s|services.exists(e|e.name == s.name)));
+
+
+
+
+
+// NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
+// Solution is to include those modules in the GUI model.  Consider adding a validation for this..
+private modify(GuiDto dto) :
+//	dto.setModule(dto.guiModule.stubModule) ->
+	debugTrace("Modified DTO " + dto.name + " curr module = " + dto.module + ", stub module = " + dto.guiModule.stubModule);
 
 
 
@@ -79,16 +120,17 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	userTasks.addAll(module.userTasks.transformTask(module.for.transform())) ->
 	
 	// Added by ron for GWT:
-	hasProperty("ui.custom.guidto") ? dtos.addAll(module.for.domainObjects.typeSelect(DslEntity).transformToGui()) : null ->
-	// TODO: Put back
-	serviceProxies.addAll(module.serviceDependencies.transformServiceProxy(module.for.transform())) ->
+//	hasProperty("ui.custom.guidto") ? dtos.addAll(module.for.domainObjects.reject(e|DslEvent.isInstance(e)).transformToGui()) : null ->
+//	serviceProxies.addAll(module.serviceDependencies.transformServiceProxy()) ->
 	events.addAll(module.events.transformEvent(module.for.transform())) ->
 	commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
-	views.addAll(module.views.transformView(module.for.transform())) ->
 	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
+	hasProperty("ui.custom.guidto") ? setStubModule(module.for.transformStubModule(module)) : null ->
+//	setStubModule(module.for.transformStubModule(module)) ->
+	hasProperty("ui.custom.guidto") ? views.addAll(module.views.transformView(module.for.transform())) : null ->
 	debugTrace("Done with module " + module.for.name);
-	
-	
+
+
 create sculptorguimetamodel::UserTask this transformTask(DslUserTask task, Module module) :
 	error("Unexpected call to transform(DslUserTask): " + task);
 	

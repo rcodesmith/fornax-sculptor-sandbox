@@ -36,6 +36,7 @@ public abstract class GuiDslTransformationBaseTest extends TransformationTestBas
 		System.getProperties().remove("datetime.library");
 		System.getProperties().remove("gui.createDefaults");
 		System.getProperties().remove("package.gwt");
+		System.getProperties().remove("ui.custom.guidto");
 	
 	}
 

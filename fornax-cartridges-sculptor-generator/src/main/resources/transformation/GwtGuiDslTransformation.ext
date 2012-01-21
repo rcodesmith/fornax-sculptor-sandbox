@@ -20,6 +20,7 @@ import sculptordsl;
 import sculptormetamodel;
 import sculptorguimetamodel;
 
+
 extension org::fornax::cartridges::sculptor::dsl::ModelLoadExtensions;
  
 extension transformation::DslTransformation;
@@ -31,50 +32,107 @@ extension extensions::helper;
 extension extensions::guihelper;
 extension extensions::properties;
 
+extension extensions::gwt::sofeauihelpers;
 
 //////////////////////////////////////////////////////////////////////////////////
 // GuiModule-level transformations
 //////////////////////////////////////////////////////////////////////////////////
 
 // For any post-DSL transformations that need to occur
-modify(GuiModule guiModule) :
+modifyDsl(GuiModule guiModule) :
 	guiModule.commands.modifyExtends() ->
-	guiModule.dtos.modify(guiModule);
+	guiModule.stubModule.domainObjects.modifyDsl(guiModule) ->
+	guiModule.stubModule.services.modifyDslServiceProxy(guiModule);
 
+// NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
+// Solution is to include those modules in the GUI model.  Consider adding a validation for this..
+private modifyDsl(GuiDto dto, GuiModule guiModule) :
+	dto.setGuiModule(guiModule);
+//	dto.setModule(guiModule.stubModule);
 
+private modifyDslServiceProxy(ServiceProxy serviceProxy, GuiModule guiModule) :
+	serviceProxy.setGuiModule(guiModule) ->
+	serviceProxy.operations.modifyServiceProxyOperation(guiModule.application);
+
+private modifyServiceProxyOperation(ServiceProxyOperation operation, GuiApplication guiApp) :
+	debugTrace("modifyServiceProxyOperation(" + operation + "), domainObjectType = " + operation.domainObjectType) ->
+	operation.parameters.modifyGuiParameter(guiApp) ->
+	if (operation.domainObjectType != null && GuiDto.isInstance(operation.domainObjectType) == false) then
+		 operation.setDomainObjectType(guiApp.findGuiDtoFor(operation.domainObjectType));
+	
+private modifyGuiParameter(Parameter param, GuiApplication guiApp) :
+	if (param.domainObjectType != null && GuiDto.isInstance(param.domainObjectType) == false) then
+		param.setDomainObjectType(guiApp.findGuiDtoFor(param.domainObjectType));
+		
+		
 //////////////////////////////////////////////////////////////////////////////////
 // GuiDto-related transformations
 //////////////////////////////////////////////////////////////////////////////////
 
-// NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
-// Solution is to include those modules in the GUI model.  Consider adding a validation for this..
-modify(GuiDto dto, GuiModule guiModule) :
-	dto.setGuiModule(guiModule);
 
+create sculptorguimetamodel::GuiDto this transformToGui(DslDomainObject do) :
+	error("Unexpected call to transformToGui(DslDomainObject) for: " + do);
+	
 create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
-	initGuiDto(entity, this);
+	initGuiDtoFromDomainObject(entity, this);
+
+create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
+	initGuiDto(domainObject, this) ->
+//    setDoc(domainObject.doc) ->
+//    setName(domainObject.name) ->
+//    setPackage(domainObject.package) ->
+//    setHint(domainObject.hint) ->
+    setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
+    attributes.addAll(domainObject.attributes.transformToGui()) ->
+    references.addAll(domainObject.references.transformToGui()) ->
+    operations.addAll(domainObject.operations.transformToGui()) ->
+    traits.addAll(domainObject.traits.transformToGui());
+
+create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
+	initGuiDtoFromDomainObject(domainObject, this);
 
 // Don't need to set guiModule, as it is set by modify() method
-private initGuiDto(DslDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
-    guiDto.setDoc(domainObject.doc) ->
-    guiDto.setName(domainObject.name) ->
-    guiDto.setPackage(domainObject.package) ->
+private initGuiDtoFromDomainObject(DslDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
+	initGuiDto(domainObject, guiDto) ->
     guiDto.setAbstract(domainObject.abstract) ->
     guiDto.setOptimisticLocking(!domainObject.notOptimisticLocking) ->
-//    guiDto.setImmutable(!domainObject.notImmutable) ->
     guiDto.setCache(domainObject.cache) ->
 //    setBelongsToAggregate(domainObject.belongsTo == null ? null : domainObject.belongsTo.transform()) ->
 //    guiDto.setPersistent(!domainObject.notPersistent) ->
     guiDto.setValidate(domainObject.validate) ->
-    guiDto.setHint(domainObject.hint) ->
     guiDto.setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
     guiDto.attributes.addAll(domainObject.attributes.transformToGui()) ->
     guiDto.references.addAll(domainObject.references.transformToGui()) ->
     guiDto.operations.addAll(domainObject.operations.transformToGui()) ->
-//    domainObject.transformExtends(this) ->
+    domainObject.transformExtends(guiDto);
 //    traits.addAll(domainObject.traits.transform()) ->
+
+// Don't need to set guiModule, as it is set by modify() method
+private initGuiDto(DslSimpleDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
+	guiDto.setFor(domainObject.transform()) ->
+    guiDto.setDoc(domainObject.doc) ->
+    guiDto.setName(domainObject.name) ->
+    guiDto.setPackage(domainObject.package) ->
+    guiDto.setHint(domainObject.hint) ->
+//    guiDto.setModule(null) ->
+//    guiDto.setImmutable(!domainObject.notImmutable) ->
 	debugTrace("Done with domain object " + domainObject.name);
 
+private transformExtends(DslEntity dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);
+
+private transformExtends(DslValueObject dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);
+
+
+private transformExtendsImpl(DslDomainObject dslDomainObject, DslDomainObject dslExtendsDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    (dslExtendsDomainObject != null ?
+      domainObject.setExtends(dslExtendsDomainObject.transformToGui()) :
+      null) ->
+    (dslDomainObject.extendsName != null ?
+        domainObject.setExtendsName(dslDomainObject.extendsName) :
+        null);
+        
 create sculptormetamodel::Attribute this transformToGui(DslAttribute attribute) :
     setDoc(attribute.doc) ->
     setName(attribute.name) ->
@@ -143,7 +201,7 @@ create sculptormetamodel::Parameter this transformToGui(DslParameter parameter) 
     	null : 
     	parameter.parameterType.domainObjectType.transformToGui());
 
-create sculptormetamodel::Enum this transformToGui(DslEnum domainObject) :
+create sculptorguimetamodel::GuiEnum this transformToGui(DslEnum domainObject) :
     setDoc(domainObject.doc) ->
     setName(domainObject.name) ->
     setPackage(domainObject.package) ->
@@ -168,20 +226,6 @@ create sculptormetamodel::Attribute this transformToGui(DslEnumAttribute attribu
     setType(attribute.type) ->
     setNaturalKey(attribute.key);
 
-create sculptormetamodel::BasicType this transformToGui(DslBasicType domainObject) :
-    setDoc(domainObject.doc) ->
-    setName(domainObject.name) ->
-    setPackage(domainObject.package) ->
-    setHint(domainObject.hint) ->
-    setImmutable(!domainObject.notImmutable) ->
-    setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
-    attributes.addAll(domainObject.attributes.transformToGui()) ->
-    references.addAll(domainObject.references.transformToGui()) ->
-    operations.addAll(domainObject.operations.transformToGui()) ->
-    traits.addAll(domainObject.traits.transformToGui());
-
-create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
-	initGuiDto(domainObject, this);
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -212,6 +256,10 @@ private DomainObject findCommandByName(GuiApplication app, String domainObjectNa
 // Service proxy-related transformations
 //////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+
 // TODO: Try to make these service proxy transformations not use Module, but work on DSL types only
 
 // TODO: For next two methods, is there something I can use that immediately returns first?
@@ -234,14 +282,21 @@ create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServi
 	debugTrace("transformServiceProxy: domain service module = " + this.for.module);
 */
 
-
-create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
-	let domainService = getMetamodelService(dslServiceDep, module) :
-		setFor(domainService) ->
-		setName(domainService.name) ->
-		setDoc(domainService.doc) ->
-		setModule(module) ->
-		operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep) :
+	setFor(dslServiceDep.dependency.transform()) ->
+	setName(dslServiceDep.dependency.name) ->
+	setDoc(dslServiceDep.dependency.doc) ->
+//  Don't set module here - it'll automatically get set when added to container
+	operations.addAll(dslServiceDep.dependency.operations.transformToGui()) ->
+	debugTrace("Done with ServiceProxy " + name);
+	
+//create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+//	let domainService = getMetamodelService(dslServiceDep, module) :
+//		setFor(domainService) ->
+//		setName(domainService.name) ->
+//		setDoc(domainService.doc) ->
+//		setModule(module) ->
+//		operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformToGui(this));
 
 //create sculptorguimetamodel::ServiceProxy this transformServiceProxy(Service domainService, Module module) :
 //	debugTrace("transformServiceProxy: service = " + domainService) ->
@@ -255,25 +310,48 @@ create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServi
 
 
 
-create sculptorguimetamodel::ServiceProxyOperation this transformServiceProxyOperation(ServiceOperation domainOperation,
-	Service service) :
-//	setService(((DslService) operation.eContainer).transform()) ->
-	debugTrace("transformServiceProxyOperation: name=" + domainOperation.name ) ->
-	setService(service) ->
-	debugTrace("transformServiceProxyOperation: service=" + this.service) ->
-	debugTrace("transformServiceProxyOperation: service.module=" + this.service.module) ->
-	setFor(domainOperation) ->
-    setDoc(domainOperation.doc) ->
-    setName(domainOperation.name) ->
-    setVisibility(domainOperation.visibility) ->
-    parameters.addAll(domainOperation.parameters.reject(p | p.type == "org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContext").transformGwtServiceOperationParam()) ->
-    setCollectionType(domainOperation.collectionType) ->
-    setMapKeyType(domainOperation.mapKeyType) ->
-    setType(domainOperation.type) ->
-    setDomainObjectType(domainOperation.domainObjectType) ->
-    setThrows(domainOperation.throws) ->
-    setHint(domainOperation.hint) ->
-	debugTrace("transformServiceProxyOperation: this=" + this );
+create sculptorguimetamodel::ServiceProxyOperation this oldtransformToGui(DslServiceOperation operation) :
+	debugTrace("transformToGui(DslServiceOperation)") ->
+	setService(((DslService) operation.eContainer).transform()) ->
+	setFor(operation.transform()) ->
+    setDoc(operation.doc) ->
+    setName(operation.name) ->
+    setVisibility(convertVisibility(operation.visibility)) ->
+    parameters.addAll(operation.parameters.transformToGui()) ->
+    setCollectionType(convertCollectionType(operation.returnType)) ->
+    setMapKeyType(operation.returnType == null ? null : operation.returnType.mapKeyType) ->
+    setType(operation.returnType == null ? null : operation.returnType.type) ->
+    setDomainObjectType(operation.returnType == null || operation.returnType.domainObjectType == null ? 
+    	null : 
+    	operation.returnType.domainObjectType.transformToGui()) ->
+    setThrows(operation.throws) ->
+    setHint(operation.hint);
+//    (operation.publish != null ?
+//    	setPublish(operation.publish.transform()) :
+//    	null) ->
+//    ((operation.delegateHolder != null) && (operation.delegateHolder.delegate != null) && (operation.delegateHolder.delegate.metaType == DslRepository) ?
+//      setDelegate(((DslRepositoryOperation) operation.delegateHolder.delegateOperation).transform()) :
+//      null) ->
+//    ((operation.delegateHolder != null) && (operation.delegateHolder.delegate != null) && (operation.delegateHolder.delegate.metaType == DslService) ?
+//      setServiceDelegate(((DslServiceOperation) operation.delegateHolder.delegateOperation).transform()) :
+//      null);
+
+// Transform using metamodel type (ServiceOperation) because that contains additional proxied methods that don't exist in the DSL type (e.g. find methods proxied to repository class)
+create sculptorguimetamodel::ServiceProxyOperation this transformToGui(DslServiceOperation domainOperation) :
+	let operation = domainOperation.transform() :
+		setService(((DslService) domainOperation.eContainer).transform()) ->
+		setService(service) ->
+		setFor(operation) ->
+		setDoc(operation.doc) ->
+		setName(operation.name) ->
+		setVisibility(operation.visibility) ->
+		parameters.addAll(operation.parameters.reject(p | p.type == "org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContext").transformGwtServiceOperationParam()) ->
+		setCollectionType(operation.collectionType) ->
+		setMapKeyType(operation.mapKeyType) ->
+		setType(operation.type) ->
+		setDomainObjectType(operation.domainObjectType) ->
+		setThrows(operation.throws) ->
+		setHint(operation.hint);
 
 
 Parameter transformGwtServiceOperationParam(Parameter param) :
@@ -298,15 +376,16 @@ private DomainObject getForDomainObject(DslDomainObject forDO) :
 
 // TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
 create sculptorguimetamodel::View this transformView(DslView view, Module module) :
-	let domainObject = getForDomainObject(view.for) :
+	let guiModule =  ((DslGuiModule) view.eContainer).transformModule() :
 	setDoc(view.doc) ->
 	setName(view.name) ->
-	setFor(domainObject) ->
+	setFor(getForDomainObject(view.for)) ->
 	parameters.addAll(view.parameters.transform()) ->
 	widgets.addAll(view.widgets.transformWidget(module)) ->
-	setModule(((DslGuiModule) view.eContainer).transformModule()) ->
-	serviceProxies.addAll(view.serviceDependencies.transformServiceProxy(module));
-	
+	setModule(guiModule) ->
+	debugTrace("module: " + guiModule) ->
+	serviceProxies.addAll(view.serviceDependencies.collect(s|guiModule.findServiceProxy(s.dependency.name)));
+	// view.serviceDependencies.transformServiceProxy(module)
 
 create sculptorguimetamodel::ViewParameter this transform(DslViewParameter dslParam) :
 	setDoc(dslParam.doc) ->

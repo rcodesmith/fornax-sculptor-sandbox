@@ -23,16 +23,13 @@
         eType="#//GuiEvent" containment="true" eOpposite="#//GuiEvent/guiModule"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serviceDependencies" upperBound="-1"
         eType="ecore:EClass sculptormetamodel.ecore#//Service"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceProxies" upperBound="-1"
-        eType="#//ServiceProxy" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//GuiCommand" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
         eType="#//UiBehavior" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
         eType="#//UiCondition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dtos" upperBound="-1" eType="#//GuiDto"
-        containment="true" eOpposite="#//GuiDto/guiModule"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stubModule" eType="#//StubModule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -176,6 +173,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NumberSpinnerWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceProxy" eSuperTypes="sculptormetamodel.ecore#//Service">
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" lowerBound="1" eType="ecore:EClass sculptormetamodel.ecore#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" eType="#//GuiModule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceProxyOperation" eSuperTypes="sculptormetamodel.ecore#//ServiceOperation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" lowerBound="1" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
@@ -210,7 +208,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="UiCondition" eSuperTypes="sculptormetamodel.ecore#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="GuiDto" eSuperTypes="sculptormetamodel.ecore#//DomainObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" eType="#//GuiModule"
-        eOpposite="#//GuiModule/dtos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" eType="#//GuiModule"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiEnum" eSuperTypes="sculptormetamodel.ecore#//Enum #//GuiDto"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StubModule" eSuperTypes="sculptormetamodel.ecore#//Module">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stubFor" eType="ecore:EClass sculptormetamodel.ecore#//Module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" lowerBound="1"
+        eType="#//GuiModule"/>
   </eClassifiers>
 </ecore:EPackage>

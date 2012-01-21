@@ -235,22 +235,13 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Service Proxies</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__SERVICE_PROXIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
-
-	/**
 	 * The feature id for the '<em><b>Commands</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__COMMANDS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int GUI_MODULE__COMMANDS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
@@ -259,7 +250,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__BEHAVIORS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int GUI_MODULE__BEHAVIORS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -268,16 +259,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__CONDITIONS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int GUI_MODULE__CONDITIONS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Dtos</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Stub Module</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__DTOS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
+	int GUI_MODULE__STUB_MODULE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
@@ -286,7 +277,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 12;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -3953,13 +3944,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int SERVICE_PROXY__FOR = SculptormetamodelPackage.SERVICE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Gui Module</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PROXY__GUI_MODULE = SculptormetamodelPackage.SERVICE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Service Proxy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_PROXY_FEATURE_COUNT = SculptormetamodelPackage.SERVICE_FEATURE_COUNT + 1;
+	int SERVICE_PROXY_FEATURE_COUNT = SculptormetamodelPackage.SERVICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.ServiceProxyOperationImpl <em>Service Proxy Operation</em>}' class.
@@ -5113,7 +5113,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_DTO__FOR = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Gui Module</b></em>' container reference.
+	 * The feature id for the '<em><b>Gui Module</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5129,6 +5129,386 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiEnumImpl <em>Gui Enum</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GuiEnumImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiEnum()
+	 * @generated
+	 */
+	int GUI_ENUM = 51;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__NAME = SculptormetamodelPackage.ENUM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__DOC = SculptormetamodelPackage.ENUM__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__HINT = SculptormetamodelPackage.ENUM__HINT;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__REFERENCES = SculptormetamodelPackage.ENUM__REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Extends</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__EXTENDS = SculptormetamodelPackage.ENUM__EXTENDS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__ATTRIBUTES = SculptormetamodelPackage.ENUM__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__ABSTRACT = SculptormetamodelPackage.ENUM__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Repository</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__REPOSITORY = SculptormetamodelPackage.ENUM__REPOSITORY;
+
+	/**
+	 * The feature id for the '<em><b>Module</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__MODULE = SculptormetamodelPackage.ENUM__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Optimistic Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__OPTIMISTIC_LOCKING = SculptormetamodelPackage.ENUM__OPTIMISTIC_LOCKING;
+
+	/**
+	 * The feature id for the '<em><b>Cache</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__CACHE = SculptormetamodelPackage.ENUM__CACHE;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__PACKAGE = SculptormetamodelPackage.ENUM__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Database Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__DATABASE_TABLE = SculptormetamodelPackage.ENUM__DATABASE_TABLE;
+
+	/**
+	 * The feature id for the '<em><b>Extends Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__EXTENDS_NAME = SculptormetamodelPackage.ENUM__EXTENDS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__VALIDATE = SculptormetamodelPackage.ENUM__VALIDATE;
+
+	/**
+	 * The feature id for the '<em><b>Gap Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__GAP_CLASS = SculptormetamodelPackage.ENUM__GAP_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__INHERITANCE = SculptormetamodelPackage.ENUM__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Discriminator Column Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__DISCRIMINATOR_COLUMN_VALUE = SculptormetamodelPackage.ENUM__DISCRIMINATOR_COLUMN_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Aggregate Root</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__AGGREGATE_ROOT = SculptormetamodelPackage.ENUM__AGGREGATE_ROOT;
+
+	/**
+	 * The feature id for the '<em><b>Belongs To Aggregate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__BELONGS_TO_AGGREGATE = SculptormetamodelPackage.ENUM__BELONGS_TO_AGGREGATE;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__OPERATIONS = SculptormetamodelPackage.ENUM__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Traits</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__TRAITS = SculptormetamodelPackage.ENUM__TRAITS;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__VALUES = SculptormetamodelPackage.ENUM__VALUES;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__FOR = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Gui Module</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__GUI_MODULE = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Gui Enum</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM_FEATURE_COUNT = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.StubModuleImpl <em>Stub Module</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.StubModuleImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getStubModule()
+	 * @generated
+	 */
+	int STUB_MODULE = 52;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__NAME = SculptormetamodelPackage.MODULE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__DOC = SculptormetamodelPackage.MODULE__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__HINT = SculptormetamodelPackage.MODULE__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Base Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__BASE_PACKAGE = SculptormetamodelPackage.MODULE__BASE_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Application</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__APPLICATION = SculptormetamodelPackage.MODULE__APPLICATION;
+
+	/**
+	 * The feature id for the '<em><b>Domain Objects</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__DOMAIN_OBJECTS = SculptormetamodelPackage.MODULE__DOMAIN_OBJECTS;
+
+	/**
+	 * The feature id for the '<em><b>Consumers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__CONSUMERS = SculptormetamodelPackage.MODULE__CONSUMERS;
+
+	/**
+	 * The feature id for the '<em><b>Services</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__SERVICES = SculptormetamodelPackage.MODULE__SERVICES;
+
+	/**
+	 * The feature id for the '<em><b>External</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__EXTERNAL = SculptormetamodelPackage.MODULE__EXTERNAL;
+
+	/**
+	 * The feature id for the '<em><b>Persistence Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__PERSISTENCE_UNIT = SculptormetamodelPackage.MODULE__PERSISTENCE_UNIT;
+
+	/**
+	 * The feature id for the '<em><b>Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__RESOURCES = SculptormetamodelPackage.MODULE__RESOURCES;
+
+	/**
+	 * The feature id for the '<em><b>Stub For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__STUB_FOR = SculptormetamodelPackage.MODULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Gui Module</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE__GUI_MODULE = SculptormetamodelPackage.MODULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Stub Module</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUB_MODULE_FEATURE_COUNT = SculptormetamodelPackage.MODULE_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -5261,17 +5641,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getGuiModule_ServiceDependencies();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getServiceProxies <em>Service Proxies</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Service Proxies</em>'.
-	 * @see sculptorguimetamodel.GuiModule#getServiceProxies()
-	 * @see #getGuiModule()
-	 * @generated
-	 */
-	EReference getGuiModule_ServiceProxies();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5305,15 +5674,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getGuiModule_Conditions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getDtos <em>Dtos</em>}'.
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.GuiModule#getStubModule <em>Stub Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dtos</em>'.
-	 * @see sculptorguimetamodel.GuiModule#getDtos()
+	 * @return the meta object for the reference '<em>Stub Module</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getStubModule()
 	 * @see #getGuiModule()
 	 * @generated
 	 */
-	EReference getGuiModule_Dtos();
+	EReference getGuiModule_StubModule();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
@@ -6370,6 +6739,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getServiceProxy_For();
 
 	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.ServiceProxy#getGuiModule <em>Gui Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Gui Module</em>'.
+	 * @see sculptorguimetamodel.ServiceProxy#getGuiModule()
+	 * @see #getServiceProxy()
+	 * @generated
+	 */
+	EReference getServiceProxy_GuiModule();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.ServiceProxyOperation <em>Service Proxy Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6609,15 +6989,57 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getGuiDto_For();
 
 	/**
-	 * Returns the meta object for the container reference '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}'.
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Gui Module</em>'.
+	 * @return the meta object for the reference '<em>Gui Module</em>'.
 	 * @see sculptorguimetamodel.GuiDto#getGuiModule()
 	 * @see #getGuiDto()
 	 * @generated
 	 */
 	EReference getGuiDto_GuiModule();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiEnum <em>Gui Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gui Enum</em>'.
+	 * @see sculptorguimetamodel.GuiEnum
+	 * @generated
+	 */
+	EClass getGuiEnum();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.StubModule <em>Stub Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Stub Module</em>'.
+	 * @see sculptorguimetamodel.StubModule
+	 * @generated
+	 */
+	EClass getStubModule();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.StubModule#getStubFor <em>Stub For</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Stub For</em>'.
+	 * @see sculptorguimetamodel.StubModule#getStubFor()
+	 * @see #getStubModule()
+	 * @generated
+	 */
+	EReference getStubModule_StubFor();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.StubModule#getGuiModule <em>Gui Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Gui Module</em>'.
+	 * @see sculptorguimetamodel.StubModule#getGuiModule()
+	 * @see #getStubModule()
+	 * @generated
+	 */
+	EReference getStubModule_GuiModule();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -6742,14 +7164,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference GUI_MODULE__SERVICE_DEPENDENCIES = eINSTANCE.getGuiModule_ServiceDependencies();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Proxies</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GUI_MODULE__SERVICE_PROXIES = eINSTANCE.getGuiModule_ServiceProxies();
-
-		/**
 		 * The meta object literal for the '<em><b>Commands</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6774,12 +7188,12 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference GUI_MODULE__CONDITIONS = eINSTANCE.getGuiModule_Conditions();
 
 		/**
-		 * The meta object literal for the '<em><b>Dtos</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Stub Module</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GUI_MODULE__DTOS = eINSTANCE.getGuiModule_Dtos();
+		EReference GUI_MODULE__STUB_MODULE = eINSTANCE.getGuiModule_StubModule();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -7644,6 +8058,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference SERVICE_PROXY__FOR = eINSTANCE.getServiceProxy_For();
 
 		/**
+		 * The meta object literal for the '<em><b>Gui Module</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_PROXY__GUI_MODULE = eINSTANCE.getServiceProxy_GuiModule();
+
+		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ServiceProxyOperationImpl <em>Service Proxy Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7856,12 +8278,48 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference GUI_DTO__FOR = eINSTANCE.getGuiDto_For();
 
 		/**
-		 * The meta object literal for the '<em><b>Gui Module</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Gui Module</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference GUI_DTO__GUI_MODULE = eINSTANCE.getGuiDto_GuiModule();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiEnumImpl <em>Gui Enum</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GuiEnumImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiEnum()
+		 * @generated
+		 */
+		EClass GUI_ENUM = eINSTANCE.getGuiEnum();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.StubModuleImpl <em>Stub Module</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.StubModuleImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getStubModule()
+		 * @generated
+		 */
+		EClass STUB_MODULE = eINSTANCE.getStubModule();
+
+		/**
+		 * The meta object literal for the '<em><b>Stub For</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STUB_MODULE__STUB_FOR = eINSTANCE.getStubModule_StubFor();
+
+		/**
+		 * The meta object literal for the '<em><b>Gui Module</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STUB_MODULE__GUI_MODULE = eINSTANCE.getStubModule_GuiModule();
 
 	}
 

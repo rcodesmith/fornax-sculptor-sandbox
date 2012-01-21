@@ -17,6 +17,7 @@ import sculptorguimetamodel.*;
 
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectTypedElement;
+import sculptormetamodel.Module;
 import sculptormetamodel.NamedElement;
 import sculptormetamodel.Operation;
 import sculptormetamodel.Service;
@@ -231,6 +232,12 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseGuiDto(GuiDto object) {
 				return createGuiDtoAdapter();
 			}
+			public Object caseGuiEnum(GuiEnum object) {
+				return createGuiEnumAdapter();
+			}
+			public Object caseStubModule(StubModule object) {
+				return createStubModuleAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -251,6 +258,12 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseServiceOperation(ServiceOperation object) {
 				return createServiceOperationAdapter();
+			}
+			public Object caseEnum(sculptormetamodel.Enum object) {
+				return createEnumAdapter();
+			}
+			public Object caseModule(Module object) {
+				return createModuleAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -985,6 +998,34 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiEnum <em>Gui Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiEnum
+	 * @generated
+	 */
+	public Adapter createGuiEnumAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.StubModule <em>Stub Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.StubModule
+	 * @generated
+	 */
+	public Adapter createStubModuleAdapter() {
+		return null;
+	}
+
+																/**
 	 * Creates a new adapter for an object of class '{@link sculptormetamodel.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1079,6 +1120,34 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServiceOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.Enum <em>Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.Enum
+	 * @generated
+	 */
+	public Adapter createEnumAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sculptormetamodel.Module <em>Module</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptormetamodel.Module
+	 * @generated
+	 */
+	public Adapter createModuleAdapter() {
 		return null;
 	}
 

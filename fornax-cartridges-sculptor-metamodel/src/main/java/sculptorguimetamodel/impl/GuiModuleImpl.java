@@ -30,6 +30,7 @@ import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
+import sculptorguimetamodel.StubModule;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.UiBehavior;
 import sculptorguimetamodel.UiCondition;
@@ -54,11 +55,10 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getViews <em>Views</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceDependencies <em>Service Dependencies</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getConditions <em>Conditions</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getDtos <em>Dtos</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getStubModule <em>Stub Module</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,16 +136,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	protected EList serviceDependencies;
 
 				/**
-	 * The cached value of the '{@link #getServiceProxies() <em>Service Proxies</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServiceProxies()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList serviceProxies;
-
-				/**
 	 * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,14 +166,14 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	protected EList conditions;
 
 				/**
-	 * The cached value of the '{@link #getDtos() <em>Dtos</em>}' containment reference list.
+	 * The cached value of the '{@link #getStubModule() <em>Stub Module</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDtos()
+	 * @see #getStubModule()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList dtos;
+	protected StubModule stubModule;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -356,18 +346,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getServiceProxies() {
-		if (serviceProxies == null) {
-			serviceProxies = new EObjectContainmentEList(ServiceProxy.class, this, SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES);
-		}
-		return serviceProxies;
-	}
-
-				/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList getCommands() {
 		if (commands == null) {
 			commands = new EObjectContainmentEList(GuiCommand.class, this, SculptorguimetamodelPackage.GUI_MODULE__COMMANDS);
@@ -404,11 +382,37 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDtos() {
-		if (dtos == null) {
-			dtos = new EObjectContainmentWithInverseEList(GuiDto.class, this, SculptorguimetamodelPackage.GUI_MODULE__DTOS, SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE);
+	public StubModule getStubModule() {
+		if (stubModule != null && stubModule.eIsProxy()) {
+			InternalEObject oldStubModule = (InternalEObject)stubModule;
+			stubModule = (StubModule)eResolveProxy(oldStubModule);
+			if (stubModule != oldStubModule) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE, oldStubModule, stubModule));
+			}
 		}
-		return dtos;
+		return stubModule;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StubModule basicGetStubModule() {
+		return stubModule;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStubModule(StubModule newStubModule) {
+		StubModule oldStubModule = stubModule;
+		stubModule = newStubModule;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE, oldStubModule, stubModule));
 	}
 
 				/**
@@ -428,8 +432,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return ((InternalEList)getViews()).basicAdd(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
 				return ((InternalEList)getEvents()).basicAdd(otherEnd, msgs);
-			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
-				return ((InternalEList)getDtos()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -449,16 +451,12 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return ((InternalEList)getViews()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__EVENTS:
 				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
-			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
-				return ((InternalEList)getServiceProxies()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return ((InternalEList)getCommands()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
 				return ((InternalEList)getBehaviors()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				return ((InternalEList)getConditions()).basicRemove(otherEnd, msgs);
-			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
-				return ((InternalEList)getDtos()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -498,16 +496,15 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return getEvents();
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
 				return getServiceDependencies();
-			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
-				return getServiceProxies();
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return getCommands();
 			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
 				return getBehaviors();
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				return getConditions();
-			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
-				return getDtos();
+			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
+				if (resolve) return getStubModule();
+				return basicGetStubModule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -544,10 +541,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getServiceDependencies().clear();
 				getServiceDependencies().addAll((Collection)newValue);
 				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
-				getServiceProxies().clear();
-				getServiceProxies().addAll((Collection)newValue);
-				return;
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				getCommands().clear();
 				getCommands().addAll((Collection)newValue);
@@ -560,9 +553,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getConditions().clear();
 				getConditions().addAll((Collection)newValue);
 				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
-				getDtos().clear();
-				getDtos().addAll((Collection)newValue);
+			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
+				setStubModule((StubModule)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -596,9 +588,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
 				getServiceDependencies().clear();
 				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
-				getServiceProxies().clear();
-				return;
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				getCommands().clear();
 				return;
@@ -608,8 +597,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				getConditions().clear();
 				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
-				getDtos().clear();
+			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
+				setStubModule((StubModule)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -636,16 +625,14 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return events != null && !events.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_DEPENDENCIES:
 				return serviceDependencies != null && !serviceDependencies.isEmpty();
-			case SculptorguimetamodelPackage.GUI_MODULE__SERVICE_PROXIES:
-				return serviceProxies != null && !serviceProxies.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return commands != null && !commands.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
 				return behaviors != null && !behaviors.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
 				return conditions != null && !conditions.isEmpty();
-			case SculptorguimetamodelPackage.GUI_MODULE__DTOS:
-				return dtos != null && !dtos.isEmpty();
+			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
+				return stubModule != null;
 		}
 		return super.eIsSet(featureID);
 	}

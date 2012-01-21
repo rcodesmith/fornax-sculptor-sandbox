@@ -111,6 +111,8 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.ON_HOVER_BINDING: return createOnHoverBinding();
 			case SculptorguimetamodelPackage.UI_CONDITION: return createUiCondition();
 			case SculptorguimetamodelPackage.GUI_DTO: return createGuiDto();
+			case SculptorguimetamodelPackage.GUI_ENUM: return createGuiEnum();
+			case SculptorguimetamodelPackage.STUB_MODULE: return createStubModule();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -624,6 +626,26 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public GuiDto createGuiDto() {
 		GuiDtoImpl guiDto = new GuiDtoImpl();
 		return guiDto;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuiEnum createGuiEnum() {
+		GuiEnumImpl guiEnum = new GuiEnumImpl();
+		return guiEnum;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StubModule createStubModule() {
+		StubModuleImpl stubModule = new StubModuleImpl();
+		return stubModule;
 	}
 
 																/**

@@ -5,6 +5,7 @@ import org.fornax.cartridges.sculptor.generator.util.GenerationHelper;
 import org.fornax.cartridges.sculptor.generator.util.GeneratorProperties;
 
 import sculptorguimetamodel.GuiCommand;
+import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiModule;
 import sculptormetamodel.Application;
 import sculptormetamodel.Attribute;
@@ -31,17 +32,32 @@ public class GwtGenerationHelper {
 
 	private static String getClientPackage(GuiModule guiModule, String subPackage) {
         String base = guiModule.getBasePackage();
-        if (base == null) {
+        if(base != null) {
+        }
+        // Next try package of referred-to module
+        else if(guiModule.getFor() != null && guiModule.getFor().getBasePackage() != null) {
+        	base = guiModule.getFor().getBasePackage();
+        } else {
+        	// Use application base package
             base = guiModule.getApplication().getBasePackage();
             if (guiModule.getName() != null && !guiModule.getName().equals("")) {
                 base += "." + guiModule.getName();
-            }
-            base += "." + subPackage;
+            }        	
         }
-        return base;
+        
+        if(subPackage == null) {
+        	return base;
+        } else {
+        	return base + "." + subPackage;
+        }
     }
 
 
+	public static void assignStubModule(GuiDto guiDto) {
+		GuiModule guiModule = (GuiModule)guiDto.eContainer();
+		
+	}
+	
     public static String getToDtoConversionExpression(TypedElement attribute, String domainAccessorExpr) {
     	if(isDateOrDateTime(attribute)) {
     		return "org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert("
@@ -106,11 +122,11 @@ public class GwtGenerationHelper {
         }
     }
 
-
     // TODO: This is somewhat redundant with some functions in sofeauihelpers.ext
     // Copied from GenerationHelper
-    public static String getDomainPackage(DomainObject domainObject) {
-    	String basePkg = GenerationHelper.getBasePackage(domainObject.getModule());
+    public static String getDomainPackage(GuiDto domainObject) {
+    	
+    	String basePkg = getClientPackage(domainObject.getGuiModule(), null);
     	
     	if(domainObject instanceof GuiCommand || domainObject instanceof CommandEvent) {
     		return basePkg + GWT_CMD_PKG;    		
@@ -126,7 +142,8 @@ public class GwtGenerationHelper {
 
     
     public static String getTypeName(Reference ref) {
-        return getDomainPackage(ref.getTo()) + "." + ref.getTo().getName();
+    	
+        return getDomainPackage((GuiDto)ref.getTo()) + "." + ref.getTo().getName();
     }
 
     private static Module findModuleMatchingModuleBasePkg(Parameter parameter) {
@@ -258,7 +275,7 @@ public class GwtGenerationHelper {
         String type = typeName;
         String domainObjectTypeName = null;
         if (element.getDomainObjectType() != null) {
-            domainObjectTypeName = getJavaTypeOrVoid(getDomainPackage(element.getDomainObjectType()) + "."
+            domainObjectTypeName = getJavaTypeOrVoid(getDomainPackage((GuiDto)element.getDomainObjectType()) + "."
                     + element.getDomainObjectType().getName());
             type = domainObjectTypeName;
         //	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() trace 1.  type = " + type);

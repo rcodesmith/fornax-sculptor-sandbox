@@ -21,6 +21,7 @@ import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.Service;
 
 public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 	@Test
@@ -53,10 +54,13 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		TableWidget personTable = (TableWidget) widgets.get(0);
 		assertEquals("Person Table", personTable.getLabel());
 
-		DomainObject person = personTable.getFor();
+		GuiDto person = (GuiDto)personTable.getFor();
 		assertNotNull(person);
 		assertEquals("Person", person.getName());
 
+		assertNotNull(person.getGuiModule());
+		assertNotNull(person.getGuiModule().getFor());
+		
 		EList tableCols = personTable.getColumns();
 		assertNotNull(tableCols);
 		assertOneAndOnlyOne(tableCols, "name", "birthDate", "edit");
@@ -148,9 +152,11 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals("Integer", idParam.getType());
 		assertEquals(Boolean.TRUE, idParam.isNullable());
 
-		// assertEquals(1, personForm.getServiceProxies().size());
-		// assertOneAndOnlyOne(personForm.getServiceProxies(), "PersonService");
-		// Service svc = (Service)personForm.getServiceProxies().get(0);
+		assertEquals(1, personForm.getServiceProxies().size());
+		assertOneAndOnlyOne(personForm.getServiceProxies(), "PersonService");
+		Service svc = (Service)personForm.getServiceProxies().get(0);
+		assertTrue(personModule().getStubModule().getServices().contains(svc));
+		
 
 		EList widgets = personForm.getWidgets();
 		assertEquals(7, widgets.size());
