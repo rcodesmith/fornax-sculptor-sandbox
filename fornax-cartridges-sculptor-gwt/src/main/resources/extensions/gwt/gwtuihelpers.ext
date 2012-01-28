@@ -559,6 +559,8 @@ String resolveGwtWidgetType(ButtonWidget widget) :
 String resolveGwtWidgetType(LinkWidget widget) :
 	"com.google.gwt.user.client.ui.Anchor";
 
+String resolveGwtWidgetType(PanelWidget widget) :
+	"com.google.gwt.user.client.ui.VerticalPanel";
 	
 
 Set[Service] getUsedServices(GuiModule module) :

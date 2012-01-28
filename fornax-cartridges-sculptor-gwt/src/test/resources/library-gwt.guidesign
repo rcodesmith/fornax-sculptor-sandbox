@@ -54,6 +54,10 @@ gui LibraryWeb for Library {
 		
 		View TableView {
 			
+			parameters {
+				String param1;
+			}
+
 			contents {
 				inputText nameField {
 					label = "Name"
@@ -72,10 +76,33 @@ gui LibraryWeb for Library {
 						birthDate type=Date; //forProperty birthDate
 					}
 				}
+				
+				table personTable for Person {
+					label="Person Table"
+					
+					columns {
+						name type=Text forOp getDisplayName filterable sortable;
+						
+						birthDate type=Date; // forProperty birthDate
+
+						edit type=Button; // onClick=populatePersonDetailsPanel
+					}
+				}
+
+				panel personDetailsPanel {
+					contents {
+						
+					}
+				}
+				
 				button saveButton {
 					label = "Save"
 				}
+				
+				
 			}
+			
+			
 		}
 		
 
@@ -90,6 +117,12 @@ gui LibraryWeb for Library {
 			
 			DateTime dateTime1;
 		}
+		
+		"Populate the person details panel"
+		UiBehavior PopulatePanel populatePersonDetailsPanel {
+			panel=personDetailsPanel
+		}
+
 	}
 	
 	Module for media {

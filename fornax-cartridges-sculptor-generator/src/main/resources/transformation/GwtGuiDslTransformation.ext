@@ -603,9 +603,10 @@ create sculptormetamodel::Reference this transformToGui(DslReference reference, 
 //////////////////////////////////////////////////////////////////////////////////
 
 create sculptorguimetamodel::UiBehavior this transformBehavior(DslUiBehavior behavior, Module module) :
-	error("Unexpected call to transformBehavior(DslUiBehavior)");
+	error("Unexpected call to transformBehavior(DslUiBehavior) - base class behavior");
 
 create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPopulatePanelBehavior behavior, Module module) :
+	debugTrace("transformBehavior(DslPopulatePanelBehavier)") ->
 	setDoc(behavior.doc) ->
 	setName(behavior.name) ->
 	setPanel(behavior.panel.transformWidget(module));
