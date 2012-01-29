@@ -202,10 +202,11 @@ create sculptormetamodel::Parameter this transformToGui(DslParameter parameter) 
     	parameter.parameterType.domainObjectType.transformToGui());
 
 create sculptorguimetamodel::GuiEnum this transformToGui(DslEnum domainObject) :
-    setDoc(domainObject.doc) ->
-    setName(domainObject.name) ->
-    setPackage(domainObject.package) ->
-    setHint(domainObject.hint) ->
+	initGuiDto(domainObject, this) ->
+//    setDoc(domainObject.doc) ->
+//    setName(domainObject.name) ->
+//    setPackage(domainObject.package) ->
+//    setHint(domainObject.hint) ->
     setAggregateRoot(false) ->
     attributes.addAll(domainObject.attributes.transformToGui()) ->
     values.addAll(domainObject.values.transformToGui());

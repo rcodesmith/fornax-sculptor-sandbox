@@ -30,7 +30,7 @@
 
 «REM»Generate "impl" .ui.xml module file«ENDREM»
 «DEFINE gwtImplConfig(Module module) FOR GuiModule»
-«FILE gwtImplXmlFileName(module) TO_SRC»<?xml version="1.0" encoding="UTF-8"?>
+«FILE gwtImplXmlFileName(this) TO_SRC»<?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='«module.getModuleImplConfigName()»'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
@@ -61,7 +61,7 @@
 
 «REM»Generate base .ui.xml module file«ENDREM»
 «DEFINE gwtConfig(Module module) FOR GuiModule»
-«FILE gwtXmlFileName(module)»<?xml version="1.0" encoding="UTF-8"?>
+«FILE gwtXmlFileName(this)»<?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='«module.getModuleConfigName()»'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>

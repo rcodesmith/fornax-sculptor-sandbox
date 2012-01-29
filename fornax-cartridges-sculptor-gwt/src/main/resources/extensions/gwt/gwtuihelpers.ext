@@ -114,7 +114,6 @@ String gwtCommandPackage(CommandEvent cmd) :
 
 // TODO: Remove
 String gwtDomainPackage(DomainObject do) :
-	debugTrace("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! BAD !!!!!!!!!!!!!!!! called gwtDomainPackage(DomainObject do) for " + do.name) -> 
    gwtDomainPackage(do.module);
 
 String gwtDomainPackage(GuiDto do) :
@@ -128,8 +127,10 @@ String fqnGwtDto(Reference ref) :
 	gwtDomainPackage(ref.to) + "." + ref.to.name;
 	
 // The fully qualified name for the domain class (not GWT DTO).
-//String fqnDomain(DomainObject do) :
-//	do.getDomainPackage() + "." + do.name;
+String fqnDomain(GuiDto do) :
+	debugTrace("fqnDomain(" + do + ")") ->
+	do.for.getDomainPackage() + "." + do.name;
+
 
 // The fully qualified GWT DTO class for a given domain object
 String fqnGwtDto(GuiDto do) :
@@ -453,7 +454,8 @@ String getMapToDomainExpression(Parameter parameter) :
 // The set of domain objects for which GWT<->core mapping code should be generated
 boolean shouldBeMapped(DomainObject d) :
 	 generateGwt(d) &&
-	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
+	 GuiDto.isInstance(d);
+//	(Entity.isInstance(d) || (ValueObject.isInstance(d) && !DomainEvent.isInstance(d)) || Enum.isInstance(d));
 
 
 
@@ -461,16 +463,16 @@ boolean shouldBeMapped(DomainObject d) :
 // GWT module XML config related functions
 ////////////////////////////////////////////////////////////////////////////
 
-String gwtXmlFileName(Module module) :
+String gwtXmlFileName(GuiModule module) :
     module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.getModuleConfigName() + ".gwt.xml";
 
-String gwtImplXmlFileName(Module module) :
+String gwtImplXmlFileName(GuiModule module) :
     module.gwtBasePackage().replaceAll("\\.", "/") + "/" + module.getModuleImplConfigName() + ".gwt.xml";
    
-String getModuleConfigName(Module module) :
+String getModuleConfigName(GuiModule module) :
 	module.name.toFirstUpper() + "BaseUI";
 
-String getModuleImplConfigName(Module module) :
+String getModuleImplConfigName(GuiModule module) :
 	module.name.toFirstUpper() + "UI";
 
 

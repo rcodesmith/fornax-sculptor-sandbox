@@ -6,6 +6,10 @@
 «EXTENSION extensions::gwt::gwtuihelpers»
 
 
+«DEFINE domainObjectUIMapperDispatch FOR GuiModule»
+	«EXPAND domainObjectUIMapperDispatch(this.application) FOR this.stubModule»
+«ENDDEFINE»
+
 «DEFINE domainObjectUIMapperDispatch(GuiApplication guiApp) FOR Module»
     «FILE javaFileName(this.dtoMapper() )»
 package «getDomainPackage(this)»;

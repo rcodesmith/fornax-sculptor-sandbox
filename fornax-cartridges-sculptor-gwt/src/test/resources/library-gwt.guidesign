@@ -85,7 +85,7 @@ gui LibraryWeb for Library {
 						
 						birthDate type=Date; // forProperty birthDate
 
-						edit type=Button; // onClick=populatePersonDetailsPanel
+						edit type=Button onClick=populatePersonDetailsPanel;
 					}
 				}
 

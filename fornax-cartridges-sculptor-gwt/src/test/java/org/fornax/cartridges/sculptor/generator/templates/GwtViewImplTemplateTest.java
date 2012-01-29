@@ -16,33 +16,6 @@ import sculptorguimetamodel.View;
 
 public class GwtViewImplTemplateTest extends TemplateTestBase {
 	
-//    private static GuiApplication guiApp;
-
-    
-//    @BeforeClass
-//    public static void before() throws Exception {
-//        System.setProperty("project.nature", "business-tier, rcp");
-//		System.setProperty("datetime.library", "joda");
-//        System.setProperty("gui.createDefaults", "false");
-//        System.setProperty("package.gwt", "gwt");
-//        
-//        Map<String, Object> slotContents = new HashMap<String, Object>();
-//        slotContents.put("TO_SRC", getXpandTempDir());
-
-//        initWorkflowContext("workflowguidsl-test-library-gwt.mwe", slotContents);
-//        guiApp = (GuiApplication) ctx.get("guiModel");
-//    }
-
-//    @AfterClass
-//    public static void after() {
-//        System.getProperties().remove("project.nature");
-//		System.getProperties().remove("datetime.library");
-//		System.getProperties().remove("gui.createDefaults");
-//		System.getProperties().remove("package.gwt");
-//
-//    }
-
-    
     private GuiModule personModule() {
         return (GuiModule) getNamedElement("person", guiApp.getModules());
     }

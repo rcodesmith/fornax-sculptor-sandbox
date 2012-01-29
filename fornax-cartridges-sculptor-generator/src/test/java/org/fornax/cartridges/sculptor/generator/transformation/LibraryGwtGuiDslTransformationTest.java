@@ -206,6 +206,8 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		assertNotNull(country.getGuiModule());
 		
 		assertEquals(3, country.getValues().size());
+		
+		assertNotNull(country.getFor());
 	}
 	
 //	protected String getFileText(String filePath) {
