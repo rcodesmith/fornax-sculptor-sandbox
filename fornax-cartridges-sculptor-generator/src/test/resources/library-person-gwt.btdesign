@@ -6,6 +6,9 @@ ApplicationPart Person {
           PagedResult<@Person> findPaged(String name, PagingParameter pagingParameter);
           List<@Person> findByDate(Date entryDate);
           List<@Person> findRelatedPeople(@Person person);
+          
+          send(String from, @CreatePersonCmd cmd);
+          
         }
      
         Entity Person {

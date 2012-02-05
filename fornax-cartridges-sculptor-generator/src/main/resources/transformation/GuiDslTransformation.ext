@@ -84,7 +84,8 @@ create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslMo
     setDoc(dslModule.doc) ->
     setName(dslModule.name) ->
     setHint(dslModule.hint) ->
-    domainObjects.addAll(dslModule.domainObjects.reject(e|DslEvent.isInstance(e)).transformToGui()) ->
+    // TODO: add support for DslDomainEvent too
+    domainObjects.addAll(dslModule.domainObjects.reject(e|DslDomainEvent.isInstance(e)).transformToGui()) ->
 	services.addAll(dslGuiModule.serviceDependencies.transformServiceProxy());
 	// TODO: For some reason, the following is causing problems.  For now, require all services to be declared at module level
 //	services.addAll(dslGuiModule.views.serviceDependencies.transformServiceProxy().reject(s|services.exists(e|e.name == s.name)));
@@ -123,7 +124,7 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 //	hasProperty("ui.custom.guidto") ? dtos.addAll(module.for.domainObjects.reject(e|DslEvent.isInstance(e)).transformToGui()) : null ->
 //	serviceProxies.addAll(module.serviceDependencies.transformServiceProxy()) ->
 	events.addAll(module.events.transformEvent(module.for.transform())) ->
-	commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
+	//commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
 	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
 	hasProperty("ui.custom.guidto") ? setStubModule(module.for.transformStubModule(module)) : null ->
 //	setStubModule(module.for.transformStubModule(module)) ->

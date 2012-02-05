@@ -14,7 +14,7 @@ which is causing attributes to get masked.«ENDREM»
 «ENDDEFINE»
 
 «DEFINE gwtModule FOR GuiModule»
-	«EXPAND gwtDomainModule(this.application, this) FOREACH this.stubModule»
+	«EXPAND gwtDomainModule(this.application, this) FOR this.stubModule»
 	
 	
 «ENDDEFINE»
@@ -306,8 +306,6 @@ public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()»
     «EXPAND templates::domain::DomainObjectTrait::delegateToTraitMethod FOREACH operations.select(e | !e.abstract && e.hasHint("trait"))»
     «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
     
-    «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
-
     «EXPAND templates::domain::DomainObject::domainObjectHook»
     
 }

@@ -249,9 +249,6 @@ String gwtTableWidgetClass(ListTask task) :
 	plural(task.for.name) + "Table";
 
 
-Set[Module] getDependedUponModules(Module module) :
-	JAVA org.fornax.cartridges.sculptor.generator.util.DependencyUtil.getDependedUponModules(sculptormetamodel.Module);
-	
 
 
 
@@ -511,8 +508,16 @@ Set[GuiCommand] commandsToGenerate(GuiModule module) :
 GuiModule findModuleFor(GuiApplication guiApp, Module module):
 	guiApp.modules.selectFirst(m|m.for == module);
 
+Set[GuiModule] getDependedUponGuiModules(GuiModule guiMod) :
+	getDependedUponModules(guiMod.for).collect(m | findModuleFor(guiMod.application, m));
+	
+Set[Module] getDependedUponModules(Module module) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.DependencyUtil.getDependedUponModules(sculptormetamodel.Module);
+	
+
 ServiceProxy findServiceProxy(GuiModule module, String name) :
 	module.stubModule.services.selectFirst(e|e.name == name);
+	
 	
 ////////////////////////////////////////////////////////////////////////////
 // GuiDto-related functions

@@ -22,7 +22,7 @@ import sculptormetamodel.impl.DomainObjectImpl;
  *
  * @generated
  */
-public class GuiCommandImpl extends DomainObjectImpl implements GuiCommand {
+public class GuiCommandImpl extends GuiDtoImpl implements GuiCommand {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.ServiceProxyOperation;
@@ -33,7 +34,7 @@ public class GuiServiceProxyTest extends GuiDslTransformationBaseTest {
 //		assertNotNull(guiModule);
 		
 		EList ops = proxy.getOperations();
-		assertEquals(4, ops.size());
+		assertEquals(5, ops.size());
 
 		ServiceProxyOperation op = (ServiceProxyOperation)ops.get(0);
 		assertNotNull(op);
@@ -60,6 +61,32 @@ public class GuiServiceProxyTest extends GuiDslTransformationBaseTest {
 		assertEquals("entryDate", entryDateParam.getName());
 //		assertEquals("java.util.Date", entryDateParam.getType());
 
+		
+		ServiceProxyOperation sendOp = (ServiceProxyOperation)ops.get(4);
+		assertNotNull(sendOp);
+		validateServiceOperation(sendOp, "send", 2);
+		
+		Parameter fromParam = (Parameter)sendOp.getParameters().get(0);
+		assertNotNull(fromParam);
+		assertEquals("from", fromParam.getName());
+		assertEquals("String", fromParam.getType());
+
+		Parameter cmdParam = (Parameter)sendOp.getParameters().get(1);
+		assertNotNull(cmdParam);
+		assertEquals("cmd", cmdParam.getName());
+		assertNotNull(cmdParam.getDomainObjectType());
+		assertEquals("CreatePersonCmd", cmdParam.getDomainObjectType().getName());
+		
+		// Make sure same object as can be found in stub module
+		GuiCommand createPersonCmd = (GuiCommand)getNamedElement("CreatePersonCmd", personModule().getStubModule().getDomainObjects());
+		Assert.assertSame(createPersonCmd, cmdParam.getDomainObjectType());
+		assertNotNull(createPersonCmd.getExtends());
+		assertEquals("PersonCmd", createPersonCmd.getExtends().getName());
+//		// And that extended base class should also be in StubModule
+//		// Some of these tests should go in a GuiCommand-specific area rather than in service proxy
+//		GuiCommand personCmd = (GuiCommand)getNamedElement("PersonCmd", personModule().getStubModule().getDomainObjects());
+//		Assert.assertSame(personCmd, createPersonCmd.getExtends());
+		
 	}
 	
 	@Test

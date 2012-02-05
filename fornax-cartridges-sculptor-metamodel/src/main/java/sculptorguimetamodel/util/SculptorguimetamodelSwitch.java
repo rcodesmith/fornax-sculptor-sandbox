@@ -404,6 +404,7 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.GUI_COMMAND: {
 				GuiCommand guiCommand = (GuiCommand)theEObject;
 				Object result = caseGuiCommand(guiCommand);
+				if (result == null) result = caseGuiDto(guiCommand);
 				if (result == null) result = caseDomainObject(guiCommand);
 				if (result == null) result = caseNamedElement(guiCommand);
 				if (result == null) result = defaultCase(theEObject);

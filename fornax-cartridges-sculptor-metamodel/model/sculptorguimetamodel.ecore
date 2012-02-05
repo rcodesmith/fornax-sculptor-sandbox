@@ -178,7 +178,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ServiceProxyOperation" eSuperTypes="sculptormetamodel.ecore#//ServiceOperation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" lowerBound="1" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GuiCommand" eSuperTypes="sculptormetamodel.ecore#//DomainObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiCommand" eSuperTypes="#//GuiDto"/>
   <eClassifiers xsi:type="ecore:EClass" name="ViewParameter" eSuperTypes="sculptormetamodel.ecore#//TypedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>

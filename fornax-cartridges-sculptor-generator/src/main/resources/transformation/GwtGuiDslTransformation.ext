@@ -41,8 +41,12 @@ extension extensions::gwt::sofeauihelpers;
 // For any post-DSL transformations that need to occur
 modifyDsl(GuiModule guiModule) :
 	guiModule.commands.modifyExtends() ->
+	(guiModule.stubModule != null? guiModule.stubModule.modifyDsl(guiModule) : null);
+	
+modifyDsl(StubModule stubModule, GuiModule guiModule) :
 	guiModule.stubModule.domainObjects.modifyDsl(guiModule) ->
 	guiModule.stubModule.services.modifyDslServiceProxy(guiModule);
+
 
 // NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
 // Solution is to include those modules in the GUI model.  Consider adding a validation for this..
@@ -74,7 +78,9 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslDomainObject do) :
 	error("Unexpected call to transformToGui(DslDomainObject) for: " + do);
 	
 create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
-	initGuiDtoFromDomainObject(entity, this);
+	initGuiDtoFromDomainObject(entity, this) ->
+    setOptimisticLocking(!entity.notOptimisticLocking);
+
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
 	initGuiDto(domainObject, this) ->
@@ -89,13 +95,14 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObjec
     traits.addAll(domainObject.traits.transformToGui());
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
-	initGuiDtoFromDomainObject(domainObject, this);
+	initGuiDtoFromDomainObject(domainObject, this) ->
+    setOptimisticLocking(!domainObject.notOptimisticLocking);
+
 
 // Don't need to set guiModule, as it is set by modify() method
 private initGuiDtoFromDomainObject(DslDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
 	initGuiDto(domainObject, guiDto) ->
     guiDto.setAbstract(domainObject.abstract) ->
-    guiDto.setOptimisticLocking(!domainObject.notOptimisticLocking) ->
     guiDto.setCache(domainObject.cache) ->
 //    setBelongsToAggregate(domainObject.belongsTo == null ? null : domainObject.belongsTo.transform()) ->
 //    guiDto.setPersistent(!domainObject.notPersistent) ->
@@ -234,6 +241,7 @@ create sculptormetamodel::Attribute this transformToGui(DslEnumAttribute attribu
 //////////////////////////////////////////////////////////////////////////////////
 
 // TODO: This will be needed for events as well
+// TODO: Remove this as it's being done within StubModule now - there are similar extensions as this
 // Copied & modified from Transformation.ext
 modifyExtends(GuiCommand cmd) :
     if (cmd.extendsName != null) then
@@ -549,6 +557,7 @@ create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr
 //////////////////////////////////////////////////////////////////////////////////
 // GuiCommand related transformations
 //////////////////////////////////////////////////////////////////////////////////
+// Transform in GuiModule - to remove eventually
 create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent dslCmd, Module module) :
 	setName(dslCmd.name) ->
 	setAbstract(dslCmd.abstract) ->
@@ -559,7 +568,46 @@ create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent ds
 	attributes.addAll(dslCmd.attributes.transformToGui()) ->
 	references.addAll(dslCmd.references.transformToGui(this))
 	;
+
+// Transform in StubModule
+create sculptorguimetamodel::GuiCommand this transformToGui(DslCommandEvent dslCmd) :
+	initGuiDtoFromDomainObject(dslCmd, this);
+//	setName(dslCmd.name) ->
+//	setAbstract(dslCmd.abstract) ->
+//	setExtends( dslCmd.extends != null ? dslCmd.extends.transformToGui() : null) ->
+//	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
+//	setDoc(dslCmd.doc) ->
+//	setHint(dslCmd.hint) ->
+//	attributes.addAll(dslCmd.attributes.transformToGui()) ->
+//	references.addAll(dslCmd.references.transformToGui(this))
+//	;
+
+
+private transformExtends(DslCommandEvent dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);
+
+
+private modifyDsl(GuiCommand cmd, GuiModule guiModule) :
+	cmd.setGuiModule(guiModule) ->
+	cmd.modifyDslExtends();
+//	debugTrace("modifyDsl(GuiCommand)");
+//	dto.setGuiModule(guiModule);
 	
+// TODO: This will be needed for events as well
+// Copied & modified from Transformation.ext
+modifyDslExtends(GuiCommand cmd) :
+    if (cmd.extendsName != null) then
+        (let matchingDomainObject = findCommandByNameInStubModule(((GuiModule)cmd.eContainer.guiModule).application, cmd.extendsName) :
+        if (matchingDomainObject != null) then
+            (cmd.setExtends(matchingDomainObject) ->
+            cmd.setExtendsName(null))); 
+
+// Copied & modified from Transformation.ext
+private DomainObject findCommandByNameInStubModule(GuiApplication app, String domainObjectName) : 
+    let match = app.modules.stubModule.domainObjects.select(e | e.name == domainObjectName) : 
+    match.isEmpty ? null : match.first();
+
+
 	
 create sculptormetamodel::Attribute this transformToGui(DslAttribute attribute) :
     setDoc(attribute.doc) ->

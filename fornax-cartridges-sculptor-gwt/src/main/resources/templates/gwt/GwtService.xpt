@@ -7,7 +7,7 @@
 
 
 «DEFINE gwtService(Module module) FOR GuiModule»
-	«LET this.serviceProxies AS serviceProxies»
+	«LET this.stubModule.services AS serviceProxies»
 		«EXPAND gwtAsyncService FOREACH serviceProxies»
 		«EXPAND gwtSyncService FOREACH serviceProxies»
 		«EXPAND gwtServiceImpl FOREACH serviceProxies»

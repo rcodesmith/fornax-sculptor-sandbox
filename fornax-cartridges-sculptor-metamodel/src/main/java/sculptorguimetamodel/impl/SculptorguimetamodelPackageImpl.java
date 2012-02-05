@@ -2098,7 +2098,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		numberSpinnerWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		serviceProxyEClass.getESuperTypes().add(theSculptormetamodelPackage.getService());
 		serviceProxyOperationEClass.getESuperTypes().add(theSculptormetamodelPackage.getServiceOperation());
-		guiCommandEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
+		guiCommandEClass.getESuperTypes().add(this.getGuiDto());
 		viewParameterEClass.getESuperTypes().add(theSculptormetamodelPackage.getTypedElement());
 		linkWidgetEClass.getESuperTypes().add(this.getWidget());
 		panelWidgetEClass.getESuperTypes().add(this.getWidget());

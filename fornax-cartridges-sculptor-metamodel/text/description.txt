@@ -163,7 +163,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class ServiceProxyOperation -> ServiceOperation
     Reference for : ServiceOperation<<1..1>>
 
-  Class GuiCommand -> DomainObject
+  Class GuiCommand -> GuiDto
 
   Class ViewParameter -> TypedElement
     Attribute nullable : EBoolean

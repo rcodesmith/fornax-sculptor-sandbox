@@ -3,18 +3,27 @@ package org.fornax.cartridges.sculptor.generator.templates;
 import java.io.IOException;
 import java.util.HashMap;
 
+import junit.framework.Assert;
+
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
 import org.junit.Test;
 
 import sculptorguimetamodel.GuiCommand;
-import sculptorguimetamodel.GuiModule;
 
 public class GwtCommandTemplateTest extends LibraryGwtTemplateBaseTest {
-    
+
+	protected GuiCommand getCmdFromPersonModule(String name) {
+		GuiCommand cmd = (GuiCommand)getNamedElement(name, personModule().getStubModule().getDomainObjects());
+		Assert.assertNotNull(cmd);
+		return cmd;
+	}
     
 	@Test
 	public void assertCreatePersonCmdCode() throws IOException {
-		GuiCommand cmd = (GuiCommand)getNamedElement("CreatePersonCmd", personModule().getCommands());
+//		GuiCommand cmd = (GuiCommand)getNamedElement("CreatePersonCmd", personModule().getStubModule().getDomainObjects());
+//		Assert.assertNotNull(cmd);
+		
+		GuiCommand cmd = getCmdFromPersonModule("CreatePersonCmd");
 		
 		XpandUnit.xpand("templates::gwt::GwtCommand::gwtCommandBase", cmd,
 				new HashMap<String, Object>(), TEMP);
@@ -47,8 +56,9 @@ public class GwtCommandTemplateTest extends LibraryGwtTemplateBaseTest {
 
 	@Test
 	public void assertPersonCmdCode() throws IOException {
-		GuiCommand cmd = (GuiCommand)getNamedElement("PersonCmd", personModule().getCommands());
-		
+//		GuiCommand cmd = (GuiCommand)getNamedElement("PersonCmd", personModule().getCommands());
+		GuiCommand cmd = getCmdFromPersonModule("PersonCmd");
+
 		XpandUnit.xpand("templates::gwt::GwtCommand::gwtCommandBase", cmd,
 				new HashMap<String, Object>(), TEMP);
 

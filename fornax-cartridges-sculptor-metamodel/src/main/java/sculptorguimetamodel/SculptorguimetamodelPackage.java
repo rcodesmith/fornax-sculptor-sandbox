@@ -4127,214 +4127,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_COMMAND = 38;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__NAME = SculptormetamodelPackage.DOMAIN_OBJECT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__DOC = SculptormetamodelPackage.DOMAIN_OBJECT__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__HINT = SculptormetamodelPackage.DOMAIN_OBJECT__HINT;
-
-	/**
-	 * The feature id for the '<em><b>References</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__REFERENCES = SculptormetamodelPackage.DOMAIN_OBJECT__REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Extends</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__EXTENDS = SculptormetamodelPackage.DOMAIN_OBJECT__EXTENDS;
-
-	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__ATTRIBUTES = SculptormetamodelPackage.DOMAIN_OBJECT__ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__ABSTRACT = SculptormetamodelPackage.DOMAIN_OBJECT__ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Repository</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__REPOSITORY = SculptormetamodelPackage.DOMAIN_OBJECT__REPOSITORY;
-
-	/**
-	 * The feature id for the '<em><b>Module</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__MODULE = SculptormetamodelPackage.DOMAIN_OBJECT__MODULE;
-
-	/**
-	 * The feature id for the '<em><b>Optimistic Locking</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__OPTIMISTIC_LOCKING = SculptormetamodelPackage.DOMAIN_OBJECT__OPTIMISTIC_LOCKING;
-
-	/**
-	 * The feature id for the '<em><b>Cache</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__CACHE = SculptormetamodelPackage.DOMAIN_OBJECT__CACHE;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__PACKAGE = SculptormetamodelPackage.DOMAIN_OBJECT__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Database Table</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__DATABASE_TABLE = SculptormetamodelPackage.DOMAIN_OBJECT__DATABASE_TABLE;
-
-	/**
-	 * The feature id for the '<em><b>Extends Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__EXTENDS_NAME = SculptormetamodelPackage.DOMAIN_OBJECT__EXTENDS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Validate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__VALIDATE = SculptormetamodelPackage.DOMAIN_OBJECT__VALIDATE;
-
-	/**
-	 * The feature id for the '<em><b>Gap Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__GAP_CLASS = SculptormetamodelPackage.DOMAIN_OBJECT__GAP_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Inheritance</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__INHERITANCE = SculptormetamodelPackage.DOMAIN_OBJECT__INHERITANCE;
-
-	/**
-	 * The feature id for the '<em><b>Discriminator Column Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__DISCRIMINATOR_COLUMN_VALUE = SculptormetamodelPackage.DOMAIN_OBJECT__DISCRIMINATOR_COLUMN_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Aggregate Root</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__AGGREGATE_ROOT = SculptormetamodelPackage.DOMAIN_OBJECT__AGGREGATE_ROOT;
-
-	/**
-	 * The feature id for the '<em><b>Belongs To Aggregate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__BELONGS_TO_AGGREGATE = SculptormetamodelPackage.DOMAIN_OBJECT__BELONGS_TO_AGGREGATE;
-
-	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__OPERATIONS = SculptormetamodelPackage.DOMAIN_OBJECT__OPERATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Traits</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND__TRAITS = SculptormetamodelPackage.DOMAIN_OBJECT__TRAITS;
-
-	/**
-	 * The number of structural features of the '<em>Gui Command</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_COMMAND_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.ViewParameterImpl <em>View Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4343,79 +4135,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int VIEW_PARAMETER = 39;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__NAME = SculptormetamodelPackage.TYPED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__DOC = SculptormetamodelPackage.TYPED_ELEMENT__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__HINT = SculptormetamodelPackage.TYPED_ELEMENT__HINT;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__TYPE = SculptormetamodelPackage.TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Collection Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__COLLECTION_TYPE = SculptormetamodelPackage.TYPED_ELEMENT__COLLECTION_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Map Key Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__MAP_KEY_TYPE = SculptormetamodelPackage.TYPED_ELEMENT__MAP_KEY_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER__NULLABLE = SculptormetamodelPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>View Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_PARAMETER_FEATURE_COUNT = SculptormetamodelPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
-
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.LinkWidgetImpl <em>Link Widget</em>}' class.
@@ -4428,88 +4147,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int LINK_WIDGET = 40;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__NAME = WIDGET__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__DOC = WIDGET__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__HINT = WIDGET__HINT;
-
-	/**
-	 * The feature id for the '<em><b>View</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__VIEW = WIDGET__VIEW;
-
-	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__LABEL = WIDGET__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__BEHAVIOR_BINDINGS = WIDGET__BEHAVIOR_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__ENABLED = WIDGET__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>To View</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET__TO_VIEW = WIDGET_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Link Widget</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
-
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.PanelWidgetImpl <em>Panel Widget</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4518,96 +4155,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int PANEL_WIDGET = 42;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__NAME = WIDGET__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__DOC = WIDGET__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__HINT = WIDGET__HINT;
-
-	/**
-	 * The feature id for the '<em><b>View</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__VIEW = WIDGET__VIEW;
-
-	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__LABEL = WIDGET__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__BEHAVIOR_BINDINGS = WIDGET__BEHAVIOR_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Enabled</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__ENABLED = WIDGET__ENABLED;
-
-	/**
-	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__WIDGETS = WIDGET_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>For</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET__FOR = WIDGET_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Panel Widget</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PANEL_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UiBehaviorImpl <em>Ui Behavior</em>}' class.
@@ -4620,42 +4167,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UI_BEHAVIOR = 43;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_BEHAVIOR__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_BEHAVIOR__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_BEHAVIOR__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
-
-	/**
-	 * The number of structural features of the '<em>Ui Behavior</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_BEHAVIOR_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.PopulatePanelBehaviorImpl <em>Populate Panel Behavior</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4664,51 +4175,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int POPULATE_PANEL_BEHAVIOR = 44;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POPULATE_PANEL_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POPULATE_PANEL_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POPULATE_PANEL_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
-
-	/**
-	 * The feature id for the '<em><b>Panel</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POPULATE_PANEL_BEHAVIOR__PANEL = UI_BEHAVIOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Populate Panel Behavior</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POPULATE_PANEL_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.NavigateToViewBehaviorImpl <em>Navigate To View Behavior</em>}' class.
@@ -4721,51 +4187,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int NAVIGATE_TO_VIEW_BEHAVIOR = 45;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATE_TO_VIEW_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATE_TO_VIEW_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATE_TO_VIEW_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
-
-	/**
-	 * The feature id for the '<em><b>View</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATE_TO_VIEW_BEHAVIOR__VIEW = UI_BEHAVIOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Navigate To View Behavior</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATE_TO_VIEW_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.BehaviorBindingImpl <em>Behavior Binding</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4774,24 +4195,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int BEHAVIOR_BINDING = 46;
-
-	/**
-	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_BINDING__BEHAVIORS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Behavior Binding</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR_BINDING_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.OnClickBindingImpl <em>On Click Binding</em>}' class.
@@ -4804,24 +4207,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int ON_CLICK_BINDING = 47;
 
 	/**
-	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ON_CLICK_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
-
-	/**
-	 * The number of structural features of the '<em>On Click Binding</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ON_CLICK_BINDING_FEATURE_COUNT = BEHAVIOR_BINDING_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.OnHoverBindingImpl <em>On Hover Binding</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4832,24 +4217,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int ON_HOVER_BINDING = 48;
 
 	/**
-	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ON_HOVER_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
-
-	/**
-	 * The number of structural features of the '<em>On Hover Binding</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ON_HOVER_BINDING_FEATURE_COUNT = BEHAVIOR_BINDING_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UiConditionImpl <em>Ui Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4858,42 +4225,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int UI_CONDITION = 49;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_CONDITION__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Doc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_CONDITION__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
-
-	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_CONDITION__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
-
-	/**
-	 * The number of structural features of the '<em>Ui Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UI_CONDITION_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiDtoImpl <em>Gui Dto</em>}' class.
@@ -5129,6 +4460,690 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__NAME = GUI_DTO__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__DOC = GUI_DTO__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__HINT = GUI_DTO__HINT;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__REFERENCES = GUI_DTO__REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Extends</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__EXTENDS = GUI_DTO__EXTENDS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__ATTRIBUTES = GUI_DTO__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__ABSTRACT = GUI_DTO__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Repository</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__REPOSITORY = GUI_DTO__REPOSITORY;
+
+	/**
+	 * The feature id for the '<em><b>Module</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__MODULE = GUI_DTO__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Optimistic Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__OPTIMISTIC_LOCKING = GUI_DTO__OPTIMISTIC_LOCKING;
+
+	/**
+	 * The feature id for the '<em><b>Cache</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__CACHE = GUI_DTO__CACHE;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__PACKAGE = GUI_DTO__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Database Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__DATABASE_TABLE = GUI_DTO__DATABASE_TABLE;
+
+	/**
+	 * The feature id for the '<em><b>Extends Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__EXTENDS_NAME = GUI_DTO__EXTENDS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__VALIDATE = GUI_DTO__VALIDATE;
+
+	/**
+	 * The feature id for the '<em><b>Gap Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__GAP_CLASS = GUI_DTO__GAP_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__INHERITANCE = GUI_DTO__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Discriminator Column Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__DISCRIMINATOR_COLUMN_VALUE = GUI_DTO__DISCRIMINATOR_COLUMN_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Aggregate Root</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__AGGREGATE_ROOT = GUI_DTO__AGGREGATE_ROOT;
+
+	/**
+	 * The feature id for the '<em><b>Belongs To Aggregate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__BELONGS_TO_AGGREGATE = GUI_DTO__BELONGS_TO_AGGREGATE;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__OPERATIONS = GUI_DTO__OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Traits</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__TRAITS = GUI_DTO__TRAITS;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__FOR = GUI_DTO__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Gui Module</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__GUI_MODULE = GUI_DTO__GUI_MODULE;
+
+	/**
+	 * The number of structural features of the '<em>Gui Command</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND_FEATURE_COUNT = GUI_DTO_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__NAME = SculptormetamodelPackage.TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__DOC = SculptormetamodelPackage.TYPED_ELEMENT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__HINT = SculptormetamodelPackage.TYPED_ELEMENT__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__TYPE = SculptormetamodelPackage.TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Collection Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__COLLECTION_TYPE = SculptormetamodelPackage.TYPED_ELEMENT__COLLECTION_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Map Key Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__MAP_KEY_TYPE = SculptormetamodelPackage.TYPED_ELEMENT__MAP_KEY_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Nullable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER__NULLABLE = SculptormetamodelPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>View Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_PARAMETER_FEATURE_COUNT = SculptormetamodelPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__NAME = WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__DOC = WIDGET__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__HINT = WIDGET__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__VIEW = WIDGET__VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__LABEL = WIDGET__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__BEHAVIOR_BINDINGS = WIDGET__BEHAVIOR_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__ENABLED = WIDGET__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>To View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__TO_VIEW = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Link Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__NAME = WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__DOC = WIDGET__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__HINT = WIDGET__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__VIEW = WIDGET__VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__LABEL = WIDGET__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__BEHAVIOR_BINDINGS = WIDGET__BEHAVIOR_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__ENABLED = WIDGET__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__WIDGETS = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__FOR = WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Panel Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_BEHAVIOR__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_BEHAVIOR__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_BEHAVIOR__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
+
+	/**
+	 * The number of structural features of the '<em>Ui Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_BEHAVIOR_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_PANEL_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_PANEL_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_PANEL_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Panel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_PANEL_BEHAVIOR__PANEL = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Populate Panel Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_PANEL_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATE_TO_VIEW_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATE_TO_VIEW_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATE_TO_VIEW_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATE_TO_VIEW_BEHAVIOR__VIEW = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Navigate To View Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATE_TO_VIEW_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_BINDING__BEHAVIORS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Behavior Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_BINDING_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_CLICK_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
+
+	/**
+	 * The number of structural features of the '<em>On Click Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_CLICK_BINDING_FEATURE_COUNT = BEHAVIOR_BINDING_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_HOVER_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
+
+	/**
+	 * The number of structural features of the '<em>On Hover Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_HOVER_BINDING_FEATURE_COUNT = BEHAVIOR_BINDING_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_CONDITION__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_CONDITION__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_CONDITION__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
+
+	/**
+	 * The number of structural features of the '<em>Ui Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_CONDITION_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiEnumImpl <em>Gui Enum</em>}' class.

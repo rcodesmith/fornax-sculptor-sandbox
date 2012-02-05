@@ -21,7 +21,7 @@ public class GwtMapperTemplateTest extends TemplateTestBase {
     public void assertMapperCode() throws IOException {
     	GuiModule guiMod = personModule();
     	StubModule stubMod = guiMod.getStubModule();
-    	Assert.assertEquals(5, stubMod.getDomainObjects().size());
+    	Assert.assertEquals(7, stubMod.getDomainObjects().size());
     	
     	HashMap<String, Object> globalVars = new HashMap<String, Object>();
         XpandUnit.xpand("templates::gwt::GwtMapper::domainObjectUIMapperDispatch", personModule(),

@@ -18,5 +18,5 @@ import sculptormetamodel.DomainObject;
  * @model
  * @generated
  */
-public interface GuiCommand extends DomainObject {
+public interface GuiCommand extends GuiDto {
 } // GuiCommand

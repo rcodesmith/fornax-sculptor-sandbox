@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import sculptorguimetamodel.GuiModule;
 
-public class GwtUiBaseModuleTest extends TemplateTestBase {
+public class GwtUiImplModuleTest extends TemplateTestBase {
 	
 
     
@@ -21,19 +21,19 @@ public class GwtUiBaseModuleTest extends TemplateTestBase {
     }
 
     @Test
-    public void assertGwtConfigBaseCode() throws IOException {
+    public void assertImploModuleCode() throws IOException {
 //    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	
-        XpandUnit.xpand("templates::gwt::GwtUiModule::gwtConfig", mediaModule(),
+        XpandUnit.xpand("templates::gwt::GwtUiModule::gwtImplConfigForTest", mediaModule(),
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String moduleCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/MediaBaseUI.gwt.xml");
+        String moduleCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/MediaUI.gwt.xml");
         
         assertContains(moduleCode,
-        		"<module rename-to='MediaBaseUI'>");
+        		"<module rename-to='MediaUI'>");
         
         assertContains(moduleCode,
-        		"<inherits name=\"org.fornax.cartridges.sculptor.examples.library.person.gwt.PersonBaseUI\"/>");
+        		"<inherits name=\"org.fornax.cartridges.sculptor.examples.library.person.gwt.PersonUI\"/>");
         
     }
 }

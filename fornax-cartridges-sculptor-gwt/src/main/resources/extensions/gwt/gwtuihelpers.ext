@@ -103,8 +103,10 @@ String gwtDomainPackage(GuiModule module) :
    getGwtPackage(module) + ".shared.domain";
 
 String gwtCommandPackage(GuiCommand cmd) :
-   getGwtPackage((GuiModule)cmd.eContainer) + ".shared.command";
+	gwtBasePackage((StubModule)cmd.eContainer) + ".shared.command";
+//   getGwtPackage((GuiModule)cmd.eContainer) + ".shared.command";
 
+// TODO: No longer used?
 String gwtCommandPackage(CommandEvent cmd) :
    gwtBasePackage(cmd.module) + ".shared.command";
 
@@ -120,8 +122,8 @@ String gwtDomainPackage(GuiDto do) :
 	debugTrace("gwtDomainPackage(" + do + ") : guiModule = " + do.guiModule) ->
    gwtDomainPackage(do.guiModule.stubModule);
 
-String gwtDomainPackage(GuiCommand do) :
-   gwtDomainPackage((GuiModule)do.eContainer);
+//String gwtDomainPackage(GuiCommand do) :
+//   gwtDomainPackage(do.guiModule.stubModule);
 
 String fqnGwtDto(Reference ref) :
 	gwtDomainPackage(ref.to) + "." + ref.to.name;
@@ -134,12 +136,13 @@ String fqnDomain(GuiDto do) :
 
 // The fully qualified GWT DTO class for a given domain object
 String fqnGwtDto(GuiDto do) :
-	debugTrace("fqnGwtDto(" + do + ")") ->
+//	debugTrace("fqnGwtDto(" + do + ")") ->
 	do.gwtDomainPackage() + "." + do.name;
 
 String fqnGwtDto(GuiCommand do) :
 	do.gwtCommandPackage() + "." + do.name;
-
+	
+// TODO: No longer used?
 String fqnGwtDto(CommandEvent do) :
 	do.gwtCommandPackage() + "." + do.name;
 
@@ -273,9 +276,6 @@ String gwtTableWidgetClass(ListTask task) :
 	plural(task.for.name) + "Table";
 
 
-Set[Module] getDependedUponModules(Module module) :
-	JAVA org.fornax.cartridges.sculptor.generator.util.DependencyUtil.getDependedUponModules(sculptormetamodel.Module);
-	
 
 
 
@@ -477,13 +477,13 @@ String getModuleImplConfigName(GuiModule module) :
 
 
 
-String fqnModuleConfig(Module module) :
+String fqnModuleConfig(GuiModule module) :
 	module.gwtBasePackage() + "." + module.getModuleConfigName();
    
-String fqnImplModuleConfig(Module module) :
+String fqnImplModuleConfig(GuiModule module) :
 	module.gwtBasePackage() + "." + module.getModuleImplConfigName();
 
-String moduleGwtMain(Module module) :
+String moduleGwtMain(GuiModule module) :
     module.gwtBasePackage() + ".client." + module.name.toFirstUpper() + "UI";
 	
 
@@ -681,7 +681,7 @@ String gwtEventClass(GuiEvent event) :
 
 	
 Set[GuiCommand] commandsToGenerate(GuiModule module) :
-	module.commands.reject(c | ! generateGwt(c));
+	module.stubModule.domainObjects.select(c | GuiCommand.isInstance(c)).reject(c | ! generateGwt(c));
 	
 
 

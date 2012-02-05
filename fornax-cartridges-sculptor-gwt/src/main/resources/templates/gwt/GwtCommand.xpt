@@ -11,8 +11,9 @@
 «ENDDEFINE»
 
 «DEFINE gwtCommandBase FOR GuiCommand»
+	«debugTrace("gwtCommandBase() this = " + this)»
     «LET attributes.exists(a | a.isUuid())  AS hasUuidAttribute -»
-    «FILE javaFileName(gwtCommandPackage(this) + "." + name )»
+    «FILE javaFileName(fqnGwtDto(this) )»
 «javaHeader()»
 package «gwtCommandPackage(this)»;
 
