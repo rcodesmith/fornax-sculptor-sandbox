@@ -394,7 +394,10 @@ String getBuilderClassName(String domainObjectName) :
 
 String getBuilderClassName(DomainObject domainObject) :
 	domainObject.name + "Builder";
-	
+
+String getBuilderFqn(DomainObject domainObject) :
+	domainObject.getBuilderPackage() + "." + domainObject.getBuilderClassName();
+
 //String getBuilderExtendsClassName(DomainObject domainObject) :
 //    (domainObject.extends == null) ?
 //        (domainObject.extendsName == null ? domainObject.defaultBuilderExtendsClassName() : domainObject.extendsName + "Builder") :

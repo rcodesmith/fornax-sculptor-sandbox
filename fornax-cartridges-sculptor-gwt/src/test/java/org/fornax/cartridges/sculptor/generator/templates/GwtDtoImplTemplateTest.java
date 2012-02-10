@@ -48,8 +48,21 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 
     }
 
-    
-	// gwt.dto.generate.gap
+	@Test
+	public void assertPersonDtoSubclass() throws IOException {
+		DomainObject personObj = (DomainObject) getNamedElement("Person",
+				personModule().getStubModule().getDomainObjects());
+		Assert.assertNotNull(personObj);
+		Assert.assertTrue(personObj instanceof GuiDto);
+		Assert.assertNotNull(((GuiDto)personObj).getGuiModule());
+		
+		XpandUnit.xpand(
+				"templates::gwt::GwtDto::domainObjectSubclassForUnitTest",
+				personObj, new HashMap<String, Object>(), getXpandTempDir());
+
+		String dtoCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/shared/domain/Person.java");
+
+	}
 	
 	@Test
 	public void assertMediaDtoSubclass() throws IOException {

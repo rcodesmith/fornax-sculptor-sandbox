@@ -43,7 +43,7 @@ public class «this.mapperClassName()» {
 
 
 «DEFINE copyAttrToDomain FOR Attribute»
-	domainObj.set«name.toFirstUpper()»(«this.getToDomainConversionExpression("dtoObj." + this.getGetAccessor() + "()", "domainObj." + this.getGetAccessor() + "()" )»);
+	builder.«name»(«this.getToDomainConversionExpression("dtoObj." + this.getGetAccessor() + "()", "builder." + this.getGetAccessor() + "()" )»);
 «ENDDEFINE»
 
 «DEFINE copyAttrFromDomain FOR Attribute»
@@ -72,16 +72,15 @@ public class «this.mapperClassName()» {
 «ENDDEFINE»
 
 «DEFINE copyManyRefToDomain FOR Reference»
-    	domainObj.removeAll«name.toFirstUpper()»();
     	for («getGwtTypeName()» obj : dtoObj.get«name.toFirstUpper()»()) {
     	    Object mappedDomain = «mapToDomainCall()»(obj);
     	
-    		domainObj.add«name.singular().toFirstUpper()»((«getTypeName()»)mappedDomain);
+    		builder.add«name.singular().toFirstUpper()»((«getTypeName()»)mappedDomain);
 		}
 «ENDDEFINE»
 
 «DEFINE copyOneRefToDomain FOR Reference»
-		domainObj.set«name.toFirstUpper()»(«mapToDomainCall()»(dtoObj.«this.getGetAccessor()»()));
+		builder.«name»(«mapToDomainCall()»(dtoObj.«this.getGetAccessor()»()));
 «ENDDEFINE»
 
 
@@ -161,10 +160,12 @@ public class «this.mapperClassName()» {
 			return null;
 		}
 		
+		
 		«IF this.abstract»
 			«this.fqnDomain()» domainObj = («this.fqnDomain()»)mapToDomainMM.invoke(null, dtoObj);		
+			return domainObj;
 		«ELSE»
-			«this.fqnDomain()» domainObj = new «this.fqnDomain()»(); 
+			«getBuilderFqn()» builder = new «getBuilderFqn()»();
 		
 			«REM»Copy attributes«ENDREM»
 			«EXPAND copyAttrToDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»
@@ -174,10 +175,10 @@ public class «this.mapperClassName()» {
 
 			«REM»Copy one-one«ENDREM»
 			«EXPAND copyOneRefToDomain FOREACH this.getAllBusinessReferences().select(r | !r.many).reject(r | r.isUnownedReference())»
-		
+			
+			return builder.build();
 		«ENDIF»
 		
-		return domainObj;
 		
 	}
 «ENDDEFINE»

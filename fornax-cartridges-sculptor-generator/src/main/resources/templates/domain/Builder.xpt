@@ -20,7 +20,7 @@
 «EXTENSION extensions::properties»
 
 «DEFINE builder FOR DomainObject»
-«FILE javaFileName(getBuilderPackage() + "." + name + "Builder")»
+«FILE javaFileName(getBuilderFqn())»
 «javaHeader()»
 package «getBuilderPackage()»;
 
@@ -115,7 +115,7 @@ package «getBuilderPackage()»;
 
 «DEFINE builderAttributeSetter(DomainObject obj) FOR Attribute»
     «formatJavaDoc()»
-	public «obj.name»Builder «name»(«getImplTypeName()» val) {
+	public «obj.name»Builder «name»(«getTypeName()» val) {
 		this.«name» = val;
 		return this;
 	}

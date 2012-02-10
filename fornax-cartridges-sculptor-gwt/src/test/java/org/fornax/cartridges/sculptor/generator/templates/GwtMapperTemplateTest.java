@@ -44,4 +44,19 @@ public class GwtMapperTemplateTest extends TemplateTestBase {
         		"public static org.fornax.cartridges.sculptor.examples.library.person.domain.Ssn mapSsnToDomain(org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Ssn dtoObj) {");
     }
 
+    
+    @Test
+    public void assertMapToDomain() throws IOException {
+    	GuiModule guiMod = personModule();
+    	
+    	HashMap<String, Object> globalVars = new HashMap<String, Object>();
+        XpandUnit.xpand("templates::gwt::GwtMapper::domainObjectUIMapperDispatch", personModule(),
+                globalVars, getXpandTempDir());
+        
+        String mapperCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/domain/PersonDtoMapper.java");
+        
+    	assertContains(mapperCode, "org.fornax.cartridges.sculptor.examples.library.person.domain.PersonBuilder builder = new org.fornax.cartridges.sculptor.examples.library.person.domain.PersonBuilder();");
+    	
+    	assertContains(mapperCode, "builder.birthDate(org.fornax.cartridges.sculptor.framework.gwt.server.ConversionUtils.convert(dtoObj.getBirthDate(),builder.getBirthDate()));");
+    }
 }
