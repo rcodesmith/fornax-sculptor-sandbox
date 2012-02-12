@@ -3,6 +3,7 @@ package org.fornax.cartridges.sculptor.generator.transformation;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import junit.framework.Assert;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
@@ -105,7 +106,25 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 				"personDetailsEmptyPanel", tableView.getWidgets());
 		assertNotNull(emptyPane);
 		assertEquals(0, emptyPane.getWidgets().size());
-		assertEquals("this is an empty panel", emptyPane.getDoc());
+		assertEquals("this is an empty panel", emptyPane.getDoc());		
+	}
+	
+	@Test
+	public void assertPersonDetailsPanel() {
+		View tableView = (View) getNamedElement("TableView", personModule()
+				.getViews());
+
+		PanelWidget personDetailsPane = (PanelWidget) getNamedElement(
+				"personDetailsPanel", tableView.getWidgets());
+		assertNotNull(personDetailsPane);
+		assertEquals(2, personDetailsPane.getWidgets().size());
+		Assert.assertSame(tableView, personDetailsPane.getView());
+		
+		// Check contents of person detail panel
+		InputTextWidget widget1 = (InputTextWidget)personDetailsPane.getWidgets().get(0);
+		assertEquals("nameField", widget1.getName());
+		Assert.assertSame(tableView, widget1.getView());
+
 	}
 
 	@Test

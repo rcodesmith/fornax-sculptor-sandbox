@@ -492,7 +492,9 @@ String moduleGwtMain(GuiModule module) :
 ////////////////////////////////////////////////////////////////////////////
 String widgetClickHandlersExpr(Widget w) :
 	"get" + w.name.toFirstUpper() + "HasClickHandlers()";
-    
+   
+String widgetForIsWidgetExpr(Widget w) :
+	"get" + w.name.toFirstUpper() + "ForIsWidget()";
 
 ////////////////////////////////////////////////////////////////////////////
 // View-related functions
@@ -562,7 +564,7 @@ String resolveGwtWidgetType(LinkWidget widget) :
 	"com.google.gwt.user.client.ui.Anchor";
 
 String resolveGwtWidgetType(PanelWidget widget) :
-	"com.google.gwt.user.client.ui.VerticalPanel";
+	"com.google.gwt.user.client.ui.FlowPanel";
 	
 
 Set[Service] getUsedServices(GuiModule module) :

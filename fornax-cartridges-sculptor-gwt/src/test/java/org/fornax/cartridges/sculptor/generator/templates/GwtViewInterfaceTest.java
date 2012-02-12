@@ -11,35 +11,6 @@ import sculptorguimetamodel.View;
 
 public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
 
-//    private static GuiApplication guiApp;
-//
-//    
-//    @BeforeClass
-//    public static void before() throws Exception {
-//        System.setProperty("project.nature", "business-tier, rcp");
-//		System.setProperty("datetime.library", "joda");
-//        System.setProperty("gui.createDefaults", "false");
-//        System.setProperty("package.gwt", "gwt");
-//        System.setProperty("ui.custom.guidto", "True");
-//        
-//        initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
-//        guiApp = (GuiApplication) ctx.get("guiModel");
-//    }
-//
-//    @AfterClass
-//    public static void after() {
-//        System.getProperties().remove("project.nature");
-//		System.getProperties().remove("datetime.library");
-//		System.getProperties().remove("gui.createDefaults");
-//		System.getProperties().remove("package.gwt");
-//		System.getProperties().remove("ui.custom.guidto");
-//
-//    }
-
-    
-//    private GuiModule personModule() {
-//        return (GuiModule) getNamedElement("person", guiApp.getModules());
-//    }
 
     @Test
     public void assertTableViewInterfaceCode() throws IOException {
@@ -54,12 +25,18 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         
         assertContains(tableViewCode, "public interface TableViewView extends com.google.gwt.user.client.ui.IsWidget");
         
-//        assertContains(tableViewCode, "com.google.gwt.user.client.ui.Widget asWidget();");
-        
         assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasText getNameFieldHasText();");
+        
+        assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasText getInfo1HasText();");
+        
         assertContains(tableViewCode, "public com.google.gwt.view.client.HasData<org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Person> getMytableHasData();");
         assertContains(tableViewCode, "public com.google.gwt.event.dom.client.HasClickHandlers getSaveButtonHasClickHandlers();");
         
+        assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget getPersonDetailsPanelForIsWidget();");
+        
+        assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasText getNestedNameFieldHasText();");
+        
+        assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasText getAddressFieldHasText();");
         
     }
     

@@ -22,11 +22,12 @@
 			<g:FormPanel>
 				<g:VerticalPanel>
 				
-«FOREACH widgets AS widget»
+				«FOREACH widgets AS widget»
+				<!-- Widget «widget.name» -->
 				<g:HorizontalPanel>		
 					«EXPAND widgetTemplate FOR widget»
 				</g:HorizontalPanel>	
-«ENDFOREACH»
+				«ENDFOREACH»
 			
 				
 				</g:VerticalPanel>
@@ -61,7 +62,7 @@
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR Widget»
-	<!-- Error - expected specific widget template -->
+	<!-- Error - expected specific widget template for widget «name» -->
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR TableWidget»
@@ -71,3 +72,16 @@
 «DEFINE widgetTemplate FOR LinkWidget»
 	<g:Anchor ui:field="«name»" text="«label»" HTML="«label»"></g:Anchor>
 «ENDDEFINE»
+
+«DEFINE widgetTemplate FOR PanelWidget»
+	
+	<g:FlowPanel ui:field="«name»">
+		«FOREACH widgets AS widget»
+		<!-- Widget «widget.name» -->
+		<g:FlowPanel>		
+			«EXPAND widgetTemplate FOR widget»
+		</g:FlowPanel>	
+		«ENDFOREACH»
+	</g:FlowPanel>
+«ENDDEFINE»
+

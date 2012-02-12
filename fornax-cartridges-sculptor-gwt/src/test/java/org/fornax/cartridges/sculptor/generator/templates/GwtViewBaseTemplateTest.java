@@ -42,6 +42,28 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         assertContainsConsecutiveFragments(tableViewBaseCode,
         		"private static TableViewViewBaseUiBinder uiBinder = com.google.gwt.core.client.GWT",
         		".create(TableViewViewBaseUiBinder.class);");
+        
+        // Assert panel code
+        assertContainsConsecutiveFragments(tableViewBaseCode, "@com.google.gwt.uibinder.client.UiField",
+        		"com.google.gwt.user.client.ui.FlowPanel personDetailsPanel;");
+
+    	assertContainsConsecutiveFragments(tableViewBaseCode, "public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget getPersonDetailsPanelForIsWidget() {",
+    		"return personDetailsPanel;",
+    	"}");
+ 
+        // Assert InformationalText code
+        assertContainsConsecutiveFragments(tableViewBaseCode, "	public com.google.gwt.user.client.ui.HasText getInfo1HasText() {",
+        		"return info1;",
+        		"}");
+        
+        // Assert nestedNameField code
+        assertContainsConsecutiveFragments(tableViewBaseCode, "@com.google.gwt.uibinder.client.UiField",
+        	"com.google.gwt.user.client.ui.TextBox nestedNameField;");
+        
+        assertContainsConsecutiveFragments(tableViewBaseCode, "public com.google.gwt.user.client.ui.HasText getNestedNameFieldHasText() {",
+		"return nestedNameField;",
+		"}");	
+       
     }
 
     @Test
@@ -56,5 +78,6 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/client/view/MediaBrowseViewBase.java");
         
     }
+    
 
 }

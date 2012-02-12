@@ -89,9 +89,16 @@ gui LibraryWeb for Library {
 					}
 				}
 
-				panel personDetailsPanel {
+				panel personDetailsPanel for Person {
 					contents {
-						
+						inputText nestedNameField {
+							label = "Name"
+						}
+						inputText addressField {
+							label = "Address"
+						}
+
+
 					}
 				}
 				

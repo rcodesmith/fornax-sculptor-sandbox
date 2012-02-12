@@ -330,7 +330,7 @@ DslOnHover :
 	
 	
 DslColumnType :
-	("Text"|"Button"|"Date"|"Custom");
+	("Text"|"Button"|"Date"|"Custom"|"Link");
 	
 DslGuiEvent :
   (doc=STRING)? 

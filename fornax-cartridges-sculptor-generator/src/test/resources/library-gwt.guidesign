@@ -82,7 +82,13 @@ gui LibraryWeb for Library {
 				
 				panel personDetailsPanel {
 					contents {
-						
+						inputText nameField forProperty name {
+							label = "Name"
+						}
+						inputText birthDateField  { // forProperty birthDate
+							label = "Birth Date"
+						}
+
 					}
 				}
 				

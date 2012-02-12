@@ -4,6 +4,8 @@
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::gwtuihelpers»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
 
 
 «DEFINE view(Module module) FOR GuiModule»
@@ -30,15 +32,16 @@ package «gwtWidgetsPackage()»;
 	public interface «gwtViewInterface()» extends com.google.gwt.user.client.ui.IsWidget {
 		public void initView();
 		
-		«EXPAND widgetInterfaceDeclarations FOREACH widgets»
+		«EXPAND widgetInterfaceDeclarations FOREACH this.allWidgets()»
 		
 	}
 
 «ENDFILE»
 «ENDDEFINE»
 
-«REM»Declarations that must be added to the view interface for ecah widget«ENDREM»
+«REM»Declarations that must be added to the view interface for each widget«ENDREM»
 «DEFINE widgetInterfaceDeclarations FOR Widget»
+	// No interface declarations for «name» widget - fill in implementation?
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR TableWidget»
@@ -50,7 +53,18 @@ package «gwtWidgetsPackage()»;
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
+	/**
+	 * Text accessor for «name»
+	 */
 	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+«ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR InformationalTextWidget»
+	/**
+	 * Text accessor for «name»
+	 */
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR InputDateWidget»
@@ -60,6 +74,12 @@ package «gwtWidgetsPackage()»;
 «DEFINE widgetInterfaceDeclarations FOR LinkWidget»
 	public com.google.gwt.event.dom.client.HasClickHandlers «widgetClickHandlersExpr()»;
 «ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR PanelWidget»
+	public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget «widgetForIsWidgetExpr()»;
+«ENDDEFINE»
+
+
 
 
 
@@ -82,7 +102,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	public «gwtViewWidgetBaseClass()»() {
 		initWidget(getWidget());
 		
-		«EXPAND widgetInitCalls FOREACH widgets»
+		«EXPAND widgetInitCalls FOREACH allWidgets()»
 	}
 	
     protected com.google.gwt.user.client.ui.Widget getWidget() {
@@ -93,9 +113,9 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     
     }
     
-    «EXPAND widgetDeclaration FOREACH widgets»
+    «EXPAND widgetDeclaration FOREACH allWidgets()»
     
-    «EXPAND widgetMethods FOREACH widgets»
+    «EXPAND widgetMethods FOREACH allWidgets()»
 }
 
 «ENDFILE»
@@ -222,6 +242,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	}
 «ENDDEFINE»
 
+«DEFINE widgetMethods FOR InformationalTextWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
+		return «name»;
+	}
+«ENDDEFINE»
+
 «DEFINE widgetMethods FOR InputDateWidget»
 	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
 		return «name»;
@@ -234,11 +260,22 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	}
 «ENDDEFINE»
 
-
-«DEFINE widgetMethods FOR Widget»
+«DEFINE widgetMethods FOR PanelWidget»
+	public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget «widgetForIsWidgetExpr()» {
+		return «name»;
+	}
 «ENDDEFINE»
 
-«REM»Widget delarations«ENDREM»
+
+«DEFINE widgetMethods FOR Widget»
+	// No widget methods for widget «name» - need to implement?
+«ENDDEFINE»
+
+
+«REM»
+	Widget attribute implementation delarations
+«ENDREM»
+
 «DEFINE widgetDeclaration FOR Widget»
     @com.google.gwt.uibinder.client.UiField
     «resolveGwtWidgetType()» «name»;

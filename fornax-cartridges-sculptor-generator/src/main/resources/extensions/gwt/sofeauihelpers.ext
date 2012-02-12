@@ -5,6 +5,14 @@ extension extensions::properties;
 extension extensions::helper;
 extension extensions::guihelper;
 
+////////////////////////////////////////////////////////////////////////////
+// General widget-related functions
+////////////////////////////////////////////////////////////////////////////
+//View findContainingView(Widget widget, Module module) :
+//	let container = widget.eContainer :
+//		debugTrace("findContainingView for " + widget) ->
+//		View.isInstance(container) ? ((View)container).transformView(module) : ((Widget)container).findContainingView(module);
+		 
 
 
 // Get all of the Services that are used, either at the module or view level
@@ -15,7 +23,14 @@ Set[Module] getAllUsedServices(GuiModule guiModule) :
 	list.toSet();
 //	debugTrace("all services list: " + list) ->
 
+List[Widget] allWidgets(View view):
+	{}.addAll(view.widgets).addAll(view.widgets.allWidgets());
 
+List[Widget] allWidgets(Widget w):
+	{};
+	
+List[Widget] allWidgets(PanelWidget w):
+	w.widgets;
 
 	
 String getGwtExtendsLitteral(DomainObject domainObject) :
@@ -65,8 +80,9 @@ String getFieldUniqueCssId(ViewDataProperty property) :
     property.userTask.name + property.name.toFirstUpper() + "Field";
 
 
-String gwtBasePackage(StubModule module) :
-   module.guiModule.getGwtPackage();
+// Moved to gwtuihelpers
+//String gwtBasePackage(StubModule module) :
+//   module.guiModule.getGwtPackage();
    
 
 
@@ -225,8 +241,9 @@ String getGwtImplTypeName(TypedElement e) :
 
     
 // Package for all view-related widget classes
-gwtWidgetsPackage(View view) :
-	gwtBasePackage(view.module.for) + ".client.view";
+// Moved to gwtuihelpers
+//gwtWidgetsPackage(View view) :
+//	gwtBasePackage(view.module.for) + ".client.view";
 
 
 

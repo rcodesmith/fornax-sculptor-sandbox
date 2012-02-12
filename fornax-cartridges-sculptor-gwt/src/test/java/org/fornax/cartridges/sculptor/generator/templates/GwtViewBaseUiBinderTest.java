@@ -13,29 +13,6 @@ import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.View;
 
 public class GwtViewBaseUiBinderTest extends TemplateTestBase {
-//	
-//    private static GuiApplication guiApp;
-//
-//    
-//    @BeforeClass
-//    public static void before() throws Exception {
-//        System.setProperty("project.nature", "business-tier, rcp");
-//		System.setProperty("datetime.library", "joda");
-//        System.setProperty("gui.createDefaults", "false");
-//        System.setProperty("package.gwt", "gwt");
-//        
-//        initWorkflowContext("workflowguidsl-test-library-gwt.mwe");
-//        guiApp = (GuiApplication) ctx.get("guiModel");
-//    }
-//
-//    @AfterClass
-//    public static void after() {
-//        System.getProperties().remove("project.nature");
-//		System.getProperties().remove("datetime.library");
-//		System.getProperties().remove("gui.createDefaults");
-//		System.getProperties().remove("package.gwt");
-//
-//    }
 
     
     private GuiModule personModule() {
@@ -50,6 +27,16 @@ public class GwtViewBaseUiBinderTest extends TemplateTestBase {
                 new HashMap<String, Object>(), getXpandTempDir());
         
         String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewBase.ui.xml");
+        
+        assertContainsConsecutiveFragments(tableViewBaseCode, "<g:FlowPanel ui:field=\"personDetailsPanel\">",
+        		"<!-- Widget nestedNameField -->",
+        		"<g:FlowPanel>",		
+				"<g:Label text=\"Name\" />");
+        
+        assertContainsConsecutiveFragments(tableViewBaseCode, "<g:FlowPanel>",
+        		"<g:Label text=\"Address\" />",
+        		"<g:TextBox ui:field=\"addressField\"  name=\"addressField\"/>",	
+        		"</g:FlowPanel>");	
     }
     
 }
