@@ -124,7 +124,11 @@ gui LibraryWeb for Library {
 	Module for media {
 		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
 		
+		
 		> @MediaService
+		
+		
+		skip GameMedia
 		
 		View MediaBrowse {
 			> @MediaService
@@ -151,6 +155,8 @@ gui LibraryWeb for Library {
 
 			}
 		}
+		
+		
 	}
 
 }

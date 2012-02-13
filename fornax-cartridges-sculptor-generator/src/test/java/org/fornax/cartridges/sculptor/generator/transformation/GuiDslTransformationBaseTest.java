@@ -5,6 +5,8 @@ import org.junit.BeforeClass;
 
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
+import sculptormetamodel.Attribute;
+import sculptormetamodel.DomainObject;
 
 public abstract class GuiDslTransformationBaseTest extends TransformationTestBase {
 
@@ -52,6 +54,10 @@ public abstract class GuiDslTransformationBaseTest extends TransformationTestBas
     protected GuiModule mediaModule() {
         return (GuiModule) getNamedElement("media", guiApp.getModules());
     }
+
+	protected Attribute getAttribute(DomainObject obj, String attrName) {
+		return (Attribute)getNamedElement(attrName, obj.getAttributes());
+	}
 
 
 }

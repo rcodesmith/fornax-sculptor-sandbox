@@ -58,6 +58,11 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
     
 
     @Test
+    public void assertSkippedDomainObject() {
+    	assertNull(getNamedElement("GameMedia", mediaModule().getStubModule().getDomainObjects()));
+    }
+    
+    @Test
     public void assertPersonModule() {
     	GuiModule mod = personModule();
     	Assert.assertNotNull(mod);
@@ -98,17 +103,28 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 	public void assertGuiDtoMedia() {
 		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getStubModule().getDomainObjects());
 		assertNotNull(media);
-		assertEquals(1, media.getAttributes().size());
+		assertEquals(2, media.getAttributes().size());
 		
 		Assert.assertTrue(media.isAbstract());
 		
-		Attribute titleAttr = (Attribute)media.getAttributes().get(0);
+		Attribute titleAttr = getAttribute(media, "title");
 		assertEquals("title", titleAttr.getName());
 		assertEquals("String", titleAttr.getType());
 		assertEquals(false, titleAttr.isChangeable());
 		
 		assertNotNull(media.getModule());
 		assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt", media.getModule().getBasePackage());
+		
+		Attribute idAttr = getAttribute(media, "id");
+		assertNotNull(idAttr);
+		assertEquals("id", idAttr.getName());
+		assertEquals("IDTYPE", idAttr.getType());
+		assertEquals(true, idAttr.isChangeable());
+		
+		// Make sure the "for" domain object has the same id attribute type
+		Attribute idForAttr = getAttribute(media.getFor(), "id");
+		assertEquals("IDTYPE", idForAttr.getType());
+		
 		
 	}
 	
@@ -183,6 +199,7 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		assertNotNull(person.getFor());
 		assertEquals("Person", person.getFor().getName());
 		assertNotNull(person.getGuiModule());
+		
 		
 	}
 	

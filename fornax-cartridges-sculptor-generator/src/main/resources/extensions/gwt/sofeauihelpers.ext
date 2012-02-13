@@ -64,8 +64,8 @@ String gwtDefaultExtendsClassName(GuiCommand domainObject) :
 	let result = defaultExtendsClass(domainObject.simpleMetaTypeName()) :
 	(result == "" ? abstractGwtCommandClass() : result);
 
-String abstractGwtCommandClass() :
-	fw("gwt.shared.domain.AbstractGwtCommand");
+//String abstractGwtCommandClass() :
+//	fw("gwt.shared.domain.AbstractGwtCommand");
 	
 	
 
@@ -526,7 +526,7 @@ GuiModule findModuleFor(GuiApplication guiApp, Module module):
 	guiApp.modules.selectFirst(m|m.for == module);
 
 Set[GuiModule] getDependedUponGuiModules(GuiModule guiMod) :
-	getDependedUponModules(guiMod.for).collect(m | findModuleFor(guiMod.application, m));
+	getDependedUponModules(guiMod.for).collect(m | findModuleFor(guiMod.application, m)).reject(m | m == null);
 	
 Set[Module] getDependedUponModules(Module module) :
 	JAVA org.fornax.cartridges.sculptor.generator.util.DependencyUtil.getDependedUponModules(sculptormetamodel.Module);
@@ -541,6 +541,16 @@ ServiceProxy findServiceProxy(GuiModule module, String name) :
 ////////////////////////////////////////////////////////////////////////////
 GuiDto findGuiDtoFor(GuiApplication guiApp, DomainObject domainObj):
 	guiApp.findModuleFor(domainObj.module).stubModule.domainObjects.selectFirst(d|d.name == domainObj.name);
+
+
+//boolean generateGuiDto(DomainObject d) :
+//	d.getHint("gwt") != "skip";
+
+//boolean generateGuiDto(Reference r) :
+//	r.getHint("gwt") != "skip";
+
+//boolean generateGuiDto(Attribute a) :
+//	a.getHint("gwt") != "skip";
 
 
 

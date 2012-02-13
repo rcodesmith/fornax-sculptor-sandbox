@@ -127,6 +127,11 @@ Application Library {
         ValueObject Comment {
         	String text
         }
+        
+        Entity GameMedia extends @Media {
+        	!auditable
+        	
+        }
     }
     
 }

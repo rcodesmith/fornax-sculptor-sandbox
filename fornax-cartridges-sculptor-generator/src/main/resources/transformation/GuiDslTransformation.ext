@@ -75,6 +75,8 @@ modify(GuiModule guiModule) :
 
 
 create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslModule, DslGuiModule dslGuiModule) :
+	debugTrace("transformStubModule(dslModule = " + dslModule + ")") ->
+	debugTrace("skipObjects = " + dslGuiModule.skipDomainObjects) ->
 	setStubFor(dslModule.transform()) ->
 	setGuiModule(dslGuiModule.transformModule()) ->
     setApplication(getGlobalApplication()) ->  // TODO: Remove - don't think it does anything
@@ -84,11 +86,18 @@ create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslMo
     setDoc(dslModule.doc) ->
     setName(dslModule.name) ->
     setHint(dslModule.hint) ->
-    // TODO: add support for DslDomainEvent too
-    domainObjects.addAll(dslModule.domainObjects.reject(e|DslDomainEvent.isInstance(e)).transformToGui()) ->
-	services.addAll(dslGuiModule.serviceDependencies.transformServiceProxy());
+    // TODO: add support for DslDomainEvent and maybe DslTrait too
+    domainObjects.addAll(
+    	dslModule.domainObjects
+    	.reject(d | dslGuiModule.skipDomainObjects.select(e|e.do == d).size > 0)
+    	.reject(e|DslDomainEvent.isInstance(e) || DslTrait.isInstance(e))
+    	.transformToGui()) ->
+    debugTrace("Transforming services for module " + dslModule) ->
+	services.addAll(dslGuiModule.serviceDependencies.transformServiceProxy()) ->
 	// TODO: For some reason, the following is causing problems.  For now, require all services to be declared at module level
 //	services.addAll(dslGuiModule.views.serviceDependencies.transformServiceProxy().reject(s|services.exists(e|e.name == s.name)));
+	debugTrace("done with transformStubModule(dslModule = " + dslModule + ")");
+
 
 
 

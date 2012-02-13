@@ -60,8 +60,13 @@ modifyDsl(Widget widget, View view) :
 // NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
 // Solution is to include those modules in the GUI model.  Consider adding a validation for this..
 private modifyDsl(GuiDto dto, GuiModule guiModule) :
-	dto.setGuiModule(guiModule);
+	dto.setGuiModule(guiModule) ->
+	dto.modifyIdAttribute();
+	
 //	dto.setModule(guiModule.stubModule);
+
+modifyIdAttribute(GuiDto guiDto) :
+    guiDto.for.getIdAttribute() != null ? guiDto.addIdAttribute() : null;
 
 private modifyDslServiceProxy(ServiceProxy serviceProxy, GuiModule guiModule) :
 	serviceProxy.setGuiModule(guiModule) ->
@@ -83,15 +88,21 @@ private modifyGuiParameter(Parameter param, GuiApplication guiApp) :
 //////////////////////////////////////////////////////////////////////////////////
 
 
+
 create sculptorguimetamodel::GuiDto this transformToGui(DslDomainObject do) :
-	error("Unexpected call to transformToGui(DslDomainObject) for: " + do);
+	error("Unexpected call to transformToGui(DslDomainObject) for: " + do.name);
+	
+create sculptorguimetamodel::GuiDto this transformToGui(DslSimpleDomainObject do) :
+	error("Unexpected call to transformToGui(DslSimpleDomainObject) for: " + do.name);
 	
 create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
+	debugTrace("transformToGui(" + entity.name + ")") ->
 	initGuiDtoFromDomainObject(entity, this) ->
     setOptimisticLocking(!entity.notOptimisticLocking);
 
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
+	debugTrace("transformToGui(" + domainObject.name + ")") ->
 	initGuiDto(domainObject, this) ->
 //    setDoc(domainObject.doc) ->
 //    setName(domainObject.name) ->
@@ -104,6 +115,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObjec
     traits.addAll(domainObject.traits.transformToGui());
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
+	debugTrace("transformToGui(" + domainObject.name + ")") ->
 	initGuiDtoFromDomainObject(domainObject, this) ->
     setOptimisticLocking(!domainObject.notOptimisticLocking);
 
@@ -120,8 +132,9 @@ private initGuiDtoFromDomainObject(DslDomainObject domainObject, sculptorguimeta
     guiDto.attributes.addAll(domainObject.attributes.transformToGui()) ->
     guiDto.references.addAll(domainObject.references.transformToGui()) ->
     guiDto.operations.addAll(domainObject.operations.transformToGui()) ->
-    domainObject.transformExtends(guiDto);
+    domainObject.transformExtends(guiDto)->
 //    traits.addAll(domainObject.traits.transform()) ->
+	debugTrace("initGuiDtoFromDomainObject: Done with domain object " + domainObject.name);
 
 // Don't need to set guiModule, as it is set by modify() method
 private initGuiDto(DslSimpleDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
@@ -132,7 +145,7 @@ private initGuiDto(DslSimpleDomainObject domainObject, sculptorguimetamodel::Gui
     guiDto.setHint(domainObject.hint) ->
 //    guiDto.setModule(null) ->
 //    guiDto.setImmutable(!domainObject.notImmutable) ->
-	debugTrace("Done with domain object " + domainObject.name);
+	debugTrace("initGuiDto: Done with domain object " + domainObject.name);
 
 private transformExtends(DslEntity dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
     dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);

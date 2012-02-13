@@ -167,6 +167,10 @@
 		«this.getMapToDomainExpression()»
 «ENDDEFINE»
 
+«DEFINE gwtServiceImplOperationParameter(StubModule stubModule) FOR Parameter»
+	«EXPAND gwtServiceImplOperationParameter FOR this»
+«ENDDEFINE»
+
 
 
 
