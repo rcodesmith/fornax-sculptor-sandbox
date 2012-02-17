@@ -71,7 +71,8 @@ modify(GuiApplication guiApp) :
 // For any post-DSL transformations that need to occur
 modify(GuiModule guiModule) :
 //	guiModule.commands.modifyExtends();
-	guiModule.stubModule.domainObjects.modify(guiModule);
+	guiModule.stubModule.domainObjects.modify(guiModule) ->
+	guiModule.stubModule.modify();
 
 
 create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslModule, DslGuiModule dslGuiModule) :

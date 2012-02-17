@@ -120,11 +120,11 @@ String gwtCommandPackage(CommandEvent cmd) :
 //String gwtDomainPackage(Enum enum) :
 //   gwtDomainPackage(do.module);
 
-String gwtDomainPackage(DomainObject do) :
-   gwtDomainPackage(do.module);
+//String gwtDomainPackage(DomainObject do) :
+//   gwtDomainPackage(do.module);
 
-String gwtDomainPackage(GuiCommand do) :
-   gwtDomainPackage((GuiModule)do.eContainer);
+//String gwtDomainPackage(GuiCommand do) :
+//   gwtDomainPackage((GuiModule)do.eContainer);
 
 String fqnGwtDto(Reference ref) :
 	gwtDomainPackage(ref.to) + "." + ref.to.name;

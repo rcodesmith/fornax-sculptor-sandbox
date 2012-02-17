@@ -86,7 +86,7 @@ Application Library {
         }
        
         ValueObject Engagement {
-          String role
+          String role nullable
           - @Person person
           - @Media media <-> engagements
         }

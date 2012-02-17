@@ -30,6 +30,8 @@ which is causing attributes to get masked.«ENDREM»
 	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»
 «ENDREM»
 	
+	«EXPAND templates::domain::Builder::builder FOREACH guiModule.stubModule.domainObjects.select(e|e.needsBuilder() && e.generateGwt())»
+	
 
 	«EXPAND GwtMapper::domainObjectUIMapperDispatch(guiApp)»
 

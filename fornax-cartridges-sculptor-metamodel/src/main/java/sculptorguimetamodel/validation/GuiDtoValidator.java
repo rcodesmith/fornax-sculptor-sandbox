@@ -21,4 +21,6 @@ public interface GuiDtoValidator {
 	boolean validateFor(DomainObject value);
 
 	boolean validateGuiModule(GuiModule value);
+
+	boolean validateImmutable(boolean value);
 }

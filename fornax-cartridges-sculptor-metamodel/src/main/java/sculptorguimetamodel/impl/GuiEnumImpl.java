@@ -34,6 +34,7 @@ import sculptormetamodel.impl.EnumImpl;
  * <ul>
  *   <li>{@link sculptorguimetamodel.impl.GuiEnumImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiEnumImpl#getGuiModule <em>Gui Module</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiEnumImpl#isImmutable <em>Immutable</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +60,26 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 	 * @ordered
 	 */
 	protected GuiModule guiModule;
+
+	/**
+	 * The default value of the '{@link #isImmutable() <em>Immutable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImmutable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMMUTABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImmutable() <em>Immutable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImmutable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean immutable = IMMUTABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -159,6 +180,27 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isImmutable() {
+		return immutable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImmutable(boolean newImmutable) {
+		boolean oldImmutable = immutable;
+		immutable = newImmutable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE, oldImmutable, immutable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_ENUM__FOR:
@@ -167,6 +209,8 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				if (resolve) return getGuiModule();
 				return basicGetGuiModule();
+			case SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE:
+				return isImmutable() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,6 +227,9 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 				return;
 			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				setGuiModule((GuiModule)newValue);
+				return;
+			case SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE:
+				setImmutable(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,6 +248,9 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				setGuiModule((GuiModule)null);
 				return;
+			case SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE:
+				setImmutable(IMMUTABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -216,6 +266,8 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 				return for_ != null;
 			case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE:
 				return guiModule != null;
+			case SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE:
+				return immutable != IMMUTABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -230,6 +282,7 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 			switch (derivedFeatureID) {
 				case SculptorguimetamodelPackage.GUI_ENUM__FOR: return SculptorguimetamodelPackage.GUI_DTO__FOR;
 				case SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE: return SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE;
+				case SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE: return SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE;
 				default: return -1;
 			}
 		}
@@ -246,10 +299,26 @@ public class GuiEnumImpl extends EnumImpl implements GuiEnum {
 			switch (baseFeatureID) {
 				case SculptorguimetamodelPackage.GUI_DTO__FOR: return SculptorguimetamodelPackage.GUI_ENUM__FOR;
 				case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE: return SculptorguimetamodelPackage.GUI_ENUM__GUI_MODULE;
+				case SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE: return SculptorguimetamodelPackage.GUI_ENUM__IMMUTABLE;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (immutable: ");
+		result.append(immutable);
+		result.append(')');
+		return result.toString();
 	}
 
 } //GuiEnumImpl

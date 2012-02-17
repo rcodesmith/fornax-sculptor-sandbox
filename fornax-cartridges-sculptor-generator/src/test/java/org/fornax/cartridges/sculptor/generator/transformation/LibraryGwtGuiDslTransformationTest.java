@@ -119,7 +119,7 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		assertNotNull(idAttr);
 		assertEquals("id", idAttr.getName());
 		assertEquals("IDTYPE", idAttr.getType());
-		assertEquals(true, idAttr.isChangeable());
+		assertEquals(false, idAttr.isChangeable());
 		
 		// Make sure the "for" domain object has the same id attribute type
 		Attribute idForAttr = getAttribute(media.getFor(), "id");
@@ -226,6 +226,25 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		
 		assertNotNull(country.getFor());
 	}
+	
+	@Test
+	public void assertEngagementValueObject() {
+		GuiDto engagement = (GuiDto)getNamedElement("Engagement", mediaModule().getStubModule().getDomainObjects());
+		assertNotNull(engagement);
+		Attribute attr2 = (Attribute)engagement.getAttributes().get(1);
+		assertEquals("role", attr2.getName());
+		Assert.assertFalse(attr2.isChangeable());
+	}
+	
+	@Test
+	public void assertCommentValueObject() {
+		GuiDto comment = (GuiDto)getNamedElement("Comment", mediaModule().getStubModule().getDomainObjects());
+		assertNotNull(comment);
+		Attribute attr2 = (Attribute)comment.getAttributes().get(1);
+		assertEquals("text", attr2.getName());
+		Assert.assertTrue(attr2.isChangeable());
+	}
+	
 	
 //	protected String getFileText(String filePath) {
 //		File f = new File(

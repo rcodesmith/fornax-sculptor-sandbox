@@ -1779,6 +1779,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGuiDto_Immutable() {
+		return (EAttribute)guiDtoEClass.getEStructuralFeatures().get(2);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGuiEnum() {
 		return guiEnumEClass;
 	}
@@ -2028,6 +2037,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		guiDtoEClass = createEClass(GUI_DTO);
 		createEReference(guiDtoEClass, GUI_DTO__FOR);
 		createEReference(guiDtoEClass, GUI_DTO__GUI_MODULE);
+		createEAttribute(guiDtoEClass, GUI_DTO__IMMUTABLE);
 
 		guiEnumEClass = createEClass(GUI_ENUM);
 
@@ -2305,6 +2315,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(guiDtoEClass, GuiDto.class, "GuiDto", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGuiDto_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, GuiDto.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiDto_GuiModule(), this.getGuiModule(), null, "guiModule", null, 0, 1, GuiDto.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGuiDto_Immutable(), ecorePackage.getEBoolean(), "immutable", null, 0, 1, GuiDto.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(guiEnumEClass, GuiEnum.class, "GuiEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

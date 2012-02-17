@@ -209,6 +209,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="GuiDto" eSuperTypes="sculptormetamodel.ecore#//DomainObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" eType="#//GuiModule"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="immutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiEnum" eSuperTypes="sculptormetamodel.ecore#//Enum #//GuiDto"/>
   <eClassifiers xsi:type="ecore:EClass" name="StubModule" eSuperTypes="sculptormetamodel.ecore#//Module">

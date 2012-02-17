@@ -44,7 +44,9 @@ modifyDsl(GuiModule guiModule) :
 	(guiModule.stubModule != null? guiModule.stubModule.modifyDsl(guiModule) : null) ->
 	guiModule.views.modifyDsl();
 	
+// TODO: Don't hard code "gwt" - make a gui dto sub-package property instead
 modifyDsl(StubModule stubModule, GuiModule guiModule) :
+//	stubModule.setBasePackage(stubModule.basePackage != null ? stubModule.basePackage : stubModule.stubFor.getBasePackage() + ".gwt") ->
 	guiModule.stubModule.domainObjects.modifyDsl(guiModule) ->
 	guiModule.stubModule.services.modifyDslServiceProxy(guiModule);
 
@@ -61,12 +63,22 @@ modifyDsl(Widget widget, View view) :
 // Solution is to include those modules in the GUI model.  Consider adding a validation for this..
 private modifyDsl(GuiDto dto, GuiModule guiModule) :
 	dto.setGuiModule(guiModule) ->
-	dto.modifyIdAttribute();
+	dto.modifyIdAttribute() ->
+    dto.modifyChangeable();
+
+	
+modifyChangeable(GuiDto guiDto) :
+	defaultModifyChangeable(guiDto) ->
+    (guiDto.immutable ?
+        (guiDto.attributes.select(a | a.name != "uuid").modifyChangeableToFalse() ->
+        guiDto.references.select(r | !r.many).modifyChangeableToFalse()) :
+        null);
+
 	
 //	dto.setModule(guiModule.stubModule);
 
 modifyIdAttribute(GuiDto guiDto) :
-    guiDto.for.getIdAttribute() != null ? guiDto.addIdAttribute() : null;
+    guiDto.for.attributes.selectFirst(a | a.name == "id") != null ? guiDto.addIdAttribute() : null;
 
 private modifyDslServiceProxy(ServiceProxy serviceProxy, GuiModule guiModule) :
 	serviceProxy.setGuiModule(guiModule) ->
@@ -109,6 +121,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObjec
 //    setPackage(domainObject.package) ->
 //    setHint(domainObject.hint) ->
     setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
+	setImmutable(!domainObject.notImmutable) ->
     attributes.addAll(domainObject.attributes.transformToGui()) ->
     references.addAll(domainObject.references.transformToGui()) ->
     operations.addAll(domainObject.operations.transformToGui()) ->
@@ -117,6 +130,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObjec
 create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
 	debugTrace("transformToGui(" + domainObject.name + ")") ->
 	initGuiDtoFromDomainObject(domainObject, this) ->
+	setImmutable(!domainObject.notImmutable) ->
     setOptimisticLocking(!domainObject.notOptimisticLocking);
 
 
@@ -144,7 +158,6 @@ private initGuiDto(DslSimpleDomainObject domainObject, sculptorguimetamodel::Gui
     guiDto.setPackage(domainObject.package) ->
     guiDto.setHint(domainObject.hint) ->
 //    guiDto.setModule(null) ->
-//    guiDto.setImmutable(!domainObject.notImmutable) ->
 	debugTrace("initGuiDto: Done with domain object " + domainObject.name);
 
 private transformExtends(DslEntity dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :

@@ -32,6 +32,7 @@ import sculptormetamodel.impl.DomainObjectImpl;
  * <ul>
  *   <li>{@link sculptorguimetamodel.impl.GuiDtoImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiDtoImpl#getGuiModule <em>Gui Module</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiDtoImpl#isImmutable <em>Immutable</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +58,26 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 * @ordered
 	 */
 	protected GuiModule guiModule;
+
+	/**
+	 * The default value of the '{@link #isImmutable() <em>Immutable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImmutable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMMUTABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImmutable() <em>Immutable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImmutable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean immutable = IMMUTABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,6 +178,27 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isImmutable() {
+		return immutable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImmutable(boolean newImmutable) {
+		boolean oldImmutable = immutable;
+		immutable = newImmutable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE, oldImmutable, immutable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_DTO__FOR:
@@ -165,6 +207,8 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
 				if (resolve) return getGuiModule();
 				return basicGetGuiModule();
+			case SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE:
+				return isImmutable() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,6 +225,9 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 				return;
 			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
 				setGuiModule((GuiModule)newValue);
+				return;
+			case SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE:
+				setImmutable(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,6 +246,9 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
 				setGuiModule((GuiModule)null);
 				return;
+			case SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE:
+				setImmutable(IMMUTABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,8 +264,25 @@ public class GuiDtoImpl extends DomainObjectImpl implements GuiDto {
 				return for_ != null;
 			case SculptorguimetamodelPackage.GUI_DTO__GUI_MODULE:
 				return guiModule != null;
+			case SculptorguimetamodelPackage.GUI_DTO__IMMUTABLE:
+				return immutable != IMMUTABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (immutable: ");
+		result.append(immutable);
+		result.append(')');
+		return result.toString();
 	}
 
 } //GuiDtoImpl

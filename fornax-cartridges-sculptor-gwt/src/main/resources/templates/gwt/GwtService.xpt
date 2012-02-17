@@ -132,13 +132,14 @@
 		log.debug("«name»()");
 	}
 	try {
-	«LET this.getTypeName() AS typeName»
-		«IF typeName != null && typeName != 'void'»
-			«typeName» res =
+	«LET this.getGuiDomainTypeName() AS domainTypeName»
+		«IF domainTypeName != null && domainTypeName != 'void'»
+			// Domain type name
+			«domainTypeName» res =
 		«ENDIF»
 		«this.service.name.toFirstLower()».«name»(«EXPAND gwtServiceImplOperationParameter FOREACH parameters SEPARATOR ","»);
 		
-		«IF typeName != null && typeName != 'void'»
+		«IF domainTypeName != null && domainTypeName != 'void'»
 			
 			«IF domainObjectType != null»
 			return «module.dtoMapper()».map«domainObjectType.name»FromDomain(res);				
@@ -153,10 +154,9 @@
 
 	«ENDLET»
     	} catch(Exception e) {
-    		log.error("error calling «name»", e);
-    		throw new ServiceTechnologyException(e);
+    		com.lfg.psa.gwt.framework.server.GwtExceptionUtil.handleThrowable(e, log);
+    		throw new org.fornax.cartridges.sculptor.framework.gwt.shared.domain.ServiceTechnologyException(e); // Won't get here as handleThrowable will throw some type of exception, but to appease the compiler gods..
     	}
-
 	
 	}
 

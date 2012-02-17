@@ -4453,13 +4453,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_DTO__GUI_MODULE = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Immutable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO__IMMUTABLE = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Gui Dto</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 2;
+	int GUI_DTO_FEATURE_COUNT = SculptormetamodelPackage.DOMAIN_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4676,6 +4685,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GUI_COMMAND__GUI_MODULE = GUI_DTO__GUI_MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Immutable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_COMMAND__IMMUTABLE = GUI_DTO__IMMUTABLE;
 
 	/**
 	 * The number of structural features of the '<em>Gui Command</em>' class.
@@ -5381,13 +5399,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_ENUM__GUI_MODULE = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Immutable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_ENUM__IMMUTABLE = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Gui Enum</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_ENUM_FEATURE_COUNT = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 2;
+	int GUI_ENUM_FEATURE_COUNT = SculptormetamodelPackage.ENUM_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.StubModuleImpl <em>Stub Module</em>}' class.
@@ -7015,6 +7042,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getGuiDto_GuiModule();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.GuiDto#isImmutable <em>Immutable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Immutable</em>'.
+	 * @see sculptorguimetamodel.GuiDto#isImmutable()
+	 * @see #getGuiDto()
+	 * @generated
+	 */
+	EAttribute getGuiDto_Immutable();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiEnum <em>Gui Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8299,6 +8337,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_DTO__GUI_MODULE = eINSTANCE.getGuiDto_GuiModule();
+
+		/**
+		 * The meta object literal for the '<em><b>Immutable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GUI_DTO__IMMUTABLE = eINSTANCE.getGuiDto_Immutable();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiEnumImpl <em>Gui Enum</em>}' class.

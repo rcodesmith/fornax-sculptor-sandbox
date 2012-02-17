@@ -1282,6 +1282,10 @@
   <children xmi:type="notation:Shape" xmi:id="_YkHVMS0KEeG8KJtjbaMuPQ" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_YkH8QC0KEeG8KJtjbaMuPQ" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_YkH8QS0KEeG8KJtjbaMuPQ" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_lW0w0VeKEeGxNrKLut8ksQ" type="3001">
+        <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//GuiDto/immutable"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_lW0w0leKEeGxNrKLut8ksQ"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_YkH8Qi0KEeG8KJtjbaMuPQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_YkH8Qy0KEeG8KJtjbaMuPQ"/>
     </children>

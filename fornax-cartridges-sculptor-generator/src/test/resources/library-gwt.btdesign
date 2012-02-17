@@ -125,6 +125,7 @@ Application Library {
         }
         
         ValueObject Comment {
+        	not immutable
         	String text
         }
         

@@ -134,6 +134,8 @@ String fqnDomain(GuiDto do) :
 	do.for.getDomainPackage() + "." + do.name;
 
 
+
+
 // The fully qualified GWT DTO class for a given domain object
 String fqnGwtDto(GuiDto do) :
 //	debugTrace("fqnGwtDto(" + do + ")") ->
@@ -159,6 +161,16 @@ Collection[Reference] getAllBusinessReferences(DomainObject domainObject) :
 // Get all the view data properties to be be displayed/edited..  Note this leaves out referred-to domain classes, including things like Plan Type
 Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
 	task.viewProperties.reject(p | p.metaType == ReferenceViewProperty || p.metaType == DerivedReferenceViewProperty || p.isSystemAttribute() || p.name == "version");
+
+////////////////////////////////////////////////////////////////
+// DTO Builder related methods
+////////////////////////////////////////////////////////////////
+
+String getGwtDtoBuilderPackage(GuiDto do) :
+	do.gwtDomainPackage();
+
+String getGwtDtoBuilderFqn(GuiDto do) :
+	do.getGwtDtoBuilderPackage() + "." + do.name + "Builder";
 	
 /////////////////////////////////////////////////////////////////////
 // Async interface helpers
@@ -226,6 +238,14 @@ String translateGwtType(TypedElement e) :
 
 String translateGwtTypeName(String typeStr) :
     JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(java.lang.String);
+
+// Get Domain type name corresponding to the given GuiDto
+String getGuiDomainTypeName(GuiDto guiDto) :
+	guiDto.for.typeName;
+
+// Get Domain type name corresponding to the given GuiDto-based typed element
+String getGuiDomainTypeName(DomainObjectTypedElement e) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.getGuiDomainTypeName(sculptormetamodel.DomainObjectTypedElement);
 
 //String translateGwtTypeName(DslGuiAttribute) :
 //    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(sculptormetamodel.Attribute, java.lang.String);

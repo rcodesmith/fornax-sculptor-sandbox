@@ -136,8 +136,19 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 		Assert.assertFalse(dtoBaseCode.contains("@org.hibernate"));
 		
 		assertContains(dtoBaseCode, "public  class Book extends org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt.shared.domain.Media implements java.io.Serializable");
+	}
 
+	@Test
+	public void assertEngagementBaseClass() throws IOException {
+		DomainObject engagement = (DomainObject) getNamedElement("Engagement",
+				mediaModule().getStubModule().getDomainObjects());
+		Assert.assertNotNull(engagement);
+		XpandUnit.xpand("templates::gwt::GwtDto::domainObjectBase", engagement,
+				new HashMap<String, Object>(), getXpandTempDir());
 
+		String dtoBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/Engagement.java");
+
+//		assertContains(dtoBaseCode, "public  class Book extends org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt.shared.domain.Media implements java.io.Serializable");
 	}
 
 	@Test

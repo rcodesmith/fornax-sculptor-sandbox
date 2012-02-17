@@ -1,0 +1,14 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::gwtuihelpers»
+
+«DEFINE builder FOR GuiDto»
+«FILE javaFileName(getGwtDtoBuilderFqn())»
+«javaHeader()»
+package «getGwtDtoBuilderPackage()»;
+«EXPAND templates::domain::Builder::builderBody FOR this»
+«ENDFILE»
+«ENDDEFINE»

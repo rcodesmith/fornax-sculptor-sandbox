@@ -18,6 +18,7 @@ import sculptormetamodel.DomainObject;
  * <ul>
  *   <li>{@link sculptorguimetamodel.GuiDto#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiDto#getGuiModule <em>Gui Module</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiDto#isImmutable <em>Immutable</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,5 +78,31 @@ public interface GuiDto extends DomainObject {
 	 * @generated
 	 */
 	void setGuiModule(GuiModule value);
+
+	/**
+	 * Returns the value of the '<em><b>Immutable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Immutable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Immutable</em>' attribute.
+	 * @see #setImmutable(boolean)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiDto_Immutable()
+	 * @model
+	 * @generated
+	 */
+	boolean isImmutable();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.GuiDto#isImmutable <em>Immutable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Immutable</em>' attribute.
+	 * @see #isImmutable()
+	 * @generated
+	 */
+	void setImmutable(boolean value);
 
 } // GuiDto

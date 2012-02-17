@@ -140,6 +140,10 @@ public class GwtGenerationHelper {
         return getTypeName(element, true);
     }
 
+    public static String getGuiDomainTypeName(DomainObjectTypedElement element) {
+        return getGuiDomainTypeName(element, true);
+    }
+
     
     public static String getTypeName(Reference ref) {
     	
@@ -265,6 +269,29 @@ public class GwtGenerationHelper {
         }
     	
     }
+
+    // Get the domain type corresponding to the given DomainObjectTypedElement (must be pointing to GuiDto)
+    public static String getGuiDomainTypeName(DomainObjectTypedElement element, boolean surroundWithCollectionType) {
+        String typeName = getJavaTypeOrVoid(element.getType());
+        
+        String type = typeName;
+        String domainObjectTypeName = null;
+        if (element.getDomainObjectType() != null) {
+        	GuiDto guiDto = (GuiDto)element.getDomainObjectType();
+            domainObjectTypeName = getJavaTypeOrVoid(GenerationHelper.getDomainPackage(guiDto.getFor()) + "."
+                    + guiDto.getFor().getName());
+            type = domainObjectTypeName;
+        //	GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName() trace 1.  type = " + type);
+        }
+
+        if (typeName != null && !typeName.equals("void") && domainObjectTypeName != null
+                && !domainObjectTypeName.equals("void")) {
+            type = typeName + "<" + domainObjectTypeName + ">";
+        }
+
+        return (surroundWithCollectionType ? surroundWithCollectionType(type, element, false) : type);
+    }
+
     
     public static String getTypeName(DomainObjectTypedElement element, boolean surroundWithCollectionType) {
     	//GenerationHelper.debugTrace("GwtGenerationHelper.getTypeName(" + element.getType() + ")");

@@ -23,6 +23,11 @@
 «FILE javaFileName(getBuilderFqn())»
 «javaHeader()»
 package «getBuilderPackage()»;
+«EXPAND builderBody FOR this»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE builderBody FOR DomainObject»
 
 	/**
 	  * Builder for «name» class.
@@ -84,7 +89,6 @@ package «getBuilderPackage()»;
 		}		
 	}
 
-«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE assignAttributeInConstructor FOR NamedElement»
