@@ -53,9 +53,9 @@ public class «this.mapperClassName()» {
 «DEFINE copyManyRefFromDomain FOR Reference»
         {
         	java.lang.Iterable<«getGwtTypeName()»> dtosIterable =
-        		com.google.common.collect.Iterables.transform(domainObj.«this.getGetAccessor()»(), new Function<«getTypeName()», «getGwtTypeName()»>() {
+        		com.google.common.collect.Iterables.transform(domainObj.«this.getGetAccessor()»(), new Function<«fqnDomain()», «getGwtTypeName()»>() {
         		public «getGwtTypeName()» apply(
-        				«getTypeName()» from) {
+        				«fqnDomain()» from) {
 		    	    Object mappedDto = «mapFromDomainCall()»(from);
 //		    	    if(mappedDto == null) {
 //		    	    	throw new IllegalArgumentException("Was unable to map " + from
@@ -75,7 +75,7 @@ public class «this.mapperClassName()» {
     	for («getGwtTypeName()» obj : dtoObj.get«name.toFirstUpper()»()) {
     	    Object mappedDomain = «mapToDomainCall()»(obj);
     	
-    		builder.add«name.singular().toFirstUpper()»((«getTypeName()»)mappedDomain);
+    		builder.add«name.singular().toFirstUpper()»((«fqnDomain()»)mappedDomain);
 		}
 «ENDDEFINE»
 
@@ -165,7 +165,7 @@ public class «this.mapperClassName()» {
 			«this.fqnDomain()» domainObj = («this.fqnDomain()»)mapToDomainMM.invoke(null, dtoObj);		
 			return domainObj;
 		«ELSE»
-			«getBuilderFqn()» builder = new «getBuilderFqn()»();
+			«getDomainBuilderFqn()» builder = new «getDomainBuilderFqn()»();
 		
 			«REM»Copy attributes«ENDREM»
 			«EXPAND copyAttrToDomain FOREACH this.getAllBusinessAttributes().select(a | a.name != "uuid")»

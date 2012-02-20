@@ -130,10 +130,11 @@ String fqnGwtDto(Reference ref) :
 	
 // The fully qualified name for the domain class (not GWT DTO).
 String fqnDomain(GuiDto do) :
-	debugTrace("fqnDomain(" + do + ")") ->
+//	debugTrace("fqnDomain(" + do + ")") ->
 	do.for.getDomainPackage() + "." + do.name;
 
-
+String fqnDomain(Reference ref) :
+	fqnDomain(ref.to);
 
 
 // The fully qualified GWT DTO class for a given domain object
@@ -172,6 +173,9 @@ String getGwtDtoBuilderPackage(GuiDto do) :
 String getGwtDtoBuilderFqn(GuiDto do) :
 	do.getGwtDtoBuilderPackage() + "." + do.name + "Builder";
 	
+String getDomainBuilderFqn(GuiDto do) :
+	getBuilderFqn(do.for);
+
 /////////////////////////////////////////////////////////////////////
 // Async interface helpers
 /////////////////////////////////////////////////////////////////////
