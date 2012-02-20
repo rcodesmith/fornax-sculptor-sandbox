@@ -39,7 +39,7 @@ Application Library {
           scaffold
           String status length="3"
           String location
-          - @Library library nullable databaseColumn="LIB_REF" <-> media
+          - @Library library nullable databaseColumn="LIB_REF" <-> media hint="gui=skip"
           - Set<@Media> media hint="joinTableName=PHMED_MED" databaseColumn="MEDIA_REF" <-> physicalMedia
         }
         

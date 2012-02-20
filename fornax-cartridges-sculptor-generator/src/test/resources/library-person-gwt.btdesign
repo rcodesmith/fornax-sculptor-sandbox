@@ -17,7 +17,7 @@ ApplicationPart Person {
           Date birthDate
           - @Gender sex !changeable
           - @Ssn ssn key
-          - @PersonName name
+          - @PersonName name hint="gui=skip,gwt=skip"
 
           def String getDisplayName();
         

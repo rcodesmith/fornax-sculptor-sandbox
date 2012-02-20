@@ -3,11 +3,11 @@ package org.fornax.cartridges.sculptor.generator.templates;
 import java.io.IOException;
 import java.util.HashMap;
 
+import junit.framework.Assert;
+
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
-import org.junit.Assert;
 import org.junit.Test;
 
-import sculptorguimetamodel.GuiDto;
 import sculptormetamodel.DomainObject;
 
 public class GwtDtoBuilderTemplateTest extends LibraryGwtTemplateBaseTest {
@@ -23,4 +23,18 @@ public class GwtDtoBuilderTemplateTest extends LibraryGwtTemplateBaseTest {
 //		String builderCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/MediaBuilder.java");
 //		Assert.assertNotNull(builderCode);
 	}
+	
+	@Test
+	public void assertPersonDtoBuilder() throws IOException {
+		DomainObject personObj = (DomainObject) getNamedElement("Person",
+				personModule().getStubModule().getDomainObjects());
+		
+		XpandUnit.xpand("templates::gwt::GwtDtoBuilder::builder", personObj,
+				new HashMap<String, Object>(), getXpandTempDir());
+
+		String builderCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/shared/domain/PersonBuilder.java");
+		Assert.assertNotNull(builderCode);
+		Assert.assertFalse(builderCode.contains("name"));
+	}
+
 }

@@ -77,7 +77,7 @@ modify(GuiModule guiModule) :
 
 create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslModule, DslGuiModule dslGuiModule) :
 	debugTrace("transformStubModule(dslModule = " + dslModule + ")") ->
-	debugTrace("skipObjects = " + dslGuiModule.skipDomainObjects) ->
+	//debugTrace("skipObjects = " + dslGuiModule.skipDomainObjects) ->
 	setStubFor(dslModule.transform()) ->
 	setGuiModule(dslGuiModule.transformModule()) ->
     setApplication(getGlobalApplication()) ->  // TODO: Remove - don't think it does anything

@@ -516,7 +516,7 @@ String gwtEventClass(GuiEvent event) :
 
 	
 Set[GuiCommand] commandsToGenerate(GuiModule module) :
-	module.commands.reject(c | c.getHint("gwt") == "skip");
+	module.commands.reject(c | c.getHint("gwt") == "skip" || c.getHint("gui") == "skip");
 	
 
 ////////////////////////////////////////////////////////////////////////////
@@ -543,14 +543,14 @@ GuiDto findGuiDtoFor(GuiApplication guiApp, DomainObject domainObj):
 	guiApp.findModuleFor(domainObj.module).stubModule.domainObjects.selectFirst(d|d.name == domainObj.name);
 
 
-//boolean generateGuiDto(DomainObject d) :
-//	d.getHint("gwt") != "skip";
+boolean generateGuiDto(DomainObject d) :
+	d.getHint("gwt") != "skip" && d.getHint("gui") != "skip";
 
-//boolean generateGuiDto(Reference r) :
-//	r.getHint("gwt") != "skip";
+boolean generateGuiDto(Reference r) :
+	d.getHint("gwt") != "skip" && d.getHint("gui") != "skip";
 
-//boolean generateGuiDto(Attribute a) :
-//	a.getHint("gwt") != "skip";
+boolean generateGuiDto(Attribute a) :
+	d.getHint("gwt") != "skip" && d.getHint("gui") != "skip";
 
 
 

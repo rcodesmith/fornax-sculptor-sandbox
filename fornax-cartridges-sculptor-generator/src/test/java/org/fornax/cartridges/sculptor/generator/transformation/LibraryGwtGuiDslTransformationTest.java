@@ -192,7 +192,22 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 	}
 	
 	@Test
-	public void assertDomainObj() {
+	public void assertSkippedReference() {
+		GuiDto person = (GuiDto)getNamedElement("Person", personModule().getStubModule().getDomainObjects());
+		Reference nameRef = (Reference)getNamedElement("name", person.getReferences());
+		assertNull(nameRef);
+	}
+	
+	@Test
+	public void assertSkippedBackReference() {
+		GuiDto person = (GuiDto)getNamedElement("PhysicalMedia", mediaModule().getStubModule().getDomainObjects());
+		Reference nameRef = (Reference)getNamedElement("library", person.getReferences());
+		assertNull(nameRef);		
+	}
+	
+	
+	@Test
+	public void assertEntity() {
 		GuiDto person = (GuiDto)getNamedElement("Person", personModule().getStubModule().getDomainObjects());
 		assertNotNull(person);
 		
@@ -200,7 +215,9 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		assertEquals("Person", person.getFor().getName());
 		assertNotNull(person.getGuiModule());
 		
-		
+		Reference ssnAttr = getReference(person, "ssn");
+		assertNotNull(ssnAttr);
+		Assert.assertTrue(ssnAttr.isNaturalKey());
 	}
 	
 	@Test

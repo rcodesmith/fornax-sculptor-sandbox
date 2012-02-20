@@ -79,16 +79,6 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 		String dtoCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/Media.java");
 		assertContains(dtoCode,
 		"public abstract class Media extends MediaBase {");
-		
-		// String activityBaseCode =
-		// getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/TableViewActivity.java");
-		// assertContains(activityBaseCode,
-		// "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
-		// assertContains(activityBaseCode,
-		// "public class TableViewActivity extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewActivityBase {");
-		//
-		// assertContains(activityBaseCode,
-		// "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView display;");
 
 		assertContainsConsecutiveFragments(dtoCode, "public  String getDisplayTitle()       {"
 				,"// TODO Auto-generated method stub"

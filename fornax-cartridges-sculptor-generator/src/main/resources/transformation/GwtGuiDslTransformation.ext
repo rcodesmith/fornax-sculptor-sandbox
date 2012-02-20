@@ -94,7 +94,29 @@ private modifyGuiParameter(Parameter param, GuiApplication guiApp) :
 	if (param.domainObjectType != null && GuiDto.isInstance(param.domainObjectType) == false) then
 		param.setDomainObjectType(guiApp.findGuiDtoFor(param.domainObjectType));
 		
-		
+
+////////////////////////////////////////////////////////////////////////////
+// DSL related functions
+////////////////////////////////////////////////////////////////////////////
+
+boolean generateGuiDto(DslAnyProperty p) :
+	let res = p.getHint("gwt") != "skip" && p.getHint("gui") != "skip" :
+	debugTrace("generateGuiDto(" + p + ")") ->
+	debugTrace("generateGuiDto result = " + res )->
+	res;
+
+
+String getHint(DslAnyProperty prop, String parameterName) :
+	let res = getHintImpl(prop.hint, parameterName) :
+		debugTrace("getHint(" + prop + ", " + parameterName + ")")->
+		debugTrace("result: '" + res + "'" )->
+		res;
+
+//String getHintImpl(String hint, String parameterName) :
+//	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getHint(java.lang.String, java.lang.String);
+
+
+
 //////////////////////////////////////////////////////////////////////////////////
 // GuiDto-related transformations
 //////////////////////////////////////////////////////////////////////////////////
@@ -122,8 +144,8 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObjec
 //    setHint(domainObject.hint) ->
     setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
 	setImmutable(!domainObject.notImmutable) ->
-    attributes.addAll(domainObject.attributes.transformToGui()) ->
-    references.addAll(domainObject.references.transformToGui()) ->
+    attributes.addAll(domainObject.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
+    references.addAll(domainObject.references.select(r|r.generateGuiDto()).transformToGui()) ->
     operations.addAll(domainObject.operations.transformToGui()) ->
     traits.addAll(domainObject.traits.transformToGui());
 
@@ -143,8 +165,8 @@ private initGuiDtoFromDomainObject(DslDomainObject domainObject, sculptorguimeta
 //    guiDto.setPersistent(!domainObject.notPersistent) ->
     guiDto.setValidate(domainObject.validate) ->
     guiDto.setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
-    guiDto.attributes.addAll(domainObject.attributes.transformToGui()) ->
-    guiDto.references.addAll(domainObject.references.transformToGui()) ->
+    guiDto.attributes.addAll(domainObject.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
+    guiDto.references.addAll(domainObject.references.select(r|r.generateGuiDto()).transformToGui()) ->
     guiDto.operations.addAll(domainObject.operations.transformToGui()) ->
     domainObject.transformExtends(guiDto)->
 //    traits.addAll(domainObject.traits.transform()) ->
@@ -192,6 +214,7 @@ create sculptormetamodel::Attribute this transformToGui(DslAttribute attribute) 
     setVisibility(convertVisibility(attribute.visibility));
 
 create sculptormetamodel::Reference this transformToGui(DslReference reference) :
+	debugTrace("transformToGui(" + reference + ")")->
 	setFrom(((DslSimpleDomainObject) reference.eContainer).transformToGui()) ->
     setDoc(reference.doc) ->
     setName(reference.name) ->
@@ -211,7 +234,7 @@ create sculptormetamodel::Reference this transformToGui(DslReference reference) 
     setHint(reference.hint) ->
     setTransient(reference.transient) ->
     setVisibility(convertVisibility(reference.visibility)) ->
-    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null ?
+    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null && reference.oppositeHolder.opposite.generateGuiDto() ?
       setOpposite(reference.oppositeHolder.opposite.transformToGui()):
       null);
       
@@ -600,8 +623,8 @@ create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent ds
 	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
 	setDoc(dslCmd.doc) ->
 	setHint(dslCmd.hint) ->
-	attributes.addAll(dslCmd.attributes.transformToGui()) ->
-	references.addAll(dslCmd.references.transformToGui(this))
+	attributes.addAll(dslCmd.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
+	references.addAll(dslCmd.references.select(r|r.generateGuiDto()).transformToGui(this))
 	;
 
 // Transform in StubModule
@@ -676,7 +699,7 @@ create sculptormetamodel::Reference this transformToGui(DslReference reference, 
     setHint(reference.hint) ->
     setTransient(reference.transient) ->
     setVisibility(convertVisibility(reference.visibility)) ->
-    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null ?
+    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null && reference.oppositeHolder.opposite.generateGuiDto() ?
       setOpposite(reference.oppositeHolder.opposite.transform()):
       null)
     ;

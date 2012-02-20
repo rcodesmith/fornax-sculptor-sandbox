@@ -20,6 +20,8 @@
 «EXTENSION extensions::properties»
 
 «DEFINE builder FOR DomainObject»
+	«debugTrace("Builder: " + this)»
+
 «FILE javaFileName(getBuilderFqn())»
 «javaHeader()»
 package «getBuilderPackage()»;
@@ -33,7 +35,6 @@ package «getBuilderPackage()»;
 	  * Builder for «name» class.
 	  */
 	public class «getBuilderClassName()»  {
-	
 		«EXPAND templates::domain::DomainObjectAttribute::attribute(false) FOREACH getBuilderAttributes()»
 		
 	    «EXPAND templates::domain::DomainObjectReference::oneReferenceAttribute(false) FOREACH this.getBuilderReferences().select(r| !r.many)»

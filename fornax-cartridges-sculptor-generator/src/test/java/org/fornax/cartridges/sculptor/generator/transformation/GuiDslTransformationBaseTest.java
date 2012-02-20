@@ -7,6 +7,7 @@ import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.Reference;
 
 public abstract class GuiDslTransformationBaseTest extends TransformationTestBase {
 
@@ -57,6 +58,10 @@ public abstract class GuiDslTransformationBaseTest extends TransformationTestBas
 
 	protected Attribute getAttribute(DomainObject obj, String attrName) {
 		return (Attribute)getNamedElement(attrName, obj.getAttributes());
+	}
+
+	protected Reference getReference(DomainObject obj, String attrName) {
+		return (Reference)getNamedElement(attrName, obj.getReferences());
 	}
 
 
