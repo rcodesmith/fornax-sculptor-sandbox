@@ -125,7 +125,7 @@ public «IF gapClass || abstract»abstract «ENDIF»class «name»«IF gapClass»Base«EN
     «EXPAND DomainObjectReference::oneReferenceAttribute FOREACH references.select(r | !r.many)»
     «EXPAND DomainObjectReference::manyReferenceAttribute FOREACH references.select(r | r.many)»
 
-    «IF getLimitedConstructorParameters().isEmpty»public«ELSE»protected«ENDIF» «name»«IF gapClass»Base«ENDIF»() {
+    «IF getLimitedConstructorParameters().isEmpty»public«ELSE»«getDefaultConstructorVisibility()»«ENDIF» «name»«IF gapClass»Base«ENDIF»() {
     }
 
     «EXPAND DomainObjectConstructor::propertyConstructorBase»

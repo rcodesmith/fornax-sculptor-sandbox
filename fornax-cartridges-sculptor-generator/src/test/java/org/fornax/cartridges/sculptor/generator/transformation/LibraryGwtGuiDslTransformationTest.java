@@ -103,7 +103,7 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 	public void assertGuiDtoMedia() {
 		GuiDto media = (GuiDto)getNamedElement("Media", mediaModule().getStubModule().getDomainObjects());
 		assertNotNull(media);
-		assertEquals(2, media.getAttributes().size());
+		assertEquals(3, media.getAttributes().size());
 		
 		Assert.assertTrue(media.isAbstract());
 		
@@ -125,7 +125,9 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
 		Attribute idForAttr = getAttribute(media.getFor(), "id");
 		assertEquals("IDTYPE", idForAttr.getType());
 		
-		
+		// Verify 'version' attribute
+		Attribute versionAttr = getAttribute(media, "version");
+		assertNotNull(versionAttr);
 	}
 	
 	@Test

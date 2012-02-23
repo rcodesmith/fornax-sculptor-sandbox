@@ -373,6 +373,8 @@ List[NamedElement] getConstructorParameters(DomainObject domainObject) :
         select(a | a != domainObject.getIdAttribute()).
         addAll(domainObject.references.select(r | (!r.changeable || r.required)));
 
+String getDefaultConstructorVisibility(DomainObject domainObject) :
+	"protected";
 
 // Added by Ron:
 
@@ -422,7 +424,8 @@ boolean needsBuilder(Enum domainObject) :
 List[Reference] getBuilderReferences(DomainObject domainObject) :
 	domainObject.references.select(r | !r.many);
 
-
+List[NamedElement] getBuilderConstructorParameters(DomainObject domainObject) :
+	domainObject.getConstructorParameters();
 
 
 

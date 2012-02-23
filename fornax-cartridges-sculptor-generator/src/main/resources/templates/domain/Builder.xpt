@@ -51,8 +51,8 @@ package «getBuilderPackage()»;
 		public «name»Builder() {
 		}
 		
-		«IF !getConstructorParameters().isEmpty -»
-		public «name»Builder(«EXPAND templates::domain::DomainObjectConstructor::parameterTypeAndName FOREACH getConstructorParameters() SEPARATOR ","») {
+		«IF !getBuilderConstructorParameters().isEmpty -»
+		public «name»Builder(«EXPAND templates::domain::DomainObjectConstructor::parameterTypeAndName FOREACH getBuilderConstructorParameters() SEPARATOR ","») {
 		
 			«FOREACH getBuilderAttributes().addAll(getBuilderReferences()).select(p | (!p.changeable || p.required)) AS p»
 				«EXPAND assignAttributeInConstructor FOR p»
@@ -76,13 +76,13 @@ package «getBuilderPackage()»;
 		 * @return new «name» instance constructed based on the values that have been set into this builder
 		 */
 		public «getDomainPackage() + "." + name» build() {
-			«getDomainPackage() + "." + name» obj = new «name»(«FOREACH getConstructorParameters() AS attr SEPARATOR ", "»«attr.getGetAccessor()»()«ENDFOREACH»);
+			«getDomainPackage() + "." + name» obj = new «name»(«FOREACH getBuilderConstructorParameters() AS attr SEPARATOR ", "»«attr.getGetAccessor()»()«ENDFOREACH»);
 			«FOREACH getBuilderAttributes()
-				.addAll(references.select(r | !r.many)).removeAll(getConstructorParameters()) AS prop»
+				.addAll(getBuilderReferences().select(r | !r.many)).removeAll(getBuilderConstructorParameters()) AS prop»
 				obj.set«prop.name.toFirstUpper()»(«prop.name»);
 			«ENDFOREACH»
 			
-			«FOREACH this.getBuilderReferences().select(r | r.many).removeAll(getConstructorParameters()) AS prop»
+			«FOREACH this.getBuilderReferences().select(r | r.many).removeAll(getBuilderConstructorParameters()) AS prop»
 				obj.get«prop.name.toFirstUpper()»().addAll(«prop.name»);
 			«ENDFOREACH»
 

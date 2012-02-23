@@ -64,7 +64,8 @@ modifyDsl(Widget widget, View view) :
 private modifyDsl(GuiDto dto, GuiModule guiModule) :
 	dto.setGuiModule(guiModule) ->
 	dto.modifyIdAttribute() ->
-    dto.modifyChangeable();
+    dto.modifyChangeable() ->
+    dto.modifyOptimisticLocking();
 
 	
 modifyChangeable(GuiDto guiDto) :
@@ -79,6 +80,14 @@ modifyChangeable(GuiDto guiDto) :
 
 modifyIdAttribute(GuiDto guiDto) :
     guiDto.for.attributes.selectFirst(a | a.name == "id") != null ? guiDto.addIdAttribute() : null;
+
+modifyOptimisticLocking(GuiEnum domainObject) :
+	null;
+	
+modifyOptimisticLocking(GuiDto domainObject) :
+    isOptimisticLockingToBeGenerated() && domainObject.optimisticLocking && (domainObject.extends == null || !domainObject.extends.optimisticLocking) ?
+        addVersionAttribute(domainObject) :
+        null;
 
 private modifyDslServiceProxy(ServiceProxy serviceProxy, GuiModule guiModule) :
 	serviceProxy.setGuiModule(guiModule) ->
@@ -138,6 +147,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
 create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
 	debugTrace("transformToGui(" + domainObject.name + ")") ->
 	initGuiDto(domainObject, this) ->
+	setOptimisticLocking(false) ->
 //    setDoc(domainObject.doc) ->
 //    setName(domainObject.name) ->
 //    setPackage(domainObject.package) ->
@@ -153,7 +163,8 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObj
 	debugTrace("transformToGui(" + domainObject.name + ")") ->
 	initGuiDtoFromDomainObject(domainObject, this) ->
 	setImmutable(!domainObject.notImmutable) ->
-    setOptimisticLocking(!domainObject.notOptimisticLocking);
+//    setPersistent(!domainObject.notPersistent) ->
+    setOptimisticLocking(!domainObject.notOptimisticLocking && !domainObject.notPersistent && domainObject.notImmutable);
 
 
 // Don't need to set guiModule, as it is set by modify() method
