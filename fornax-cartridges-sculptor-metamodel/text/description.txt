@@ -143,6 +143,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Attribute columnType : EString
     Attribute filterable : EBoolean
     Attribute sortable : EBoolean
+    Attribute editable : EBoolean
 
   Class TextAreaWidget -> PropertyReferringWidget
 

@@ -164,6 +164,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filterable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TextAreaWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="AutocompleteWidget" eSuperTypes="#//PropertyReferringWidget"/>

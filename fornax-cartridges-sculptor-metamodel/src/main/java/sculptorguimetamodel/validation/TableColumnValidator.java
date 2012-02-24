@@ -24,4 +24,6 @@ public interface TableColumnValidator {
 	boolean validateFilterable(boolean value);
 
 	boolean validateSortable(boolean value);
+
+	boolean validateEditable(boolean value);
 }

@@ -29,6 +29,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.TableColumnImpl#getColumnType <em>Column Type</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.TableColumnImpl#isFilterable <em>Filterable</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.TableColumnImpl#isSortable <em>Sortable</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.TableColumnImpl#isEditable <em>Editable</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,6 +95,26 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 	 * @ordered
 	 */
 	protected boolean sortable = SORTABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isEditable() <em>Editable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEditable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean EDITABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEditable() <em>Editable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEditable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean editable = EDITABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -181,6 +202,27 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isEditable() {
+		return editable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEditable(boolean newEditable) {
+		boolean oldEditable = editable;
+		editable = newEditable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.TABLE_COLUMN__EDITABLE, oldEditable, editable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.TABLE_COLUMN__COLUMN_TYPE:
@@ -189,6 +231,8 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 				return isFilterable() ? Boolean.TRUE : Boolean.FALSE;
 			case SculptorguimetamodelPackage.TABLE_COLUMN__SORTABLE:
 				return isSortable() ? Boolean.TRUE : Boolean.FALSE;
+			case SculptorguimetamodelPackage.TABLE_COLUMN__EDITABLE:
+				return isEditable() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,6 +252,9 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 				return;
 			case SculptorguimetamodelPackage.TABLE_COLUMN__SORTABLE:
 				setSortable(((Boolean)newValue).booleanValue());
+				return;
+			case SculptorguimetamodelPackage.TABLE_COLUMN__EDITABLE:
+				setEditable(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -229,6 +276,9 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 			case SculptorguimetamodelPackage.TABLE_COLUMN__SORTABLE:
 				setSortable(SORTABLE_EDEFAULT);
 				return;
+			case SculptorguimetamodelPackage.TABLE_COLUMN__EDITABLE:
+				setEditable(EDITABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,6 +296,8 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 				return filterable != FILTERABLE_EDEFAULT;
 			case SculptorguimetamodelPackage.TABLE_COLUMN__SORTABLE:
 				return sortable != SORTABLE_EDEFAULT;
+			case SculptorguimetamodelPackage.TABLE_COLUMN__EDITABLE:
+				return editable != EDITABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -265,6 +317,8 @@ public class TableColumnImpl extends PropertyReferringWidgetImpl implements Tabl
 		result.append(filterable);
 		result.append(", sortable: ");
 		result.append(sortable);
+		result.append(", editable: ");
+		result.append(editable);
 		result.append(')');
 		return result.toString();
 	}

@@ -1482,6 +1482,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTableColumn_Editable() {
+		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(3);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTextAreaWidget() {
 		return textAreaWidgetEClass;
 	}
@@ -1983,6 +1992,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__COLUMN_TYPE);
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__FILTERABLE);
 		createEAttribute(tableColumnEClass, TABLE_COLUMN__SORTABLE);
+		createEAttribute(tableColumnEClass, TABLE_COLUMN__EDITABLE);
 
 		textAreaWidgetEClass = createEClass(TEXT_AREA_WIDGET);
 
@@ -2261,6 +2271,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEAttribute(getTableColumn_ColumnType(), ecorePackage.getEString(), "columnType", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableColumn_Filterable(), ecorePackage.getEBoolean(), "filterable", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableColumn_Sortable(), ecorePackage.getEBoolean(), "sortable", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableColumn_Editable(), ecorePackage.getEBoolean(), "editable", null, 0, 1, TableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textAreaWidgetEClass, TextAreaWidget.class, "TextAreaWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

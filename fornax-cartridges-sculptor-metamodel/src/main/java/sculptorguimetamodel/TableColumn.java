@@ -19,6 +19,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.TableColumn#getColumnType <em>Column Type</em>}</li>
  *   <li>{@link sculptorguimetamodel.TableColumn#isFilterable <em>Filterable</em>}</li>
  *   <li>{@link sculptorguimetamodel.TableColumn#isSortable <em>Sortable</em>}</li>
+ *   <li>{@link sculptorguimetamodel.TableColumn#isEditable <em>Editable</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,5 +105,31 @@ public interface TableColumn extends PropertyReferringWidget {
 	 * @generated
 	 */
 	void setSortable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Editable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Editable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Editable</em>' attribute.
+	 * @see #setEditable(boolean)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getTableColumn_Editable()
+	 * @model
+	 * @generated
+	 */
+	boolean isEditable();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.TableColumn#isEditable <em>Editable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Editable</em>' attribute.
+	 * @see #isEditable()
+	 * @generated
+	 */
+	void setEditable(boolean value);
 
 } // TableColumn

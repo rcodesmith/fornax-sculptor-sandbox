@@ -3144,13 +3144,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_COLUMN__SORTABLE = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Editable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__EDITABLE = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Table Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 3;
+	int TABLE_COLUMN_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.TextAreaWidgetImpl <em>Text Area Widget</em>}' class.
@@ -6700,6 +6709,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EAttribute getTableColumn_Sortable();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.TableColumn#isEditable <em>Editable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Editable</em>'.
+	 * @see sculptorguimetamodel.TableColumn#isEditable()
+	 * @see #getTableColumn()
+	 * @generated
+	 */
+	EAttribute getTableColumn_Editable();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.TextAreaWidget <em>Text Area Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8031,6 +8051,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TABLE_COLUMN__SORTABLE = eINSTANCE.getTableColumn_Sortable();
+
+		/**
+		 * The meta object literal for the '<em><b>Editable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_COLUMN__EDITABLE = eINSTANCE.getTableColumn_Editable();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TextAreaWidgetImpl <em>Text Area Widget</em>}' class.

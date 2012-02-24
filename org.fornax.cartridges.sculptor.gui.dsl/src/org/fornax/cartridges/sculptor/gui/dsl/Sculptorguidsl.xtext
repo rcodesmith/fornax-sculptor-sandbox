@@ -311,6 +311,7 @@ DslTableWidget :
 DslTableColumn :
 	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (sourceRef = DslSourceReference)?
 		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))?
+		((editable?="editable") | (NOT "editable"))?
 		(behaviorBindings+=DslOnClick)? (behaviorBindings+=DslOnHover)? ";" ;
 
 

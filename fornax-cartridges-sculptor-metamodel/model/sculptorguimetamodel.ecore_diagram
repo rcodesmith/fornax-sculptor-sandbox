@@ -915,6 +915,10 @@
         <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//TableColumn/sortable"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_gJIvUSj4EeGAFratGl8qMw"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_-dQ98V4mEeGYLJ1x5UPvlw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//TableColumn/editable"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_-dQ98l4mEeGYLJ1x5UPvlw"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_0ulpQomrEeCr5Ib_PSg4Jw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_0ulpQ4mrEeCr5Ib_PSg4Jw"/>
     </children>
