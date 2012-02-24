@@ -1,0 +1,30 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::gwtuihelpers»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+«DEFINE presenterInterface FOR View»
+«FILE javaFileName(fqnPresenterInterface())»
+«javaHeader()»
+package «gwtActivitiesPackage()»;
+
+/**
+  * Presenter interface for view «name».
+  */
+public interface «gwtPresenterInterface()» extends «gwtFrameworkPresenterBaseInterface()» {
+
+	«EXPAND presenterInterfaceDeclarations FOREACH this.allWidgets()»
+}
+
+«ENDFILE»
+«ENDDEFINE»
+
+«REM»Declarations that must be added to the presenter interface for each widget«ENDREM»
+
+«DEFINE presenterInterfaceDeclarations FOR Widget»
+	// No presenter interface declarations for «name» widget - fill in implementation?
+«ENDDEFINE»
+
