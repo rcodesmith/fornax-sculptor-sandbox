@@ -568,6 +568,7 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col
 	setColumnType(col.columnType) ->
 	setSortable(col.sortable) ->
 	setFilterable(col.filterable) ->
+	setEditable(col.editable) ->
 	transformSourceReference(this, col.sourceRef) ->
 	behaviorBindings.addAll(col.behaviorBindings.transform(module));
 

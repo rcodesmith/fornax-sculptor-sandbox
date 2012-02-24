@@ -6,8 +6,6 @@
 «EXTENSION extensions::gwt::gwtuihelpers»
 «EXTENSION extensions::gwt::sofeauihelpers»
 
-
-
 «DEFINE view(Module module) FOR GuiModule»
 
 	«EXPAND viewInterface FOREACH this.views»	
@@ -20,16 +18,31 @@
 	«EXPAND templates::gwt::ViewTemplate::viewCompositeBaseTemplate FOREACH this.views»
 	«EXPAND templates::gwt::Place::placeBase FOREACH this.views»
 	
+	«EXPAND templates::gwt::Presenter::presenterInterface FOREACH this.views»
+	
 	
 «ENDDEFINE»
 
 
 «DEFINE viewInterface FOR View»
 
-
 «FILE javaFileName(fqnGwtViewInterface())»
+«javaHeader()»
+
 package «gwtWidgetsPackage()»;
+
+«IF formatJavaDoc() == "" -»
+/**
+ * Generated interface for the View «name».
+ */
+«ELSE -»
+«formatJavaDoc()»
+«ENDIF -»
 	public interface «gwtViewInterface()» extends com.google.gwt.user.client.ui.IsWidget {
+	
+		/**
+     	 * Initialize this view with the given presenter.
+         */
 		public void initView();
 		
 		«EXPAND widgetInterfaceDeclarations FOREACH this.allWidgets()»
@@ -109,8 +122,13 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     	return uiBinder.createAndBindUi(this);
     }
     
-    public void initView() {
+    «fqnPresenterInterface()» presenter;
     
+    /**
+     * Initialize this view with the given presenter.
+     */
+    public void initView(«fqnPresenterInterface()» presenter) {
+    	this.presenter = presenter;
     }
     
     «EXPAND widgetDeclaration FOREACH allWidgets()»
@@ -152,7 +170,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 
 	/**
 	  * Initialize table columns
-	  * to be overridden by implementation class.
+	  * This method may be overridden by implementation class to do any specialized behavior.
 	  */
     protected void init«name.toFirstUpper()»Table() {
     «FOREACH columns AS col»
@@ -165,6 +183,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 		    «EXPAND tableColumnInitText(this) FOR col »
 		«ELSEIF col.columnType == "Button"»
 		    «EXPAND tableColumnInitButton(this) FOR col »
+		«ELSEIF col.columnType == "Date"»
+		    «EXPAND tableColumnInitDate(this) FOR col »
+		«ELSEIF col.columnType == "Custom"»
+		«ELSEIF col.columnType == "Link"»
 	    «ENDIF»
 	    
     «ENDFOREACH»
@@ -179,16 +201,34 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «ENDDEFINE»
 
 
+«DEFINE tableColumnInitComment(TableWidget tableWidget) FOR TableColumn»
+    /**
+     * Initialization method for «name» column of «tableWidget.name» table.
+     * Override this in derived class to specialize the initialization of this column if needed.
+     */
+«ENDDEFINE»
+
+
 «DEFINE tableColumnInitText(TableWidget tableWidget) FOR TableColumn»
+
+	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
-		return new com.google.gwt.user.cellview.client.TextColumn<«tableWidget.for.fqnGwtDto()»>() {
+		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.TextColumn<«tableWidget.for.fqnGwtDto()»>() {
                         @Override
                         public String getValue(«tableWidget.for.fqnGwtDto()» object) {
                         	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
                         }
         };
+        
+        return «this.tableColumnAttrName()»;
 	}
 	    
+		
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
 	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
 	
 		«IF this.hasSourceRef()»
@@ -200,12 +240,51 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 		«ENDIF»
 «ENDDEFINE»
 
+
+
+«DEFINE tableColumnInitDate(TableWidget tableWidget) FOR TableColumn»
+
+	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+	
+	com.google.gwt.cell.client.DateCell dateCell = new com.google.gwt.cell.client.DateCell();
+	
+		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date>(dateCell) {
+                        @Override
+                        public Date getValue(«tableWidget.for.fqnGwtDto()» object) {
+                        	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
+                        }
+        };
+        
+        return «this.tableColumnAttrName()»;
+	}
+	
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»java.util.Date get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression("object")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+«ENDDEFINE»
+
+
 «DEFINE tableColumnInitButton(TableWidget tableWidget) FOR TableColumn»
+	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>  «this.tableColumnAttrName()»;
+
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
 
 		com.google.gwt.cell.client.ButtonCell cellB = new com.google.gwt.cell.client.ButtonCell();
 		
-		com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> col = new Column<«tableWidget.for.fqnGwtDto()», String>(cellB) {
+		«this.tableColumnAttrName()» = new Column<«tableWidget.for.fqnGwtDto()», String>(cellB) {
 
 			@Override
 			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
@@ -213,7 +292,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 			}
 
 		};
-		col.setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
+		«this.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
 
 			@Override
 			public void update(int index, «tableWidget.for.fqnGwtDto()» object, String value) {
@@ -223,9 +302,49 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 			}
 			
 		});
-		return col;
+		return «this.tableColumnAttrName()»;
     }
     
+   /**
+	 * On-click callback handler for «name» column within «tableWidget.name» table.
+	 */
+    protected abstract void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
+
+«ENDDEFINE»
+
+«DEFINE tableColumnInitLink(TableWidget tableWidget) FOR TableColumn»
+
+	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+
+		com.google.gwt.cell.client.ButtonCell cellB = new com.google.gwt.cell.client.ButtonCell();
+		
+		«this.tableColumnAttrName()» = new Column<«tableWidget.for.fqnGwtDto()», String>(cellB) {
+
+			@Override
+			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+				return "«this.label»";
+			}
+
+		};
+		«this.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
+
+			@Override
+			public void update(int index, «tableWidget.for.fqnGwtDto()» object, String value) {
+				LOG.info("Click on " + object);
+				
+				onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(object, value);
+			}
+			
+		});
+		return «this.tableColumnAttrName()»;
+    }
+    
+   /**
+	 * On-click method for «name» column within «tableWidget.name» table.
+	 */
     protected abstract void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
 
 «ENDDEFINE»

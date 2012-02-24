@@ -71,6 +71,11 @@ String gwtSubPackage() :
 	getProperty("package.gwt");
 
 
+
+String gwtFrameworkPresenterBaseInterface() :
+	getProperty("gwt.presenter.base.interface");
+
+
 //String getGwtDtoPackage(GuiApplication guiApp) :
 //    guiApp.basePackage + "." + subPackage("shared");
 
@@ -300,6 +305,9 @@ String gwtTableWidgetClass(ListTask task) :
 	plural(task.for.name) + "Table";
 
 
+// Name of attribute for table column
+String tableColumnAttrName(TableColumn column) :
+	((TableWidget)column.eContainer).name + column.name.toFirstUpper();
 
 
 
@@ -567,6 +575,12 @@ String fqnGwtViewWidgetBaseClass(View view) :
 String fqnGwtViewWidgetImplClass(View view) :
 	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetImplClass() ;
 
+String gwtPresenterInterface(View view) :
+	view.name.toFirstUpper() + "Presenter";
+	
+// Fully qualified name of the GWT presenter interface for a view
+String fqnPresenterInterface(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtPresenterInterface();
 
 
 String resolveGwtWidgetType(Widget widget) :
@@ -618,9 +632,10 @@ String gwtActivityBaseClass(View view) :
 // Base class that should be used for all activities
 // TODO: Make property
 String gwtFrameworkActivityBaseClass(View view) :
-	"org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<" + fqnPlaceBaseClass(view) + ">";
+	getProperty("gwt.activity.base.class") + "<" + fqnPlaceBaseClass(view) + ">";
 //	"com.google.gwt.activity.shared.AbstractActivity";
-	
+
+
 // GWT activity impl class relative name
 String gwtActivityImplClass(View view) :
 	view.name + "Activity";
@@ -651,7 +666,7 @@ String gwtPlaceBaseClass(View view) :
 
 // Base class that should be used for all places
 String gwtFrameworkPlaceBaseClass(View view) :
-	"com.google.gwt.place.shared.Place";
+	getProperty("gwt.place.base.class");
 	
 // GWT place impl class relative name
 //String gwtPlaceImplClass(View view) :

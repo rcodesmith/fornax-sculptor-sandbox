@@ -5,11 +5,9 @@
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::gwtuihelpers»
 
-
-«REM»Activity base class«ENDREM»
 «DEFINE activityBase FOR View»
 «FILE javaFileName(fqnActivityBaseClass())»
-
+«javaHeader()»
 package «gwtActivitiesPackage()»;
 
 /**
@@ -186,7 +184,10 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «DEFINE activityImplBody FOR View»
 package «gwtActivitiesPackage()»;
 
-public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
+/**
+  * Activity implementation class for «name» view.
+  */
+public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implements «fqnPresenterInterface()»{
 
 	«loggerDeclaration(gwtActivityImplClass())»
 	

@@ -74,7 +74,7 @@ gui LibraryWeb for Library {
 					columns {
 						name type=Text forOp getDisplayName filterable sortable;
 						
-						birthDate type=Date; // forProperty birthDate
+						birthDate type=Date editable; // forProperty birthDate
 
 						edit type=Button onClick=populatePersonDetailsPanel;
 					}

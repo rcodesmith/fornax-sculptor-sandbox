@@ -81,11 +81,17 @@ gui LibraryWeb for Library {
 					label="Person Table"
 					
 					columns {
-						name type=Text forOp getDisplayName filterable sortable;
+						name label="Name" type=Text forOp getDisplayName filterable sortable;
 						
-						birthDate type=Date; // forProperty birthDate
+						birthDate label = "Birthdate" type=Date; // forProperty birthDate
 
-						edit type=Button onClick=populatePersonDetailsPanel;
+						nickname label="Nickname" type=Custom;
+						
+						profileLink label="View Profile" type=Link;
+						
+						edit label="Edit" type=Button onClick=populatePersonDetailsPanel;
+						
+						
 					}
 				}
 
