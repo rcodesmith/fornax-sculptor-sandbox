@@ -53,7 +53,7 @@
 
 «DEFINE widgetTemplate FOR InformationalTextWidget»
 	<g:Label text="«label»" />
-	<g:TextBox ui:field="«name»"  name="«name»" readOnly="true"/>
+	<g:InlineLabel ui:field="«name»"  name="«name»"/>
 	
 «ENDDEFINE»
 

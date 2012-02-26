@@ -13,7 +13,7 @@ package «gwtActivitiesPackage()»;
 /**
   * Activity base class for view «name».
   */
-public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBaseClass()» {
+public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBaseClass()» implements «fqnPresenterInterface()» {
 
 	«loggerDeclaration(gwtActivityBaseClass())»
 
@@ -50,13 +50,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		init();
 		bind();
 
-		//load model
-		loadModel();
-		
 		//set the view widget into the panel
 		panel.setWidget(getViewAsWidget());
 		
 		registerValidators();
+		
+		populateFromPlace();
+
 	}
 
 	protected abstract void registerValidators();
@@ -64,12 +64,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	protected void init() {
 		LOG.info("init()");
 		
-		getView().initView();
-		
-		populateFromPlace();
-		
+		getView().initView(this);
+				
 	}
 
+	/**
+	 * Populate the view associated with this activity based on the place, loading whatever data is necessary.
+	 */
 	protected abstract void populateFromPlace();
 
 	/**
@@ -82,8 +83,6 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	}
 	
 	«EXPAND widgetBindMethod FOREACH widgets»
-	
-	protected abstract void loadModel();
 	
 	protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {
 		return view.asWidget();
@@ -187,7 +186,7 @@ package «gwtActivitiesPackage()»;
 /**
   * Activity implementation class for «name» view.
   */
-public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implements «fqnPresenterInterface()»{
+public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
 
 	«loggerDeclaration(gwtActivityImplClass())»
 	

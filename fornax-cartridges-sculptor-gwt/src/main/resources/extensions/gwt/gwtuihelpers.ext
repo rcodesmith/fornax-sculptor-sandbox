@@ -307,7 +307,7 @@ String gwtTableWidgetClass(ListTask task) :
 
 // Name of attribute for table column
 String tableColumnAttrName(TableColumn column) :
-	((TableWidget)column.eContainer).name + column.name.toFirstUpper();
+	((TableWidget)column.eContainer).name + column.name.toFirstUpper() + "TableCol";
 
 
 
@@ -580,7 +580,7 @@ String gwtPresenterInterface(View view) :
 	
 // Fully qualified name of the GWT presenter interface for a view
 String fqnPresenterInterface(View view) :
-	view.gwtWidgetsPackage() + "." + view.gwtPresenterInterface();
+	view.gwtActivitiesPackage() + "." + view.gwtPresenterInterface();
 
 
 String resolveGwtWidgetType(Widget widget) :
@@ -593,7 +593,7 @@ String resolveGwtWidgetType(InputTextWidget widget) :
 	"com.google.gwt.user.client.ui.TextBox";
 
 String resolveGwtWidgetType(InformationalTextWidget widget) :
-	"com.google.gwt.user.client.ui.TextBox";
+	"com.google.gwt.user.client.ui.InlineLabel";
 
 String resolveGwtWidgetType(ButtonWidget widget) :
 	"com.google.gwt.user.client.ui.Button";

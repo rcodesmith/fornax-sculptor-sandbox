@@ -28,3 +28,29 @@ public interface «gwtPresenterInterface()» extends «gwtFrameworkPresenterBaseInt
 	// No presenter interface declarations for «name» widget - fill in implementation?
 «ENDDEFINE»
 
+«DEFINE presenterInterfaceDeclarations FOR Widget»
+	// No presenter interface declarations for «name» widget - fill in implementation?
+«ENDDEFINE»
+
+
+«DEFINE presenterInterfaceDeclarations FOR TableWidget»
+    «FOREACH columns AS col»
+	    «IF col.columnType == "Text"»
+		«ELSEIF col.columnType == "Button"»
+		    «EXPAND tableColumnOnClickHandlers(this) FOR col »
+		«ELSEIF col.columnType == "Date"»
+		«ELSEIF col.columnType == "Custom"»
+		«ELSEIF col.columnType == "Link"»
+		    «EXPAND tableColumnOnClickHandlers(this) FOR col »			
+	    «ENDIF»
+    «ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE tableColumnOnClickHandlers(TableWidget tableWidget) FOR TableColumn»
+   /**
+	 * On-click method for «name» column within «tableWidget.name» table.
+	 */
+    public void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
+
+«ENDDEFINE»
+

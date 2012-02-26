@@ -43,7 +43,7 @@ package «gwtWidgetsPackage()»;
 		/**
      	 * Initialize this view with the given presenter.
          */
-		public void initView();
+		public void initView(«fqnPresenterInterface()» presenter);
 		
 		«EXPAND widgetInterfaceDeclarations FOREACH this.allWidgets()»
 		
@@ -160,8 +160,9 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     }
 
     public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList) {
-        «name».setRowCount(newDataList.size());
-        «name».setRowData(newDataList);
+    	«name»ListDataProvider.getList().clear();
+//        «name».setRowCount(newDataList.size());
+//        «name».setRowData(newDataList);
     }
 
     public void clear«name.toFirstUpper()»Data() {
@@ -173,6 +174,9 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	  * This method may be overridden by implementation class to do any specialized behavior.
 	  */
     protected void init«name.toFirstUpper()»Table() {
+    
+    	«name»ListDataProvider.addDataDisplay(«name»);
+    	
     «FOREACH columns AS col»
     «name».addColumn(init«name.toFirstUpper()»Table«col.name.toFirstUpper()»Column());
     «ENDFOREACH»
@@ -187,6 +191,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 		    «EXPAND tableColumnInitDate(this) FOR col »
 		«ELSEIF col.columnType == "Custom"»
 		«ELSEIF col.columnType == "Link"»
+		    «EXPAND tableColumnInitLink(this) FOR col »			
 	    «ENDIF»
 	    
     «ENDFOREACH»
@@ -241,7 +246,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «ENDDEFINE»
 
 
-
 «DEFINE tableColumnInitDate(TableWidget tableWidget) FOR TableColumn»
 
 	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
@@ -288,9 +292,8 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 
 			@Override
 			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
-				return "«this.label»";
+            	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
 			}
-
 		};
 		«this.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
 
@@ -313,13 +316,13 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «ENDDEFINE»
 
 «DEFINE tableColumnInitLink(TableWidget tableWidget) FOR TableColumn»
-
+	
 	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
 	
 	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
 
-		com.google.gwt.cell.client.ButtonCell cellB = new com.google.gwt.cell.client.ButtonCell();
+		com.google.gwt.cell.client.ClickableTextCell cellB = new com.google.gwt.cell.client.ClickableTextCell();
 		
 		«this.tableColumnAttrName()» = new Column<«tableWidget.for.fqnGwtDto()», String>(cellB) {
 
@@ -344,8 +347,11 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     
    /**
 	 * On-click method for «name» column within «tableWidget.name» table.
+	 * By default delegates to presenter.
 	 */
-    protected abstract void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
+    protected void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value) {
+    	presenter.onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(object, value);
+    }
 
 «ENDDEFINE»
 
@@ -407,9 +413,11 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     // «name» cell table
     «debugTrace("widgetDeclaration() for table: " + this.name + " forModule = " + this.for.guiModule.for)»
     @com.google.gwt.uibinder.client.UiField(provided = true)
-    com.google.gwt.user.cellview.client.CellTable<«fqnTableForClass()»> «name» = new com.google.gwt.user.cellview.client.CellTable<«fqnTableForClass()»>();
+    com.google.gwt.user.cellview.client.DataGrid<«fqnTableForClass()»> «name» = new com.google.gwt.user.cellview.client.DataGrid<«fqnTableForClass()»>();
     final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
         new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
+
+	com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»> «name»ListDataProvider = new com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»>();
 
 «ENDDEFINE»
 

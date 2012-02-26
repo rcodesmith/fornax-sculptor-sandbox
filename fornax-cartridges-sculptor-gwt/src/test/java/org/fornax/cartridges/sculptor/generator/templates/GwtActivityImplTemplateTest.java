@@ -51,7 +51,7 @@ public class GwtActivityImplTemplateTest extends LibraryGwtTemplateBaseTest {
         
         String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/TableViewActivity.java");
         assertContains(activityBaseCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
-        assertContains(activityBaseCode, "public class TableViewActivity extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewActivityBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewPresenter{");
+        assertContains(activityBaseCode, "public class TableViewActivity extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewActivityBase {");
         
         assertContains(activityBaseCode, "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView display;");
         
