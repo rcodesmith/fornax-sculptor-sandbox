@@ -15,6 +15,7 @@ package «gwtPlacesPackage()»;
 public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 
 	«EXPAND attribute FOREACH parameters»
+	«EXPAND attributeNameConst FOREACH parameters»
 	
 	// «requiredParameters()»
 	«IF requiredParameters().size > 0»
@@ -35,20 +36,22 @@ public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 	public static class Tokenizer implements com.google.gwt.place.shared.PlaceTokenizer<«gwtPlaceBaseClass()»> {
 		@java.lang.Override
 		public «gwtPlaceBaseClass()» getPlace(String token) {
-			String[] params = token.split("!");
-			if(params.length == 0) {
-				return null;
-			}
-			
 			«gwtPlaceBaseClass()» place = new «gwtPlaceBaseClass()»();
-			
+
+			if( com.google.common.base.Strings.isNullOrEmpty(token) ){
+				return place;
+			}
+			com.google.common.base.Splitter.MapSplitter mapSplitter = com.google.common.base.Splitter.on("&&").trimResults().withKeyValueSeparator("=");
+			java.util.Map<String, String> keyValueMap = mapSplitter.split(token);
+
 			«FOREACH parameters AS param ITERATOR iter»
-				if(params.length >= «iter.counter1») {
-					place.set«param.name.toFirstUpper()»(params[«iter.counter0»].trim());
-				} else {
-					return place;
+			{
+				String paramVal = keyValueMap.get(«param.getPlaceArgConst()»);
+				if(paramVal != null) {
+					paramVal = paramVal.trim();
+					place.set«param.name.toFirstUpper()»(paramVal);
 				}
-				
+			}	
 			«ENDFOREACH»
 			return place;
 		}
@@ -56,13 +59,27 @@ public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 		@java.lang.Override
 		public String getToken(«gwtPlaceBaseClass()» place) {
 			StringBuilder sb = new StringBuilder();
+			boolean isFirst = true;
 			«FOREACH parameters AS param ITERATOR iter»
 			«REM»TODO: Should use converterutils instead of toString«ENDREM»
-			sb.append(place.«param.name» == null? "" : place.«param.name».toString());
-			sb.append("!");
+			{
+				if(place.«param.name» != null) {
+					if(isFirst == true) {
+						isFirst = false;
+					} else {
+						sb.append("&&");
+					}
+					sb.append(getKeyVal(«param.getPlaceArgConst()»,
+						org.fornax.cartridges.sculptor.framework.gwt.client.util.GwtConvertUtils.toString(place.«param.name»)));
+				}
+			}
 			«ENDFOREACH»
 			
 			return sb.toString();
+		}
+		
+		private String getKeyVal(String key, String val) {
+			return key + "=" + val;
 		}
 	
 	}
@@ -79,6 +96,11 @@ public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 «DEFINE attribute FOR ViewParameter»
 	private «getTypeName()» «name»;
 «ENDDEFINE»
+
+«DEFINE attributeNameConst FOR ViewParameter»
+	private static final String «getPlaceArgConst()» = "«name»";
+«ENDDEFINE»
+
 
 
 «DEFINE accessors FOR ViewParameter»

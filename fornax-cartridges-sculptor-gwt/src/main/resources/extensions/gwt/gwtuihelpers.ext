@@ -630,7 +630,6 @@ String gwtActivityBaseClass(View view) :
 	view.name + "ActivityBase";
 
 // Base class that should be used for all activities
-// TODO: Make property
 String gwtFrameworkActivityBaseClass(View view) :
 	getProperty("gwt.activity.base.class") + "<" + fqnPlaceBaseClass(view) + ">";
 //	"com.google.gwt.activity.shared.AbstractActivity";
@@ -654,6 +653,9 @@ String fqnActivityImplClass(View view) :
 //////////////////////////////////////////////////////////////////////////////
 // Place related functions
 //////////////////////////////////////////////////////////////////////////////
+
+String getPlaceArgConst(ViewParameter param) :
+	param.name.toUpperCase() + "ARG";
 
 // Package for all place-related classes
 gwtPlacesPackage(View view) :
