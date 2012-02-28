@@ -3,7 +3,7 @@
   <groupId>org.fornax.cartridges</groupId>
   <artifactId>fornax-cartridges-sculptor-archetype-parent</artifactId>
   <versioning>
-    <release>2.0.6-gwt</release>
+    <release>2.0.7-gwt</release>
     <versions>
       <version>2.0.0</version>
       <version>2.0.0-gwt</version>
@@ -14,7 +14,8 @@
       <version>2.0.5-gwt</version>
       <version>2.0.6-gwt-SNAPSHOT</version>
       <version>2.0.6-gwt</version>
+      <version>2.0.7-gwt</version>
     </versions>
-    <lastUpdated>20111227213142</lastUpdated>
+    <lastUpdated>20120228062624</lastUpdated>
   </versioning>
 </metadata>
