@@ -20,10 +20,25 @@ public class GwtDtoBuilderTemplateTest extends LibraryGwtTemplateBaseTest {
 		XpandUnit.xpand("templates::gwt::GwtDtoBuilder::builder", mediaObj,
 				new HashMap<String, Object>(), getXpandTempDir());
 
-//		String builderCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/MediaBuilder.java");
-//		Assert.assertNotNull(builderCode);
+		String builderCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/MediaBuilder.java");
+		Assert.assertNotNull(builderCode);
 	}
-	
+
+	@Test
+	public void assertBookDtoBuilder() throws IOException {
+		DomainObject bookObj = (DomainObject) getNamedElement("Book",
+				mediaModule().getStubModule().getDomainObjects());
+		
+		XpandUnit.xpand("templates::gwt::GwtDtoBuilder::builder", bookObj,
+				new HashMap<String, Object>(), getXpandTempDir());
+
+		String builderCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/BookBuilder.java");
+		Assert.assertNotNull(builderCode);
+		
+		assertContains(builderCode, "private String title;");
+		assertContains(builderCode, "private String isbn;");
+	}
+
 	@Test
 	public void assertPersonDtoBuilder() throws IOException {
 		DomainObject personObj = (DomainObject) getNamedElement("Person",

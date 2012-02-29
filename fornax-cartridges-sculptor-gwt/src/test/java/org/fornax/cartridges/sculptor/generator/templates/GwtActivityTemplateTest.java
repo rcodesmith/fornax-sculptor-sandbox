@@ -59,7 +59,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 
 		assertContains(
 				activityBaseCode,
-				"public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place.TableViewPlace>");
+				"public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place.TableViewPlace> implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewBasePresenter {");
 
 		assertContains(
 				activityBaseCode,

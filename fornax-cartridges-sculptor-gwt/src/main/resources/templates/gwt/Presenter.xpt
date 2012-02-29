@@ -6,21 +6,23 @@
 «EXTENSION extensions::gwt::gwtuihelpers»
 «EXTENSION extensions::gwt::sofeauihelpers»
 
-«DEFINE presenterInterface FOR View»
-«FILE javaFileName(fqnPresenterInterface())»
+«DEFINE presenterBaseInterface FOR View»
+«FILE javaFileName(fqnPresenterBaseInterface())»
 «javaHeader()»
 package «gwtActivitiesPackage()»;
 
 /**
-  * Presenter interface for view «name».
+  * Presenter base interface for view «name».
   */
-public interface «gwtPresenterInterface()» extends «gwtFrameworkPresenterBaseInterface()» {
+public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBaseInterface()» {
 
 	«EXPAND presenterInterfaceDeclarations FOREACH this.allWidgets()»
 }
 
 «ENDFILE»
 «ENDDEFINE»
+
+
 
 «REM»Declarations that must be added to the presenter interface for each widget«ENDREM»
 
@@ -54,3 +56,19 @@ public interface «gwtPresenterInterface()» extends «gwtFrameworkPresenterBaseInt
 
 «ENDDEFINE»
 
+
+
+
+«DEFINE presenterInterface FOR View»
+«FILE javaFileName(fqnPresenterInterface()) TO_SRC»
+«javaHeader()»
+package «gwtActivitiesPackage()»;
+
+/**
+  * Presenter interface for view «name».
+  */
+public interface «gwtPresenterInterface()» extends «fqnPresenterBaseInterface()» {
+}
+
+«ENDFILE»
+«ENDDEFINE»

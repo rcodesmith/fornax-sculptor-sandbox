@@ -18,6 +18,8 @@
 	«EXPAND templates::gwt::ViewTemplate::viewCompositeBaseTemplate FOREACH this.views»
 	«EXPAND templates::gwt::Place::placeBase FOREACH this.views»
 	
+	«EXPAND templates::gwt::Presenter::presenterBaseInterface FOREACH this.views»
+	
 	«EXPAND templates::gwt::Presenter::presenterInterface FOREACH this.views»
 	
 	
@@ -43,7 +45,7 @@ package «gwtWidgetsPackage()»;
 		/**
      	 * Initialize this view with the given presenter.
          */
-		public void initView(«fqnPresenterInterface()» presenter);
+		public void initView(«fqnPresenterBaseInterface()» presenter);
 		
 		«EXPAND widgetInterfaceDeclarations FOREACH this.allWidgets()»
 		
@@ -122,12 +124,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     	return uiBinder.createAndBindUi(this);
     }
     
-    «fqnPresenterInterface()» presenter;
+    «fqnPresenterBaseInterface()» presenter;
     
     /**
      * Initialize this view with the given presenter.
      */
-    public void initView(«fqnPresenterInterface()» presenter) {
+    public void initView(«fqnPresenterBaseInterface()» presenter) {
     	this.presenter = presenter;
     }
     
@@ -248,10 +250,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 
 «DEFINE tableColumnInitDate(TableWidget tableWidget) FOR TableColumn»
 
-	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> «this.tableColumnAttrName()»;
 	
 	«EXPAND tableColumnInitComment(tableWidget) FOR this»
-	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
 	
 	com.google.gwt.cell.client.DateCell dateCell = new com.google.gwt.cell.client.DateCell();
 	
@@ -312,6 +314,19 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	 * On-click callback handler for «name» column within «tableWidget.name» table.
 	 */
     protected abstract void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
+
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression("object")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
 
 «ENDDEFINE»
 

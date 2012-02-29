@@ -64,6 +64,12 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
 		"return nestedNameField;",
 		"}");	
        
+        
+        // Assert date table column
+        assertContains(tableViewBaseCode, "com.google.gwt.user.cellview.client.Column<org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Person, java.util.Date> mytableBirthDateTableCol;");
+        
+        // Assert button table column
+        assertContains(tableViewBaseCode, "protected abstract String getPersonTableTableEditColValue(org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Person object)");
     }
 
     @Test

@@ -13,7 +13,7 @@ package «gwtActivitiesPackage()»;
 /**
   * Activity base class for view «name».
   */
-public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBaseClass()» implements «fqnPresenterInterface()» {
+public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBaseClass()» implements «fqnPresenterBaseInterface()» {
 
 	«loggerDeclaration(gwtActivityBaseClass())»
 
@@ -186,7 +186,7 @@ package «gwtActivitiesPackage()»;
 /**
   * Activity implementation class for «name» view.
   */
-public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» {
+public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implements «fqnPresenterInterface()» {
 
 	«loggerDeclaration(gwtActivityImplClass())»
 	

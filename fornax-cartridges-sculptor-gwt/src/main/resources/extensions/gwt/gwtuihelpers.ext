@@ -575,6 +575,13 @@ String fqnGwtViewWidgetBaseClass(View view) :
 String fqnGwtViewWidgetImplClass(View view) :
 	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetImplClass() ;
 
+String gwtPresenterBaseInterface(View view) :
+	view.name.toFirstUpper() + "BasePresenter";
+	
+// Fully qualified name of the GWT presenter interface for a view
+String fqnPresenterBaseInterface(View view) :
+	view.gwtActivitiesPackage() + "." + view.gwtPresenterBaseInterface();
+
 String gwtPresenterInterface(View view) :
 	view.name.toFirstUpper() + "Presenter";
 	
