@@ -164,6 +164,7 @@ Collection[Attribute] getAllBusinessAttributes(DomainObject domainObject) :
 Collection[Reference] getAllBusinessReferences(DomainObject domainObject) :
 	domainObject.getAllReferences().select(r| r.generateGwt());
 
+
 // Get all the view data properties to be be displayed/edited..  Note this leaves out referred-to domain classes, including things like Plan Type
 Collection[ViewDataProperty] getAllBusinessViewDataProperties(UserTask task) :
 	task.viewProperties.reject(p | p.metaType == ReferenceViewProperty || p.metaType == DerivedReferenceViewProperty || p.isSystemAttribute() || p.name == "version");

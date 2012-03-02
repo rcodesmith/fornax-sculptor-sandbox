@@ -282,8 +282,8 @@ public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()»
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
    	«EXPAND attribute FOREACH getGwtDtoAttributes()»
 
-    «EXPAND gwtOneReferenceAttribute FOREACH getAllBusinessReferences().select(r | !r.many)»
-    «EXPAND manyReferenceAttribute FOREACH getAllBusinessReferences().select(r | r.many)»
+    «EXPAND gwtOneReferenceAttribute FOREACH references.select(r | !r.many)»
+    «EXPAND manyReferenceAttribute FOREACH references.select(r | r.many)»
 
 	/**
 	 * Constructor
@@ -297,8 +297,8 @@ public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()»
 
     «EXPAND propertyAccessors FOREACH getGwtDtoAttributes() »
 
-    «EXPAND oneReferenceAccessors FOREACH getAllBusinessReferences().select(r | !r.many)»
-    «EXPAND manyReferenceAccessors FOREACH getAllBusinessReferences().select(r | r.many)»
+    «EXPAND oneReferenceAccessors FOREACH references.select(r | !r.many)»
+    «EXPAND manyReferenceAccessors FOREACH references.select(r | r.many)»
     
     «EXPAND templates::domain::DomainObject::toStringStyle»
     «EXPAND templates::domain::DomainObject::acceptToString»

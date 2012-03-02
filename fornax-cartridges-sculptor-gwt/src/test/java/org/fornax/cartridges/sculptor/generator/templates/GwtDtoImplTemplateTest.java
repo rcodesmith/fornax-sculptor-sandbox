@@ -133,6 +133,11 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 		assertContainsConsecutiveFragments(dtoBaseCode, "public Book(",
 				"String title", ",", "String isbn", ") {", "super(title);",
 				"this.isbn = isbn;", "}");
+		
+		// Verify that base class references and attributes not present
+		Assert.assertFalse(dtoBaseCode.contains("private java.util.Set<org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt.shared.domain.PhysicalMedia> physicalMedia = new java.util.HashSet<org.fornax.cartridges.sculptor.examples.library.mediaalt.gwt.shared.domain.PhysicalMedia>();"));
+		Assert.assertFalse(dtoBaseCode.contains("private String title;"));
+		
 	}
 
 	@Test
