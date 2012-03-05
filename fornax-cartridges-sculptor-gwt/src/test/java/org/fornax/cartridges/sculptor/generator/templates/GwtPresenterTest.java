@@ -8,7 +8,6 @@ import junit.framework.Assert;
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
 import org.junit.Test;
 
-import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.View;
 
 public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
@@ -26,10 +25,9 @@ public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
         assertContains(presenterBaseCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
         
         assertContains(presenterBaseCode, "public interface TableViewBasePresenter extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.Presenter {");
-//        assertContains(activityBaseCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
-//        assertContains(activityBaseCode, "public class TableViewActivity extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewActivityBase {");
-//        
-//        assertContains(activityBaseCode, "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView display;");
+        
+        assertContains(presenterBaseCode, "public void onClickSaveButton();");
+        
         
     }
 

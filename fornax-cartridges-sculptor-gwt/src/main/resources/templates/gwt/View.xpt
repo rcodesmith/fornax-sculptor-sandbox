@@ -146,14 +146,22 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «DEFINE widgetInitCalls FOR Widget»
 «ENDDEFINE»
 
-«DEFINE widgetInitCalls FOR TableWidget»
+«DEFINE widgetInitCalls FOR ButtonWidget»
+	init«name.toFirstUpper()»();
+«ENDDEFINE»
 
+«DEFINE widgetInitCalls FOR LinkWidget»
+	init«name.toFirstUpper()»();
+«ENDDEFINE»
+
+«DEFINE widgetInitCalls FOR TableWidget»
 	// Initialize «name» table (columns, etc)
 	init«name.toFirstUpper()»Table();
 «ENDDEFINE»
 
 
 «REM»Widget misc. methods«ENDREM»
+
 
 «DEFINE widgetMethods FOR TableWidget»
     public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData) {
@@ -371,6 +379,14 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR ButtonWidget»
+	public void init«name.toFirstUpper()»() {
+		«name».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
+			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
+				presenter.onClick«name.toFirstUpper()»();
+			}
+		});
+	}
+
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
 		return «name»;
 	}
@@ -398,6 +414,15 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
 		return «name»;
 	}
+	
+	public void init«name.toFirstUpper()»() {
+		«name».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
+			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
+				presenter.onClick«name.toFirstUpper()»();
+			}
+		});
+	}
+
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR PanelWidget»

@@ -30,8 +30,11 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 	// No presenter interface declarations for «name» widget - fill in implementation?
 «ENDDEFINE»
 
-«DEFINE presenterInterfaceDeclarations FOR Widget»
-	// No presenter interface declarations for «name» widget - fill in implementation?
+«DEFINE presenterInterfaceDeclarations FOR ButtonWidget»
+   /**
+	 * On-click method for «name» button.
+	 */
+    public void onClick«name.toFirstUpper()»();
 «ENDDEFINE»
 
 
