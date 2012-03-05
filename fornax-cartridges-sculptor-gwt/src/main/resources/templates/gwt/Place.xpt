@@ -64,11 +64,15 @@ public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 			«REM»TODO: Should use converterutils instead of toString«ENDREM»
 			{
 				if(place.«param.name» != null) {
+				«IF iter.counter1 == 1»
+					isFirst = false;
+				«ELSE»
 					if(isFirst == true) {
 						isFirst = false;
 					} else {
 						sb.append("&&");
-					}
+					}				
+				«ENDIF»
 					sb.append(getKeyVal(«param.getPlaceArgConst()»,
 						org.fornax.cartridges.sculptor.framework.gwt.client.util.GwtConvertUtils.toString(place.«param.name»)));
 				}
