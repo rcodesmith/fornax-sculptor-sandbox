@@ -42,7 +42,7 @@ package «getBuilderPackage()»;
 	    «EXPAND templates::domain::DomainObjectReference::manyReferenceAttribute(false) FOREACH this.getBuilderReferences().select(r| r.many)»
 
 		/**
-		 * Static factor method for «getBuilderClassName()»
+		 * Static factory method for «getBuilderClassName()»
 		 */
 		public static «name»Builder «name.toFirstLower()»() {
 			return new «name»Builder();
