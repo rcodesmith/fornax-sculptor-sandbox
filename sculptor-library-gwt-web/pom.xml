@@ -1,0 +1,443 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>sculptor-library-gwt-parent</artifactId>
+		<groupId>org.fornax.cartridges</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../sculptor-library-gwt-parent/</relativePath>
+	</parent>
+	<groupId>org.fornax.cartridges</groupId>
+	<artifactId>sculptor-library-gwt-web</artifactId>
+	<packaging>war</packaging>
+	<name>Web project for sculptor-library-gwt-web</name>
+
+	<properties>
+		<!-- Convenience property to set the GWT version -->
+		<gwtVersion>2.4.0</gwtVersion>
+		<!-- GWT needs at least java 1.5 -->
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<!-- Default value. May be overriden via -Dfornax.generator.force.execution=true -->
+		<fornax.generator.force.execution>false</fornax.generator.force.execution>
+	</properties>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<outputDirectory>target/www/WEB-INF/classes</outputDirectory>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/generated</directory>
+							<includes>
+								<include>**/*.java</include>
+								<include>**/*.xml</include>
+								<include>**/*.properties</include>
+							</includes>
+							<excludes>
+								<exclude>**/.svn/*</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>src/test/generated</directory>
+							<includes>
+								<include>**/*.java</include>
+								<include>**/*.xml</include>
+								<include>**/*.properties</include>
+							</includes>
+							<excludes>
+								<exclude>**/.svn/*</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>src/main/webapp/WEB-INF/generated</directory>
+							<includes>
+								<include>**/*.html</include>
+								<include>**/*.xml</include>
+							</includes>
+							<excludes>
+								<exclude>**/.svn/*</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+
+						<!-- GWT stuff -->
+						<fileset>
+							<directory>src/main/webapp/web</directory>
+						</fileset>
+						<fileset>
+							<directory>src/main/webapp/WEB-INF/classes</directory>
+						</fileset>
+						<fileset>
+							<directory>tomcat</directory>
+						</fileset>
+						<fileset>
+							<directory>www-test</directory>
+						</fileset>
+						<fileset>
+							<directory>.gwt-tmp</directory>
+						</fileset>
+
+
+
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+
+				<!-- For skinny war configuration... -->
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.11</version>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/</contextPath>
+					</webAppConfig>
+					<port>8888</port>
+					<stopKey>STOP</stopKey>
+					<stopPort>8889</stopPort>
+					<systemProperties>
+						<!-- enable easy JMX connection to JConsole -->
+						<systemProperty>
+							<name>com.sun.management.jmxremote</name>
+							<value />
+						</systemProperty>
+						<systemProperty>
+							<name>jetty.port</name>
+							<value>8888</value>
+						</systemProperty>
+					</systemProperties>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.fornax.toolsupport</groupId>
+				<artifactId>sculptor-maven-plugin</artifactId>
+				<version>2.0.0</version>
+				<configuration>
+					<verbose>true</verbose>
+					<force>fornax.generator.force.execution</force>
+					<workflowDescriptor>src/main/resources/generator/GuiWorkflow.mwe2</workflowDescriptor>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.fornax.cartridges</groupId>
+						<artifactId>fornax-cartridges-sculptor-generator</artifactId>
+						<version>${sculptor.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.fornax.cartridges</groupId>
+						<artifactId>fornax-cartridges-sculptor-gwt</artifactId>
+						<version>${sculptor.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>sculptor-library-gwt</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>cleanup</id>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>code-generation</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<forkMode>once</forkMode>
+					<argLine>-Xms32m -Xmx1024m</argLine>
+					<additionalClasspathElements>
+						<additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
+						<additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
+					</additionalClasspathElements>
+					<useManifestOnlyJar>false</useManifestOnlyJar>
+
+					<!-- Folder for generated testing stuff -->
+					<systemProperties>
+						<property>
+							<name>gwt.args</name>
+							<value>-out target/www</value>
+						</property>
+					</systemProperties>
+
+				</configuration>
+			</plugin>
+
+			<!-- Copy static web files before executing gwt:run -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4.2</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/www</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/webapp</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>sculptor-library-gwt</artifactId>
+			<version>${project.version}</version>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-gwt</artifactId>
+			<version>10.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.5.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.transaction</groupId>
+					<artifactId>jta</artifactId>
+				</exclusion>
+			</exclusions>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- Add scope test provided deployed in jboss -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>${hibernate.annotations.version}</version>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- Add scope test provided deployed in jboss -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- Add scope test provided deployed in jboss -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons-lang.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.2.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.fornax.cartridges</groupId>
+			<artifactId>fornax-cartridges-sculptor-framework</artifactId>
+			<version>${sculptor.version}</version>
+			<classifier>without-ejb</classifier>
+			<!-- Add scope provided when deployed as ear -->
+			<!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.fornax.cartridges</groupId>
+			<artifactId>fornax-cartridges-sculptor-gwt-framework</artifactId>
+			<version>${sculptor.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.fornax.cartridges</groupId>
+			<artifactId>fornax-cartridges-sculptor-framework-test</artifactId>
+			<version>${sculptor.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.6</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>gwt-compile</id>
+
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<build>
+				<plugins>
+					<!-- GWT Maven Plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>2.3.0</version>
+						<dependencies>
+							<dependency>
+								<groupId>com.google.gwt</groupId>
+								<artifactId>gwt-user</artifactId>
+								<version>${gwtVersion}</version>
+							</dependency>
+							<dependency>
+								<groupId>com.google.gwt</groupId>
+								<artifactId>gwt-dev</artifactId>
+								<version>${gwtVersion}</version>
+							</dependency>
+							<dependency>
+								<groupId>com.google.gwt</groupId>
+								<artifactId>gwt-servlet</artifactId>
+								<version>${gwtVersion}</version>
+							</dependency>
+						</dependencies>
+						<!-- JS is only needed in the package phase, this speeds up testing -->
+						<executions>
+							<execution>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+						</executions>
+
+						<!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
+							documentation at codehaus.org -->
+						<configuration>
+							<!-- URL that should be automatically opened in the GWT shell (gwt:run). -->
+							<runTarget>web.html</runTarget>
+							<!-- Location of the develop-mode web application structure (gwt:run). -->
+							<hostedWebapp>target/www</hostedWebapp>
+							<!-- Ask GWT to create the Story of Your Compile (SOYC) (gwt:compile) -->
+							<compileReport>true</compileReport>
+
+							<!-- When compiling drools guvnor with gwt-dev, there is a conflict 
+								with the libraries, and it is throwing java.lang.nosuchfielderror warningthreshold 
+								when running mvn compile Refer to the issue : http://jira.codehaus.org/browse/MGWT-219 -->
+							<gwtSdkFirstInClasspath>true</gwtSdkFirstInClasspath>
+							<!-- Fail if any line has errors -->
+							<strict>true</strict>
+
+							<!-- Identify the dependencies for which to include source jars on 
+								the classpath for GWT compile. -->
+							<!-- <compileSourcesArtifacts> <compileSourcesArtifact>org.fornax.cartridges:fornax-cartridges-sculptor-gwt</compileSourcesArtifact> 
+								</compileSourcesArtifacts> -->
+
+
+							<compileSourcesArtifacts>
+								<compileSourcesArtifact>org.fornax.cartridges:fornax-cartridges-sculptor-gwt</compileSourcesArtifact>
+								<compileSourcesArtifact>com.lfg.rs.psa:psa-domain</compileSourcesArtifact>
+							</compileSourcesArtifacts>
+
+						</configuration>
+					</plugin>
+				</plugins>
+
+			</build>
+		</profile>
+
+
+
+	</profiles>
+</project>

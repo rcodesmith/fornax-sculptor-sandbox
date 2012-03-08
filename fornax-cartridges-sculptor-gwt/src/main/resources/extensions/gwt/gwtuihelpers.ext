@@ -546,21 +546,22 @@ String fqnViewWidgetBaseUiBinderClass(View view) :
 	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseUiBinderClass() ;
 
 
+// GWT view widget base interface relative name
+String gwtViewBaseInterface(View view) :
+	view.name.toFirstUpper() + "BaseView";
+
+// Fully qualified name of GWT view base widget interface
+String fqnGwtViewBaseInterface(View view) :
+	view.gwtWidgetsPackage() + "." + view.gwtViewBaseInterface();
+
 // GWT view widget interface relative name
 String gwtViewInterface(View view) :
 	view.name.toFirstUpper() + "View";
 
-// Fully qualified name of GWT view widgetinterface
+// Fully qualified name of GWT view widget interface
 String fqnGwtViewInterface(View view) :
 	view.gwtWidgetsPackage() + "." + view.gwtViewInterface();
 
-// Fully qualified name of GWT view widget interface
-//String fqnViewWidgetBaseInterface(View view) :
-//	view.fqnActivityBaseClass() + "." + view.gwtViewWidgetBaseInterface();
-
-// GWT view widget impl interface relative name
-//String gwtViewWidgetInterface(View view) :
-//	view.name.toFirstUpper();
 
 	
 // GWT view widget impl class relative name
@@ -591,26 +592,6 @@ String fqnPresenterInterface(View view) :
 	view.gwtActivitiesPackage() + "." + view.gwtPresenterInterface();
 
 
-String resolveGwtWidgetType(Widget widget) :
-	error("Unexpected call to resolveGwtWidgetType: " + widget);
-
-String resolveGwtWidgetType(InputDateWidget widget) :
-	"com.google.gwt.user.client.ui.TextBox";
-	
-String resolveGwtWidgetType(InputTextWidget widget) :
-	"com.google.gwt.user.client.ui.TextBox";
-
-String resolveGwtWidgetType(InformationalTextWidget widget) :
-	"com.google.gwt.user.client.ui.InlineLabel";
-
-String resolveGwtWidgetType(ButtonWidget widget) :
-	"com.google.gwt.user.client.ui.Button";
-	
-String resolveGwtWidgetType(LinkWidget widget) :
-	"com.google.gwt.user.client.ui.Anchor";
-
-String resolveGwtWidgetType(PanelWidget widget) :
-	"com.google.gwt.user.client.ui.FlowPanel";
 	
 
 Set[Service] getUsedServices(GuiModule module) :
@@ -623,6 +604,56 @@ Set[Service] getUsedServices(View view) :
 //		addAll(task.getServicesToSelectDomainObjects()).toSet();
 
 
+//////////////////////////////////////////////////////////////////////////////
+// Widget-related functions
+//////////////////////////////////////////////////////////////////////////////
+
+String resolveGwtWidgetType(Widget widget) :
+	error("Unexpected call to resolveGwtWidgetType: " + widget);
+
+String resolveGwtWidgetType(InputDateWidget widget) :
+	getProperty("gwt.widget.inputdate.class");
+
+String resolveGwtWidgetTag(InputDateWidget widget) :
+	getProperty("gwt.widget.inputdate.tag");
+
+String resolveGwtWidgetType(InputTextWidget widget) :
+	getProperty("gwt.widget.inputtext.class");
+
+String resolveGwtWidgetTag(InputTextWidget widget) :
+	getProperty("gwt.widget.inputtext.tag");
+
+String resolveGwtWidgetType(InformationalTextWidget widget) :
+	getProperty("gwt.widget.informationaltext.class");
+
+String resolveGwtWidgetTag(InformationalTextWidget widget) :
+	getProperty("gwt.widget.informationaltext.tag");
+
+String resolveGwtWidgetType(ButtonWidget widget) :
+	getProperty("gwt.widget.button.class");
+
+String resolveGwtWidgetTag(ButtonWidget widget) :
+	getProperty("gwt.widget.button.tag");
+	
+
+String resolveGwtWidgetType(LinkWidget widget) :
+	getProperty("gwt.widget.link.class");
+
+String resolveGwtWidgetTag(LinkWidget widget) :
+	getProperty("gwt.widget.link.tag");
+
+String resolveGwtWidgetType(PanelWidget widget) :
+	getProperty("gwt.widget.panel.class");
+
+String resolveGwtWidgetTag(PanelWidget widget) :
+	getProperty("gwt.widget.panel.tag");
+
+String resolveGwtWidgetType(TableWidget widget) :
+	getProperty("gwt.widget.table.class");
+
+String resolveGwtWidgetTag(TableWidget widget) :
+	getProperty("gwt.widget.table.tag");
+	
 
 //////////////////////////////////////////////////////////////////////////////
 // Activity related functions

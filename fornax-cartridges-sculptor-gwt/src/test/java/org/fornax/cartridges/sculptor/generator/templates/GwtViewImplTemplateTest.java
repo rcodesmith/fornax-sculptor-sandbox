@@ -31,6 +31,8 @@ public class GwtViewImplTemplateTest extends TemplateTestBase {
                 globalVars, getXpandTempDir());
         
         String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewImpl.java");
+        
+        assertContains(tableViewCode, "public class TableViewViewImpl extends  org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView {");
     }
     
 }

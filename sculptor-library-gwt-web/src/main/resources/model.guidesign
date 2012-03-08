@@ -1,0 +1,148 @@
+import 'classpath:/model.btdesign' 
+gui LibraryWeb for Library {
+
+	Module for person {
+		> @PersonService
+		
+		View Menu {
+			contents {
+				link personLink toView PersonForm {
+					label = "Person Form"
+				}
+				link mediaBrowseLink toView MediaBrowse {
+					label = "Media Browse"
+				}
+			}
+		}
+		
+		View PersonForm for Person {
+			> @PersonService
+	
+			parameters {
+				Long personId not nullable;
+				String displayMode nullable;
+			}
+			
+			contents {
+				inputText nameField {
+					label = "Name"
+				}
+				table table1 {
+					label = "Table uno"
+				}
+				
+				button saveButton {
+					label = "Save"
+				}
+				
+				informationalText info1 {
+					label = "Info Numero Uno"
+				}
+				
+				textArea textArea1 {
+					label = "Text area uno"
+				}
+				
+//				autocomplete autocomp1 forProperty ssn {
+//					label = "Auto complete one"
+//				}
+			}
+		}
+		
+		View TableView {
+			
+			parameters {
+				String param1;
+			}
+
+			contents {
+				inputText nameField {
+					label = "Name"
+				}
+
+				informationalText info1 {
+					label = "Info Numero Uno"
+				}
+
+				table mytable for Person {
+					label="My Table"
+					
+					columns {
+						name type=Text; //forOp getDisplayName
+						
+						birthDate type=Date; //forProperty birthDate
+					}
+				}
+				
+				table personTable for Person {
+					label="Person Table"
+					
+					columns {
+						name label="Name" type=Text forOp getDisplayName filterable sortable;
+						
+						birthDate label = "Birthdate" type=Date; // forProperty birthDate
+
+						nickname label="Nickname" type=Custom;
+						
+						profileLink label="View Profile" type=Link;
+						
+						edit label="Edit" type=Button onClick=populatePersonDetailsPanel;
+						
+						
+					}
+				}
+
+				panel personDetailsPanel for Person {
+					contents {
+						inputText nestedNameField {
+							label = "Name"
+						}
+						inputText addressField {
+							label = "Address"
+						}
+
+
+					}
+				}
+				
+				button saveButton {
+					label = "Save"
+				}
+				
+				
+			}
+			
+			
+		}
+		
+
+		"This is some MyEvent1 documentation"
+		Event MyEvent1 {
+			String attr1;
+			
+			"This is some documentation"
+			Integer attr2;
+			
+			Date date1;
+			
+			DateTime dateTime1;
+		}
+		
+		"Populate the person details panel"
+		UiBehavior PopulatePanel populatePersonDetailsPanel {
+			panel=personDetailsPanel
+		}
+
+	}
+	
+	Module for media {
+		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
+		
+		> @MediaService
+		
+		View MediaBrowse {
+			
+		}
+	}
+	
+}

@@ -13,17 +13,17 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
 
 
     @Test
-    public void assertTableViewInterfaceCode() throws IOException {
+    public void assertTableViewBaseInterfaceCode() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	
-        XpandUnit.xpand("templates::gwt::View::viewInterface", tableView,
+        XpandUnit.xpand("templates::gwt::View::viewBaseInterface", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewView.java");
+        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewBaseView.java");
         
         assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view;");
         
-        assertContains(tableViewCode, "public interface TableViewView extends com.google.gwt.user.client.ui.IsWidget");
+        assertContains(tableViewCode, "public interface TableViewBaseView extends com.google.gwt.user.client.ui.IsWidget");
         
         assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasText getNameFieldHasText();");
         
@@ -40,5 +40,19 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         
     }
     
-
+    @Test
+    public void assertTableViewInterfaceCode() throws IOException {
+    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::View::viewInterfaceForUnitTest", tableView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewView.java");
+        
+        assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view;");
+        
+        assertContains(tableViewCode, "Generated interface for the View TableView.");
+        
+        assertContains(tableViewCode, "public interface TableViewView extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewBaseView {");
+    }
 }

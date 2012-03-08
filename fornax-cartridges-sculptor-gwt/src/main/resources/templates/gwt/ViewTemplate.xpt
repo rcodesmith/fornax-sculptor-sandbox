@@ -11,7 +11,9 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
-	xmlns:d="urn:import:com.google.gwt.user.datepicker.client">
+	xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+	«EXPAND additionalUiBinderNamespaces FOR this»
+	>
 	<ui:style>
 		.important {
 			font-weight: bold;
@@ -41,24 +43,28 @@
 «ENDFILE»
 «ENDDEFINE»
 
+«REM»Any additional UI binder namespace declarations that are needed for widgets go here.  Override this as needed.«ENDREM»
+«DEFINE additionalUiBinderNamespaces FOR View»
+«ENDDEFINE»
+
 «DEFINE widgetTemplate FOR InputTextWidget»
 	<g:Label text="«label»" />
-	<g:TextBox ui:field="«name»"  name="«name»"/>	
+	<«this.resolveGwtWidgetTag()» ui:field="«name»"  name="«name»"/>	
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR InputDateWidget»
 	<g:Label text="«label»" />
-	<g:TextBox ui:field="«name»"  name="«name»"/>	
+	<«this.resolveGwtWidgetTag()» ui:field="«name»"  name="«name»"/>	
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR InformationalTextWidget»
 	<g:Label text="«label»" />
-	<g:InlineLabel ui:field="«name»"  name="«name»"/>
+	<«this.resolveGwtWidgetTag()» ui:field="«name»"  name="«name»"/>
 	
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR ButtonWidget»
-	<g:Button ui:field="«name»" text="«label»"></g:Button>
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" text="«label»"></«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR Widget»
@@ -66,22 +72,22 @@
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR TableWidget»
-	<p1:CellTable ui:field="«name»" tableLayoutFixed="false" />
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" tableLayoutFixed="false" />
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR LinkWidget»
-	<g:Anchor ui:field="«name»" text="«label»" HTML="«label»"></g:Anchor>
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" text="«label»" HTML="«label»"></«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR PanelWidget»
 	
-	<g:FlowPanel ui:field="«name»">
+	<«this.resolveGwtWidgetTag()» ui:field="«name»">
 		«FOREACH widgets AS widget»
 		<!-- Widget «widget.name» -->
 		<g:FlowPanel>		
 			«EXPAND widgetTemplate FOR widget»
 		</g:FlowPanel>	
 		«ENDFOREACH»
-	</g:FlowPanel>
+	</«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»
 
