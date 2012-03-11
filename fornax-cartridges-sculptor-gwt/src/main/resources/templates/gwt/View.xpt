@@ -120,6 +120,8 @@ package «gwtWidgetsPackage()»;
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR LinkWidget»
+    «formatJavaDoc()»
+
 	public com.google.gwt.event.dom.client.HasClickHandlers «widgetClickHandlersExpr()»;
 «ENDDEFINE»
 
@@ -444,10 +446,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR LinkWidget»
+    «formatJavaDoc()»
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
 		return «name»;
 	}
 	
+	«formatJavaDoc()»
 	public void init«name.toFirstUpper()»() {
 		«name».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
 			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
