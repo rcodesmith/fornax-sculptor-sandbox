@@ -777,6 +777,10 @@
         <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//Widget/label"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Eb7hYXyyEeCVIP_y44znpQ"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_i3mmMWvfEeGztoiJMxDUZQ" type="3001">
+        <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//Widget/widgetType"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_i3mmMmvfEeGztoiJMxDUZQ"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_cN9PMnvNEeCf9Li2crRXww"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_cN9PM3vNEeCf9Li2crRXww"/>
     </children>

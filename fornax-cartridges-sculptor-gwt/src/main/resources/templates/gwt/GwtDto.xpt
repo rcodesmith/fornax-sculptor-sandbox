@@ -306,7 +306,11 @@ public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()»
     
     «EXPAND templates::domain::DomainObjectTrait::traitInstance(this) FOREACH traits.select(e | !e.operations.isEmpty)»
     «EXPAND templates::domain::DomainObjectTrait::delegateToTraitMethod FOREACH operations.select(e | !e.abstract && e.hasHint("trait"))»
+    
+    «REM»Leave out abstractOperations until gap classes in GWT DTOs are supported«ENDREM»
+    «REM»
     «EXPAND templates::domain::DomainObject::abstractMethod FOREACH operations.reject(e | !e.abstract && e.hasHint("trait"))»
+    «ENDREM»
     
     «EXPAND templates::domain::DomainObject::domainObjectHook»
     

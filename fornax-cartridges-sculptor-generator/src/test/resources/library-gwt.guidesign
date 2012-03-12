@@ -11,6 +11,7 @@ gui LibraryWeb for Library {
 					label = "Media Browse"
 				}
 				
+				"Link to PersonForm view"
 				link personLink toView PersonForm {
 					label = "Person Form"
 				}
@@ -64,6 +65,7 @@ gui LibraryWeb for Library {
 		}
 		
 		View TableView {
+			hint="somehint"
 			parameters {
 				String param1;
 			}
@@ -81,6 +83,7 @@ gui LibraryWeb for Library {
 				}
 				
 				panel personDetailsPanel {
+					hint="paneltype=SimplePanel"
 					contents {
 						inputText nameField forProperty name {
 							label = "Name"

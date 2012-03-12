@@ -83,10 +83,10 @@
 	
 	<«this.resolveGwtWidgetTag()» ui:field="«name»">
 		«FOREACH widgets AS widget»
-		<!-- Widget «widget.name» -->
-		<g:FlowPanel>		
-			«EXPAND widgetTemplate FOR widget»
-		</g:FlowPanel>	
+			<!-- Widget «widget.name» -->
+			<g:FlowPanel>
+				«EXPAND widgetTemplate FOR widget»
+			</g:FlowPanel>
 		«ENDFOREACH»
 	</«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»

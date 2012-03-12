@@ -643,16 +643,16 @@ String resolveGwtWidgetTag(LinkWidget widget) :
 	getProperty("gwt.widget.link.tag");
 
 String resolveGwtWidgetType(PanelWidget widget) :
-	getProperty("gwt.widget.panel.class");
+	(widget.widgetType != null ? getWidgetType(widget.widgetType) : getWidgetType("panel"));
 
 String resolveGwtWidgetTag(PanelWidget widget) :
-	getProperty("gwt.widget.panel.tag");
+	(widget.widgetType != null ? getWidgetTag(widget.widgetType) : getWidgetTag("panel"));
 
 String resolveGwtWidgetType(TableWidget widget) :
-	getProperty("gwt.widget.table.class");
+	(widget.widgetType != null ? getWidgetType(widget.widgetType) : getWidgetType("table"));
 
 String resolveGwtWidgetTag(TableWidget widget) :
-	getProperty("gwt.widget.table.tag");
+	(widget.widgetType != null ? getWidgetTag(widget.widgetType) : getWidgetTag("table"));
 	
 
 //////////////////////////////////////////////////////////////////////////////

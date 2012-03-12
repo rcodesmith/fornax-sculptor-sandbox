@@ -757,4 +757,24 @@ public class GeneratorProperties {
         }
         return name;
     }
+    
+    
+    public static String getWidgetType(String modelType) {
+        String key = "widgetType.class." + modelType;
+        if (hasProperty(key)) {
+            return getProperty(key);
+        } else {
+            return null;
+        }
+    }
+
+    public static String getWidgetTag(String modelType) {
+        String key = "widgetType.tag." + modelType;
+        if (hasProperty(key)) {
+            return getProperty(key);
+        } else {
+            return null;
+        }
+    }
+
 }

@@ -51,6 +51,8 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 				.getViews());
 		assertNotNull(tableView);
 
+		assertEquals("somehint", tableView.getHint());
+		
 		EList widgets = tableView.getWidgets();
 		TableWidget personTable = (TableWidget) widgets.get(0);
 		assertEquals("Person Table", personTable.getLabel());
@@ -120,6 +122,8 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals(2, personDetailsPane.getWidgets().size());
 		Assert.assertSame(tableView, personDetailsPane.getView());
 		
+		assertEquals("paneltype=SimplePanel", personDetailsPane.getHint());
+		
 		// Check contents of person detail panel
 		InputTextWidget widget1 = (InputTextWidget)personDetailsPane.getWidgets().get(0);
 		assertEquals("nameField", widget1.getName());
@@ -139,6 +143,7 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		LinkWidget personLink = (LinkWidget) widgets.get(1);
 		assertEquals("Person Form", personLink.getLabel());
 		assertEquals("PersonForm", personLink.getToView().getName());
+		assertEquals("Link to PersonForm view", personLink.getDoc());
 
 		LinkWidget mediaBrowseLink = (LinkWidget) widgets.get(0);
 		assertEquals("Media Browse", mediaBrowseLink.getLabel());

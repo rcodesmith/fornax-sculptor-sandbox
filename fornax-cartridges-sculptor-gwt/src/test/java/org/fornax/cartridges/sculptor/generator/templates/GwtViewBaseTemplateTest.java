@@ -14,8 +14,22 @@ import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.View;
 
 public class GwtViewBaseTemplateTest extends TemplateTestBase {
-	
 
+
+    @BeforeClass
+    public static void before() throws Exception {
+		System.setProperty("widgetType.class.SimplePanel",
+				"com.google.gwt.user.client.ui.SimplePanel");
+		System.setProperty("widgetType.tag.SimplePanel", "g:SimplePanel");
+		initTemplateTestBase();
+    }
+
+    @AfterClass
+    public static void after() {
+		System.getProperties().remove("widgetType.class.SimplePanel");
+		System.getProperties().remove("widgetType.tag.SimplePanel");
+        teardownTemplateTestBase();
+    }
     
     private GuiModule personModule() {
         return (GuiModule) getNamedElement("person", guiApp.getModules());
@@ -45,7 +59,7 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         
         // Assert panel code
         assertContainsConsecutiveFragments(tableViewBaseCode, "@com.google.gwt.uibinder.client.UiField",
-        		"com.google.gwt.user.client.ui.FlowPanel personDetailsPanel;");
+        		"com.google.gwt.user.client.ui.HTMLPanel personDetailsPanel;");
 
     	assertContainsConsecutiveFragments(tableViewBaseCode, "public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget getPersonDetailsPanelForIsWidget() {",
     		"return personDetailsPanel;",
@@ -70,6 +84,9 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         
         // Assert button table column
         assertContains(tableViewBaseCode, "protected abstract String getPersonTableTableEditColValue(org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Person object)");
+        
+        // Assert errorPanel
+        assertContains(tableViewBaseCode, "com.google.gwt.user.client.ui.SimplePanel errorPanel;");
     }
 
     @Test

@@ -38,6 +38,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getBehaviorBindings <em>Behavior Bindings</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,6 +92,25 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * @ordered
 	 */
 	protected UiCondition enabled;
+
+	/**
+	 * The default value of the '{@link #getWidgetType() <em>Widget Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidgetType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String WIDGET_TYPE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getWidgetType() <em>Widget Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidgetType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String widgetType = WIDGET_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -224,6 +244,27 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getWidgetType() {
+		return widgetType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWidgetType(String newWidgetType) {
+		String oldWidgetType = widgetType;
+		widgetType = newWidgetType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE, oldWidgetType, widgetType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.WIDGET__VIEW:
@@ -236,6 +277,8 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 			case SculptorguimetamodelPackage.WIDGET__ENABLED:
 				if (resolve) return getEnabled();
 				return basicGetEnabled();
+			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
+				return getWidgetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,6 +303,9 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 			case SculptorguimetamodelPackage.WIDGET__ENABLED:
 				setEnabled((UiCondition)newValue);
 				return;
+			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
+				setWidgetType((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -283,6 +329,9 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 			case SculptorguimetamodelPackage.WIDGET__ENABLED:
 				setEnabled((UiCondition)null);
 				return;
+			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
+				setWidgetType(WIDGET_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -302,6 +351,8 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 				return behaviorBindings != null && !behaviorBindings.isEmpty();
 			case SculptorguimetamodelPackage.WIDGET__ENABLED:
 				return enabled != null;
+			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
+				return WIDGET_TYPE_EDEFAULT == null ? widgetType != null : !WIDGET_TYPE_EDEFAULT.equals(widgetType);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -317,6 +368,8 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (label: ");
 		result.append(label);
+		result.append(", widgetType: ");
+		result.append(widgetType);
 		result.append(')');
 		return result.toString();
 	}

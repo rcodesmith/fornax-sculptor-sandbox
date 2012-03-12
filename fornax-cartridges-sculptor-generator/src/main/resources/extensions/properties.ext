@@ -499,6 +499,8 @@ boolean isDynamicMenu() :
 String getJavaType(String modelType) :
 	JAVA org.fornax.cartridges.sculptor.generator.util.GeneratorProperties.getJavaType(java.lang.String);
 
+
+
 String getSuffix(String key) :
 	getProperty("naming.suffix." + key);
 
@@ -520,3 +522,10 @@ isGenerateQuick() :
 	
 getChangedModules() :
 	JAVA org.fornax.cartridges.sculptor.generator.util.GeneratorProperties.getChangedModules();
+	
+String getWidgetType(String modelType) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GeneratorProperties.getWidgetType(java.lang.String);
+
+String getWidgetTag(String modelType) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GeneratorProperties.getWidgetTag(java.lang.String);
+	

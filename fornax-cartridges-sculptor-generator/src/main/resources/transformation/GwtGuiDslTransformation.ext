@@ -455,6 +455,7 @@ private DomainObject getForDomainObject(DslDomainObject forDO) :
 // TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
 create sculptorguimetamodel::View this transformView(DslView view, Module module) :
 	let guiModule =  ((DslGuiModule) view.eContainer).transformModule() :
+	setHint(view.hint) ->
 	setDoc(view.doc) ->
 	setName(view.name) ->
 	setFor(getForDomainObject(view.for)) ->
@@ -481,56 +482,72 @@ create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Modul
 
 create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
+	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform())) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 
-		
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
 //	setView(this.findContainingView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
 create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
@@ -538,13 +555,17 @@ create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidg
 	
 create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	setLabel(widget.label);
 	
 create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
@@ -554,8 +575,9 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 	let domainObject = getForDomainObject(widget.for) :
 //	let domainObject = module.domainObjects.select(e | e.name == widget.for.name).first() :
 //	setView(view) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
-	debugTrace("********************************************** transforming " + widget.name) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
@@ -564,6 +586,8 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 
 create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col, Module module) :
 	setName(col.name)->
+	// TODO: add doc to dsl & here
+	setHint(widget.hint) ->
 	setLabel(col.label) ->
 	setColumnType(col.columnType) ->
 	setSortable(col.sortable) ->
@@ -575,7 +599,9 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col
 create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :
 	let domainObject = getForDomainObject(widget.for) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->	
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
@@ -583,7 +609,6 @@ create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget wid
 	widgets.addAll(widget.widgets.transformWidget(module));
 
 private transformSourceReference(PropertyReferringWidget propRefWidget, DslSourceReference sourceRef) :
-	debugTrace("Widget " + propRefWidget + " sourceRef = " + sourceRef) ->
 	if sourceRef != null then 
 		debugTrace("forProperty = " + sourceRef.forProperty);
 		

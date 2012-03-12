@@ -1329,6 +1329,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getWidget_WidgetType() {
+		return (EAttribute)widgetEClass.getEStructuralFeatures().get(4);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInputTextWidget() {
 		return inputTextWidgetEClass;
 	}
@@ -1968,6 +1977,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEAttribute(widgetEClass, WIDGET__LABEL);
 		createEReference(widgetEClass, WIDGET__BEHAVIOR_BINDINGS);
 		createEReference(widgetEClass, WIDGET__ENABLED);
+		createEAttribute(widgetEClass, WIDGET__WIDGET_TYPE);
 
 		inputTextWidgetEClass = createEClass(INPUT_TEXT_WIDGET);
 
@@ -2247,6 +2257,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEAttribute(getWidget_Label(), ecorePackage.getEString(), "label", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWidget_BehaviorBindings(), this.getBehaviorBinding(), null, "behaviorBindings", null, 1, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWidget_Enabled(), this.getUiCondition(), null, "enabled", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWidget_WidgetType(), ecorePackage.getEString(), "widgetType", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputTextWidgetEClass, InputTextWidget.class, "InputTextWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

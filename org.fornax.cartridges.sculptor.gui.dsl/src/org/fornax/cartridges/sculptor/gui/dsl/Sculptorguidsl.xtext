@@ -172,6 +172,8 @@ DslSkipAddTask :
 DslView:
   (doc=STRING)?
 	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+		("hint" "=" hint=STRING)?
+	
 		('label' '=' label=STRING)?
 		(serviceDependencies+=DslGuiServiceDependency)*
 		(publishedEvents+=DslPublishedEvent)*
@@ -212,7 +214,9 @@ DslWidget :
 DslPanelWidget :
   (doc=STRING)?
 	"panel" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		("contents" "{"
 			(widgets+=DslWidget)*
 		"}"
@@ -222,49 +226,63 @@ DslPanelWidget :
 DslInputTextWidget :
   (doc=STRING)?
 	'inputText' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 	
 DslTextAreaWidget :
   (doc=STRING)?
 	'textArea' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslAutocompleteWidget :
   (doc=STRING)?
 	'autocomplete' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslRadioButtonsWidget :
   (doc=STRING)?
 	'radioButtons' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslRichTextAreaWidget :
   (doc=STRING)?
 	'richText' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
 
 DslInputDateWidget :
   (doc=STRING)?
 	'inputDate' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
  
  DslNumberSpinnerWidget :
  (doc=STRING)?
 	'numberSpinner' name=ID  (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 	'}';
  
@@ -272,8 +290,10 @@ DslInputDateWidget :
 DslButtonWidget :
   (doc=STRING)?
 	'button' name=ID '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('image' '=' image=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		(onClick=DslOnClick)?
 	'}';
@@ -281,7 +301,9 @@ DslButtonWidget :
 DslInformationalTextWidget :
   (doc=STRING)?
 	'informationalText' name=ID (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 	'}';
 
 DslSourceReference :
@@ -290,7 +312,9 @@ DslSourceReference :
 DslLinkWidget :
   (doc=STRING)?
 	'link' name=ID ('toView' toView=[DslView])? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
+		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		(onClick=DslOnClick)?
 	'}';
@@ -301,15 +325,16 @@ DslForProperty :
 DslTableWidget :
   (doc=STRING)?
 	'table' name=ID ('for' for=[mm::DslSimpleDomainObject])? (sourceRef = DslSourceReference)? '{'
+		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?	
-		
+		('widgetType' '=' widgetType=STRING)?		
 		("columns" "{"
 			(columns+=DslTableColumn)*
 		"}")?
 	'}';
 	
 DslTableColumn :
-	name=ID ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (sourceRef = DslSourceReference)?
+	name=ID ("hint" "=" hint=STRING)? ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (sourceRef = DslSourceReference)?
 		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))?
 		((editable?="editable") | (NOT "editable"))?
 		(behaviorBindings+=DslOnClick)? (behaviorBindings+=DslOnHover)? ";" ;

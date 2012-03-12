@@ -140,6 +140,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorBindings" lowerBound="1"
         upperBound="-1" eType="#//BehaviorBinding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="enabled" eType="#//UiCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="widgetType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="InformationalTextWidget" eSuperTypes="#//PropertyReferringWidget"/>

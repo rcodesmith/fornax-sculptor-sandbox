@@ -103,9 +103,11 @@ gui LibraryWeb for Library {
 						inputText addressField {
 							label = "Address"
 						}
-
-
 					}
+				}
+				
+				panel errorPanel {
+					widgetType = "SimplePanel"
 				}
 				
 				button saveButton {

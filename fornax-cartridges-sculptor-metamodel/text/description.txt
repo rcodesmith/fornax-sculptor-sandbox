@@ -119,6 +119,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Attribute label : EString
     Reference behaviorBindings : BehaviorBinding<<1..*>>
     Reference enabled : UiCondition
+    Attribute widgetType : EString
 
   Class InputTextWidget -> PropertyReferringWidget
 

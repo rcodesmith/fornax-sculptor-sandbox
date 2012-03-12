@@ -26,4 +26,6 @@ public interface WidgetValidator {
 	boolean validateBehaviorBindings(EList value);
 
 	boolean validateEnabled(UiCondition value);
+
+	boolean validateWidgetType(String value);
 }

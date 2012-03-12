@@ -21,6 +21,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.Widget#getLabel <em>Label</em>}</li>
  *   <li>{@link sculptorguimetamodel.Widget#getBehaviorBindings <em>Behavior Bindings</em>}</li>
  *   <li>{@link sculptorguimetamodel.Widget#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link sculptorguimetamodel.Widget#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -122,5 +123,31 @@ public interface Widget extends NamedElement {
 	 * @generated
 	 */
 	void setEnabled(UiCondition value);
+
+	/**
+	 * Returns the value of the '<em><b>Widget Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Widget Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Widget Type</em>' attribute.
+	 * @see #setWidgetType(String)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getWidget_WidgetType()
+	 * @model
+	 * @generated
+	 */
+	String getWidgetType();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.Widget#getWidgetType <em>Widget Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Widget Type</em>' attribute.
+	 * @see #getWidgetType()
+	 * @generated
+	 */
+	void setWidgetType(String value);
 
 } // Widget
