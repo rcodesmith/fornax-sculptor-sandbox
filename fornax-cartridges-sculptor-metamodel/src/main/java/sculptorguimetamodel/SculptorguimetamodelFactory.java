@@ -503,6 +503,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	StubModule createStubModule();
 
 																/**
+	 * Returns a new object of class '<em>List Box Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Box Widget</em>'.
+	 * @generated
+	 */
+	ListBoxWidget createListBoxWidget();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

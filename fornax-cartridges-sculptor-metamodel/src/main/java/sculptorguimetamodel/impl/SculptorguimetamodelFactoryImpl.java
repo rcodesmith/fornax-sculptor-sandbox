@@ -113,6 +113,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.GUI_DTO: return createGuiDto();
 			case SculptorguimetamodelPackage.GUI_ENUM: return createGuiEnum();
 			case SculptorguimetamodelPackage.STUB_MODULE: return createStubModule();
+			case SculptorguimetamodelPackage.LIST_BOX_WIDGET: return createListBoxWidget();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -646,6 +647,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public StubModule createStubModule() {
 		StubModuleImpl stubModule = new StubModuleImpl();
 		return stubModule;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ListBoxWidget createListBoxWidget() {
+		ListBoxWidgetImpl listBoxWidget = new ListBoxWidgetImpl();
+		return listBoxWidget;
 	}
 
 																/**

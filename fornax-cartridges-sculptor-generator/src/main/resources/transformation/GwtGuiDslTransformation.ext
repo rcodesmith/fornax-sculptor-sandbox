@@ -498,14 +498,27 @@ create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberS
 	transformSourceReference(this, widget.sourceRef) ->
 	setLabel(widget.label);
 
+private initFromDslWidget(Widget widget, DslWidget dslWidget) :
+	widget.setHint(dslWidget.hint) ->
+	widget.setDoc(dslWidget.doc) ->
+	widget.setWidgetType(dslWidget.widgetType) ->
+	widget.setName(dslWidget.name) ->
+	widget.setLabel(dslWidget.label);
+
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
-	setHint(widget.hint) ->
-	setDoc(widget.doc) ->
-	setWidgetType(widget.widgetType) ->
-	setName(widget.name) ->
+	initFromDslWidget(this, widget) ->
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+//	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef);
+//	setLabel(widget.label);
+
+create sculptorguimetamodel::ListBoxWidget this transformWidget(DslInputDateWidget widget, Module module) :
+	initFromDslWidget(this, widget) ->
 	transformSourceReference(this, widget.sourceRef) ->
-	setLabel(widget.label);
+	setForEnum(widget.forEnum == null ? null : widget.forEnum.transform());
 
 create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->

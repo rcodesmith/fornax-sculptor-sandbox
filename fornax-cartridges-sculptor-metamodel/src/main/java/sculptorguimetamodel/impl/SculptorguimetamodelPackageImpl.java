@@ -33,6 +33,7 @@ import sculptorguimetamodel.InformationalTextWidget;
 import sculptorguimetamodel.InputDateWidget;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
+import sculptorguimetamodel.ListBoxWidget;
 import sculptorguimetamodel.ListTask;
 import sculptorguimetamodel.NavigateToViewBehavior;
 import sculptorguimetamodel.NumberSpinnerWidget;
@@ -449,6 +450,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass stubModuleEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listBoxWidgetEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1842,6 +1850,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getListBoxWidget() {
+		return listBoxWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListBoxWidget_ForEnum() {
+		return (EReference)listBoxWidgetEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2064,6 +2090,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		stubModuleEClass = createEClass(STUB_MODULE);
 		createEReference(stubModuleEClass, STUB_MODULE__STUB_FOR);
 		createEReference(stubModuleEClass, STUB_MODULE__GUI_MODULE);
+
+		listBoxWidgetEClass = createEClass(LIST_BOX_WIDGET);
+		createEReference(listBoxWidgetEClass, LIST_BOX_WIDGET__FOR_ENUM);
 	}
 
 	/**
@@ -2143,6 +2172,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		guiEnumEClass.getESuperTypes().add(theSculptormetamodelPackage.getEnum());
 		guiEnumEClass.getESuperTypes().add(this.getGuiDto());
 		stubModuleEClass.getESuperTypes().add(theSculptormetamodelPackage.getModule());
+		listBoxWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2344,6 +2374,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(stubModuleEClass, StubModule.class, "StubModule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStubModule_StubFor(), theSculptormetamodelPackage.getModule(), null, "stubFor", null, 0, 1, StubModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStubModule_GuiModule(), this.getGuiModule(), null, "guiModule", null, 1, 1, StubModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(listBoxWidgetEClass, ListBoxWidget.class, "ListBoxWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getListBoxWidget_ForEnum(), theSculptormetamodelPackage.getEnum(), null, "forEnum", null, 1, 1, ListBoxWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

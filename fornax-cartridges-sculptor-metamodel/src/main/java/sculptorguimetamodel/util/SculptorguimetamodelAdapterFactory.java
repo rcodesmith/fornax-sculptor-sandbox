@@ -238,6 +238,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseStubModule(StubModule object) {
 				return createStubModuleAdapter();
 			}
+			public Object caseListBoxWidget(ListBoxWidget object) {
+				return createListBoxWidgetAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1022,6 +1025,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStubModuleAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ListBoxWidget <em>List Box Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ListBoxWidget
+	 * @generated
+	 */
+	public Adapter createListBoxWidgetAdapter() {
 		return null;
 	}
 

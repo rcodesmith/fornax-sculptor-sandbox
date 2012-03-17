@@ -5697,6 +5697,133 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int STUB_MODULE_FEATURE_COUNT = SculptormetamodelPackage.MODULE_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ListBoxWidgetImpl <em>List Box Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ListBoxWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getListBoxWidget()
+	 * @generated
+	 */
+	int LIST_BOX_WIDGET = 53;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__BEHAVIOR_BINDINGS = PROPERTY_REFERRING_WIDGET__BEHAVIOR_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Widget Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
+
+	/**
+	 * The feature id for the '<em><b>For Enum</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__FOR_ENUM = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>List Box Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7261,6 +7388,27 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getStubModule_GuiModule();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ListBoxWidget <em>List Box Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>List Box Widget</em>'.
+	 * @see sculptorguimetamodel.ListBoxWidget
+	 * @generated
+	 */
+	EClass getListBoxWidget();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.ListBoxWidget#getForEnum <em>For Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>For Enum</em>'.
+	 * @see sculptorguimetamodel.ListBoxWidget#getForEnum()
+	 * @see #getListBoxWidget()
+	 * @generated
+	 */
+	EReference getListBoxWidget_ForEnum();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8563,6 +8711,24 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STUB_MODULE__GUI_MODULE = eINSTANCE.getStubModule_GuiModule();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ListBoxWidgetImpl <em>List Box Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ListBoxWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getListBoxWidget()
+		 * @generated
+		 */
+		EClass LIST_BOX_WIDGET = eINSTANCE.getListBoxWidget();
+
+		/**
+		 * The meta object literal for the '<em><b>For Enum</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIST_BOX_WIDGET__FOR_ENUM = eINSTANCE.getListBoxWidget_ForEnum();
 
 	}
 

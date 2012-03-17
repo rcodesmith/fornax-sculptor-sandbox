@@ -206,3 +206,6 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class StubModule -> Module
     Reference stubFor : Module
     Reference guiModule : GuiModule<<1..1>>
+
+  Class ListBoxWidget -> PropertyReferringWidget
+    Reference forEnum : Enum<<1..1>>

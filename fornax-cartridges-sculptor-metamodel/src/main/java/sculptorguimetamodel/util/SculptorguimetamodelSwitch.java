@@ -517,6 +517,15 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.LIST_BOX_WIDGET: {
+				ListBoxWidget listBoxWidget = (ListBoxWidget)theEObject;
+				Object result = caseListBoxWidget(listBoxWidget);
+				if (result == null) result = casePropertyReferringWidget(listBoxWidget);
+				if (result == null) result = caseWidget(listBoxWidget);
+				if (result == null) result = caseNamedElement(listBoxWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1313,6 +1322,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseStubModule(StubModule object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>List Box Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Box Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseListBoxWidget(ListBoxWidget object) {
 		return null;
 	}
 

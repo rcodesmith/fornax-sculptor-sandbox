@@ -219,4 +219,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" lowerBound="1"
         eType="#//GuiModule"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListBoxWidget" eSuperTypes="#//PropertyReferringWidget">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forEnum" lowerBound="1"
+        eType="ecore:EClass sculptormetamodel.ecore#//Enum"/>
+  </eClassifiers>
 </ecore:EPackage>

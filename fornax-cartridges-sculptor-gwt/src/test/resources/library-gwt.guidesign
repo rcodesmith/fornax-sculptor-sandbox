@@ -74,6 +74,8 @@ gui LibraryWeb for Library {
 						name type=Text; //forOp getDisplayName
 						
 						birthDate type=Date; //forProperty birthDate
+						
+						personLink label="Edit Person" type=Link;
 					}
 				}
 				
