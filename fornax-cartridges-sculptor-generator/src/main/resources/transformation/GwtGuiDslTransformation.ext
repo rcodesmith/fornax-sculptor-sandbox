@@ -462,7 +462,8 @@ create sculptorguimetamodel::View this transformView(DslView view, Module module
 	parameters.addAll(view.parameters.transform()) ->
 	widgets.addAll(view.widgets.transformWidget(module)) ->
 	setModule(guiModule) ->
-	debugTrace("module: " + guiModule) ->
+//	debugTrace("module: " + guiModule) ->
+	behaviors.addAll(view.behaviors.transformBehavior(module)) ->
 	serviceProxies.addAll(view.serviceDependencies.collect(s|guiModule.findServiceProxy(s.dependency.name)));
 	// view.serviceDependencies.transformServiceProxy(module)
 
@@ -504,6 +505,11 @@ private initFromDslWidget(Widget widget, DslWidget dslWidget) :
 	widget.setWidgetType(dslWidget.widgetType) ->
 	widget.setName(dslWidget.name) ->
 	widget.setLabel(dslWidget.label);
+
+
+create sculptorguimetamodel::CustomWidget this transformWidget(DslCustomWidget widget, Module module) :
+	initFromDslWidget(this, widget) ->
+	transformSourceReference(this, widget.sourceRef);
 
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
@@ -767,6 +773,12 @@ create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPop
 	setDoc(behavior.doc) ->
 	setName(behavior.name) ->
 	setPanel(behavior.panel.transformWidget(module));
+
+create sculptorguimetamodel::NavigateToViewBehavior this transformBehavior(DslNavigateToViewBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setName(behavior.name) ->
+	setView(behavior.view.transformView(((DslGuiModule)(behavior.view.eContainer)).for.transform()));
+
 
 create sculptorguimetamodel::ConfirmMessageBehavior this transformBehavior(DslConfirmMessageBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->

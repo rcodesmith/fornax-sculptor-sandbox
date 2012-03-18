@@ -12,9 +12,9 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 
 	@Test
 	public void assertBehaviors() {
-		assertEquals(0, personModule().getBehaviors().size());
+		assertEquals(1, personModule().getBehaviors().size());
 		
-//        assertOneAndOnlyOne(personModule().getBehaviors(), "populatePersonDetailsPanel");
+        assertOneAndOnlyOne(personModule().getBehaviors(), "navigateToMediaBrowse");
 
 	}
 	
@@ -24,10 +24,10 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		View tableView = (View)getNamedElement("TableView", personModule().getViews());
 		
 		PopulatePanelBehavior populatePersonDetailsPanel = (PopulatePanelBehavior)getNamedElement("populatePersonDetailsPanel", tableView.getBehaviors());
-//		assertNotNull(populatePersonDetailsPanel);
-//		
-//		assertEquals("Populate the person details panel", populatePersonDetailsPanel.getDoc());
-//		assertEquals("personDetailsPanel", populatePersonDetailsPanel.getPanel().getName());
+		assertNotNull(populatePersonDetailsPanel);
+		
+		assertEquals("Populate the person details panel", populatePersonDetailsPanel.getDoc());
+		assertEquals("personDetailsPanel", populatePersonDetailsPanel.getPanel().getName());
 		
 	}
 	

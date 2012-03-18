@@ -8,6 +8,7 @@ import junit.framework.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
+import sculptorguimetamodel.CustomWidget;
 import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InformationalTextWidget;
@@ -96,6 +97,11 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		PopulatePanelBehavior populatePanel = (PopulatePanelBehavior) onClick
 				.getBehaviors().get(0);
 		assertEquals("personDetailsPanel", populatePanel.getPanel().getName());
+		
+		CustomWidget customLink = (CustomWidget)getNamedElement("customLink", widgets);
+		assertNotNull(customLink);
+		assertEquals("customLink", customLink.getName());
+		assertEquals("Custom Link", customLink.getLabel());
 
 	}
 

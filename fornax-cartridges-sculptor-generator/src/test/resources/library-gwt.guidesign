@@ -101,11 +101,28 @@ gui LibraryWeb for Library {
 						
 					}
 				}
+				
+				custom customLink {
+					label="Custom Link"
+				}
 			}
 			"Populate the person details panel"
 			UiBehavior PopulatePanel populatePersonDetailsPanel {
 				panel=personDetailsPanel
 			}
+			"Populate the person details panel2"
+			UiBehavior PopulatePanel populatePersonDetailsPanel2 {
+				panel=personDetailsPanel
+			}
+			
+
+			"Confirm the user wants to do something"
+			UiBehavior ConfirmMessage confirmSomeMessage {
+				message="Are you really sure you want to do this!?!?"
+			}
+		
+			
+		
 			
 		}
 		
@@ -122,6 +139,12 @@ gui LibraryWeb for Library {
 			DateTime dateTime1;
 		}
 
+		"Navigate"
+		UiBehavior NavigateToView navigateToMediaBrowse {
+			view=MediaBrowse
+		}
+
+				
 	}
 	
 	Module for media {
