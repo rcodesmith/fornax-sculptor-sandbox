@@ -30,7 +30,7 @@ import sculptormetamodel.NamedElement;
  * @model
  * @generated
  */
-public interface View extends WidgetsContainer, NamedElement {
+public interface View extends WidgetsContainer, NamedElement, BehaviorContainer {
 	/**
 	 * Returns the value of the '<em><b>Module</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.GuiModule#getViews <em>Views</em>}'.

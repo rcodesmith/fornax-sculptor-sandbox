@@ -102,6 +102,10 @@ gui LibraryWeb for Library {
 					}
 				}
 			}
+			"Populate the person details panel"
+			UiBehavior PopulatePanel populatePersonDetailsPanel {
+				panel=personDetailsPanel
+			}
 			
 		}
 		
@@ -117,11 +121,7 @@ gui LibraryWeb for Library {
 			
 			DateTime dateTime1;
 		}
-		
-		"Populate the person details panel"
-		UiBehavior PopulatePanel populatePersonDetailsPanel {
-			panel=personDetailsPanel
-		}
+
 	}
 	
 	Module for media {

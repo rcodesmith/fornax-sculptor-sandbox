@@ -172,76 +172,13 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
 
 	/**
-	 * The feature id for the '<em><b>User Tasks</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__USER_TASKS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Base Package</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__BASE_PACKAGE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Application</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__APPLICATION = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>For</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__FOR = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Views</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__VIEWS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__EVENTS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Service Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Commands</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GUI_MODULE__COMMANDS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int GUI_MODULE__CONDITIONS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
@@ -250,16 +187,79 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__BEHAVIORS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int GUI_MODULE__BEHAVIORS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>User Tasks</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE__CONDITIONS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int GUI_MODULE__USER_TASKS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Base Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__BASE_PACKAGE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Application</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__APPLICATION = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__FOR = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Views</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__VIEWS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__EVENTS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Service Dependencies</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__SERVICE_DEPENDENCIES = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Commands</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__COMMANDS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Stub Module</b></em>' reference.
@@ -2110,13 +2110,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int VIEW__HINT = WIDGETS_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__CONDITIONS = WIDGETS_CONTAINER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__BEHAVIORS = WIDGETS_CONTAINER_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Module</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__MODULE = WIDGETS_CONTAINER_FEATURE_COUNT + 3;
+	int VIEW__MODULE = WIDGETS_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>For</b></em>' reference.
@@ -2125,7 +2143,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__FOR = WIDGETS_CONTAINER_FEATURE_COUNT + 4;
+	int VIEW__FOR = WIDGETS_CONTAINER_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Service Proxies</b></em>' reference list.
@@ -2134,7 +2152,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__SERVICE_PROXIES = WIDGETS_CONTAINER_FEATURE_COUNT + 5;
+	int VIEW__SERVICE_PROXIES = WIDGETS_CONTAINER_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -2143,7 +2161,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__PARAMETERS = WIDGETS_CONTAINER_FEATURE_COUNT + 6;
+	int VIEW__PARAMETERS = WIDGETS_CONTAINER_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -2152,7 +2170,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__LABEL = WIDGETS_CONTAINER_FEATURE_COUNT + 7;
+	int VIEW__LABEL = WIDGETS_CONTAINER_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>View</em>' class.
@@ -2161,7 +2179,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_FEATURE_COUNT = WIDGETS_CONTAINER_FEATURE_COUNT + 8;
+	int VIEW_FEATURE_COUNT = WIDGETS_CONTAINER_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
@@ -2246,13 +2264,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int WIDGET__WIDGET_TYPE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__VISIBLE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int WIDGET_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl <em>Property Referring Widget</em>}' class.
@@ -2335,6 +2362,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_REFERRING_WIDGET__WIDGET_TYPE = WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REFERRING_WIDGET__VISIBLE = WIDGET__VISIBLE;
 
 	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
@@ -2455,6 +2491,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INPUT_TEXT_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_TEXT_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2571,6 +2616,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INFORMATIONAL_TEXT_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFORMATIONAL_TEXT_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
 
 	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
@@ -2691,6 +2745,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int BUTTON_WIDGET__WIDGET_TYPE = WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUTTON_WIDGET__VISIBLE = WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>Image</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2791,6 +2854,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2836,13 +2908,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_WIDGET__COLUMNS = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Paging</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__PAGING = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__SIZE = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Table Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 2;
+	int TABLE_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiEventImpl <em>Gui Event</em>}' class.
@@ -3153,6 +3243,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_COLUMN__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3307,6 +3406,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TEXT_AREA_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3423,6 +3531,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTOCOMPLETE_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
 
 	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
@@ -3543,6 +3660,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int RADIO_BUTTONS_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3659,6 +3785,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RICH_TEXT_AREA_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
 
 	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
@@ -3779,6 +3914,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INPUT_DATE_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3895,6 +4039,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_SPINNER_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
 
 	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
@@ -4975,6 +5128,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int LINK_WIDGET__WIDGET_TYPE = WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__VISIBLE = WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>To View</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5063,6 +5225,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PANEL_WIDGET__WIDGET_TYPE = WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__VISIBLE = WIDGET__VISIBLE;
 
 	/**
 	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
@@ -5779,6 +5950,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int LIST_BOX_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
 	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5822,6 +6002,326 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIST_BOX_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.BehaviorContainerImpl <em>Behavior Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.BehaviorContainerImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getBehaviorContainer()
+	 * @generated
+	 */
+	int BEHAVIOR_CONTAINER = 54;
+
+	/**
+	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_CONTAINER__CONDITIONS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_CONTAINER__BEHAVIORS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Behavior Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_CONTAINER_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.CustomWidgetImpl <em>Custom Widget</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.CustomWidgetImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCustomWidget()
+	 * @generated
+	 */
+	int CUSTOM_WIDGET = 55;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__BEHAVIOR_BINDINGS = PROPERTY_REFERRING_WIDGET__BEHAVIOR_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Widget Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
+
+	/**
+	 * The number of structural features of the '<em>Custom Widget</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.UpdateTableBehaviorImpl <em>Update Table Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.UpdateTableBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUpdateTableBehavior()
+	 * @generated
+	 */
+	int UPDATE_TABLE_BEHAVIOR = 56;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TABLE_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TABLE_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TABLE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Table</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TABLE_BEHAVIOR__TABLE = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Update Table Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TABLE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl <em>Confirm Message Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getConfirmMessageBehavior()
+	 * @generated
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR = 57;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR__MESSAGE = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Confirm Message Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.CustomBehaviorImpl <em>Custom Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.CustomBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCustomBehavior()
+	 * @generated
+	 */
+	int CUSTOM_BEHAVIOR = 58;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The number of structural features of the '<em>Custom Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -5963,28 +6463,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGuiModule_Commands();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getBehaviors <em>Behaviors</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Behaviors</em>'.
-	 * @see sculptorguimetamodel.GuiModule#getBehaviors()
-	 * @see #getGuiModule()
-	 * @generated
-	 */
-	EReference getGuiModule_Behaviors();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getConditions <em>Conditions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Conditions</em>'.
-	 * @see sculptorguimetamodel.GuiModule#getConditions()
-	 * @see #getGuiModule()
-	 * @generated
-	 */
-	EReference getGuiModule_Conditions();
 
 	/**
 	 * Returns the meta object for the reference '{@link sculptorguimetamodel.GuiModule#getStubModule <em>Stub Module</em>}'.
@@ -6802,6 +7280,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EAttribute getWidget_WidgetType();
 
 	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.Widget#getVisible <em>Visible</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Visible</em>'.
+	 * @see sculptorguimetamodel.Widget#getVisible()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EReference getWidget_Visible();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.InputTextWidget <em>Input Text Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6916,6 +7405,28 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTableWidget_Columns();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.TableWidget#isPaging <em>Paging</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Paging</em>'.
+	 * @see sculptorguimetamodel.TableWidget#isPaging()
+	 * @see #getTableWidget()
+	 * @generated
+	 */
+	EAttribute getTableWidget_Paging();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.TableWidget#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see sculptorguimetamodel.TableWidget#getSize()
+	 * @see #getTableWidget()
+	 * @generated
+	 */
+	EAttribute getTableWidget_Size();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiEvent <em>Gui Event</em>}'.
@@ -7409,6 +7920,100 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getListBoxWidget_ForEnum();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.BehaviorContainer <em>Behavior Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Behavior Container</em>'.
+	 * @see sculptorguimetamodel.BehaviorContainer
+	 * @generated
+	 */
+	EClass getBehaviorContainer();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.BehaviorContainer#getConditions <em>Conditions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Conditions</em>'.
+	 * @see sculptorguimetamodel.BehaviorContainer#getConditions()
+	 * @see #getBehaviorContainer()
+	 * @generated
+	 */
+	EReference getBehaviorContainer_Conditions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.BehaviorContainer#getBehaviors <em>Behaviors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Behaviors</em>'.
+	 * @see sculptorguimetamodel.BehaviorContainer#getBehaviors()
+	 * @see #getBehaviorContainer()
+	 * @generated
+	 */
+	EReference getBehaviorContainer_Behaviors();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.CustomWidget <em>Custom Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Custom Widget</em>'.
+	 * @see sculptorguimetamodel.CustomWidget
+	 * @generated
+	 */
+	EClass getCustomWidget();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.UpdateTableBehavior <em>Update Table Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Update Table Behavior</em>'.
+	 * @see sculptorguimetamodel.UpdateTableBehavior
+	 * @generated
+	 */
+	EClass getUpdateTableBehavior();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.UpdateTableBehavior#getTable <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Table</em>'.
+	 * @see sculptorguimetamodel.UpdateTableBehavior#getTable()
+	 * @see #getUpdateTableBehavior()
+	 * @generated
+	 */
+	EReference getUpdateTableBehavior_Table();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ConfirmMessageBehavior <em>Confirm Message Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Confirm Message Behavior</em>'.
+	 * @see sculptorguimetamodel.ConfirmMessageBehavior
+	 * @generated
+	 */
+	EClass getConfirmMessageBehavior();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.ConfirmMessageBehavior#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message</em>'.
+	 * @see sculptorguimetamodel.ConfirmMessageBehavior#getMessage()
+	 * @see #getConfirmMessageBehavior()
+	 * @generated
+	 */
+	EAttribute getConfirmMessageBehavior_Message();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.CustomBehavior <em>Custom Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Custom Behavior</em>'.
+	 * @see sculptorguimetamodel.CustomBehavior
+	 * @generated
+	 */
+	EClass getCustomBehavior();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7537,22 +8142,6 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__COMMANDS = eINSTANCE.getGuiModule_Commands();
-
-		/**
-		 * The meta object literal for the '<em><b>Behaviors</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GUI_MODULE__BEHAVIORS = eINSTANCE.getGuiModule_Behaviors();
-
-		/**
-		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GUI_MODULE__CONDITIONS = eINSTANCE.getGuiModule_Conditions();
 
 		/**
 		 * The meta object literal for the '<em><b>Stub Module</b></em>' reference feature.
@@ -8205,6 +8794,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EAttribute WIDGET__WIDGET_TYPE = eINSTANCE.getWidget_WidgetType();
 
 		/**
+		 * The meta object literal for the '<em><b>Visible</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET__VISIBLE = eINSTANCE.getWidget_Visible();
+
+		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.InputTextWidgetImpl <em>Input Text Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8301,6 +8898,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE_WIDGET__COLUMNS = eINSTANCE.getTableWidget_Columns();
+
+		/**
+		 * The meta object literal for the '<em><b>Paging</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_WIDGET__PAGING = eINSTANCE.getTableWidget_Paging();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_WIDGET__SIZE = eINSTANCE.getTableWidget_Size();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiEventImpl <em>Gui Event</em>}' class.
@@ -8729,6 +9342,88 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIST_BOX_WIDGET__FOR_ENUM = eINSTANCE.getListBoxWidget_ForEnum();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.BehaviorContainerImpl <em>Behavior Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.BehaviorContainerImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getBehaviorContainer()
+		 * @generated
+		 */
+		EClass BEHAVIOR_CONTAINER = eINSTANCE.getBehaviorContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_CONTAINER__CONDITIONS = eINSTANCE.getBehaviorContainer_Conditions();
+
+		/**
+		 * The meta object literal for the '<em><b>Behaviors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_CONTAINER__BEHAVIORS = eINSTANCE.getBehaviorContainer_Behaviors();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.CustomWidgetImpl <em>Custom Widget</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.CustomWidgetImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCustomWidget()
+		 * @generated
+		 */
+		EClass CUSTOM_WIDGET = eINSTANCE.getCustomWidget();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UpdateTableBehaviorImpl <em>Update Table Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.UpdateTableBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUpdateTableBehavior()
+		 * @generated
+		 */
+		EClass UPDATE_TABLE_BEHAVIOR = eINSTANCE.getUpdateTableBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_TABLE_BEHAVIOR__TABLE = eINSTANCE.getUpdateTableBehavior_Table();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl <em>Confirm Message Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getConfirmMessageBehavior()
+		 * @generated
+		 */
+		EClass CONFIRM_MESSAGE_BEHAVIOR = eINSTANCE.getConfirmMessageBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIRM_MESSAGE_BEHAVIOR__MESSAGE = eINSTANCE.getConfirmMessageBehavior_Message();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.CustomBehaviorImpl <em>Custom Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.CustomBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCustomBehavior()
+		 * @generated
+		 */
+		EClass CUSTOM_BEHAVIOR = eINSTANCE.getCustomBehavior();
 
 	}
 

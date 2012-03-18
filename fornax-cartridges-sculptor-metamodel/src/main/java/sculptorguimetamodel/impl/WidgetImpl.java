@@ -39,6 +39,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getBehaviorBindings <em>Behavior Bindings</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getWidgetType <em>Widget Type</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.WidgetImpl#getVisible <em>Visible</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,6 +112,16 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * @ordered
 	 */
 	protected String widgetType = WIDGET_TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getVisible() <em>Visible</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVisible()
+	 * @generated
+	 * @ordered
+	 */
+	protected UiCondition visible;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -265,6 +276,44 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UiCondition getVisible() {
+		if (visible != null && visible.eIsProxy()) {
+			InternalEObject oldVisible = (InternalEObject)visible;
+			visible = (UiCondition)eResolveProxy(oldVisible);
+			if (visible != oldVisible) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.WIDGET__VISIBLE, oldVisible, visible));
+			}
+		}
+		return visible;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UiCondition basicGetVisible() {
+		return visible;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVisible(UiCondition newVisible) {
+		UiCondition oldVisible = visible;
+		visible = newVisible;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET__VISIBLE, oldVisible, visible));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.WIDGET__VIEW:
@@ -279,6 +328,9 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 				return basicGetEnabled();
 			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
 				return getWidgetType();
+			case SculptorguimetamodelPackage.WIDGET__VISIBLE:
+				if (resolve) return getVisible();
+				return basicGetVisible();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -306,6 +358,9 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
 				setWidgetType((String)newValue);
 				return;
+			case SculptorguimetamodelPackage.WIDGET__VISIBLE:
+				setVisible((UiCondition)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -332,6 +387,9 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
 				setWidgetType(WIDGET_TYPE_EDEFAULT);
 				return;
+			case SculptorguimetamodelPackage.WIDGET__VISIBLE:
+				setVisible((UiCondition)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -353,6 +411,8 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 				return enabled != null;
 			case SculptorguimetamodelPackage.WIDGET__WIDGET_TYPE:
 				return WIDGET_TYPE_EDEFAULT == null ? widgetType != null : !WIDGET_TYPE_EDEFAULT.equals(widgetType);
+			case SculptorguimetamodelPackage.WIDGET__VISIBLE:
+				return visible != null;
 		}
 		return super.eIsSet(featureID);
 	}

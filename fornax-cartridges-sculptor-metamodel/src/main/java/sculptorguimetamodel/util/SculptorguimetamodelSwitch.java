@@ -107,6 +107,7 @@ public class SculptorguimetamodelSwitch {
 				GuiModule guiModule = (GuiModule)theEObject;
 				Object result = caseGuiModule(guiModule);
 				if (result == null) result = caseNamedElement(guiModule);
+				if (result == null) result = caseBehaviorContainer(guiModule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -258,6 +259,7 @@ public class SculptorguimetamodelSwitch {
 				Object result = caseView(view);
 				if (result == null) result = caseWidgetsContainer(view);
 				if (result == null) result = caseNamedElement(view);
+				if (result == null) result = caseBehaviorContainer(view);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -523,6 +525,45 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = casePropertyReferringWidget(listBoxWidget);
 				if (result == null) result = caseWidget(listBoxWidget);
 				if (result == null) result = caseNamedElement(listBoxWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER: {
+				BehaviorContainer behaviorContainer = (BehaviorContainer)theEObject;
+				Object result = caseBehaviorContainer(behaviorContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.CUSTOM_WIDGET: {
+				CustomWidget customWidget = (CustomWidget)theEObject;
+				Object result = caseCustomWidget(customWidget);
+				if (result == null) result = casePropertyReferringWidget(customWidget);
+				if (result == null) result = caseWidget(customWidget);
+				if (result == null) result = caseNamedElement(customWidget);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.UPDATE_TABLE_BEHAVIOR: {
+				UpdateTableBehavior updateTableBehavior = (UpdateTableBehavior)theEObject;
+				Object result = caseUpdateTableBehavior(updateTableBehavior);
+				if (result == null) result = caseUiBehavior(updateTableBehavior);
+				if (result == null) result = caseNamedElement(updateTableBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.CONFIRM_MESSAGE_BEHAVIOR: {
+				ConfirmMessageBehavior confirmMessageBehavior = (ConfirmMessageBehavior)theEObject;
+				Object result = caseConfirmMessageBehavior(confirmMessageBehavior);
+				if (result == null) result = caseUiBehavior(confirmMessageBehavior);
+				if (result == null) result = caseNamedElement(confirmMessageBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.CUSTOM_BEHAVIOR: {
+				CustomBehavior customBehavior = (CustomBehavior)theEObject;
+				Object result = caseCustomBehavior(customBehavior);
+				if (result == null) result = caseUiBehavior(customBehavior);
+				if (result == null) result = caseNamedElement(customBehavior);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1337,6 +1378,81 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseListBoxWidget(ListBoxWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behavior Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behavior Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseBehaviorContainer(BehaviorContainer object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Custom Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Custom Widget</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseCustomWidget(CustomWidget object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Update Table Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Update Table Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseUpdateTableBehavior(UpdateTableBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Confirm Message Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Confirm Message Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseConfirmMessageBehavior(ConfirmMessageBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Custom Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Custom Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseCustomBehavior(CustomBehavior object) {
 		return null;
 	}
 

@@ -24,6 +24,10 @@ public interface TableWidgetValidator {
 
 	boolean validateColumns(EList value);
 
+	boolean validatePaging(boolean value);
+
+	boolean validateSize(int value);
+
 	boolean validateColumns(TableColumn value);
 
 }

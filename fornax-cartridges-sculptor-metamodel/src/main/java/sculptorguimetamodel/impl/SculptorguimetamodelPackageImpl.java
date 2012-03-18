@@ -18,8 +18,12 @@ import sculptorguimetamodel.AutocompleteWidget;
 import sculptorguimetamodel.BasicTypeEnumViewProperty;
 import sculptorguimetamodel.BasicTypeViewProperty;
 import sculptorguimetamodel.BehaviorBinding;
+import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.ButtonWidget;
+import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CreateTask;
+import sculptorguimetamodel.CustomBehavior;
+import sculptorguimetamodel.CustomWidget;
 import sculptorguimetamodel.DeleteTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.EnumViewProperty;
@@ -61,6 +65,7 @@ import sculptorguimetamodel.TmpReferenceHolder;
 import sculptorguimetamodel.TmpSubTaskTransitionHolder;
 import sculptorguimetamodel.UiBehavior;
 import sculptorguimetamodel.UiCondition;
+import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.UpdateTask;
 import sculptorguimetamodel.UserTask;
 import sculptorguimetamodel.UserTaskGroup;
@@ -459,6 +464,41 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	private EClass listBoxWidgetEClass = null;
 
 																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass behaviorContainerEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass customWidgetEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass updateTableBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass confirmMessageBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass customBehaviorEClass = null;
+
+																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -644,26 +684,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGuiModule_Behaviors() {
-		return (EReference)guiModuleEClass.getEStructuralFeatures().get(8);
-	}
-
-				/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGuiModule_Conditions() {
-		return (EReference)guiModuleEClass.getEStructuralFeatures().get(9);
-	}
-
-				/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getGuiModule_StubModule() {
-		return (EReference)guiModuleEClass.getEStructuralFeatures().get(10);
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(8);
 	}
 
 				/**
@@ -1346,6 +1368,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getWidget_Visible() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(5);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInputTextWidget() {
 		return inputTextWidgetEClass;
 	}
@@ -1438,6 +1469,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getTableWidget_Columns() {
 		return (EReference)tableWidgetEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableWidget_Paging() {
+		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(2);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableWidget_Size() {
+		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(3);
 	}
 
 																/**
@@ -1868,6 +1917,87 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBehaviorContainer() {
+		return behaviorContainerEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviorContainer_Conditions() {
+		return (EReference)behaviorContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviorContainer_Behaviors() {
+		return (EReference)behaviorContainerEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCustomWidget() {
+		return customWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUpdateTableBehavior() {
+		return updateTableBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUpdateTableBehavior_Table() {
+		return (EReference)updateTableBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConfirmMessageBehavior() {
+		return confirmMessageBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConfirmMessageBehavior_Message() {
+		return (EAttribute)confirmMessageBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCustomBehavior() {
+		return customBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -1905,8 +2035,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiModuleEClass, GUI_MODULE__EVENTS);
 		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_DEPENDENCIES);
 		createEReference(guiModuleEClass, GUI_MODULE__COMMANDS);
-		createEReference(guiModuleEClass, GUI_MODULE__BEHAVIORS);
-		createEReference(guiModuleEClass, GUI_MODULE__CONDITIONS);
 		createEReference(guiModuleEClass, GUI_MODULE__STUB_MODULE);
 
 		userTaskEClass = createEClass(USER_TASK);
@@ -2004,6 +2132,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(widgetEClass, WIDGET__BEHAVIOR_BINDINGS);
 		createEReference(widgetEClass, WIDGET__ENABLED);
 		createEAttribute(widgetEClass, WIDGET__WIDGET_TYPE);
+		createEReference(widgetEClass, WIDGET__VISIBLE);
 
 		inputTextWidgetEClass = createEClass(INPUT_TEXT_WIDGET);
 
@@ -2020,6 +2149,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		tableWidgetEClass = createEClass(TABLE_WIDGET);
 		createEReference(tableWidgetEClass, TABLE_WIDGET__FOR);
 		createEReference(tableWidgetEClass, TABLE_WIDGET__COLUMNS);
+		createEAttribute(tableWidgetEClass, TABLE_WIDGET__PAGING);
+		createEAttribute(tableWidgetEClass, TABLE_WIDGET__SIZE);
 
 		guiEventEClass = createEClass(GUI_EVENT);
 		createEReference(guiEventEClass, GUI_EVENT__GUI_MODULE);
@@ -2093,6 +2224,20 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		listBoxWidgetEClass = createEClass(LIST_BOX_WIDGET);
 		createEReference(listBoxWidgetEClass, LIST_BOX_WIDGET__FOR_ENUM);
+
+		behaviorContainerEClass = createEClass(BEHAVIOR_CONTAINER);
+		createEReference(behaviorContainerEClass, BEHAVIOR_CONTAINER__CONDITIONS);
+		createEReference(behaviorContainerEClass, BEHAVIOR_CONTAINER__BEHAVIORS);
+
+		customWidgetEClass = createEClass(CUSTOM_WIDGET);
+
+		updateTableBehaviorEClass = createEClass(UPDATE_TABLE_BEHAVIOR);
+		createEReference(updateTableBehaviorEClass, UPDATE_TABLE_BEHAVIOR__TABLE);
+
+		confirmMessageBehaviorEClass = createEClass(CONFIRM_MESSAGE_BEHAVIOR);
+		createEAttribute(confirmMessageBehaviorEClass, CONFIRM_MESSAGE_BEHAVIOR__MESSAGE);
+
+		customBehaviorEClass = createEClass(CUSTOM_BEHAVIOR);
 	}
 
 	/**
@@ -2124,6 +2269,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		// Add supertypes to classes
 		guiApplicationEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		guiModuleEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		guiModuleEClass.getESuperTypes().add(this.getBehaviorContainer());
 		userTaskEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		createTaskEClass.getESuperTypes().add(this.getUserTask());
 		updateTaskEClass.getESuperTypes().add(this.getUserTask());
@@ -2141,6 +2287,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		addTaskEClass.getESuperTypes().add(this.getUserTask());
 		viewEClass.getESuperTypes().add(this.getWidgetsContainer());
 		viewEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		viewEClass.getESuperTypes().add(this.getBehaviorContainer());
 		widgetEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		inputTextWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		informationalTextWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
@@ -2173,6 +2320,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		guiEnumEClass.getESuperTypes().add(this.getGuiDto());
 		stubModuleEClass.getESuperTypes().add(theSculptormetamodelPackage.getModule());
 		listBoxWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		customWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
+		updateTableBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		confirmMessageBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		customBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2189,8 +2340,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_Events(), this.getGuiEvent(), this.getGuiEvent_GuiModule(), "events", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Commands(), this.getGuiCommand(), null, "commands", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGuiModule_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGuiModule_Conditions(), this.getUiCondition(), null, "conditions", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_StubModule(), this.getStubModule(), null, "stubModule", null, 0, 1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2288,6 +2437,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getWidget_BehaviorBindings(), this.getBehaviorBinding(), null, "behaviorBindings", null, 1, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWidget_Enabled(), this.getUiCondition(), null, "enabled", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_WidgetType(), ecorePackage.getEString(), "widgetType", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_Visible(), this.getUiCondition(), null, "visible", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputTextWidgetEClass, InputTextWidget.class, "InputTextWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2304,6 +2454,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(tableWidgetEClass, TableWidget.class, "TableWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTableWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTableWidget_Columns(), this.getTableColumn(), null, "columns", null, 0, -1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableWidget_Paging(), ecorePackage.getEBoolean(), "paging", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableWidget_Size(), ecorePackage.getEInt(), "size", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(guiEventEClass, GuiEvent.class, "GuiEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGuiEvent_GuiModule(), this.getGuiModule(), this.getGuiModule_Events(), "guiModule", null, 1, 1, GuiEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2377,6 +2529,20 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(listBoxWidgetEClass, ListBoxWidget.class, "ListBoxWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getListBoxWidget_ForEnum(), theSculptormetamodelPackage.getEnum(), null, "forEnum", null, 1, 1, ListBoxWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(behaviorContainerEClass, BehaviorContainer.class, "BehaviorContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviorContainer_Conditions(), this.getUiCondition(), null, "conditions", null, 0, -1, BehaviorContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorContainer_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, BehaviorContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(customWidgetEClass, CustomWidget.class, "CustomWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(updateTableBehaviorEClass, UpdateTableBehavior.class, "UpdateTableBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUpdateTableBehavior_Table(), this.getTableWidget(), null, "table", null, 1, 1, UpdateTableBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(confirmMessageBehaviorEClass, ConfirmMessageBehavior.class, "ConfirmMessageBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConfirmMessageBehavior_Message(), ecorePackage.getEString(), "message", null, 0, 1, ConfirmMessageBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(customBehaviorEClass, CustomBehavior.class, "CustomBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

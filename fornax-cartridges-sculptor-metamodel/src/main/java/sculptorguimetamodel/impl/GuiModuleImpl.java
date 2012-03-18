@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiDto;
@@ -48,6 +49,8 @@ import sculptormetamodel.impl.NamedElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getUserTasks <em>User Tasks</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getBasePackage <em>Base Package</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getApplication <em>Application</em>}</li>
@@ -56,8 +59,6 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getCommands <em>Commands</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getBehaviors <em>Behaviors</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getConditions <em>Conditions</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getStubModule <em>Stub Module</em>}</li>
  * </ul>
  * </p>
@@ -66,46 +67,66 @@ import sculptormetamodel.impl.NamedElementImpl;
  */
 public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	/**
-	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' containment reference list.
+	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getConditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList conditions;
+
+				/**
+	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehaviors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList behaviors;
+
+				/**
+	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+				 * <!-- end-user-doc -->
 	 * @see #getUserTasks()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList userTasks;
+				protected EList userTasks;
 
-	/**
+				/**
 	 * The default value of the '{@link #getBasePackage() <em>Base Package</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+				 * <!-- end-user-doc -->
 	 * @see #getBasePackage()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BASE_PACKAGE_EDEFAULT = null;
+				protected static final String BASE_PACKAGE_EDEFAULT = null;
 
-	/**
+				/**
 	 * The cached value of the '{@link #getBasePackage() <em>Base Package</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+				 * <!-- end-user-doc -->
 	 * @see #getBasePackage()
 	 * @generated
 	 * @ordered
 	 */
-	protected String basePackage = BASE_PACKAGE_EDEFAULT;
+				protected String basePackage = BASE_PACKAGE_EDEFAULT;
 
-	/**
+				/**
 	 * The cached value of the '{@link #getFor() <em>For</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+				    * <!-- end-user-doc -->
 	 * @see #getFor()
 	 * @generated
 	 * @ordered
 	 */
-    protected Module for_;
+				   protected Module for_;
 
-    /**
+				/**
 	 * The cached value of the '{@link #getViews() <em>Views</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,26 +165,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * @ordered
 	 */
 	protected EList commands;
-
-				/**
-	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBehaviors()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList behaviors;
-
-				/**
-	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConditions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList conditions;
 
 				/**
 	 * The cached value of the '{@link #getStubModule() <em>Stub Module</em>}' reference.
@@ -443,6 +444,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
+				return ((InternalEList)getConditions()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
+				return ((InternalEList)getBehaviors()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
 				return ((InternalEList)getUserTasks()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__APPLICATION:
@@ -453,10 +458,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return ((InternalEList)getCommands()).basicRemove(otherEnd, msgs);
-			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
-				return ((InternalEList)getBehaviors()).basicRemove(otherEnd, msgs);
-			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
-				return ((InternalEList)getConditions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -481,6 +482,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
+				return getConditions();
+			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
+				return getBehaviors();
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
 				return getUserTasks();
 			case SculptorguimetamodelPackage.GUI_MODULE__BASE_PACKAGE:
@@ -498,10 +503,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return getServiceDependencies();
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return getCommands();
-			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
-				return getBehaviors();
-			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
-				return getConditions();
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				if (resolve) return getStubModule();
 				return basicGetStubModule();
@@ -516,6 +517,14 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
+				getConditions().clear();
+				getConditions().addAll((Collection)newValue);
+				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
+				getBehaviors().clear();
+				getBehaviors().addAll((Collection)newValue);
+				return;
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
 				getUserTasks().clear();
 				getUserTasks().addAll((Collection)newValue);
@@ -545,14 +554,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				getCommands().clear();
 				getCommands().addAll((Collection)newValue);
 				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
-				getBehaviors().clear();
-				getBehaviors().addAll((Collection)newValue);
-				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
-				getConditions().clear();
-				getConditions().addAll((Collection)newValue);
-				return;
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				setStubModule((StubModule)newValue);
 				return;
@@ -567,6 +568,12 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
+				getConditions().clear();
+				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
+				getBehaviors().clear();
+				return;
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
 				getUserTasks().clear();
 				return;
@@ -591,12 +598,6 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				getCommands().clear();
 				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
-				getBehaviors().clear();
-				return;
-			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
-				getConditions().clear();
-				return;
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				setStubModule((StubModule)null);
 				return;
@@ -611,6 +612,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
+				return conditions != null && !conditions.isEmpty();
+			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
+				return behaviors != null && !behaviors.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
 				return userTasks != null && !userTasks.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__BASE_PACKAGE:
@@ -627,14 +632,42 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return serviceDependencies != null && !serviceDependencies.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return commands != null && !commands.isEmpty();
-			case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS:
-				return behaviors != null && !behaviors.isEmpty();
-			case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS:
-				return conditions != null && !conditions.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				return stubModule != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == BehaviorContainer.class) {
+			switch (derivedFeatureID) {
+				case SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS: return SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__CONDITIONS;
+				case SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS: return SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__BEHAVIORS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == BehaviorContainer.class) {
+			switch (baseFeatureID) {
+				case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__CONDITIONS: return SculptorguimetamodelPackage.GUI_MODULE__CONDITIONS;
+				case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__BEHAVIORS: return SculptorguimetamodelPackage.GUI_MODULE__BEHAVIORS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

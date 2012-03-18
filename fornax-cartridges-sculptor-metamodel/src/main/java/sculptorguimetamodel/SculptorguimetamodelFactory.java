@@ -512,6 +512,51 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	ListBoxWidget createListBoxWidget();
 
 																/**
+	 * Returns a new object of class '<em>Behavior Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Behavior Container</em>'.
+	 * @generated
+	 */
+	BehaviorContainer createBehaviorContainer();
+
+																/**
+	 * Returns a new object of class '<em>Custom Widget</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Custom Widget</em>'.
+	 * @generated
+	 */
+	CustomWidget createCustomWidget();
+
+																/**
+	 * Returns a new object of class '<em>Update Table Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Update Table Behavior</em>'.
+	 * @generated
+	 */
+	UpdateTableBehavior createUpdateTableBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Confirm Message Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Confirm Message Behavior</em>'.
+	 * @generated
+	 */
+	ConfirmMessageBehavior createConfirmMessageBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Custom Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Custom Behavior</em>'.
+	 * @generated
+	 */
+	CustomBehavior createCustomBehavior();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

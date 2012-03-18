@@ -241,6 +241,21 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseListBoxWidget(ListBoxWidget object) {
 				return createListBoxWidgetAdapter();
 			}
+			public Object caseBehaviorContainer(BehaviorContainer object) {
+				return createBehaviorContainerAdapter();
+			}
+			public Object caseCustomWidget(CustomWidget object) {
+				return createCustomWidgetAdapter();
+			}
+			public Object caseUpdateTableBehavior(UpdateTableBehavior object) {
+				return createUpdateTableBehaviorAdapter();
+			}
+			public Object caseConfirmMessageBehavior(ConfirmMessageBehavior object) {
+				return createConfirmMessageBehaviorAdapter();
+			}
+			public Object caseCustomBehavior(CustomBehavior object) {
+				return createCustomBehaviorAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1039,6 +1054,76 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createListBoxWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.BehaviorContainer <em>Behavior Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.BehaviorContainer
+	 * @generated
+	 */
+	public Adapter createBehaviorContainerAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.CustomWidget <em>Custom Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.CustomWidget
+	 * @generated
+	 */
+	public Adapter createCustomWidgetAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UpdateTableBehavior <em>Update Table Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UpdateTableBehavior
+	 * @generated
+	 */
+	public Adapter createUpdateTableBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ConfirmMessageBehavior <em>Confirm Message Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ConfirmMessageBehavior
+	 * @generated
+	 */
+	public Adapter createConfirmMessageBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.CustomBehavior <em>Custom Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.CustomBehavior
+	 * @generated
+	 */
+	public Adapter createCustomBehaviorAdapter() {
 		return null;
 	}
 

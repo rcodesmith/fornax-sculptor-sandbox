@@ -12,7 +12,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference modules : GuiModule<<1..*>>
     Attribute basePackage : EString
 
-  Class GuiModule -> NamedElement
+  Class GuiModule -> NamedElement, BehaviorContainer
     Reference userTasks : UserTask<<1..*>>
     Attribute basePackage : EString
     Reference application : GuiApplication
@@ -21,8 +21,6 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference events : GuiEvent<<0..*>>
     Reference serviceDependencies : Service<<0..*>>
     Reference commands : GuiCommand<<0..*>>
-    Reference behaviors : UiBehavior<<0..*>>
-    Reference conditions : UiCondition<<0..*>>
     Reference stubModule : StubModule
 
   Class UserTask -> NamedElement
@@ -107,7 +105,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class AddTask -> UserTask
     Reference findDOWith : ServiceOperation
 
-  Class View -> WidgetsContainer, NamedElement
+  Class View -> WidgetsContainer, NamedElement, BehaviorContainer
     Reference module : GuiModule
     Reference for : DomainObject
     Reference serviceProxies : ServiceProxy<<0..*>>
@@ -120,6 +118,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference behaviorBindings : BehaviorBinding<<1..*>>
     Reference enabled : UiCondition
     Attribute widgetType : EString
+    Reference visible : UiCondition
 
   Class InputTextWidget -> PropertyReferringWidget
 
@@ -136,6 +135,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class TableWidget -> PropertyReferringWidget
     Reference for : DomainObject
     Reference columns : TableColumn<<0..*>>
+    Attribute paging : EBoolean
+    Attribute size : EInt
 
   Class GuiEvent -> DomainObject
     Reference guiModule : GuiModule<<1..1>>
@@ -209,3 +210,17 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class ListBoxWidget -> PropertyReferringWidget
     Reference forEnum : Enum<<1..1>>
+
+  Class BehaviorContainer
+    Reference conditions : UiCondition<<0..*>>
+    Reference behaviors : UiBehavior<<0..*>>
+
+  Class CustomWidget -> PropertyReferringWidget
+
+  Class UpdateTableBehavior -> UiBehavior
+    Reference table : TableWidget<<1..1>>
+
+  Class ConfirmMessageBehavior -> UiBehavior
+    Attribute message : EString
+
+  Class CustomBehavior -> UiBehavior

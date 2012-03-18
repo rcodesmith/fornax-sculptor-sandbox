@@ -27,8 +27,6 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getEvents <em>Events</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}</li>
- *   <li>{@link sculptorguimetamodel.GuiModule#getBehaviors <em>Behaviors</em>}</li>
- *   <li>{@link sculptorguimetamodel.GuiModule#getConditions <em>Conditions</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getStubModule <em>Stub Module</em>}</li>
  * </ul>
  * </p>
@@ -37,7 +35,7 @@ import sculptormetamodel.NamedElement;
  * @model
  * @generated
  */
-public interface GuiModule extends NamedElement {
+public interface GuiModule extends NamedElement, BehaviorContainer {
 	/**
 	 * Returns the value of the '<em><b>User Tasks</b></em>' containment reference list.
 	 * The list contents are of type {@link sculptorguimetamodel.UserTask}.
@@ -203,38 +201,6 @@ public interface GuiModule extends NamedElement {
 	 * @generated
 	 */
 	EList getCommands();
-
-				/**
-	 * Returns the value of the '<em><b>Behaviors</b></em>' containment reference list.
-	 * The list contents are of type {@link sculptorguimetamodel.UiBehavior}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Behaviors</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Behaviors</em>' containment reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Behaviors()
-	 * @model type="sculptorguimetamodel.UiBehavior" containment="true"
-	 * @generated
-	 */
-	EList getBehaviors();
-
-				/**
-	 * Returns the value of the '<em><b>Conditions</b></em>' containment reference list.
-	 * The list contents are of type {@link sculptorguimetamodel.UiCondition}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Conditions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Conditions</em>' containment reference list.
-	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_Conditions()
-	 * @model type="sculptorguimetamodel.UiCondition" containment="true"
-	 * @generated
-	 */
-	EList getConditions();
 
 				/**
 	 * Returns the value of the '<em><b>Stub Module</b></em>' reference.

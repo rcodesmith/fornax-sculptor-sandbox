@@ -114,6 +114,11 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.GUI_ENUM: return createGuiEnum();
 			case SculptorguimetamodelPackage.STUB_MODULE: return createStubModule();
 			case SculptorguimetamodelPackage.LIST_BOX_WIDGET: return createListBoxWidget();
+			case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER: return createBehaviorContainer();
+			case SculptorguimetamodelPackage.CUSTOM_WIDGET: return createCustomWidget();
+			case SculptorguimetamodelPackage.UPDATE_TABLE_BEHAVIOR: return createUpdateTableBehavior();
+			case SculptorguimetamodelPackage.CONFIRM_MESSAGE_BEHAVIOR: return createConfirmMessageBehavior();
+			case SculptorguimetamodelPackage.CUSTOM_BEHAVIOR: return createCustomBehavior();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -657,6 +662,56 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public ListBoxWidget createListBoxWidget() {
 		ListBoxWidgetImpl listBoxWidget = new ListBoxWidgetImpl();
 		return listBoxWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BehaviorContainer createBehaviorContainer() {
+		BehaviorContainerImpl behaviorContainer = new BehaviorContainerImpl();
+		return behaviorContainer;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CustomWidget createCustomWidget() {
+		CustomWidgetImpl customWidget = new CustomWidgetImpl();
+		return customWidget;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UpdateTableBehavior createUpdateTableBehavior() {
+		UpdateTableBehaviorImpl updateTableBehavior = new UpdateTableBehaviorImpl();
+		return updateTableBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConfirmMessageBehavior createConfirmMessageBehavior() {
+		ConfirmMessageBehaviorImpl confirmMessageBehavior = new ConfirmMessageBehaviorImpl();
+		return confirmMessageBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CustomBehavior createCustomBehavior() {
+		CustomBehaviorImpl customBehavior = new CustomBehaviorImpl();
+		return customBehavior;
 	}
 
 																/**

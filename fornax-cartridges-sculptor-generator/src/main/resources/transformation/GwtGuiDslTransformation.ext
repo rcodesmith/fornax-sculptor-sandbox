@@ -763,10 +763,15 @@ create sculptorguimetamodel::UiBehavior this transformBehavior(DslUiBehavior beh
 	error("Unexpected call to transformBehavior(DslUiBehavior) - base class behavior");
 
 create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPopulatePanelBehavior behavior, Module module) :
-	debugTrace("transformBehavior(DslPopulatePanelBehavier)") ->
+//	debugTrace("transformBehavior(DslPopulatePanelBehavier)") ->
 	setDoc(behavior.doc) ->
 	setName(behavior.name) ->
 	setPanel(behavior.panel.transformWidget(module));
+
+create sculptorguimetamodel::ConfirmMessageBehavior this transformBehavior(DslConfirmMessageBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setName(behavior.name) ->
+	setMessage(behavior.message);
 	
 create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding binding, Module module) :
 	error("Unexpected call to transform(DslBehaviorBinding)");

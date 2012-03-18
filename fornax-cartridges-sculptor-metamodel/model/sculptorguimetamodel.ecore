@@ -10,7 +10,7 @@
         upperBound="-1" eType="#//GuiModule" containment="true" eOpposite="#//GuiModule/application"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GuiModule" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="GuiModule" eSuperTypes="sculptormetamodel.ecore#//NamedElement #//BehaviorContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userTasks" lowerBound="1"
         upperBound="-1" eType="#//UserTask" containment="true" eOpposite="#//UserTask/module"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -25,10 +25,6 @@
         eType="ecore:EClass sculptormetamodel.ecore#//Service"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//GuiCommand" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
-        eType="#//UiBehavior" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
-        eType="#//UiCondition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stubModule" eType="#//StubModule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
@@ -124,7 +120,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="AddTask" eSuperTypes="#//UserTask">
     <eStructuralFeatures xsi:type="ecore:EReference" name="findDOWith" eType="ecore:EClass sculptormetamodel.ecore#//ServiceOperation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//WidgetsContainer sculptormetamodel.ecore#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//WidgetsContainer sculptormetamodel.ecore#//NamedElement #//BehaviorContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//GuiModule"
         eOpposite="#//GuiModule/views"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
@@ -141,6 +137,7 @@
         upperBound="-1" eType="#//BehaviorBinding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="enabled" eType="#//UiCondition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="widgetType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" eType="#//UiCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="InformationalTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
@@ -156,6 +153,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
         eType="#//TableColumn" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paging" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiEvent" eSuperTypes="sculptormetamodel.ecore#//DomainObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="guiModule" lowerBound="1"
@@ -223,4 +222,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="forEnum" lowerBound="1"
         eType="ecore:EClass sculptormetamodel.ecore#//Enum"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+        eType="#//UiCondition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
+        eType="#//UiBehavior" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomWidget" eSuperTypes="#//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateTableBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//TableWidget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfirmMessageBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomBehavior" eSuperTypes="#//UiBehavior"/>
 </ecore:EPackage>

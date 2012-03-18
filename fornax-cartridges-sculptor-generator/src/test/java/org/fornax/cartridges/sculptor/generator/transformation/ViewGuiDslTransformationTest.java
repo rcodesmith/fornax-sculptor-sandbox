@@ -215,25 +215,6 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		// assertEquals("Auto complete one", autoComp.getLabel());
 
 	}
-
-	@Test
-	public void assertBehaviors() {
-		assertEquals(1, personModule().getBehaviors().size());
-		
-        assertOneAndOnlyOne(personModule().getBehaviors(), "populatePersonDetailsPanel");
-
-	}
-	
-	@Test
-	public void assertPopulatePersonDetailsBehavior() {
-		PopulatePanelBehavior populatePersonDetailsPanel = (PopulatePanelBehavior)getNamedElement("populatePersonDetailsPanel", personModule().getBehaviors());
-		assertNotNull(populatePersonDetailsPanel);
-		
-		assertEquals("Populate the person details panel", populatePersonDetailsPanel.getDoc());
-		assertEquals("personDetailsPanel", populatePersonDetailsPanel.getPanel().getName());
-		
-	}
-	
 	
 
 }

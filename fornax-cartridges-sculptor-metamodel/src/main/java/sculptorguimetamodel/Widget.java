@@ -22,6 +22,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.Widget#getBehaviorBindings <em>Behavior Bindings</em>}</li>
  *   <li>{@link sculptorguimetamodel.Widget#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link sculptorguimetamodel.Widget#getWidgetType <em>Widget Type</em>}</li>
+ *   <li>{@link sculptorguimetamodel.Widget#getVisible <em>Visible</em>}</li>
  * </ul>
  * </p>
  *
@@ -149,5 +150,31 @@ public interface Widget extends NamedElement {
 	 * @generated
 	 */
 	void setWidgetType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Visible</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Visible</em>' reference.
+	 * @see #setVisible(UiCondition)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getWidget_Visible()
+	 * @model
+	 * @generated
+	 */
+	UiCondition getVisible();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.Widget#getVisible <em>Visible</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Visible</em>' reference.
+	 * @see #getVisible()
+	 * @generated
+	 */
+	void setVisible(UiCondition value);
 
 } // Widget

@@ -22,9 +22,12 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.emf.ecore.util.InternalEList;
+import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.ServiceProxy;
+import sculptorguimetamodel.UiBehavior;
+import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.View;
 
 import sculptorguimetamodel.ViewParameter;
@@ -45,6 +48,8 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getName <em>Name</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getDoc <em>Doc</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getHint <em>Hint</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getModule <em>Module</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getServiceProxies <em>Service Proxies</em>}</li>
@@ -115,6 +120,26 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 	 * @ordered
 	 */
 	protected String hint = HINT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList conditions;
+
+	/**
+	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehaviors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList behaviors;
 
 	/**
 	 * The cached value of the '{@link #getFor() <em>For</em>}' reference.
@@ -241,6 +266,30 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 		hint = newHint;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__HINT, oldHint, hint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getConditions() {
+		if (conditions == null) {
+			conditions = new EObjectContainmentEList(UiCondition.class, this, SculptorguimetamodelPackage.VIEW__CONDITIONS);
+		}
+		return conditions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getBehaviors() {
+		if (behaviors == null) {
+			behaviors = new EObjectContainmentEList(UiBehavior.class, this, SculptorguimetamodelPackage.VIEW__BEHAVIORS);
+		}
+		return behaviors;
 	}
 
 	/**
@@ -389,6 +438,10 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SculptorguimetamodelPackage.VIEW__CONDITIONS:
+				return ((InternalEList)getConditions()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.VIEW__BEHAVIORS:
+				return ((InternalEList)getBehaviors()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				return basicSetModule(null, msgs);
 			case SculptorguimetamodelPackage.VIEW__PARAMETERS:
@@ -423,6 +476,10 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				return getDoc();
 			case SculptorguimetamodelPackage.VIEW__HINT:
 				return getHint();
+			case SculptorguimetamodelPackage.VIEW__CONDITIONS:
+				return getConditions();
+			case SculptorguimetamodelPackage.VIEW__BEHAVIORS:
+				return getBehaviors();
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				return getModule();
 			case SculptorguimetamodelPackage.VIEW__FOR:
@@ -453,6 +510,14 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				return;
 			case SculptorguimetamodelPackage.VIEW__HINT:
 				setHint((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.VIEW__CONDITIONS:
+				getConditions().clear();
+				getConditions().addAll((Collection)newValue);
+				return;
+			case SculptorguimetamodelPackage.VIEW__BEHAVIORS:
+				getBehaviors().clear();
+				getBehaviors().addAll((Collection)newValue);
 				return;
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				setModule((GuiModule)newValue);
@@ -491,6 +556,12 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__HINT:
 				setHint(HINT_EDEFAULT);
 				return;
+			case SculptorguimetamodelPackage.VIEW__CONDITIONS:
+				getConditions().clear();
+				return;
+			case SculptorguimetamodelPackage.VIEW__BEHAVIORS:
+				getBehaviors().clear();
+				return;
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				setModule((GuiModule)null);
 				return;
@@ -523,6 +594,10 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				return DOC_EDEFAULT == null ? doc != null : !DOC_EDEFAULT.equals(doc);
 			case SculptorguimetamodelPackage.VIEW__HINT:
 				return HINT_EDEFAULT == null ? hint != null : !HINT_EDEFAULT.equals(hint);
+			case SculptorguimetamodelPackage.VIEW__CONDITIONS:
+				return conditions != null && !conditions.isEmpty();
+			case SculptorguimetamodelPackage.VIEW__BEHAVIORS:
+				return behaviors != null && !behaviors.isEmpty();
 			case SculptorguimetamodelPackage.VIEW__MODULE:
 				return getModule() != null;
 			case SculptorguimetamodelPackage.VIEW__FOR:
@@ -551,6 +626,13 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				default: return -1;
 			}
 		}
+		if (baseClass == BehaviorContainer.class) {
+			switch (derivedFeatureID) {
+				case SculptorguimetamodelPackage.VIEW__CONDITIONS: return SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__CONDITIONS;
+				case SculptorguimetamodelPackage.VIEW__BEHAVIORS: return SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__BEHAVIORS;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -565,6 +647,13 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				case SculptormetamodelPackage.NAMED_ELEMENT__NAME: return SculptorguimetamodelPackage.VIEW__NAME;
 				case SculptormetamodelPackage.NAMED_ELEMENT__DOC: return SculptorguimetamodelPackage.VIEW__DOC;
 				case SculptormetamodelPackage.NAMED_ELEMENT__HINT: return SculptorguimetamodelPackage.VIEW__HINT;
+				default: return -1;
+			}
+		}
+		if (baseClass == BehaviorContainer.class) {
+			switch (baseFeatureID) {
+				case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__CONDITIONS: return SculptorguimetamodelPackage.VIEW__CONDITIONS;
+				case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER__BEHAVIORS: return SculptorguimetamodelPackage.VIEW__BEHAVIORS;
 				default: return -1;
 			}
 		}
