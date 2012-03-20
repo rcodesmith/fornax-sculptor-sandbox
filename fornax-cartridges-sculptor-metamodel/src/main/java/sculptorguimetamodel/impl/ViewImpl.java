@@ -55,6 +55,8 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getExtendsName <em>Extends Name</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getExtends <em>Extends</em>}</li>
  * </ul>
  * </p>
  *
@@ -187,6 +189,35 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 	 * @ordered
 	 */
 	protected String label = LABEL_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getExtendsName() <em>Extends Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendsName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXTENDS_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExtendsName() <em>Extends Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendsName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String extendsName = EXTENDS_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getExtends() <em>Extends</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtends()
+	 * @generated
+	 * @ordered
+	 */
+	protected View extends_;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -421,6 +452,65 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getExtendsName() {
+		return extendsName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendsName(String newExtendsName) {
+		String oldExtendsName = extendsName;
+		extendsName = newExtendsName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__EXTENDS_NAME, oldExtendsName, extendsName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public View getExtends() {
+		if (extends_ != null && extends_.eIsProxy()) {
+			InternalEObject oldExtends = (InternalEObject)extends_;
+			extends_ = (View)eResolveProxy(oldExtends);
+			if (extends_ != oldExtends) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.VIEW__EXTENDS, oldExtends, extends_));
+			}
+		}
+		return extends_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public View basicGetExtends() {
+		return extends_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtends(View newExtends) {
+		View oldExtends = extends_;
+		extends_ = newExtends;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__EXTENDS, oldExtends, extends_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.VIEW__MODULE:
@@ -491,6 +581,11 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				return getParameters();
 			case SculptorguimetamodelPackage.VIEW__LABEL:
 				return getLabel();
+			case SculptorguimetamodelPackage.VIEW__EXTENDS_NAME:
+				return getExtendsName();
+			case SculptorguimetamodelPackage.VIEW__EXTENDS:
+				if (resolve) return getExtends();
+				return basicGetExtends();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -536,6 +631,12 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__LABEL:
 				setLabel((String)newValue);
 				return;
+			case SculptorguimetamodelPackage.VIEW__EXTENDS_NAME:
+				setExtendsName((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.VIEW__EXTENDS:
+				setExtends((View)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -577,6 +678,12 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
+			case SculptorguimetamodelPackage.VIEW__EXTENDS_NAME:
+				setExtendsName(EXTENDS_NAME_EDEFAULT);
+				return;
+			case SculptorguimetamodelPackage.VIEW__EXTENDS:
+				setExtends((View)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -608,6 +715,10 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				return parameters != null && !parameters.isEmpty();
 			case SculptorguimetamodelPackage.VIEW__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			case SculptorguimetamodelPackage.VIEW__EXTENDS_NAME:
+				return EXTENDS_NAME_EDEFAULT == null ? extendsName != null : !EXTENDS_NAME_EDEFAULT.equals(extendsName);
+			case SculptorguimetamodelPackage.VIEW__EXTENDS:
+				return extends_ != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -677,6 +788,8 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 		result.append(hint);
 		result.append(", label: ");
 		result.append(label);
+		result.append(", extendsName: ");
+		result.append(extendsName);
 		result.append(')');
 		return result.toString();
 	}

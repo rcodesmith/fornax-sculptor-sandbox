@@ -23,6 +23,8 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.View#getServiceProxies <em>Service Proxies</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getParameters <em>Parameters</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getLabel <em>Label</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#getExtendsName <em>Extends Name</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#getExtends <em>Extends</em>}</li>
  * </ul>
  * </p>
  *
@@ -142,5 +144,57 @@ public interface View extends WidgetsContainer, NamedElement, BehaviorContainer 
 	 * @generated
 	 */
 	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Extends Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extends Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extends Name</em>' attribute.
+	 * @see #setExtendsName(String)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_ExtendsName()
+	 * @model
+	 * @generated
+	 */
+	String getExtendsName();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.View#getExtendsName <em>Extends Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extends Name</em>' attribute.
+	 * @see #getExtendsName()
+	 * @generated
+	 */
+	void setExtendsName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Extends</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extends</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extends</em>' reference.
+	 * @see #setExtends(View)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_Extends()
+	 * @model
+	 * @generated
+	 */
+	View getExtends();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.View#getExtends <em>Extends</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extends</em>' reference.
+	 * @see #getExtends()
+	 * @generated
+	 */
+	void setExtends(View value);
 
 } // View

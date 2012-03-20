@@ -111,6 +111,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference serviceProxies : ServiceProxy<<0..*>>
     Reference parameters : ViewParameter<<0..*>>
     Attribute label : EString
+    Attribute extendsName : EString
+    Reference extends : View
 
   Class Widget -> NamedElement
     Reference view : View
@@ -224,3 +226,5 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Attribute message : EString
 
   Class CustomBehavior -> UiBehavior
+
+  Class CustomCondition -> UiCondition

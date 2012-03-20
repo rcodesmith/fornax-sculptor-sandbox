@@ -119,6 +119,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.UPDATE_TABLE_BEHAVIOR: return createUpdateTableBehavior();
 			case SculptorguimetamodelPackage.CONFIRM_MESSAGE_BEHAVIOR: return createConfirmMessageBehavior();
 			case SculptorguimetamodelPackage.CUSTOM_BEHAVIOR: return createCustomBehavior();
+			case SculptorguimetamodelPackage.CUSTOM_CONDITION: return createCustomCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -712,6 +713,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public CustomBehavior createCustomBehavior() {
 		CustomBehaviorImpl customBehavior = new CustomBehaviorImpl();
 		return customBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CustomCondition createCustomCondition() {
+		CustomConditionImpl customCondition = new CustomConditionImpl();
+		return customCondition;
 	}
 
 																/**

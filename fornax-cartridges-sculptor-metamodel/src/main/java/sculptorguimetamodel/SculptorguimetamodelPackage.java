@@ -2173,13 +2173,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int VIEW__LABEL = WIDGETS_CONTAINER_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Extends Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__EXTENDS_NAME = WIDGETS_CONTAINER_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Extends</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__EXTENDS = WIDGETS_CONTAINER_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_FEATURE_COUNT = WIDGETS_CONTAINER_FEATURE_COUNT + 10;
+	int VIEW_FEATURE_COUNT = WIDGETS_CONTAINER_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
@@ -6324,6 +6342,52 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int CUSTOM_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.CustomConditionImpl <em>Custom Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.CustomConditionImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCustomCondition()
+	 * @generated
+	 */
+	int CUSTOM_CONDITION = 59;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_CONDITION__NAME = UI_CONDITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_CONDITION__DOC = UI_CONDITION__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_CONDITION__HINT = UI_CONDITION__HINT;
+
+	/**
+	 * The number of structural features of the '<em>Custom Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_CONDITION_FEATURE_COUNT = UI_CONDITION_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7215,6 +7279,28 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EAttribute getView_Label();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.View#getExtendsName <em>Extends Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extends Name</em>'.
+	 * @see sculptorguimetamodel.View#getExtendsName()
+	 * @see #getView()
+	 * @generated
+	 */
+	EAttribute getView_ExtendsName();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.View#getExtends <em>Extends</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Extends</em>'.
+	 * @see sculptorguimetamodel.View#getExtends()
+	 * @see #getView()
+	 * @generated
+	 */
+	EReference getView_Extends();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.Widget <em>Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8014,6 +8100,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getCustomBehavior();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.CustomCondition <em>Custom Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Custom Condition</em>'.
+	 * @see sculptorguimetamodel.CustomCondition
+	 * @generated
+	 */
+	EClass getCustomCondition();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8744,6 +8840,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EAttribute VIEW__LABEL = eINSTANCE.getView_Label();
 
 		/**
+		 * The meta object literal for the '<em><b>Extends Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEW__EXTENDS_NAME = eINSTANCE.getView_ExtendsName();
+
+		/**
+		 * The meta object literal for the '<em><b>Extends</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VIEW__EXTENDS = eINSTANCE.getView_Extends();
+
+		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.WidgetImpl <em>Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9424,6 +9536,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CUSTOM_BEHAVIOR = eINSTANCE.getCustomBehavior();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.CustomConditionImpl <em>Custom Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.CustomConditionImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCustomCondition()
+		 * @generated
+		 */
+		EClass CUSTOM_CONDITION = eINSTANCE.getCustomCondition();
 
 	}
 

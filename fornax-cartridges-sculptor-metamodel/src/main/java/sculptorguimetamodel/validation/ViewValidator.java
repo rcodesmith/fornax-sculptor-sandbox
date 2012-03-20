@@ -8,6 +8,7 @@ package sculptorguimetamodel.validation;
 
 import org.eclipse.emf.common.util.EList;
 import sculptorguimetamodel.GuiModule;
+import sculptorguimetamodel.View;
 import sculptormetamodel.DomainObject;
 
 /**
@@ -30,6 +31,10 @@ public interface ViewValidator {
 	boolean validateParameters(EList value);
 
 	boolean validateLabel(String value);
+
+	boolean validateExtendsName(String value);
+
+	boolean validateExtends(View value);
 
 	boolean validateServiceDependencies(EList value);
 }

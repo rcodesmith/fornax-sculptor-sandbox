@@ -136,6 +136,7 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	events.addAll(module.events.transformEvent(module.for.transform())) ->
 	//commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
 	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
+	conditions.addAll(module.conditions.transformCondition(module.for.transform())) ->
 	hasProperty("ui.custom.guidto") ? setStubModule(module.for.transformStubModule(module)) : null ->
 //	setStubModule(module.for.transformStubModule(module)) ->
 	hasProperty("ui.custom.guidto") ? views.addAll(module.views.transformView(module.for.transform())) : null ->

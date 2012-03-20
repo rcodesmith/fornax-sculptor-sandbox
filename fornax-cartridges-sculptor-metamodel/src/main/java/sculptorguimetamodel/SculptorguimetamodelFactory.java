@@ -557,6 +557,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	CustomBehavior createCustomBehavior();
 
 																/**
+	 * Returns a new object of class '<em>Custom Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Custom Condition</em>'.
+	 * @generated
+	 */
+	CustomCondition createCustomCondition();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

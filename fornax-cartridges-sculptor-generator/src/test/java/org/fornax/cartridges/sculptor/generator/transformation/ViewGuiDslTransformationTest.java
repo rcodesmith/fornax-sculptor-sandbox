@@ -14,11 +14,13 @@ import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.InformationalTextWidget;
 import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
+import sculptorguimetamodel.ListBoxWidget;
 import sculptorguimetamodel.OnClickBinding;
 import sculptorguimetamodel.PanelWidget;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
+import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
@@ -103,6 +105,17 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals("customLink", customLink.getName());
 		assertEquals("Custom Link", customLink.getLabel());
 
+		
+		UiCondition enabledCond = personTable.getEnabled();
+		assertNotNull(enabledCond);
+		assertEquals("isTableEditable", enabledCond.getName());
+		
+		UiCondition visibleCond = personTable.getEnabled();
+		assertNotNull(visibleCond);
+		assertTrue(visibleCond == enabledCond);
+		
+		
+		
 	}
 
 	@Test
@@ -189,9 +202,9 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		
 
 		EList widgets = personForm.getWidgets();
-		assertEquals(7, widgets.size());
+		assertEquals(8, widgets.size());
 		assertOneAndOnlyOne(widgets, "nameField", "birthDateField", "table1",
-				"saveButton", "info1", "fullName", "textArea1"); // "autocomp1"
+				"saveButton", "info1", "fullName", "textArea1", "genderSelector"); // "autocomp1"
 
 		InputTextWidget nameField = (InputTextWidget) widgets.get(0);
 		assertEquals("Name", nameField.getLabel());
@@ -204,8 +217,7 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		// assertEquals("birthDate",
 		// birthDateField.getForAttribute().getName());
 
-		InformationalTextWidget fullName = (InformationalTextWidget) widgets
-				.get(5);
+		InformationalTextWidget fullName = (InformationalTextWidget) getNamedElement("fullName", widgets);
 		assertEquals("Full name", fullName.getLabel());
 		// assertNotNull(fullName.getForOp());
 		// assertEquals("getDisplayName", fullName.getForOp().getName());
@@ -220,6 +232,12 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		// AutocompleteWidget autoComp = (AutocompleteWidget)widgets.get(5);
 		// assertEquals("Auto complete one", autoComp.getLabel());
 
+		ListBoxWidget genderSelector = (ListBoxWidget)getNamedElement("genderSelector", widgets);
+		assertNotNull(genderSelector);
+		assertEquals("genderSelector", genderSelector.getName());
+		assertNotNull(genderSelector.getForEnum());
+		assertEquals("Gender", genderSelector.getForEnum().getName());
+		assertEquals(2, genderSelector.getForEnum().getValues().size());
 	}
 	
 

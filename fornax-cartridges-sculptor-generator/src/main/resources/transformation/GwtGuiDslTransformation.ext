@@ -464,6 +464,7 @@ create sculptorguimetamodel::View this transformView(DslView view, Module module
 	setModule(guiModule) ->
 //	debugTrace("module: " + guiModule) ->
 	behaviors.addAll(view.behaviors.transformBehavior(module)) ->
+	conditions.addAll(view.conditions.transformCondition(module)) ->
 	serviceProxies.addAll(view.serviceDependencies.collect(s|guiModule.findServiceProxy(s.dependency.name)));
 	// view.serviceDependencies.transformServiceProxy(module)
 
@@ -521,7 +522,7 @@ create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWi
 	transformSourceReference(this, widget.sourceRef);
 //	setLabel(widget.label);
 
-create sculptorguimetamodel::ListBoxWidget this transformWidget(DslInputDateWidget widget, Module module) :
+create sculptorguimetamodel::ListBoxWidget this transformWidget(DslListBoxWidget widget, Module module) :
 	initFromDslWidget(this, widget) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setForEnum(widget.forEnum == null ? null : widget.forEnum.transform());
@@ -600,9 +601,16 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 	setName(widget.name) ->
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
+	setEnabledVisible(this, widget, module) ->
+//	setPaging(widget.paging) ->
+//	setSize(widget.size) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	columns.addAll(widget.columns.transformColumn(module));
 
+private setEnabledVisible(Widget widget, DslWidget dslWidget, Module module) :
+	widget.setEnabled(dslWidget.enabled == null ? null : dslWidget.enabled.transformCondition(module)) ->
+	widget.setVisible(dslWidget.visible == null ? null : dslWidget.visible.transformCondition(module));
+	
 create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col, Module module) :
 	setName(col.name)->
 	// TODO: add doc to dsl & here
@@ -759,6 +767,19 @@ create sculptormetamodel::Reference this transformToGui(DslReference reference, 
       setOpposite(reference.oppositeHolder.opposite.transform()):
       null)
     ;
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// UiCondition-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+create sculptorguimetamodel::UiCondition this transformCondition(DslUiCondition dslCondition, Module module) :
+	error("Unexpected call to transformCondition(DslUiCondition) - base class condition");
+
+create sculptorguimetamodel::CustomCondition this transformCondition(DslUiCustomCondition dslCondition, Module module) :
+	setDoc(dslCondition.doc) ->
+	setHint(dslCondition.hint) ->
+	setName(dslCondition.name);
 
 
 //////////////////////////////////////////////////////////////////////////////////

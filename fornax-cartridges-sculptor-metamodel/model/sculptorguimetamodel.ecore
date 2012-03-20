@@ -129,6 +129,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//ViewParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendsName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" eType="#//View"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View"/>
@@ -236,4 +238,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CustomBehavior" eSuperTypes="#//UiBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomCondition" eSuperTypes="#//UiCondition"/>
 </ecore:EPackage>

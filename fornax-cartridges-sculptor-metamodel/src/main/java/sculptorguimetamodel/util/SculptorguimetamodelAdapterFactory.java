@@ -256,6 +256,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseCustomBehavior(CustomBehavior object) {
 				return createCustomBehaviorAdapter();
 			}
+			public Object caseCustomCondition(CustomCondition object) {
+				return createCustomConditionAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1124,6 +1127,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCustomBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.CustomCondition <em>Custom Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.CustomCondition
+	 * @generated
+	 */
+	public Adapter createCustomConditionAdapter() {
 		return null;
 	}
 

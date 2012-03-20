@@ -567,6 +567,14 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.CUSTOM_CONDITION: {
+				CustomCondition customCondition = (CustomCondition)theEObject;
+				Object result = caseCustomCondition(customCondition);
+				if (result == null) result = caseUiCondition(customCondition);
+				if (result == null) result = caseNamedElement(customCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1453,6 +1461,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseCustomBehavior(CustomBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Custom Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Custom Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseCustomCondition(CustomCondition object) {
 		return null;
 	}
 

@@ -172,7 +172,7 @@ DslSkipAddTask :
 
 DslView:
   (doc=STRING)?
-	"View" name=ID ('for' for=[mm::DslSimpleDomainObject])? "{"
+	"View" name=ID ("extends" (("@"extends=[DslView]) | (extendsName=DslGuiJavaIdentifier)))? ('for' for=[mm::DslSimpleDomainObject])? "{"
 		("hint" "=" hint=STRING)?
 	
 		('label' '=' label=STRING)?
@@ -223,7 +223,7 @@ DslPanelWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 		("contents" "{"
 			(widgets+=DslWidget)*
 		"}"
@@ -237,7 +237,7 @@ DslInputTextWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 	
 DslListBoxWidget :
@@ -247,7 +247,7 @@ DslListBoxWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 
 DslTextAreaWidget :
@@ -257,7 +257,7 @@ DslTextAreaWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 
 DslAutocompleteWidget :
@@ -267,7 +267,7 @@ DslAutocompleteWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 
 DslRadioButtonsWidget :
@@ -277,7 +277,7 @@ DslRadioButtonsWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 
 DslRichTextAreaWidget :
@@ -287,7 +287,7 @@ DslRichTextAreaWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 
 DslInputDateWidget :
@@ -297,7 +297,7 @@ DslInputDateWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
  
  DslNumberSpinnerWidget :
@@ -307,7 +307,7 @@ DslInputDateWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
  
 	
@@ -319,7 +319,7 @@ DslButtonWidget :
 		('image' '=' image=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 		(onClick=DslOnClick)?
 	'}';
 
@@ -330,7 +330,7 @@ DslInformationalTextWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 
 DslSourceReference :
@@ -343,7 +343,7 @@ DslLinkWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 		(onClick=DslOnClick)?
 	'}';
 	
@@ -357,9 +357,9 @@ DslTableWidget :
 		('label' '=' label=STRING)?	
 		('widgetType' '=' widgetType=STRING)?		
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
+		("size" '=' size=INT)?
 		((paging?="paging") | (NOT "paging"))?
-		('size' '=' INT)?
 		("columns" "{"
 			(columns+=DslTableColumn)*
 		"}")?
@@ -379,7 +379,7 @@ DslCustomWidget :
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
-		('visible' enabled=[DslUiCondition])?
+		('visible' visible=[DslUiCondition])?
 	'}';
 	
 /////////////////////////////////////////////////////////////////////////
@@ -423,40 +423,54 @@ DslUiBehavior :
 DslPopulatePanelBehavior :
   (doc=STRING)?
   "UiBehavior" "PopulatePanel" name=ID "{"
+	("hint" "=" hint=STRING)?
     'panel' '=' panel=[DslPanelWidget]    
   "}";
 
 DslNavigateToViewBehavior :
   (doc=STRING)?
   "UiBehavior" "NavigateToView" name=ID "{"
+	("hint" "=" hint=STRING)?
     'view' '=' view=[DslView]
   "}";
 
 DslUpdateTableBehavior :
   (doc=STRING)?
   "UiBehavior" "UpdateTable" name=ID "{"
+	("hint" "=" hint=STRING)?
   	'table' '=' table=[DslTableWidget]
   "}";
 
 DslConfirmMessageBehavior :
   (doc=STRING)?
   "UiBehavior" "ConfirmMessage" name=ID "{"
+	("hint" "=" hint=STRING)?
   	('message' '=' message=STRING)?
   "}";
 
 DslCustomBehavior :
   (doc=STRING)?
   "UiBehavior" "Custom" name=ID "{"
+	  ("hint" "=" hint=STRING)?
   "}";
 
 
-
-
+//////////////////////////////////////////////////////////////
+// Conditions
+//////////////////////////////////////////////////////////////
 
 DslUiCondition :
+	DslUiCustomCondition;
+
+DslUiCustomCondition :
   (doc=STRING)?
-  "Condition" name=ID "{"
+  "Condition" "Custom" name=ID "{"
+	  ("hint" "=" hint=STRING)?
   "}";
+
+
+
+
 
 	
 DslGuiAttribute :
@@ -494,3 +508,5 @@ terminal REF :
 terminal NOT :
   ('!'|'not');
   
+  
+ 

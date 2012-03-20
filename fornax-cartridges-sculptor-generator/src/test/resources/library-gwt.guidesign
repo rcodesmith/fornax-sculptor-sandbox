@@ -39,6 +39,11 @@ gui LibraryWeb for Library {
 				inputText birthDateField  { // forProperty birthDate
 					label = "Birth Date"
 				}
+				
+				listBox genderSelector forEnum Gender {
+					label = "Gender"
+				}
+				
 				table table1 {
 					label = "Table uno"
 				}
@@ -73,6 +78,10 @@ gui LibraryWeb for Library {
 				table personTable for Person {
 					label="Person Table"
 					
+					enabled isTableEditable
+					visible isTableEditable
+					paging
+//					size=20
 					columns {
 						name type=Text forOp getDisplayName filterable sortable;
 						
@@ -121,6 +130,9 @@ gui LibraryWeb for Library {
 				message="Are you really sure you want to do this!?!?"
 			}
 		
+			Condition Custom isTableEditable {
+				hint = "somehint2"
+			}
 			
 		
 			
@@ -144,6 +156,9 @@ gui LibraryWeb for Library {
 			view=MediaBrowse
 		}
 
+		Condition Custom isAdministrator {
+			hint = "somehint1"
+		}
 				
 	}
 	
