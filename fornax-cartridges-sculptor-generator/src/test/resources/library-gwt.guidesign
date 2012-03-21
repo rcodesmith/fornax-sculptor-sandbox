@@ -130,6 +130,15 @@ gui LibraryWeb for Library {
 				message="Are you really sure you want to do this!?!?"
 			}
 		
+			UiBehavior UpdateTable updatePersonTable {
+				hint = "updateTableHint"
+				table = personTable
+			}
+			
+			UiBehavior Custom customPersonTableBehavior {
+				hint="customhint"
+			}
+
 			Condition Custom isTableEditable {
 				hint = "somehint2"
 			}

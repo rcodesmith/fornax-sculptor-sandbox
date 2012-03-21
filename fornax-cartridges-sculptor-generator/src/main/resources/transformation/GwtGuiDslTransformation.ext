@@ -110,8 +110,8 @@ private modifyGuiParameter(Parameter param, GuiApplication guiApp) :
 
 boolean generateGuiDto(DslAnyProperty p) :
 	let res = p.getHint("gwt") != "skip" && p.getHint("gui") != "skip" :
-	debugTrace("generateGuiDto(" + p + ")") ->
-	debugTrace("generateGuiDto result = " + res )->
+//	debugTrace("generateGuiDto(" + p + ")") ->
+//	debugTrace("generateGuiDto result = " + res )->
 	res;
 
 
@@ -602,8 +602,8 @@ create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget wid
 	setLabel(widget.label) ->
 	setFor(domainObject) ->
 	setEnabledVisible(this, widget, module) ->
-//	setPaging(widget.paging) ->
-//	setSize(widget.size) ->
+	setPaging(widget.paging) ->
+	setSize(widget.size) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	columns.addAll(widget.columns.transformColumn(module));
 
@@ -792,19 +792,34 @@ create sculptorguimetamodel::UiBehavior this transformBehavior(DslUiBehavior beh
 create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPopulatePanelBehavior behavior, Module module) :
 //	debugTrace("transformBehavior(DslPopulatePanelBehavier)") ->
 	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
 	setName(behavior.name) ->
 	setPanel(behavior.panel.transformWidget(module));
 
 create sculptorguimetamodel::NavigateToViewBehavior this transformBehavior(DslNavigateToViewBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
 	setName(behavior.name) ->
 	setView(behavior.view.transformView(((DslGuiModule)(behavior.view.eContainer)).for.transform()));
 
-
 create sculptorguimetamodel::ConfirmMessageBehavior this transformBehavior(DslConfirmMessageBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
 	setName(behavior.name) ->
 	setMessage(behavior.message);
+
+create sculptorguimetamodel::UpdateTableBehavior this transformBehavior(DslUpdateTableBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setTable(behavior.table.transformWidget(module));
+
+create sculptorguimetamodel::CustomBehavior this transformBehavior(DslCustomBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name);
+
+	
 	
 create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding binding, Module module) :
 	error("Unexpected call to transform(DslBehaviorBinding)");

@@ -60,6 +60,8 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		TableWidget personTable = (TableWidget) widgets.get(0);
 		assertEquals("Person Table", personTable.getLabel());
 
+		assertEquals(true, personTable.isPaging());
+		
 		GuiDto person = (GuiDto)personTable.getFor();
 		assertNotNull(person);
 		assertEquals("Person", person.getName());
