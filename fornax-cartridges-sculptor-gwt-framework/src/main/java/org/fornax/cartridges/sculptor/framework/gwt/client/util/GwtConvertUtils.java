@@ -13,4 +13,8 @@ public class GwtConvertUtils {
 	public static String toString(Boolean val) {
 		return (val == null? null : val.toString());		
 	}
+
+	public static String toString(String val) {
+		return val;
+	}
 }

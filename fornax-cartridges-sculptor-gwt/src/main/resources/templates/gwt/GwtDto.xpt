@@ -50,7 +50,7 @@ which is causing attributes to get masked.«ENDREM»
 	Copied from templates::domain::DomainObject::domainObject for Enum
 «ENDREM»
 «DEFINE gwtEnumDto FOR Enum»
-    «FILE javaFileName(gwtDomainPackage(this) + "." + name)»
+    «FILE javaFileName(this.fqnGwtDto())»
 «javaHeader()»
 package «gwtDomainPackage()»;
 

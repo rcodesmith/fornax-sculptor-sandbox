@@ -122,18 +122,19 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «ENDDEFINE»
 
 «DEFINE widgetBindMethod FOR LinkWidget»
-«IF this.toView != null»
 
 	protected void bind«this.name.toFirstUpper()»() {
-   	view.«widgetClickHandlersExpr()».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
+	«IF this.toView != null»
+	   		view.«widgetClickHandlersExpr()».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
 			
-			@java.lang.Override
-			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
-				placeController.goTo(new «this.toView.fqnPlaceClass()»());
-			}
-		});
+				@java.lang.Override
+				public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
+					placeController.goTo(new «this.toView.fqnPlaceClass()»());
+				}
+			});
+	«ENDIF»
 	}
-«ENDIF»
+
 «ENDDEFINE»
 
 «REM»Methods to clear data from widgets«ENDREM»

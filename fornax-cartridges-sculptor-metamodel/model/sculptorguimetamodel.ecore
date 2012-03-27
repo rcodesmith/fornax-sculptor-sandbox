@@ -239,4 +239,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CustomBehavior" eSuperTypes="#//UiBehavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="CustomCondition" eSuperTypes="#//UiCondition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" upperBound="-1"
+        eType="#//UiBehavior"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnSelectItemBinding" eSuperTypes="#//BehaviorBinding"/>
 </ecore:EPackage>

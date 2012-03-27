@@ -224,6 +224,7 @@ DslPanelWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 		("contents" "{"
 			(widgets+=DslWidget)*
 		"}"
@@ -238,6 +239,7 @@ DslInputTextWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 	
 DslListBoxWidget :
@@ -248,6 +250,8 @@ DslListBoxWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnSelectItem)?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslTextAreaWidget :
@@ -258,6 +262,7 @@ DslTextAreaWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslAutocompleteWidget :
@@ -268,6 +273,8 @@ DslAutocompleteWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnSelectItem)?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslRadioButtonsWidget :
@@ -278,6 +285,7 @@ DslRadioButtonsWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslRichTextAreaWidget :
@@ -288,6 +296,7 @@ DslRichTextAreaWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslInputDateWidget :
@@ -298,6 +307,7 @@ DslInputDateWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
  
  DslNumberSpinnerWidget :
@@ -308,6 +318,7 @@ DslInputDateWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
  
 	
@@ -321,6 +332,7 @@ DslButtonWidget :
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
 		(onClick=DslOnClick)?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslInformationalTextWidget :
@@ -331,6 +343,7 @@ DslInformationalTextWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 
 DslSourceReference :
@@ -345,6 +358,7 @@ DslLinkWidget :
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
 		(onClick=DslOnClick)?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 	
 DslForProperty :
@@ -360,6 +374,7 @@ DslTableWidget :
 		('visible' visible=[DslUiCondition])?
 		("size" '=' size=INT)?
 		((paging?="paging") | (NOT "paging"))?
+		(behaviorBindings+=DslOnHover)?
 		("columns" "{"
 			(columns+=DslTableColumn)*
 		"}")?
@@ -380,6 +395,7 @@ DslCustomWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
+		(behaviorBindings+=DslOnHover)?
 	'}';
 	
 /////////////////////////////////////////////////////////////////////////
@@ -387,13 +403,17 @@ DslCustomWidget :
 /////////////////////////////////////////////////////////////////////////
 
 DslBehaviorBinding :
-	DslOnClick | DslOnHover;
+	DslOnClick | DslOnHover | DslOnSelectItem;
 	
 DslOnClick :
 	'onClick' '=' behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*;
 
 DslOnHover :
 	'onHover' '=' behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*;
+
+DslOnSelectItem :
+	'onSelectItem' '=' behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*;
+	
 
 
 	
@@ -418,7 +438,7 @@ DslGuiDto :
 //////////////////////////////////////////////////////////////
 
 DslUiBehavior :
-	DslPopulatePanelBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior | DslCustomBehavior;
+	DslPopulatePanelBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior | DslCustomBehavior  | DslCompositeBehavior;
 	
 DslPopulatePanelBehavior :
   (doc=STRING)?
@@ -453,6 +473,14 @@ DslCustomBehavior :
   "UiBehavior" "Custom" name=ID "{"
 	  ("hint" "=" hint=STRING)?
   "}";
+
+DslCompositeBehavior :
+  (doc=STRING)?
+  "UiBehavior" "Composite" name=ID "{"
+	  ("hint" "=" hint=STRING)?
+   	behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*
+  "}";
+	
 
 
 //////////////////////////////////////////////////////////////

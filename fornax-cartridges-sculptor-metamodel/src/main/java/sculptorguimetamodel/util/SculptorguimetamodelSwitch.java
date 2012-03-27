@@ -575,6 +575,21 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.COMPOSITE_BEHAVIOR: {
+				CompositeBehavior compositeBehavior = (CompositeBehavior)theEObject;
+				Object result = caseCompositeBehavior(compositeBehavior);
+				if (result == null) result = caseUiBehavior(compositeBehavior);
+				if (result == null) result = caseNamedElement(compositeBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.ON_SELECT_ITEM_BINDING: {
+				OnSelectItemBinding onSelectItemBinding = (OnSelectItemBinding)theEObject;
+				Object result = caseOnSelectItemBinding(onSelectItemBinding);
+				if (result == null) result = caseBehaviorBinding(onSelectItemBinding);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1476,6 +1491,36 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseCustomCondition(CustomCondition object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseCompositeBehavior(CompositeBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>On Select Item Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>On Select Item Binding</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseOnSelectItemBinding(OnSelectItemBinding object) {
 		return null;
 	}
 

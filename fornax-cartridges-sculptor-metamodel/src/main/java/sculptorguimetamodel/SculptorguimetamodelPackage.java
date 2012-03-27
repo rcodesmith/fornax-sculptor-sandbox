@@ -6388,6 +6388,89 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int CUSTOM_CONDITION_FEATURE_COUNT = UI_CONDITION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.CompositeBehaviorImpl <em>Composite Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.CompositeBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCompositeBehavior()
+	 * @generated
+	 */
+	int COMPOSITE_BEHAVIOR = 60;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BEHAVIOR__BEHAVIORS = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Composite Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.OnSelectItemBindingImpl <em>On Select Item Binding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.OnSelectItemBindingImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getOnSelectItemBinding()
+	 * @generated
+	 */
+	int ON_SELECT_ITEM_BINDING = 61;
+
+	/**
+	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_SELECT_ITEM_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
+
+	/**
+	 * The number of structural features of the '<em>On Select Item Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_SELECT_ITEM_BINDING_FEATURE_COUNT = BEHAVIOR_BINDING_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8110,6 +8193,37 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getCustomCondition();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.CompositeBehavior <em>Composite Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Composite Behavior</em>'.
+	 * @see sculptorguimetamodel.CompositeBehavior
+	 * @generated
+	 */
+	EClass getCompositeBehavior();
+
+	/**
+	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.CompositeBehavior#getBehaviors <em>Behaviors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Behaviors</em>'.
+	 * @see sculptorguimetamodel.CompositeBehavior#getBehaviors()
+	 * @see #getCompositeBehavior()
+	 * @generated
+	 */
+	EReference getCompositeBehavior_Behaviors();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.OnSelectItemBinding <em>On Select Item Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>On Select Item Binding</em>'.
+	 * @see sculptorguimetamodel.OnSelectItemBinding
+	 * @generated
+	 */
+	EClass getOnSelectItemBinding();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9546,6 +9660,34 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CUSTOM_CONDITION = eINSTANCE.getCustomCondition();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.CompositeBehaviorImpl <em>Composite Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.CompositeBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getCompositeBehavior()
+		 * @generated
+		 */
+		EClass COMPOSITE_BEHAVIOR = eINSTANCE.getCompositeBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Behaviors</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITE_BEHAVIOR__BEHAVIORS = eINSTANCE.getCompositeBehavior_Behaviors();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.OnSelectItemBindingImpl <em>On Select Item Binding</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.OnSelectItemBindingImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getOnSelectItemBinding()
+		 * @generated
+		 */
+		EClass ON_SELECT_ITEM_BINDING = eINSTANCE.getOnSelectItemBinding();
 
 	}
 

@@ -20,6 +20,7 @@ import sculptorguimetamodel.BasicTypeViewProperty;
 import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.ButtonWidget;
+import sculptorguimetamodel.CompositeBehavior;
 import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.CustomBehavior;
@@ -44,6 +45,7 @@ import sculptorguimetamodel.NavigateToViewBehavior;
 import sculptorguimetamodel.NumberSpinnerWidget;
 import sculptorguimetamodel.OnClickBinding;
 import sculptorguimetamodel.OnHoverBinding;
+import sculptorguimetamodel.OnSelectItemBinding;
 import sculptorguimetamodel.PanelWidget;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.PropertyReference;
@@ -505,6 +507,20 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass customConditionEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass onSelectItemBindingEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2033,6 +2049,33 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompositeBehavior() {
+		return compositeBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompositeBehavior_Behaviors() {
+		return (EReference)compositeBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOnSelectItemBinding() {
+		return onSelectItemBindingEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2277,6 +2320,11 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		customBehaviorEClass = createEClass(CUSTOM_BEHAVIOR);
 
 		customConditionEClass = createEClass(CUSTOM_CONDITION);
+
+		compositeBehaviorEClass = createEClass(COMPOSITE_BEHAVIOR);
+		createEReference(compositeBehaviorEClass, COMPOSITE_BEHAVIOR__BEHAVIORS);
+
+		onSelectItemBindingEClass = createEClass(ON_SELECT_ITEM_BINDING);
 	}
 
 	/**
@@ -2364,6 +2412,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		confirmMessageBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		customBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		customConditionEClass.getESuperTypes().add(this.getUiCondition());
+		compositeBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		onSelectItemBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2587,6 +2637,11 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(customBehaviorEClass, CustomBehavior.class, "CustomBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(customConditionEClass, CustomCondition.class, "CustomCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(compositeBehaviorEClass, CompositeBehavior.class, "CompositeBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeBehavior_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, CompositeBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(onSelectItemBindingEClass, OnSelectItemBinding.class, "OnSelectItemBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

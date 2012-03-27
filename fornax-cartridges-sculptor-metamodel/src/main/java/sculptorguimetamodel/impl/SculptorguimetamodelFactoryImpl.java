@@ -120,6 +120,8 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.CONFIRM_MESSAGE_BEHAVIOR: return createConfirmMessageBehavior();
 			case SculptorguimetamodelPackage.CUSTOM_BEHAVIOR: return createCustomBehavior();
 			case SculptorguimetamodelPackage.CUSTOM_CONDITION: return createCustomCondition();
+			case SculptorguimetamodelPackage.COMPOSITE_BEHAVIOR: return createCompositeBehavior();
+			case SculptorguimetamodelPackage.ON_SELECT_ITEM_BINDING: return createOnSelectItemBinding();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -723,6 +725,26 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public CustomCondition createCustomCondition() {
 		CustomConditionImpl customCondition = new CustomConditionImpl();
 		return customCondition;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeBehavior createCompositeBehavior() {
+		CompositeBehaviorImpl compositeBehavior = new CompositeBehaviorImpl();
+		return compositeBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OnSelectItemBinding createOnSelectItemBinding() {
+		OnSelectItemBindingImpl onSelectItemBinding = new OnSelectItemBindingImpl();
+		return onSelectItemBinding;
 	}
 
 																/**

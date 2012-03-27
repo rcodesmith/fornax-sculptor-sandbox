@@ -228,3 +228,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class CustomBehavior -> UiBehavior
 
   Class CustomCondition -> UiCondition
+
+  Class CompositeBehavior -> UiBehavior
+    Reference behaviors : UiBehavior<<0..*>>
+
+  Class OnSelectItemBinding -> BehaviorBinding

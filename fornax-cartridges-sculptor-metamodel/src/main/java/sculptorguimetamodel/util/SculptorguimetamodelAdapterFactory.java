@@ -259,6 +259,12 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseCustomCondition(CustomCondition object) {
 				return createCustomConditionAdapter();
 			}
+			public Object caseCompositeBehavior(CompositeBehavior object) {
+				return createCompositeBehaviorAdapter();
+			}
+			public Object caseOnSelectItemBinding(OnSelectItemBinding object) {
+				return createOnSelectItemBindingAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1141,6 +1147,34 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCustomConditionAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.CompositeBehavior <em>Composite Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.CompositeBehavior
+	 * @generated
+	 */
+	public Adapter createCompositeBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.OnSelectItemBinding <em>On Select Item Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.OnSelectItemBinding
+	 * @generated
+	 */
+	public Adapter createOnSelectItemBindingAdapter() {
 		return null;
 	}
 

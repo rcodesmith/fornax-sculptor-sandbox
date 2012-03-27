@@ -483,38 +483,42 @@ create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Modul
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
 
 create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
-	setHint(widget.hint) ->
-	setDoc(widget.doc) ->
-	setWidgetType(widget.widgetType) ->
-	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform())) ->
-	setName(widget.name) ->
-	setLabel(widget.label);
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform()));
+//	setName(widget.name) ->
+//	setLabel(widget.label);
 
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
-	setHint(widget.hint) ->
-	setDoc(widget.doc) ->
-	setWidgetType(widget.widgetType) ->
-	setName(widget.name) ->
-	transformSourceReference(this, widget.sourceRef) ->
-	setLabel(widget.label);
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+//	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef);
+//	setLabel(widget.label);
 
-private initFromDslWidget(Widget widget, DslWidget dslWidget) :
+private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
 	widget.setHint(dslWidget.hint) ->
 	widget.setDoc(dslWidget.doc) ->
 	widget.setWidgetType(dslWidget.widgetType) ->
 	widget.setName(dslWidget.name) ->
-	widget.setLabel(dslWidget.label);
+	widget.setLabel(dslWidget.label) ->
+	widget.behaviorBindings.addAll(dslWidget.behaviorBindings.transform(module));
 
 
 create sculptorguimetamodel::CustomWidget this transformWidget(DslCustomWidget widget, Module module) :
-	initFromDslWidget(this, widget) ->
+	initFromDslWidget(this, widget, module) ->
 	transformSourceReference(this, widget.sourceRef);
+	
 
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
-	initFromDslWidget(this, widget) ->
+	initFromDslWidget(this, widget, module) ->
 //	setHint(widget.hint) ->
 //	setDoc(widget.doc) ->
 //	setWidgetType(widget.widgetType) ->
@@ -523,9 +527,9 @@ create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWi
 //	setLabel(widget.label);
 
 create sculptorguimetamodel::ListBoxWidget this transformWidget(DslListBoxWidget widget, Module module) :
-	initFromDslWidget(this, widget) ->
+	initFromDslWidget(this, widget, module) ->
 	transformSourceReference(this, widget.sourceRef) ->
-	setForEnum(widget.forEnum == null ? null : widget.forEnum.transform());
+	setForEnum(widget.forEnum == null ? null : widget.forEnum.transformToGui());
 
 create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
@@ -546,13 +550,14 @@ create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioBut
 	setLabel(widget.label);
 
 create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
-	setHint(widget.hint) ->
-	setDoc(widget.doc) ->
-	setWidgetType(widget.widgetType) ->
-	setName(widget.name) ->
-	transformSourceReference(this, widget.sourceRef) ->
-	setLabel(widget.label);
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+//	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef);
+//	setLabel(widget.label);
 
 create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
 //	setView(this.findContainingView(module)) ->
@@ -819,6 +824,12 @@ create sculptorguimetamodel::CustomBehavior this transformBehavior(DslCustomBeha
 	setHint(behavior.hint) ->
 	setName(behavior.name);
 
+create sculptorguimetamodel::CompositeBehavior this transformBehavior(DslCompositeBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	behaviors.addAll(behavior.behaviors.transformBehavior(module));
+
 	
 	
 create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding binding, Module module) :
@@ -828,6 +839,9 @@ create sculptorguimetamodel::OnClickBinding this transform(DslOnClick binding, M
 	behaviors.addAll(binding.behaviors.transformBehavior(module));
 
 create sculptorguimetamodel::OnHoverBinding this transform(DslOnHover binding, Module module) :
+	behaviors.addAll(binding.behaviors.transformBehavior(module));
+
+create sculptorguimetamodel::OnSelectItemBinding this transform(DslOnSelectItem binding, Module module) :
 	behaviors.addAll(binding.behaviors.transformBehavior(module));
 	
 	

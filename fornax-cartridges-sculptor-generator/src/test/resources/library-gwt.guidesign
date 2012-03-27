@@ -63,9 +63,10 @@ gui LibraryWeb for Library {
 					label = "Text area uno"
 				}
 				
-//				autocomplete autocomp1 forProperty ssn {
-//					label = "Auto complete one"
-//				}
+				autocomplete autocomp1 {
+					label = "Auto complete one"
+					onSelectItem=navigateToMediaBrowse
+				}
 			}
 		}
 		
@@ -165,6 +166,11 @@ gui LibraryWeb for Library {
 			view=MediaBrowse
 		}
 
+		"Composite"
+		UiBehavior Composite compositeBehavior {
+			
+		}
+		
 		Condition Custom isAdministrator {
 			hint = "somehint1"
 		}

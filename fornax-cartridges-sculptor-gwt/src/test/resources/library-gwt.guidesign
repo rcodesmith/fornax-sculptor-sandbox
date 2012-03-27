@@ -30,9 +30,18 @@ gui LibraryWeb for Library {
 				inputText nameField {
 					label = "Name"
 				}
-				table table1 {
-					label = "Table uno"
+
+				listBox genderSelector forEnum Gender {
+					label = "Gender"
 				}
+
+				listBox typeSelector {
+					label = "Type"
+				}
+				
+//				custom customWidget {
+//					label = "Custom Widget"
+//				}
 				
 				button saveButton {
 					label = "Save"
@@ -42,9 +51,9 @@ gui LibraryWeb for Library {
 					label = "Info Numero Uno"
 				}
 				
-				textArea textArea1 {
-					label = "Text area uno"
-				}
+				//textArea textArea1 {
+				//	label = "Text area uno"
+				//}
 				
 //				autocomplete autocomp1 forProperty ssn {
 //					label = "Auto complete one"

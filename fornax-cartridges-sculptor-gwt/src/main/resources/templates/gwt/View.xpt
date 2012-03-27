@@ -87,13 +87,19 @@ package «gwtWidgetsPackage()»;
 «ENDFILE»
 «ENDDEFINE»
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Widget interface declarations
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 «REM»Declarations that must be added to the view interface for each widget«ENDREM»
 «DEFINE widgetInterfaceDeclarations FOR Widget»
 	// No interface declarations for «name» widget - fill in implementation?
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR TableWidget»
-	public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
+	«IF this.for != null»
+		public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
@@ -119,15 +125,39 @@ package «gwtWidgetsPackage()»;
 	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
 «ENDDEFINE»
 
+«DEFINE widgetInterfaceDeclarations FOR AutocompleteWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+	
+	public com.google.gwt.event.logical.shared.HasSelectionHandlers<com.google.gwt.user.client.ui.SuggestOracle.Suggestion> get«name.toFirstUpper()»HasSelectionHandlers();
+		
+«ENDDEFINE»
+
 «DEFINE widgetInterfaceDeclarations FOR LinkWidget»
     «formatJavaDoc()»
 
 	public com.google.gwt.event.dom.client.HasClickHandlers «widgetClickHandlersExpr()»;
 «ENDDEFINE»
 
+
 «DEFINE widgetInterfaceDeclarations FOR PanelWidget»
 	public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget «widgetForIsWidgetExpr()»;
 «ENDDEFINE»
+
+«DEFINE widgetInterfaceDeclarations FOR ListBoxWidget»
+	«IF this.forEnum != null»
+		/**
+		 * Value accessor for «name»
+		 */
+		public com.google.gwt.user.client.ui.HasValue<«this.forEnum.fqnGwtDto()»> get«name.toFirstUpper()»HasValue();
+	«ENDIF»
+«ENDDEFINE»
+
+«REM»Placeholder for any custom widget interface declarations.  If you have any, override this and invoke your template
+based on CustomWidget.widgetType«ENDREM»
+«DEFINE widgetInterfaceDeclarations FOR CustomWidget»
+«ENDDEFINE»
+
+
 
 
 
@@ -177,6 +207,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 
 «ENDDEFINE»
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Widget init calls
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 «REM»Calls to widget initialization functions on construction«ENDREM»
 «DEFINE widgetInitCalls FOR Widget»
 «ENDDEFINE»
@@ -195,10 +229,16 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 «ENDDEFINE»
 
 
+
 «REM»Widget misc. methods«ENDREM»
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Widget methods - any methods, including init methods that may be needed
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 «DEFINE widgetMethods FOR TableWidget»
+	«IF this.for != null»
+
     public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData) {
         java.util.List<«fqnTableForClass()»> newDataList = new java.util.ArrayList<«fqnTableForClass()»>(newData);
         replace«name.toFirstUpper()»Data(newDataList);
@@ -226,6 +266,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     «name».addColumn(init«name.toFirstUpper()»Table«col.name.toFirstUpper()»Column());
     «ENDFOREACH»
     }
+	«ENDIF»
     
     «FOREACH columns AS col»
 	    «IF col.columnType == "Text"»
@@ -242,9 +283,11 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
     «ENDFOREACH»
     
 
+	«IF this.for != null»
 	public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData() {
 		return «name»;
 	}
+	«ENDIF»
 	
 	
 
@@ -445,6 +488,21 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	}
 «ENDDEFINE»
 
+«DEFINE widgetMethods FOR AutocompleteWidget»
+	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
+		return «name»;
+	}
+		
+	
+	
+	public com.google.gwt.event.logical.shared.HasSelectionHandlers<com.google.gwt.user.client.ui.SuggestOracle.Suggestion> get«name.toFirstUpper()»HasSelectionHandlers() {
+		return «name»;
+	}
+	
+	
+«ENDDEFINE»
+
+
 «DEFINE widgetMethods FOR LinkWidget»
     «formatJavaDoc()»
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
@@ -468,11 +526,30 @@ public abstract class «gwtViewWidgetBaseClass()» extends com.google.gwt.user.cli
 	}
 «ENDDEFINE»
 
+«DEFINE widgetMethods FOR ListBoxWidget»
+	«IF this.forEnum != null»
+		/**
+		 * Value accessor for «name»
+		 */
+		public com.google.gwt.user.client.ui.HasValue<«this.forEnum.fqnGwtDto()»> get«name.toFirstUpper()»HasValue() {
+			return «name»;
+		}
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE widgetMethods FOR CustomWidget»
+«ENDDEFINE»
+
 
 «DEFINE widgetMethods FOR Widget»
 	// No widget methods for widget «name» - need to implement?
 «ENDDEFINE»
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Widget object declarations - most can just use widgetDeclaration template below
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 «REM»
 	Widget attribute implementation delarations

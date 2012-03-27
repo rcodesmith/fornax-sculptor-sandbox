@@ -55,4 +55,18 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         
         assertContains(tableViewCode, "public interface TableViewView extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewBaseView {");
     }
+    
+    @Test
+    public void assertPersonFormViewInterfaceCode() throws IOException {
+    	View personFormView = (View) getNamedElement("PersonForm", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::View::viewBaseInterface", personFormView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/PersonFormBaseView.java");
+  
+        assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasValue<org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Gender> getGenderSelectorHasValue();");
+//        assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view;");
+
+    }
 }

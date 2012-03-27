@@ -3,6 +3,7 @@ package org.fornax.cartridges.sculptor.generator.transformation;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
 import sculptorguimetamodel.ConfirmMessageBehavior;
@@ -10,14 +11,15 @@ import sculptorguimetamodel.CustomBehavior;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.View;
+import sculptorguimetamodel.Widget;
 
 public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 
 	@Test
 	public void assertPersonModuleBehaviors() {
-		assertEquals(1, personModule().getBehaviors().size());
+		assertEquals(2, personModule().getBehaviors().size());
 		
-        assertOneAndOnlyOne(personModule().getBehaviors(), "navigateToMediaBrowse");
+        assertOneAndOnlyOne(personModule().getBehaviors(), "navigateToMediaBrowse", "compositeBehavior");
 
 	}
 	
@@ -68,7 +70,15 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		assertNotNull(customBehavior);
 		
 		assertEquals("customPersonTableBehavior", customBehavior.getName());
+	}
+	
+	@Test
+	public void assertAutocompleteBoundBehaviors() {
+		View personFormView = (View)getNamedElement("PersonForm", personModule().getViews());
 		
+		Widget autocomp = (Widget)getNamedElement("autocomp1", personFormView.getWidgets());
+		EList bindings = autocomp.getBehaviorBindings();
+		assertEquals(1, bindings.size());
 	}
 	
 	//

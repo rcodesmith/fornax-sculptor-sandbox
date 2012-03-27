@@ -566,6 +566,24 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	CustomCondition createCustomCondition();
 
 																/**
+	 * Returns a new object of class '<em>Composite Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Behavior</em>'.
+	 * @generated
+	 */
+	CompositeBehavior createCompositeBehavior();
+
+																/**
+	 * Returns a new object of class '<em>On Select Item Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>On Select Item Binding</em>'.
+	 * @generated
+	 */
+	OnSelectItemBinding createOnSelectItemBinding();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

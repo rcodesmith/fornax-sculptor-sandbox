@@ -147,6 +147,10 @@ String fqnGwtDto(GuiDto do) :
 //	debugTrace("fqnGwtDto(" + do + ")") ->
 	do.gwtDomainPackage() + "." + do.name;
 
+String fqnGwtDto(GuiEnum enum) :
+	enum.gwtDomainPackage() + "." + enum.name;
+	
+
 String fqnGwtDto(GuiCommand do) :
 	do.gwtCommandPackage() + "." + do.name;
 	
@@ -367,9 +371,9 @@ DomainObject tableForClass(TableWidget table) :
 // Fully qualified name of the DTO class that a table is for
 String fqnTableForClass(TableWidget table) :
 	let res = fqnGwtDto(table.for) : 
-	debugTrace("fqnTableForClass() : table.for = " + table.for) ->
-	debugTrace("fqnTableForClass() : res = " + res) ->
-	res; // tableForClass(table)
+		debugTrace("fqnTableForClass() : table.for = " + table.for) ->
+		debugTrace("fqnTableForClass() : res = " + res) ->
+		res; // tableForClass(table)
 
 Boolean widgetHasNameProp(ViewDataProperty prop) :
 	if (prop.isDateOrDateTime()) then
@@ -611,6 +615,7 @@ Set[Service] getUsedServices(View view) :
 String resolveGwtWidgetType(Widget widget) :
 	error("Unexpected call to resolveGwtWidgetType: " + widget);
 
+
 String resolveGwtWidgetType(InputDateWidget widget) :
 	getProperty("gwt.widget.inputdate.class");
 
@@ -636,6 +641,12 @@ String resolveGwtWidgetTag(ButtonWidget widget) :
 	getProperty("gwt.widget.button.tag");
 	
 
+String resolveGwtWidgetType(AutocompleteWidget widget) :
+	(widget.widgetType != null ? getWidgetType(widget.widgetType) : getWidgetType("autocomplete"));
+
+String resolveGwtWidgetTag(AutocompleteWidget widget) :
+	(widget.widgetType != null ? getWidgetTag(widget.widgetType) : getWidgetTag("autocomplete"));
+
 String resolveGwtWidgetType(LinkWidget widget) :
 	getProperty("gwt.widget.link.class");
 
@@ -653,6 +664,30 @@ String resolveGwtWidgetType(TableWidget widget) :
 
 String resolveGwtWidgetTag(TableWidget widget) :
 	(widget.widgetType != null ? getWidgetTag(widget.widgetType) : getWidgetTag("table"));
+
+String resolveGwtWidgetType(ListBoxWidget widget) :
+	if(widget.widgetType != null) then
+		getWidgetType(widget.widgetType)
+	else
+		widget.forEnum != null? getWidgetType("enumListBox") + "<" + widget.forEnum.fqnGwtDto() + ">" :
+			getWidgetType("listBox");
+
+String resolveGwtWidgetTag(ListBoxWidget widget) :
+	if(widget.widgetType != null) then
+		getWidgetTag(widget.widgetType)
+	else
+		widget.forEnum != null? getWidgetTag("enumListBox") :
+			getWidgetTag("listBox");
+
+String resolveGwtWidgetType(CustomWidget widget) :
+	(widget.widgetType != null ? getWidgetType(widget.widgetType) : getWidgetType("custom"));
+		
+String resolveGwtWidgetTag(CustomWidget widget) :
+	if(widget.widgetType != null) then
+		getWidgetTag(widget.widgetType)
+	else
+		getWidgetTag("custom");
+
 	
 
 //////////////////////////////////////////////////////////////////////////////

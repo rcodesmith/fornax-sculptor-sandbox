@@ -102,5 +102,14 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         
     }
     
+    @Test
+    public void assertPersonFormViewBaseCode() throws IOException {
+    	View personForm = (View) getNamedElement("PersonForm", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::View::viewBase", personForm,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+//        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewBase.java");
 
+    }
 }

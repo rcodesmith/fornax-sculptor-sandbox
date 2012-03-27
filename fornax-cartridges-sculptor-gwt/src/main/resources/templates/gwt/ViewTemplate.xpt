@@ -58,7 +58,9 @@
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR InformationalTextWidget»
-	<g:Label text="«label»" />
+	«IF label != null»
+		<g:Label text="«label»" />
+	«ENDIF»
 	<«this.resolveGwtWidgetTag()» ui:field="«name»"  name="«name»"/>
 	
 «ENDDEFINE»
@@ -72,16 +74,42 @@
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR TableWidget»
+	«IF label != null»
+		<g:Label text="«label»" />
+	«ENDIF»
 	<«this.resolveGwtWidgetTag()» ui:field="«name»" tableLayoutFixed="false" />
+«ENDDEFINE»
+
+
+
+«DEFINE widgetTemplate FOR AutocompleteWidget»
+	«IF label != null»
+		<g:Label text="«label»" />
+	«ENDIF»
+	<«this.resolveGwtWidgetTag()» ui:field="«name»"></«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR LinkWidget»
 	<«this.resolveGwtWidgetTag()» ui:field="«name»" text="«label»" HTML="«label»"></«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»
 
+«DEFINE widgetTemplate FOR ListBoxWidget»
+	«IF label != null»
+		<g:Label text="«label»" />
+	«ENDIF»
+	<«this.resolveGwtWidgetTag()» ui:field="«name»"></«this.resolveGwtWidgetTag()»>
+«ENDDEFINE»
+
+«DEFINE widgetTemplate FOR CustomWidget»
+«ENDDEFINE»
+
 «DEFINE widgetTemplate FOR PanelWidget»
-	
 	<«this.resolveGwtWidgetTag()» ui:field="«name»">
+
+		«IF label != null»
+			<g:Label text="«label»" />
+		«ENDIF»
+		
 		«FOREACH widgets AS widget»
 			<!-- Widget «widget.name» -->
 			<g:FlowPanel>
