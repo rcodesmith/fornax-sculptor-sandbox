@@ -122,6 +122,8 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.CUSTOM_CONDITION: return createCustomCondition();
 			case SculptorguimetamodelPackage.COMPOSITE_BEHAVIOR: return createCompositeBehavior();
 			case SculptorguimetamodelPackage.ON_SELECT_ITEM_BINDING: return createOnSelectItemBinding();
+			case SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN: return createWidgetTableColumn();
+			case SculptorguimetamodelPackage.SIMPLE_TABLE_COLUMN: return createSimpleTableColumn();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -745,6 +747,26 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public OnSelectItemBinding createOnSelectItemBinding() {
 		OnSelectItemBindingImpl onSelectItemBinding = new OnSelectItemBindingImpl();
 		return onSelectItemBinding;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WidgetTableColumn createWidgetTableColumn() {
+		WidgetTableColumnImpl widgetTableColumn = new WidgetTableColumnImpl();
+		return widgetTableColumn;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleTableColumn createSimpleTableColumn() {
+		SimpleTableColumnImpl simpleTableColumn = new SimpleTableColumnImpl();
+		return simpleTableColumn;
 	}
 
 																/**

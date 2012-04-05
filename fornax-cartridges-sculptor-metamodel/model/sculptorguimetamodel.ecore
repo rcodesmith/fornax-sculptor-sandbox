@@ -242,4 +242,9 @@
         eType="#//UiBehavior"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OnSelectItemBinding" eSuperTypes="#//BehaviorBinding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WidgetTableColumn" eSuperTypes="#//TableColumn">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widget" lowerBound="1"
+        eType="#//Widget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleTableColumn" eSuperTypes="#//TableColumn"/>
 </ecore:EPackage>

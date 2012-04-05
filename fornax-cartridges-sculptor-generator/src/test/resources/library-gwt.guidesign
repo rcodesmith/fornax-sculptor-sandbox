@@ -92,7 +92,13 @@ gui LibraryWeb for Library {
 						
 						birthDate type=Date editable; // forProperty birthDate
 
+						widget listBox genderSelector forEnum Gender {
+							label = "Gender"
+						}
+						
 						edit type=Button onClick=populatePersonDetailsPanel;
+						
+
 					}
 				}
 				

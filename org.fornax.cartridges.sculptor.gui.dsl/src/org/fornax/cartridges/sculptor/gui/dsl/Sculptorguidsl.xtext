@@ -389,7 +389,9 @@ DslSimpleTableColumn :
 		(behaviorBindings+=DslOnClick)? (behaviorBindings+=DslOnHover)? ";" ;
 
 DslWidgetTableColumn :
-	'widget' widget=DslWidget;
+	'widget' ("hint" "=" hint=STRING)? ((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))?
+		((editable?="editable") | (NOT "editable"))?
+		widget=DslWidget;
 
 
 

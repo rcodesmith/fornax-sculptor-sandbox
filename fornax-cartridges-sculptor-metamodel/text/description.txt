@@ -232,3 +232,8 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference behaviors : UiBehavior<<0..*>>
 
   Class OnSelectItemBinding -> BehaviorBinding
+
+  Class WidgetTableColumn -> TableColumn
+    Reference widget : Widget<<1..1>>
+
+  Class SimpleTableColumn -> TableColumn

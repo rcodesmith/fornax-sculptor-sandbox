@@ -25,6 +25,7 @@ import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
+import sculptorguimetamodel.WidgetTableColumn;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Service;
 
@@ -72,7 +73,7 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		
 		EList tableCols = personTable.getColumns();
 		assertNotNull(tableCols);
-		assertOneAndOnlyOne(tableCols, "name", "birthDate", "edit");
+		assertOneAndOnlyOne(tableCols, "name", "birthDate", "genderSelector", "edit");
 
 		TableColumn nameCol = (TableColumn) tableCols.get(0);
 		assertEquals("name", nameCol.getName());
@@ -89,7 +90,11 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 
 		// assertEquals("birthDate", birthDateCol.getForAttribute().getName());
 
-		TableColumn editCol = (TableColumn) tableCols.get(2);
+		WidgetTableColumn widgetCol = (WidgetTableColumn) tableCols.get(2);
+		assertNotNull(widgetCol);
+		assertEquals("Widget", widgetCol.getColumnType());
+		
+		TableColumn editCol = (TableColumn) tableCols.get(3);
 		assertNotNull(editCol);
 		assertEquals("Button", editCol.getColumnType());
 		assertEquals(1, editCol.getBehaviorBindings().size());

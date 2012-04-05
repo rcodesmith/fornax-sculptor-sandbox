@@ -591,6 +591,26 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN: {
+				WidgetTableColumn widgetTableColumn = (WidgetTableColumn)theEObject;
+				Object result = caseWidgetTableColumn(widgetTableColumn);
+				if (result == null) result = caseTableColumn(widgetTableColumn);
+				if (result == null) result = casePropertyReferringWidget(widgetTableColumn);
+				if (result == null) result = caseWidget(widgetTableColumn);
+				if (result == null) result = caseNamedElement(widgetTableColumn);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.SIMPLE_TABLE_COLUMN: {
+				SimpleTableColumn simpleTableColumn = (SimpleTableColumn)theEObject;
+				Object result = caseSimpleTableColumn(simpleTableColumn);
+				if (result == null) result = caseTableColumn(simpleTableColumn);
+				if (result == null) result = casePropertyReferringWidget(simpleTableColumn);
+				if (result == null) result = caseWidget(simpleTableColumn);
+				if (result == null) result = caseNamedElement(simpleTableColumn);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1522,6 +1542,36 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseOnSelectItemBinding(OnSelectItemBinding object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Widget Table Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Widget Table Column</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseWidgetTableColumn(WidgetTableColumn object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Table Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Table Column</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSimpleTableColumn(SimpleTableColumn object) {
 		return null;
 	}
 

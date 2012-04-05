@@ -265,6 +265,12 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseOnSelectItemBinding(OnSelectItemBinding object) {
 				return createOnSelectItemBindingAdapter();
 			}
+			public Object caseWidgetTableColumn(WidgetTableColumn object) {
+				return createWidgetTableColumnAdapter();
+			}
+			public Object caseSimpleTableColumn(SimpleTableColumn object) {
+				return createSimpleTableColumnAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1175,6 +1181,34 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOnSelectItemBindingAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.WidgetTableColumn <em>Widget Table Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.WidgetTableColumn
+	 * @generated
+	 */
+	public Adapter createWidgetTableColumnAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.SimpleTableColumn <em>Simple Table Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.SimpleTableColumn
+	 * @generated
+	 */
+	public Adapter createSimpleTableColumnAdapter() {
 		return null;
 	}
 

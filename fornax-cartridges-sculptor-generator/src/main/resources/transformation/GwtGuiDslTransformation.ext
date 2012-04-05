@@ -620,7 +620,7 @@ private setEnabledVisible(Widget widget, DslWidget dslWidget, Module module) :
 	widget.setEnabled(dslWidget.enabled == null ? null : dslWidget.enabled.transformCondition(module)) ->
 	widget.setVisible(dslWidget.visible == null ? null : dslWidget.visible.transformCondition(module));
 	
-create sculptorguimetamodel::TableColumn this transformColumn(DslSimpleTableColumn col, Module module) :
+create sculptorguimetamodel::SimpleTableColumn this transformColumn(DslSimpleTableColumn col, Module module) :
 	setName(col.name)->
 	// TODO: add doc to dsl & here
 	setHint(widget.hint) ->
@@ -631,6 +631,15 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslSimpleTableColu
 	setEditable(col.editable) ->
 	transformSourceReference(this, col.sourceRef) ->
 	behaviorBindings.addAll(col.behaviorBindings.transform(module));
+
+create sculptorguimetamodel::WidgetTableColumn this transformColumn(DslWidgetTableColumn col, Module module) :
+	setName(col.widget.name) ->
+	setColumnType("Widget") ->
+	setHint(widget.hint) ->
+	setSortable(col.sortable) ->
+	setFilterable(col.filterable) ->
+	setEditable(col.editable) ->
+	setWidget(col.widget.transformWidget(module));
 
 create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :
 	let domainObject = getForDomainObject(widget.for) :

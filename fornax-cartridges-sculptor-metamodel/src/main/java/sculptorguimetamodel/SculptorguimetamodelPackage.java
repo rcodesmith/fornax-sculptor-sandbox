@@ -6606,6 +6606,359 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int ON_SELECT_ITEM_BINDING_FEATURE_COUNT = BEHAVIOR_BINDING_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.WidgetTableColumnImpl <em>Widget Table Column</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.WidgetTableColumnImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getWidgetTableColumn()
+	 * @generated
+	 */
+	int WIDGET_TABLE_COLUMN = 62;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__NAME = TABLE_COLUMN__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__DOC = TABLE_COLUMN__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__HINT = TABLE_COLUMN__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__VIEW = TABLE_COLUMN__VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__LABEL = TABLE_COLUMN__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__BEHAVIOR_BINDINGS = TABLE_COLUMN__BEHAVIOR_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__ENABLED = TABLE_COLUMN__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Widget Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__WIDGET_TYPE = TABLE_COLUMN__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__VISIBLE = TABLE_COLUMN__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__FOR_ATTRIBUTE = TABLE_COLUMN__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__FOR_REFERENCE = TABLE_COLUMN__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__FOR_OP = TABLE_COLUMN__FOR_OP;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__FOR = TABLE_COLUMN__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__COLUMN_TYPE = TABLE_COLUMN__COLUMN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Filterable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__FILTERABLE = TABLE_COLUMN__FILTERABLE;
+
+	/**
+	 * The feature id for the '<em><b>Sortable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__SORTABLE = TABLE_COLUMN__SORTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Editable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__EDITABLE = TABLE_COLUMN__EDITABLE;
+
+	/**
+	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__WIDGET = TABLE_COLUMN_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Widget Table Column</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN_FEATURE_COUNT = TABLE_COLUMN_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.SimpleTableColumnImpl <em>Simple Table Column</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.SimpleTableColumnImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getSimpleTableColumn()
+	 * @generated
+	 */
+	int SIMPLE_TABLE_COLUMN = 63;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__NAME = TABLE_COLUMN__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__DOC = TABLE_COLUMN__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__HINT = TABLE_COLUMN__HINT;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__VIEW = TABLE_COLUMN__VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__LABEL = TABLE_COLUMN__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__BEHAVIOR_BINDINGS = TABLE_COLUMN__BEHAVIOR_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__ENABLED = TABLE_COLUMN__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Widget Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__WIDGET_TYPE = TABLE_COLUMN__WIDGET_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__VISIBLE = TABLE_COLUMN__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__FOR_ATTRIBUTE = TABLE_COLUMN__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__FOR_REFERENCE = TABLE_COLUMN__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__FOR_OP = TABLE_COLUMN__FOR_OP;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__FOR = TABLE_COLUMN__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__COLUMN_TYPE = TABLE_COLUMN__COLUMN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Filterable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__FILTERABLE = TABLE_COLUMN__FILTERABLE;
+
+	/**
+	 * The feature id for the '<em><b>Sortable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__SORTABLE = TABLE_COLUMN__SORTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Editable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__EDITABLE = TABLE_COLUMN__EDITABLE;
+
+	/**
+	 * The number of structural features of the '<em>Simple Table Column</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN_FEATURE_COUNT = TABLE_COLUMN_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8348,6 +8701,37 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getOnSelectItemBinding();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.WidgetTableColumn <em>Widget Table Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Widget Table Column</em>'.
+	 * @see sculptorguimetamodel.WidgetTableColumn
+	 * @generated
+	 */
+	EClass getWidgetTableColumn();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.WidgetTableColumn#getWidget <em>Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Widget</em>'.
+	 * @see sculptorguimetamodel.WidgetTableColumn#getWidget()
+	 * @see #getWidgetTableColumn()
+	 * @generated
+	 */
+	EReference getWidgetTableColumn_Widget();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.SimpleTableColumn <em>Simple Table Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Simple Table Column</em>'.
+	 * @see sculptorguimetamodel.SimpleTableColumn
+	 * @generated
+	 */
+	EClass getSimpleTableColumn();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9804,6 +10188,34 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ON_SELECT_ITEM_BINDING = eINSTANCE.getOnSelectItemBinding();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.WidgetTableColumnImpl <em>Widget Table Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.WidgetTableColumnImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getWidgetTableColumn()
+		 * @generated
+		 */
+		EClass WIDGET_TABLE_COLUMN = eINSTANCE.getWidgetTableColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Widget</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET_TABLE_COLUMN__WIDGET = eINSTANCE.getWidgetTableColumn_Widget();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.SimpleTableColumnImpl <em>Simple Table Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.SimpleTableColumnImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getSimpleTableColumn()
+		 * @generated
+		 */
+		EClass SIMPLE_TABLE_COLUMN = eINSTANCE.getSimpleTableColumn();
 
 	}
 

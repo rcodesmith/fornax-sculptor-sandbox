@@ -59,6 +59,7 @@ import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.SectionWidget;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.ServiceProxyOperation;
+import sculptorguimetamodel.SimpleTableColumn;
 import sculptorguimetamodel.StubModule;
 import sculptorguimetamodel.SubTaskTransition;
 import sculptorguimetamodel.TableColumn;
@@ -78,6 +79,7 @@ import sculptorguimetamodel.ViewDataProperty;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.ViewTask;
 import sculptorguimetamodel.Widget;
+import sculptorguimetamodel.WidgetTableColumn;
 import sculptorguimetamodel.WidgetsContainer;
 import sculptormetamodel.SculptormetamodelPackage;
 
@@ -521,6 +523,20 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass onSelectItemBindingEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass widgetTableColumnEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simpleTableColumnEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2067,6 +2083,33 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getWidgetTableColumn() {
+		return widgetTableColumnEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWidgetTableColumn_Widget() {
+		return (EReference)widgetTableColumnEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSimpleTableColumn() {
+		return simpleTableColumnEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2315,6 +2358,11 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(compositeBehaviorEClass, COMPOSITE_BEHAVIOR__BEHAVIORS);
 
 		onSelectItemBindingEClass = createEClass(ON_SELECT_ITEM_BINDING);
+
+		widgetTableColumnEClass = createEClass(WIDGET_TABLE_COLUMN);
+		createEReference(widgetTableColumnEClass, WIDGET_TABLE_COLUMN__WIDGET);
+
+		simpleTableColumnEClass = createEClass(SIMPLE_TABLE_COLUMN);
 	}
 
 	/**
@@ -2404,6 +2452,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		customConditionEClass.getESuperTypes().add(this.getUiCondition());
 		compositeBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		onSelectItemBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
+		widgetTableColumnEClass.getESuperTypes().add(this.getTableColumn());
+		simpleTableColumnEClass.getESuperTypes().add(this.getTableColumn());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2631,6 +2681,11 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getCompositeBehavior_Behaviors(), this.getUiBehavior(), null, "behaviors", null, 0, -1, CompositeBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(onSelectItemBindingEClass, OnSelectItemBinding.class, "OnSelectItemBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(widgetTableColumnEClass, WidgetTableColumn.class, "WidgetTableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWidgetTableColumn_Widget(), this.getWidget(), null, "widget", null, 1, 1, WidgetTableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleTableColumnEClass, SimpleTableColumn.class, "SimpleTableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

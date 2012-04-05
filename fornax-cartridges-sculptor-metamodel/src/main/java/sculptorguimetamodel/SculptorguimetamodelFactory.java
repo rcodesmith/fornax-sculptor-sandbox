@@ -584,6 +584,24 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	OnSelectItemBinding createOnSelectItemBinding();
 
 																/**
+	 * Returns a new object of class '<em>Widget Table Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Widget Table Column</em>'.
+	 * @generated
+	 */
+	WidgetTableColumn createWidgetTableColumn();
+
+																/**
+	 * Returns a new object of class '<em>Simple Table Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Table Column</em>'.
+	 * @generated
+	 */
+	SimpleTableColumn createSimpleTableColumn();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
