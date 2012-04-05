@@ -133,9 +133,9 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference forAttribute : Attribute
     Reference forReference : Reference
     Reference forOp : DomainObjectOperation
+    Reference for : DomainObject
 
   Class TableWidget -> PropertyReferringWidget
-    Reference for : DomainObject
     Reference columns : TableColumn<<0..*>>
     Attribute paging : EBoolean
     Attribute size : EInt
@@ -179,8 +179,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class WidgetsContainer
     Reference widgets : Widget<<0..*>>
 
-  Class PanelWidget -> Widget, WidgetsContainer
-    Reference for : DomainObject
+  Class PanelWidget -> WidgetsContainer, PropertyReferringWidget
 
   Class UiBehavior -> NamedElement
 

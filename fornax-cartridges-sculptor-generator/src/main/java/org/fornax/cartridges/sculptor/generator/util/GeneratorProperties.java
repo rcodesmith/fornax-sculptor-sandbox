@@ -762,10 +762,11 @@ public class GeneratorProperties {
     public static String getWidgetType(String modelType) {
         String key = "widgetType.class." + modelType;
         if (hasProperty(key)) {
-            return getProperty(key);
-        } else {
-            return null;
-        }
+        		return getProperty(key);
+        	}
+        	else {
+        		return null;
+        	}
     }
 
     public static String getWidgetTag(String modelType) {

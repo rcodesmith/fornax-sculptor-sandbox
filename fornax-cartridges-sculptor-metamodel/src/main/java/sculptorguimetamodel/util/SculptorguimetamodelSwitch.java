@@ -437,8 +437,9 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.PANEL_WIDGET: {
 				PanelWidget panelWidget = (PanelWidget)theEObject;
 				Object result = casePanelWidget(panelWidget);
-				if (result == null) result = caseWidget(panelWidget);
 				if (result == null) result = caseWidgetsContainer(panelWidget);
+				if (result == null) result = casePropertyReferringWidget(panelWidget);
+				if (result == null) result = caseWidget(panelWidget);
 				if (result == null) result = caseNamedElement(panelWidget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

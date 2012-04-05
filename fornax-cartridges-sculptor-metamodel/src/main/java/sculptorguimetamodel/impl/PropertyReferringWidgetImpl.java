@@ -17,6 +17,7 @@ import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptormetamodel.Attribute;
+import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectOperation;
 import sculptormetamodel.Reference;
 
@@ -30,6 +31,7 @@ import sculptormetamodel.Reference;
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForAttribute <em>For Attribute</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForOp <em>For Op</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getFor <em>For</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +65,15 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 * @ordered
 	 */
 	protected DomainObjectOperation forOp;
+	/**
+	 * The cached value of the '{@link #getFor() <em>For</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFor()
+	 * @generated
+	 * @ordered
+	 */
+	protected DomainObject for_;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,6 +211,44 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DomainObject getFor() {
+		if (for_ != null && for_.eIsProxy()) {
+			InternalEObject oldFor = (InternalEObject)for_;
+			for_ = (DomainObject)eResolveProxy(oldFor);
+			if (for_ != oldFor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR, oldFor, for_));
+			}
+		}
+		return for_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DomainObject basicGetFor() {
+		return for_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFor(DomainObject newFor) {
+		DomainObject oldFor = for_;
+		for_ = newFor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR, oldFor, for_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE:
@@ -211,6 +260,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				if (resolve) return getForOp();
 				return basicGetForOp();
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
+				if (resolve) return getFor();
+				return basicGetFor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -230,6 +282,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				setForOp((DomainObjectOperation)newValue);
+				return;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
+				setFor((DomainObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -251,6 +306,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				setForOp((DomainObjectOperation)null);
 				return;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
+				setFor((DomainObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,6 +326,8 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return forReference != null;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				return forOp != null;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
+				return for_ != null;
 		}
 		return super.eIsSet(featureID);
 	}

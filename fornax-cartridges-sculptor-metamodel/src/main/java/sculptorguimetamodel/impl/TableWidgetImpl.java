@@ -28,7 +28,6 @@ import sculptormetamodel.DomainObject;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sculptorguimetamodel.impl.TableWidgetImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.TableWidgetImpl#getColumns <em>Columns</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.TableWidgetImpl#isPaging <em>Paging</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.TableWidgetImpl#getSize <em>Size</em>}</li>
@@ -38,15 +37,6 @@ import sculptormetamodel.DomainObject;
  * @generated
  */
 public class TableWidgetImpl extends PropertyReferringWidgetImpl implements TableWidget {
-	/**
-	 * The cached value of the '{@link #getFor() <em>For</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFor()
-	 * @generated
-	 * @ordered
-	 */
-	protected DomainObject for_;
 	/**
 	 * The cached value of the '{@link #getColumns() <em>Columns</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -110,44 +100,6 @@ public class TableWidgetImpl extends PropertyReferringWidgetImpl implements Tabl
 	 */
 	protected EClass eStaticClass() {
 		return SculptorguimetamodelPackage.Literals.TABLE_WIDGET;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DomainObject getFor() {
-		if (for_ != null && for_.eIsProxy()) {
-			InternalEObject oldFor = (InternalEObject)for_;
-			for_ = (DomainObject)eResolveProxy(oldFor);
-			if (for_ != oldFor) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.TABLE_WIDGET__FOR, oldFor, for_));
-			}
-		}
-		return for_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DomainObject basicGetFor() {
-		return for_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFor(DomainObject newFor) {
-		DomainObject oldFor = for_;
-		for_ = newFor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.TABLE_WIDGET__FOR, oldFor, for_));
 	}
 
 	/**
@@ -224,9 +176,6 @@ public class TableWidgetImpl extends PropertyReferringWidgetImpl implements Tabl
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.TABLE_WIDGET__FOR:
-				if (resolve) return getFor();
-				return basicGetFor();
 			case SculptorguimetamodelPackage.TABLE_WIDGET__COLUMNS:
 				return getColumns();
 			case SculptorguimetamodelPackage.TABLE_WIDGET__PAGING:
@@ -244,9 +193,6 @@ public class TableWidgetImpl extends PropertyReferringWidgetImpl implements Tabl
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.TABLE_WIDGET__FOR:
-				setFor((DomainObject)newValue);
-				return;
 			case SculptorguimetamodelPackage.TABLE_WIDGET__COLUMNS:
 				getColumns().clear();
 				getColumns().addAll((Collection)newValue);
@@ -268,9 +214,6 @@ public class TableWidgetImpl extends PropertyReferringWidgetImpl implements Tabl
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.TABLE_WIDGET__FOR:
-				setFor((DomainObject)null);
-				return;
 			case SculptorguimetamodelPackage.TABLE_WIDGET__COLUMNS:
 				getColumns().clear();
 				return;
@@ -291,8 +234,6 @@ public class TableWidgetImpl extends PropertyReferringWidgetImpl implements Tabl
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.TABLE_WIDGET__FOR:
-				return for_ != null;
 			case SculptorguimetamodelPackage.TABLE_WIDGET__COLUMNS:
 				return columns != null && !columns.isEmpty();
 			case SculptorguimetamodelPackage.TABLE_WIDGET__PAGING:

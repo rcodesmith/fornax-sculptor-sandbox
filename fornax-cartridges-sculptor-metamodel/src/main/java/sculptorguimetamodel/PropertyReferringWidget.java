@@ -7,6 +7,7 @@
 package sculptorguimetamodel;
 
 import sculptormetamodel.Attribute;
+import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectOperation;
 import sculptormetamodel.Reference;
 
@@ -22,6 +23,7 @@ import sculptormetamodel.Reference;
  *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForAttribute <em>For Attribute</em>}</li>
  *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForOp <em>For Op</em>}</li>
+ *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getFor <em>For</em>}</li>
  * </ul>
  * </p>
  *
@@ -107,5 +109,31 @@ public interface PropertyReferringWidget extends Widget {
 	 * @generated
 	 */
 	void setForOp(DomainObjectOperation value);
+
+	/**
+	 * Returns the value of the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For</em>' reference.
+	 * @see #setFor(DomainObject)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_For()
+	 * @model
+	 * @generated
+	 */
+	DomainObject getFor();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getFor <em>For</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>For</em>' reference.
+	 * @see #getFor()
+	 * @generated
+	 */
+	void setFor(DomainObject value);
 
 } // PropertyReferringWidget

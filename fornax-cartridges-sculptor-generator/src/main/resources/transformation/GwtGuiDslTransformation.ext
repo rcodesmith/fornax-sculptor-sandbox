@@ -527,6 +527,8 @@ create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWi
 //	setLabel(widget.label);
 
 create sculptorguimetamodel::ListBoxWidget this transformWidget(DslListBoxWidget widget, Module module) :
+	let domainObject = getForDomainObject(widget.for) :
+	setFor(domainObject) ->
 	initFromDslWidget(this, widget, module) ->
 	transformSourceReference(this, widget.sourceRef) ->
 	setForEnum(widget.forEnum == null ? null : widget.forEnum.transformToGui());
@@ -550,6 +552,8 @@ create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioBut
 	setLabel(widget.label);
 
 create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
+	let domainObject = getForDomainObject(widget.for) :
+	setFor(domainObject) ->
 	initFromDslWidget(this, widget, module) ->
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
 //	setHint(widget.hint) ->
@@ -616,7 +620,7 @@ private setEnabledVisible(Widget widget, DslWidget dslWidget, Module module) :
 	widget.setEnabled(dslWidget.enabled == null ? null : dslWidget.enabled.transformCondition(module)) ->
 	widget.setVisible(dslWidget.visible == null ? null : dslWidget.visible.transformCondition(module));
 	
-create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col, Module module) :
+create sculptorguimetamodel::TableColumn this transformColumn(DslSimpleTableColumn col, Module module) :
 	setName(col.name)->
 	// TODO: add doc to dsl & here
 	setHint(widget.hint) ->
@@ -630,13 +634,13 @@ create sculptorguimetamodel::TableColumn this transformColumn(DslTableColumn col
 
 create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :
 	let domainObject = getForDomainObject(widget.for) :
+	setFor(domainObject) ->
 //	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
 	setWidgetType(widget.widgetType) ->
 	setName(widget.name) ->	
 	setLabel(widget.label) ->
-	setFor(domainObject) ->
 //	setFor(widget.for == null ? null : widget.for.transform()) ->
 	widgets.addAll(widget.widgets.transformWidget(module));
 

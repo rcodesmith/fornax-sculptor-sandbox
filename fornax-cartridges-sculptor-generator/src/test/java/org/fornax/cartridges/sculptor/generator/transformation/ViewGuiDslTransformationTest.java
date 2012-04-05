@@ -205,9 +205,9 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		
 
 		EList widgets = personForm.getWidgets();
-		assertEquals(9, widgets.size());
+		assertEquals(10, widgets.size());
 		assertOneAndOnlyOne(widgets, "nameField", "birthDateField", "table1",
-				"saveButton", "info1", "fullName", "textArea1", "genderSelector", "autocomp1");
+				"saveButton", "info1", "fullName", "textArea1", "genderSelector", "autocomp1", "personSelector");
 
 		InputTextWidget nameField = (InputTextWidget) widgets.get(0);
 		assertEquals("Name", nameField.getLabel());
@@ -242,6 +242,14 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		GuiEnum genderEnum = (GuiEnum)genderSelector.getForEnum();
 		assertEquals("Gender", genderEnum.getName());
 		assertEquals(2, genderEnum.getValues().size());
+		
+		ListBoxWidget personSelector = (ListBoxWidget)getNamedElement("personSelector", widgets);
+		forObj = personSelector.getFor();
+		assertNotNull(forObj);
+		assertEquals("Person", forObj.getName());
+		assertEquals("person", forObj.getModule().getName());
+		
+		
 	}
 	
 

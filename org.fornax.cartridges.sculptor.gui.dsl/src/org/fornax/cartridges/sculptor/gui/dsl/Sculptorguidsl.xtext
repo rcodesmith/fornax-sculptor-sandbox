@@ -244,7 +244,7 @@ DslInputTextWidget :
 	
 DslListBoxWidget :
   (doc=STRING)?
-	'listBox' name=ID  (sourceRef = DslSourceReference)? ('forEnum' forEnum=[mm::DslEnum])? '{'
+	'listBox' name=ID  ('for' for=[mm::DslSimpleDomainObject])? (sourceRef = DslSourceReference)? ('forEnum' forEnum=[mm::DslEnum])? '{'
 		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
@@ -267,7 +267,7 @@ DslTextAreaWidget :
 
 DslAutocompleteWidget :
   (doc=STRING)?
-	'autocomplete' name=ID  (sourceRef = DslSourceReference)? '{'
+	'autocomplete' name=ID  ('for' for=[mm::DslSimpleDomainObject])? (sourceRef = DslSourceReference)? '{'
 		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
@@ -380,11 +380,17 @@ DslTableWidget :
 		"}")?
 	'}';
 	
-DslTableColumn :
+DslTableColumn : DslSimpleTableColumn | DslWidgetTableColumn;
+
+DslSimpleTableColumn :
 	name=ID ("hint" "=" hint=STRING)? ('label' '=' label=STRING)? ('type' '=' columnType=DslColumnType)? (sourceRef = DslSourceReference)?
 		((filterable?="filterable") | (NOT "filterable"))? ((sortable?="sortable") | (NOT "sortable"))?
 		((editable?="editable") | (NOT "editable"))?
 		(behaviorBindings+=DslOnClick)? (behaviorBindings+=DslOnHover)? ";" ;
+
+DslWidgetTableColumn :
+	'widget' widget=DslWidget;
+
 
 
 DslCustomWidget :

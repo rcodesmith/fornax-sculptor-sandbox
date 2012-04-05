@@ -44,6 +44,10 @@ gui LibraryWeb for Library {
 					label = "Gender"
 				}
 				
+				listBox personSelector for Person {
+					label = "Person"
+				}
+				
 				table table1 {
 					label = "Table uno"
 				}

@@ -49,7 +49,7 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewBase.java");
         
         assertContainsConsecutiveFragments(tableViewBaseCode,
-        		"public abstract class TableViewViewBase extends com.google.gwt.user.client.ui.Composite",
+        		"public abstract class TableViewViewBase extends org.fornax.cartridges.sculptor.framework.gwt.client.BaseView",
         		"implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewBaseView {");
 
         	

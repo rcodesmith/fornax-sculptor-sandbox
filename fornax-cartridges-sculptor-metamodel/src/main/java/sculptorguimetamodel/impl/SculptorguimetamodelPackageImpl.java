@@ -1491,6 +1491,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPropertyReferringWidget_For() {
+		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(3);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTableWidget() {
 		return tableWidgetEClass;
 	}
@@ -1500,7 +1509,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTableWidget_For() {
+	public EReference getTableWidget_Columns() {
 		return (EReference)tableWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1509,17 +1518,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTableWidget_Columns() {
-		return (EReference)tableWidgetEClass.getEStructuralFeatures().get(1);
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getTableWidget_Paging() {
-		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(1);
 	}
 
 																/**
@@ -1528,7 +1528,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	public EAttribute getTableWidget_Size() {
-		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(2);
 	}
 
 																/**
@@ -1763,15 +1763,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EClass getPanelWidget() {
 		return panelWidgetEClass;
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPanelWidget_For() {
-		return (EReference)panelWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
 																/**
@@ -2225,9 +2216,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE);
 		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_REFERENCE);
 		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_OP);
+		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR);
 
 		tableWidgetEClass = createEClass(TABLE_WIDGET);
-		createEReference(tableWidgetEClass, TABLE_WIDGET__FOR);
 		createEReference(tableWidgetEClass, TABLE_WIDGET__COLUMNS);
 		createEAttribute(tableWidgetEClass, TABLE_WIDGET__PAGING);
 		createEAttribute(tableWidgetEClass, TABLE_WIDGET__SIZE);
@@ -2272,7 +2263,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(widgetsContainerEClass, WIDGETS_CONTAINER__WIDGETS);
 
 		panelWidgetEClass = createEClass(PANEL_WIDGET);
-		createEReference(panelWidgetEClass, PANEL_WIDGET__FOR);
 
 		uiBehaviorEClass = createEClass(UI_BEHAVIOR);
 
@@ -2394,8 +2384,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		guiCommandEClass.getESuperTypes().add(this.getGuiDto());
 		viewParameterEClass.getESuperTypes().add(theSculptormetamodelPackage.getTypedElement());
 		linkWidgetEClass.getESuperTypes().add(this.getWidget());
-		panelWidgetEClass.getESuperTypes().add(this.getWidget());
 		panelWidgetEClass.getESuperTypes().add(this.getWidgetsContainer());
+		panelWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		uiBehaviorEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		populatePanelBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		navigateToViewBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
@@ -2542,9 +2532,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getPropertyReferringWidget_ForAttribute(), theSculptormetamodelPackage.getAttribute(), null, "forAttribute", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyReferringWidget_ForReference(), theSculptormetamodelPackage.getReference(), null, "forReference", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyReferringWidget_ForOp(), theSculptormetamodelPackage.getDomainObjectOperation(), null, "forOp", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyReferringWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableWidgetEClass, TableWidget.class, "TableWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTableWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTableWidget_Columns(), this.getTableColumn(), null, "columns", null, 0, -1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableWidget_Paging(), ecorePackage.getEBoolean(), "paging", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableWidget_Size(), ecorePackage.getEInt(), "size", null, 0, 1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2589,7 +2579,6 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getWidgetsContainer_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, WidgetsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(panelWidgetEClass, PanelWidget.class, "PanelWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPanelWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, PanelWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uiBehaviorEClass, UiBehavior.class, "UiBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

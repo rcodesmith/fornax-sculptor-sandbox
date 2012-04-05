@@ -20,6 +20,10 @@ Set[Module] getAllUsedServices(sculptorguimetamodel::GuiModule guiModule) :
 String getEnumCommonInterfaces(Enum enumObj) :
 	"java.io.Serializable" + (hasProperty("gwt.enum.common.interfaces") ? "," + getProperty("gwt.enum.common.interfaces") : "");
 
+String getGwtInterfaceHasSelection(Widget widget) :
+	getGwtInterface("hasselection") + "<" + widget.getTypedWidgetTargetType() + ">";
+
+
 
 Boolean gwtDtoGenerateGap() :
 	getBooleanProperty("gwt.dto.generate.gap");
@@ -537,6 +541,9 @@ String widgetForIsWidgetExpr(Widget w) :
 // View-related functions
 ////////////////////////////////////////////////////////////////////////////
 
+String getViewRootBaseClass(View view) :
+	getProperty("gwt.view.base");
+
 // GWT view widget base class relative name
 String gwtViewWidgetBaseClass(View view) :
 	view.name.toFirstUpper() + "ViewBase";
@@ -609,7 +616,18 @@ Set[Service] getUsedServices(View view) :
 
 
 //////////////////////////////////////////////////////////////////////////////
-// Widget-related functions
+// General widget functions
+//////////////////////////////////////////////////////////////////////////////
+String getTypedWidgetTargetType(PropertyReferringWidget widget) :
+	widget.for != null ? widget.for.fqnGwtDto() : "String";
+	
+String getTypedWidgetTargetType(ListBoxWidget widget) :
+	widget.forEnum != null ? widget.forEnum.fqnGwtDto() : 
+		(widget.for != null ? widget.for.fqnGwtDto() : "String");
+	
+
+//////////////////////////////////////////////////////////////////////////////
+// Widget-related functions : resolveGwtWidgetType
 //////////////////////////////////////////////////////////////////////////////
 
 String resolveGwtWidgetType(Widget widget) :
@@ -667,11 +685,16 @@ String resolveGwtWidgetTag(TableWidget widget) :
 
 String resolveGwtWidgetType(ListBoxWidget widget) :
 	if(widget.widgetType != null) then
-		getWidgetType(widget.widgetType)
+		getTypedWidgetType(widget, widget.widgetType)
 	else
 		widget.forEnum != null? getWidgetType("enumListBox") + "<" + widget.forEnum.fqnGwtDto() + ">" :
-			getWidgetType("listBox");
+			getTypedWidgetType(widget, "listBox");
 
+// TODO: Clean up some of this forEnum vs for domain object stuff.  Can a widget be a typedWidget and have forEnum?
+String getTypedWidgetType(PropertyReferringWidget widget, String modelType) :
+	let widgetType = getWidgetType(modelType) :
+		isTypedWidget(modelType) ? widgetType + "<" + widget.getTypedWidgetTargetType() + ">" : widgetType;
+	
 String resolveGwtWidgetTag(ListBoxWidget widget) :
 	if(widget.widgetType != null) then
 		getWidgetTag(widget.widgetType)
@@ -687,6 +710,8 @@ String resolveGwtWidgetTag(CustomWidget widget) :
 		getWidgetTag(widget.widgetType)
 	else
 		getWidgetTag("custom");
+
+
 
 	
 

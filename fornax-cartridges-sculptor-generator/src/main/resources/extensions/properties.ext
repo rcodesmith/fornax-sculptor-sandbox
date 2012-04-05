@@ -529,3 +529,9 @@ String getWidgetType(String modelType) :
 String getWidgetTag(String modelType) :
 	JAVA org.fornax.cartridges.sculptor.generator.util.GeneratorProperties.getWidgetTag(java.lang.String);
 	
+boolean isTypedWidget(String modelType) :
+	let flag = getProperty("widgetType.typed." + modelType) :
+		flag == null ? false : flag.toLowerCase() == "true";
+
+String getGwtInterface(String interfaceName) :
+	getProperty("gwt.interface." + interfaceName);

@@ -65,7 +65,7 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         
         String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/PersonFormBaseView.java");
   
-        assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasValue<org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Gender> getGenderSelectorHasValue();");
+        assertContains(tableViewCode, "public org.fornax.cartridges.sculptor.framework.gwt.client.HasSelectedItem<org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Gender> getGenderSelectorHasSelection();");
 //        assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view;");
 
     }

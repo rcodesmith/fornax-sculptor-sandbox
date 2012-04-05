@@ -150,9 +150,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="forAttribute" eType="ecore:EClass sculptormetamodel.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forReference" eType="ecore:EClass sculptormetamodel.ecore#//Reference"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forOp" eType="ecore:EClass sculptormetamodel.ecore#//DomainObjectOperation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableWidget" eSuperTypes="#//PropertyReferringWidget">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
         eType="#//TableColumn" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paging" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -192,9 +192,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
         eType="#//Widget" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//Widget #//WidgetsContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//WidgetsContainer #//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="UiBehavior" eSuperTypes="sculptormetamodel.ecore#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="PopulatePanelBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EReference" name="panel" lowerBound="1" eType="#//PanelWidget"/>
