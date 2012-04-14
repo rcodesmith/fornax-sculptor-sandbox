@@ -20,7 +20,8 @@
 		«REM»Each module separatly«ENDREM»
 		«IF mods.size > 1»
 			«FOREACH mods AS m»
-				«EXPAND start({m}.toSet(), 0)»
+			    «EXPAND start({m}.toSet(), 0)»
+				«EXPAND start({m}.toSet(), 1)»
 			«ENDFOREACH»
 		«ENDIF»
 	«ENDLET»
