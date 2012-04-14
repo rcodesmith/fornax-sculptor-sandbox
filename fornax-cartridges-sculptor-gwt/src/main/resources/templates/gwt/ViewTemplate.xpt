@@ -77,7 +77,7 @@
 	«IF label != null»
 		<g:Label text="«label»" />
 	«ENDIF»
-	<«this.resolveGwtWidgetTag()» ui:field="«name»" tableLayoutFixed="false" />
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" />
 «ENDDEFINE»
 
 

@@ -17,6 +17,8 @@ public class EnumListBox<E extends Enum<E>> extends ListBox implements HasValue<
 {
     protected Class<E> enumClass;
     
+    protected EnumValues<E> enumValues;
+    
     public EnumListBox (Class<E> eclass)
     {
         this(eclass, EnumSet.allOf(eclass));
@@ -25,6 +27,9 @@ public class EnumListBox<E extends Enum<E>> extends ListBox implements HasValue<
     public EnumListBox (Class<E> enumClass, EnumSet<E> enumElements)
     {
         this.enumClass = enumClass;
+        
+    	enumValues = new EnumValues<E>(enumClass);
+    	
         for (E value : enumElements) {
             addItem(getListBoxItem(value), value.toString());
         }

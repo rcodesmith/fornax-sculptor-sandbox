@@ -535,3 +535,8 @@ boolean isTypedWidget(String modelType) :
 
 String getGwtInterface(String interfaceName) :
 	getProperty("gwt.interface." + interfaceName);
+	
+	
+String getCellTypeClass(String widgetType) :
+	getProperty("widgetType.cell.class." + widgetType);
+	
