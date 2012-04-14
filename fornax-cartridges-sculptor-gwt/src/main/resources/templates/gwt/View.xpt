@@ -61,10 +61,10 @@ package «gwtWidgetsPackage()»;
 
 «DEFINE viewBaseInterface FOR View»
 
-«FILE javaFileName(fqnGwtViewBaseInterface())»
+«FILE javaFileName(fqnGwtViewBaseInterface()) TO_SRC»
 «javaHeader()»
 
-package «gwtWidgetsPackage()»;
+package «gwtBaseWidgetsPackage()»;
 
 «IF formatJavaDoc() == "" -»
 /**
@@ -98,6 +98,9 @@ package «gwtWidgetsPackage()»;
 
 «DEFINE widgetInterfaceDeclarations FOR TableWidget»
 	«IF this.for != null»
+		/**
+		 * HasData accessor for «name» table
+		 */
 		public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
 		
 	    public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData);
@@ -179,9 +182,9 @@ based on CustomWidget.widgetType«ENDREM»
 
 «REM»View base class«ENDREM»
 «DEFINE viewBase FOR View»
-«FILE javaFileName(fqnGwtViewWidgetBaseClass())»
+«FILE javaFileName(fqnGwtViewWidgetBaseClass()) TO_SRC»
 
-package «gwtWidgetsPackage()»;
+package «gwtBaseWidgetsPackage()»;
 
 public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()»
 	implements «fqnGwtViewBaseInterface()» {

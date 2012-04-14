@@ -289,9 +289,13 @@ String getGwtImplTypeName(TypedElement e) :
 
 
     
-// Package for all view-related widget classes
+// Package for all view-related widget classes, non-generated source
 gwtWidgetsPackage(View view) :
 	getGwtPackage(view.module) + ".client.view";
+
+// Package for all view-related widget classes, non-generated source
+gwtBaseWidgetsPackage(View view) :
+	getGwtPackage(view.module) + ".client.gen.view";
 
 
 
@@ -554,7 +558,7 @@ String gwtViewWidgetBaseUiBinderClass(View view) :
 
 // Fully qualified name of GWT widget UI binder class corresponding to the given view
 String fqnViewWidgetBaseUiBinderClass(View view) :
-	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseUiBinderClass() ;
+	view.gwtBaseWidgetsPackage() + "." + view.gwtViewWidgetBaseUiBinderClass() ;
 
 
 // GWT view widget base interface relative name
@@ -563,7 +567,7 @@ String gwtViewBaseInterface(View view) :
 
 // Fully qualified name of GWT view base widget interface
 String fqnGwtViewBaseInterface(View view) :
-	view.gwtWidgetsPackage() + "." + view.gwtViewBaseInterface();
+	view.gwtBaseWidgetsPackage() + "." + view.gwtViewBaseInterface();
 
 // GWT view widget interface relative name
 String gwtViewInterface(View view) :
@@ -581,8 +585,7 @@ String gwtViewWidgetImplClass(View view) :
 
 // Fully qualified name of GWT widget base class corresponding to the given view
 String fqnGwtViewWidgetBaseClass(View view) :
-	debugTrace("fqnGwtViewWidgetBaseClass basePackage : " + view.module.basePackage) ->
-	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetBaseClass() ;
+	view.gwtBaseWidgetsPackage() + "." + view.gwtViewWidgetBaseClass() ;
 
 // Fully qualified name of GWT widget impl class corresponding to the given view
 String fqnGwtViewWidgetImplClass(View view) :
@@ -593,7 +596,7 @@ String gwtPresenterBaseInterface(View view) :
 	
 // Fully qualified name of the GWT presenter interface for a view
 String fqnPresenterBaseInterface(View view) :
-	view.gwtActivitiesPackage() + "." + view.gwtPresenterBaseInterface();
+	view.gwtActivitiesBasePackage() + "." + view.gwtPresenterBaseInterface();
 
 String gwtPresenterInterface(View view) :
 	view.name.toFirstUpper() + "Presenter";
@@ -723,6 +726,12 @@ String resolveGwtWidgetTag(CustomWidget widget) :
 gwtActivitiesPackage(View view) :
 	gwtBasePackage(view.module) + ".client.activity";
 
+// Package for all activity-related base classes (generated code)
+gwtActivitiesBasePackage(View view) :
+	gwtBasePackage(view.module) + ".client.gen.activity";
+
+
+
 
 // GWT activity base class relative name
 String gwtActivityBaseClass(View view) :
@@ -740,7 +749,7 @@ String gwtActivityImplClass(View view) :
 
 // Fully qualified activity base class
 String fqnActivityBaseClass(View view) :
-	view.gwtActivitiesPackage() + "." + view.gwtActivityBaseClass() ;
+	view.gwtActivitiesBasePackage() + "." + view.gwtActivityBaseClass() ;
 
 // Fully qualified activity impl class
 String fqnActivityImplClass(View view) :
@@ -756,9 +765,14 @@ String fqnActivityImplClass(View view) :
 String getPlaceArgConst(ViewParameter param) :
 	param.name.toUpperCase() + "ARG";
 
-// Package for all place-related classes
+// Package for all place-related non-generated classes
 gwtPlacesPackage(View view) :
 	gwtBasePackage(view.module) + ".client.place";
+
+
+// Package for all place-related generated classes
+gwtPlacesBasePackage(View view) :
+	gwtBasePackage(view.module) + ".client.gen.place";
 
 
 // GWT place base class relative name
@@ -775,7 +789,7 @@ String gwtFrameworkPlaceBaseClass(View view) :
 
 // Fully qualified place base class
 String fqnPlaceBaseClass(View view) :
-	view.gwtPlacesPackage() + "." + view.gwtPlaceBaseClass() ;
+	view.gwtPlacesBasePackage() + "." + view.gwtPlaceBaseClass() ;
 
 // Until we're generating gap class
 String fqnPlaceClass(View view) :

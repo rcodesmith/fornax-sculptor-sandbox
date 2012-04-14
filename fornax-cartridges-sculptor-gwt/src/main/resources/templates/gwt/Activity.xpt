@@ -6,9 +6,9 @@
 «EXTENSION extensions::gwt::gwtuihelpers»
 
 «DEFINE activityBase FOR View»
-«FILE javaFileName(fqnActivityBaseClass())»
+«FILE javaFileName(fqnActivityBaseClass()) TO_SRC»
 «javaHeader()»
-package «gwtActivitiesPackage()»;
+package «gwtActivitiesBasePackage()»;
 
 /**
   * Activity base class for view «name».

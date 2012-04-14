@@ -8,9 +8,9 @@
 
 «REM»Place base class«ENDREM»
 «DEFINE placeBase FOR View»
-«FILE javaFileName(this.fqnPlaceBaseClass())»
+«FILE javaFileName(this.fqnPlaceBaseClass()) TO_SRC»
 
-package «gwtPlacesPackage()»;
+package «gwtPlacesBasePackage()»;
 
 public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 

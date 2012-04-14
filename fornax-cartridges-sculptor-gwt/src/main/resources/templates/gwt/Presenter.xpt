@@ -7,9 +7,9 @@
 «EXTENSION extensions::gwt::sofeauihelpers»
 
 «DEFINE presenterBaseInterface FOR View»
-«FILE javaFileName(fqnPresenterBaseInterface())»
+«FILE javaFileName(fqnPresenterBaseInterface()) TO_SRC»
 «javaHeader()»
-package «gwtActivitiesPackage()»;
+package «gwtActivitiesBasePackage()»;
 
 /**
   * Presenter base interface for view «name».
