@@ -37,8 +37,8 @@ String referenceLabelText(Reference ref) :
 boolean isAggregate(Reference ref) :
 	ref.isOneToMany() && ref.to.isEntityOrPersistentValueObject() && !ref.to.aggregateRoot;
 
-String dotFileName(Application app, Set[Module] focus, int detail) :
-	let detailPart = detail == 0 ? "-entity" : (detail == 1 ? "" : (detail == 2 ? "-core-domain" : (detail == 3 ? "-overview" : "-dependencies"))) :
+String dotFileName(Application app, Set[Module] focus, int detail, String subjectArea) :
+	let detailPart = detail == 0 ? "-" + subjectArea : (detail == 1 ? "" : (detail == 2 ? "-core-domain" : (detail == 3 ? "-overview" : "-dependencies"))) :
 	if (focus.size == app.visibleModules().size) then
 		"umlgraph" + detailPart + ".dot"
 	else 
@@ -48,7 +48,16 @@ Set[DomainObject] serviceOperationDependencies(Service from) :
 	{}.addAll(from.operations.parameters.select(e|e.domainObjectType != null).domainObjectType)
 	  .addAll(from.operations.select(e|e.domainObjectType != null).domainObjectType)
 	  .toSet();
-		
+
+// Get all the subject areas used throughout the application
+Set[String] getSubjectAreas(Application application):
+	{"entity"}.addAll(application.visibleModules().domainObjects.getSubjectAreas())
+	.addAll(application.visibleModules().services.getSubjectAreas())
+	.reject(s|s == null).toSet();
+	
+cached getSubjectAreas(NamedElement elem) :
+	elem.hasHint("umlgraph.subject") ? elem.getHint("umlgraph.subject").replaceAll(" ", "").split("\\|") : {};
+
 Set[Module] moduleDependencies(Module from) :
 	{}.addAll(from.domainObjects.references.collect(e|e.to.module))
 	  .addAll(from.domainObjects.select(e|e.extends != null).collect(e|e.extends.module))
@@ -78,8 +87,9 @@ hide(NamedElement elem) :
 private hasHideHint(NamedElement elem) :
 	elem.getHint("umlgraph") == "hide";
 
-isShownInView(DomainObject domainObject, Set[Module] focus, int detail) :
+isShownInView(DomainObject domainObject, Set[Module] focus, int detail, String subjectArea) :
 	detail < 4 && domainObject.visible() && focus.contains(domainObject.module) &&
+		(detail != 0 || domainObject.isInSubjectArea(subjectArea)) &&
 		((domainObject.metaType != Enum && domainObject.metaType != BasicType) 
 		|| (domainObject.metaType == Enum && getBooleanProperty("generate.umlgraph.enum"))
 		|| (domainObject.metaType == BasicType && getBooleanProperty("generate.umlgraph.basicType"))
@@ -144,16 +154,16 @@ String labelangle(Reference ref) :
 	getProperty("umlgraph.labelangle");
 
 
-// rejectFromDomain(): Return true if the given domain object should be rejected from the diagram at the given level of detail
-boolean rejectFromDomain(DomainObject d, int detail) :
-	detail == 0 ? true : false;
+// Return true if the given element should be included in the diagram at the given level of detail and for the given subjectArea
+boolean includeInDiagram(NamedElement elem, int detail, String subjectArea) :
+	elem.visible() && (detail != 0 || elem.isInSubjectArea(subjectArea));
+	
+boolean isInSubjectArea(ValueObject v, String subjectArea) :
+	"entity" == subjectArea ? v.isPersistent() : v.getSubjectAreas().contains(subjectArea);
 
-boolean rejectFromDomain(Enum e, int detail) :
-	detail == 0 ? true : false;
+boolean isInSubjectArea(Entity e, String subjectArea) :
+	"entity" == subjectArea ? e.isPersistent() : e.getSubjectAreas().contains(subjectArea);
 
-boolean rejectFromDomain(Entity e, int detail) :
-	detail == 0 ? e.isPersistent() == false : false;
-
-boolean rejectFromDomain(ValueObject v, int detail) :
-	detail == 0 ? v.isPersistent() == false : false;
-
+boolean isInSubjectArea(NamedElement elem, String subjectArea) :
+	elem.getSubjectAreas().contains(subjectArea);
+	

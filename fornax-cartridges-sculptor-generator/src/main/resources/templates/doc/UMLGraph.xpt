@@ -5,8 +5,8 @@
 
 «DEFINE start FOR Application»
 	«LET visibleModules().toSet() AS mods»
-		«REM»detail 0 => persistent entity and value objects«ENDREM»
-		«EXPAND start(mods, 0)»
+		«REM»detail 0 => subject area diagrams, including persistence diagram«ENDREM»
+		«EXPAND startSubjectAreaDiagrams(mods) FOR this»
 		«REM»detail 1 => all«ENDREM»
 		«EXPAND start(mods, 1)»
 		«REM»detail 2 => core domain«ENDREM»
@@ -20,30 +20,39 @@
 		«REM»Each module separatly«ENDREM»
 		«IF mods.size > 1»
 			«FOREACH mods AS m»
-			    «EXPAND start({m}.toSet(), 0)»
+			    «EXPAND start({m}.toSet(), 0, "entity")»
 				«EXPAND start({m}.toSet(), 1)»
 			«ENDFOREACH»
 		«ENDIF»
 	«ENDLET»
 «ENDDEFINE»
 
+«DEFINE startSubjectAreaDiagrams(Set[Module] focus) FOR Application»
+	«LET this.getSubjectAreas() AS subjectAreas»
+		«FOREACH subjectAreas AS area»
+			«EXPAND start(focus, 0, area)»
+		«ENDFOREACH»
+	«ENDLET»
+«ENDDEFINE»
+
 «DEFINE start(Set[Module] focus, int detail) FOR Application»
-«FILE dotFileName(focus, detail) TO_GEN_RESOURCES»
+	«EXPAND start(focus, detail, null) FOR this»
+«ENDDEFINE»
+
+«DEFINE start(Set[Module] focus, int detail, String subjectArea) FOR Application»
+«debugTrace("start() focus=" + focus + ", detail=" + detail + ", subjectArea=" + subjectArea)»
+«FILE dotFileName(focus, detail, subjectArea) TO_GEN_DOCS»
 	«EXPAND graphPropertiesStart»	
-	«EXPAND subGraphForModule(focus, detail) FOREACH focus.sortBy(e|e.name)»
+	«EXPAND subGraphForModule(focus, detail, subjectArea) FOREACH focus.sortBy(e|e.name)»
 	«IF detail < 4»
 		«EXPAND InheritanceGraphProperties»
-		«EXPAND InheritanceToUML(focus, detail) FOREACH getAllDomainObjects().select(d|d.extends != null).reject(e | e.rejectFromDomain(detail))»
+		«EXPAND InheritanceToUML(focus, detail, subjectArea) FOREACH getAllDomainObjects().select(d|d.extends != null && d.includeInDiagram(detail, subjectArea))»
 		«EXPAND RelationGraphProperties»
-		«EXPAND RelationToUML(focus, detail) FOREACH getAllReferences()
+		«EXPAND RelationToUML(focus, detail, subjectArea) FOREACH getAllReferences()
 			.reject(e | e.to.metaType == BasicType)
 			.reject(e | e.to.metaType == Enum)
-			.reject(e | e.to.rejectFromDomain(detail))
-			.reject(e | e.from.rejectFromDomain(detail))
 			.sortBy(e | e.from.name + "->" + e.to.name + ": " + e.name)»
-		«IF detail > 0»
-			«EXPAND ServiceDependenciesToUML(focus, detail) FOREACH modules.services»
-		«ENDIF»
+		«EXPAND ServiceDependenciesToUML(focus, detail, subjectArea) FOREACH modules.services»
 	«ELSE»
 		«EXPAND ModuleDependenciesToUML FOREACH focus»
 	«ENDIF»
@@ -70,16 +79,14 @@ digraph G {
 	}
 «ENDDEFINE»
 
-«DEFINE subGraphForModule(Set[Module] focus, int detail) FOR Module»
+«DEFINE subGraphForModule(Set[Module] focus, int detail, String subjectArea) FOR Module»
 	«IF detail < 4»
 		subgraph cluster«name» {
 			label = "«name»"  
 			«IF focus.contains(this)»
-				«IF detail > 0»
-					«EXPAND ServiceToUML(focus, detail) FOREACH services.select(e|e.visible()).sortBy(e|e.name)»
-					«EXPAND ConsumerToUML(focus, detail) FOREACH consumers.select(e|e.visible()).sortBy(e|e.name)»
-				«ENDIF»
-				«EXPAND ObjectToUML(focus, detail) FOREACH domainObjects.select(e|e.visible()).reject(e | e.rejectFromDomain(detail)).sortBy(e|e.name)»
+				«EXPAND ServiceToUML(focus, detail) FOREACH services.select(e|e.includeInDiagram(detail, subjectArea)).sortBy(e|e.name)»
+				«EXPAND ConsumerToUML(focus, detail) FOREACH consumers.select(e|e.includeInDiagram(detail, subjectArea)).sortBy(e|e.name)»
+				«EXPAND ObjectToUML(focus, detail, subjectArea) FOREACH domainObjects.select(e|e.includeInDiagram(detail, subjectArea)).sortBy(e|e.name)»
 			«ENDIF»
 		}
 	«ELSE»
@@ -124,11 +131,11 @@ digraph G {
 				<tr><td align="left">«this.name»</td></tr>			
 «ENDDEFINE»
 
-«DEFINE ServiceDependenciesToUML(Set[Module] focus, int detail) FOR Service»
-	«IF focus.contains(module) && visible()»
+«DEFINE ServiceDependenciesToUML(Set[Module] focus, int detail, String subjectArea) FOR Service»
+	«IF focus.contains(module) && includeInDiagram(detail, subjectArea)»
 		edge [arrowtail="none" arrowhead = "open" headlabel = "" taillabel = "" style = "dashed"]
 		«FOREACH serviceOperationDependencies() AS dep»
-			«IF dep.isShownInView(focus, detail) -»
+			«IF dep.isShownInView(focus, detail, subjectArea) -»
 				«name» -> «dep.name»
 			«ENDIF-»
 		«ENDFOREACH»
@@ -152,8 +159,8 @@ digraph G {
 	</table>>, fontname="arial", fontcolor="«fontcolor()»", fontsize=9.0];
 «ENDDEFINE»
 
-«DEFINE ObjectToUML(Set[Module] focus, int detail) FOR DomainObject»
-«IF isShownInView(focus, detail) »
+«DEFINE ObjectToUML(Set[Module] focus, int detail, String subjectArea) FOR DomainObject»
+«IF isShownInView(focus, detail, subjectArea) »
 	«name» [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»">
 	<tr><td>
 	<table border="0" cellspacing="1" cellpadding="1">
@@ -197,7 +204,7 @@ digraph G {
 «ENDDEFINE»
 
 «REM»Skip Traits«ENDREM»
-«DEFINE ObjectToUML(Set[Module] focus, int detail) FOR Trait»
+«DEFINE ObjectToUML(Set[Module] focus, int detail, String subjectArea) FOR Trait»
 «ENDDEFINE»
 
 «DEFINE AttributeToUML FOR Attribute»
@@ -247,14 +254,16 @@ digraph G {
 			<tr><td align="left">«this.name»()</td></tr>
 «ENDDEFINE»
 
-«DEFINE InheritanceToUML(Set[Module] focus, int detail) FOR DomainObject»
-	«IF this.isShownInView(focus, detail) && extends.isShownInView(focus, detail) -»
+«DEFINE InheritanceToUML(Set[Module] focus, int detail, String subjectArea) FOR DomainObject»
+	«IF this.isShownInView(focus, detail, subjectArea) && extends.isShownInView(focus, detail, subjectArea) -»
 		«name»:p -> «extends.name»:p
 	«ENDIF»
 «ENDDEFINE»
 
-«DEFINE RelationToUML(Set[Module] focus, int detail) FOR Reference»
-	«IF from.isShownInView(focus, detail) && to.isShownInView(focus, detail) -»
+«DEFINE RelationToUML(Set[Module] focus, int detail, String subjectArea) FOR Reference»
+	«debugTrace("from=" + from + ", to=" + to)»
+
+	«IF from.isShownInView(focus, detail, subjectArea) && to.isShownInView(focus, detail, subjectArea) -»
 		«IF isAggregate() -»
 			edge [arrowtail="diamond" arrowhead = "none" «
 		ELSEIF this.opposite == null -»
