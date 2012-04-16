@@ -27,18 +27,18 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		View tableView = (View) getNamedElement("TableView", personModule()
 				.getViews());
 
-		XpandUnit.xpand("templates::gwt::Activity::activityBase", tableView,
+		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
 				new HashMap<String, Object>(), getXpandTempDir());
 
-		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/TableViewActivityBase.java");
+		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewActivityBase.java");
 
 		assertContains(
 				activityBaseCode,
-				"package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
+				"package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity;");
 
 		assertContains(
 				activityBaseCode,
-				"public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place.TableViewPlace> implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewBasePresenter {");
+				"public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.place.TableViewPlace> implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity.TableViewBasePresenter {");
 
 		assertContains(
 				activityBaseCode,
@@ -56,10 +56,10 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		View tableView = (View) getNamedElement("Menu", personModule()
 				.getViews());
 
-		XpandUnit.xpand("templates::gwt::Activity::activityBase", tableView,
+		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
 				new HashMap<String, Object>(), getXpandTempDir());
 
-		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/MenuActivityBase.java");
+		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/MenuActivityBase.java");
 
 		assertContainsConsecutiveFragments(activityBaseCode,
 				"protected void bind() {", "bindPersonLink();",
@@ -71,7 +71,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"view.getPersonLinkHasClickHandlers().addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {",
 				"@java.lang.Override",
 				"public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {",
-				"placeController.goTo(new org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place.PersonFormPlace());",
+				"placeController.goTo(new org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.place.PersonFormPlace());",
 				"}", "});", "}");
 	}
 
@@ -80,11 +80,11 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		View personFormView = (View) getNamedElement("PersonForm",
 				personModule().getViews());
 		assertNotNull(personFormView);
-		XpandUnit.xpand("templates::gwt::Activity::activityBase",
+		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest",
 				personFormView, new HashMap<String, Object>(),
 				getXpandTempDir());
 
-		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/PersonFormActivityBase.java");
+		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/PersonFormActivityBase.java");
 
 		assertContainsConsecutiveFragments(
 				activityBaseCode,

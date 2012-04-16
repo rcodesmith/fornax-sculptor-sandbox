@@ -43,14 +43,14 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
     public void assertTableViewBaseCode() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	
-        XpandUnit.xpand("templates::gwt::View::viewBase", tableView,
+        XpandUnit.xpand("templates::gwt::View::viewBaseForUnitTest", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewBase.java");
+        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/TableViewViewBase.java");
         
         assertContainsConsecutiveFragments(tableViewBaseCode,
         		"public abstract class TableViewViewBase extends org.fornax.cartridges.sculptor.framework.gwt.client.BaseView",
-        		"implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewBaseView {");
+        		"implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewBaseView {");
 
         	
         assertContainsConsecutiveFragments(tableViewBaseCode,
@@ -95,10 +95,10 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
     	
     	Assert.assertEquals("org.fornax.cartridges.sculptor.examples.library.mediaalt", browseView.getModule().getBasePackage());
     	
-        XpandUnit.xpand("templates::gwt::View::viewBase", browseView,
+        XpandUnit.xpand("templates::gwt::View::viewBaseForUnitTest", browseView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/client/view/MediaBrowseViewBase.java");
+        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/client/gen/view/MediaBrowseViewBase.java");
         
     }
     
@@ -106,7 +106,7 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
     public void assertPersonFormViewBaseCode() throws IOException {
     	View personForm = (View) getNamedElement("PersonForm", personModule().getViews());
     	
-        XpandUnit.xpand("templates::gwt::View::viewBase", personForm,
+        XpandUnit.xpand("templates::gwt::View::viewBaseForUnitTest", personForm,
                 new HashMap<String, Object>(), getXpandTempDir());
         
 //        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewBase.java");

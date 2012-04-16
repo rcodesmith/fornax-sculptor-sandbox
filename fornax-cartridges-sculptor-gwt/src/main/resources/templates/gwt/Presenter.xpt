@@ -6,8 +6,7 @@
 «EXTENSION extensions::gwt::gwtuihelpers»
 «EXTENSION extensions::gwt::sofeauihelpers»
 
-«DEFINE presenterBaseInterface FOR View»
-«FILE javaFileName(fqnPresenterBaseInterface()) TO_SRC»
+«DEFINE presenterBaseInterfaceBody FOR View»
 «javaHeader()»
 package «gwtActivitiesBasePackage()»;
 
@@ -18,8 +17,18 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 
 	«EXPAND presenterInterfaceDeclarations FOREACH this.allWidgets()»
 }
+«ENDDEFINE»
 
-«ENDFILE»
+«DEFINE presenterBaseInterface FOR View»
+	«FILE javaFileName(fqnPresenterBaseInterface()) TO_SRC»
+		«EXPAND presenterBaseInterfaceBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE presenterBaseInterfaceForUnitTest FOR View»
+	«FILE javaFileName(fqnPresenterBaseInterface())»
+		«EXPAND presenterBaseInterfaceBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 

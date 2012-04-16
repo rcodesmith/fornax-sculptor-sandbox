@@ -59,9 +59,7 @@ package «gwtWidgetsPackage()»;
 «ENDDEFINE»
 
 
-«DEFINE viewBaseInterface FOR View»
-
-«FILE javaFileName(fqnGwtViewBaseInterface()) TO_SRC»
+«DEFINE viewBaseInterfaceBody FOR View»
 «javaHeader()»
 
 package «gwtBaseWidgetsPackage()»;
@@ -84,7 +82,18 @@ package «gwtBaseWidgetsPackage()»;
 		
 	}
 
-«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE viewBaseInterface FOR View»
+	«FILE javaFileName(fqnGwtViewBaseInterface()) TO_SRC»
+		«EXPAND viewBaseInterfaceBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE viewBaseInterfaceForUnitTest FOR View»
+	«FILE javaFileName(fqnGwtViewBaseInterface())»
+		«EXPAND viewBaseInterfaceBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,12 +187,7 @@ based on CustomWidget.widgetType«ENDREM»
 
 
 
-
-
-«REM»View base class«ENDREM»
-«DEFINE viewBase FOR View»
-«FILE javaFileName(fqnGwtViewWidgetBaseClass()) TO_SRC»
-
+«DEFINE viewBaseBody FOR View»
 package «gwtBaseWidgetsPackage()»;
 
 public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()»
@@ -219,9 +223,19 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     
     «EXPAND widgetMethods FOREACH allWidgets()»
 }
+«ENDDEFINE»
 
-«ENDFILE»
+«REM»View base class«ENDREM»
+«DEFINE viewBase FOR View»
+	«FILE javaFileName(fqnGwtViewWidgetBaseClass()) TO_SRC»
+		«EXPAND viewBaseBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
 
+«DEFINE viewBaseForUnitTest FOR View»
+	«FILE javaFileName(fqnGwtViewWidgetBaseClass())»
+		«EXPAND viewBaseBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

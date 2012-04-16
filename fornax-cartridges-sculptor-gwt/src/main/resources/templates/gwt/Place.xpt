@@ -8,8 +8,18 @@
 
 «REM»Place base class«ENDREM»
 «DEFINE placeBase FOR View»
-«FILE javaFileName(this.fqnPlaceBaseClass()) TO_SRC»
+	«FILE javaFileName(this.fqnPlaceBaseClass()) TO_SRC»
+		«EXPAND placeBaseBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
 
+«DEFINE placeBaseForUnitTest FOR View»
+	«FILE javaFileName(this.fqnPlaceBaseClass())»
+		«EXPAND placeBaseBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE placeBaseBody FOR View»
 package «gwtPlacesBasePackage()»;
 
 public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
@@ -88,10 +98,7 @@ public class «gwtPlaceBaseClass()» extends «gwtFrameworkPlaceBaseClass()» {
 	
 	}
 }
-
-«ENDFILE»
 «ENDDEFINE»
-
 
 «DEFINE parameterTypeAndName FOR ViewParameter»
 «getTypeName()» «name»

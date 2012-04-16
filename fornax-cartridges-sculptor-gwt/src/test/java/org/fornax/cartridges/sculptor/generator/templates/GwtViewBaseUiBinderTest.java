@@ -36,7 +36,7 @@ public class GwtViewBaseUiBinderTest extends TemplateTestBase {
 		View tableView = (View) getNamedElement("TableView", personModule()
 				.getViews());
 
-		XpandUnit.xpand("templates::gwt::Activity::activityBase", tableView,
+		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
 				new HashMap<String, Object>(), getXpandTempDir());
 	}
 	
@@ -44,10 +44,10 @@ public class GwtViewBaseUiBinderTest extends TemplateTestBase {
     public void assertTableViewBaseCode() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	
-        XpandUnit.xpand("templates::gwt::ViewTemplate::viewCompositeBaseTemplate", tableView,
+        XpandUnit.xpand("templates::gwt::ViewTemplate::viewCompositeBaseTemplateForUnitTest", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewBase.ui.xml");
+        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/TableViewViewBase.ui.xml");
         
         assertContainsConsecutiveFragments(tableViewBaseCode, "<g:HTMLPanel ui:field=\"personDetailsPanel\">",
         		"<!-- Widget nestedNameField -->",

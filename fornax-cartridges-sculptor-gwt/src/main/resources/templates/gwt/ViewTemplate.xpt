@@ -6,7 +6,18 @@
 «EXTENSION extensions::gwt::gwtuihelpers»
 
 «DEFINE viewCompositeBaseTemplate FOR View»
-«FILE gwtTemplateFilePath(fqnGwtViewWidgetBaseClass(this)) TO_SRC»
+	«FILE gwtTemplateFilePath(fqnGwtViewWidgetBaseClass(this)) TO_SRC»
+		«EXPAND viewCompositeBaseTemplateBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE viewCompositeBaseTemplateForUnitTest FOR View»
+	«FILE gwtTemplateFilePath(fqnGwtViewWidgetBaseClass(this))»
+		«EXPAND viewCompositeBaseTemplateBody FOR this»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE viewCompositeBaseTemplateBody FOR View»
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
@@ -40,8 +51,8 @@
 	</g:HTMLPanel>
 	
 </ui:UiBinder> 
-«ENDFILE»
 «ENDDEFINE»
+
 
 «REM»Any additional UI binder namespace declarations that are needed for widgets go here.  Override this as needed.«ENDREM»
 «DEFINE additionalUiBinderNamespaces FOR View»

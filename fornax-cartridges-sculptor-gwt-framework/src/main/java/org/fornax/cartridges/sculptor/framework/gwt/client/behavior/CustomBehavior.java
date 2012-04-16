@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public class CustomBehavior implements Behavior {
 
 	public interface Invocation {
-		public boolean invoke(AsyncCallback<Boolean> callback);
+		public void invoke(AsyncCallback<Boolean> callback);
 	}
 	
 	protected Invocation invocation;

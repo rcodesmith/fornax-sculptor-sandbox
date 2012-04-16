@@ -15,6 +15,7 @@ var outlet.res.once.dir = 'src/main/resources'
 var outlet.res.dir = 'src/generated/resources'
 var outlet.res.test.dir = 'src/test/generated/resources'
 var outlet.webroot.dir = 'src/main/webapp'
+var outlet.docs.dir = 'src/site/resources/modeldocs'
 
 var transformationAdvice = "generator::SpecialCases"
 var templateAdvice = "generator::SpecialCases"
@@ -124,6 +125,7 @@ Workflow {
 		outlet = {name = "TO_GEN_RESOURCES_TEST" path = outlet.res.test.dir      overwrite = true  postprocessor = XmlFormatter {}}
 		outlet = {name = "TO_WEBROOT"            path = outlet.webroot.dir       overwrite = false postprocessor = XmlFormatter {}}
 		outlet = {name = "TO_GEN_WEBROOT"        path = outlet.webroot.dir       overwrite = true  postprocessor = XmlFormatter {}}
+		outlet = {name = "TO_GEN_DOCS"           path = outlet.docs.dir          overwrite = true  postprocessor = XmlFormatter {}}
 
 		advice = templateAdvice
 		extensionAdvice = transformationAdvice

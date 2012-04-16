@@ -5,8 +5,19 @@
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::gwtuihelpers»
 
+«DEFINE activityBaseForUnitTest FOR View»
+	«FILE javaFileName(fqnActivityBaseClass())»
+		«EXPAND activityBaseBody FOR this» 
+	«ENDFILE»
+«ENDDEFINE»
+
 «DEFINE activityBase FOR View»
-«FILE javaFileName(fqnActivityBaseClass()) TO_SRC»
+	«FILE javaFileName(fqnActivityBaseClass()) TO_SRC»
+		«EXPAND activityBaseBody FOR this» 
+	«ENDFILE»
+«ENDDEFINE» 
+
+«DEFINE activityBaseBody FOR View»
 «javaHeader()»
 package «gwtActivitiesBasePackage()»;
 
@@ -98,10 +109,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	}
 	
 }
- 
-«ENDFILE»
-«ENDDEFINE» 
-
+«ENDDEFINE»
 
 «REM»Declaration of service constructor arguments, with leading ,«ENDREM»
 «DEFINE serviceConstructorArgs FOR View»

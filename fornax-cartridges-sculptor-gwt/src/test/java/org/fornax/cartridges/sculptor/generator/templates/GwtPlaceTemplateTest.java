@@ -26,14 +26,14 @@ public class GwtPlaceTemplateTest extends TemplateTestBase {
 
 		Assert.assertNotNull(personForm);
 		
-		XpandUnit.xpand("templates::gwt::Place::placeBase", personForm,
+		XpandUnit.xpand("templates::gwt::Place::placeBaseForUnitTest", personForm,
 				new HashMap<String, Object>(), getXpandTempDir());
 
-		String placeBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/place/PersonFormPlace.java");
+		String placeBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/place/PersonFormPlace.java");
 
 		assertContains(
 				placeBaseCode,
-				"package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.place;");
+				"package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.place;");
 
 		assertContains(
 				placeBaseCode,
