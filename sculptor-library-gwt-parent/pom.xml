@@ -24,7 +24,7 @@
 		<log4j.version>1.2.14</log4j.version>
 		<commons-logging.version>1.0.3</commons-logging.version>
 		<commons-lang.version>2.1</commons-lang.version>
-		<sculptor.version>2.0.9-gwt-SNAPSHOT</sculptor.version>
+		<sculptor.version>2.0.9-gwt</sculptor.version>
 	</properties>
 	<dependencies>
 		<dependency>
