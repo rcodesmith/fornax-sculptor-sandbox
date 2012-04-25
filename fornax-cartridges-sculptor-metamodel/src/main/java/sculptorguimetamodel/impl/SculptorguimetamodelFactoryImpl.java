@@ -125,8 +125,10 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN: return createWidgetTableColumn();
 			case SculptorguimetamodelPackage.SIMPLE_TABLE_COLUMN: return createSimpleTableColumn();
 			case SculptorguimetamodelPackage.SET_DIRTY_FLAG_BEHAVIOR: return createSetDirtyFlagBehavior();
-			case SculptorguimetamodelPackage.CONFIRM_IF_DIRTY_BEHAVIOR: return createConfirmIfDirtyBehavior();
+			case SculptorguimetamodelPackage.WARN_IF_DIRTY_BEHAVIOR: return createWarnIfDirtyBehavior();
 			case SculptorguimetamodelPackage.POPULATE_LIST_BOX_BEHAVIOR: return createPopulateListBoxBehavior();
+			case SculptorguimetamodelPackage.MARK_DIRTY_BEHAVIOR: return createMarkDirtyBehavior();
+			case SculptorguimetamodelPackage.MARK_CLEAN_BEHAVIOR: return createMarkCleanBehavior();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -787,9 +789,9 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConfirmIfDirtyBehavior createConfirmIfDirtyBehavior() {
-		ConfirmIfDirtyBehaviorImpl confirmIfDirtyBehavior = new ConfirmIfDirtyBehaviorImpl();
-		return confirmIfDirtyBehavior;
+	public WarnIfDirtyBehavior createWarnIfDirtyBehavior() {
+		WarnIfDirtyBehaviorImpl warnIfDirtyBehavior = new WarnIfDirtyBehaviorImpl();
+		return warnIfDirtyBehavior;
 	}
 
 																/**
@@ -800,6 +802,26 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public PopulateListBoxBehavior createPopulateListBoxBehavior() {
 		PopulateListBoxBehaviorImpl populateListBoxBehavior = new PopulateListBoxBehaviorImpl();
 		return populateListBoxBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MarkDirtyBehavior createMarkDirtyBehavior() {
+		MarkDirtyBehaviorImpl markDirtyBehavior = new MarkDirtyBehaviorImpl();
+		return markDirtyBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MarkCleanBehavior createMarkCleanBehavior() {
+		MarkCleanBehaviorImpl markCleanBehavior = new MarkCleanBehaviorImpl();
+		return markCleanBehavior;
 	}
 
 																/**

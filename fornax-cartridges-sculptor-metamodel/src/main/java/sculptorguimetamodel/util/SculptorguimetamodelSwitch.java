@@ -619,12 +619,12 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SculptorguimetamodelPackage.CONFIRM_IF_DIRTY_BEHAVIOR: {
-				ConfirmIfDirtyBehavior confirmIfDirtyBehavior = (ConfirmIfDirtyBehavior)theEObject;
-				Object result = caseConfirmIfDirtyBehavior(confirmIfDirtyBehavior);
-				if (result == null) result = caseConfirmMessageBehavior(confirmIfDirtyBehavior);
-				if (result == null) result = caseUiBehavior(confirmIfDirtyBehavior);
-				if (result == null) result = caseNamedElement(confirmIfDirtyBehavior);
+			case SculptorguimetamodelPackage.WARN_IF_DIRTY_BEHAVIOR: {
+				WarnIfDirtyBehavior warnIfDirtyBehavior = (WarnIfDirtyBehavior)theEObject;
+				Object result = caseWarnIfDirtyBehavior(warnIfDirtyBehavior);
+				if (result == null) result = caseConfirmMessageBehavior(warnIfDirtyBehavior);
+				if (result == null) result = caseUiBehavior(warnIfDirtyBehavior);
+				if (result == null) result = caseNamedElement(warnIfDirtyBehavior);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -633,6 +633,24 @@ public class SculptorguimetamodelSwitch {
 				Object result = casePopulateListBoxBehavior(populateListBoxBehavior);
 				if (result == null) result = caseUiBehavior(populateListBoxBehavior);
 				if (result == null) result = caseNamedElement(populateListBoxBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.MARK_DIRTY_BEHAVIOR: {
+				MarkDirtyBehavior markDirtyBehavior = (MarkDirtyBehavior)theEObject;
+				Object result = caseMarkDirtyBehavior(markDirtyBehavior);
+				if (result == null) result = caseSetDirtyFlagBehavior(markDirtyBehavior);
+				if (result == null) result = caseUiBehavior(markDirtyBehavior);
+				if (result == null) result = caseNamedElement(markDirtyBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.MARK_CLEAN_BEHAVIOR: {
+				MarkCleanBehavior markCleanBehavior = (MarkCleanBehavior)theEObject;
+				Object result = caseMarkCleanBehavior(markCleanBehavior);
+				if (result == null) result = caseSetDirtyFlagBehavior(markCleanBehavior);
+				if (result == null) result = caseUiBehavior(markCleanBehavior);
+				if (result == null) result = caseNamedElement(markCleanBehavior);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1616,17 +1634,17 @@ public class SculptorguimetamodelSwitch {
 	}
 
 																/**
-	 * Returns the result of interpreting the object as an instance of '<em>Confirm If Dirty Behavior</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Warn If Dirty Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Confirm If Dirty Behavior</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Warn If Dirty Behavior</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConfirmIfDirtyBehavior(ConfirmIfDirtyBehavior object) {
+	public Object caseWarnIfDirtyBehavior(WarnIfDirtyBehavior object) {
 		return null;
 	}
 
@@ -1642,6 +1660,36 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object casePopulateListBoxBehavior(PopulateListBoxBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mark Dirty Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mark Dirty Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseMarkDirtyBehavior(MarkDirtyBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mark Clean Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mark Clean Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseMarkCleanBehavior(MarkCleanBehavior object) {
 		return null;
 	}
 

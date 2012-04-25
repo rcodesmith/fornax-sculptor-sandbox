@@ -274,11 +274,17 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseSetDirtyFlagBehavior(SetDirtyFlagBehavior object) {
 				return createSetDirtyFlagBehaviorAdapter();
 			}
-			public Object caseConfirmIfDirtyBehavior(ConfirmIfDirtyBehavior object) {
-				return createConfirmIfDirtyBehaviorAdapter();
+			public Object caseWarnIfDirtyBehavior(WarnIfDirtyBehavior object) {
+				return createWarnIfDirtyBehaviorAdapter();
 			}
 			public Object casePopulateListBoxBehavior(PopulateListBoxBehavior object) {
 				return createPopulateListBoxBehaviorAdapter();
+			}
+			public Object caseMarkDirtyBehavior(MarkDirtyBehavior object) {
+				return createMarkDirtyBehaviorAdapter();
+			}
+			public Object caseMarkCleanBehavior(MarkCleanBehavior object) {
+				return createMarkCleanBehaviorAdapter();
 			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
@@ -1236,16 +1242,16 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 																/**
-	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ConfirmIfDirtyBehavior <em>Confirm If Dirty Behavior</em>}'.
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.WarnIfDirtyBehavior <em>Warn If Dirty Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see sculptorguimetamodel.ConfirmIfDirtyBehavior
+	 * @see sculptorguimetamodel.WarnIfDirtyBehavior
 	 * @generated
 	 */
-	public Adapter createConfirmIfDirtyBehaviorAdapter() {
+	public Adapter createWarnIfDirtyBehaviorAdapter() {
 		return null;
 	}
 
@@ -1260,6 +1266,34 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPopulateListBoxBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.MarkDirtyBehavior <em>Mark Dirty Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.MarkDirtyBehavior
+	 * @generated
+	 */
+	public Adapter createMarkDirtyBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.MarkCleanBehavior <em>Mark Clean Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.MarkCleanBehavior
+	 * @generated
+	 */
+	public Adapter createMarkCleanBehaviorAdapter() {
 		return null;
 	}
 

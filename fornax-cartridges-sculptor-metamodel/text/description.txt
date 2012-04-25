@@ -241,7 +241,11 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class SetDirtyFlagBehavior -> UiBehavior
     Attribute markSpecificObj : EBoolean
 
-  Class ConfirmIfDirtyBehavior -> ConfirmMessageBehavior
+  Class WarnIfDirtyBehavior -> ConfirmMessageBehavior
 
   Class PopulateListBoxBehavior -> UiBehavior
     Reference widget : ListBoxWidget<<1..1>>
+
+  Class MarkDirtyBehavior -> SetDirtyFlagBehavior
+
+  Class MarkCleanBehavior -> SetDirtyFlagBehavior

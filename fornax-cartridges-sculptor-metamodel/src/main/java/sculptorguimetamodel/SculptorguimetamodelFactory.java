@@ -611,13 +611,13 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	SetDirtyFlagBehavior createSetDirtyFlagBehavior();
 
 																/**
-	 * Returns a new object of class '<em>Confirm If Dirty Behavior</em>'.
+	 * Returns a new object of class '<em>Warn If Dirty Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Confirm If Dirty Behavior</em>'.
+	 * @return a new object of class '<em>Warn If Dirty Behavior</em>'.
 	 * @generated
 	 */
-	ConfirmIfDirtyBehavior createConfirmIfDirtyBehavior();
+	WarnIfDirtyBehavior createWarnIfDirtyBehavior();
 
 																/**
 	 * Returns a new object of class '<em>Populate List Box Behavior</em>'.
@@ -627,6 +627,24 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	PopulateListBoxBehavior createPopulateListBoxBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Mark Dirty Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mark Dirty Behavior</em>'.
+	 * @generated
+	 */
+	MarkDirtyBehavior createMarkDirtyBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Mark Clean Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mark Clean Behavior</em>'.
+	 * @generated
+	 */
+	MarkCleanBehavior createMarkCleanBehavior();
 
 																/**
 	 * Returns the package supported by this factory.

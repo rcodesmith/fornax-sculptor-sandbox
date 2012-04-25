@@ -150,6 +150,25 @@ gui LibraryWeb for Library {
 				hint="customhint"
 			}
 
+			"Documentation on the MarkDirty behavior"
+			UiBehavior MarkDirty markViewDirty {
+				hint="customhint"
+				
+				specificObject
+			}
+
+			"Documentation on the MarkClean behavior"
+			UiBehavior MarkClean markViewClean {
+				hint="customhint"
+				
+				specificObject
+			}
+
+			"Warn if view is dirty"
+			UiBehavior WarnIfDirty warnIfViewDirty {
+				message="View is dirty."
+			}
+			
 			Condition Custom isTableEditable {
 				hint = "somehint2"
 			}

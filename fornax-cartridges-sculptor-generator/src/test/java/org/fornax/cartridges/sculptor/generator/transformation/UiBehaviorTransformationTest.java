@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CustomBehavior;
+import sculptorguimetamodel.MarkCleanBehavior;
+import sculptorguimetamodel.MarkDirtyBehavior;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.View;
@@ -71,7 +73,31 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		
 		assertEquals("customPersonTableBehavior", customBehavior.getName());
 	}
-	
+
+	@Test
+	public void assertMarkDirtyBehavior() {
+		View tableView = (View)getNamedElement("TableView", personModule().getViews());
+		
+		MarkDirtyBehavior markDirtyBehavior = (MarkDirtyBehavior)getNamedElement("markViewDirty", tableView.getBehaviors());
+		assertNotNull(markDirtyBehavior);
+		
+		assertEquals("markViewDirty", markDirtyBehavior.getName());
+		assertEquals("Documentation on the MarkDirty behavior", markDirtyBehavior.getDoc());
+		assertEquals("customhint", markDirtyBehavior.getHint());
+	}
+
+	@Test
+	public void assertMarkCleanBehavior() {
+		View tableView = (View)getNamedElement("TableView", personModule().getViews());
+		
+		MarkCleanBehavior markCleanBehavior = (MarkCleanBehavior)getNamedElement("markViewClean", tableView.getBehaviors());
+		assertNotNull(markCleanBehavior);
+		
+		assertEquals("markViewClean", markCleanBehavior.getName());
+		assertEquals("Documentation on the MarkClean behavior", markCleanBehavior.getDoc());
+		assertEquals("customhint", markCleanBehavior.getHint());
+	}
+
 	@Test
 	public void assertAutocompleteBoundBehaviors() {
 		View personFormView = (View)getNamedElement("PersonForm", personModule().getViews());

@@ -484,23 +484,11 @@ create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Modul
 
 create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module) :
 	initFromDslWidget(this, widget, module) ->
-//	setView(((DslView) widget.eContainer).transformView(module)) ->
-//	setHint(widget.hint) ->
-//	setDoc(widget.doc) ->
-//	setWidgetType(widget.widgetType) ->
 	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform()));
-//	setName(widget.name) ->
-//	setLabel(widget.label);
 
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
 	initFromDslWidget(this, widget, module) ->
-//	setView(((DslView) widget.eContainer).transformView(module)) ->
-//	setHint(widget.hint) ->
-//	setDoc(widget.doc) ->
-//	setWidgetType(widget.widgetType) ->
-//	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef);
-//	setLabel(widget.label);
 
 private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
 	widget.setHint(dslWidget.hint) ->
@@ -842,6 +830,24 @@ create sculptorguimetamodel::CompositeBehavior this transformBehavior(DslComposi
 	setHint(behavior.hint) ->
 	setName(behavior.name) ->
 	behaviors.addAll(behavior.behaviors.transformBehavior(module));
+
+create sculptorguimetamodel::MarkDirtyBehavior this transformBehavior(DslMarkDirtyBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setMarkSpecificObj(behavior.specificObject);
+
+create sculptorguimetamodel::MarkCleanBehavior this transformBehavior(DslMarkCleanBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setMarkSpecificObj(behavior.specificObject);
+
+create sculptorguimetamodel::WarnIfDirtyBehavior this transformBehavior(DslWarnIfDirtyBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setMessage(behavior.message);
 
 	
 	

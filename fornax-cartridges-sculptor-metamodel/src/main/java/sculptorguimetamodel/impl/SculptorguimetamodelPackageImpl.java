@@ -21,7 +21,6 @@ import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.ButtonWidget;
 import sculptorguimetamodel.CompositeBehavior;
-import sculptorguimetamodel.ConfirmIfDirtyBehavior;
 import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.CustomBehavior;
@@ -42,6 +41,8 @@ import sculptorguimetamodel.InputTextWidget;
 import sculptorguimetamodel.LinkWidget;
 import sculptorguimetamodel.ListBoxWidget;
 import sculptorguimetamodel.ListTask;
+import sculptorguimetamodel.MarkCleanBehavior;
+import sculptorguimetamodel.MarkDirtyBehavior;
 import sculptorguimetamodel.NavigateToViewBehavior;
 import sculptorguimetamodel.NumberSpinnerWidget;
 import sculptorguimetamodel.OnClickBinding;
@@ -81,6 +82,7 @@ import sculptorguimetamodel.ViewAttributeReference;
 import sculptorguimetamodel.ViewDataProperty;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.ViewTask;
+import sculptorguimetamodel.WarnIfDirtyBehavior;
 import sculptorguimetamodel.Widget;
 import sculptorguimetamodel.WidgetTableColumn;
 import sculptorguimetamodel.WidgetsContainer;
@@ -553,7 +555,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass confirmIfDirtyBehaviorEClass = null;
+	private EClass warnIfDirtyBehaviorEClass = null;
 
 																/**
 	 * <!-- begin-user-doc -->
@@ -561,6 +563,20 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass populateListBoxBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass markDirtyBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass markCleanBehaviorEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2152,8 +2168,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConfirmIfDirtyBehavior() {
-		return confirmIfDirtyBehaviorEClass;
+	public EClass getWarnIfDirtyBehavior() {
+		return warnIfDirtyBehaviorEClass;
 	}
 
 																/**
@@ -2172,6 +2188,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getPopulateListBoxBehavior_Widget() {
 		return (EReference)populateListBoxBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMarkDirtyBehavior() {
+		return markDirtyBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMarkCleanBehavior() {
+		return markCleanBehaviorEClass;
 	}
 
 																/**
@@ -2436,10 +2470,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		setDirtyFlagBehaviorEClass = createEClass(SET_DIRTY_FLAG_BEHAVIOR);
 		createEAttribute(setDirtyFlagBehaviorEClass, SET_DIRTY_FLAG_BEHAVIOR__MARK_SPECIFIC_OBJ);
 
-		confirmIfDirtyBehaviorEClass = createEClass(CONFIRM_IF_DIRTY_BEHAVIOR);
+		warnIfDirtyBehaviorEClass = createEClass(WARN_IF_DIRTY_BEHAVIOR);
 
 		populateListBoxBehaviorEClass = createEClass(POPULATE_LIST_BOX_BEHAVIOR);
 		createEReference(populateListBoxBehaviorEClass, POPULATE_LIST_BOX_BEHAVIOR__WIDGET);
+
+		markDirtyBehaviorEClass = createEClass(MARK_DIRTY_BEHAVIOR);
+
+		markCleanBehaviorEClass = createEClass(MARK_CLEAN_BEHAVIOR);
 	}
 
 	/**
@@ -2532,8 +2570,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		widgetTableColumnEClass.getESuperTypes().add(this.getTableColumn());
 		simpleTableColumnEClass.getESuperTypes().add(this.getTableColumn());
 		setDirtyFlagBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
-		confirmIfDirtyBehaviorEClass.getESuperTypes().add(this.getConfirmMessageBehavior());
+		warnIfDirtyBehaviorEClass.getESuperTypes().add(this.getConfirmMessageBehavior());
 		populateListBoxBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		markDirtyBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
+		markCleanBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2770,10 +2810,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(setDirtyFlagBehaviorEClass, SetDirtyFlagBehavior.class, "SetDirtyFlagBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSetDirtyFlagBehavior_MarkSpecificObj(), ecorePackage.getEBoolean(), "markSpecificObj", null, 0, 1, SetDirtyFlagBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(confirmIfDirtyBehaviorEClass, ConfirmIfDirtyBehavior.class, "ConfirmIfDirtyBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(warnIfDirtyBehaviorEClass, WarnIfDirtyBehavior.class, "WarnIfDirtyBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(populateListBoxBehaviorEClass, PopulateListBoxBehavior.class, "PopulateListBoxBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPopulateListBoxBehavior_Widget(), this.getListBoxWidget(), null, "widget", null, 1, 1, PopulateListBoxBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(markDirtyBehaviorEClass, MarkDirtyBehavior.class, "MarkDirtyBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(markCleanBehaviorEClass, MarkCleanBehavior.class, "MarkCleanBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
