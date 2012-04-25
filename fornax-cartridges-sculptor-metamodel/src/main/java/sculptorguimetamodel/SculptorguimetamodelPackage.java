@@ -6959,6 +6959,171 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int SIMPLE_TABLE_COLUMN_FEATURE_COUNT = TABLE_COLUMN_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.SetDirtyFlagBehaviorImpl <em>Set Dirty Flag Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.SetDirtyFlagBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getSetDirtyFlagBehavior()
+	 * @generated
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR = 64;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Mark Specific Obj</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR__MARK_SPECIFIC_OBJ = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Set Dirty Flag Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ConfirmIfDirtyBehaviorImpl <em>Confirm If Dirty Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ConfirmIfDirtyBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getConfirmIfDirtyBehavior()
+	 * @generated
+	 */
+	int CONFIRM_IF_DIRTY_BEHAVIOR = 65;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_IF_DIRTY_BEHAVIOR__NAME = CONFIRM_MESSAGE_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_IF_DIRTY_BEHAVIOR__DOC = CONFIRM_MESSAGE_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_IF_DIRTY_BEHAVIOR__HINT = CONFIRM_MESSAGE_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_IF_DIRTY_BEHAVIOR__MESSAGE = CONFIRM_MESSAGE_BEHAVIOR__MESSAGE;
+
+	/**
+	 * The number of structural features of the '<em>Confirm If Dirty Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_IF_DIRTY_BEHAVIOR_FEATURE_COUNT = CONFIRM_MESSAGE_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.PopulateListBoxBehaviorImpl <em>Populate List Box Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.PopulateListBoxBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPopulateListBoxBehavior()
+	 * @generated
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR = 66;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR__WIDGET = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Populate List Box Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8732,6 +8897,58 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getSimpleTableColumn();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.SetDirtyFlagBehavior <em>Set Dirty Flag Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Set Dirty Flag Behavior</em>'.
+	 * @see sculptorguimetamodel.SetDirtyFlagBehavior
+	 * @generated
+	 */
+	EClass getSetDirtyFlagBehavior();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.SetDirtyFlagBehavior#isMarkSpecificObj <em>Mark Specific Obj</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mark Specific Obj</em>'.
+	 * @see sculptorguimetamodel.SetDirtyFlagBehavior#isMarkSpecificObj()
+	 * @see #getSetDirtyFlagBehavior()
+	 * @generated
+	 */
+	EAttribute getSetDirtyFlagBehavior_MarkSpecificObj();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ConfirmIfDirtyBehavior <em>Confirm If Dirty Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Confirm If Dirty Behavior</em>'.
+	 * @see sculptorguimetamodel.ConfirmIfDirtyBehavior
+	 * @generated
+	 */
+	EClass getConfirmIfDirtyBehavior();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.PopulateListBoxBehavior <em>Populate List Box Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Populate List Box Behavior</em>'.
+	 * @see sculptorguimetamodel.PopulateListBoxBehavior
+	 * @generated
+	 */
+	EClass getPopulateListBoxBehavior();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PopulateListBoxBehavior#getWidget <em>Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Widget</em>'.
+	 * @see sculptorguimetamodel.PopulateListBoxBehavior#getWidget()
+	 * @see #getPopulateListBoxBehavior()
+	 * @generated
+	 */
+	EReference getPopulateListBoxBehavior_Widget();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10216,6 +10433,52 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SIMPLE_TABLE_COLUMN = eINSTANCE.getSimpleTableColumn();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.SetDirtyFlagBehaviorImpl <em>Set Dirty Flag Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.SetDirtyFlagBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getSetDirtyFlagBehavior()
+		 * @generated
+		 */
+		EClass SET_DIRTY_FLAG_BEHAVIOR = eINSTANCE.getSetDirtyFlagBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Mark Specific Obj</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SET_DIRTY_FLAG_BEHAVIOR__MARK_SPECIFIC_OBJ = eINSTANCE.getSetDirtyFlagBehavior_MarkSpecificObj();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ConfirmIfDirtyBehaviorImpl <em>Confirm If Dirty Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ConfirmIfDirtyBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getConfirmIfDirtyBehavior()
+		 * @generated
+		 */
+		EClass CONFIRM_IF_DIRTY_BEHAVIOR = eINSTANCE.getConfirmIfDirtyBehavior();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.PopulateListBoxBehaviorImpl <em>Populate List Box Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.PopulateListBoxBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPopulateListBoxBehavior()
+		 * @generated
+		 */
+		EClass POPULATE_LIST_BOX_BEHAVIOR = eINSTANCE.getPopulateListBoxBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Widget</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POPULATE_LIST_BOX_BEHAVIOR__WIDGET = eINSTANCE.getPopulateListBoxBehavior_Widget();
 
 	}
 

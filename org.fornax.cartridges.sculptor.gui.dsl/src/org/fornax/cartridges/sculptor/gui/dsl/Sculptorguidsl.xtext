@@ -446,13 +446,21 @@ DslGuiDto :
 //////////////////////////////////////////////////////////////
 
 DslUiBehavior :
-	DslPopulatePanelBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior | DslCustomBehavior  | DslCompositeBehavior;
+	DslPopulatePanelBehavior | DslPopulateListBoxBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior
+	| DslCustomBehavior | DslCompositeBehavior | DslMarkDirtyBehavior | DslMarkCleanBehavior | DslWarnIfDirtyBehavior;
 	
 DslPopulatePanelBehavior :
   (doc=STRING)?
   "UiBehavior" "PopulatePanel" name=ID "{"
 	("hint" "=" hint=STRING)?
     'panel' '=' panel=[DslPanelWidget]    
+  "}";
+
+DslPopulateListBoxBehavior :
+  (doc=STRING)?
+  "UiBehavior" "PopulateListBox" name=ID "{"
+	("hint" "=" hint=STRING)?
+    'listBox' '=' panel=[DslListBoxWidget]    
   "}";
 
 DslNavigateToViewBehavior :
@@ -479,16 +487,36 @@ DslConfirmMessageBehavior :
 DslCustomBehavior :
   (doc=STRING)?
   "UiBehavior" "Custom" name=ID "{"
-	  ("hint" "=" hint=STRING)?
+	("hint" "=" hint=STRING)?
   "}";
 
 DslCompositeBehavior :
   (doc=STRING)?
   "UiBehavior" "Composite" name=ID "{"
-	  ("hint" "=" hint=STRING)?
+	("hint" "=" hint=STRING)?
    	behaviors+=[DslUiBehavior] ("," behaviors+=[DslUiBehavior])*
   "}";
 	
+DslMarkDirtyBehavior :
+  (doc=STRING)?
+  "UiBehavior" "MarkDirty" name=ID "{"
+	("hint" "=" hint=STRING)?
+	((specificObject?="specificObject") | (NOT "specificObject"))?
+  "}";
+
+DslMarkCleanBehavior :
+  (doc=STRING)?
+  "UiBehavior" "MarkClean" name=ID "{"
+	("hint" "=" hint=STRING)?
+	((specificObject?="specificObject") | (NOT "specificObject"))?
+  "}";
+
+DslWarnIfDirtyBehavior :
+  (doc=STRING)?
+  "UiBehavior" "WarnIfDirty" name=ID "{"
+	("hint" "=" hint=STRING)?
+  	('message' '=' message=STRING)?
+  "}";
 
 
 //////////////////////////////////////////////////////////////

@@ -602,6 +602,33 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	SimpleTableColumn createSimpleTableColumn();
 
 																/**
+	 * Returns a new object of class '<em>Set Dirty Flag Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Dirty Flag Behavior</em>'.
+	 * @generated
+	 */
+	SetDirtyFlagBehavior createSetDirtyFlagBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Confirm If Dirty Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Confirm If Dirty Behavior</em>'.
+	 * @generated
+	 */
+	ConfirmIfDirtyBehavior createConfirmIfDirtyBehavior();
+
+																/**
+	 * Returns a new object of class '<em>Populate List Box Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Populate List Box Behavior</em>'.
+	 * @generated
+	 */
+	PopulateListBoxBehavior createPopulateListBoxBehavior();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

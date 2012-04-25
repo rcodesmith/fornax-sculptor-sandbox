@@ -1,17 +1,30 @@
 package org.fornax.cartridges.sculptor.framework.gwt.client.behavior;
 
-import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlag;
+import java.util.logging.Logger;
+
+import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlags;
 
 public class MarkDirtyBehavior extends SetDirtyFlagBehavior implements Behavior {
-	
-	public MarkDirtyBehavior(HasDirtyFlag hasDirty) {
-		super(hasDirty);
+    private static final Logger LOG =
+        Logger.getLogger(MarkDirtyBehavior.class.getName());
+
+	public MarkDirtyBehavior(HasDirtyFlags hasDirty) {
+		super(hasDirty, true);
 	}
 
-	@Override
-	public void invoke(BehaviorCompletion completion) {
-		hasDirty.setDirtyFlag(true);
-		completion.complete(true);
+	public MarkDirtyBehavior(HasDirtyFlags hasDirty,
+			Boolean markSpecificObjectDirty) {
+		super(hasDirty, true, markSpecificObjectDirty);
 	}
+
+//	@Override
+//	public void invoke(BehaviorCompletion completion, BehaviorDispatcher.Event event) {
+//		LOG.fine("invoke()");
+//		hasDirty.setDirtyFlag(true);
+//		
+//		
+//		
+//		completion.complete(true, event);
+//	}
 
 }

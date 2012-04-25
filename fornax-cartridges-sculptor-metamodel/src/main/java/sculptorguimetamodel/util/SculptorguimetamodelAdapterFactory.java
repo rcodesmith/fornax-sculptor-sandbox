@@ -271,6 +271,15 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseSimpleTableColumn(SimpleTableColumn object) {
 				return createSimpleTableColumnAdapter();
 			}
+			public Object caseSetDirtyFlagBehavior(SetDirtyFlagBehavior object) {
+				return createSetDirtyFlagBehaviorAdapter();
+			}
+			public Object caseConfirmIfDirtyBehavior(ConfirmIfDirtyBehavior object) {
+				return createConfirmIfDirtyBehaviorAdapter();
+			}
+			public Object casePopulateListBoxBehavior(PopulateListBoxBehavior object) {
+				return createPopulateListBoxBehaviorAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1209,6 +1218,48 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSimpleTableColumnAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.SetDirtyFlagBehavior <em>Set Dirty Flag Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.SetDirtyFlagBehavior
+	 * @generated
+	 */
+	public Adapter createSetDirtyFlagBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ConfirmIfDirtyBehavior <em>Confirm If Dirty Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ConfirmIfDirtyBehavior
+	 * @generated
+	 */
+	public Adapter createConfirmIfDirtyBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PopulateListBoxBehavior <em>Populate List Box Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.PopulateListBoxBehavior
+	 * @generated
+	 */
+	public Adapter createPopulateListBoxBehaviorAdapter() {
 		return null;
 	}
 

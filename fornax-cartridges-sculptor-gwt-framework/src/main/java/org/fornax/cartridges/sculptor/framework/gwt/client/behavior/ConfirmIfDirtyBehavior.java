@@ -1,6 +1,6 @@
 package org.fornax.cartridges.sculptor.framework.gwt.client.behavior;
 
-import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlag;
+import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlags;
 
 import com.google.gwt.user.client.Window;
 
@@ -8,10 +8,10 @@ public class ConfirmIfDirtyBehavior implements Behavior {
 
 	protected String message = "Screen has unsaved changes, are you sure you wish to continue?";
 	
-	protected HasDirtyFlag hasDirty;
+	protected HasDirtyFlags hasDirty;
 	
 	
-	public ConfirmIfDirtyBehavior(HasDirtyFlag hasDirty, String message) {
+	public ConfirmIfDirtyBehavior(HasDirtyFlags hasDirty, String message) {
 		super();
 		
 		if(message != null) {
@@ -21,11 +21,11 @@ public class ConfirmIfDirtyBehavior implements Behavior {
 	}
 
 	@Override
-	public void invoke(BehaviorCompletion completion) {
+	public void invoke(BehaviorCompletion completion, BehaviorDispatcher.Event event) {
 		if(hasDirty.isDirty()) {
-			completion.complete(Window.confirm(message));
+			completion.complete(Window.confirm(message), event);
 		} else {
-			completion.complete(true);
+			completion.complete(true, event);
 		}
 	}
 

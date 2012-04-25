@@ -35,8 +35,10 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	
 	«EXPAND serviceDeclaration FOREACH serviceProxies»
 
+	«EXPAND initBehavior FOREACH behaviors»
+	
 	public «gwtActivityBaseClass()»(com.google.gwt.event.shared.EventBus eventBus,
-		«gwtViewInterface()» theView,
+		«fqnGwtViewInterface()» theView,
 		com.google.gwt.place.shared.PlaceController placeController
 		«EXPAND serviceConstructorArgs FOR this») {
 		super();
@@ -52,7 +54,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 
 	/**
-	 *
+	 * Start the activity, attaching it to the view
 	 */
 	@Override
 	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
@@ -88,9 +90,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	 * Bind to the view (register event handlers, etc) 
 	 */
 	protected void bind() {
-	«FOREACH widgets AS w»
-		bind«w.name.toFirstUpper()»();
-	«ENDFOREACH»
+		«FOREACH widgets AS w»
+			bind«w.name.toFirstUpper()»();
+		«ENDFOREACH»
+	
+		«FOREACH behaviors AS behavior»
+			«behavior.name»Behavior = create«behavior.name.toFirstUpper()»Behavior();
+		«ENDFOREACH»
 	}
 	
 	«EXPAND widgetBindMethod FOREACH widgets»
@@ -99,7 +105,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		return view.asWidget();
 	}
 	
-	protected «gwtViewInterface()» getView() {
+	protected «fqnGwtViewInterface()» getView() {
 		return view;
 	}
 	
@@ -110,6 +116,30 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	
 }
 «ENDDEFINE»
+
+«DEFINE initBehavior FOR UiBehavior»
+	// TODO: No behavior init for «name».  There should be.
+«ENDDEFINE»
+
+«DEFINE initBehavior FOR CustomBehavior»
+protected «getBehaviorClass("custom")» «name»Behavior;
+
+protected «getBehaviorClass("custom")» create«name.toFirstUpper()»Behavior() {
+	return new «getBehaviorClass("custom")»(new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.AsyncInvocable<Boolean>() {
+		
+		@Override
+		public void invoke(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event, 
+			com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback) {
+			«name»(callback);
+		}
+	});
+}
+
+protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback);
+
+
+«ENDDEFINE»
+
 
 «REM»Declaration of service constructor arguments, with leading ,«ENDREM»
 «DEFINE serviceConstructorArgs FOR View»

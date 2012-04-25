@@ -71,7 +71,7 @@ package «gwtBaseWidgetsPackage()»;
 «ELSE -»
 «formatJavaDoc()»
 «ENDIF -»
-	public interface «gwtViewBaseInterface()» extends com.google.gwt.user.client.ui.IsWidget, org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlag {
+	public interface «gwtViewBaseInterface()» extends com.google.gwt.user.client.ui.IsWidget {
 	
 		/**
      	 * Initialize this view with the given presenter.
@@ -118,8 +118,20 @@ package «gwtBaseWidgetsPackage()»;
 
 	    public void clear«name.toFirstUpper()»Data();
 
+	 	«EXPAND tableColumnInterfaceDeclarations(this) FOREACH this.columns»
 	«ENDIF»
 «ENDDEFINE»
+
+«REM»Interface declarations for Table Columns«ENDREM»
+«DEFINE tableColumnInterfaceDeclarations(TableWidget tableWidget) FOR TableColumn»
+«ENDDEFINE»
+
+«REM»Interface declarations for Widget Table Columns«ENDREM»
+«DEFINE tableColumnInterfaceDeclarations(TableWidget tableWidget) FOR WidgetTableColumn»
+	public void set«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»FieldUpdater(
+		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String> fieldUpdater);
+«ENDDEFINE»
+
 
 «DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
@@ -175,6 +187,8 @@ package «gwtBaseWidgetsPackage()»;
 		
 	    public com.google.gwt.event.logical.shared.HasValueChangeHandlers<«this.getTypedWidgetTargetType()»> get«name.toFirstUpper()»HasValueChangeHandlers();
 
+    	public org.fornax.cartridges.sculptor.framework.gwt.client.HasSelectableItems<«this.getTypedWidgetTargetType()»> get«name.toFirstUpper()»HasSelectableItems();
+    
 
 «ENDDEFINE»
 
@@ -416,16 +430,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
             	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
 			}
 		};
-		«this.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
-
-			@Override
-			public void update(int index, «tableWidget.for.fqnGwtDto()» object, String value) {
-				LOG.info("Click on " + object);
-				
-				onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(object, value);
-			}
-			
-		});
 		return «this.tableColumnAttrName()»;
     }
     
@@ -466,16 +470,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 			}
 
 		};
-		«this.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
-
-			@Override
-			public void update(int index, «tableWidget.for.fqnGwtDto()» object, String value) {
-				LOG.info("Click on " + object);
-				
-				onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(object, value);
-			}
-			
-		});
 		return «this.tableColumnAttrName()»;
     }
     
@@ -561,7 +555,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 			«EXPAND tableColumnValueGetterBridge(tableWidget, col) FOR this»
 		};
 		
-		«EXPAND columnEventHandlersBridge(tableWidget,col) FOR this»
 
 		return «col.tableColumnAttrName()»;
     }
@@ -570,6 +563,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     
     «EXPAND tableColumnEventHandlers(tableWidget, col) FOR this»
 
+	public void set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(
+		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String> fieldUpdater) {
+		
+			«col.tableColumnAttrName()».setFieldUpdater(fieldUpdater);
+	}
+	
 	
 «ENDDEFINE»
 
@@ -664,6 +663,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	    	return «name»;
 	    }
 
+    	public org.fornax.cartridges.sculptor.framework.gwt.client.HasSelectableItems<«this.getTypedWidgetTargetType()»> get«name.toFirstUpper()»HasSelectableItems() {
+	    	return «name»;    	
+    	}
+
 
 «ENDDEFINE»
 
@@ -687,7 +690,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «DEFINE widgetDeclaration FOR Widget»
     @com.google.gwt.uibinder.client.UiField
-    «resolveGwtWidgetType()» «name»;
+    protected «resolveGwtWidgetType()» «name»;
     
 «ENDDEFINE»
 
@@ -697,11 +700,11 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     // «name» cell table
     «debugTrace("widgetDeclaration() for table: " + this.name + " forModule = " + this.for.guiModule.for)»
     @com.google.gwt.uibinder.client.UiField(provided = true)
-    «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
+    protected «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
     final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
         new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
 
-	com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»> «name»ListDataProvider = new com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»>();
+	protected com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»> «name»ListDataProvider = new com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»>();
 
 «ENDDEFINE»
 

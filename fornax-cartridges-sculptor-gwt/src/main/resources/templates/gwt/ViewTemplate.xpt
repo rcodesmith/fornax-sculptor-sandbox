@@ -108,7 +108,7 @@
 	«IF label != null»
 		<g:Label text="«label»" />
 	«ENDIF»
-	<«this.resolveGwtWidgetTag()» ui:field="«name»"></«this.resolveGwtWidgetTag()»>
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" hasEmptyItem="true"></«this.resolveGwtWidgetTag()»>
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR CustomWidget»

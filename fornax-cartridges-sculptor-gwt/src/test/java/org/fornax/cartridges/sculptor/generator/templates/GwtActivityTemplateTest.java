@@ -89,7 +89,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		assertContainsConsecutiveFragments(
 				activityBaseCode,
 				"public PersonFormActivityBase(com.google.gwt.event.shared.EventBus eventBus,",
-				"PersonFormView theView,",
+				"org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.PersonFormView theView,",
 				"com.google.gwt.place.shared.PlaceController placeController",
 				",",
 				"org.fornax.cartridges.sculptor.examples.library.person.gwt.client.GwtPersonServiceAsync personService"

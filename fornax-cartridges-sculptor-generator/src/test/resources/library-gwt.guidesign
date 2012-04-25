@@ -178,7 +178,7 @@ gui LibraryWeb for Library {
 
 		"Composite"
 		UiBehavior Composite compositeBehavior {
-			
+			navigateToMediaBrowse
 		}
 		
 		Condition Custom isAdministrator {

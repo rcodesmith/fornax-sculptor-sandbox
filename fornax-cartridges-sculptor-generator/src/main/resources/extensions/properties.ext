@@ -539,4 +539,7 @@ String getGwtInterface(String interfaceName) :
 	
 String getCellTypeClass(String widgetType) :
 	getProperty("widgetType.cell.class." + widgetType);
-	
+
+String getBehaviorClass(String behaviorType) :
+	getProperty("gwt.behaviorType.class." + behaviorType);
+		

@@ -1,18 +1,14 @@
 package org.fornax.cartridges.sculptor.framework.gwt.client;
 
-public abstract class BaseView extends com.google.gwt.user.client.ui.Composite implements HasDirtyFlag {
+import com.google.gwt.user.client.Window;
 
-	protected boolean dirty = false;
+public abstract class BaseView extends com.google.gwt.user.client.ui.Composite implements PresentsConfirmationMessage {
+
+	@Override
+	public boolean showConfirmation(String msg) {
+		return Window.confirm(msg);
+	}
+
 	
-	@Override
-	public boolean isDirty() {
-		return dirty;
-	}
-
-	@Override
-	public void setDirtyFlag(boolean isDirty) {
-		dirty = isDirty;
-	}
-
 	
 }

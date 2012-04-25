@@ -611,6 +611,31 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.SET_DIRTY_FLAG_BEHAVIOR: {
+				SetDirtyFlagBehavior setDirtyFlagBehavior = (SetDirtyFlagBehavior)theEObject;
+				Object result = caseSetDirtyFlagBehavior(setDirtyFlagBehavior);
+				if (result == null) result = caseUiBehavior(setDirtyFlagBehavior);
+				if (result == null) result = caseNamedElement(setDirtyFlagBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.CONFIRM_IF_DIRTY_BEHAVIOR: {
+				ConfirmIfDirtyBehavior confirmIfDirtyBehavior = (ConfirmIfDirtyBehavior)theEObject;
+				Object result = caseConfirmIfDirtyBehavior(confirmIfDirtyBehavior);
+				if (result == null) result = caseConfirmMessageBehavior(confirmIfDirtyBehavior);
+				if (result == null) result = caseUiBehavior(confirmIfDirtyBehavior);
+				if (result == null) result = caseNamedElement(confirmIfDirtyBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.POPULATE_LIST_BOX_BEHAVIOR: {
+				PopulateListBoxBehavior populateListBoxBehavior = (PopulateListBoxBehavior)theEObject;
+				Object result = casePopulateListBoxBehavior(populateListBoxBehavior);
+				if (result == null) result = caseUiBehavior(populateListBoxBehavior);
+				if (result == null) result = caseNamedElement(populateListBoxBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1572,6 +1597,51 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseSimpleTableColumn(SimpleTableColumn object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Set Dirty Flag Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Set Dirty Flag Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSetDirtyFlagBehavior(SetDirtyFlagBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Confirm If Dirty Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Confirm If Dirty Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseConfirmIfDirtyBehavior(ConfirmIfDirtyBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Populate List Box Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Populate List Box Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object casePopulateListBoxBehavior(PopulateListBoxBehavior object) {
 		return null;
 	}
 

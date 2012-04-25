@@ -124,6 +124,9 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.ON_SELECT_ITEM_BINDING: return createOnSelectItemBinding();
 			case SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN: return createWidgetTableColumn();
 			case SculptorguimetamodelPackage.SIMPLE_TABLE_COLUMN: return createSimpleTableColumn();
+			case SculptorguimetamodelPackage.SET_DIRTY_FLAG_BEHAVIOR: return createSetDirtyFlagBehavior();
+			case SculptorguimetamodelPackage.CONFIRM_IF_DIRTY_BEHAVIOR: return createConfirmIfDirtyBehavior();
+			case SculptorguimetamodelPackage.POPULATE_LIST_BOX_BEHAVIOR: return createPopulateListBoxBehavior();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -767,6 +770,36 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public SimpleTableColumn createSimpleTableColumn() {
 		SimpleTableColumnImpl simpleTableColumn = new SimpleTableColumnImpl();
 		return simpleTableColumn;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SetDirtyFlagBehavior createSetDirtyFlagBehavior() {
+		SetDirtyFlagBehaviorImpl setDirtyFlagBehavior = new SetDirtyFlagBehaviorImpl();
+		return setDirtyFlagBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConfirmIfDirtyBehavior createConfirmIfDirtyBehavior() {
+		ConfirmIfDirtyBehaviorImpl confirmIfDirtyBehavior = new ConfirmIfDirtyBehaviorImpl();
+		return confirmIfDirtyBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PopulateListBoxBehavior createPopulateListBoxBehavior() {
+		PopulateListBoxBehaviorImpl populateListBoxBehavior = new PopulateListBoxBehaviorImpl();
+		return populateListBoxBehavior;
 	}
 
 																/**

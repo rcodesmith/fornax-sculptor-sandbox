@@ -247,4 +247,12 @@
         eType="#//Widget"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleTableColumn" eSuperTypes="#//TableColumn"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetDirtyFlagBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="markSpecificObj" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfirmIfDirtyBehavior" eSuperTypes="#//ConfirmMessageBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PopulateListBoxBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widget" lowerBound="1"
+        eType="#//ListBoxWidget"/>
+  </eClassifiers>
 </ecore:EPackage>

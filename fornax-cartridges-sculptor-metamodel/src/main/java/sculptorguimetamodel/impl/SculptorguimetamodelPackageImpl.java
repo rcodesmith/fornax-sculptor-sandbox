@@ -21,6 +21,7 @@ import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.ButtonWidget;
 import sculptorguimetamodel.CompositeBehavior;
+import sculptorguimetamodel.ConfirmIfDirtyBehavior;
 import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.CustomBehavior;
@@ -47,6 +48,7 @@ import sculptorguimetamodel.OnClickBinding;
 import sculptorguimetamodel.OnHoverBinding;
 import sculptorguimetamodel.OnSelectItemBinding;
 import sculptorguimetamodel.PanelWidget;
+import sculptorguimetamodel.PopulateListBoxBehavior;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
@@ -59,6 +61,7 @@ import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.SectionWidget;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.ServiceProxyOperation;
+import sculptorguimetamodel.SetDirtyFlagBehavior;
 import sculptorguimetamodel.SimpleTableColumn;
 import sculptorguimetamodel.StubModule;
 import sculptorguimetamodel.SubTaskTransition;
@@ -537,6 +540,27 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass simpleTableColumnEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass setDirtyFlagBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass confirmIfDirtyBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass populateListBoxBehaviorEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2110,6 +2134,51 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSetDirtyFlagBehavior() {
+		return setDirtyFlagBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSetDirtyFlagBehavior_MarkSpecificObj() {
+		return (EAttribute)setDirtyFlagBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConfirmIfDirtyBehavior() {
+		return confirmIfDirtyBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPopulateListBoxBehavior() {
+		return populateListBoxBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPopulateListBoxBehavior_Widget() {
+		return (EReference)populateListBoxBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2363,6 +2432,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(widgetTableColumnEClass, WIDGET_TABLE_COLUMN__WIDGET);
 
 		simpleTableColumnEClass = createEClass(SIMPLE_TABLE_COLUMN);
+
+		setDirtyFlagBehaviorEClass = createEClass(SET_DIRTY_FLAG_BEHAVIOR);
+		createEAttribute(setDirtyFlagBehaviorEClass, SET_DIRTY_FLAG_BEHAVIOR__MARK_SPECIFIC_OBJ);
+
+		confirmIfDirtyBehaviorEClass = createEClass(CONFIRM_IF_DIRTY_BEHAVIOR);
+
+		populateListBoxBehaviorEClass = createEClass(POPULATE_LIST_BOX_BEHAVIOR);
+		createEReference(populateListBoxBehaviorEClass, POPULATE_LIST_BOX_BEHAVIOR__WIDGET);
 	}
 
 	/**
@@ -2454,6 +2531,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		onSelectItemBindingEClass.getESuperTypes().add(this.getBehaviorBinding());
 		widgetTableColumnEClass.getESuperTypes().add(this.getTableColumn());
 		simpleTableColumnEClass.getESuperTypes().add(this.getTableColumn());
+		setDirtyFlagBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		confirmIfDirtyBehaviorEClass.getESuperTypes().add(this.getConfirmMessageBehavior());
+		populateListBoxBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2686,6 +2766,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getWidgetTableColumn_Widget(), this.getWidget(), null, "widget", null, 1, 1, WidgetTableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleTableColumnEClass, SimpleTableColumn.class, "SimpleTableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(setDirtyFlagBehaviorEClass, SetDirtyFlagBehavior.class, "SetDirtyFlagBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSetDirtyFlagBehavior_MarkSpecificObj(), ecorePackage.getEBoolean(), "markSpecificObj", null, 0, 1, SetDirtyFlagBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(confirmIfDirtyBehaviorEClass, ConfirmIfDirtyBehavior.class, "ConfirmIfDirtyBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(populateListBoxBehaviorEClass, PopulateListBoxBehavior.class, "PopulateListBoxBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPopulateListBoxBehavior_Widget(), this.getListBoxWidget(), null, "widget", null, 1, 1, PopulateListBoxBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
