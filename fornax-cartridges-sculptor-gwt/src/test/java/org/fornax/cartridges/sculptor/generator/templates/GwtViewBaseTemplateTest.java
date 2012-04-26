@@ -59,7 +59,7 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         
         // Assert panel code
         assertContainsConsecutiveFragments(tableViewBaseCode, "@com.google.gwt.uibinder.client.UiField",
-        		"protected com.google.gwt.user.client.ui.HTMLPanel personDetailsPanel;");
+        		"public com.google.gwt.user.client.ui.HTMLPanel personDetailsPanel;");
 
     	assertContainsConsecutiveFragments(tableViewBaseCode, "public com.google.gwt.user.client.ui.HasWidgets.ForIsWidget getPersonDetailsPanelForIsWidget() {",
     		"return personDetailsPanel;",
@@ -72,7 +72,7 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         
         // Assert nestedNameField code
         assertContainsConsecutiveFragments(tableViewBaseCode, "@com.google.gwt.uibinder.client.UiField",
-        	"protected com.google.gwt.user.client.ui.TextBox nestedNameField;");
+        	"public com.google.gwt.user.client.ui.TextBox nestedNameField;");
         
         assertContainsConsecutiveFragments(tableViewBaseCode, "public com.google.gwt.user.client.ui.HasText getNestedNameFieldHasText() {",
 		"return nestedNameField;",
