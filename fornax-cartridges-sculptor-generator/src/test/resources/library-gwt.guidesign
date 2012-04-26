@@ -94,6 +94,7 @@ gui LibraryWeb for Library {
 
 						widget listBox genderSelector forEnum Gender {
 							label = "Gender"
+							onSelectItem=populatePersonDetailsPanel
 						}
 						
 						edit type=Button onClick=populatePersonDetailsPanel;

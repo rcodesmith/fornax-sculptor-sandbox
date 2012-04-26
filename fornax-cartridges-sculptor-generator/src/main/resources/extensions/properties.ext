@@ -542,4 +542,8 @@ String getCellTypeClass(String widgetType) :
 
 String getBehaviorClass(String behaviorType) :
 	getProperty("gwt.behaviorType.class." + behaviorType);
+	
+	
+String gwtBehaviorDispatcherClass() :
+	getProperty("gwt.behaviorDispatcher.class");
 		

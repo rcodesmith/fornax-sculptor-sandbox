@@ -820,6 +820,12 @@ create sculptorguimetamodel::UpdateTableBehavior this transformBehavior(DslUpdat
 	setName(behavior.name) ->
 	setTable(behavior.table.transformWidget(module));
 
+create sculptorguimetamodel::PopulateListBoxBehavior this transformBehavior(DslPopulateListBoxBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setWidget(behavior.widget.transformWidget(module));
+
 create sculptorguimetamodel::CustomBehavior this transformBehavior(DslCustomBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->

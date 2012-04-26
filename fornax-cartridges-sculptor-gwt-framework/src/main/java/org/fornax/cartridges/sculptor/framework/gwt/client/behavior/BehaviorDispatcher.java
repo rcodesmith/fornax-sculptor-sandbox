@@ -27,8 +27,8 @@ public class BehaviorDispatcher {
     private static final Logger LOG =
         Logger.getLogger(BehaviorDispatcher.class.getName());
 
-	protected List<Behavior> behaviors = new ArrayList<Behavior>();
-	protected String name;
+	protected final List<Behavior> behaviors = new ArrayList<Behavior>();
+	protected final String name;
 	
 	public class Event {
 		private Integer index;
@@ -62,6 +62,11 @@ public class BehaviorDispatcher {
 		}
 	}
 	
+	/**
+	 * Callback class that is invoked when a behavior completes.  Needed since behaviors may be asynchronous.
+	 * @author ron
+	 *
+	 */
 	protected class DispatchBehaviorCompletion implements BehaviorCompletion {
 		int currentBehaviorIndex;
 		
@@ -69,6 +74,11 @@ public class BehaviorDispatcher {
 			this.currentBehaviorIndex = currentBehavior;
 		}
 
+		/**
+		 * Behavior completed successfully.  invoke next behavior if appropriate.
+		 * @param continueBehaviors If true, the remaining behaviors may be invoked
+		 * @param event Event that caused behaviors to get invoked
+		 */
 		@Override
 		public void complete(boolean continueBehaviors, Event event) {
 			if(currentBehaviorIndex + 1 < behaviors.size() && continueBehaviors) {
@@ -77,6 +87,11 @@ public class BehaviorDispatcher {
 			
 		}
 
+		/**
+		 * Behavior failed.  Do not continue with remaining behaviors.
+		 * @param throwable Exception that caused failure
+		 * @param event Event that caused behaviors to get invoked
+		 */
 		@Override
 		public void failure(Throwable throwable, Event event) {
 			LOG.log(Level.SEVERE, "Failure dispatching to behaviors", throwable);
@@ -84,8 +99,16 @@ public class BehaviorDispatcher {
 
 	}
 	
-	protected void dispatchTo(int index, Event event) {
-		Behavior b = behaviors.get(index);
+	/**
+	 * Dispatch to the behavior at index.
+	 * @param index
+	 * @param event
+	 */
+	protected void dispatchTo(int index, Event event) {		
+		if(LOG.isLoggable(Level.FINE)) {
+			LOG.fine(name + " dispatchTo(" + index + ")");
+		}
+		final Behavior b = behaviors.get(index);
 		b.invoke(new DispatchBehaviorCompletion(index), event);
 	}
 	

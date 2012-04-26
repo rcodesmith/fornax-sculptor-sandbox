@@ -90,14 +90,23 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	 * Bind to the view (register event handlers, etc) 
 	 */
 	protected void bind() {
-		«FOREACH widgets AS w»
-			bind«w.name.toFirstUpper()»();
-		«ENDFOREACH»
-	
 		«FOREACH behaviors AS behavior»
 			«behavior.name»Behavior = create«behavior.name.toFirstUpper()»Behavior();
 		«ENDFOREACH»
+		
+		«FOREACH widgets AS w»
+			bind«w.name.toFirstUpper()»();
+		«ENDFOREACH»
+		
+		«FOREACH widgets.typeSelect(TableWidget) AS table»
+			«FOREACH table.columns AS col»
+				bind«table.name.toFirstUpper()»«col.name.toFirstUpper()»();
+			«ENDFOREACH»
+		«ENDFOREACH»
+		
+		
 	}
+	
 	
 	«EXPAND widgetBindMethod FOREACH widgets»
 	
@@ -122,22 +131,190 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «ENDDEFINE»
 
 «DEFINE initBehavior FOR CustomBehavior»
-protected «getBehaviorClass("custom")» «name»Behavior;
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("custom")» «name»Behavior;
 
-protected «getBehaviorClass("custom")» create«name.toFirstUpper()»Behavior() {
-	return new «getBehaviorClass("custom")»(new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.AsyncInvocable<Boolean>() {
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("custom")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("custom")»(new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.AsyncInvocable<Boolean>() {
 		
-		@Override
-		public void invoke(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event, 
-			com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback) {
-			«name»(callback);
-		}
-	});
-}
+			@Override
+			public void invoke(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event, 
+				com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback) {
+				«name»(callback);
+			}
+		});
+	}
 
-protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback);
+	/**
+	 * Custom method for the «name» behavior.  Must be overridden by derived class.
+	 */
+	protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback);
 
 
+«ENDDEFINE»
+
+«DEFINE initBehavior FOR UpdateTableBehavior»
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»> «name»Behavior;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»> create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»>("«name»",
+				view.get«table.name.toFirstUpper()»HasData(),
+				new «getBehaviorClass("updateTable")».DataSource<«this.table.fqnTableForClass()»>() {
+
+					@Override
+					public void getData(
+							com.google.gwt.user.client.rpc.AsyncCallback<java.util.List<«this.table.fqnTableForClass()»>> resultsCallback) {
+
+						«name»BehaviorGetData(resultsCallback);
+					}
+		});    	
+ 	}
+
+
+	/**
+	 * Method to get the updated data for table «this.table.name» as part of behavior «name»
+	 */
+	protected abstract void «name»BehaviorGetData(com.google.gwt.user.client.rpc.AsyncCallback<java.util.List<«this.table.fqnTableForClass()»>> callback);
+
+«ENDDEFINE»
+
+«DEFINE initBehavior FOR PopulateListBoxBehavior»
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("populateListBox")»<«this.widget.getTypedWidgetTargetType()»> «name»Behavior;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("populateListBox")»<«this.widget.getTypedWidgetTargetType()»> create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("populateListBox")»<«this.widget.getTypedWidgetTargetType()»>("«name»",
+				view.get«widget.name.toFirstUpper()»HasSelectableItems(),
+				new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.AsyncInvocable<java.util.Collection<«this.widget.getTypedWidgetTargetType()»>>() {
+
+			@Override
+			public void invoke(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event, 
+				com.google.gwt.user.client.rpc.AsyncCallback<java.util.Collection<«this.widget.getTypedWidgetTargetType()»>> callback) {
+				«name»BehaviorGetData(callback);
+			}
+
+		});    	
+ 	}
+
+
+	/**
+	 * Method to get the updated data for list box «this.widget.name» as part of behavior «name»
+	 */
+	protected abstract void «name»BehaviorGetData(com.google.gwt.user.client.rpc.AsyncCallback<java.util.Collection<«this.widget.getTypedWidgetTargetType()»>> callback);
+
+«ENDDEFINE»
+
+«DEFINE initBehavior FOR MarkDirtyBehavior»
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("markDirty")» «name»Behavior;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("markDirty")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("markDirty")»("«name»",
+				this, «markSpecificObj»);    	
+ 	}
+«ENDDEFINE»
+
+«DEFINE initBehavior FOR MarkCleanBehavior»
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("markClean")» «name»Behavior;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("markClean")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("markClean")»("«name»",
+				this);    	
+ 	}
+«ENDDEFINE»
+
+«DEFINE initBehavior FOR WarnIfDirtyBehavior»
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("warnIfDirty")» «name»Behavior;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("warnIfDirty")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("warnIfDirty")»("«name»", "«message»",
+				this, view);
+ 	}
 «ENDDEFINE»
 
 
@@ -152,11 +329,39 @@ protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Bool
 «ENDDEFINE»
 
 
-«REM»Methods to bind activity to view«ENDREM»
-«DEFINE widgetBindMethod FOR Widget»
-	protected void bind«this.name.toFirstUpper()»() {	
-	}
 
+
+«REM»Methods to bind activity to view«ENDREM»
+
+«DEFINE widgetBindMethod FOR Widget»
+
+	/**
+	 * Bind behaviors to individual widgets.  Subclasses may override this to perform custom bindings.
+	 */
+	protected void bind«this.name.toFirstUpper()»() {
+
+		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»		
+	}
+«ENDDEFINE»
+
+«DEFINE behaviorBinding FOR BehaviorBinding»
+	«debugTrace("No template for behavior binding " + this)»
+«ENDDEFINE»
+
+«DEFINE behaviorBinding(Widget widget) FOR OnSelectItemBinding»
+	{
+		«EXPAND behaviorDispatcherConstruction(widget, "OnSelectItem") FOR this»
+
+		«IF ListBoxWidget.isInstance(widget)»
+			bd.bindHasValueChangeHandlers(view.get«widget.name.toFirstUpper()»HasValueChangeHandlers());
+		«ELSE»
+			bd.bindHasSelectionHandler(view.get«widget.name.toFirstUpper()»HasSelectionHandlers());
+		«ENDIF»
+	}
+«ENDDEFINE»
+
+«DEFINE behaviorDispatcherConstruction(Widget widget, String bindingType) FOR BehaviorBinding»
+	«gwtBehaviorDispatcherClass()» bd = new «gwtBehaviorDispatcherClass()»("«widget.name + bindingType»", «FOREACH behaviors AS b SEPARATOR ", "»«b.name»Behavior«ENDFOREACH»);
 «ENDDEFINE»
 
 «DEFINE widgetBindMethod FOR LinkWidget»
@@ -174,6 +379,49 @@ protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Bool
 	}
 
 «ENDDEFINE»
+
+
+«DEFINE widgetBindMethod FOR TableWidget»
+
+	«REM»reuse template from Widget?«ENDREM»
+	/**
+	 * Bind behaviors to individual widgets.  Subclasses may override this to perform custom bindings.
+	 */
+	protected void bind«this.name.toFirstUpper()»() {
+
+		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»		
+	}
+
+
+	«EXPAND columnBindMethod(this) FOREACH columns»
+«ENDDEFINE»
+
+«DEFINE columnBindMethod(TableWidget table) FOR TableColumn»
+	/**
+	 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
+	 */
+	protected void bind«table.name.toFirstUpper()»«this.name.toFirstUpper()»() {
+	}
+«ENDDEFINE»
+
+«DEFINE columnBindMethod(TableWidget table) FOR WidgetTableColumn»
+	/**
+	 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
+	 */
+	protected void bind«table.name.toFirstUpper()»«this.name.toFirstUpper()»() {
+
+		«EXPAND behaviorBinding(this.widget, this, table) FOREACH this.widget.behaviorBindings»		
+	}
+
+«ENDDEFINE»
+
+«DEFINE behaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget) FOR OnSelectItemBinding»
+	«EXPAND behaviorDispatcherConstruction(widget, "OnSelectItem") FOR this»
+
+	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());
+«ENDDEFINE»
+
+
 
 «REM»Methods to clear data from widgets«ENDREM»
 «DEFINE widgetClearCall FOR Widget»

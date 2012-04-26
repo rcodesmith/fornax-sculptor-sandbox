@@ -10,25 +10,27 @@ public class SetDirtyFlagBehavior implements Behavior {
     private static final Logger LOG =
         Logger.getLogger(SetDirtyFlagBehavior.class.getName());
     
+    protected String name;
 	protected HasDirtyFlags hasDirty;
 	protected Boolean dirtyFlagValue;
     protected Boolean markSpecificObjectDirty = false;
     
 
-	public SetDirtyFlagBehavior(HasDirtyFlags hasDirty, boolean dirtyFlagValue, Boolean markSpecificObjectDirty) {
+	public SetDirtyFlagBehavior(String name, HasDirtyFlags hasDirty, boolean dirtyFlagValue, Boolean markSpecificObjectDirty) {
 		super();
+		this.name = name;
 		this.hasDirty = hasDirty;
 		this.dirtyFlagValue = dirtyFlagValue;
 		this.markSpecificObjectDirty = markSpecificObjectDirty;
 	}
 
-	public SetDirtyFlagBehavior(HasDirtyFlags hasDirty, boolean dirtyFlagValue) {
-		this(hasDirty, dirtyFlagValue, Boolean.FALSE);
+	public SetDirtyFlagBehavior(String name, HasDirtyFlags hasDirty, boolean dirtyFlagValue) {
+		this(name, hasDirty, dirtyFlagValue, Boolean.FALSE);
 	}
 	
 	@Override
 	public void invoke(BehaviorCompletion completion, final Event event) {
-		LOG.fine("invoke");
+		LOG.fine(name + " invoke()");
 		hasDirty.setDirtyFlag(dirtyFlagValue);
 		
 		if(markSpecificObjectDirty) {

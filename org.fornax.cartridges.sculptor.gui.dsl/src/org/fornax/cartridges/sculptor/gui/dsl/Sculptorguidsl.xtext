@@ -460,7 +460,7 @@ DslPopulateListBoxBehavior :
   (doc=STRING)?
   "UiBehavior" "PopulateListBox" name=ID "{"
 	("hint" "=" hint=STRING)?
-    'listBox' '=' panel=[DslListBoxWidget]    
+    'listBox' '=' widget=[DslListBoxWidget]    
   "}";
 
 DslNavigateToViewBehavior :

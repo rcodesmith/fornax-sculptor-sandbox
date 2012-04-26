@@ -93,6 +93,12 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		WidgetTableColumn widgetCol = (WidgetTableColumn) tableCols.get(2);
 		assertNotNull(widgetCol);
 		assertEquals("Widget", widgetCol.getColumnType());
+		assertEquals("genderSelector", widgetCol.getName());
+		Assert.assertTrue(widgetCol.getWidget() instanceof ListBoxWidget);
+		ListBoxWidget genderSelector = (ListBoxWidget)widgetCol.getWidget();
+		assertEquals(1, genderSelector.getBehaviorBindings().size());
+		
+		
 		
 		TableColumn editCol = (TableColumn) tableCols.get(3);
 		assertNotNull(editCol);

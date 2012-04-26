@@ -8,13 +8,13 @@ public class MarkDirtyBehavior extends SetDirtyFlagBehavior implements Behavior 
     private static final Logger LOG =
         Logger.getLogger(MarkDirtyBehavior.class.getName());
 
-	public MarkDirtyBehavior(HasDirtyFlags hasDirty) {
-		super(hasDirty, true);
+	public MarkDirtyBehavior(String name, HasDirtyFlags hasDirty) {
+		super(name, hasDirty, true);
 	}
 
-	public MarkDirtyBehavior(HasDirtyFlags hasDirty,
+	public MarkDirtyBehavior(String name, HasDirtyFlags hasDirty,
 			Boolean markSpecificObjectDirty) {
-		super(hasDirty, true, markSpecificObjectDirty);
+		super(name, hasDirty, true, markSpecificObjectDirty);
 	}
 
 //	@Override

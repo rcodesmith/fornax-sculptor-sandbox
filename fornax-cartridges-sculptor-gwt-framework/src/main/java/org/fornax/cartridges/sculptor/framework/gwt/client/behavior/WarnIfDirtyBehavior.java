@@ -11,11 +11,13 @@ public class WarnIfDirtyBehavior implements Behavior {
     private static final Logger LOG =
         Logger.getLogger(WarnIfDirtyBehavior.class.getName());
 
+    protected String name;
 	protected HasDirtyFlags hasDirty;
 	protected PresentsConfirmationMessage presentsConfirmation;
 	protected String message;
 	
-	public WarnIfDirtyBehavior(String message, HasDirtyFlags hasDirty, PresentsConfirmationMessage presentsConfirmation) {
+	public WarnIfDirtyBehavior(String name, String message, HasDirtyFlags hasDirty, PresentsConfirmationMessage presentsConfirmation) {
+		this.name = name;
 		this.message = message;
 		this.hasDirty = hasDirty;
 		this.presentsConfirmation = presentsConfirmation;
@@ -25,7 +27,7 @@ public class WarnIfDirtyBehavior implements Behavior {
 	public void invoke(BehaviorCompletion completion, Event event) {
 		boolean dirty = hasDirty.isDirty();
 		if(LOG.isLoggable(Level.FINE)) {
-			LOG.fine("invoke() isDirty = " + dirty);
+			LOG.fine(name + " invoke() isDirty = " + dirty);
 		}
 		if(dirty) {
 			completion.complete(presentsConfirmation.showConfirmation(message), event);			

@@ -690,7 +690,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «DEFINE widgetDeclaration FOR Widget»
     @com.google.gwt.uibinder.client.UiField
-    protected «resolveGwtWidgetType()» «name»;
+    public «resolveGwtWidgetType()» «name»;
     
 «ENDDEFINE»
 
@@ -700,7 +700,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     // «name» cell table
     «debugTrace("widgetDeclaration() for table: " + this.name + " forModule = " + this.for.guiModule.for)»
     @com.google.gwt.uibinder.client.UiField(provided = true)
-    protected «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
+    public «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
     final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
         new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
 
