@@ -24,7 +24,10 @@ which is causing attributes to get masked.«ENDREM»
 	Domain module transformation
 «ENDREM»
 «DEFINE gwtDomainModule(GuiApplication guiApp, GuiModule guiModule) FOR Module»
-	«EXPAND domainObject FOREACH guiModule.stubModule.domainObjects.reject(e|Enum.isInstance(e)).select(e|e.generateGwt())»
+
+	«REM»Generate domain objects, except enums and commands, which are generated separately«ENDREM»
+	«EXPAND domainObject FOREACH guiModule.stubModule.domainObjects.reject(e|Enum.isInstance(e) || GuiCommand.isInstance(e)).select(e|e.generateGwt())»
+	
 	«EXPAND gwtEnumDto FOREACH guiModule.stubModule.domainObjects.typeSelect(Enum).select(e|e.generateGwt())»
 «REM»
 	«EXPAND domainObject FOREACH this.gwtDomainObjects().typeSelect(ValueObject).reject(d | CommandEvent.isInstance(d) || GuiCommand.isInstance(d))»

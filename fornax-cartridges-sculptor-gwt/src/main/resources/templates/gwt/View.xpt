@@ -71,7 +71,7 @@ package «gwtBaseWidgetsPackage()»;
 «ELSE -»
 «formatJavaDoc()»
 «ENDIF -»
-	public interface «gwtViewBaseInterface()» extends com.google.gwt.user.client.ui.IsWidget {
+	public interface «gwtViewBaseInterface()» extends com.google.gwt.user.client.ui.IsWidget, org.fornax.cartridges.sculptor.framework.gwt.client.PresentsConfirmationMessage {
 	
 		/**
      	 * Initialize this view with the given presenter.

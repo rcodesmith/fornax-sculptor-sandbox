@@ -685,17 +685,6 @@ create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr
 //////////////////////////////////////////////////////////////////////////////////
 // GuiCommand related transformations
 //////////////////////////////////////////////////////////////////////////////////
-// Transform in GuiModule - to remove eventually
-create sculptorguimetamodel::GuiCommand this transformCommand(DslCommandEvent dslCmd, Module module) :
-	setName(dslCmd.name) ->
-	setAbstract(dslCmd.abstract) ->
-	setExtends( dslCmd.extends != null ? dslCmd.extends.transformCommand(module) : null) ->
-	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
-	setDoc(dslCmd.doc) ->
-	setHint(dslCmd.hint) ->
-	attributes.addAll(dslCmd.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
-	references.addAll(dslCmd.references.select(r|r.generateGuiDto()).transformToGui(this))
-	;
 
 // Transform in StubModule
 create sculptorguimetamodel::GuiCommand this transformToGui(DslCommandEvent dslCmd) :

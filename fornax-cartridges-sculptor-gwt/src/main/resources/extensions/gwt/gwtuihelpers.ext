@@ -868,3 +868,10 @@ String getAccessor(DomainObjectOperation op, String instName) :
 	instName + "." + op.name + "()";
 	
 	
+
+	
+	
+// TODO: For now.
+boolean needsBuilder(GuiCommand guiCommand) :
+	false;
+	
