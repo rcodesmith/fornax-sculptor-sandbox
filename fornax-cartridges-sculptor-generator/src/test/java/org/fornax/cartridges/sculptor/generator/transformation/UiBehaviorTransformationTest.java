@@ -10,6 +10,7 @@ import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CustomBehavior;
 import sculptorguimetamodel.MarkCleanBehavior;
 import sculptorguimetamodel.MarkDirtyBehavior;
+import sculptorguimetamodel.OnClickBinding;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.View;
@@ -107,6 +108,19 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals(1, bindings.size());
 	}
 	
+	@Test
+	public void assertSaveButtonBoundBehaviors() {
+		View tableView = (View)getNamedElement("TableView", personModule().getViews());
+		Widget saveButton = (Widget)getNamedElement("saveButton", tableView.getWidgets());
+		assertNotNull(saveButton);
+		EList bindings = saveButton.getBehaviorBindings();
+		assertEquals(1, bindings.size());
+		OnClickBinding onClick = (OnClickBinding)bindings.get(0);
+		EList behaviors = onClick.getBehaviors();
+		assertEquals(1, behaviors.size());
+		CustomBehavior custom = (CustomBehavior) behaviors.get(0);
+		assertEquals("saveChanges", custom.getName());
+	}
 	//
 
 }

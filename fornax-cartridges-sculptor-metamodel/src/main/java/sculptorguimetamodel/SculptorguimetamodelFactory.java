@@ -647,6 +647,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	MarkCleanBehavior createMarkCleanBehavior();
 
 																/**
+	 * Returns a new object of class '<em>Go Back Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Go Back Behavior</em>'.
+	 * @generated
+	 */
+	GoBackBehavior createGoBackBehavior();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

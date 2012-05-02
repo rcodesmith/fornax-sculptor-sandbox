@@ -9,4 +9,6 @@ public interface HasDirtyFlags {
 	public boolean isDirty();
 	
 	public void setDirtyFlag(boolean isDirty);
+	
+	public void clearAllDirtyFlags();
 }

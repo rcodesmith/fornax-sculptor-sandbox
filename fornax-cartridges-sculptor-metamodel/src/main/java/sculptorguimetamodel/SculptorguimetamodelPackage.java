@@ -7234,6 +7234,52 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int MARK_CLEAN_BEHAVIOR_FEATURE_COUNT = SET_DIRTY_FLAG_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GoBackBehaviorImpl <em>Go Back Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GoBackBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGoBackBehavior()
+	 * @generated
+	 */
+	int GO_BACK_BEHAVIOR = 69;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GO_BACK_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GO_BACK_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GO_BACK_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The number of structural features of the '<em>Go Back Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GO_BACK_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9079,6 +9125,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getMarkCleanBehavior();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GoBackBehavior <em>Go Back Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Go Back Behavior</em>'.
+	 * @see sculptorguimetamodel.GoBackBehavior
+	 * @generated
+	 */
+	EClass getGoBackBehavior();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10629,6 +10685,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MARK_CLEAN_BEHAVIOR = eINSTANCE.getMarkCleanBehavior();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GoBackBehaviorImpl <em>Go Back Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GoBackBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGoBackBehavior()
+		 * @generated
+		 */
+		EClass GO_BACK_BEHAVIOR = eINSTANCE.getGoBackBehavior();
 
 	}
 

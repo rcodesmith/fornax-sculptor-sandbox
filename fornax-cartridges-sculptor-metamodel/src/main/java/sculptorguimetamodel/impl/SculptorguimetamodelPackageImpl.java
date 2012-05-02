@@ -29,6 +29,7 @@ import sculptorguimetamodel.CustomWidget;
 import sculptorguimetamodel.DeleteTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
 import sculptorguimetamodel.EnumViewProperty;
+import sculptorguimetamodel.GoBackBehavior;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiDto;
@@ -577,6 +578,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass markCleanBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass goBackBehaviorEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2213,6 +2221,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGoBackBehavior() {
+		return goBackBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2478,6 +2495,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		markDirtyBehaviorEClass = createEClass(MARK_DIRTY_BEHAVIOR);
 
 		markCleanBehaviorEClass = createEClass(MARK_CLEAN_BEHAVIOR);
+
+		goBackBehaviorEClass = createEClass(GO_BACK_BEHAVIOR);
 	}
 
 	/**
@@ -2574,6 +2593,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		populateListBoxBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		markDirtyBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
 		markCleanBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
+		goBackBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2818,6 +2838,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(markDirtyBehaviorEClass, MarkDirtyBehavior.class, "MarkDirtyBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(markCleanBehaviorEClass, MarkCleanBehavior.class, "MarkCleanBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(goBackBehaviorEClass, GoBackBehavior.class, "GoBackBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

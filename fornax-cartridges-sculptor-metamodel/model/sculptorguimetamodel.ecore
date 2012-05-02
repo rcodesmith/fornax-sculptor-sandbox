@@ -257,4 +257,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkDirtyBehavior" eSuperTypes="#//SetDirtyFlagBehavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="MarkCleanBehavior" eSuperTypes="#//SetDirtyFlagBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GoBackBehavior" eSuperTypes="#//UiBehavior"/>
 </ecore:EPackage>

@@ -232,6 +232,10 @@ public class BehaviorDispatcher {
 
 	}
 	
+	/**
+	 * Bind this dispatcher to an on-click handler.
+	 * @param hasClickHandlers Something that has an on-click handler, such as a button
+	 */
 	public void bindHasClickHandler(HasClickHandlers hasClickHandlers) {
 		final BehaviorDispatcher bd = this;
 

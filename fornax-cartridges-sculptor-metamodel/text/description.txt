@@ -249,3 +249,5 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class MarkDirtyBehavior -> SetDirtyFlagBehavior
 
   Class MarkCleanBehavior -> SetDirtyFlagBehavior
+
+  Class GoBackBehavior -> UiBehavior

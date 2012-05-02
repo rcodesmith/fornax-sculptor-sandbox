@@ -331,7 +331,7 @@ DslButtonWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
-		(onClick=DslOnClick)?
+		(behaviorBindings+=DslOnClick)?
 		(behaviorBindings+=DslOnHover)?
 	'}';
 
@@ -447,7 +447,8 @@ DslGuiDto :
 
 DslUiBehavior :
 	DslPopulatePanelBehavior | DslPopulateListBoxBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior
-	| DslCustomBehavior | DslCompositeBehavior | DslMarkDirtyBehavior | DslMarkCleanBehavior | DslWarnIfDirtyBehavior;
+	| DslCustomBehavior | DslCompositeBehavior | DslMarkDirtyBehavior | DslMarkCleanBehavior | DslWarnIfDirtyBehavior
+	| DslGoBackBehavior | DslUpdateAttributeBehavior | DslClearWidgetsBehavior;
 	
 DslPopulatePanelBehavior :
   (doc=STRING)?
@@ -518,13 +519,32 @@ DslWarnIfDirtyBehavior :
   	('message' '=' message=STRING)?
   "}";
 
+DslGoBackBehavior :
+  (doc=STRING)?
+  "UiBehavior" "GoBack" name=ID "{"
+	("hint" "=" hint=STRING)?
+  "}";
+
+DslUpdateAttributeBehavior :
+  (doc=STRING)?
+  "UiBehavior" "UpdateAttribute" name=ID "{"
+	("hint" "=" hint=STRING)?
+  "}";
+
+DslClearWidgetsBehavior :
+  (doc=STRING)?
+  "UiBehavior" "ClearWidgets" name=ID "{"
+	("hint" "=" hint=STRING)?
+	('widgets' '=' widgets+=[DslWidget] ("," widgets+=[DslWidget])*)?
+  "}";
+
 
 //////////////////////////////////////////////////////////////
 // Conditions
 //////////////////////////////////////////////////////////////
 
 DslUiCondition :
-	DslUiCustomCondition;
+	DslUiCustomCondition | DslHasDirtyValueCondition;
 
 DslUiCustomCondition :
   (doc=STRING)?
@@ -532,6 +552,12 @@ DslUiCustomCondition :
 	  ("hint" "=" hint=STRING)?
   "}";
 
+DslHasDirtyValueCondition :
+  (doc=STRING)?
+  "Condition" "HasDirtyValue" name=ID "{"
+	  ("hint" "=" hint=STRING)?
+	  ((dirty?="dirty") | (NOT "dirty"))
+  "}";
 
 
 

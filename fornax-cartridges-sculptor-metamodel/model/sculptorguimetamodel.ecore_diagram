@@ -1677,6 +1677,23 @@
     <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//MarkCleanBehavior"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P08jQY5-EeGzWbSIc9-l_Q" x="-296" y="813"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="___rEwZNAEeGp_OYD5T3jjQ" type="2001" fontName="Lucida Grande">
+    <children xmi:type="notation:DecorationNode" xmi:id="___rr0JNAEeGp_OYD5T3jjQ" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="___rr0ZNAEeGp_OYD5T3jjQ" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="___rr0pNAEeGp_OYD5T3jjQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="___rr05NAEeGp_OYD5T3jjQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="___rr1JNAEeGp_OYD5T3jjQ" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="___rr1ZNAEeGp_OYD5T3jjQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="___rr1pNAEeGp_OYD5T3jjQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="___rr15NAEeGp_OYD5T3jjQ" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="___rr2JNAEeGp_OYD5T3jjQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="___rr2ZNAEeGp_OYD5T3jjQ"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//GoBackBehavior"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="___rEwpNAEeGp_OYD5T3jjQ" x="-486" y="396"/>
+  </children>
   <styles xmi:type="notation:PageStyle" xmi:id="_ogxVUJhdEdyBcOPcAwQcIw"/>
   <styles xmi:type="notation:GuideStyle" xmi:id="_ogxVUZhdEdyBcOPcAwQcIw"/>
   <styles xmi:type="notation:DescriptionStyle" xmi:id="_ogxVUphdEdyBcOPcAwQcIw"/>
@@ -3197,5 +3214,10 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_TAMXQY5-EeGzWbSIc9-l_Q" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TAMXQo5-EeGzWbSIc9-l_Q" points="[-18, -26, 131, 181]$[-75, -204, 74, 3]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_C6Au8JNBEeGp_OYD5T3jjQ" type="4004" source="___rEwZNAEeGp_OYD5T3jjQ" target="_VN3sIShqEeGAFratGl8qMw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_C6Au8ZNBEeGp_OYD5T3jjQ" fontName="Lucida Grande"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_C6Au8pNBEeGp_OYD5T3jjQ" points="[-2, -26, 89, 797]$[-58, -827, 33, -4]"/>
   </edges>
 </notation:Diagram>

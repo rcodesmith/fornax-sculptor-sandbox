@@ -318,6 +318,30 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «ENDDEFINE»
 
 
+«DEFINE initBehavior FOR GoBackBehavior»
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * «name» behavior class
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("goBack")» «name»Behavior;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("goBack")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("goBack")»("«name»", this);
+ 	}
+«ENDDEFINE»
+
+
 «REM»Declaration of service constructor arguments, with leading ,«ENDREM»
 «DEFINE serviceConstructorArgs FOR View»
 «IF this.serviceProxies.size > 0»
@@ -357,6 +381,14 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		«ELSE»
 			bd.bindHasSelectionHandler(view.get«widget.name.toFirstUpper()»HasSelectionHandlers());
 		«ENDIF»
+	}
+«ENDDEFINE»
+
+«DEFINE behaviorBinding(Widget widget) FOR OnClickBinding»
+	{
+		«EXPAND behaviorDispatcherConstruction(widget, "OnClick") FOR this»
+
+		bd.bindHasClickHandler(view.get«widget.name.toFirstUpper()»HasClickHandlers());
 	}
 «ENDDEFINE»
 

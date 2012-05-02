@@ -7,8 +7,9 @@ import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlags;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.History;
 
-public abstract class ActivityBase<T extends Place> extends AbstractActivity implements HasDirtyFlags {
+public abstract class ActivityBase<T extends Place> extends AbstractActivity implements HasDirtyFlags, ActivityIf {
 	
 	protected Boolean isDirty = false;
 	
@@ -44,5 +45,21 @@ public abstract class ActivityBase<T extends Place> extends AbstractActivity imp
 	public void setDirtyFlag(boolean isDirty) {
 		this.isDirty = isDirty;
 	}
+	
+	
 
+	@Override
+	public void clearAllDirtyFlags() {
+		this.isDirty = false;
+		
+		dirtyFlags.clear();
+	}
+
+	@Override
+	public void goBack() {
+		History.back();
+	}
+
+	
+	
 }

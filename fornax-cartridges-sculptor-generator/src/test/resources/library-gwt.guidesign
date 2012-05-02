@@ -116,6 +116,11 @@ gui LibraryWeb for Library {
 					}
 				}
 				
+				button saveButton {
+					label = "Save"
+					onClick = saveChanges
+				}
+
 				"this is an empty panel"
 				panel personDetailsEmptyPanel {
 					contents {
@@ -149,6 +154,9 @@ gui LibraryWeb for Library {
 			
 			UiBehavior Custom customPersonTableBehavior {
 				hint="customhint"
+			}
+
+			UiBehavior Custom saveChanges {
 			}
 
 			"Documentation on the MarkDirty behavior"

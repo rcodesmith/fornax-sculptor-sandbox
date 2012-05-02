@@ -31,7 +31,11 @@ public class SetDirtyFlagBehavior implements Behavior {
 	@Override
 	public void invoke(BehaviorCompletion completion, final Event event) {
 		LOG.fine(name + " invoke()");
-		hasDirty.setDirtyFlag(dirtyFlagValue);
+		if(markSpecificObjectDirty == true || markSpecificObjectDirty == false) {
+			LOG.fine("Setting dirty of view to: " + dirtyFlagValue);
+			
+			hasDirty.setDirtyFlag(dirtyFlagValue);
+		}
 		
 		if(markSpecificObjectDirty) {
 			Object obj = event.getObj();
