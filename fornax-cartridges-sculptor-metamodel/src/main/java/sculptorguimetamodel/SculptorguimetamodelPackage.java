@@ -5668,13 +5668,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int BEHAVIOR_BINDING__BEHAVIORS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_BINDING__WIDGET = 1;
+
+	/**
 	 * The number of structural features of the '<em>Behavior Binding</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_BINDING_FEATURE_COUNT = 1;
+	int BEHAVIOR_BINDING_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
@@ -5684,6 +5693,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ON_CLICK_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
+
+	/**
+	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_CLICK_BINDING__WIDGET = BEHAVIOR_BINDING__WIDGET;
 
 	/**
 	 * The number of structural features of the '<em>On Click Binding</em>' class.
@@ -5702,6 +5720,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ON_HOVER_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
+
+	/**
+	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_HOVER_BINDING__WIDGET = BEHAVIOR_BINDING__WIDGET;
 
 	/**
 	 * The number of structural features of the '<em>On Hover Binding</em>' class.
@@ -6786,6 +6813,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int ON_SELECT_ITEM_BINDING__BEHAVIORS = BEHAVIOR_BINDING__BEHAVIORS;
 
 	/**
+	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_SELECT_ITEM_BINDING__WIDGET = BEHAVIOR_BINDING__WIDGET;
+
+	/**
 	 * The number of structural features of the '<em>On Select Item Binding</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6967,7 +7003,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int WIDGET_TABLE_COLUMN__EDITABLE = TABLE_COLUMN__EDITABLE;
 
 	/**
-	 * The feature id for the '<em><b>Widget</b></em>' reference.
+	 * The feature id for the '<em><b>Widget</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7587,13 +7623,31 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UPDATE_ATTRIBUTE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR__PROPERTY_PATH = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR__TARGET_CLASS = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Update Attribute Behavior</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UPDATE_ATTRIBUTE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
+	int UPDATE_ATTRIBUTE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -9089,6 +9143,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getBehaviorBinding_Behaviors();
 
 	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.BehaviorBinding#getWidget <em>Widget</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Widget</em>'.
+	 * @see sculptorguimetamodel.BehaviorBinding#getWidget()
+	 * @see #getBehaviorBinding()
+	 * @generated
+	 */
+	EReference getBehaviorBinding_Widget();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.OnClickBinding <em>On Click Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9370,10 +9435,10 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getWidgetTableColumn();
 
 	/**
-	 * Returns the meta object for the reference '{@link sculptorguimetamodel.WidgetTableColumn#getWidget <em>Widget</em>}'.
+	 * Returns the meta object for the containment reference '{@link sculptorguimetamodel.WidgetTableColumn#getWidget <em>Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Widget</em>'.
+	 * @return the meta object for the containment reference '<em>Widget</em>'.
 	 * @see sculptorguimetamodel.WidgetTableColumn#getWidget()
 	 * @see #getWidgetTableColumn()
 	 * @generated
@@ -9481,6 +9546,28 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUpdateAttributeBehavior();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.UpdateAttributeBehavior#getPropertyPath <em>Property Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Property Path</em>'.
+	 * @see sculptorguimetamodel.UpdateAttributeBehavior#getPropertyPath()
+	 * @see #getUpdateAttributeBehavior()
+	 * @generated
+	 */
+	EAttribute getUpdateAttributeBehavior_PropertyPath();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.UpdateAttributeBehavior#getTargetClass <em>Target Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Class</em>'.
+	 * @see sculptorguimetamodel.UpdateAttributeBehavior#getTargetClass()
+	 * @see #getUpdateAttributeBehavior()
+	 * @generated
+	 */
+	EReference getUpdateAttributeBehavior_TargetClass();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -10719,6 +10806,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference BEHAVIOR_BINDING__BEHAVIORS = eINSTANCE.getBehaviorBinding_Behaviors();
 
 		/**
+		 * The meta object literal for the '<em><b>Widget</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOR_BINDING__WIDGET = eINSTANCE.getBehaviorBinding_Widget();
+
+		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.OnClickBindingImpl <em>On Click Binding</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10967,7 +11062,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EClass WIDGET_TABLE_COLUMN = eINSTANCE.getWidgetTableColumn();
 
 		/**
-		 * The meta object literal for the '<em><b>Widget</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Widget</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -11069,6 +11164,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UPDATE_ATTRIBUTE_BEHAVIOR = eINSTANCE.getUpdateAttributeBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UPDATE_ATTRIBUTE_BEHAVIOR__PROPERTY_PATH = eINSTANCE.getUpdateAttributeBehavior_PropertyPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_ATTRIBUTE_BEHAVIOR__TARGET_CLASS = eINSTANCE.getUpdateAttributeBehavior_TargetClass();
 
 	}
 

@@ -856,13 +856,29 @@ String getSourceRefExpression(PropertyReferringWidget widget, GuiDto obj, String
 		case widget.forOp != null : widget.forOp.getAccessor(instName)
 		
 		// TODO: Following should handle nested path expressions
-		case widget.propertyPath != null : instName + "." + obj.getElementByName(widget.propertyPath).getGetAccessor() + "()"
+		case widget.propertyPath != null : getPathExpression(instName, obj, widget.propertyPath)
 			
 		default : null
 	};
 		
+
+String getPathExpression(String instName, DomainObject obj, String propertyPath) :
+	instName + "." + obj.getElementByName(propertyPath).getGetAccessor() + "()";
+
+String getSetterPathExpression(String instName, DomainObject obj, String propertyPath) :
+	let targetElem = obj.getElementByName(propertyPath) :
+		debugTrace("getSetterPathExpression() targetElem.to = " + targetElem.to) ->
+		if(Enum.isInstance(targetElem.to)) then
+			instName + "." + obj.getElementByName(propertyPath).getSetAccessor() + "AsString"
+		else
+			instName + "." + obj.getElementByName(propertyPath).getSetAccessor();
+
+// TODO: Move to helpers.ext?
+String getSetAccessor(NamedElement element) :
+    "set" + element.name.toFirstUpper();
+
 		
-NamedElement getElementByName(GuiDto obj, String name) :
+NamedElement getElementByName(DomainObject obj, String name) :
 	let res = obj.getAllAttributes().addAll(obj.getAllReferences()).select(e|e.name == name) :
 		debugTrace("getElementByName() name = " + name + ", obj = " + obj) ->
 		(res.size > 0 ? res.get(0) : null);

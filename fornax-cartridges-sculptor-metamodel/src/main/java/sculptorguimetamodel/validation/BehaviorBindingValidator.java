@@ -7,6 +7,7 @@
 package sculptorguimetamodel.validation;
 
 import org.eclipse.emf.common.util.EList;
+import sculptorguimetamodel.Widget;
 
 /**
  * A sample validator interface for {@link sculptorguimetamodel.BehaviorBinding}.
@@ -18,4 +19,8 @@ public interface BehaviorBindingValidator {
 	boolean validate();
 
 	boolean validateBehaviors(EList value);
+
+	boolean validateWidget(Widget value);
+
+	boolean validateWidgets(EList value);
 }

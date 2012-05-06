@@ -532,6 +532,8 @@ DslUpdateAttributeBehavior :
   (doc=STRING)?
   "UiBehavior" "UpdateAttribute" name=ID "{"
 	("hint" "=" hint=STRING)?
+	("propertyPath" "=" propertyPath=STRING)?
+	("targetClass" "=" targetClass=[mm::DslSimpleDomainObject])?
   "}";
 
 DslClearWidgetsBehavior :

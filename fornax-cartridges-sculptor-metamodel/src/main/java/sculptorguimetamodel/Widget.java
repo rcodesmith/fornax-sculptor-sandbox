@@ -86,6 +86,7 @@ public interface Widget extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Behavior Bindings</b></em>' reference list.
 	 * The list contents are of type {@link sculptorguimetamodel.BehaviorBinding}.
+	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.BehaviorBinding#getWidget <em>Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Behavior Bindings</em>' reference list isn't clear,
@@ -94,7 +95,8 @@ public interface Widget extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Behavior Bindings</em>' reference list.
 	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getWidget_BehaviorBindings()
-	 * @model type="sculptorguimetamodel.BehaviorBinding" required="true"
+	 * @see sculptorguimetamodel.BehaviorBinding#getWidget
+	 * @model type="sculptorguimetamodel.BehaviorBinding" opposite="widget" required="true"
 	 * @generated
 	 */
 	EList getBehaviorBindings();

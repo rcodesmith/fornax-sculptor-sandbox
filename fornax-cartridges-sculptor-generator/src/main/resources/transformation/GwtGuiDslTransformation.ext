@@ -862,7 +862,9 @@ create sculptorguimetamodel::GoBackBehavior this transformBehavior(DslGoBackBeha
 create sculptorguimetamodel::UpdateAttributeBehavior this transformBehavior(DslUpdateAttributeBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->
-	setName(behavior.name);
+	setName(behavior.name) ->
+	setPropertyPath(behavior.propertyPath) ->
+	setTargetClass(behavior.targetClass == null ? null : behavior.targetClass.transformToGui());
 
 	
 	

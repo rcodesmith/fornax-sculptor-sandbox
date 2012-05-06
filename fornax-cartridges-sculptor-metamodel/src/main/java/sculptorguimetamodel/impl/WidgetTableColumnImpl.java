@@ -8,6 +8,7 @@ package sculptorguimetamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -32,7 +33,7 @@ import sculptorguimetamodel.WidgetTableColumn;
  */
 public class WidgetTableColumnImpl extends TableColumnImpl implements WidgetTableColumn {
 	/**
-	 * The cached value of the '{@link #getWidget() <em>Widget</em>}' reference.
+	 * The cached value of the '{@link #getWidget() <em>Widget</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getWidget()
@@ -65,14 +66,6 @@ public class WidgetTableColumnImpl extends TableColumnImpl implements WidgetTabl
 	 * @generated
 	 */
 	public Widget getWidget() {
-		if (widget != null && widget.eIsProxy()) {
-			InternalEObject oldWidget = (InternalEObject)widget;
-			widget = (Widget)eResolveProxy(oldWidget);
-			if (widget != oldWidget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET, oldWidget, widget));
-			}
-		}
 		return widget;
 	}
 
@@ -81,8 +74,14 @@ public class WidgetTableColumnImpl extends TableColumnImpl implements WidgetTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Widget basicGetWidget() {
-		return widget;
+	public NotificationChain basicSetWidget(Widget newWidget, NotificationChain msgs) {
+		Widget oldWidget = widget;
+		widget = newWidget;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET, oldWidget, newWidget);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -91,10 +90,30 @@ public class WidgetTableColumnImpl extends TableColumnImpl implements WidgetTabl
 	 * @generated
 	 */
 	public void setWidget(Widget newWidget) {
-		Widget oldWidget = widget;
-		widget = newWidget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET, oldWidget, widget));
+		if (newWidget != widget) {
+			NotificationChain msgs = null;
+			if (widget != null)
+				msgs = ((InternalEObject)widget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET, null, msgs);
+			if (newWidget != null)
+				msgs = ((InternalEObject)newWidget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET, null, msgs);
+			msgs = basicSetWidget(newWidget, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET, newWidget, newWidget));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET:
+				return basicSetWidget(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -105,8 +124,7 @@ public class WidgetTableColumnImpl extends TableColumnImpl implements WidgetTabl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.WIDGET_TABLE_COLUMN__WIDGET:
-				if (resolve) return getWidget();
-				return basicGetWidget();
+				return getWidget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

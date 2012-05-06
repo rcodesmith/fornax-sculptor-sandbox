@@ -124,8 +124,34 @@ implements «getEnumCommonInterfaces()»
 	    «ELSE»
 	    	«EXPAND oneReferenceSetter»
 	    «ENDIF»
+		«EXPAND oneReferenceEnumAsStringSetter FOR this»
+		«EXPAND oneReferenceEnumAsStringGetter FOR this»
 
 «ENDDEFINE»
+
+«DEFINE oneReferenceEnumAsStringSetter FOR Reference»
+	«debugTrace("oneReferenceEnumAsStringSetter() this.to.metaType = " + this.to.metaType)»
+	«IF isSetterNeeded() && this.to.metaType == GuiEnum»
+		«LET this.to.getIdentifierAttribute() AS identifierAttribute »
+    		«formatJavaDoc()»
+    		public void set«name.toFirstUpper()»AsString(String «name») {
+	       		set«name.toFirstUpper()»(«name» == null ? null : «getTypeName()».«IF identifierAttribute==null»valueOf«ELSE»from«identifierAttribute.name.toFirstUpper()»«ENDIF»(«name»));
+	    	};
+    	«ENDLET»
+    «ENDIF»
+«ENDDEFINE»
+
+«DEFINE oneReferenceEnumAsStringGetter FOR Reference»
+	«IF this.to.metaType == Enum»
+		«LET this.to.getIdentifierAttribute() AS identifierAttribute »
+		    «formatJavaDoc()»
+    		public String get«name.toFirstUpper()»AsString() {
+        		return («name» == null ? null : «name».«IF identifierAttribute==null»getName«ELSE»get«identifierAttribute.name.toFirstUpper()»«ENDIF»());
+    		};
+    	«ENDLET»
+    «ENDIF»
+«ENDDEFINE»
+
 
 «DEFINE oneReferenceGetter FOR Reference»
 	«EXPAND oneReferenceGetter(true)»

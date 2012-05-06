@@ -60,6 +60,10 @@ public class BehaviorDispatcher {
 		public void setValue(Object value) {
 			this.value = value;
 		}
+		
+		public String toString() {
+			return ("Event(index=" + index + ", obj = " + obj + ", value = " + value + ")");
+		}
 	}
 	
 	/**

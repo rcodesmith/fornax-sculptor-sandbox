@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import sculptorguimetamodel.BehaviorBinding;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -207,7 +209,7 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 	 */
 	public EList getBehaviorBindings() {
 		if (behaviorBindings == null) {
-			behaviorBindings = new EObjectResolvingEList(BehaviorBinding.class, this, SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS);
+			behaviorBindings = new EObjectWithInverseResolvingEList(BehaviorBinding.class, this, SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS, SculptorguimetamodelPackage.BEHAVIOR_BINDING__WIDGET);
 		}
 		return behaviorBindings;
 	}
@@ -307,6 +309,32 @@ public class WidgetImpl extends NamedElementImpl implements Widget {
 		visible = newVisible;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.WIDGET__VISIBLE, oldVisible, visible));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS:
+				return ((InternalEList)getBehaviorBindings()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.WIDGET__BEHAVIOR_BINDINGS:
+				return ((InternalEList)getBehaviorBindings()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

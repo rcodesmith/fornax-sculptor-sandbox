@@ -38,6 +38,10 @@ public class UpdateTableBehavior<T> implements Behavior {
 	}
 
 
+	/**
+	 * Invoke the behavior.  Call the DataSource asynchronously to get the data to go into the table.  If successful,
+	 * replace the table contents with whatever is returned.
+	 */
 	@Override
 	public void invoke(final BehaviorCompletion completion, final Event event) {
 		if(LOG.isLoggable(Level.FINE)) {

@@ -25,26 +25,26 @@ package sculptorguimetamodel;
  */
 public interface WidgetTableColumn extends TableColumn {
 	/**
-	 * Returns the value of the '<em><b>Widget</b></em>' reference.
+	 * Returns the value of the '<em><b>Widget</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Widget</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Widget</em>' reference.
+	 * @return the value of the '<em>Widget</em>' containment reference.
 	 * @see #setWidget(Widget)
 	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getWidgetTableColumn_Widget()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Widget getWidget();
 
 	/**
-	 * Sets the value of the '{@link sculptorguimetamodel.WidgetTableColumn#getWidget <em>Widget</em>}' reference.
+	 * Sets the value of the '{@link sculptorguimetamodel.WidgetTableColumn#getWidget <em>Widget</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Widget</em>' reference.
+	 * @param value the new value of the '<em>Widget</em>' containment reference.
 	 * @see #getWidget()
 	 * @generated
 	 */

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link sculptorguimetamodel.BehaviorBinding#getBehaviors <em>Behaviors</em>}</li>
+ *   <li>{@link sculptorguimetamodel.BehaviorBinding#getWidget <em>Widget</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,5 +45,33 @@ public interface BehaviorBinding extends EObject {
 	 * @generated
 	 */
 	EList getBehaviors();
+
+	/**
+	 * Returns the value of the '<em><b>Widget</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link sculptorguimetamodel.Widget#getBehaviorBindings <em>Behavior Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Widget</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Widget</em>' reference.
+	 * @see #setWidget(Widget)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getBehaviorBinding_Widget()
+	 * @see sculptorguimetamodel.Widget#getBehaviorBindings
+	 * @model opposite="behaviorBindings" required="true"
+	 * @generated
+	 */
+	Widget getWidget();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.BehaviorBinding#getWidget <em>Widget</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Widget</em>' reference.
+	 * @see #getWidget()
+	 * @generated
+	 */
+	void setWidget(Widget value);
 
 } // BehaviorBinding

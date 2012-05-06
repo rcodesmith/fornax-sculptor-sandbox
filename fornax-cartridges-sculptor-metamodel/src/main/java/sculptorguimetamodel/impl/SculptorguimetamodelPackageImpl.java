@@ -1923,6 +1923,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBehaviorBinding_Widget() {
+		return (EReference)behaviorBindingEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOnClickBinding() {
 		return onClickBindingEClass;
 	}
@@ -2265,6 +2274,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUpdateAttributeBehavior_PropertyPath() {
+		return (EAttribute)updateAttributeBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUpdateAttributeBehavior_TargetClass() {
+		return (EReference)updateAttributeBehaviorEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2474,6 +2501,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		behaviorBindingEClass = createEClass(BEHAVIOR_BINDING);
 		createEReference(behaviorBindingEClass, BEHAVIOR_BINDING__BEHAVIORS);
+		createEReference(behaviorBindingEClass, BEHAVIOR_BINDING__WIDGET);
 
 		onClickBindingEClass = createEClass(ON_CLICK_BINDING);
 
@@ -2536,6 +2564,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		goBackBehaviorEClass = createEClass(GO_BACK_BEHAVIOR);
 
 		updateAttributeBehaviorEClass = createEClass(UPDATE_ATTRIBUTE_BEHAVIOR);
+		createEAttribute(updateAttributeBehaviorEClass, UPDATE_ATTRIBUTE_BEHAVIOR__PROPERTY_PATH);
+		createEReference(updateAttributeBehaviorEClass, UPDATE_ATTRIBUTE_BEHAVIOR__TARGET_CLASS);
 	}
 
 	/**
@@ -2746,7 +2776,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(widgetEClass, Widget.class, "Widget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidget_View(), this.getView(), null, "view", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_Label(), ecorePackage.getEString(), "label", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWidget_BehaviorBindings(), this.getBehaviorBinding(), null, "behaviorBindings", null, 1, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_BehaviorBindings(), this.getBehaviorBinding(), this.getBehaviorBinding_Widget(), "behaviorBindings", null, 1, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWidget_Enabled(), this.getUiCondition(), null, "enabled", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_WidgetType(), ecorePackage.getEString(), "widgetType", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWidget_Visible(), this.getUiCondition(), null, "visible", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2822,6 +2852,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(behaviorBindingEClass, BehaviorBinding.class, "BehaviorBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBehaviorBinding_Behaviors(), this.getUiBehavior(), this.getUiBehavior_Bindings(), "behaviors", null, 1, -1, BehaviorBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviorBinding_Widget(), this.getWidget(), this.getWidget_BehaviorBindings(), "widget", null, 1, 1, BehaviorBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(onClickBindingEClass, OnClickBinding.class, "OnClickBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2865,7 +2896,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(onSelectItemBindingEClass, OnSelectItemBinding.class, "OnSelectItemBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(widgetTableColumnEClass, WidgetTableColumn.class, "WidgetTableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWidgetTableColumn_Widget(), this.getWidget(), null, "widget", null, 1, 1, WidgetTableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidgetTableColumn_Widget(), this.getWidget(), null, "widget", null, 1, 1, WidgetTableColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleTableColumnEClass, SimpleTableColumn.class, "SimpleTableColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2884,6 +2915,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(goBackBehaviorEClass, GoBackBehavior.class, "GoBackBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(updateAttributeBehaviorEClass, UpdateAttributeBehavior.class, "UpdateAttributeBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUpdateAttributeBehavior_PropertyPath(), ecorePackage.getEString(), "propertyPath", null, 0, 1, UpdateAttributeBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUpdateAttributeBehavior_TargetClass(), theSculptormetamodelPackage.getDomainObject(), null, "targetClass", null, 0, 1, UpdateAttributeBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

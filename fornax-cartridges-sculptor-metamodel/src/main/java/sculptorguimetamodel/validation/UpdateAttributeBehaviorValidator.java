@@ -6,6 +6,8 @@
  */
 package sculptorguimetamodel.validation;
 
+import sculptormetamodel.DomainObject;
+
 
 /**
  * A sample validator interface for {@link sculptorguimetamodel.UpdateAttributeBehavior}.
@@ -15,5 +17,11 @@ package sculptorguimetamodel.validation;
  */
 public interface UpdateAttributeBehaviorValidator {
 	boolean validate();
+
+	boolean validatePropertyPath(String value);
+
+	boolean validateTargetClass(DomainObject value);
+
+	boolean validateTargetClass(String value);
 
 }
