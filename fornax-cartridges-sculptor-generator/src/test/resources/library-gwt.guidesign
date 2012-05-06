@@ -33,14 +33,14 @@ gui LibraryWeb for Library {
 				Integer id nullable;
 			}
 			contents {
-				inputText nameField forProperty name {
+				inputText nameField forPath "name" {
 					label = "Name"
 				}
 				inputText birthDateField  { // forProperty birthDate
 					label = "Birth Date"
 				}
 				
-				listBox genderSelector forEnum Gender {
+				listBox genderSelector forProperty sex forEnum Gender {
 					label = "Gender"
 				}
 				
@@ -92,9 +92,9 @@ gui LibraryWeb for Library {
 						
 						birthDate type=Date editable; // forProperty birthDate
 
-						widget listBox genderSelector forEnum Gender {
+						widget listBox genderSelector forPath "sex" forEnum Gender {
 							label = "Gender"
-							onSelectItem=populatePersonDetailsPanel
+							onSelectItem=populatePersonDetailsPanel,updatePerson
 						}
 						
 						edit type=Button onClick=populatePersonDetailsPanel;
@@ -103,10 +103,10 @@ gui LibraryWeb for Library {
 					}
 				}
 				
-				panel personDetailsPanel {
+				panel personDetailsPanel for Person {
 					hint="paneltype=SimplePanel"
 					contents {
-						inputText nameField forProperty name {
+						inputText nameField forPath "name" {
 							label = "Name"
 						}
 						inputText birthDateField  { // forProperty birthDate
@@ -141,6 +141,9 @@ gui LibraryWeb for Library {
 				panel=personDetailsPanel
 			}
 			
+			UiBehavior UpdateAttribute updatePerson {
+				
+			}
 
 			"Confirm the user wants to do something"
 			UiBehavior ConfirmMessage confirmSomeMessage {

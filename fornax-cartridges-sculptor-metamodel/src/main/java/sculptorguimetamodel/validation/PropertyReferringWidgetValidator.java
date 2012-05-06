@@ -29,6 +29,8 @@ public interface PropertyReferringWidgetValidator {
 
 	boolean validateFor(DomainObject value);
 
+	boolean validatePropertyPath(String value);
+
 	boolean validateForProperty(PropertyReference value);
 
 	boolean validateFor(PropertyReference value);

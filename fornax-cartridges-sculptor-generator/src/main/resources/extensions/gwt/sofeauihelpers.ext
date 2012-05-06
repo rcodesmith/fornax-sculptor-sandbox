@@ -362,16 +362,16 @@ String fieldName(ViewDataProperty prop) :
 	prop.name + "Field";
 
 	
-String getDtoPropertyPath(ViewDataProperty property, String objName) :
-	objName + ".get" + property.name.toFirstUpper() + "()";
+//String getDtoPropertyPath(ViewDataProperty property, String objName) :
+//	objName + ".get" + property.name.toFirstUpper() + "()";
 
-String getDtoPropertyPath(BasicTypeViewProperty property, String objName) :
-	"(" + objName + ".get" + property.reference.name.toFirstUpper() + "()" + "== null ? null : " +
-	objName + ".get" + property.reference.name.toFirstUpper() + "()" + '.' + "get" + property.attribute.name.toFirstUpper() + "())";
+//String getDtoPropertyPath(BasicTypeViewProperty property, String objName) :
+//	"(" + objName + ".get" + property.reference.name.toFirstUpper() + "()" + "== null ? null : " +
+//	objName + ".get" + property.reference.name.toFirstUpper() + "()" + '.' + "get" + property.attribute.name.toFirstUpper() + "())";
 
-String getDtoPropertyPath(BasicTypeEnumViewProperty property, String objName) :
-	"(" + objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + "== null ? null : " +
-	objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + '.' + "get" + property.reference.name.toFirstUpper() + "())";
+//String getDtoPropertyPath(BasicTypeEnumViewProperty property, String objName) :
+//	"(" + objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + "== null ? null : " +
+//	objName + ".get" + property.basicTypeReference.name.toFirstUpper() + "()" + '.' + "get" + property.reference.name.toFirstUpper() + "())";
 
 
 

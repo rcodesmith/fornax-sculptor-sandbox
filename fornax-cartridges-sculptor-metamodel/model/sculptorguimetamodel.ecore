@@ -151,6 +151,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="forReference" eType="ecore:EClass sculptormetamodel.ecore#//Reference"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forOp" eType="ecore:EClass sculptormetamodel.ecore#//DomainObjectOperation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableWidget" eSuperTypes="#//PropertyReferringWidget">
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
@@ -193,7 +194,10 @@
         eType="#//Widget" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//WidgetsContainer #//PropertyReferringWidget"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UiBehavior" eSuperTypes="sculptormetamodel.ecore#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UiBehavior" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
+        eType="#//BehaviorBinding" eOpposite="#//BehaviorBinding/behaviors"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PopulatePanelBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EReference" name="panel" lowerBound="1" eType="#//PanelWidget"/>
   </eClassifiers>
@@ -202,7 +206,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorBinding">
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviors" lowerBound="1"
-        upperBound="-1" eType="#//UiBehavior"/>
+        upperBound="-1" eType="#//UiBehavior" eOpposite="#//UiBehavior/bindings"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OnClickBinding" eSuperTypes="#//BehaviorBinding"/>
   <eClassifiers xsi:type="ecore:EClass" name="OnHoverBinding" eSuperTypes="#//BehaviorBinding"/>
@@ -258,4 +262,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="MarkDirtyBehavior" eSuperTypes="#//SetDirtyFlagBehavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="MarkCleanBehavior" eSuperTypes="#//SetDirtyFlagBehavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="GoBackBehavior" eSuperTypes="#//UiBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateAttributeBehavior" eSuperTypes="#//UiBehavior"/>
 </ecore:EPackage>

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.eclipse.emf.common.util.EList;
+import org.junit.Assert;
 import org.junit.Test;
 
 import sculptorguimetamodel.ConfirmMessageBehavior;
@@ -120,6 +121,12 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals(1, behaviors.size());
 		CustomBehavior custom = (CustomBehavior) behaviors.get(0);
 		assertEquals("saveChanges", custom.getName());
+		
+		EList revBindings = custom.getBindings();
+		assertEquals(1, revBindings.size());
+		OnClickBinding revBinding = (OnClickBinding)revBindings.get(0);
+		Assert.assertSame(revBinding, onClick);
+		
 	}
 	//
 

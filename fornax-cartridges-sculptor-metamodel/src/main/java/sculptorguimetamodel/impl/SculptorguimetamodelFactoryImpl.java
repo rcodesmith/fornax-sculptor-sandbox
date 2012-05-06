@@ -130,6 +130,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.MARK_DIRTY_BEHAVIOR: return createMarkDirtyBehavior();
 			case SculptorguimetamodelPackage.MARK_CLEAN_BEHAVIOR: return createMarkCleanBehavior();
 			case SculptorguimetamodelPackage.GO_BACK_BEHAVIOR: return createGoBackBehavior();
+			case SculptorguimetamodelPackage.UPDATE_ATTRIBUTE_BEHAVIOR: return createUpdateAttributeBehavior();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -833,6 +834,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public GoBackBehavior createGoBackBehavior() {
 		GoBackBehaviorImpl goBackBehavior = new GoBackBehaviorImpl();
 		return goBackBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UpdateAttributeBehavior createUpdateAttributeBehavior() {
+		UpdateAttributeBehaviorImpl updateAttributeBehavior = new UpdateAttributeBehaviorImpl();
+		return updateAttributeBehavior;
 	}
 
 																/**

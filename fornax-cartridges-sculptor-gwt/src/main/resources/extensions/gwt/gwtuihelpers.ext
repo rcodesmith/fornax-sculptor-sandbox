@@ -848,16 +848,28 @@ Set[GuiCommand] commandsToGenerate(GuiModule module) :
 
 
 boolean hasSourceRef(PropertyReferringWidget widget) :
-	widget.forOp != null || widget.forAttribute != null || widget.forReference != null;
+	widget.forOp != null || widget.forAttribute != null || widget.forReference != null || widget.propertyPath != null;
 	
-String getSourceRefExpression(PropertyReferringWidget widget, String instName) :
+// Get the proper expression to access the domain object property pointed to by widget, contained in obj, with local name instName
+String getSourceRefExpression(PropertyReferringWidget widget, GuiDto obj, String instName) :
 	switch {
 		case widget.forOp != null : widget.forOp.getAccessor(instName)
 		
+		// TODO: Following should handle nested path expressions
+		case widget.propertyPath != null : instName + "." + obj.getElementByName(widget.propertyPath).getGetAccessor() + "()"
+			
 		default : null
 	};
 		
+		
+NamedElement getElementByName(GuiDto obj, String name) :
+	let res = obj.getAllAttributes().addAll(obj.getAllReferences()).select(e|e.name == name) :
+		debugTrace("getElementByName() name = " + name + ", obj = " + obj) ->
+		(res.size > 0 ? res.get(0) : null);
 	
+// Get the proper expression to access the domain object property pointed to by widget, contained in instName
+String getSourceRefExpression(PropertyReferringWidget widget, String instName) :
+	getSourceRefExpression(widget, instName);
 
 // (widget.forOp != null ? widget.forOp.ge :
 //	widget.forAttribute != null ? widget.forAttribute.getGetAccessor() :

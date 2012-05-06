@@ -346,8 +346,11 @@ DslInformationalTextWidget :
 		(behaviorBindings+=DslOnHover)?
 	'}';
 
+
+
 DslSourceReference :
-	('forOp' forOp=[mm::DslDomainObjectOperation]) | ('forProperty' forProperty=[mm::DslProperty]);
+	('forOp' forOp=[mm::DslDomainObjectOperation]) | ('forProperty' forProperty=[mm::DslProperty]) | ('forPath' forPath=STRING);
+
 
 DslLinkWidget :
   (doc=STRING)?

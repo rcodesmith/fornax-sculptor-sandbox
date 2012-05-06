@@ -8,12 +8,16 @@ package sculptorguimetamodel.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import sculptorguimetamodel.BehaviorBinding;
@@ -69,9 +73,35 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 	 */
 	public EList getBehaviors() {
 		if (behaviors == null) {
-			behaviors = new EObjectResolvingEList(UiBehavior.class, this, SculptorguimetamodelPackage.BEHAVIOR_BINDING__BEHAVIORS);
+			behaviors = new EObjectWithInverseResolvingEList.ManyInverse(UiBehavior.class, this, SculptorguimetamodelPackage.BEHAVIOR_BINDING__BEHAVIORS, SculptorguimetamodelPackage.UI_BEHAVIOR__BINDINGS);
 		}
 		return behaviors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BEHAVIORS:
+				return ((InternalEList)getBehaviors()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BEHAVIORS:
+				return ((InternalEList)getBehaviors()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

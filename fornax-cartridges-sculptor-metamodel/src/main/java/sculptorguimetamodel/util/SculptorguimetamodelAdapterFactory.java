@@ -289,6 +289,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseGoBackBehavior(GoBackBehavior object) {
 				return createGoBackBehaviorAdapter();
 			}
+			public Object caseUpdateAttributeBehavior(UpdateAttributeBehavior object) {
+				return createUpdateAttributeBehaviorAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1311,6 +1314,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGoBackBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UpdateAttributeBehavior <em>Update Attribute Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UpdateAttributeBehavior
+	 * @generated
+	 */
+	public Adapter createUpdateAttributeBehaviorAdapter() {
 		return null;
 	}
 

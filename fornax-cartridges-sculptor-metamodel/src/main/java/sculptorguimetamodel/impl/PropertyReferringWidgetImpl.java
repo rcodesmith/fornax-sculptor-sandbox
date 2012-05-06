@@ -32,6 +32,7 @@ import sculptormetamodel.Reference;
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForOp <em>For Op</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getFor <em>For</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getPropertyPath <em>Property Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,6 +75,24 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 * @ordered
 	 */
 	protected DomainObject for_;
+	/**
+	 * The default value of the '{@link #getPropertyPath() <em>Property Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROPERTY_PATH_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getPropertyPath() <em>Property Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected String propertyPath = PROPERTY_PATH_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,6 +268,27 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPropertyPath() {
+		return propertyPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPropertyPath(String newPropertyPath) {
+		String oldPropertyPath = propertyPath;
+		propertyPath = newPropertyPath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH, oldPropertyPath, propertyPath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE:
@@ -263,6 +303,8 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
 				if (resolve) return getFor();
 				return basicGetFor();
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
+				return getPropertyPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -285,6 +327,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
 				setFor((DomainObject)newValue);
+				return;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
+				setPropertyPath((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,6 +354,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
 				setFor((DomainObject)null);
 				return;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
+				setPropertyPath(PROPERTY_PATH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -328,8 +376,25 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return forOp != null;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
 				return for_ != null;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
+				return PROPERTY_PATH_EDEFAULT == null ? propertyPath != null : !PROPERTY_PATH_EDEFAULT.equals(propertyPath);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (propertyPath: ");
+		result.append(propertyPath);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PropertyReferringWidgetImpl

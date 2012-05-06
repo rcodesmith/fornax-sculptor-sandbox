@@ -134,6 +134,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference forReference : Reference
     Reference forOp : DomainObjectOperation
     Reference for : DomainObject
+    Attribute propertyPath : EString
 
   Class TableWidget -> PropertyReferringWidget
     Reference columns : TableColumn<<0..*>>
@@ -182,6 +183,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class PanelWidget -> WidgetsContainer, PropertyReferringWidget
 
   Class UiBehavior -> NamedElement
+    Reference bindings : BehaviorBinding<<0..*>>
 
   Class PopulatePanelBehavior -> UiBehavior
     Reference panel : PanelWidget<<1..1>>
@@ -251,3 +253,5 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class MarkCleanBehavior -> SetDirtyFlagBehavior
 
   Class GoBackBehavior -> UiBehavior
+
+  Class UpdateAttributeBehavior -> UiBehavior

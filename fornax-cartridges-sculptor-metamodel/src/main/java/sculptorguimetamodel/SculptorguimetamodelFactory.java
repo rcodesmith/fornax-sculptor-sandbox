@@ -656,6 +656,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	GoBackBehavior createGoBackBehavior();
 
 																/**
+	 * Returns a new object of class '<em>Update Attribute Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Update Attribute Behavior</em>'.
+	 * @generated
+	 */
+	UpdateAttributeBehavior createUpdateAttributeBehavior();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

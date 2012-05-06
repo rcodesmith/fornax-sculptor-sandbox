@@ -24,6 +24,7 @@ import sculptormetamodel.Reference;
  *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getForOp <em>For Op</em>}</li>
  *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getFor <em>For</em>}</li>
+ *   <li>{@link sculptorguimetamodel.PropertyReferringWidget#getPropertyPath <em>Property Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,5 +136,31 @@ public interface PropertyReferringWidget extends Widget {
 	 * @generated
 	 */
 	void setFor(DomainObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Property Path</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Property Path</em>' attribute.
+	 * @see #setPropertyPath(String)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getPropertyReferringWidget_PropertyPath()
+	 * @model
+	 * @generated
+	 */
+	String getPropertyPath();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.PropertyReferringWidget#getPropertyPath <em>Property Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Property Path</em>' attribute.
+	 * @see #getPropertyPath()
+	 * @generated
+	 */
+	void setPropertyPath(String value);
 
 } // PropertyReferringWidget

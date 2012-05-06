@@ -632,7 +632,8 @@ create sculptorguimetamodel::WidgetTableColumn this transformColumn(DslWidgetTab
 	setSortable(col.sortable) ->
 	setFilterable(col.filterable) ->
 	setEditable(col.editable) ->
-	setWidget(col.widget.transformWidget(module));
+	setWidget(col.widget.transformWidget(module)) ->
+	setLabel(col.widget.transformWidget(module).label);
 
 create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :
 	let domainObject = getForDomainObject(widget.for) :
@@ -648,7 +649,11 @@ create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget wid
 
 private transformSourceReference(PropertyReferringWidget propRefWidget, DslSourceReference sourceRef) :
 	if sourceRef != null then 
-		debugTrace("forProperty = " + sourceRef.forProperty);
+		debugTrace("transformSourceReference() forProperty = " + sourceRef.forProperty) ->
+		debugTrace("propertyPath=" + sourceRef.forPath) ->
+		debugTrace("eContainer = " + sourceRef.forProperty.eContainer) ->
+		propRefWidget.setPropertyPath(sourceRef.forPath);
+		
 		
 //		debugTrace("forProperty name = " + sourceRef.forProperty.name) ->
 //		(sourceRef.forProperty != null ? sourceRef.forProperty.transform().transformSourceRefProp(propRefWidget) : null) ->
@@ -850,6 +855,11 @@ create sculptorguimetamodel::WarnIfDirtyBehavior this transformBehavior(DslWarnI
 	setMessage(behavior.message);
 
 create sculptorguimetamodel::GoBackBehavior this transformBehavior(DslGoBackBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name);
+
+create sculptorguimetamodel::UpdateAttributeBehavior this transformBehavior(DslUpdateAttributeBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->
 	setName(behavior.name);

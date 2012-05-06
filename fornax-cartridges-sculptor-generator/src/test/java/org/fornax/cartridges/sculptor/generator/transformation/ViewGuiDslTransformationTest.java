@@ -26,6 +26,7 @@ import sculptorguimetamodel.View;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptorguimetamodel.WidgetTableColumn;
+import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.Service;
 
@@ -154,14 +155,21 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		assertNotNull(personDetailsPane);
 		assertEquals(2, personDetailsPane.getWidgets().size());
 		Assert.assertSame(tableView, personDetailsPane.getView());
-		
 		assertEquals("paneltype=SimplePanel", personDetailsPane.getHint());
 		
+		DomainObject person = personDetailsPane.getFor();
+		assertNotNull(person);
+		assertEquals("Person", person.getName());
+		
+		
 		// Check contents of person detail panel
-		InputTextWidget widget1 = (InputTextWidget)personDetailsPane.getWidgets().get(0);
-		assertEquals("nameField", widget1.getName());
-		Assert.assertSame(tableView, widget1.getView());
-
+		
+		// Check nameField
+		InputTextWidget nameField = (InputTextWidget)personDetailsPane.getWidgets().get(0);
+		assertEquals("nameField", nameField.getName());
+		Assert.assertSame(tableView, nameField.getView());
+//		Attribute nameProp = nameField.getForAttribute();
+//		assertNotNull(nameProp);
 	}
 
 	@Test

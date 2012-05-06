@@ -29,9 +29,9 @@
 
 «REM»View interface«ENDREM»
 «DEFINE viewInterface FOR View»
-«FILE javaFileName(fqnGwtViewInterface(this)) TO_SRC»
-«EXPAND viewInterfaceBody FOR this»
-«ENDFILE»
+	«FILE javaFileName(fqnGwtViewInterface(this)) TO_SRC»
+		«EXPAND viewInterfaceBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 «REM»View interface - for unit tests«ENDREM»
@@ -307,9 +307,9 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     
     	«name»ListDataProvider.addDataDisplay(«name»);
     	
-    «FOREACH columns AS col»
-    «name».addColumn(init«name.toFirstUpper()»Table«col.name.toFirstUpper()»Column());
-    «ENDFOREACH»
+    	«FOREACH columns AS col»
+	    	«name».addColumn(init«name.toFirstUpper()»Table«col.name.toFirstUpper()»Column(), "«col.label»");
+	    «ENDFOREACH»
     }
 	«ENDIF»
     
@@ -373,7 +373,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	
 		«IF this.hasSourceRef()»
 		{
-	    	return «this.getSourceRefExpression("object")»;
+	    	return «this.getSourceRefExpression(tableWidget.for.fqnGwtDto(), "object")»;
 	    }
 	    «ELSE»
 	    ;
@@ -502,7 +502,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 «DEFINE tableColumnValueGetterBridge(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
 			@Override
 			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
-				return get«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»ColValue(object);
+				return get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(object);
 			}
 «ENDDEFINE»
 
@@ -510,8 +510,22 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 		«error("tableColumnValueGetter for widget-based columns not yet supported for " + this)»
 «ENDDEFINE»
 
+«REM»Getter to get the value for a column that is based on a ListBoxWidget«ENDREM»
 «DEFINE tableColumnValueGetterDeclaration(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
-	protected abstract String get«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj);
+	/**
+	 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
+	 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression(tableWidget.for, "obj")»«IF this.forEnum != null».getName()«ENDIF»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+
 «ENDDEFINE»
 
 «DEFINE tableColumnEventHandlers(TableWidget tableWidget, TableColumn col) FOR Widget»

@@ -56,6 +56,7 @@ import sculptormetamodel.SculptormetamodelPackage;
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForOp <em>For Op</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getFor <em>For</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getPropertyPath <em>Property Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -241,6 +242,26 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * @ordered
 	 */
 	protected DomainObject for_;
+
+	/**
+	 * The default value of the '{@link #getPropertyPath() <em>Property Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROPERTY_PATH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPropertyPath() <em>Property Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected String propertyPath = PROPERTY_PATH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -648,6 +669,27 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPropertyPath() {
+		return propertyPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPropertyPath(String newPropertyPath) {
+		String oldPropertyPath = propertyPath;
+		propertyPath = newPropertyPath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH, oldPropertyPath, propertyPath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.PANEL_WIDGET__NAME:
@@ -683,6 +725,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR:
 				if (resolve) return getFor();
 				return basicGetFor();
+			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
+				return getPropertyPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -734,6 +778,9 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR:
 				setFor((DomainObject)newValue);
 				return;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
+				setPropertyPath((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -784,6 +831,9 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR:
 				setFor((DomainObject)null);
 				return;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
+				setPropertyPath(PROPERTY_PATH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -821,6 +871,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return forOp != null;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR:
 				return for_ != null;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
+				return PROPERTY_PATH_EDEFAULT == null ? propertyPath != null : !PROPERTY_PATH_EDEFAULT.equals(propertyPath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -856,6 +908,7 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
 				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP;
 				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR;
+				case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 				default: return -1;
 			}
 		}
@@ -893,6 +946,7 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE;
 				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP;
 				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR;
+				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH: return SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH;
 				default: return -1;
 			}
 		}
@@ -918,6 +972,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 		result.append(label);
 		result.append(", widgetType: ");
 		result.append(widgetType);
+		result.append(", propertyPath: ");
+		result.append(propertyPath);
 		result.append(')');
 		return result.toString();
 	}

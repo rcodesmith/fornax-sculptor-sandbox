@@ -2427,13 +2427,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int PROPERTY_REFERRING_WIDGET__FOR = WIDGET_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_REFERRING_WIDGET__PROPERTY_PATH = WIDGET_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Property Referring Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_REFERRING_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 4;
+	int PROPERTY_REFERRING_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.InputTextWidgetImpl <em>Input Text Widget</em>}' class.
@@ -2561,6 +2570,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_TEXT_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_TEXT_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The number of structural features of the '<em>Input Text Widget</em>' class.
@@ -2697,6 +2715,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INFORMATIONAL_TEXT_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFORMATIONAL_TEXT_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The number of structural features of the '<em>Informational Text Widget</em>' class.
@@ -2942,6 +2969,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TABLE_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -3333,6 +3369,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TABLE_COLUMN__FOR = PROPERTY_REFERRING_WIDGET__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+
+	/**
 	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3505,6 +3550,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int TEXT_AREA_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_AREA_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+
+	/**
 	 * The number of structural features of the '<em>Text Area Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3639,6 +3693,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTOCOMPLETE_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTOCOMPLETE_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The number of structural features of the '<em>Autocomplete Widget</em>' class.
@@ -3777,6 +3840,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int RADIO_BUTTONS_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTONS_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+
+	/**
 	 * The number of structural features of the '<em>Radio Buttons Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3911,6 +3983,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RICH_TEXT_AREA_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RICH_TEXT_AREA_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The number of structural features of the '<em>Rich Text Area Widget</em>' class.
@@ -4049,6 +4130,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int INPUT_DATE_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATE_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+
+	/**
 	 * The number of structural features of the '<em>Input Date Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4183,6 +4273,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_SPINNER_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_SPINNER_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The number of structural features of the '<em>Number Spinner Widget</em>' class.
@@ -5389,13 +5488,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int PANEL_WIDGET__FOR = WIDGETS_CONTAINER_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL_WIDGET__PROPERTY_PATH = WIDGETS_CONTAINER_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>Panel Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PANEL_WIDGET_FEATURE_COUNT = WIDGETS_CONTAINER_FEATURE_COUNT + 13;
+	int PANEL_WIDGET_FEATURE_COUNT = WIDGETS_CONTAINER_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5425,13 +5533,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UI_BEHAVIOR__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UI_BEHAVIOR__BINDINGS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Ui Behavior</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UI_BEHAVIOR_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int UI_BEHAVIOR_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5459,6 +5576,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int POPULATE_PANEL_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_PANEL_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Panel</b></em>' reference.
@@ -5504,6 +5630,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAVIGATE_TO_VIEW_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATE_TO_VIEW_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>View</b></em>' reference.
@@ -6130,6 +6265,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int LIST_BOX_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_BOX_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+
+	/**
 	 * The feature id for the '<em><b>For Enum</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6312,6 +6456,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int CUSTOM_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+
+	/**
 	 * The number of structural features of the '<em>Custom Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6356,6 +6509,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int UPDATE_TABLE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TABLE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Table</b></em>' reference.
@@ -6413,6 +6575,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int CONFIRM_MESSAGE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIRM_MESSAGE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6466,6 +6637,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The number of structural features of the '<em>Custom Behavior</em>' class.
@@ -6558,6 +6738,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
@@ -6731,6 +6920,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int WIDGET_TABLE_COLUMN__FOR = TABLE_COLUMN__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET_TABLE_COLUMN__PROPERTY_PATH = TABLE_COLUMN__PROPERTY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
@@ -6914,6 +7112,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int SIMPLE_TABLE_COLUMN__FOR = TABLE_COLUMN__FOR;
 
 	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TABLE_COLUMN__PROPERTY_PATH = TABLE_COLUMN__PROPERTY_PATH;
+
+	/**
 	 * The feature id for the '<em><b>Column Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6996,6 +7203,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int SET_DIRTY_FLAG_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DIRTY_FLAG_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Mark Specific Obj</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7049,6 +7265,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int WARN_IF_DIRTY_BEHAVIOR__HINT = CONFIRM_MESSAGE_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WARN_IF_DIRTY_BEHAVIOR__BINDINGS = CONFIRM_MESSAGE_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -7106,6 +7331,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int POPULATE_LIST_BOX_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPULATE_LIST_BOX_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Widget</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7159,6 +7393,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int MARK_DIRTY_BEHAVIOR__HINT = SET_DIRTY_FLAG_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MARK_DIRTY_BEHAVIOR__BINDINGS = SET_DIRTY_FLAG_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Mark Specific Obj</b></em>' attribute.
@@ -7216,6 +7459,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int MARK_CLEAN_BEHAVIOR__HINT = SET_DIRTY_FLAG_BEHAVIOR__HINT;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MARK_CLEAN_BEHAVIOR__BINDINGS = SET_DIRTY_FLAG_BEHAVIOR__BINDINGS;
+
+	/**
 	 * The feature id for the '<em><b>Mark Specific Obj</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7271,6 +7523,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GO_BACK_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
 
 	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GO_BACK_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
 	 * The number of structural features of the '<em>Go Back Behavior</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7278,6 +7539,61 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GO_BACK_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.UpdateAttributeBehaviorImpl <em>Update Attribute Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.UpdateAttributeBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUpdateAttributeBehavior()
+	 * @generated
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR = 70;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
+	 * The number of structural features of the '<em>Update Attribute Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ATTRIBUTE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -8364,6 +8680,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getPropertyReferringWidget_For();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.PropertyReferringWidget#getPropertyPath <em>Property Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Property Path</em>'.
+	 * @see sculptorguimetamodel.PropertyReferringWidget#getPropertyPath()
+	 * @see #getPropertyReferringWidget()
+	 * @generated
+	 */
+	EAttribute getPropertyReferringWidget_PropertyPath();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.TableWidget <em>Table Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8686,6 +9013,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUiBehavior();
+
+	/**
+	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.UiBehavior#getBindings <em>Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Bindings</em>'.
+	 * @see sculptorguimetamodel.UiBehavior#getBindings()
+	 * @see #getUiBehavior()
+	 * @generated
+	 */
+	EReference getUiBehavior_Bindings();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.PopulatePanelBehavior <em>Populate Panel Behavior</em>}'.
@@ -9133,6 +9471,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getGoBackBehavior();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.UpdateAttributeBehavior <em>Update Attribute Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Update Attribute Behavior</em>'.
+	 * @see sculptorguimetamodel.UpdateAttributeBehavior
+	 * @generated
+	 */
+	EClass getUpdateAttributeBehavior();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -10019,6 +10367,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference PROPERTY_REFERRING_WIDGET__FOR = eINSTANCE.getPropertyReferringWidget_For();
 
 		/**
+		 * The meta object literal for the '<em><b>Property Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY_REFERRING_WIDGET__PROPERTY_PATH = eINSTANCE.getPropertyReferringWidget_PropertyPath();
+
+		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.TableWidgetImpl <em>Table Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10299,6 +10655,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UI_BEHAVIOR = eINSTANCE.getUiBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Bindings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UI_BEHAVIOR__BINDINGS = eINSTANCE.getUiBehavior_Bindings();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.PopulatePanelBehaviorImpl <em>Populate Panel Behavior</em>}' class.
@@ -10695,6 +11059,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GO_BACK_BEHAVIOR = eINSTANCE.getGoBackBehavior();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UpdateAttributeBehaviorImpl <em>Update Attribute Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.UpdateAttributeBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUpdateAttributeBehavior()
+		 * @generated
+		 */
+		EClass UPDATE_ATTRIBUTE_BEHAVIOR = eINSTANCE.getUpdateAttributeBehavior();
 
 	}
 
