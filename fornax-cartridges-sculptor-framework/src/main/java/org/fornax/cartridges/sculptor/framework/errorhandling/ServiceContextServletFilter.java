@@ -30,6 +30,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.fornax.cartridges.sculptor.framework.util.FactoryConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This Servlet Filter should be placed in front of Servlets to create a new
@@ -55,6 +57,9 @@ public class ServiceContextServletFilter implements Filter {
 
     private static final String SERVICE_CONTEXT_FACTORY_IMPLEMENTATION_INIT_PARAM = "ServiceContextFactoryImplementationClassName";
     private static final String COPY_SESSION_ATTRIBUTES_INIT_PARAM = "copySessionAttributes";
+
+
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceContextServletFilter.class);
 
     private String[] copySessionAttributes;
 
@@ -96,10 +101,12 @@ public class ServiceContextServletFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
             ServletException {
         try {
+        	LOG.debug("doFilter()");
             ServiceContext ctx = ServiceContextFactory.createServiceContext(request);
             copySessionAttributes((HttpServletRequest) request, ctx);
             ServiceContextStore.set(ctx);
-
+            
+            LOG.debug("doFilter(): chaining");
             chain.doFilter(request, response);
 
         } finally {

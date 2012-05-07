@@ -28,6 +28,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.fornax.cartridges.sculptor.framework.util.FactoryConfiguration;
 import org.fornax.cartridges.sculptor.framework.util.FactoryHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -36,6 +38,8 @@ import org.fornax.cartridges.sculptor.framework.util.FactoryHelper;
  * @author Patrik Nordwall
  */
 public abstract class ServiceContextFactory {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceContextFactory.class);
 
     private static final int MAX_GENERATED_SESSION_ID = 1000000;
 
@@ -101,6 +105,7 @@ public abstract class ServiceContextFactory {
     }
 
     protected ServiceContext createServiceContextImpl(HttpServletRequest request) {
+    	LOG.debug("createServiceContextImpl()");
         ServiceContext context = ServiceContextStore.get();
         if (context != null) {
             return context;
@@ -114,19 +119,23 @@ public abstract class ServiceContextFactory {
         Set<String> roles = Collections.emptySet();
         Subject caller = activeSubject();
         if (caller != null) {
+        	LOG.debug("non-null subject, getting user ID and roles from subject");
             userId = userIdFromSubject(caller);
             roles = rolesFromSubject(caller);
         }
 
         if (userId == null) {
+        	LOG.debug("userId not set from subject.  Attempting to get from principal");
             // try with this then
             Principal userPrincipal = request.getUserPrincipal();
             if (userPrincipal != null) {
                 userId = userPrincipal.getName();
+                LOG.debug("userId from principal: " + userId);
             }
         }
 
         if (userId == null) {
+        	LOG.debug("userId could not be set from subject nor principal, defaulting to guest");
             // still no user, no login, use guest
             userId = GUEST_USER;
         }
