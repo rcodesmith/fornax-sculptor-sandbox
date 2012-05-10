@@ -23,6 +23,11 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.cellview.client.Column;
 
+/**
+ * This class is responsible for binding to event sources (e.g. buttons, list boxes, etc) and invoking one or more behaviors in response.
+ * @author ron
+ *
+ */
 public class BehaviorDispatcher {
     private static final Logger LOG =
         Logger.getLogger(BehaviorDispatcher.class.getName());
@@ -30,7 +35,13 @@ public class BehaviorDispatcher {
 	protected final List<Behavior> behaviors = new ArrayList<Behavior>();
 	protected final String name;
 	
-	public class Event {
+	/**
+	 * Event that is passed to each behavior.  This is a container for any specific-event information that may be needed by each behavior
+	 * (e.g. the row object corresponding to a field update event).
+	 * @author ron
+	 *
+	 */
+	public static class Event {
 		private Integer index;
 		
 		private Object obj;
@@ -132,6 +143,10 @@ public class BehaviorDispatcher {
 		}
 	}
 
+	/**
+	 * Invoke the behaviors associated with this dispatcher with the given event.
+	 * @param event
+	 */
 	public void invoke(Event event) {
 		if(LOG.isLoggable(Level.FINE)) {
 			LOG.fine(name + " invoke()");
@@ -140,7 +155,14 @@ public class BehaviorDispatcher {
 			dispatchTo(0, event);
 		}
 	}
-	
+
+	/**
+	 * Invoke the behaviors associated with this dispatcher without an event - an empty one will be created
+	 * @param event
+	 */
+	public void invoke() {
+		this.invoke(new Event());
+	}	
 	
 	
 	public <T> void bindHasSelectionHandler(HasSelectionHandlers<T> hasSelectionHandlers) {
@@ -209,6 +231,7 @@ public class BehaviorDispatcher {
 		
 	}
 	
+	
 	public <T,C> FieldUpdater<T, C> getFieldUpdater() {
 		final BehaviorDispatcher bd = this;
 
@@ -258,4 +281,5 @@ public class BehaviorDispatcher {
 	}
 	
 	
+
 }
