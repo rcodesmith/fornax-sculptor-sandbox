@@ -26,6 +26,7 @@ import javax.sql.DataSource;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
 import org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContext;
 import org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContextFactory;
 import org.fornax.cartridges.sculptor.framework.util.FactoryConfiguration;
@@ -100,10 +101,25 @@ public abstract class AbstractDbUnitAnnotationAwareTransactionalTests extends
      */
     @Before
     public void setUpDatabaseTester() throws Exception {
-        DbUnitDataSourceUtils.setUpDatabaseTester(getClass(), getJdbcTemplate().getDataSource(), getDataSetFile());
+    	
+    	IDataSet dataSet = getDataSet();
+    	String[] compositeDataSetFileNames = getCompositeDataSetFiles();
+    	
+    	if(dataSet != null) {
+            DbUnitDataSourceUtils.setUpDatabaseTester(getClass(), getJdbcTemplate().getDataSource(), dataSet);    		
+    	} else if (compositeDataSetFileNames != null) {
+            DbUnitDataSourceUtils.setUpDatabaseTester(getClass(), getJdbcTemplate().getDataSource(), compositeDataSetFileNames);    		
+    	} else {
+            DbUnitDataSourceUtils.setUpDatabaseTester(getClass(), getJdbcTemplate().getDataSource(), getDataSetFile());
+    	}
         restartSequence();
     }
+    
 
+    protected IDataSet getDataSet() {
+    	return null;
+    }
+    
     /**
      * Start the id sequence from a high value to avoid conflicts with test
      * data. You can define the sequence name with {@link #getSequenceName}.
@@ -143,6 +159,16 @@ public abstract class AbstractDbUnitAnnotationAwareTransactionalTests extends
      */
     protected String getDataSetFile() {
         return null;
+    }
+    
+    /**
+     * Override this method to specify multiple XML files with DBUnit test data to be processed as a CompositeDataSetFile.
+     * If filename is not set, getDataSetFile() will be called.
+     * 
+     * @return
+     */
+    protected String[] getCompositeDataSetFiles() {
+    	return null;
     }
 
     protected int countRowsInTable(Class<?> domainObjectClass) throws Exception {
