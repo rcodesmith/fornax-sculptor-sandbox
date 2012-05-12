@@ -37,7 +37,7 @@ Generates summary documentation of the domain model.
 «ENDDEFINE»
 
 «DEFINE moduleDocHtml FOR Module»
-«FILE "DomainModelDoc-" + name + ".html" TO_GEN_RESOURCES»
+«FILE moduleDocHtmlName() TO_GEN_RESOURCES»
 «LET "Summary Documation of " + name + " module" AS title-»
 «EXPAND header(title + "(" + application.name + ")")»
 	<div id="wrap">

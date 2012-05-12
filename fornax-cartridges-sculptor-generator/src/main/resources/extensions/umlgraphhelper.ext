@@ -167,3 +167,6 @@ boolean isInSubjectArea(Entity e, String subjectArea) :
 boolean isInSubjectArea(NamedElement elem, String subjectArea) :
 	elem.getSubjectAreas().contains(subjectArea);
 	
+String moduleDocHtmlName(Module module):
+	"DomainModelDoc-" + module.name + ".html";
+	
