@@ -111,7 +111,7 @@ digraph G {
 «ENDDEFINE»
 
 «DEFINE ServiceToUML(Set[Module] focus, int detail) FOR Service»
-	«name» [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»" >
+	«name» [URL="«linkToDoc()»", label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»" >
 	<tr><td>
 	<table border="0" cellspacing="1" cellpadding="1">
 		<tr><td> &laquo;«getStereoTypeName()»&raquo; </td></tr>
@@ -143,7 +143,7 @@ digraph G {
 «ENDDEFINE»
 
 «DEFINE ConsumerToUML(Set[Module] focus, int detail) FOR Consumer»
-	«name» [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»">
+	«name» [URL="«linkToDoc()»", label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»">
 	<tr><td>
 	<table border="0" cellspacing="1" cellpadding="1">
 		<tr><td> &laquo;«getStereoTypeName()»&raquo; </td></tr>
@@ -161,7 +161,7 @@ digraph G {
 
 «DEFINE ObjectToUML(Set[Module] focus, int detail, String subjectArea) FOR DomainObject»
 «IF isShownInView(focus, detail, subjectArea) »
-	«name» [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»">
+	«name» [URL="«linkToDoc()»", label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»">
 	<tr><td>
 	<table border="0" cellspacing="1" cellpadding="1">
 		<tr><td> &laquo;«getStereoTypeName()»&raquo; </td></tr>

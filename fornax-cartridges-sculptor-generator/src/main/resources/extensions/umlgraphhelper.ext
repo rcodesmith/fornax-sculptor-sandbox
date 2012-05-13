@@ -170,3 +170,9 @@ boolean isInSubjectArea(NamedElement elem, String subjectArea) :
 String moduleDocHtmlName(Module module):
 	"DomainModelDoc-" + module.name + ".html";
 	
+String linkToDoc(NamedElement elem):
+        moduleDocHtmlName((Module)(elem.eContainer)) + "#" + elem.name;
+
+String linkToDoc(Module module):
+        module.moduleDocHtmlName();
+        
