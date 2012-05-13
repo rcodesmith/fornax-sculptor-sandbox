@@ -92,12 +92,12 @@ public class DbUnitDataSourceUtils {
     	IDataSet dataSet;
     	if(dataSetFileNames.length == 1) {
             dataSet = new FlatXmlDataSet(clazz.getClassLoader().getResource(
-                    dataSetFileNames[0]));
+                    dataSetFileNames[0]), false, true);
     	} else {
     		IDataSet[] dataSets = new IDataSet[dataSetFileNames.length];
     		for (int i = 0; i < dataSetFileNames.length; i++) {
 				dataSets[i] = new FlatXmlDataSet(clazz.getClassLoader().getResource(
-	                    dataSetFileNames[i]));
+	                    dataSetFileNames[i]), false, true);
     		}
         	dataSet = new CompositeDataSet(dataSets);
     	}
