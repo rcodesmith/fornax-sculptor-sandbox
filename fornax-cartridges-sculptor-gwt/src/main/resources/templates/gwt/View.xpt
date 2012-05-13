@@ -134,7 +134,22 @@ package «gwtBaseWidgetsPackage()»;
 
 
 «DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
+
+	/**
+	 * Get the HasClickHandlers interface for the «name.toFirstUpper()» button
+	 */
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers();
+	
+	/**
+	 * Enable/disable the «name.toFirstUpper()» button
+	 */
+	public void set«name.toFirstUpper()»Enabled(boolean enabled);
+
+	/**
+	 * Show/hide the «name.toFirstUpper()» button
+	 */
+	public void set«name.toFirstUpper()»Visible(boolean visible);
+	
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
@@ -164,8 +179,16 @@ package «gwtBaseWidgetsPackage()»;
 	 */
 	public «getGwtInterfaceHasSelection()» get«name.toFirstUpper()»HasSelection();
 
+	/**
+	 * HasSelectionHandlers accessor for «name»
+	 */
 	public com.google.gwt.event.logical.shared.HasSelectionHandlers<com.google.gwt.user.client.ui.SuggestOracle.Suggestion> get«name.toFirstUpper()»HasSelectionHandlers();
-		
+	
+	/**
+	 * HasValue accessor for «name»
+	 */
+	public com.google.gwt.user.client.ui.HasValue<String> get«name.toFirstUpper()»HasValue();
+	
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR LinkWidget»
@@ -349,36 +372,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 «ENDDEFINE»
 
 
-«DEFINE tableColumnInitText(TableWidget tableWidget) FOR TableColumn»
-
-	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
-	
-	«EXPAND tableColumnInitComment(tableWidget) FOR this»
-	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
-		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.TextColumn<«tableWidget.for.fqnGwtDto()»>() {
-                        @Override
-                        public String getValue(«tableWidget.for.fqnGwtDto()» object) {
-                        	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
-                        }
-        };
-        
-        return «this.tableColumnAttrName()»;
-	}
-	    
-		
-	/**
-	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
-	 */
-	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
-	
-		«IF this.hasSourceRef()»
-		{
-	    	return «this.getSourceRefExpression(tableWidget.for.fqnGwtDto(), "object")»;
-	    }
-	    «ELSE»
-	    ;
-		«ENDIF»
-«ENDDEFINE»
 
 
 «DEFINE tableColumnInitDate(TableWidget tableWidget) FOR TableColumn»
@@ -483,12 +476,56 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «ENDDEFINE»
 
+
+«REM»
+--------------------------------------------------------------------------------------------------------------
+	Table column support for Widget type
+--------------------------------------------------------------------------------------------------------------
+«ENDREM»
+
+
 «DEFINE tableColumnAttrDeclaration(TableWidget tableWidget, TableColumn col) FOR Widget»
 	«EXPAND tableColumnType(tableWidget, col) FOR this» «col.tableColumnAttrName()»;
 «ENDDEFINE»
 
 «DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR Widget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>«ENDDEFINE»
 
+«REM»Function of column anonymous inner class responsible for getting a value for a column«ENDREM»
+«DEFINE tableColumnValueGetterBridge(TableWidget tableWidget, TableColumn col) FOR Widget»
+			@Override
+			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+				return get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(object);
+			}
+«ENDDEFINE»
+
+«DEFINE tableColumnEventHandlers(TableWidget tableWidget, TableColumn col) FOR Widget»
+«ENDDEFINE»
+
+«REM»Getter to get the value for a column that is based on a ListBoxWidget«ENDREM»
+«DEFINE tableColumnValueGetterDeclaration(TableWidget tableWidget, TableColumn col) FOR Widget»
+	/**
+	 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
+	 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression(tableWidget.for, "obj")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+
+«ENDDEFINE»
+
+«REM»
+--------------------------------------------------------------------------------------------------------------
+	Table column support for ListBoxWidget type
+--------------------------------------------------------------------------------------------------------------
+«ENDREM»
+
+«REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
 	«IF this.forEnum != null»
 		«getCellTypeClass("enumListBox")»<«this.getTypedWidgetTargetType()»> cell =
@@ -498,19 +535,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	«ENDIF»
 «ENDDEFINE»
 
-«REM»Function of column anonymous inner class responsible for getting a value for a column«ENDREM»
-«DEFINE tableColumnValueGetterBridge(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
-			@Override
-			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
-				return get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(object);
-			}
-«ENDDEFINE»
 
-«DEFINE tableColumnValueGetterBridge(TableWidget tableWidget, TableColumn col) FOR Widget»
-		«error("tableColumnValueGetter for widget-based columns not yet supported for " + this)»
-«ENDDEFINE»
 
-«REM»Getter to get the value for a column that is based on a ListBoxWidget«ENDREM»
+«REM»Getter to get the value for a column that is based on a ListBoxWidget
+TODO: Combine this with generic method for Widget above?«ENDREM»
 «DEFINE tableColumnValueGetterDeclaration(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
 	/**
 	 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
@@ -528,9 +556,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «ENDDEFINE»
 
-«DEFINE tableColumnEventHandlers(TableWidget tableWidget, TableColumn col) FOR Widget»
-		«error("tableColumnEventHandlersDeclaration for widget-based columns not yet supported for " + this)»
-«ENDDEFINE»
 
 «DEFINE tableColumnEventHandlers(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
 		protected void onSelect«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» obj, String value) {
@@ -545,7 +570,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 			@Override
 			public void update(int index, «tableWidget.for.fqnGwtDto()» object, String value) {
-				LOG.info("Click on " + object);
+				LOG.info("Click on column «col.name» for object " + object);
 
 				onSelect«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Col(object, value);
 			}
@@ -553,6 +578,63 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 		});
 		
 «ENDDEFINE»
+
+«REM»
+--------------------------------------------------------------------------------------------------------------
+Table column support for InformationalTextWidget type
+--------------------------------------------------------------------------------------------------------------
+«ENDREM»
+
+«DEFINE tableColumnInitText(TableWidget tableWidget) FOR TableColumn»
+
+	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.TextColumn<«tableWidget.for.fqnGwtDto()»>() {
+                        @Override
+                        public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+                        	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
+                        }
+        };
+        
+        return «this.tableColumnAttrName()»;
+	}
+	    
+		
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression(tableWidget.for.fqnGwtDto(), "object")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+«ENDDEFINE»
+
+
+
+
+«REM»Initialize cell object«ENDREM»
+«DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR InformationalTextWidget»
+	«getCellTypeClass("informationalText")» cell =
+		new «getCellTypeClass("informationalText")»();
+«ENDDEFINE»
+
+
+
+
+
+
+
+
+
+
+
 
 
 «REM»Initialize a table column that is based on a Widget class«ENDREM»
@@ -601,6 +683,22 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
 		return «name»;
 	}
+	
+	/**
+	 * Enable/disable the «name.toFirstUpper()» button
+	 */
+	public void set«name.toFirstUpper()»Enabled(boolean enabled) {
+		«name».setEnabled(enabled);
+	}
+	
+	/**
+	 * Show/hide the «name.toFirstUpper()» button
+	 */
+	public void set«name.toFirstUpper()»Visible(boolean visible) {
+		«name».setVisible(visible);
+	}
+
+
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR InputTextWidget»
@@ -637,6 +735,14 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	public com.google.gwt.event.logical.shared.HasSelectionHandlers<com.google.gwt.user.client.ui.SuggestOracle.Suggestion> get«name.toFirstUpper()»HasSelectionHandlers() {
 		return «name»;
 	}
+	
+	/**
+	 * HasValue accessor for «name»
+	 */
+	public com.google.gwt.user.client.ui.HasValue<String> get«name.toFirstUpper()»HasValue() {
+		return «name»;
+	}
+
 	
 	
 «ENDDEFINE»

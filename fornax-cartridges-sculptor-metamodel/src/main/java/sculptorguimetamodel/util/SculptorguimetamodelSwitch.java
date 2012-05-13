@@ -670,6 +670,14 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.HAS_DIRTY_VALUE_CONDITION: {
+				HasDirtyValueCondition hasDirtyValueCondition = (HasDirtyValueCondition)theEObject;
+				Object result = caseHasDirtyValueCondition(hasDirtyValueCondition);
+				if (result == null) result = caseUiCondition(hasDirtyValueCondition);
+				if (result == null) result = caseNamedElement(hasDirtyValueCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1736,6 +1744,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseUpdateAttributeBehavior(UpdateAttributeBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Has Dirty Value Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Has Dirty Value Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseHasDirtyValueCondition(HasDirtyValueCondition object) {
 		return null;
 	}
 

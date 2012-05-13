@@ -665,6 +665,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	UpdateAttributeBehavior createUpdateAttributeBehavior();
 
 																/**
+	 * Returns a new object of class '<em>Has Dirty Value Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Has Dirty Value Condition</em>'.
+	 * @generated
+	 */
+	HasDirtyValueCondition createHasDirtyValueCondition();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

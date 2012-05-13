@@ -786,6 +786,13 @@ create sculptorguimetamodel::CustomCondition this transformCondition(DslUiCustom
 	setHint(dslCondition.hint) ->
 	setName(dslCondition.name);
 
+create sculptorguimetamodel::HasDirtyValueCondition this transformCondition(DslHasDirtyValueCondition dslCondition, Module module) :
+	setDoc(dslCondition.doc) ->
+	setHint(dslCondition.hint) ->
+	setName(dslCondition.name) ->
+	setDirty(dslCondition.isDirty);
+
+
 
 //////////////////////////////////////////////////////////////////////////////////
 // UiBehavior related transformations

@@ -258,3 +258,6 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class UpdateAttributeBehavior -> UiBehavior
     Attribute propertyPath : EString
     Reference targetClass : DomainObject
+
+  Class HasDirtyValueCondition -> UiCondition
+    Attribute dirty : EBoolean

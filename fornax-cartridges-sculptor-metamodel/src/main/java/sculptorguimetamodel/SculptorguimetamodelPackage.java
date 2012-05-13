@@ -7650,6 +7650,61 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UPDATE_ATTRIBUTE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.HasDirtyValueConditionImpl <em>Has Dirty Value Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.HasDirtyValueConditionImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getHasDirtyValueCondition()
+	 * @generated
+	 */
+	int HAS_DIRTY_VALUE_CONDITION = 71;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HAS_DIRTY_VALUE_CONDITION__NAME = UI_CONDITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HAS_DIRTY_VALUE_CONDITION__DOC = UI_CONDITION__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HAS_DIRTY_VALUE_CONDITION__HINT = UI_CONDITION__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Dirty</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HAS_DIRTY_VALUE_CONDITION__DIRTY = UI_CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Has Dirty Value Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HAS_DIRTY_VALUE_CONDITION_FEATURE_COUNT = UI_CONDITION_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9570,6 +9625,27 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getUpdateAttributeBehavior_TargetClass();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.HasDirtyValueCondition <em>Has Dirty Value Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Has Dirty Value Condition</em>'.
+	 * @see sculptorguimetamodel.HasDirtyValueCondition
+	 * @generated
+	 */
+	EClass getHasDirtyValueCondition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.HasDirtyValueCondition#isDirty <em>Dirty</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dirty</em>'.
+	 * @see sculptorguimetamodel.HasDirtyValueCondition#isDirty()
+	 * @see #getHasDirtyValueCondition()
+	 * @generated
+	 */
+	EAttribute getHasDirtyValueCondition_Dirty();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11180,6 +11256,24 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UPDATE_ATTRIBUTE_BEHAVIOR__TARGET_CLASS = eINSTANCE.getUpdateAttributeBehavior_TargetClass();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.HasDirtyValueConditionImpl <em>Has Dirty Value Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.HasDirtyValueConditionImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getHasDirtyValueCondition()
+		 * @generated
+		 */
+		EClass HAS_DIRTY_VALUE_CONDITION = eINSTANCE.getHasDirtyValueCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Dirty</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute HAS_DIRTY_VALUE_CONDITION__DIRTY = eINSTANCE.getHasDirtyValueCondition_Dirty();
 
 	}
 

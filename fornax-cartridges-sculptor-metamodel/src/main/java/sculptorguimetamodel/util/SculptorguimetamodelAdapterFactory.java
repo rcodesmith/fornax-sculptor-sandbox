@@ -292,6 +292,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseUpdateAttributeBehavior(UpdateAttributeBehavior object) {
 				return createUpdateAttributeBehaviorAdapter();
 			}
+			public Object caseHasDirtyValueCondition(HasDirtyValueCondition object) {
+				return createHasDirtyValueConditionAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1328,6 +1331,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUpdateAttributeBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.HasDirtyValueCondition <em>Has Dirty Value Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.HasDirtyValueCondition
+	 * @generated
+	 */
+	public Adapter createHasDirtyValueConditionAdapter() {
 		return null;
 	}
 

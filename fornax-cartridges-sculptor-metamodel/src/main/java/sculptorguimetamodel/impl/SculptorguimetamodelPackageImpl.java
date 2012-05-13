@@ -36,6 +36,7 @@ import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiEnum;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
+import sculptorguimetamodel.HasDirtyValueCondition;
 import sculptorguimetamodel.InformationalTextWidget;
 import sculptorguimetamodel.InputDateWidget;
 import sculptorguimetamodel.InputTextWidget;
@@ -593,6 +594,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass updateAttributeBehaviorEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hasDirtyValueConditionEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2292,6 +2300,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getHasDirtyValueCondition() {
+		return hasDirtyValueConditionEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getHasDirtyValueCondition_Dirty() {
+		return (EAttribute)hasDirtyValueConditionEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2566,6 +2592,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		updateAttributeBehaviorEClass = createEClass(UPDATE_ATTRIBUTE_BEHAVIOR);
 		createEAttribute(updateAttributeBehaviorEClass, UPDATE_ATTRIBUTE_BEHAVIOR__PROPERTY_PATH);
 		createEReference(updateAttributeBehaviorEClass, UPDATE_ATTRIBUTE_BEHAVIOR__TARGET_CLASS);
+
+		hasDirtyValueConditionEClass = createEClass(HAS_DIRTY_VALUE_CONDITION);
+		createEAttribute(hasDirtyValueConditionEClass, HAS_DIRTY_VALUE_CONDITION__DIRTY);
 	}
 
 	/**
@@ -2664,6 +2693,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		markCleanBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
 		goBackBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		updateAttributeBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		hasDirtyValueConditionEClass.getESuperTypes().add(this.getUiCondition());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2917,6 +2947,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(updateAttributeBehaviorEClass, UpdateAttributeBehavior.class, "UpdateAttributeBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUpdateAttributeBehavior_PropertyPath(), ecorePackage.getEString(), "propertyPath", null, 0, 1, UpdateAttributeBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUpdateAttributeBehavior_TargetClass(), theSculptormetamodelPackage.getDomainObject(), null, "targetClass", null, 0, 1, UpdateAttributeBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(hasDirtyValueConditionEClass, HasDirtyValueCondition.class, "HasDirtyValueCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getHasDirtyValueCondition_Dirty(), ecorePackage.getEBoolean(), "dirty", null, 0, 1, HasDirtyValueCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
