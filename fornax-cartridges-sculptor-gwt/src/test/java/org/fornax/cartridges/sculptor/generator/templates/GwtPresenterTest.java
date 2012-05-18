@@ -21,12 +21,10 @@ public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
         XpandUnit.xpand("templates::gwt::Presenter::presenterBaseInterfaceForUnitTest", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String presenterBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewBasePresenter.java");
+        String presenterBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewBasePresenterIf.java");
         assertContains(presenterBaseCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity;");
         
-        assertContains(presenterBaseCode, "public interface TableViewBasePresenter extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.Presenter {");
-        
-        assertContains(presenterBaseCode, "public void onClickSaveButton();");
+        assertContains(presenterBaseCode, "public interface TableViewBasePresenterIf extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.Presenter {");
         
         
     }

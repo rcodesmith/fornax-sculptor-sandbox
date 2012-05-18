@@ -32,7 +32,10 @@ public class GwtViewImplTemplateTest extends TemplateTestBase {
         
         String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewImpl.java");
         
-        assertContains(tableViewCode, "public class TableViewViewImpl extends  org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewViewBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView {");
+//        assertContains(tableViewCode, "public class TableViewViewImpl extends  org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewBaseView implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf {");
+        
+        assertContains(tableViewCode, "public class TableViewViewImpl extends  org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewViewBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf {");
+
     }
     
 }

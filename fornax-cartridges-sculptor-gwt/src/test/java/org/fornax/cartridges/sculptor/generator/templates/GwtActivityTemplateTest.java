@@ -38,11 +38,11 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 
 		assertContains(
 				activityBaseCode,
-				"public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.place.TableViewPlace> implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity.TableViewBasePresenter {");
+				"public abstract class TableViewActivityBase extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.ActivityBase<org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.place.TableViewPlace> implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity.TableViewBasePresenterIf {");
 
 		assertContains(
 				activityBaseCode,
-				"protected final org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewView view;");
+				"protected final org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf view;");
 
 		assertContains(activityBaseCode,
 				"protected abstract void populateFromPlace();");
@@ -89,7 +89,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		assertContainsConsecutiveFragments(
 				activityBaseCode,
 				"public PersonFormActivityBase(com.google.gwt.event.shared.EventBus eventBus,",
-				"org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.PersonFormView theView,",
+				"org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.PersonFormViewIf theView,",
 				"com.google.gwt.place.shared.PlaceController placeController",
 				",",
 				"org.fornax.cartridges.sculptor.examples.library.person.gwt.client.GwtPersonServiceAsync personService"

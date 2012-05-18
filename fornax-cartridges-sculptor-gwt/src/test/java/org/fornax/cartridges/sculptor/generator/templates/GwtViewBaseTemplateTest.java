@@ -50,8 +50,7 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         
         assertContainsConsecutiveFragments(tableViewBaseCode,
         		"public abstract class TableViewViewBase extends org.fornax.cartridges.sculptor.framework.gwt.client.BaseView",
-        		"implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewBaseView {");
-
+        		"implements", "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewViewBaseIf", "{");//,
         	
         assertContainsConsecutiveFragments(tableViewBaseCode,
         		"private static TableViewViewBaseUiBinder uiBinder = com.google.gwt.core.client.GWT",

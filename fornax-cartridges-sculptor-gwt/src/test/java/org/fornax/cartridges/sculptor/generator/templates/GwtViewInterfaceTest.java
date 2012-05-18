@@ -19,11 +19,11 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         XpandUnit.xpand("templates::gwt::View::viewBaseInterfaceForUnitTest", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/TableViewBaseView.java");
+        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/TableViewViewBaseIf.java");
         
         assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view;");
         
-        assertContains(tableViewCode, "public interface TableViewBaseView extends com.google.gwt.user.client.ui.IsWidget");
+        assertContains(tableViewCode, "public interface TableViewViewBaseIf extends com.google.gwt.user.client.ui.IsWidget");
         
         assertContains(tableViewCode, "public com.google.gwt.user.client.ui.HasText getNameFieldHasText();");
         
@@ -47,13 +47,13 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         XpandUnit.xpand("templates::gwt::View::viewInterfaceForUnitTest", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewView.java");
+        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/view/TableViewViewIf.java");
         
         assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view;");
         
         assertContains(tableViewCode, "Generated interface for the View TableView.");
         
-        assertContains(tableViewCode, "public interface TableViewView extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewBaseView {");
+        assertContains(tableViewCode, "public interface TableViewViewIf extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewViewBaseIf {");
     }
     
     @Test
@@ -63,7 +63,7 @@ public class GwtViewInterfaceTest extends LibraryGwtTemplateBaseTest {
         XpandUnit.xpand("templates::gwt::View::viewBaseInterfaceForUnitTest", personFormView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/PersonFormBaseView.java");
+        String tableViewCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/PersonFormViewBaseIf.java");
   
         assertContains(tableViewCode, "public org.fornax.cartridges.sculptor.framework.gwt.client.HasSelectedItem<org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Gender> getGenderSelectorHasSelection();");
 //        assertContains(tableViewCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view;");
