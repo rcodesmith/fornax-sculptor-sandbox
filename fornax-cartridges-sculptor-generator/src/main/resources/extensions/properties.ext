@@ -546,4 +546,4 @@ String getBehaviorClass(String behaviorType) :
 	
 String gwtBehaviorDispatcherClass() :
 	getProperty("gwt.behaviorDispatcher.class");
-		
+

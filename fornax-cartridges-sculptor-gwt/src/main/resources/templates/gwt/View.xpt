@@ -36,9 +36,9 @@
 
 «REM»View interface - for unit tests«ENDREM»
 «DEFINE viewInterfaceForUnitTest FOR View»
-«FILE javaFileName(fqnGwtViewInterface(this))»
-«EXPAND viewInterfaceBody FOR this»
-«ENDFILE»
+	«FILE javaFileName(fqnGwtViewInterface(this))»
+		«EXPAND viewInterfaceBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE viewInterfaceBody FOR View»
@@ -426,11 +426,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 		return «this.tableColumnAttrName()»;
     }
     
-   /**
-	 * On-click callback handler for «name» column within «tableWidget.name» table.
-	 */
-    protected abstract void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
-
 	/**
 	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
 	 */
@@ -466,14 +461,6 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 		return «this.tableColumnAttrName()»;
     }
     
-   /**
-	 * On-click method for «name» column within «tableWidget.name» table.
-	 * By default delegates to presenter.
-	 */
-    protected void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value) {
-    	presenter.onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(object, value);
-    }
-
 «ENDDEFINE»
 
 
@@ -673,11 +660,6 @@ Table column support for InformationalTextWidget type
 
 «DEFINE widgetMethods FOR ButtonWidget»
 	public void init«name.toFirstUpper()»() {
-		«name».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
-			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
-				presenter.onClick«name.toFirstUpper()»();
-			}
-		});
 	}
 
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
@@ -756,11 +738,6 @@ Table column support for InformationalTextWidget type
 	
 	«formatJavaDoc()»
 	public void init«name.toFirstUpper()»() {
-		«name».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
-			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
-				presenter.onClick«name.toFirstUpper()»();
-			}
-		});
 	}
 
 «ENDDEFINE»

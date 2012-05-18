@@ -475,6 +475,9 @@ String mapToDomainCall(Reference ref) :
 String mapFromDomainCall(Reference ref) :
 	dtoMapper(ref.to.module) + ".mapFromDomain";
 	
+String mapFromDomainCall(DomainObject do) :
+	do.module.dtoMapper() + ".map" + do.name + "FromDomain";
+
 // Package for server-side domain mapper classes
 String gwtDomainMaperPackage(DomainObject do) :
 	do.getDomainPackage();
@@ -563,7 +566,7 @@ String fqnViewWidgetBaseUiBinderClass(View view) :
 
 // GWT view widget base interface relative name
 String gwtViewBaseInterface(View view) :
-	view.name.toFirstUpper() + "BaseView";
+	view.name.toFirstUpper() + "ViewBaseIf";
 
 // Fully qualified name of GWT view base widget interface
 String fqnGwtViewBaseInterface(View view) :
@@ -571,7 +574,7 @@ String fqnGwtViewBaseInterface(View view) :
 
 // GWT view widget interface relative name
 String gwtViewInterface(View view) :
-	view.name.toFirstUpper() + "View";
+	view.name.toFirstUpper() + "ViewIf";
 
 // Fully qualified name of GWT view widget interface
 String fqnGwtViewInterface(View view) :
@@ -592,14 +595,14 @@ String fqnGwtViewWidgetImplClass(View view) :
 	view.gwtWidgetsPackage() + "." + view.gwtViewWidgetImplClass() ;
 
 String gwtPresenterBaseInterface(View view) :
-	view.name.toFirstUpper() + "BasePresenter";
+	view.name.toFirstUpper() + "BasePresenterIf";
 	
 // Fully qualified name of the GWT presenter interface for a view
 String fqnPresenterBaseInterface(View view) :
 	view.gwtActivitiesBasePackage() + "." + view.gwtPresenterBaseInterface();
 
 String gwtPresenterInterface(View view) :
-	view.name.toFirstUpper() + "Presenter";
+	view.name.toFirstUpper() + "PresenterIf";
 	
 // Fully qualified name of the GWT presenter interface for a view
 String fqnPresenterInterface(View view) :
@@ -903,3 +906,11 @@ String getAccessor(DomainObjectOperation op, String instName) :
 boolean needsBuilder(GuiCommand guiCommand) :
 	false;
 	
+
+	
+boolean passThruGwtException(String exc) :
+	getGwtPassThruExceptions().contains(exc);
+	
+cached Collection[String] getGwtPassThruExceptions() :
+    getProperty("gwt.exception.passthru").split(",");
+		

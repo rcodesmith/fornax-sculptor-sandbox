@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.fornax.cartridges</groupId>
 		<artifactId>fornax-cartridges-sculptor-parent</artifactId>
-		<version>2.0.17-gwt-SNAPSHOT</version>
+		<version>2.0.17-gwt</version>
 		<relativePath>../fornax-cartridges-sculptor-parent/</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.fornax.cartridges</groupId>
 	<artifactId>fornax-cartridges-sculptor-archetype-appengine</artifactId>
-	<version>2.0.17-gwt-SNAPSHOT</version>
+	<version>2.0.17-gwt</version>
 	<packaging>maven-archetype</packaging>
 	<name>Fornax Cartridge: Sculptor Maven Archetype for appengine project</name>
 	<build>

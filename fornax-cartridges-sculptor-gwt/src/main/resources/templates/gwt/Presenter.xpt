@@ -40,17 +40,9 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 «ENDDEFINE»
 
 «DEFINE presenterInterfaceDeclarations FOR ButtonWidget»
-   /**
-	 * On-click method for «name» button.
-	 */
-    public void onClick«name.toFirstUpper()»();
 «ENDDEFINE»
 
 «DEFINE presenterInterfaceDeclarations FOR LinkWidget»
-   /**
-	 * On-click method for «name» link.
-	 */
-    public void onClick«name.toFirstUpper()»();
 «ENDDEFINE»
 
 
@@ -69,10 +61,6 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 «ENDDEFINE»
 
 «DEFINE tableColumnOnClickHandlers(TableWidget tableWidget) FOR TableColumn»
-   /**
-	 * On-click method for «name» column within «tableWidget.name» table.
-	 */
-    public void onClick«tableWidget.name.toFirstUpper()»«this.name.toFirstUpper()»Col(«tableWidget.for.fqnGwtDto()» object, String value);
 
 «ENDDEFINE»
 

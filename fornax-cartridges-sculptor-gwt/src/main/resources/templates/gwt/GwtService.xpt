@@ -73,10 +73,16 @@
 
 «DEFINE gwtSyncServiceOperation FOR ServiceOperation»
 
-	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","»);
+	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","») «EXPAND serviceOperationThrowsDeclaration FOR this»;
 «ENDDEFINE»
 
 
+«REM»Declare throws only for those exceptions that are configured as GWT pass-thru exceptions«ENDREM»
+«DEFINE serviceOperationThrowsDeclaration FOR ServiceOperation»
+	«LET getExceptions().select(e|passThruGwtException(e)) AS gwtExceptions»
+		«IF !gwtExceptions.isEmpty»throws «FOREACH gwtExceptions AS exc SEPARATOR ", "»«exc»«ENDFOREACH»«ENDIF-»
+	«ENDLET»
+«ENDDEFINE»
 
 
 
@@ -121,7 +127,7 @@
 	 * Domain object type name is «domainObjectType.name»
 	 * Type name is «getTypeName()»
 	 */
-	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","») {
+	public «getGwtTypeName()» «name»(«EXPAND anotParamTypeAndName(this.service.module) FOREACH parameters SEPARATOR ","») «EXPAND serviceOperationThrowsDeclaration FOR this» {
 
 	«IF parameters.size > 0»
 		if(log.isDebugEnabled()) {
@@ -142,7 +148,7 @@
 		«IF domainTypeName != null && domainTypeName != 'void'»
 			
 			«IF domainObjectType != null»
-			return «module.dtoMapper()».map«domainObjectType.name»FromDomain(res);				
+				return «domainObjectType.mapFromDomainCall()»(res);				
 			«ELSE»
 			
 			if(log.isInfoEnabled()) {

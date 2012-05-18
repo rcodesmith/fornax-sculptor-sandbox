@@ -139,8 +139,18 @@ digraph G {
 				«name» -> «dep.name»
 			«ENDIF-»
 		«ENDFOREACH»
+		
+		edge [arrowtail="diamond" arrowhead = "open" headlabel = "" taillabel = "" style=""]
+		«FOREACH serviceDependencies AS dep»
+			«IF dep.includeInDiagram(detail, subjectArea) -»
+				«name» -> «dep.name»
+			«ENDIF-»
+		«ENDFOREACH»
 	«ENDIF»
 «ENDDEFINE»
+
+
+	  
 
 «DEFINE ConsumerToUML(Set[Module] focus, int detail) FOR Consumer»
 	«name» [URL="«linkToDoc()»", label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="0" port="p" bgcolor="#«bgcolor()»">
@@ -261,7 +271,6 @@ digraph G {
 «ENDDEFINE»
 
 «DEFINE RelationToUML(Set[Module] focus, int detail, String subjectArea) FOR Reference»
-	«debugTrace("from=" + from + ", to=" + to)»
 
 	«IF from.isShownInView(focus, detail, subjectArea) && to.isShownInView(focus, detail, subjectArea) -»
 		«IF isAggregate() -»
