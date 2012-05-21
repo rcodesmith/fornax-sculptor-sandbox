@@ -88,10 +88,10 @@
 	«IF label != null»
 		<g:Label text="«label»" />
 	«ENDIF»
-	<«this.resolveGwtWidgetTag()» ui:field="«name»" />
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" rowCount="0"  width="840px" height="300px"  />
 	
 	«IF paging»
-		<«getWidgetTag("pager")» ui:field="«name»Pager" location='RIGHT'/>;
+		<«getWidgetTag("pager")» ui:field="«name»Pager" location='RIGHT'/>
 	«ENDIF»
 
 «ENDDEFINE»

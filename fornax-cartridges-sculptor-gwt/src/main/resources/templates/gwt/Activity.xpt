@@ -107,6 +107,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	 * Bind to the view (register event handlers, etc) 
 	 */
 	protected void bind() {
+		LOG.info("bind()");
 		«FOREACH behaviors AS behavior»
 			«behavior.name»Behavior = create«behavior.name.toFirstUpper()»Behavior();
 		«ENDFOREACH»
@@ -201,25 +202,47 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	«formatJavaDoc()»
 	«ENDIF -»
 	protected «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»> create«name.toFirstUpper()»Behavior() {
-		return new «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»>("«name»",
-				view.get«table.name.toFirstUpper()»HasData(),
-				new «getBehaviorClass("updateTable")».DataSource<«this.table.fqnTableForClass()»>() {
+	
+		«IF this.table.paging»
+			return new «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»>("«name»",
+					view.get«table.name.toFirstUpper()»HasData(),
+					new «getBehaviorClass("updateTable")».LongCallable() {
 
-					@Override
-					public void getData(
-							com.google.gwt.user.client.rpc.AsyncCallback<java.util.List<«this.table.fqnTableForClass()»>> resultsCallback) {
+						@Override
+						public void getValue(
+								com.google.gwt.user.client.rpc.AsyncCallback<Long> resultsCallback) {
 
-						«name»BehaviorGetData(resultsCallback);
-					}
-		});    	
+							«name»BehaviorGetTotalNumRows(resultsCallback);
+						}
+			});    		
+		«ELSE»
+			return new «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»>("«name»",
+					view.get«table.name.toFirstUpper()»HasData(),
+					new «getBehaviorClass("updateTable")».DataSource<«this.table.fqnTableForClass()»>() {
+
+						@Override
+						public void getData(
+								com.google.gwt.user.client.rpc.AsyncCallback<java.util.List<«this.table.fqnTableForClass()»>> resultsCallback) {
+
+							«name»BehaviorGetData(resultsCallback);
+						}
+			});    	
+		«ENDIF»
  	}
 
 
-	/**
-	 * Method to get the updated data for table «this.table.name» as part of behavior «name»
-	 */
-	protected abstract void «name»BehaviorGetData(com.google.gwt.user.client.rpc.AsyncCallback<java.util.List<«this.table.fqnTableForClass()»>> callback);
-
+	«IF this.table.paging»
+		/**
+		 * Method to get the updated total row count for table «this.table.name» as part of behavior «name»
+		 */
+		protected abstract void «name»BehaviorGetTotalNumRows(com.google.gwt.user.client.rpc.AsyncCallback<Long> callback);
+	«ELSE»
+		/**
+		 * Method to get the updated data for table «this.table.name» as part of behavior «name»
+		 */
+		protected abstract void «name»BehaviorGetData(com.google.gwt.user.client.rpc.AsyncCallback<java.util.List<«this.table.fqnTableForClass()»>> callback);
+	
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE initBehavior FOR PopulateListBoxBehavior»
@@ -624,11 +647,7 @@ public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implement
 		);
 		display = theDisplay;
 		
-		bind();
 	}
 	
-	protected void bind() {
-	}
-
 }
 «ENDDEFINE»

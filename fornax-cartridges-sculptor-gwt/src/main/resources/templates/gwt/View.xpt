@@ -296,6 +296,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	init«name.toFirstUpper()»Table();
 «ENDDEFINE»
 
+«DEFINE widgetInitCalls FOR ListBoxWidget»
+	init«name.toFirstUpper()»();
+«ENDDEFINE»
+
 
 
 «REM»Widget misc. methods«ENDREM»
@@ -753,6 +757,13 @@ Table column support for InformationalTextWidget type
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR ListBoxWidget»
+
+		/**
+		 * Initialize «name» widget
+		 */
+		public void init«name.toFirstUpper()»() {
+		}
+
 		/**
 		 * Value accessor for «name»
 		 */
@@ -791,8 +802,17 @@ Table column support for InformationalTextWidget type
 
 «DEFINE widgetDeclaration FOR Widget»
     @com.google.gwt.uibinder.client.UiField
-    public «resolveGwtWidgetType()» «name»;
-    
+    public «resolveGwtWidgetType()» «name»;    
+«ENDDEFINE»
+
+«DEFINE widgetDeclaration FOR ListBoxWidget»
+	«IF this.forEnum != null»
+	    @com.google.gwt.uibinder.client.UiField( provided=true)
+    	public «resolveGwtWidgetType()» «name» = new «resolveGwtWidgetType()»(«this.getTypedWidgetTargetType()».class);
+    «ELSE»
+	    @com.google.gwt.uibinder.client.UiField
+   	 	public «resolveGwtWidgetType()» «name»;
+   	«ENDIF»    
 «ENDDEFINE»
 
 
