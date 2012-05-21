@@ -4,6 +4,7 @@
 «EXTENSION extensions::properties»
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::gwtuihelpers»
+«EXTENSION extensions::gwt::sofeauihelpers»
 
 «DEFINE activityBaseForUnitTest FOR View»
 	«FILE javaFileName(fqnActivityBaseClass())»
@@ -16,6 +17,20 @@
 		«EXPAND activityBaseBody FOR this» 
 	«ENDFILE»
 «ENDDEFINE» 
+
+
+«REM»--------------------------------------------------------------------------------------------
+	Widget-related declarations
+-----------------------------------------------------------------------------------------«ENDREM»
+
+«DEFINE widgetRelatedDeclarations FOR Widget»
+«ENDDEFINE»
+
+«DEFINE widgetRelatedDeclarations FOR TableWidget»
+	// Define data provider for «name» table
+	protected «fqnDataProviderClass()»<«fqnTableForClass()»> «name»DataProvider;
+«ENDDEFINE»
+
 
 «DEFINE activityBaseBody FOR View»
 «javaHeader()»
@@ -32,6 +47,8 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	protected final com.google.gwt.place.shared.PlaceController placeController;
 	
 	protected final «fqnGwtViewInterface()» view;
+	
+	«EXPAND widgetRelatedDeclarations FOREACH allWidgets()»
 	
 	«EXPAND serviceDeclaration FOREACH serviceProxies»
 
@@ -94,11 +111,11 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 			«behavior.name»Behavior = create«behavior.name.toFirstUpper()»Behavior();
 		«ENDFOREACH»
 		
-		«FOREACH widgets AS w»
+		«FOREACH allWidgets() AS w»
 			bind«w.name.toFirstUpper()»();
 		«ENDFOREACH»
 		
-		«FOREACH widgets.typeSelect(TableWidget) AS table»
+		«FOREACH allWidgets().typeSelect(TableWidget) AS table»
 			«FOREACH table.columns AS col»
 				bind«table.name.toFirstUpper()»«col.name.toFirstUpper()»();
 			«ENDFOREACH»
@@ -108,7 +125,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	}
 	
 	
-	«EXPAND widgetBindMethod FOREACH widgets»
+	«EXPAND widgetBindMethod FOREACH allWidgets()»
 	
 	protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {
 		return view.asWidget();
@@ -120,7 +137,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	
 
 	public void clearData() {
-		«EXPAND widgetClearCall FOREACH widgets»
+		«EXPAND widgetClearCall FOREACH allWidgets()»
 	}
 	
 }
@@ -414,7 +431,9 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 
 
 
-«REM»Methods to bind activity to view«ENDREM»
+«REM»----------------------------------------------------------------------------------------
+	Methods to bind activity to view
+-------------------------------------------------------------------------------------«ENDREM»
 
 «DEFINE widgetBindMethod FOR Widget»
 
@@ -480,8 +499,33 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	 */
 	protected void bind«this.name.toFirstUpper()»() {
 
-		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»		
+		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»
+		
+		«IF usesAsyncDataProvider()»
+			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>() {
+			
+				@Override
+				protected void onRangeChanged(final com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData) {
+					«name»RangeChanged(hasData);
+				}
+			};
+						
+		«ELSE»
+			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>();		
+		«ENDIF»
+		
+		«name»DataProvider.addDataDisplay(view.get«name.toFirstUpper()»HasData());
 	}
+
+	«IF usesAsyncDataProvider()»
+		/**
+		 * Indication that the range of elements to be displayed for the «name» table has changed, and the
+		 * table should be updated.
+		 * This method should be overridden by subclasses.
+		 * @param hasData HasData interface of the table
+		 */
+		protected abstract void «name»RangeChanged(com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData);
+	«ENDIF»
 
 
 	«EXPAND columnBindMethod(this) FOREACH columns»

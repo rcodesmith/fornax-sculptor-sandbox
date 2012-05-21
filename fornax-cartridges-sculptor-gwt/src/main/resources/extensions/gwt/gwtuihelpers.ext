@@ -12,9 +12,9 @@ String testoid() :
 // Get all of the Services that are used, either at the module or view level
 Set[Module] getAllUsedServices(sculptorguimetamodel::GuiModule guiModule) :
 	let list = {} :
-	list.addAll(guiModule.views.getUsedServices().toSet().select(s|s != null)) ->
-	list.addAll(guiModule.getUsedServices()) ->
-	list.toSet();
+		list.addAll(guiModule.views.getUsedServices().toSet().select(s|s != null)) ->
+		list.addAll(guiModule.getUsedServices()) ->
+		list.toSet();
 //	debugTrace("all services list: " + list) ->
 
 String getEnumCommonInterfaces(Enum enumObj) :
@@ -307,7 +307,7 @@ gwtWidgetsPackage(UserTask task) :
 String gwtTemplateFilePath(String widgetClassFqn) :
     widgetClassFqn.replaceAll("\\.", "/") + ".ui.xml";
 
-	
+
 
 // Fully qualified name of GWT table widget class corresponding to the given task
 String fqnGwtTableWidgetClass(ListTask task) :
@@ -323,7 +323,6 @@ String tableColumnAttrName(TableColumn column) :
 	((TableWidget)column.eContainer).name + column.name.toFirstUpper() + "TableCol";
 
 
-
 // Fully qualified name of GWT table widget base class corresponding to the given task
 String fqnGwtTableWidgetBaseClass(ListTask task) :
 	task.gwtWidgetsPackage() + "." + task.gwtTableWidgetBaseClass() ;
@@ -337,6 +336,12 @@ String gwtTableWidgetBaseClass(ListTask task) :
 String gwtTableTemplateFilePath(ListTask task) :
 	gwtTemplateFilePath(fqnGwtTableWidgetBaseClass(task));
 	
+
+
+
+
+
+
 
 
 // GWT edit form widget class relative name
@@ -372,6 +377,17 @@ String resolveGwtWidgetType(ViewDataProperty prop) :
 
 
 
+
+///////////////////////////////////////////////////////////////
+// TableWidget-related functions
+///////////////////////////////////////////////////////////////
+
+boolean usesAsyncDataProvider(TableWidget tableWidget) :
+	(tableWidget.paging ? true : false);
+
+String fqnDataProviderClass(TableWidget tableWidget) :
+	tableWidget.usesAsyncDataProvider() ? getProperty("gwt.dataprovider.async.class") : getProperty("gwt.dataprovider.list.class");
+
 // Relative name of the DTO class that a table is for
 DomainObject tableForClass(TableWidget table) :
 	table.for;
@@ -388,6 +404,11 @@ Boolean widgetHasNameProp(ViewDataProperty prop) :
 		false
 	else
 		true;
+
+
+
+
+
 
 // Copied from guihelper.ext
 boolean isDateOrDateTime(Attribute attr) :
@@ -548,6 +569,19 @@ String widgetForIsWidgetExpr(Widget w) :
 // View-related functions
 ////////////////////////////////////////////////////////////////////////////
 
+//cached List[Widget] allWidgets(View view) :
+//	allContainedWidgets(view);
+
+// Return all the contained widgets, and all their contained widgets, but not the containing widget itself
+//List[Widget] allContainedWidgets(WidgetsContainer container) :
+//	{}.addAll(container.widgets).addAll(container.widgets.allContainedWidgets().flatten());
+
+//List[Widget] allContainedWidgets(TableWidget table) :
+//	{}.addAll(table.columns.typeSelect(WidgetTableColumn));
+
+//List[Widget] allContainedWidgets(Widget widget) :
+//	{widget};
+		
 String getViewRootBaseClass(View view) :
 	getProperty("gwt.view.base");
 
@@ -639,6 +673,7 @@ String getTypedWidgetTargetType(ListBoxWidget widget) :
 String resolveGwtWidgetType(Widget widget) :
 	error("Unexpected call to resolveGwtWidgetType: " + widget);
 
+// TODO: Make the following methods use getWidgetType(String) instead - e.g. getWidgetType("inputdate")
 
 String resolveGwtWidgetType(InputDateWidget widget) :
 	getProperty("gwt.widget.inputdate.class");

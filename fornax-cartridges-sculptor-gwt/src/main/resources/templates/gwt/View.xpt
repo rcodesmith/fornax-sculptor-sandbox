@@ -330,6 +330,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     
     	«name»ListDataProvider.addDataDisplay(«name»);
     	
+		«IF paging»
+			«name»Pager.setDisplay(«name»);
+		«ENDIF»
+		
     	«FOREACH columns AS col»
 	    	«name».addColumn(init«name.toFirstUpper()»Table«col.name.toFirstUpper()»Column(), "«col.label»");
 	    «ENDFOREACH»
@@ -794,14 +798,20 @@ Table column support for InformationalTextWidget type
 
 «DEFINE widgetDeclaration FOR TableWidget»
 
-    // «name» cell table
-    «debugTrace("widgetDeclaration() for table: " + this.name + " forModule = " + this.for.guiModule.for)»
+    // «name» table
     @com.google.gwt.uibinder.client.UiField(provided = true)
     public «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
     final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
         new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
 
+	// Define data provider for «name» table
 	protected com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»> «name»ListDataProvider = new com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»>();
+	
+	«IF paging»
+		// Pager for «name» table	
+		@com.google.gwt.uibinder.client.UiField
+		protected «getWidgetType("pager")» «name»Pager;
+	«ENDIF»
 
 «ENDDEFINE»
 

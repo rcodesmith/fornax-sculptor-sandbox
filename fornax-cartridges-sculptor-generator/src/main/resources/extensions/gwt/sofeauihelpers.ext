@@ -23,7 +23,7 @@ Set[Module] getAllUsedServices(GuiModule guiModule) :
 	list.toSet();
 //	debugTrace("all services list: " + list) ->
 
-List[Widget] allWidgets(View view):
+cached List[Widget] allWidgets(View view):
 	{}.addAll(view.widgets).addAll(view.widgets.allWidgets());
 
 List[Widget] allWidgets(Widget w):

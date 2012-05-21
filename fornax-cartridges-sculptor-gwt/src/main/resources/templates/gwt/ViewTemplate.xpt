@@ -89,6 +89,11 @@
 		<g:Label text="«label»" />
 	«ENDIF»
 	<«this.resolveGwtWidgetTag()» ui:field="«name»" />
+	
+	«IF paging»
+		<«getWidgetTag("pager")» ui:field="«name»Pager" location='RIGHT'/>;
+	«ENDIF»
+
 «ENDDEFINE»
 
 
