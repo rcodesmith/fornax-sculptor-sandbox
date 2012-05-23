@@ -693,6 +693,13 @@ String resolveGwtWidgetType(InformationalTextWidget widget) :
 String resolveGwtWidgetTag(InformationalTextWidget widget) :
 	getProperty("gwt.widget.informationaltext.tag");
 
+String resolveGwtCellWidgetType(InformationalTextWidget widget) :
+	resolveGwtCellWidgetTypeWithOverriding(widget, "informationalText");
+
+String resolveGwtCellWidgetTypeWithOverriding(Widget widget, String defaultName) :
+	(widget.widgetType != null ? getCellTypeClass(widget.widgetType) : getCellTypeClass(defaultName));
+
+
 String resolveGwtWidgetType(ButtonWidget widget) :
 	getProperty("gwt.widget.button.class");
 
