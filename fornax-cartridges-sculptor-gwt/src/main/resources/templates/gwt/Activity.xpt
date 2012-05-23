@@ -26,11 +26,6 @@
 «DEFINE widgetRelatedDeclarations FOR Widget»
 «ENDDEFINE»
 
-«DEFINE widgetRelatedDeclarations FOR TableWidget»
-	// Define data provider for «name» table
-	protected «fqnDataProviderClass()»<«fqnTableForClass()»> «name»DataProvider;
-«ENDDEFINE»
-
 
 «DEFINE activityBaseBody FOR View»
 «javaHeader()»
@@ -523,33 +518,7 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	protected void bind«this.name.toFirstUpper()»() {
 
 		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»
-		
-		«IF usesAsyncDataProvider()»
-			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>() {
-			
-				@Override
-				protected void onRangeChanged(final com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData) {
-					«name»RangeChanged(hasData);
-				}
-			};
-						
-		«ELSE»
-			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>();		
-		«ENDIF»
-		
-		«name»DataProvider.addDataDisplay(view.get«name.toFirstUpper()»HasData());
 	}
-
-	«IF usesAsyncDataProvider()»
-		/**
-		 * Indication that the range of elements to be displayed for the «name» table has changed, and the
-		 * table should be updated.
-		 * This method should be overridden by subclasses.
-		 * @param hasData HasData interface of the table
-		 */
-		protected abstract void «name»RangeChanged(com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData);
-	«ENDIF»
-
 
 	«EXPAND columnBindMethod(this) FOREACH columns»
 «ENDDEFINE»

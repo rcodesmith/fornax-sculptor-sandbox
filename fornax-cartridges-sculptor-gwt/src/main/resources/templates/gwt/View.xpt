@@ -112,12 +112,39 @@ package «gwtBaseWidgetsPackage()»;
 		 */
 		public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
 		
-	    public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData);
+    	«IF usesAsyncDataProvider()»
+			/**
+			  * Inform the table of the total number of items that are available
+	   	 	  * See GWT AsyncDataProvider
+	    	  */
+			public void update«name»RowCount(int count, boolean exact);
+		
+			/**
+			  * Inform the table of the new data
+	    	  * See GWT AsyncDataProvider
+			  */
+			public void update«name»RowData(int start, java.util.List<«fqnTableForClass()»> values);
+		«ELSE»    	
+    		/**
+    		 * Replace the data in the «name» table with the given collection.
+    		 * See GWT ListDataProvider
+    		 */
+		    public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData);
 
-	    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList);
+    		/**
+    		 * Replace the data in the «name» table with the given list
+    		 * See GWT ListDataProvider
+    		 */
+		    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList);
 
-	    public void clear«name.toFirstUpper()»Data();
-
+    		/**
+    		 * Clear all of the data in the «name» table
+    		 * See GWT ListDataProvider
+    		 */
+	    	public void clear«name.toFirstUpper()»Data();
+		«ENDIF»
+		
+		
 	 	«EXPAND tableColumnInterfaceDeclarations(this) FOREACH this.columns»
 	«ENDIF»
 «ENDDEFINE»
@@ -237,6 +264,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     private static «gwtViewWidgetBaseClass()»UiBinder uiBinder = com.google.gwt.core.client.GWT
     	.create(«gwtViewWidgetBaseClass()»UiBinder.class);
 
+	/**
+	  * Default constructor for view base class.
+	  * This constructor doesn't do anything interesting (on purpose).  See the initView() method to see where everything is
+	  * constructed and initialized.  Everything is done there rather than the constructor so initialization of different widgets may be
+	  * overridden in the implementation class if needed.
+	  */
 	public «gwtViewWidgetBaseClass()»() {
 		initWidget(getWidget());
 		
@@ -249,17 +282,23 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     
     «fqnPresenterBaseInterface()» presenter;
     
-    /**
-     * Initialize this view with the given presenter.
-     */
-    public void initView(«fqnPresenterBaseInterface()» presenter) {
-    	this.presenter = presenter;
-    }
+    «EXPAND initView FOR this»
     
     «EXPAND widgetDeclaration FOREACH allWidgets()»
     
     «EXPAND widgetMethods FOREACH allWidgets()»
 }
+«ENDDEFINE»
+
+«DEFINE initView FOR View»
+    /**
+     * Initialize this view with the given presenter, constructing any widgets and other objects as needed.
+     */
+    public void initView(«fqnPresenterBaseInterface()» presenter) {
+    	this.presenter = presenter;
+    	
+    }
+    
 «ENDDEFINE»
 
 «REM»View base class«ENDREM»
@@ -311,28 +350,62 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 «DEFINE widgetMethods FOR TableWidget»
 	«IF this.for != null»
 
-    public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData) {
-        java.util.List<«fqnTableForClass()»> newDataList = new java.util.ArrayList<«fqnTableForClass()»>(newData);
-        replace«name.toFirstUpper()»Data(newDataList);
-    }
+    «IF usesAsyncDataProvider()»
+		/** {@inheritDoc}
+		  */
+		public void update«name»RowCount(int count, boolean exact) {
+			«name»DataProvider.updateRowCount(count, exact);
+		}
+		
+		/** {@inheritDoc}
+		  */
+		public void update«name»RowData(int start, java.util.List<«fqnTableForClass()»> values) {
+			«name»DataProvider.updateRowData(start, values);
+		}
+	«ELSE»
+	    /** {@inheritDoc}
+	 	 */
+    	public void replace«name.toFirstUpper()»Data(java.util.Collection<«fqnTableForClass()»> newData) {
+       		java.util.List<«fqnTableForClass()»> newDataList = new java.util.ArrayList<«fqnTableForClass()»>(newData);
+        	replace«name.toFirstUpper()»Data(newDataList);
+    	}
+    
+	    /** {@inheritDoc}
+	 	 */
+	    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList) {
+   	 		«name»DataProvider.getList().clear();
+        	«name»DataProvider.getList().addAll(0, newDataList);
+        	«name»DataProvider.refresh();
+		}
 
-    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList) {
-    	«name»ListDataProvider.getList().clear();
-        «name»ListDataProvider.getList().addAll(0, newDataList);
-        «name»ListDataProvider.refresh();
-    }
+	    /** {@inheritDoc}
+	 	 */
+    	public void clear«name.toFirstUpper()»Data() {
+        	replace«name.toFirstUpper()»Data(new java.util.ArrayList<«fqnTableForClass()»>());
+    	}
+    «ENDIF»
 
-    public void clear«name.toFirstUpper()»Data() {
-        replace«name.toFirstUpper()»Data(new java.util.ArrayList<«fqnTableForClass()»>());
-    }
 
 	/**
 	  * Initialize table columns
 	  * This method may be overridden by implementation class to do any specialized behavior.
 	  */
     protected void init«name.toFirstUpper()»Table() {
-    
-    	«name»ListDataProvider.addDataDisplay(«name»);
+    	
+    	«IF usesAsyncDataProvider()»
+			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>() {
+			
+				@Override
+				protected void onRangeChanged(final com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData) {
+					presenter.«name»RangeChanged(hasData);
+				}
+			};
+						
+		«ELSE»
+			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>();		
+		«ENDIF»
+		
+    	«name»DataProvider.addDataDisplay(«name»);
     	
 		«IF paging»
 			«name»Pager.setDisplay(«name»);
@@ -370,6 +443,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	
 
 «ENDDEFINE»
+
 
 
 «DEFINE tableColumnInitComment(TableWidget tableWidget) FOR TableColumn»
@@ -825,7 +899,7 @@ Table column support for InformationalTextWidget type
         new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
 
 	// Define data provider for «name» table
-	protected com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»> «name»ListDataProvider = new com.google.gwt.view.client.ListDataProvider<«fqnTableForClass()»>();
+	protected «fqnDataProviderClass()»<«fqnTableForClass()»> «name»DataProvider;
 	
 	«IF paging»
 		// Pager for «name» table	

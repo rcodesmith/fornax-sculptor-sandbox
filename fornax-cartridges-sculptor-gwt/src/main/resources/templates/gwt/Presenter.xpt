@@ -58,6 +58,19 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 		    «EXPAND tableColumnOnClickHandlers(this) FOR col »			
 	    «ENDIF»
     «ENDFOREACH»
+    
+	«IF usesAsyncDataProvider()»
+		/**
+		 * Indication that the range of elements to be displayed for the «name» table has changed, and the
+		 * table should be updated.
+		 * This method should be overridden by subclasses.
+		 * @param hasData HasData interface of the table
+		 */
+		public void «name»RangeChanged(com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData);
+	«ENDIF»
+
+
+
 «ENDDEFINE»
 
 «DEFINE tableColumnOnClickHandlers(TableWidget tableWidget) FOR TableColumn»
