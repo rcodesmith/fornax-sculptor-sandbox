@@ -397,7 +397,11 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 			
 				@Override
 				protected void onRangeChanged(final com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData) {
-					presenter.«name»RangeChanged(hasData);
+					if(presenter == null) {
+						LOG.fine("onRangeChanged() called, but presenter null.  Ignoring as this is probably happening during init");
+					} else {
+						presenter.«name»RangeChanged(hasData);
+					}
 				}
 			};
 						
@@ -458,12 +462,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «DEFINE tableColumnInitDate(TableWidget tableWidget) FOR TableColumn»
 
-	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> «this.tableColumnAttrName()»;
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> «this.tableColumnAttrName()»;
 	
 	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
 	
-	com.google.gwt.cell.client.DateCell dateCell = new com.google.gwt.cell.client.DateCell();
+		com.google.gwt.cell.client.DateCell dateCell = new com.google.gwt.cell.client.DateCell();
 	
 		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date>(dateCell) {
                         @Override
@@ -491,7 +495,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 
 «DEFINE tableColumnInitButton(TableWidget tableWidget) FOR TableColumn»
-	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>  «this.tableColumnAttrName()»;
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>  «this.tableColumnAttrName()»;
 
 	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
@@ -525,7 +529,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «DEFINE tableColumnInitLink(TableWidget tableWidget) FOR TableColumn»
 	
-	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
 	
 	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
@@ -554,7 +558,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 
 «DEFINE tableColumnAttrDeclaration(TableWidget tableWidget, TableColumn col) FOR Widget»
-	«EXPAND tableColumnType(tableWidget, col) FOR this» «col.tableColumnAttrName()»;
+	protected «EXPAND tableColumnType(tableWidget, col) FOR this» «col.tableColumnAttrName()»;
 «ENDDEFINE»
 
 «DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR Widget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>«ENDDEFINE»
@@ -597,8 +601,8 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
 	«IF this.forEnum != null»
-		«getCellTypeClass("enumListBox")»<«this.getTypedWidgetTargetType()»> cell =
-			new «getCellTypeClass("enumListBox")»<«this.getTypedWidgetTargetType()»>(«this.getTypedWidgetTargetType()».class);
+		«this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.getTypedWidgetTargetType()»> cell =
+			new «this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.getTypedWidgetTargetType()»>(«this.getTypedWidgetTargetType()».class);
 	«ELSE»
 		«error("ListBoxWidget cell type without forEnum not yet supported")»
 	«ENDIF»
@@ -656,7 +660,7 @@ Table column support for InformationalTextWidget type
 
 «DEFINE tableColumnInitText(TableWidget tableWidget) FOR TableColumn»
 
-	com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
 	
 	«EXPAND tableColumnInitComment(tableWidget) FOR this»
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
@@ -690,8 +694,8 @@ Table column support for InformationalTextWidget type
 
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR InformationalTextWidget»
-	«getCellTypeClass("informationalText")» cell =
-		new «getCellTypeClass("informationalText")»();
+	«this.resolveGwtCellWidgetType()» cell =
+		new «this.resolveGwtCellWidgetType()»();
 «ENDDEFINE»
 
 
@@ -904,7 +908,7 @@ Table column support for InformationalTextWidget type
 	«IF paging»
 		// Pager for «name» table	
 		@com.google.gwt.uibinder.client.UiField
-		protected «getWidgetType("pager")» «name»Pager;
+		public «getWidgetType("pager")» «name»Pager;
 	«ENDIF»
 
 «ENDDEFINE»
