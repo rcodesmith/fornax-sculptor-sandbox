@@ -3,7 +3,7 @@
   <groupId>org.fornax.cartridges</groupId>
   <artifactId>fornax-cartridges-sculptor-gwt-parent</artifactId>
   <versioning>
-    <release>2.0.17-gwt</release>
+    <release>2.0.19-gwt</release>
     <versions>
       <version>2.0.4-gwt</version>
       <version>2.0.5-gwt</version>
@@ -18,7 +18,9 @@
       <version>2.0.15-gwt</version>
       <version>2.0.16-gwt</version>
       <version>2.0.17-gwt</version>
+      <version>2.0.18-gwt</version>
+      <version>2.0.19-gwt</version>
     </versions>
-    <lastUpdated>20120518134335</lastUpdated>
+    <lastUpdated>20120523132422</lastUpdated>
   </versioning>
 </metadata>
