@@ -30,7 +30,7 @@ import sculptorguimetamodel.View;
  *
  * @generated
  */
-public class LinkWidgetImpl extends WidgetImpl implements LinkWidget {
+public class LinkWidgetImpl extends PropertyReferringWidgetImpl implements LinkWidget {
 	/**
 	 * The cached value of the '{@link #getToView() <em>To View</em>}' reference.
 	 * <!-- begin-user-doc -->

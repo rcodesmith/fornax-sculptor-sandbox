@@ -23,7 +23,7 @@ package sculptorguimetamodel;
  * @model
  * @generated
  */
-public interface LinkWidget extends Widget {
+public interface LinkWidget extends PropertyReferringWidget {
 	/**
 	 * Returns the value of the '<em><b>To View</b></em>' reference.
 	 * <!-- begin-user-doc -->

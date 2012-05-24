@@ -186,7 +186,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ViewParameter" eSuperTypes="sculptormetamodel.ecore#//TypedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkWidget" eSuperTypes="#//Widget">
+  <eClassifiers xsi:type="ecore:EClass" name="LinkWidget" eSuperTypes="#//PropertyReferringWidget">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toView" eType="#//View"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WidgetsContainer">

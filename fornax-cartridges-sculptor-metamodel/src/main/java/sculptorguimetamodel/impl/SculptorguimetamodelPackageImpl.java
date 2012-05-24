@@ -2663,7 +2663,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		serviceProxyOperationEClass.getESuperTypes().add(theSculptormetamodelPackage.getServiceOperation());
 		guiCommandEClass.getESuperTypes().add(this.getGuiDto());
 		viewParameterEClass.getESuperTypes().add(theSculptormetamodelPackage.getTypedElement());
-		linkWidgetEClass.getESuperTypes().add(this.getWidget());
+		linkWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		panelWidgetEClass.getESuperTypes().add(this.getWidgetsContainer());
 		panelWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		uiBehaviorEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());

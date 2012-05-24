@@ -695,6 +695,9 @@ String resolveGwtWidgetTag(InformationalTextWidget widget) :
 
 String resolveGwtCellWidgetType(InformationalTextWidget widget) :
 	resolveGwtCellWidgetTypeWithOverriding(widget, "informationalText");
+	
+String resolveGwtCellWidgetType(LinkWidget widget) :
+	resolveGwtCellWidgetTypeWithOverriding(widget, "link");
 
 String resolveGwtCellWidgetTypeWithOverriding(Widget widget, String defaultName) :
 	(widget.widgetType != null ? getCellTypeClass(widget.widgetType) : getCellTypeClass(defaultName));

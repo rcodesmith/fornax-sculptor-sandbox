@@ -174,7 +174,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class ViewParameter -> TypedElement
     Attribute nullable : EBoolean
 
-  Class LinkWidget -> Widget
+  Class LinkWidget -> PropertyReferringWidget
     Reference toView : View
 
   Class WidgetsContainer

@@ -354,7 +354,7 @@ DslSourceReference :
 
 DslLinkWidget :
   (doc=STRING)?
-	'link' name=ID ('toView' toView=[DslView])? '{'
+	'link' name=ID (sourceRef = DslSourceReference)? ('toView' toView=[DslView])? '{'
 		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?

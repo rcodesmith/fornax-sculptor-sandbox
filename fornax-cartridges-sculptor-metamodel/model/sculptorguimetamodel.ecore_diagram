@@ -1145,7 +1145,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_XXv1-RhUEeGGYaS04SiVVQ"/>
     </children>
     <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//LinkWidget"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XXun0hhUEeGGYaS04SiVVQ" x="351" y="252"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XXun0hhUEeGGYaS04SiVVQ" x="333" y="243"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_hhsIIBhZEeGGYaS04SiVVQ" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_hhsvMBhZEeGGYaS04SiVVQ" type="5001"/>
@@ -2763,11 +2763,11 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5rI1Ag5AEeG78bqdoUfIGg" points="[42, 13, -881, -284]$[912, 293, -11, -4]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5rL4UA5AEeG78bqdoUfIGg" id="(0.13580246913580246,0.3269230769230769)"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_a15X0BhUEeGGYaS04SiVVQ" type="4004" source="_XXun0RhUEeGGYaS04SiVVQ" target="_cN8oIHvNEeCf9Li2crRXww">
+  <edges xmi:type="notation:Connector" xmi:id="_a15X0BhUEeGGYaS04SiVVQ" type="4004" source="_XXun0RhUEeGGYaS04SiVVQ" target="_SIlUEHyxEeCVIP_y44znpQ">
     <styles xmi:type="notation:FontStyle" xmi:id="_a15X0RhUEeGGYaS04SiVVQ" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_a15X0hhUEeGGYaS04SiVVQ" points="[34, 4, -222, -28]$[245, 29, -11, -3]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_a19pQBhUEeGGYaS04SiVVQ" id="(0.12359550561797752,0.3728813559322034)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_a19pQBhUEeGGYaS04SiVVQ" id="(0.8333333333333334,0.23728813559322035)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_cmzUwBhUEeGGYaS04SiVVQ" type="4002" source="_XXun0RhUEeGGYaS04SiVVQ" target="_RDgzUHpJEeCa4d7T08DSOw">
     <children xmi:type="notation:DecorationNode" xmi:id="_cmz70BhUEeGGYaS04SiVVQ" type="6001">

@@ -484,6 +484,7 @@ create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Modul
 
 create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module) :
 	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef) ->
 	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform()));
 
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :

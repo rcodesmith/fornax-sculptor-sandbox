@@ -704,15 +704,23 @@ Table column support for InformationalTextWidget type
 «ENDDEFINE»
 
 
-
-
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR InformationalTextWidget»
 	«this.resolveGwtCellWidgetType()» cell =
 		new «this.resolveGwtCellWidgetType()»();
 «ENDDEFINE»
 
+«REM»
+--------------------------------------------------------------------------------------------------------------
+Table column support for InformationalTextWidget type
+--------------------------------------------------------------------------------------------------------------
+«ENDREM»
 
+«REM»Initialize cell object«ENDREM»
+«DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR LinkWidget»
+	«this.resolveGwtCellWidgetType()» cell =
+		new «this.resolveGwtCellWidgetType()»();
+«ENDDEFINE»
 
 
 

@@ -423,6 +423,7 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.LINK_WIDGET: {
 				LinkWidget linkWidget = (LinkWidget)theEObject;
 				Object result = caseLinkWidget(linkWidget);
+				if (result == null) result = casePropertyReferringWidget(linkWidget);
 				if (result == null) result = caseWidget(linkWidget);
 				if (result == null) result = caseNamedElement(linkWidget);
 				if (result == null) result = defaultCase(theEObject);

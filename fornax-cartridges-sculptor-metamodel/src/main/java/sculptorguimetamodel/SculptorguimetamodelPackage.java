@@ -5269,7 +5269,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__NAME = WIDGET__NAME;
+	int LINK_WIDGET__NAME = PROPERTY_REFERRING_WIDGET__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -5278,7 +5278,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__DOC = WIDGET__DOC;
+	int LINK_WIDGET__DOC = PROPERTY_REFERRING_WIDGET__DOC;
 
 	/**
 	 * The feature id for the '<em><b>Hint</b></em>' attribute.
@@ -5287,7 +5287,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__HINT = WIDGET__HINT;
+	int LINK_WIDGET__HINT = PROPERTY_REFERRING_WIDGET__HINT;
 
 	/**
 	 * The feature id for the '<em><b>View</b></em>' reference.
@@ -5296,7 +5296,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__VIEW = WIDGET__VIEW;
+	int LINK_WIDGET__VIEW = PROPERTY_REFERRING_WIDGET__VIEW;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -5305,7 +5305,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__LABEL = WIDGET__LABEL;
+	int LINK_WIDGET__LABEL = PROPERTY_REFERRING_WIDGET__LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Behavior Bindings</b></em>' reference list.
@@ -5314,7 +5314,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__BEHAVIOR_BINDINGS = WIDGET__BEHAVIOR_BINDINGS;
+	int LINK_WIDGET__BEHAVIOR_BINDINGS = PROPERTY_REFERRING_WIDGET__BEHAVIOR_BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' reference.
@@ -5323,7 +5323,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__ENABLED = WIDGET__ENABLED;
+	int LINK_WIDGET__ENABLED = PROPERTY_REFERRING_WIDGET__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Widget Type</b></em>' attribute.
@@ -5332,7 +5332,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__WIDGET_TYPE = WIDGET__WIDGET_TYPE;
+	int LINK_WIDGET__WIDGET_TYPE = PROPERTY_REFERRING_WIDGET__WIDGET_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Visible</b></em>' reference.
@@ -5341,7 +5341,52 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__VISIBLE = WIDGET__VISIBLE;
+	int LINK_WIDGET__VISIBLE = PROPERTY_REFERRING_WIDGET__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>For Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__FOR_ATTRIBUTE = PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>For Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__FOR_REFERENCE = PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>For Op</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__FOR_OP = PROPERTY_REFERRING_WIDGET__FOR_OP;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__FOR = PROPERTY_REFERRING_WIDGET__FOR;
+
+	/**
+	 * The feature id for the '<em><b>Property Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_WIDGET__PROPERTY_PATH = PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>To View</b></em>' reference.
@@ -5350,7 +5395,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET__TO_VIEW = WIDGET_FEATURE_COUNT + 0;
+	int LINK_WIDGET__TO_VIEW = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Link Widget</em>' class.
@@ -5359,7 +5404,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_WIDGET_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+	int LINK_WIDGET_FEATURE_COUNT = PROPERTY_REFERRING_WIDGET_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
