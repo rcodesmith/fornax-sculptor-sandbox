@@ -271,9 +271,9 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	  * overridden in the implementation class if needed.
 	  */
 	public «gwtViewWidgetBaseClass()»() {
-		initWidget(getWidget());
-		
 		«EXPAND widgetInitCalls FOREACH allWidgets()»
+		
+		initWidget(getWidget());		
 	}
 	
     protected com.google.gwt.user.client.ui.Widget getWidget() {
@@ -391,6 +391,10 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	  * This method may be overridden by implementation class to do any specialized behavior.
 	  */
     protected void init«name.toFirstUpper()»Table() {
+
+		«IF paging»
+			init«name»TablePager();
+    	«ENDIF»
     	
     	«IF usesAsyncDataProvider()»
 			«name»DataProvider = new «fqnDataProviderClass()»<«fqnTableForClass()»>() {
@@ -421,6 +425,8 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     }
 	«ENDIF»
     
+	«EXPAND initTablePager FOR this»
+
     «FOREACH columns AS col»
 	    «IF col.columnType == "Text"»
 		    «EXPAND tableColumnInitText(this) FOR col »
@@ -448,6 +454,14 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 
 «ENDDEFINE»
 
+«DEFINE initTablePager FOR TableWidget»
+	«IF paging»
+		protected void init«name»TablePager() {
+			«getWidgetType("pager")».Resources pagerResources = com.google.gwt.core.client.GWT.create(«getWidgetType("pager")».Resources.class);
+			«name»Pager = new «getWidgetType("pager")»(com.google.gwt.user.cellview.client.SimplePager.TextLocation.RIGHT, pagerResources, false, 0, true);
+		}
+    «ENDIF»
+«ENDDEFINE»
 
 
 «DEFINE tableColumnInitComment(TableWidget tableWidget) FOR TableColumn»
@@ -907,7 +921,7 @@ Table column support for InformationalTextWidget type
 	
 	«IF paging»
 		// Pager for «name» table	
-		@com.google.gwt.uibinder.client.UiField
+		@com.google.gwt.uibinder.client.UiField(provided = true)
 		public «getWidgetType("pager")» «name»Pager;
 	«ENDIF»
 
