@@ -222,6 +222,9 @@
    <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.8.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.8">
       <category name="Sculptor"/>
    </feature>
+   <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.9.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.9">
+      <category name="Sculptor"/>
+   </feature>
    <category-def name="Topcased" label="Topcased">
       <description>
          A fully featured UML2 and Ecore Editor

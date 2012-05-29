@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sculptor GUI DSL Plug-in
 Bundle-Vendor: Fornax Sculptor
-Bundle-Version: 2.0.8
+Bundle-Version: 2.0.9
 Bundle-SymbolicName: org.fornax.cartridges.sculptor.gui.dsl; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.fornax.cartridges.sculptor.dsl;bundle-version="[2.0.0,2.1.0]";visibility:=reexport,

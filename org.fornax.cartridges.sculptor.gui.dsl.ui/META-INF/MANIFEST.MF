@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.fornax.cartridges.sculptor.gui.dsl.ui
 Bundle-Vendor: Sculptor DSL UI Plug-in
-Bundle-Version: 2.0.8
+Bundle-Version: 2.0.9
 Bundle-SymbolicName: org.fornax.cartridges.sculptor.gui.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui.editors,
