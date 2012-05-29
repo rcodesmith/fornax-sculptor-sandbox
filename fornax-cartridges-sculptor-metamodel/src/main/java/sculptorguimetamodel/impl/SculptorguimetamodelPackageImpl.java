@@ -53,6 +53,7 @@ import sculptorguimetamodel.OnSelectItemBinding;
 import sculptorguimetamodel.PanelWidget;
 import sculptorguimetamodel.PopulateListBoxBehavior;
 import sculptorguimetamodel.PopulatePanelBehavior;
+import sculptorguimetamodel.PopupPanelBehavior;
 import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.RadioButtonsWidget;
@@ -601,6 +602,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass hasDirtyValueConditionEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass popupPanelBehaviorEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2318,6 +2326,33 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPopupPanelBehavior() {
+		return popupPanelBehaviorEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPopupPanelBehavior_View() {
+		return (EReference)popupPanelBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPopupPanelBehavior_PanelName() {
+		return (EAttribute)popupPanelBehaviorEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2595,6 +2630,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		hasDirtyValueConditionEClass = createEClass(HAS_DIRTY_VALUE_CONDITION);
 		createEAttribute(hasDirtyValueConditionEClass, HAS_DIRTY_VALUE_CONDITION__DIRTY);
+
+		popupPanelBehaviorEClass = createEClass(POPUP_PANEL_BEHAVIOR);
+		createEReference(popupPanelBehaviorEClass, POPUP_PANEL_BEHAVIOR__VIEW);
+		createEAttribute(popupPanelBehaviorEClass, POPUP_PANEL_BEHAVIOR__PANEL_NAME);
 	}
 
 	/**
@@ -2694,6 +2733,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		goBackBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		updateAttributeBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		hasDirtyValueConditionEClass.getESuperTypes().add(this.getUiCondition());
+		popupPanelBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2950,6 +2990,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(hasDirtyValueConditionEClass, HasDirtyValueCondition.class, "HasDirtyValueCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getHasDirtyValueCondition_Dirty(), ecorePackage.getEBoolean(), "dirty", null, 0, 1, HasDirtyValueCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(popupPanelBehaviorEClass, PopupPanelBehavior.class, "PopupPanelBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPopupPanelBehavior_View(), this.getView(), null, "view", null, 0, 1, PopupPanelBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPopupPanelBehavior_PanelName(), ecorePackage.getEString(), "panelName", null, 0, 1, PopupPanelBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

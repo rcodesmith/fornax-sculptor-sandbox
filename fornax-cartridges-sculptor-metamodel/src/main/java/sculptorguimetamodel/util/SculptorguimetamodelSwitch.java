@@ -679,6 +679,14 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.POPUP_PANEL_BEHAVIOR: {
+				PopupPanelBehavior popupPanelBehavior = (PopupPanelBehavior)theEObject;
+				Object result = casePopupPanelBehavior(popupPanelBehavior);
+				if (result == null) result = caseUiBehavior(popupPanelBehavior);
+				if (result == null) result = caseNamedElement(popupPanelBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1760,6 +1768,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseHasDirtyValueCondition(HasDirtyValueCondition object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Popup Panel Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Popup Panel Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object casePopupPanelBehavior(PopupPanelBehavior object) {
 		return null;
 	}
 

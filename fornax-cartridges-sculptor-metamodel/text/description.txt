@@ -261,3 +261,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class HasDirtyValueCondition -> UiCondition
     Attribute dirty : EBoolean
+
+  Class PopupPanelBehavior -> UiBehavior
+    Reference view : View
+    Attribute panelName : EString

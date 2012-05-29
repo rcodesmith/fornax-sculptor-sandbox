@@ -7750,6 +7750,79 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int HAS_DIRTY_VALUE_CONDITION_FEATURE_COUNT = UI_CONDITION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.PopupPanelBehaviorImpl <em>Popup Panel Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.PopupPanelBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPopupPanelBehavior()
+	 * @generated
+	 */
+	int POPUP_PANEL_BEHAVIOR = 72;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR__VIEW = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Panel Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR__PANEL_NAME = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Popup Panel Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPUP_PANEL_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9691,6 +9764,38 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EAttribute getHasDirtyValueCondition_Dirty();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.PopupPanelBehavior <em>Popup Panel Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Popup Panel Behavior</em>'.
+	 * @see sculptorguimetamodel.PopupPanelBehavior
+	 * @generated
+	 */
+	EClass getPopupPanelBehavior();
+
+	/**
+	 * Returns the meta object for the reference '{@link sculptorguimetamodel.PopupPanelBehavior#getView <em>View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>View</em>'.
+	 * @see sculptorguimetamodel.PopupPanelBehavior#getView()
+	 * @see #getPopupPanelBehavior()
+	 * @generated
+	 */
+	EReference getPopupPanelBehavior_View();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.PopupPanelBehavior#getPanelName <em>Panel Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Panel Name</em>'.
+	 * @see sculptorguimetamodel.PopupPanelBehavior#getPanelName()
+	 * @see #getPopupPanelBehavior()
+	 * @generated
+	 */
+	EAttribute getPopupPanelBehavior_PanelName();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11319,6 +11424,32 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute HAS_DIRTY_VALUE_CONDITION__DIRTY = eINSTANCE.getHasDirtyValueCondition_Dirty();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.PopupPanelBehaviorImpl <em>Popup Panel Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.PopupPanelBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getPopupPanelBehavior()
+		 * @generated
+		 */
+		EClass POPUP_PANEL_BEHAVIOR = eINSTANCE.getPopupPanelBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>View</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POPUP_PANEL_BEHAVIOR__VIEW = eINSTANCE.getPopupPanelBehavior_View();
+
+		/**
+		 * The meta object literal for the '<em><b>Panel Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POPUP_PANEL_BEHAVIOR__PANEL_NAME = eINSTANCE.getPopupPanelBehavior_PanelName();
 
 	}
 

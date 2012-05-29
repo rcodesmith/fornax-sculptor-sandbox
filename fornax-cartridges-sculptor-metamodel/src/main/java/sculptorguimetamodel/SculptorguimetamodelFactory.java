@@ -674,6 +674,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	HasDirtyValueCondition createHasDirtyValueCondition();
 
 																/**
+	 * Returns a new object of class '<em>Popup Panel Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Popup Panel Behavior</em>'.
+	 * @generated
+	 */
+	PopupPanelBehavior createPopupPanelBehavior();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

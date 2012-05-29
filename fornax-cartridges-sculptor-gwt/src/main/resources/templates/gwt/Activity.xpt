@@ -523,6 +523,9 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	«EXPAND columnBindMethod(this) FOREACH columns»
 «ENDDEFINE»
 
+«REM»
+	Behavior bindings for table columns
+«ENDREM»
 «DEFINE columnBindMethod(TableWidget table) FOR TableColumn»
 	/**
 	 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
@@ -542,13 +545,25 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 
 «ENDDEFINE»
 
+«REM»
+	Behavior binding for columns with OnSelectItemBinding bindings
+«ENDREM»
 «DEFINE behaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget) FOR OnSelectItemBinding»
 	«EXPAND behaviorDispatcherConstruction(widget, "OnSelectItem") FOR this»
 
 	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());
 «ENDDEFINE»
 
+«REM»
+	Behavior binding for columns with OnClickBinding bindings
+«ENDREM»
+«DEFINE behaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget) FOR OnClickBinding»
+	«EXPAND behaviorDispatcherConstruction(widget, "OnClick") FOR this»
 
+	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());
+«ENDDEFINE»
+
+OnClick
 
 «REM»Methods to clear data from widgets«ENDREM»
 «DEFINE widgetClearCall FOR Widget»
@@ -581,7 +596,10 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 
 
 
-«REM»Activity implementation class«ENDREM»
+«REM»
+	Activity implementation class
+«ENDREM»
+
 «DEFINE activityImpl FOR View»
 «FILE javaFileName(fqnActivityImplClass()) TO_SRC»
 «EXPAND activityImplBody FOR this»
@@ -593,6 +611,7 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «EXPAND activityImplBody FOR this»
 «ENDFILE»
 «ENDDEFINE» 
+
 
 «DEFINE activityImplBody FOR View»
 package «gwtActivitiesPackage()»;
@@ -606,6 +625,12 @@ public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implement
 	
 	«fqnGwtViewInterface()» display;
 	
+	«EXPAND activityImplConstructor FOR this»
+}
+«ENDDEFINE»
+
+
+«DEFINE activityImplConstructor FOR View»
 	@com.google.inject.Inject
 	public «gwtActivityImplClass()»(«fqnGwtViewInterface()» theDisplay,
 		com.google.gwt.event.shared.EventBus eventBus,
@@ -615,8 +640,6 @@ public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implement
 		«IF serviceProxies.size > 0»,«FOREACH serviceProxies AS service SEPARATOR ", "»«service.name.toFirstLower()»«ENDFOREACH»«ENDIF»
 		);
 		display = theDisplay;
-		
+		display.initView(this);
 	}
-	
-}
 «ENDDEFINE»

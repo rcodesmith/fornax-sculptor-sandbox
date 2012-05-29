@@ -22,12 +22,25 @@ public class GwtActivityImplTemplateTest extends LibraryGwtTemplateBaseTest {
         XpandUnit.xpand("templates::gwt::Activity::activityImplForUnitTest", tableView,
                 new HashMap<String, Object>(), getXpandTempDir());
         
-        String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/TableViewActivity.java");
-        assertContains(activityBaseCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
-        assertContains(activityBaseCode, "public class TableViewActivity extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity.TableViewActivityBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewPresenterIf {");
+        String activityCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/activity/TableViewActivity.java");
+        assertContains(activityCode, "package org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity;");
+        assertContains(activityCode, "public class TableViewActivity extends org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.activity.TableViewActivityBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.activity.TableViewPresenterIf {");
         
-        assertContains(activityBaseCode, "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf display;");
+        assertContains(activityCode, "org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf display;");
+
+        // Verify constructor
+        assertContainsConsecutiveFragments(activityCode,
+        		"public TableViewActivity(org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf theDisplay,",
+        		"com.google.gwt.event.shared.EventBus eventBus,",
+        		"com.google.gwt.place.shared.PlaceController placeController",
+        		") {",
+        		"super(eventBus, theDisplay, placeController",
+        		");",
+        		"display = theDisplay;",
+        		"display.initView(this);",
+        		"}");
         
+
     }
     
     @Test
@@ -38,6 +51,5 @@ public class GwtActivityImplTemplateTest extends LibraryGwtTemplateBaseTest {
                 new HashMap<String, Object>(), getXpandTempDir());
     	
     }
-
     
 }

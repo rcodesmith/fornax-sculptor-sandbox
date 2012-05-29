@@ -128,9 +128,27 @@ gui LibraryWeb for Library {
 				
 			}
 			
+			"Behavior to popup a panel"
+			UiBehavior PopupPanel popupPersonDetails {
+				panelName = "Person details"
+				view = PersonPopup
+			}
+
 			
 		}
 		
+		
+		View PersonPopup {
+			parameters {
+				Long personId;
+			}
+			contents {
+				informationalText personId {
+					label = "Person ID"
+				}
+			}
+		}
+
 
 		"This is some MyEvent1 documentation"
 		Event MyEvent1 {

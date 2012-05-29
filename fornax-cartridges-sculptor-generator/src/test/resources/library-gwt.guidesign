@@ -99,6 +99,11 @@ gui LibraryWeb for Library {
 						
 						edit type=Button onClick=populatePersonDetailsPanel;
 						
+						widget link someLink {
+							label = "Some Link"
+							onClick = someLinkBehavior
+							
+						}
 
 					}
 				}
@@ -141,6 +146,10 @@ gui LibraryWeb for Library {
 				panel=personDetailsPanel
 			}
 			
+			UiBehavior Custom someLinkBehavior {
+				
+			}
+			
 			UiBehavior UpdateAttribute updatePerson {
 				
 			}
@@ -175,6 +184,13 @@ gui LibraryWeb for Library {
 				
 				specificObject
 			}
+			
+			
+			"Behavior to popup a panel"
+			UiBehavior PopupPanel popupPersonDetails {
+				panelName = "Person details"
+				view = PersonPopup
+			}
 
 			"Warn if view is dirty"
 			UiBehavior WarnIfDirty warnIfViewDirty {
@@ -189,6 +205,17 @@ gui LibraryWeb for Library {
 			
 		}
 		
+		
+		View PersonPopup {
+			parameters {
+				Long personId;
+			}
+			contents {
+				informationalText personId {
+					label = "Person ID"
+				}
+			}
+		}
 		
 		"This is some MyEvent1 documentation"
 		Event MyEvent1 {

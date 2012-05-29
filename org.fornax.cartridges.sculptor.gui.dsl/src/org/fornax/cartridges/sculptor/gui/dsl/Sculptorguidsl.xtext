@@ -360,7 +360,7 @@ DslLinkWidget :
 		('widgetType' '=' widgetType=STRING)?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
-		(onClick=DslOnClick)?
+		(behaviorBindings+=DslOnClick)?
 		(behaviorBindings+=DslOnHover)?
 	'}';
 	
@@ -451,7 +451,7 @@ DslGuiDto :
 DslUiBehavior :
 	DslPopulatePanelBehavior | DslPopulateListBoxBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior
 	| DslCustomBehavior | DslCompositeBehavior | DslMarkDirtyBehavior | DslMarkCleanBehavior | DslWarnIfDirtyBehavior
-	| DslGoBackBehavior | DslUpdateAttributeBehavior | DslClearWidgetsBehavior;
+	| DslGoBackBehavior | DslUpdateAttributeBehavior | DslClearWidgetsBehavior | DslPopupPanelBehavior;
 	
 DslPopulatePanelBehavior :
   (doc=STRING)?
@@ -541,6 +541,14 @@ DslClearWidgetsBehavior :
   "UiBehavior" "ClearWidgets" name=ID "{"
 	("hint" "=" hint=STRING)?
 	('widgets' '=' widgets+=[DslWidget] ("," widgets+=[DslWidget])*)?
+  "}";
+
+DslPopupPanelBehavior :
+  (doc=STRING)?
+  "UiBehavior" "PopupPanel" name=ID "{"
+	("hint" "=" hint=STRING)?
+	("panelName" "=" panelName=STRING)
+	('view' '=' view=[DslView])?
   "}";
 
 

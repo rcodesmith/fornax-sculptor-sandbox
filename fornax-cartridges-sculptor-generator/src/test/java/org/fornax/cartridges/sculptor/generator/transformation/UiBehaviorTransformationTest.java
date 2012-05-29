@@ -13,6 +13,7 @@ import sculptorguimetamodel.MarkCleanBehavior;
 import sculptorguimetamodel.MarkDirtyBehavior;
 import sculptorguimetamodel.OnClickBinding;
 import sculptorguimetamodel.PopulatePanelBehavior;
+import sculptorguimetamodel.PopupPanelBehavior;
 import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.View;
 import sculptorguimetamodel.Widget;
@@ -38,6 +39,18 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals("Populate the person details panel", populatePersonDetailsPanel.getDoc());
 		assertEquals("personDetailsPanel", populatePersonDetailsPanel.getPanel().getName());
 		
+	}
+	
+	@Test
+	public void assertPopupPanelBehavior() {
+		View tableView = (View)getNamedElement("TableView", personModule().getViews());
+		
+		PopupPanelBehavior popupPersonDetails = (PopupPanelBehavior)getNamedElement("popupPersonDetails", tableView.getBehaviors());
+		assertNotNull(popupPersonDetails);
+		
+		assertEquals("popupPersonDetails", popupPersonDetails.getName());
+		assertEquals("Behavior to popup a panel", popupPersonDetails.getDoc());
+		assertEquals("PersonPopup", popupPersonDetails.getView().getName());
 	}
 	
 	

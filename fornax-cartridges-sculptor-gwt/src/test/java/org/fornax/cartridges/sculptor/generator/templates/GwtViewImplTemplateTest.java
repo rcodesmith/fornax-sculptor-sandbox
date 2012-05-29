@@ -21,7 +21,7 @@ public class GwtViewImplTemplateTest extends TemplateTestBase {
     }
 
     @Test
-    public void assertTableViewBaseCode() throws IOException {
+    public void assertTableViewImplDecl() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	Assert.assertNotNull(tableView);
     	
@@ -37,5 +37,6 @@ public class GwtViewImplTemplateTest extends TemplateTestBase {
         assertContains(tableViewCode, "public class TableViewViewImpl extends  org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.view.TableViewViewBase implements org.fornax.cartridges.sculptor.examples.library.person.gwt.client.view.TableViewViewIf {");
 
     }
+    
     
 }
