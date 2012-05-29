@@ -60,9 +60,6 @@
    <feature url="features/org.eclipse.uml2_2.0.3.v200702141227.jar" id="org.eclipse.uml2" version="2.0.3.v200702141227">
       <category name="Eclipse UML2"/>
    </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.0.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.0.0">
-      <category name="Sculptor"/>
-   </feature>
    <feature url="features/org.codehaus.groovy.eclipse.feature_1.0.0.20070607.jar" id="org.codehaus.groovy.eclipse.feature" version="1.0.0.20070607">
       <category name="Groovy"/>
    </feature>
@@ -222,55 +219,7 @@
    <feature url="features/org.maven.ide.eclipse.mylyn.feature_0.0.11.20070916-2300.jar" id="org.maven.ide.eclipse.mylyn.feature" version="0.0.11.20070916-2300">
       <category name="Maven2"/>
    </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.1.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.1.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.2.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.2.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.3.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.3.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.4.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.4.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.5.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.5.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.richclient.feature_1.5.0.jar" id="org.fornax.cartridges.sculptor.richclient.feature" version="1.5.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.6.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.6.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.richclient.feature_1.6.0.jar" id="org.fornax.cartridges.sculptor.richclient.feature" version="1.6.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.7.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.7.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.richclient.feature_1.7.0.jar" id="org.fornax.cartridges.sculptor.richclient.feature" version="1.7.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.8.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.8.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.richclient.feature_1.9.0.jar" id="org.fornax.cartridges.sculptor.richclient.feature" version="1.9.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_1.9.0.3.jar" id="org.fornax.cartridges.sculptor.dsl" version="1.9.0.3">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.richclient.feature_1.9.0.jar" id="org.fornax.cartridges.sculptor.richclient.feature" version="1.9.0">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.0.5.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.0.5">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.richclient.feature_2.0.0.5.jar" id="org.fornax.cartridges.sculptor.richclient.feature" version="2.0.0.5">
-      <category name="Sculptor"/>
-   </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.0.6.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.0.6">
+   <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.8.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.8">
       <category name="Sculptor"/>
    </feature>
    <category-def name="Topcased" label="Topcased">
