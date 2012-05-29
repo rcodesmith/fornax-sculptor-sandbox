@@ -492,11 +492,14 @@ create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberS
 	transformSourceReference(this, widget.sourceRef);
 
 private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
+	debugTrace("initFromDslWidget(" + dslWidget.name + ", label=" + dslWidget.label + ")") ->
 	widget.setHint(dslWidget.hint) ->
 	widget.setDoc(dslWidget.doc) ->
 	widget.setWidgetType(dslWidget.widgetType) ->
 	widget.setName(dslWidget.name) ->
 	widget.setLabel(dslWidget.label) ->
+	setEnabledVisible(widget, dslWidget, module) ->
+	debugTrace("num behavior bindings = " + dslWidget.behaviorBindings.size) ->
 	widget.behaviorBindings.addAll(dslWidget.behaviorBindings.transform(module));
 
 
@@ -506,14 +509,8 @@ create sculptorguimetamodel::CustomWidget this transformWidget(DslCustomWidget w
 	
 
 create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
-//	setView(((DslView) widget.eContainer).transformView(module)) ->
 	initFromDslWidget(this, widget, module) ->
-//	setHint(widget.hint) ->
-//	setDoc(widget.doc) ->
-//	setWidgetType(widget.widgetType) ->
-//	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef);
-//	setLabel(widget.label);
 
 create sculptorguimetamodel::ListBoxWidget this transformWidget(DslListBoxWidget widget, Module module) :
 	let domainObject = getForDomainObject(widget.for) :
@@ -557,35 +554,17 @@ create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocomp
 create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
 //	setView(this.findContainingView(module)) ->
 	initFromDslWidget(this, widget, module) ->
-//	setHint(widget.hint) ->
-//	setDoc(widget.doc) ->
-//	setWidgetType(widget.widgetType) ->
-//	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef);
-//	setLabel(widget.label);
 
 create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
-//	setView(((DslView) widget.eContainer).transformView(module)) ->
 	initFromDslWidget(this, widget, module) ->
-//	setHint(widget.hint) ->
-//	setDoc(widget.doc) ->
-//	setWidgetType(widget.widgetType) ->
-//	setName(widget.name) ->
 	transformSourceReference(this, widget.sourceRef);
-//	setLabel(widget.label);
 
 	
 create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
-//	setView(((DslView) widget.eContainer).transformView(module)) ->
 	initFromDslWidget(this, widget, module);
-//	setHint(widget.hint) ->
-//	setDoc(widget.doc) ->
-//	setWidgetType(widget.widgetType) ->
-//	setName(widget.name) ->
-//	setLabel(widget.label);
 	
 create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
-//	setView(((DslView) widget.eContainer).transformView(module)) ->
 	setHint(widget.hint) ->
 	setDoc(widget.doc) ->
 	setWidgetType(widget.widgetType) ->
@@ -803,7 +782,6 @@ create sculptorguimetamodel::UiBehavior this transformBehavior(DslUiBehavior beh
 	error("Unexpected call to transformBehavior(DslUiBehavior) - base class behavior");
 
 create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPopulatePanelBehavior behavior, Module module) :
-//	debugTrace("transformBehavior(DslPopulatePanelBehavier)") ->
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->
 	setName(behavior.name) ->
@@ -874,6 +852,12 @@ create sculptorguimetamodel::UpdateAttributeBehavior this transformBehavior(DslU
 	setPropertyPath(behavior.propertyPath) ->
 	setTargetClass(behavior.targetClass == null ? null : behavior.targetClass.transformToGui());
 
+create sculptorguimetamodel::PopupPanelBehavior this transformBehavior(DslPopupPanelBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setPanelName(behavior.panelName) ->
+	setView(behavior.view.transformView(((DslGuiModule)(behavior.view.eContainer)).for.transform()));
 	
 	
 create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding binding, Module module) :
