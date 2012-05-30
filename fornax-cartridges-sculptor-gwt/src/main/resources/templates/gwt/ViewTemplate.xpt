@@ -65,7 +65,7 @@
 
 «DEFINE widgetTemplate FOR InputDateWidget»
 	<g:Label text="«label»" />
-	<«this.resolveGwtWidgetTag()» ui:field="«name»"  name="«name»"/>	
+	<«this.resolveGwtWidgetTag()» ui:field="«name»" />	
 «ENDDEFINE»
 
 «DEFINE widgetTemplate FOR InformationalTextWidget»

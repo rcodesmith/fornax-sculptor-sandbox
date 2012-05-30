@@ -195,7 +195,9 @@ package «gwtBaseWidgetsPackage()»;
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR InputDateWidget»
-	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+//	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText();
+	public com.google.gwt.user.client.ui.HasValue<java.util.Date> get«name.toFirstUpper()»HasDate();
+
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR AutocompleteWidget»
@@ -804,7 +806,8 @@ Table column support for LinkWidget type
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR InputDateWidget»
-	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
+//	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
+	public com.google.gwt.user.client.ui.HasValue<java.util.Date> get«name.toFirstUpper()»HasDate() {
 		return «name»;
 	}
 «ENDDEFINE»
