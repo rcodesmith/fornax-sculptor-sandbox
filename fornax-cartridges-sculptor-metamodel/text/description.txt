@@ -113,6 +113,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Attribute label : EString
     Attribute extendsName : EString
     Reference extends : View
+    Attribute popup : EBoolean
 
   Class Widget -> NamedElement
     Reference view : View
@@ -126,7 +127,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class InformationalTextWidget -> PropertyReferringWidget
 
-  Class ButtonWidget -> Widget
+  Class ButtonWidget -> PropertyReferringWidget
     Attribute image : EString
 
   Class PropertyReferringWidget -> Widget
@@ -176,11 +177,13 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
 
   Class LinkWidget -> PropertyReferringWidget
     Reference toView : View
+    Attribute toDestination : EString
 
   Class WidgetsContainer
     Reference widgets : Widget<<0..*>>
 
   Class PanelWidget -> WidgetsContainer, PropertyReferringWidget
+    Attribute disclosure : EBoolean
 
   Class UiBehavior -> NamedElement
     Reference bindings : BehaviorBinding<<0..*>>

@@ -150,7 +150,8 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 				"personDetailsEmptyPanel", tableView.getWidgets());
 		assertNotNull(emptyPane);
 		assertEquals(0, emptyPane.getWidgets().size());
-		assertEquals("this is an empty panel", emptyPane.getDoc());		
+		assertEquals("this is an empty panel", emptyPane.getDoc());
+		assertEquals(false, emptyPane.isDisclosure());
 	}
 	
 	@Test
@@ -168,6 +169,7 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		DomainObject person = personDetailsPane.getFor();
 		assertNotNull(person);
 		assertEquals("Person", person.getName());
+		assertTrue(personDetailsPane.isDisclosure());
 		
 		
 		// Check contents of person detail panel
@@ -193,6 +195,7 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals("Person Form", personLink.getLabel());
 		assertEquals("PersonForm", personLink.getToView().getName());
 		assertEquals("Link to PersonForm view", personLink.getDoc());
+		assertEquals("someDest", personLink.getToDestination());
 
 		LinkWidget mediaBrowseLink = (LinkWidget) widgets.get(0);
 		assertEquals("Media Browse", mediaBrowseLink.getLabel());

@@ -458,6 +458,7 @@ create sculptorguimetamodel::View this transformView(DslView view, Module module
 	setHint(view.hint) ->
 	setDoc(view.doc) ->
 	setName(view.name) ->
+	setPopup(view.popup) ->
 	setFor(getForDomainObject(view.for)) ->
 	parameters.addAll(view.parameters.transform()) ->
 	widgets.addAll(view.widgets.transformWidget(module)) ->
@@ -485,6 +486,7 @@ create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Modul
 create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module) :
 	initFromDslWidget(this, widget, module) ->
 	transformSourceReference(this, widget.sourceRef) ->
+	setToDestination(widget.toDestination) ->
 	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform()));
 
 create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
@@ -492,7 +494,7 @@ create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberS
 	transformSourceReference(this, widget.sourceRef);
 
 private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
-	debugTrace("initFromDslWidget(" + dslWidget.name + ", label=" + dslWidget.label + ")") ->
+	//debugTrace("initFromDslWidget(" + dslWidget.name + ", label=" + dslWidget.label + ")") ->
 	widget.setHint(dslWidget.hint) ->
 	widget.setDoc(dslWidget.doc) ->
 	widget.setWidgetType(dslWidget.widgetType) ->
@@ -562,7 +564,9 @@ create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidg
 
 	
 create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
-	initFromDslWidget(this, widget, module);
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+
 	
 create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
 	setHint(widget.hint) ->
@@ -625,6 +629,7 @@ create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget wid
 	setName(widget.name) ->	
 	setLabel(widget.label) ->
 //	setFor(widget.for == null ? null : widget.for.transform()) ->
+	setDisclosure(widget.disclosure) ->
 	widgets.addAll(widget.widgets.transformWidget(module));
 
 private transformSourceReference(PropertyReferringWidget propRefWidget, DslSourceReference sourceRef) :

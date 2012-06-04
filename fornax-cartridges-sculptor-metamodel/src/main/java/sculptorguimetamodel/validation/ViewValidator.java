@@ -36,5 +36,7 @@ public interface ViewValidator {
 
 	boolean validateExtends(View value);
 
+	boolean validatePopup(boolean value);
+
 	boolean validateServiceDependencies(EList value);
 }

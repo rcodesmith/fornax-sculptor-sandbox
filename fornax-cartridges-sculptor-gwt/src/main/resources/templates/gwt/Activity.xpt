@@ -560,10 +560,16 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «DEFINE behaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget) FOR OnClickBinding»
 	«EXPAND behaviorDispatcherConstruction(widget, "OnClick") FOR this»
 
-	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());
+	«EXPAND colWidgetOnClickBehaviorBinding(widget, col, tableWidget, this) FOR col.widget»
 «ENDDEFINE»
 
-OnClick
+«DEFINE colWidgetOnClickBehaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget, OnClickBinding binding) FOR Widget»
+	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());	
+«ENDDEFINE»
+
+«DEFINE colWidgetOnClickBehaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget, OnClickBinding binding) FOR ButtonWidget»
+	bd.bindColumnActionDelegate(view.get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»HasActionDelegate());
+«ENDDEFINE»
 
 «REM»Methods to clear data from widgets«ENDREM»
 «DEFINE widgetClearCall FOR Widget»

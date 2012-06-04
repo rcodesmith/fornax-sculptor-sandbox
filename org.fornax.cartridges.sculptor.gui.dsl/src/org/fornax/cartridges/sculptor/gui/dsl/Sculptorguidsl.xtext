@@ -176,6 +176,9 @@ DslView:
 		("hint" "=" hint=STRING)?
 	
 		('label' '=' label=STRING)?
+		
+		((popup?="popup") | (NOT "popup"))?
+		
 		(serviceDependencies+=DslGuiServiceDependency)*
 		(publishedEvents+=DslPublishedEvent)*
 
@@ -222,6 +225,7 @@ DslPanelWidget :
 		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?
+		((disclosure?="disclosure") | (NOT "disclosure"))?
 		('enabled' enabled=[DslUiCondition])?
 		('visible' visible=[DslUiCondition])?
 		(behaviorBindings+=DslOnHover)?
@@ -324,7 +328,7 @@ DslInputDateWidget :
 	
 DslButtonWidget :
   (doc=STRING)?
-	'button' name=ID '{'
+	'button' name=ID (sourceRef = DslSourceReference)? '{'
 		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('image' '=' image=STRING)?
@@ -354,7 +358,7 @@ DslSourceReference :
 
 DslLinkWidget :
   (doc=STRING)?
-	'link' name=ID (sourceRef = DslSourceReference)? ('toView' toView=[DslView])? '{'
+	'link' name=ID (sourceRef = DslSourceReference)? ('toView' toView=[DslView])? ('toDestination' toDestination=STRING)? '{'
 		("hint" "=" hint=STRING)?
 		('label' '=' label=STRING)?
 		('widgetType' '=' widgetType=STRING)?

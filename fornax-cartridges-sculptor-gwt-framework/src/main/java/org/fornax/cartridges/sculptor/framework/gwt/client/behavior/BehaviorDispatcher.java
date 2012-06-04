@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 
 import org.fornax.cartridges.sculptor.framework.gwt.client.TypedSuggestBox.TypedSuggestion;
 import org.fornax.cartridges.sculptor.framework.gwt.client.behavior.Behavior.BehaviorCompletion;
+import org.fornax.cartridges.sculptor.framework.gwt.client.widgets.cell.HasActionDelegate;
 
+import com.google.gwt.cell.client.ActionCell.Delegate;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -254,9 +256,26 @@ public class BehaviorDispatcher {
 		
 	}
 	
+	public <T> Delegate<T> getActionDelegate() {
+		final BehaviorDispatcher bd = this;
+
+		return new Delegate<T>() {
+			@Override
+			public void execute(T object) {
+				Event event = new Event();
+				event.setObj(object);
+				
+				bd.invoke(event);
+			}
+		};
+	}
+	
+	public <T> void bindColumnActionDelegate(HasActionDelegate<T> hasActionDelegate) {
+		hasActionDelegate.setDelegate(this.<T>getActionDelegate());
+	}
+	
 	public <T,C> void bindColumnFieldUpdater(Column<T,C> col) {
 		col.setFieldUpdater(this.<T,C>getFieldUpdater());
-
 	}
 	
 	/**

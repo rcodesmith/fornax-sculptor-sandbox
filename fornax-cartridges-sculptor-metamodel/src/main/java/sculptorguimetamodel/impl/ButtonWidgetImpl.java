@@ -28,7 +28,7 @@ import sculptorguimetamodel.SculptorguimetamodelPackage;
  *
  * @generated
  */
-public class ButtonWidgetImpl extends WidgetImpl implements ButtonWidget {
+public class ButtonWidgetImpl extends PropertyReferringWidgetImpl implements ButtonWidget {
 	/**
 	 * The default value of the '{@link #getImage() <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->

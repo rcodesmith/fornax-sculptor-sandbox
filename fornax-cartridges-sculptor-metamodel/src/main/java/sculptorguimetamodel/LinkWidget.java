@@ -16,6 +16,7 @@ package sculptorguimetamodel;
  * The following features are supported:
  * <ul>
  *   <li>{@link sculptorguimetamodel.LinkWidget#getToView <em>To View</em>}</li>
+ *   <li>{@link sculptorguimetamodel.LinkWidget#getToDestination <em>To Destination</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +50,31 @@ public interface LinkWidget extends PropertyReferringWidget {
 	 * @generated
 	 */
 	void setToView(View value);
+
+	/**
+	 * Returns the value of the '<em><b>To Destination</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>To Destination</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>To Destination</em>' attribute.
+	 * @see #setToDestination(String)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getLinkWidget_ToDestination()
+	 * @model
+	 * @generated
+	 */
+	String getToDestination();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.LinkWidget#getToDestination <em>To Destination</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>To Destination</em>' attribute.
+	 * @see #getToDestination()
+	 * @generated
+	 */
+	void setToDestination(String value);
 
 } // LinkWidget

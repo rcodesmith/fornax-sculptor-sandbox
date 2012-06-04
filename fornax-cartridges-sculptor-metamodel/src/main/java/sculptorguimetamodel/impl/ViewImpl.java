@@ -57,6 +57,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getExtendsName <em>Extends Name</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.ViewImpl#getExtends <em>Extends</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.ViewImpl#isPopup <em>Popup</em>}</li>
  * </ul>
  * </p>
  *
@@ -218,6 +219,25 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 	 * @ordered
 	 */
 	protected View extends_;
+	/**
+	 * The default value of the '{@link #isPopup() <em>Popup</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPopup()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean POPUP_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPopup() <em>Popup</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPopup()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean popup = POPUP_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -511,6 +531,27 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isPopup() {
+		return popup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPopup(boolean newPopup) {
+		boolean oldPopup = popup;
+		popup = newPopup;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.VIEW__POPUP, oldPopup, popup));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.VIEW__MODULE:
@@ -586,6 +627,8 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__EXTENDS:
 				if (resolve) return getExtends();
 				return basicGetExtends();
+			case SculptorguimetamodelPackage.VIEW__POPUP:
+				return isPopup() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -637,6 +680,9 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__EXTENDS:
 				setExtends((View)newValue);
 				return;
+			case SculptorguimetamodelPackage.VIEW__POPUP:
+				setPopup(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -684,6 +730,9 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 			case SculptorguimetamodelPackage.VIEW__EXTENDS:
 				setExtends((View)null);
 				return;
+			case SculptorguimetamodelPackage.VIEW__POPUP:
+				setPopup(POPUP_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -719,6 +768,8 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 				return EXTENDS_NAME_EDEFAULT == null ? extendsName != null : !EXTENDS_NAME_EDEFAULT.equals(extendsName);
 			case SculptorguimetamodelPackage.VIEW__EXTENDS:
 				return extends_ != null;
+			case SculptorguimetamodelPackage.VIEW__POPUP:
+				return popup != POPUP_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -790,6 +841,8 @@ public class ViewImpl extends WidgetsContainerImpl implements View {
 		result.append(label);
 		result.append(", extendsName: ");
 		result.append(extendsName);
+		result.append(", popup: ");
+		result.append(popup);
 		result.append(')');
 		return result.toString();
 	}

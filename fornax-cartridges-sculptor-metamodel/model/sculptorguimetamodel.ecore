@@ -131,6 +131,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendsName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extends" eType="#//View"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="popup" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View"/>
@@ -143,7 +144,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
   <eClassifiers xsi:type="ecore:EClass" name="InformationalTextWidget" eSuperTypes="#//PropertyReferringWidget"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ButtonWidget" eSuperTypes="#//Widget">
+  <eClassifiers xsi:type="ecore:EClass" name="ButtonWidget" eSuperTypes="#//PropertyReferringWidget">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyReferringWidget" eSuperTypes="#//Widget">
@@ -188,12 +189,15 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LinkWidget" eSuperTypes="#//PropertyReferringWidget">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toView" eType="#//View"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toDestination" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WidgetsContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
         eType="#//Widget" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//WidgetsContainer #//PropertyReferringWidget"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PanelWidget" eSuperTypes="#//WidgetsContainer #//PropertyReferringWidget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disclosure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UiBehavior" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//BehaviorBinding" eOpposite="#//BehaviorBinding/behaviors"/>

@@ -12,7 +12,7 @@ gui LibraryWeb for Library {
 				}
 				
 				"Link to PersonForm view"
-				link personLink toView PersonForm {
+				link personLink toView PersonForm toDestination "someDest" {
 					label = "Person Form"
 				}
 				
@@ -110,6 +110,7 @@ gui LibraryWeb for Library {
 				
 				panel personDetailsPanel for Person {
 					hint="paneltype=SimplePanel"
+					disclosure
 					contents {
 						inputText nameField forPath "name" {
 							label = "Name"

@@ -19,5 +19,7 @@ public interface LinkWidgetValidator {
 
 	boolean validateToView(View value);
 
+	boolean validateToDestination(String value);
+
 	boolean validateForView(View value);
 }

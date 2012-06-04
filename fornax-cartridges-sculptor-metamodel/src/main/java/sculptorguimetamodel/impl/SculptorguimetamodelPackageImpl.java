@@ -1444,6 +1444,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getView_Popup() {
+		return (EAttribute)viewEClass.getEStructuralFeatures().get(7);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWidget() {
 		return widgetEClass;
 	}
@@ -1840,6 +1849,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLinkWidget_ToDestination() {
+		return (EAttribute)linkWidgetEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWidgetsContainer() {
 		return widgetsContainerEClass;
 	}
@@ -1860,6 +1878,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EClass getPanelWidget() {
 		return panelWidgetEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPanelWidget_Disclosure() {
+		return (EAttribute)panelWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
 																/**
@@ -2482,6 +2509,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEAttribute(viewEClass, VIEW__LABEL);
 		createEAttribute(viewEClass, VIEW__EXTENDS_NAME);
 		createEReference(viewEClass, VIEW__EXTENDS);
+		createEAttribute(viewEClass, VIEW__POPUP);
 
 		widgetEClass = createEClass(WIDGET);
 		createEReference(widgetEClass, WIDGET__VIEW);
@@ -2545,11 +2573,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		linkWidgetEClass = createEClass(LINK_WIDGET);
 		createEReference(linkWidgetEClass, LINK_WIDGET__TO_VIEW);
+		createEAttribute(linkWidgetEClass, LINK_WIDGET__TO_DESTINATION);
 
 		widgetsContainerEClass = createEClass(WIDGETS_CONTAINER);
 		createEReference(widgetsContainerEClass, WIDGETS_CONTAINER__WIDGETS);
 
 		panelWidgetEClass = createEClass(PANEL_WIDGET);
+		createEAttribute(panelWidgetEClass, PANEL_WIDGET__DISCLOSURE);
 
 		uiBehaviorEClass = createEClass(UI_BEHAVIOR);
 		createEReference(uiBehaviorEClass, UI_BEHAVIOR__BINDINGS);
@@ -2687,7 +2717,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		widgetEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		inputTextWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		informationalTextWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
-		buttonWidgetEClass.getESuperTypes().add(this.getWidget());
+		buttonWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		propertyReferringWidgetEClass.getESuperTypes().add(this.getWidget());
 		tableWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		guiEventEClass.getESuperTypes().add(theSculptormetamodelPackage.getDomainObject());
@@ -2842,6 +2872,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEAttribute(getView_Label(), ecorePackage.getEString(), "label", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getView_ExtendsName(), ecorePackage.getEString(), "extendsName", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getView_Extends(), this.getView(), null, "extends", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getView_Popup(), ecorePackage.getEBoolean(), "popup", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(widgetEClass, Widget.class, "Widget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidget_View(), this.getView(), null, "view", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2905,11 +2936,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(linkWidgetEClass, LinkWidget.class, "LinkWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLinkWidget_ToView(), this.getView(), null, "toView", null, 0, 1, LinkWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLinkWidget_ToDestination(), ecorePackage.getEString(), "toDestination", null, 0, 1, LinkWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(widgetsContainerEClass, WidgetsContainer.class, "WidgetsContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidgetsContainer_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, WidgetsContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(panelWidgetEClass, PanelWidget.class, "PanelWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPanelWidget_Disclosure(), ecorePackage.getEBoolean(), "disclosure", null, 0, 1, PanelWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uiBehaviorEClass, UiBehavior.class, "UiBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUiBehavior_Bindings(), this.getBehaviorBinding(), this.getBehaviorBinding_Behaviors(), "bindings", null, 0, -1, UiBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

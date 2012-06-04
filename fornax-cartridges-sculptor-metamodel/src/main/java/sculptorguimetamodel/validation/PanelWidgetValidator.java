@@ -18,6 +18,8 @@ import sculptormetamodel.DomainObject;
 public interface PanelWidgetValidator {
 	boolean validate();
 
+	boolean validateDisclosure(boolean value);
+
 	boolean validateFor(DomainObject value);
 
 }

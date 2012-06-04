@@ -58,6 +58,7 @@ import sculptormetamodel.SculptormetamodelPackage;
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForOp <em>For Op</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getPropertyPath <em>Property Path</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#isDisclosure <em>Disclosure</em>}</li>
  * </ul>
  * </p>
  *
@@ -263,6 +264,26 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * @ordered
 	 */
 	protected String propertyPath = PROPERTY_PATH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDisclosure() <em>Disclosure</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisclosure()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DISCLOSURE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDisclosure() <em>Disclosure</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDisclosure()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean disclosure = DISCLOSURE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -691,6 +712,27 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDisclosure() {
+		return disclosure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDisclosure(boolean newDisclosure) {
+		boolean oldDisclosure = disclosure;
+		disclosure = newDisclosure;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE, oldDisclosure, disclosure));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.PANEL_WIDGET__BEHAVIOR_BINDINGS:
@@ -754,6 +796,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return basicGetFor();
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				return getPropertyPath();
+			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
+				return isDisclosure() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -808,6 +852,9 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				setPropertyPath((String)newValue);
 				return;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
+				setDisclosure(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -861,6 +908,9 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				setPropertyPath(PROPERTY_PATH_EDEFAULT);
 				return;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
+				setDisclosure(DISCLOSURE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -900,6 +950,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return for_ != null;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				return PROPERTY_PATH_EDEFAULT == null ? propertyPath != null : !PROPERTY_PATH_EDEFAULT.equals(propertyPath);
+			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
+				return disclosure != DISCLOSURE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1001,6 +1053,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 		result.append(widgetType);
 		result.append(", propertyPath: ");
 		result.append(propertyPath);
+		result.append(", disclosure: ");
+		result.append(disclosure);
 		result.append(')');
 		return result.toString();
 	}

@@ -25,6 +25,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.View#getLabel <em>Label</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getExtendsName <em>Extends Name</em>}</li>
  *   <li>{@link sculptorguimetamodel.View#getExtends <em>Extends</em>}</li>
+ *   <li>{@link sculptorguimetamodel.View#isPopup <em>Popup</em>}</li>
  * </ul>
  * </p>
  *
@@ -196,5 +197,31 @@ public interface View extends WidgetsContainer, NamedElement, BehaviorContainer 
 	 * @generated
 	 */
 	void setExtends(View value);
+
+	/**
+	 * Returns the value of the '<em><b>Popup</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Popup</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Popup</em>' attribute.
+	 * @see #setPopup(boolean)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getView_Popup()
+	 * @model
+	 * @generated
+	 */
+	boolean isPopup();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.View#isPopup <em>Popup</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Popup</em>' attribute.
+	 * @see #isPopup()
+	 * @generated
+	 */
+	void setPopup(boolean value);
 
 } // View

@@ -23,7 +23,7 @@ package sculptorguimetamodel;
  * @model
  * @generated
  */
-public interface ButtonWidget extends Widget {
+public interface ButtonWidget extends PropertyReferringWidget {
 	/**
 	 * Returns the value of the '<em><b>Image</b></em>' attribute.
 	 * <!-- begin-user-doc -->

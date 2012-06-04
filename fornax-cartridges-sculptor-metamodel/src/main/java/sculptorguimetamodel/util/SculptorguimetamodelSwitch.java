@@ -291,6 +291,7 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.BUTTON_WIDGET: {
 				ButtonWidget buttonWidget = (ButtonWidget)theEObject;
 				Object result = caseButtonWidget(buttonWidget);
+				if (result == null) result = casePropertyReferringWidget(buttonWidget);
 				if (result == null) result = caseWidget(buttonWidget);
 				if (result == null) result = caseNamedElement(buttonWidget);
 				if (result == null) result = defaultCase(theEObject);
