@@ -167,7 +167,7 @@ package «gwtBaseWidgetsPackage()»;
 
 		«col.tableColumnAttrName()»Wrapper =
 			new «getColumnWrapperClass("button")»<«tableWidget.for.fqnGwtDto()»>();
-		«col.tableColumnAttrName()»Wrapper.init();
+		//«col.tableColumnAttrName()»Wrapper.init();
 
 		«col.tableColumnAttrName()»Wrapper.setLabelGetter(new org.fornax.cartridges.sculptor.framework.gwt.client.ValueGetter<«tableWidget.for.fqnGwtDto()», String>() {
 				«EXPAND tableColumnValueGetterBridge(tableWidget, col) FOR this»

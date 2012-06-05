@@ -51,15 +51,17 @@ public class ActionColumnWrapper<T> implements ColumnWrapper, HasActionDelegate<
 
 	public ActionColumnWrapper(String text) {
 		super();
+		createActionCell(text);		
+		createColumn();		
 	}
 
 	public ActionColumnWrapper() {
 		super();
+		createActionCell();		
+		createColumn();		
 	}
 
 	public void init() {
-		createActionCell();		
-		createColumn();		
 	}
 	
 	protected void createColumn() {
