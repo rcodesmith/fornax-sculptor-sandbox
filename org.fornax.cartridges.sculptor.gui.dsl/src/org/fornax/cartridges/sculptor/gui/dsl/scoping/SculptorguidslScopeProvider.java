@@ -14,7 +14,6 @@ import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-import org.fornax.cartridges.sculptor.dsl.DslHelper;
 import org.fornax.cartridges.sculptor.dsl.scoping.Scope;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslAnyProperty;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslBasicType;
@@ -26,22 +25,9 @@ import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslEnum;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslModule;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslProperty;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslReference;
-import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslServiceOperation;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslSimpleDomainObject;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslCreateWith;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslDeleteWith;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslFindWith;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiListSubtask;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiListSubtaskForTarget;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiModule;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiPreviewProperty;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiViewProperty;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslPopulateWith;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSearchWith;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSkipDomainObject;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSkipUserTask;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslUpdateWith;
-import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslUserTask;
 
 /**
  * This class contains custom scoping description.
@@ -54,15 +40,15 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
     // private final static Logger LOG =
     // Logger.getLogger(sculptorguidslScopeProvider.class);
 
-    IScope scope_DslUserTask_for(DslUserTask ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-
-        DslModule module = ((DslGuiModule) ctx.eContainer()).getFor();
-        addDomainObjectsInModule(elements, module);
-        return myScope;
-    }
+//    IScope scope_DslUserTask_for(DslUserTask ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//
+//        DslModule module = ((DslGuiModule) ctx.eContainer()).getFor();
+//        addDomainObjectsInModule(elements, module);
+//        return myScope;
+//    }
 
     IScope scope_DslSkipDomainObject_do(DslSkipDomainObject ctx, EReference ref) {
         DslGuiModule module = (DslGuiModule) ctx.eContainer();
@@ -78,15 +64,15 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         return myScope;
     }
 
-    IScope scope_DslSkipUserTask_for(DslSkipUserTask ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-
-        DslModule module = ((DslGuiModule) ctx.eContainer()).getFor();
-        addDomainObjectsInModule(elements, module);
-        return myScope;
-    }
+//    IScope scope_DslSkipUserTask_for(DslSkipUserTask ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//
+//        DslModule module = ((DslGuiModule) ctx.eContainer()).getFor();
+//        addDomainObjectsInModule(elements, module);
+//        return myScope;
+//    }
 
     private void addDomainObjectsInModule(List<IEObjectDescription> elements, DslModule module) {
         for (DslSimpleDomainObject each : module.getDomainObjects()) {
@@ -98,43 +84,43 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         }
     }
 
-    IScope scope_DslGuiViewProperty_for(DslGuiViewProperty ctx, EReference ref) {
-        DslUserTask userTask = ((DslUserTask) ctx.eContainer());
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        DslSimpleDomainObject domainObject = userTask.getFor();
+//    IScope scope_DslGuiViewProperty_for(DslGuiViewProperty ctx, EReference ref) {
+//        DslUserTask userTask = ((DslUserTask) ctx.eContainer());
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        DslSimpleDomainObject domainObject = userTask.getFor();
+//
+//        populateProperties(elements, domainObject);
+//
+//        return myScope;
+//    }
 
-        populateProperties(elements, domainObject);
+//    IScope scope_DslGuiPreviewProperty_for(DslGuiPreviewProperty ctx, EReference ref) {
+//        DslGuiListSubtask listSubtask = (DslGuiListSubtask) ctx.eContainer();
+//        return scope_DslGuiPreviewProperty_for(listSubtask, ref);
+//    }
 
-        return myScope;
-    }
-
-    IScope scope_DslGuiPreviewProperty_for(DslGuiPreviewProperty ctx, EReference ref) {
-        DslGuiListSubtask listSubtask = (DslGuiListSubtask) ctx.eContainer();
-        return scope_DslGuiPreviewProperty_for(listSubtask, ref);
-    }
-
-    IScope scope_DslGuiPreviewProperty_for(DslGuiListSubtask listSubtask, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-
-        DslSimpleDomainObject domainObject;
-        if (listSubtask.getReference() instanceof DslReference) {
-            domainObject = ((listSubtask.getForTarget() == null) ? ((DslReference) listSubtask.getReference())
-                    .getDomainObjectType() : listSubtask.getForTarget().getTarget());
-        } else if (listSubtask.getReference() instanceof DslDtoReference) {
-            domainObject = ((listSubtask.getForTarget() == null) ? ((DslDtoReference) listSubtask.getReference())
-                    .getDomainObjectType() : listSubtask.getForTarget().getTarget());
-        } else {
-            return myScope;
-        }
-
-        populateProperties(elements, domainObject);
-
-        return myScope;
-    }
+//    IScope scope_DslGuiPreviewProperty_for(DslGuiListSubtask listSubtask, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//
+//        DslSimpleDomainObject domainObject;
+//        if (listSubtask.getReference() instanceof DslReference) {
+//            domainObject = ((listSubtask.getForTarget() == null) ? ((DslReference) listSubtask.getReference())
+//                    .getDomainObjectType() : listSubtask.getForTarget().getTarget());
+//        } else if (listSubtask.getReference() instanceof DslDtoReference) {
+//            domainObject = ((listSubtask.getForTarget() == null) ? ((DslDtoReference) listSubtask.getReference())
+//                    .getDomainObjectType() : listSubtask.getForTarget().getTarget());
+//        } else {
+//            return myScope;
+//        }
+//
+//        populateProperties(elements, domainObject);
+//
+//        return myScope;
+//    }
 
     private void populateProperties(List<IEObjectDescription> elements, DslSimpleDomainObject domainObject) {
         if (domainObject == null) {
@@ -154,15 +140,15 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         populateProperties(elements, getExtends(domainObject));
     }
 
-    IScope scope_DslGuiViewProperty_basicTypeProperty(DslGuiViewProperty ctx, EReference ref) {
-        DslAnyProperty forProperty = ctx.getFor();
-        return scope_basicTypeProperty(forProperty);
-    }
-
-    IScope scope_DslGuiPreviewProperty_basicTypeProperty(DslGuiPreviewProperty ctx, EReference ref) {
-        DslAnyProperty forProperty = ctx.getFor();
-        return scope_basicTypeProperty(forProperty);
-    }
+//    IScope scope_DslGuiViewProperty_basicTypeProperty(DslGuiViewProperty ctx, EReference ref) {
+//        DslAnyProperty forProperty = ctx.getFor();
+//        return scope_basicTypeProperty(forProperty);
+//    }
+//
+//    IScope scope_DslGuiPreviewProperty_basicTypeProperty(DslGuiPreviewProperty ctx, EReference ref) {
+//        DslAnyProperty forProperty = ctx.getFor();
+//        return scope_basicTypeProperty(forProperty);
+//    }
 
     private IScope scope_basicTypeProperty(DslAnyProperty forProperty) {
         Scope myScope = new Scope();
@@ -193,121 +179,121 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         return myScope;
     }
 
-    IScope scope_DslGuiListSubtask_reference(DslGuiListSubtask ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        DslSimpleDomainObject domainObj = ((DslUserTask) ctx.eContainer()).getFor();
-        if (domainObj instanceof DslDomainObject) {
-            List<DslReference> references = ((DslDomainObject) domainObj).getReferences();
-            for (DslReference reference : references) {
-                if (!(reference.getDomainObjectType() instanceof DslEnum)
-                        && !(reference.getDomainObjectType() instanceof DslBasicType)) {
-                    elements.add(new EObjectDescription(reference.getName(), reference, null));
-                }
-            }
-        } else if (domainObj instanceof DslDataTransferObject) {
-            List<DslDtoReference> references = ((DslDataTransferObject) domainObj).getReferences();
-            for (DslDtoReference reference : references) {
-                elements.add(new EObjectDescription(reference.getName(), reference, null));
-            }
-        }
+//    IScope scope_DslGuiListSubtask_reference(DslGuiListSubtask ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        DslSimpleDomainObject domainObj = ((DslUserTask) ctx.eContainer()).getFor();
+//        if (domainObj instanceof DslDomainObject) {
+//            List<DslReference> references = ((DslDomainObject) domainObj).getReferences();
+//            for (DslReference reference : references) {
+//                if (!(reference.getDomainObjectType() instanceof DslEnum)
+//                        && !(reference.getDomainObjectType() instanceof DslBasicType)) {
+//                    elements.add(new EObjectDescription(reference.getName(), reference, null));
+//                }
+//            }
+//        } else if (domainObj instanceof DslDataTransferObject) {
+//            List<DslDtoReference> references = ((DslDataTransferObject) domainObj).getReferences();
+//            for (DslDtoReference reference : references) {
+//                elements.add(new EObjectDescription(reference.getName(), reference, null));
+//            }
+//        }
+//
+//        return myScope;
+//    }
 
-        return myScope;
-    }
-
-    IScope scope_DslGuiListSubtaskForTarget_target(DslGuiListSubtaskForTarget ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        DslGuiListSubtask parent = (DslGuiListSubtask) ctx.eContainer();
-        DslSimpleDomainObject domainObject;
-        if (parent.getReference() instanceof DslReference) {
-            domainObject = ((DslReference) parent.getReference()).getDomainObjectType();
-        } else if (parent.getReference() instanceof DslReference) {
-            domainObject = ((DslDtoReference) parent.getReference()).getDomainObjectType();
-        } else {
-            return myScope;
-        }
-        elements.add(new EObjectDescription(domainObject.getName(), domainObject, null));
-        if (domainObject instanceof DslDomainObject) {
-            List<DslDomainObject> subclasses = DslHelper.getAllSubclasses((DslDomainObject) domainObject);
-            for (DslDomainObject subclass : subclasses) {
-                elements.add(new EObjectDescription(subclass.getName(), subclass, null));
-            }
-        } else if (domainObject instanceof DslDataTransferObject) {
-            List<DslDataTransferObject> subclasses = DslHelper.getAllSubclasses((DslDataTransferObject) domainObject);
-            for (DslDataTransferObject subclass : subclasses) {
-                elements.add(new EObjectDescription(subclass.getName(), subclass, null));
-            }
-        }
-
-        return myScope;
-    }
-
-    IScope scope_DslCreateWith_operation(DslCreateWith ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        List<DslServiceOperation> operations = ctx.getService().getOperations();
-        for (DslServiceOperation operation : operations) {
-            elements.add(new EObjectDescription(operation.getName(), operation, null));
-        }
-        return myScope;
-    }
-
-    IScope scope_DslUpdateWith_operation(DslUpdateWith ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        List<DslServiceOperation> operations = ctx.getService().getOperations();
-        for (DslServiceOperation operation : operations) {
-            elements.add(new EObjectDescription(operation.getName(), operation, null));
-        }
-        return myScope;
-    }
-
-    IScope scope_DslFindWith_operation(DslFindWith ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        List<DslServiceOperation> operations = ctx.getService().getOperations();
-        for (DslServiceOperation operation : operations) {
-            elements.add(new EObjectDescription(operation.getName(), operation, null));
-        }
-        return myScope;
-    }
-
-    IScope scope_DslPopulateWith_operation(DslPopulateWith ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        List<DslServiceOperation> operations = ctx.getService().getOperations();
-        for (DslServiceOperation operation : operations) {
-            elements.add(new EObjectDescription(operation.getName(), operation, null));
-        }
-        return myScope;
-    }
-
-    IScope scope_DslDeleteWith_operation(DslDeleteWith ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        List<DslServiceOperation> operations = ctx.getService().getOperations();
-        for (DslServiceOperation operation : operations) {
-            elements.add(new EObjectDescription(operation.getName(), operation, null));
-        }
-        return myScope;
-    }
-
-    IScope scope_DslSearchWith_operation(DslSearchWith ctx, EReference ref) {
-        Scope myScope = new Scope();
-        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
-        myScope.setElements(elements);
-        List<DslServiceOperation> operations = ctx.getService().getOperations();
-        for (DslServiceOperation operation : operations) {
-            elements.add(new EObjectDescription(operation.getName(), operation, null));
-        }
-        return myScope;
-    }
+//    IScope scope_DslGuiListSubtaskForTarget_target(DslGuiListSubtaskForTarget ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        DslGuiListSubtask parent = (DslGuiListSubtask) ctx.eContainer();
+//        DslSimpleDomainObject domainObject;
+//        if (parent.getReference() instanceof DslReference) {
+//            domainObject = ((DslReference) parent.getReference()).getDomainObjectType();
+//        } else if (parent.getReference() instanceof DslReference) {
+//            domainObject = ((DslDtoReference) parent.getReference()).getDomainObjectType();
+//        } else {
+//            return myScope;
+//        }
+//        elements.add(new EObjectDescription(domainObject.getName(), domainObject, null));
+//        if (domainObject instanceof DslDomainObject) {
+//            List<DslDomainObject> subclasses = DslHelper.getAllSubclasses((DslDomainObject) domainObject);
+//            for (DslDomainObject subclass : subclasses) {
+//                elements.add(new EObjectDescription(subclass.getName(), subclass, null));
+//            }
+//        } else if (domainObject instanceof DslDataTransferObject) {
+//            List<DslDataTransferObject> subclasses = DslHelper.getAllSubclasses((DslDataTransferObject) domainObject);
+//            for (DslDataTransferObject subclass : subclasses) {
+//                elements.add(new EObjectDescription(subclass.getName(), subclass, null));
+//            }
+//        }
+//
+//        return myScope;
+//    }
+//
+//    IScope scope_DslCreateWith_operation(DslCreateWith ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        List<DslServiceOperation> operations = ctx.getService().getOperations();
+//        for (DslServiceOperation operation : operations) {
+//            elements.add(new EObjectDescription(operation.getName(), operation, null));
+//        }
+//        return myScope;
+//    }
+//
+//    IScope scope_DslUpdateWith_operation(DslUpdateWith ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        List<DslServiceOperation> operations = ctx.getService().getOperations();
+//        for (DslServiceOperation operation : operations) {
+//            elements.add(new EObjectDescription(operation.getName(), operation, null));
+//        }
+//        return myScope;
+//    }
+//
+//    IScope scope_DslFindWith_operation(DslFindWith ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        List<DslServiceOperation> operations = ctx.getService().getOperations();
+//        for (DslServiceOperation operation : operations) {
+//            elements.add(new EObjectDescription(operation.getName(), operation, null));
+//        }
+//        return myScope;
+//    }
+//
+//    IScope scope_DslPopulateWith_operation(DslPopulateWith ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        List<DslServiceOperation> operations = ctx.getService().getOperations();
+//        for (DslServiceOperation operation : operations) {
+//            elements.add(new EObjectDescription(operation.getName(), operation, null));
+//        }
+//        return myScope;
+//    }
+//
+//    IScope scope_DslDeleteWith_operation(DslDeleteWith ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        List<DslServiceOperation> operations = ctx.getService().getOperations();
+//        for (DslServiceOperation operation : operations) {
+//            elements.add(new EObjectDescription(operation.getName(), operation, null));
+//        }
+//        return myScope;
+//    }
+//
+//    IScope scope_DslSearchWith_operation(DslSearchWith ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//        List<DslServiceOperation> operations = ctx.getService().getOperations();
+//        for (DslServiceOperation operation : operations) {
+//            elements.add(new EObjectDescription(operation.getName(), operation, null));
+//        }
+//        return myScope;
+//    }
 }

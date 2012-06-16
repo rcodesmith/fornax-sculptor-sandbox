@@ -141,7 +141,8 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslSimpleDomainObject do
 create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
 	debugTrace("transformToGui(" + entity.name + ")") ->
 	initGuiDtoFromDomainObject(entity, this) ->
-    setOptimisticLocking(!entity.notOptimisticLocking);
+    setOptimisticLocking(!entity.notOptimisticLocking) ->
+    traits.addAll(entity.traits.transformToGui());
 
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
@@ -164,7 +165,8 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObj
 	initGuiDtoFromDomainObject(domainObject, this) ->
 	setImmutable(!domainObject.notImmutable) ->
 //    setPersistent(!domainObject.notPersistent) ->
-    setOptimisticLocking(!domainObject.notOptimisticLocking && !domainObject.notPersistent && domainObject.notImmutable);
+    setOptimisticLocking(!domainObject.notOptimisticLocking && !domainObject.notPersistent && domainObject.notImmutable) ->
+    traits.addAll(domainObject.traits.transformToGui());
 
 
 // Don't need to set guiModule, as it is set by modify() method

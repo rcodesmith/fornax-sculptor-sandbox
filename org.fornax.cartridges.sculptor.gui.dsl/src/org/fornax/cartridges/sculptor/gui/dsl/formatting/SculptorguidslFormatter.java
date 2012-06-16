@@ -27,15 +27,15 @@ public class SculptorguidslFormatter extends AbstractDeclarativeFormatter {
 
         c.setAutoLinewrap(120);
 
-        c.setLinewrap().around(f.getDslGuiViewPropertyRule());
+//        c.setLinewrap().around(f.getDslGuiViewPropertyRule());
 
         c.setLinewrap().around(f.getDslImportRule());
 
-        c.setLinewrap().around(f.getDslCreateWithRule());
-        c.setLinewrap().around(f.getDslFindWithRule());
-        c.setLinewrap().around(f.getDslUpdateWithRule());
-        c.setLinewrap().around(f.getDslSearchWithRule());
-        c.setLinewrap().around(f.getDslPopulateWithRule());
+//        c.setLinewrap().around(f.getDslCreateWithRule());
+//        c.setLinewrap().around(f.getDslFindWithRule());
+//        c.setLinewrap().around(f.getDslUpdateWithRule());
+//        c.setLinewrap().around(f.getDslSearchWithRule());
+//        c.setLinewrap().around(f.getDslPopulateWithRule());
         // c.setLinewrap().before(f.getDslFindWithAccess().getFindWithKeyword_0());
         // c.setLinewrap().before(f.getDslUpdateWithAccess().getUpdateWithKeyword_0());
         // c.setLinewrap().before(f.getDslDeleteWithAccess().getDeleteWithKeyword_0());
@@ -44,17 +44,17 @@ public class SculptorguidslFormatter extends AbstractDeclarativeFormatter {
 
         c.setLinewrap(1, 2, 3).around(f.getDslGuiApplicationRule());
         c.setLinewrap(1, 2, 3).around(f.getDslGuiModuleRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslCreateTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslUpdateTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslDeleteTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslListTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslViewTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslAddTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslSkipCreateTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslSkipUpdateTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslSkipDeleteTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslSkipListTaskRule());
-        c.setLinewrap(1, 2, 3).around(f.getDslSkipAddTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslCreateTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslUpdateTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslDeleteTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslListTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslViewTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslAddTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslSkipCreateTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslSkipUpdateTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslSkipDeleteTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslSkipListTaskRule());
+//        c.setLinewrap(1, 2, 3).around(f.getDslSkipAddTaskRule());
 
         c.setIndentation(f.getDslGuiApplicationAccess().getGuiKeyword_2(), f.getDslGuiApplicationAccess()
                 .getRightCurlyBracketKeyword_9());
@@ -72,14 +72,14 @@ public class SculptorguidslFormatter extends AbstractDeclarativeFormatter {
             c.setNoSpace().around(each);
         }
 
-        c.setNoSpace().before(f.getDslGuiPreviewPropertyAccess().getCommaKeyword_2());
-        c.setNoSpace().around(f.getDslGuiPreviewPropertyAccess().getFullStopKeyword_1_0());
-        c.setNoSpace().around(f.getDslCreateWithAccess().getFullStopKeyword_2());
-        c.setNoSpace().around(f.getDslFindWithAccess().getFullStopKeyword_2());
-        c.setNoSpace().around(f.getDslUpdateWithAccess().getFullStopKeyword_2());
-        c.setNoSpace().around(f.getDslDeleteWithAccess().getFullStopKeyword_2());
-        c.setNoSpace().around(f.getDslSearchWithAccess().getFullStopKeyword_2());
-        c.setNoSpace().around(f.getDslPopulateWithAccess().getFullStopKeyword_2());
+//        c.setNoSpace().before(f.getDslGuiPreviewPropertyAccess().getCommaKeyword_2());
+//        c.setNoSpace().around(f.getDslGuiPreviewPropertyAccess().getFullStopKeyword_1_0());
+//        c.setNoSpace().around(f.getDslCreateWithAccess().getFullStopKeyword_2());
+//        c.setNoSpace().around(f.getDslFindWithAccess().getFullStopKeyword_2());
+//        c.setNoSpace().around(f.getDslUpdateWithAccess().getFullStopKeyword_2());
+//        c.setNoSpace().around(f.getDslDeleteWithAccess().getFullStopKeyword_2());
+//        c.setNoSpace().around(f.getDslSearchWithAccess().getFullStopKeyword_2());
+//        c.setNoSpace().around(f.getDslPopulateWithAccess().getFullStopKeyword_2());
 
         // comments
         c.setNoLinewrap().before(f.getSL_COMMENTRule());

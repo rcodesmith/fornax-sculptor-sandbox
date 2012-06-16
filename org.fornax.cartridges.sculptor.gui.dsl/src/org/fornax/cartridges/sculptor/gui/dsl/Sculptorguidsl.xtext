@@ -22,8 +22,6 @@ DslGuiModule:
 		("basePackage" "=" basePackage=DslGuiJavaIdentifier )?
 		("hint" "=" hint=STRING)?
 		(serviceDependencies+=DslGuiServiceDependency)*
-		(userTasks+=DslUserTask)*
-		(skipUserTasks+=DslSkipUserTask)*
 		(skipDomainObjects+=DslSkipDomainObject)*
 		(views+=DslView)*
 		(events+=DslGuiEvent)*
@@ -33,142 +31,11 @@ DslGuiModule:
 	'}';
 
 	 
-DslUserTask:
-	DslCreateTask | DslViewTask | DslUpdateTask | DslDeleteTask | DslListTask | DslAddTask;
 
-DslCreateTask : 
-	'CreateTask' 'for' for=[mm::DslSimpleDomainObject] '{'
-		(((gapClass?="gap") | (noGapClass?="nogap"))? &
-		 ("hint" "=" hint=STRING)?)
-		(viewProperties+=DslGuiViewProperty)*
-		(subtasks+=DslGuiListSubtask)*
-		((createWith=DslCreateWith)? &
-		 (populateWith=DslPopulateWith)?
-		)
-	'}';
-
-DslViewTask : 
-	'ViewTask' 'for' for=[mm::DslSimpleDomainObject] '{'
-		(((gapClass?="gap") | (noGapClass?="nogap"))? &
-		 ("hint" "=" hint=STRING)?)
-		(viewProperties+=DslGuiViewProperty)*
-		(subtasks+=DslGuiListSubtask)*
-		(findWith=DslFindWith)?
-	'}';
-
-DslUpdateTask : 
-	'UpdateTask' 'for' for=[mm::DslSimpleDomainObject] '{'
-		(((gapClass?="gap") | (noGapClass?="nogap"))? &
-		 ("hint" "=" hint=STRING)?)
-		(viewProperties+=DslGuiViewProperty)*
-		(subtasks+=DslGuiListSubtask)*
-		((findWith=DslFindWith)? &
-		 (updateWith=DslUpdateWith)? &
-		 (populateWith=DslPopulateWith)?
-		)
-	'}';
-
-DslDeleteTask : 
-	'DeleteTask' 'for' for=[mm::DslSimpleDomainObject] '{'
-		(((gapClass?="gap") | (noGapClass?="nogap"))? &
-		 ("hint" "=" hint=STRING)?)
-		(viewProperties+=DslGuiViewProperty)*
-		(subtasks+=DslGuiListSubtask)*
-		((findWith=DslFindWith)? &
-		 (deleteWith=DslDeleteWith)?
-		)
-		
-	'}';
-
-DslListTask : 
-	'ListTask' 'for' for=[mm::DslSimpleDomainObject] '{'
-		(((gapClass?="gap") | (noGapClass?="nogap"))? &
-		 ("hint" "=" hint=STRING)?)
-		(viewProperties+=DslGuiViewProperty)*
-		(subtasks+=DslGuiListSubtask)*
-		(searchWith=DslSearchWith)?
-	'}';
-
-DslAddTask : 
-	'AddTask' 'for' for=[mm::DslSimpleDomainObject] '{'
-		(((gapClass?="gap") | (noGapClass?="nogap"))? &
-		 ("hint" "=" hint=STRING)?)
-		(viewProperties+=DslGuiViewProperty)*
-		(subtasks+=DslGuiListSubtask)*
-		(findWith=DslFindWith)?
-	'}';
-
-DslGuiViewProperty :
-	'-' for=[mm::DslAnyProperty]
-	('.' basicTypeProperty=[mm::DslAnyProperty])?
-	("hint" "=" hint=STRING)?;
-
-// TODO right now we only support list subtask, but the intention was to be able to have 
-//      different subtasks like this
-//DslGuiSubtask :
-	//(DslGuiListSubtask | DslGuiSkipCreateSubtask | DslGuiSkipDeleteSubtask);
-
-DslGuiListSubtask :
-	'list' reference=[mm::DslAnyProperty] // DslReference | DslDtoReference
-	(forTarget=DslGuiListSubtaskForTarget)?
-	("hint" "=" hint=STRING)?
-	'use' 'attributes' (previewProperties+=DslGuiPreviewProperty)*;
-
-DslGuiListSubtaskForTarget :
-	'for' 'target' target=[mm::DslSimpleDomainObject];
-	
-	
-// skip subtask will be done later
-//DslGuiSkipCreateSubtask :
-//	'skip' 'create' reference=[mm::DslReference];
-
-//DslGuiSkipDeleteSubtask :
-//	'skip' 'delete' reference=[mm::DslReference];
-	
-DslGuiPreviewProperty :
-	for=[mm::DslAnyProperty]
-	('.' basicTypeProperty=[mm::DslAnyProperty])?
-	(',')?;
-
-	
-DslCreateWith :
-	'createWith' service=[mm::DslService] '.' operation=[mm::DslServiceOperation];
-	
-DslFindWith :
-	'findWith' service=[mm::DslService] '.' operation=[mm::DslServiceOperation];
-
-DslUpdateWith :
-	'updateWith' service=[mm::DslService] '.' operation=[mm::DslServiceOperation];
-
-DslDeleteWith :
-	'deleteWith' service=[mm::DslService] '.' operation=[mm::DslServiceOperation];
-
-DslSearchWith :
-	'searchWith' service=[mm::DslService] '.' operation=[mm::DslServiceOperation];
-
-DslPopulateWith :
-	'populateWith' service=[mm::DslService] '.' operation=[mm::DslServiceOperation];
 
 DslSkipDomainObject :
 	'skip' do=[mm::DslSimpleDomainObject];
 
-DslSkipUserTask :
-	DslSkipCreateTask | DslSkipUpdateTask | DslSkipDeleteTask | DslSkipListTask | DslSkipAddTask;
-	
-DslSkipCreateTask :
-	'skip' 'CreateTask' 'for' for=[mm::DslSimpleDomainObject]; 
-
-DslSkipUpdateTask :
-	'skip' 'UpdateTask' 'for' for=[mm::DslSimpleDomainObject]; 
-
-DslSkipDeleteTask :
-	'skip' 'DeleteTask' 'for' for=[mm::DslSimpleDomainObject]; 
-
-DslSkipListTask :
-	'skip' 'ListTask' 'for' for=[mm::DslSimpleDomainObject]; 
-
-DslSkipAddTask :
-	'skip' 'AddTask' 'for' for=[mm::DslSimpleDomainObject]; 
 
 DslView:
   (doc=STRING)?
@@ -585,8 +452,6 @@ DslGuiAttribute :
   (type=DslGuiType  name=ID
 	) (";")?;
 
-
-// TODO: This probably needs to be reduced down - not all are appropriate?
 DslGuiType :
   ("String"|"int"|"Integer"|"long"|"Long"|"boolean"|"Boolean"|"Date"|"DateTime"|"Timestamp"|"BigDecimal"|"BigInteger"|
   	"double"|"Double"|"float"|"Float"|"Key"|"PagingPagarameter"|"PagedResult"|"Blob"|"Clob"|
@@ -594,6 +459,25 @@ DslGuiType :
 
 DslGuiJavaIdentifier :
   (ID ("." ID)*);
+
+terminal REF :
+  ('-'|'reference');
+
+terminal NOT :
+  ('!'|'not');
+  
+  
+ 
+
+
+// TODO: This probably needs to be reduced down - not all are appropriate?
+//DslGuiType :
+//  ("String"|"int"|"Integer"|"long"|"Long"|"boolean"|"Boolean"|"Date"|"DateTime"|"Timestamp"|"BigDecimal"|"BigInteger"|
+//  	"double"|"Double"|"float"|"Float"|"Key"|"PagingPagarameter"|"PagedResult"|"Blob"|"Clob"|
+//  	DslGuiJavaIdentifier);
+
+//DslGuiJavaIdentifier :
+//  (ID ("." ID)*);
   
 //DslGuiReference :
 //  (doc=STRING)?
@@ -609,11 +493,11 @@ DslGuiJavaIdentifier :
 //    (";")?;
     
 
-terminal REF :
-  ('-'|'reference');
-
-terminal NOT :
-  ('!'|'not');
-  
-  
- 
+//terminal REF :
+//  ('-'|'reference');
+//
+//terminal NOT :
+//  ('!'|'not');
+//  
+//  
+// 

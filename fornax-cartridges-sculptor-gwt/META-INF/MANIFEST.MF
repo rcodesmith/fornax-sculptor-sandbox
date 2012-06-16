@@ -5,12 +5,6 @@ Bundle-SymbolicName: fornax-cartridges-sculptor-gwt;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: extensions.gwt,
  org.fornax.cartridges.sculptor.framework.gwt,
- org.fornax.cartridges.sculptor.framework.gwt.client,
- org.fornax.cartridges.sculptor.framework.gwt.shared,
- org.fornax.cartridges.sculptor.framework.gwt.shared.domain,
- org.fornax.cartridges.sculptor.framework.gwt.shared.validator,
- org.fornax.cartridges.sculptor.gwt.generator.util,
- org.workingonit.gwtbridge,
  templates.gwt
 Bundle-ClassPath: src/main/java/,
  src/main/resources/,

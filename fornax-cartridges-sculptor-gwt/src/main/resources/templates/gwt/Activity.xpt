@@ -2,6 +2,7 @@
 «IMPORT sculptorguimetamodel»
 «EXTENSION extensions::helper»
 «EXTENSION extensions::properties»
+
 «EXTENSION extensions::guihelper»
 «EXTENSION extensions::gwt::gwtuihelpers»
 «EXTENSION extensions::gwt::sofeauihelpers»
