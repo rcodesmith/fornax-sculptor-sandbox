@@ -26,8 +26,10 @@ import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslModule;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslProperty;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslReference;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslSimpleDomainObject;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiApplication;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiModule;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSkipDomainObject;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslView;
 
 /**
  * This class contains custom scoping description.
@@ -63,6 +65,23 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         addDomainObjectsInModule(elements, ctx.getFor());
         return myScope;
     }
+    
+    /**
+     * DslView.for reference should only refer to domain objects that have a corresponding DslGuiModule
+     */
+    IScope scope_DslView_for(DslView ctx, EReference ref) {
+        Scope myScope = new Scope();
+        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+        myScope.setElements(elements);
+
+        DslGuiModule module = (DslGuiModule) ctx.eContainer();
+        DslGuiApplication guiApp = (DslGuiApplication) module.eContainer();
+        addDomainObjectsInGuiApp(elements, guiApp);
+        
+        return myScope;
+    }
+    
+    
 
 //    IScope scope_DslSkipUserTask_for(DslSkipUserTask ctx, EReference ref) {
 //        Scope myScope = new Scope();
@@ -82,6 +101,14 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
 
             elements.add(new EObjectDescription(each.getName(), each, null));
         }
+    }
+
+    private void addDomainObjectsInGuiApp(List<IEObjectDescription> elements, DslGuiApplication guiApp) {
+    	for (DslGuiModule guiModule : guiApp.getModules()) {
+			if(guiModule.getFor() != null) {
+				addDomainObjectsInModule(elements, guiModule.getFor());
+			}
+		}
     }
 
 //    IScope scope_DslGuiViewProperty_for(DslGuiViewProperty ctx, EReference ref) {
