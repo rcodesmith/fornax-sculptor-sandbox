@@ -33,6 +33,7 @@ import sculptorguimetamodel.GoBackBehavior;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
 import sculptorguimetamodel.GuiDto;
+import sculptorguimetamodel.GuiDtoOptions;
 import sculptorguimetamodel.GuiEnum;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
@@ -611,6 +612,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	private EClass popupPanelBehaviorEClass = null;
 
 																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass guiDtoOptionsEClass = null;
+
+																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -798,6 +806,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 */
 	public EReference getGuiModule_StubModule() {
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(8);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGuiModule_GuiDtoOptions() {
+		return (EReference)guiModuleEClass.getEStructuralFeatures().get(9);
 	}
 
 				/**
@@ -2380,6 +2397,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGuiDtoOptions() {
+		return guiDtoOptionsEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGuiDtoOptions_Skip() {
+		return (EAttribute)guiDtoOptionsEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2418,6 +2453,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(guiModuleEClass, GUI_MODULE__SERVICE_DEPENDENCIES);
 		createEReference(guiModuleEClass, GUI_MODULE__COMMANDS);
 		createEReference(guiModuleEClass, GUI_MODULE__STUB_MODULE);
+		createEReference(guiModuleEClass, GUI_MODULE__GUI_DTO_OPTIONS);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__SUB_TASK_TRANSITIONS);
@@ -2664,6 +2700,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		popupPanelBehaviorEClass = createEClass(POPUP_PANEL_BEHAVIOR);
 		createEReference(popupPanelBehaviorEClass, POPUP_PANEL_BEHAVIOR__VIEW);
 		createEAttribute(popupPanelBehaviorEClass, POPUP_PANEL_BEHAVIOR__PANEL_NAME);
+
+		guiDtoOptionsEClass = createEClass(GUI_DTO_OPTIONS);
+		createEAttribute(guiDtoOptionsEClass, GUI_DTO_OPTIONS__SKIP);
 	}
 
 	/**
@@ -2764,6 +2803,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		updateAttributeBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		hasDirtyValueConditionEClass.getESuperTypes().add(this.getUiCondition());
 		popupPanelBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		guiDtoOptionsEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2781,6 +2821,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getGuiModule_ServiceDependencies(), theSculptormetamodelPackage.getService(), null, "serviceDependencies", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_Commands(), this.getGuiCommand(), null, "commands", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGuiModule_StubModule(), this.getStubModule(), null, "stubModule", null, 0, 1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGuiModule_GuiDtoOptions(), this.getGuiDtoOptions(), null, "guiDtoOptions", null, 0, -1, GuiModule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_SubTaskTransitions(), this.getSubTaskTransition(), null, "subTaskTransitions", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3027,6 +3068,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(popupPanelBehaviorEClass, PopupPanelBehavior.class, "PopupPanelBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPopupPanelBehavior_View(), this.getView(), null, "view", null, 0, 1, PopupPanelBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPopupPanelBehavior_PanelName(), ecorePackage.getEString(), "panelName", null, 0, 1, PopupPanelBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(guiDtoOptionsEClass, GuiDtoOptions.class, "GuiDtoOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGuiDtoOptions_Skip(), ecorePackage.getEBoolean(), "skip", null, 0, 1, GuiDtoOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

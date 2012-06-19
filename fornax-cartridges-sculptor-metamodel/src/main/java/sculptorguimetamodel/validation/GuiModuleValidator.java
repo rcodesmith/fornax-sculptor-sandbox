@@ -42,6 +42,8 @@ public interface GuiModuleValidator {
 
 	boolean validateStubModule(StubModule value);
 
+	boolean validateGuiDtoOptions(EList value);
+
 	boolean validateDtos(EList value);
 
 	boolean validateStubModule(Module value);

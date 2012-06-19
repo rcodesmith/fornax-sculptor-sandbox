@@ -271,13 +271,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int GUI_MODULE__STUB_MODULE = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Gui Dto Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_MODULE__GUI_DTO_OPTIONS = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Gui Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
+	int GUI_MODULE_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -7893,6 +7902,61 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int POPUP_PANEL_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.GuiDtoOptionsImpl <em>Gui Dto Options</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.GuiDtoOptionsImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiDtoOptions()
+	 * @generated
+	 */
+	int GUI_DTO_OPTIONS = 73;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO_OPTIONS__NAME = SculptormetamodelPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO_OPTIONS__DOC = SculptormetamodelPackage.NAMED_ELEMENT__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO_OPTIONS__HINT = SculptormetamodelPackage.NAMED_ELEMENT__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Skip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO_OPTIONS__SKIP = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Gui Dto Options</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUI_DTO_OPTIONS_FEATURE_COUNT = SculptormetamodelPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8043,6 +8107,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGuiModule_StubModule();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sculptorguimetamodel.GuiModule#getGuiDtoOptions <em>Gui Dto Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Gui Dto Options</em>'.
+	 * @see sculptorguimetamodel.GuiModule#getGuiDtoOptions()
+	 * @see #getGuiModule()
+	 * @generated
+	 */
+	EReference getGuiModule_GuiDtoOptions();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.UserTask <em>User Task</em>}'.
@@ -9899,6 +9974,27 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EAttribute getPopupPanelBehavior_PanelName();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiDtoOptions <em>Gui Dto Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gui Dto Options</em>'.
+	 * @see sculptorguimetamodel.GuiDtoOptions
+	 * @generated
+	 */
+	EClass getGuiDtoOptions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.GuiDtoOptions#isSkip <em>Skip</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Skip</em>'.
+	 * @see sculptorguimetamodel.GuiDtoOptions#isSkip()
+	 * @see #getGuiDtoOptions()
+	 * @generated
+	 */
+	EAttribute getGuiDtoOptions_Skip();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10035,6 +10131,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GUI_MODULE__STUB_MODULE = eINSTANCE.getGuiModule_StubModule();
+
+		/**
+		 * The meta object literal for the '<em><b>Gui Dto Options</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GUI_MODULE__GUI_DTO_OPTIONS = eINSTANCE.getGuiModule_GuiDtoOptions();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -11577,6 +11681,24 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute POPUP_PANEL_BEHAVIOR__PANEL_NAME = eINSTANCE.getPopupPanelBehavior_PanelName();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.GuiDtoOptionsImpl <em>Gui Dto Options</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.GuiDtoOptionsImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getGuiDtoOptions()
+		 * @generated
+		 */
+		EClass GUI_DTO_OPTIONS = eINSTANCE.getGuiDtoOptions();
+
+		/**
+		 * The meta object literal for the '<em><b>Skip</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GUI_DTO_OPTIONS__SKIP = eINSTANCE.getGuiDtoOptions_Skip();
 
 	}
 

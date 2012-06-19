@@ -128,6 +128,7 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	setFor(module.for.transform()) ->
 	setHint(module.hint) ->
 	setBasePackage(module.basePackage) ->
+	
 //	userTasks.addAll(module.userTasks.transformTask(module.for.transform())) ->
 	
 	// Added by ron for GWT:
@@ -138,11 +139,10 @@ create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module)
 	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
 	conditions.addAll(module.conditions.transformCondition(module.for.transform())) ->
 	hasProperty("ui.custom.guidto") ? setStubModule(module.for.transformStubModule(module)) : null ->
+	//guiDtoOptions.addAll(module.skipDomainObjects.transform()) ->
 //	setStubModule(module.for.transformStubModule(module)) ->
 	hasProperty("ui.custom.guidto") ? views.addAll(module.views.transformView(module.for.transform())) : null ->
 	debugTrace("Done with module " + module.for.name);
-
-
 
 
 

@@ -26,6 +26,7 @@ import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslModule;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslProperty;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslReference;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslSimpleDomainObject;
+import org.fornax.cartridges.sculptor.gui.dsl.GuidslHelper;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiApplication;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiModule;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSkipDomainObject;
@@ -62,12 +63,13 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
         myScope.setElements(elements);
 
-        addDomainObjectsInModule(elements, ctx.getFor());
+        addGuiDtosInModule(elements, ctx);
         return myScope;
     }
     
     /**
      * DslView.for reference should only refer to domain objects that have a corresponding DslGuiModule
+     * TODO: Filter out domain objects that have been gui skipped
      */
     IScope scope_DslView_for(DslView ctx, EReference ref) {
         Scope myScope = new Scope();
@@ -93,20 +95,26 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
 //        return myScope;
 //    }
 
-    private void addDomainObjectsInModule(List<IEObjectDescription> elements, DslModule module) {
+    private void addGuiDtosInModule(List<IEObjectDescription> elements, DslGuiModule guiModule) {
+    	DslModule module = guiModule.getFor();
         for (DslSimpleDomainObject each : module.getDomainObjects()) {
             if (each instanceof DslEnum || each instanceof DslBasicType) {
                 continue;
             }
-
+            
+            if (GuidslHelper.skipGuiDto(guiModule, each)) {
+            	continue;
+            }
+            
             elements.add(new EObjectDescription(each.getName(), each, null));
         }
     }
 
+    
     private void addDomainObjectsInGuiApp(List<IEObjectDescription> elements, DslGuiApplication guiApp) {
     	for (DslGuiModule guiModule : guiApp.getModules()) {
 			if(guiModule.getFor() != null) {
-				addDomainObjectsInModule(elements, guiModule.getFor());
+				addGuiDtosInModule(elements, guiModule);
 			}
 		}
     }

@@ -8,7 +8,7 @@ gui LibraryWeb for Library {
 		View Menu {
 			contents {
 				
-				link mediaBrowseLink toView MediaBrowse {
+				link mediaBrowseLink toView PersonForm {
 					label = "Media Browse"
 				}
 				
@@ -49,6 +49,9 @@ gui LibraryWeb for Library {
 					label = "Person"
 				}
 				
+				listBox mediaSelector for Media {
+					
+				}
 				table table1 {
 					label = "Table uno"
 				}
@@ -233,7 +236,7 @@ gui LibraryWeb for Library {
 
 		"Navigate"
 		UiBehavior NavigateToView navigateToMediaBrowse {
-			view=MediaBrowse
+			view=PersonForm
 		}
 
 		"Composite"
@@ -243,43 +246,6 @@ gui LibraryWeb for Library {
 		
 		Condition Custom isAdministrator {
 			hint = "somehint1"
-		}
-				
-	}
-	
-	Module for media {
-		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
-		
-		
-		> @MediaService
-		
-		skip GameMedia
-		
-		
-		View MediaBrowse {
-			> @MediaService
-			
-			parameters {
-				String libraryId;
-			}
-
-			contents {
-				table libraryTable for Library {
-					label="Library Table"
-					
-					columns {
-						name type=Text;
-					}
-				}
-				inputText libraryId {
-					label = "Library ID"
-				}
-
-				inputText name {
-					label = "Name"
-				}
-
-			}
 		}
 		
 		

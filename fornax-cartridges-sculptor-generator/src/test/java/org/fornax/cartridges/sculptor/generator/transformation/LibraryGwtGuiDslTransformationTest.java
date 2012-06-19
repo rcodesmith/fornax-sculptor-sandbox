@@ -60,6 +60,9 @@ public class LibraryGwtGuiDslTransformationTest extends GuiDslTransformationBase
     @Test
     public void assertSkippedDomainObject() {
     	assertNull(getNamedElement("GameMedia", mediaModule().getStubModule().getDomainObjects()));
+  
+    	// TODO: Put back once GuidslHelper.skip.. method is working
+//    	assertNotNull(getNamedElement("GameMedia", mediaModule().getGuiDtoOptions()));
     }
     
     @Test

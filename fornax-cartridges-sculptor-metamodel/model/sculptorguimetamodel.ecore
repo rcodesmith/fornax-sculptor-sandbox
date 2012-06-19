@@ -26,6 +26,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//GuiCommand" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stubModule" eType="#//StubModule"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guiDtoOptions" upperBound="-1"
+        eType="#//GuiDtoOptions" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subTaskTransitions" upperBound="-1"
@@ -278,5 +280,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="PopupPanelBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EReference" name="view" eType="#//View"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="panelName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiDtoOptions" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="skip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

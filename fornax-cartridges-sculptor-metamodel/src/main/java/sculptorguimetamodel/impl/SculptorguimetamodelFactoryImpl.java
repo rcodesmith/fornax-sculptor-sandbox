@@ -133,6 +133,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.UPDATE_ATTRIBUTE_BEHAVIOR: return createUpdateAttributeBehavior();
 			case SculptorguimetamodelPackage.HAS_DIRTY_VALUE_CONDITION: return createHasDirtyValueCondition();
 			case SculptorguimetamodelPackage.POPUP_PANEL_BEHAVIOR: return createPopupPanelBehavior();
+			case SculptorguimetamodelPackage.GUI_DTO_OPTIONS: return createGuiDtoOptions();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -866,6 +867,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public PopupPanelBehavior createPopupPanelBehavior() {
 		PopupPanelBehaviorImpl popupPanelBehavior = new PopupPanelBehaviorImpl();
 		return popupPanelBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GuiDtoOptions createGuiDtoOptions() {
+		GuiDtoOptionsImpl guiDtoOptions = new GuiDtoOptionsImpl();
+		return guiDtoOptions;
 	}
 
 																/**

@@ -298,6 +298,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object casePopupPanelBehavior(PopupPanelBehavior object) {
 				return createPopupPanelBehaviorAdapter();
 			}
+			public Object caseGuiDtoOptions(GuiDtoOptions object) {
+				return createGuiDtoOptionsAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1362,6 +1365,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPopupPanelBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.GuiDtoOptions <em>Gui Dto Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.GuiDtoOptions
+	 * @generated
+	 */
+	public Adapter createGuiDtoOptionsAdapter() {
 		return null;
 	}
 

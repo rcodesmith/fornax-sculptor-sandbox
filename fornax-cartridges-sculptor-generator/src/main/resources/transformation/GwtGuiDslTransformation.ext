@@ -75,6 +75,8 @@ modifyChangeable(GuiDto guiDto) :
         guiDto.references.select(r | !r.many).modifyChangeableToFalse()) :
         null);
 
+
+
 	
 //	dto.setModule(guiModule.stubModule);
 
@@ -126,10 +128,14 @@ String getHint(DslAnyProperty prop, String parameterName) :
 
 
 
+
 //////////////////////////////////////////////////////////////////////////////////
 // GuiDto-related transformations
 //////////////////////////////////////////////////////////////////////////////////
 
+
+create sculptorguimetamodel::GuiDtoOptions this transform(DslSkipDomainObject skipDO) :
+	setName(skipDO.do.name);
 
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslDomainObject do) :
@@ -142,7 +148,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
 	debugTrace("transformToGui(" + entity.name + ")") ->
 	initGuiDtoFromDomainObject(entity, this) ->
     setOptimisticLocking(!entity.notOptimisticLocking) ->
-    traits.addAll(entity.traits.transformToGui());
+    entity.traits.size > 0 ? debugTrace("WARNING: " + entity.name + " is being used as a GUI DTO and has one or more traits.  Members of traits are skipped") : null;
 
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
@@ -158,7 +164,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObjec
     attributes.addAll(domainObject.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
     references.addAll(domainObject.references.select(r|r.generateGuiDto()).transformToGui()) ->
     operations.addAll(domainObject.operations.transformToGui()) ->
-    traits.addAll(domainObject.traits.transformToGui());
+    domainObject.traits.size > 0 ? debugTrace("WARNING: " + domainObject.name + " is being used as a GUI DTO and has one or more traits.  Members of traits are skipped") : null;
 
 create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
 	debugTrace("transformToGui(" + domainObject.name + ")") ->
@@ -166,7 +172,7 @@ create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObj
 	setImmutable(!domainObject.notImmutable) ->
 //    setPersistent(!domainObject.notPersistent) ->
     setOptimisticLocking(!domainObject.notOptimisticLocking && !domainObject.notPersistent && domainObject.notImmutable) ->
-    traits.addAll(domainObject.traits.transformToGui());
+    domainObject.traits.size > 0 ? debugTrace("WARNING: " + domainObject.name + " is being used as a GUI DTO and has one or more traits.  Members of traits are skipped") : null;
 
 
 // Don't need to set guiModule, as it is set by modify() method

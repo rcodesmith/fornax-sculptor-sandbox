@@ -1773,6 +1773,27 @@
     <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//PopupPanelBehavior"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WxiYMqkoEeGkIuSmo4cYWg" x="-81" y="288"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_z_CiELocEeG8Zew5Zkon0g" type="2001" fontName="Lucida Grande">
+    <children xmi:type="notation:DecorationNode" xmi:id="_z_DJILocEeG8Zew5Zkon0g" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_z_DJIbocEeG8Zew5Zkon0g" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_60kPcLocEeG8Zew5Zkon0g" type="3001">
+        <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//GuiDtoOptions/skip"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_60kPcbocEeG8Zew5Zkon0g"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_z_DJIrocEeG8Zew5Zkon0g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_z_DJI7ocEeG8Zew5Zkon0g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_z_DwMLocEeG8Zew5Zkon0g" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_z_DwMbocEeG8Zew5Zkon0g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_z_DwMrocEeG8Zew5Zkon0g"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_z_DwM7ocEeG8Zew5Zkon0g" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_z_DwNLocEeG8Zew5Zkon0g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_z_DwNbocEeG8Zew5Zkon0g"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="sculptorguimetamodel.ecore#//GuiDtoOptions"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z_CiEbocEeG8Zew5Zkon0g" x="1067" y="188"/>
+  </children>
   <styles xmi:type="notation:PageStyle" xmi:id="_ogxVUJhdEdyBcOPcAwQcIw"/>
   <styles xmi:type="notation:GuideStyle" xmi:id="_ogxVUZhdEdyBcOPcAwQcIw"/>
   <styles xmi:type="notation:DescriptionStyle" xmi:id="_ogxVUphdEdyBcOPcAwQcIw"/>
@@ -3362,5 +3383,25 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cOB2EqkoEeGkIuSmo4cYWg" points="[20, -9, -461, 197]$[471, -205, -10, 1]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cOGHgKkoEeGkIuSmo4cYWg" id="(0.8130841121495327,0.34615384615384615)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cOGHgakoEeGkIuSmo4cYWg" id="(0.078125,0.6133333333333333)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_9JdDMLocEeG8Zew5Zkon0g" type="4003" source="_cASd4JnqEdy7x7OBzvTH4A" target="_z_CiELocEeG8Zew5Zkon0g">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9JdqQLocEeG8Zew5Zkon0g" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9JdqQbocEeG8Zew5Zkon0g" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_9JdqQrocEeG8Zew5Zkon0g" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9JdqQ7ocEeG8Zew5Zkon0g" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9JdDMbocEeG8Zew5Zkon0g" fontName="Lucida Grande"/>
+    <element xmi:type="ecore:EReference" href="sculptorguimetamodel.ecore#//GuiModule/guiDtoOptions"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9JdDMrocEeG8Zew5Zkon0g" points="[13, 1, -85, -14]$[88, 8, -10, -7]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9JiiwLocEeG8Zew5Zkon0g" id="(0.8951612903225806,0.711864406779661)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9JiiwbocEeG8Zew5Zkon0g" id="(0.18947368421052632,0.11864406779661017)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_sWh6wLorEeG8Zew5Zkon0g" type="4004" source="_z_CiELocEeG8Zew5Zkon0g" target="_ROemYJuFEdyh6bSqbZDPvw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_sWh6wborEeG8Zew5Zkon0g" fontName="Lucida Grande"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sWh6wrorEeG8Zew5Zkon0g" points="[28, -3, -334, 35]$[368, -47, 6, -9]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sWkXALorEeG8Zew5Zkon0g" id="(0.528169014084507,0.04)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sWkXAborEeG8Zew5Zkon0g" id="(0.6470588235294118,0.17307692307692307)"/>
   </edges>
 </notation:Diagram>

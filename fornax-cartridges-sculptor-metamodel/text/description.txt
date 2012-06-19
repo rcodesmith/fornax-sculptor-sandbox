@@ -22,6 +22,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference serviceDependencies : Service<<0..*>>
     Reference commands : GuiCommand<<0..*>>
     Reference stubModule : StubModule
+    Reference guiDtoOptions : GuiDtoOptions<<0..*>>
 
   Class UserTask -> NamedElement
     Reference subTaskTransitions : SubTaskTransition<<0..*>>
@@ -268,3 +269,6 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class PopupPanelBehavior -> UiBehavior
     Reference view : View
     Attribute panelName : EString
+
+  Class GuiDtoOptions -> NamedElement
+    Attribute skip : EBoolean

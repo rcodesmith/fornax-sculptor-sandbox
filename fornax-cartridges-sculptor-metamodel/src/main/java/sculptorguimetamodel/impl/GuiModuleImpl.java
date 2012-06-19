@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiCommand;
+import sculptorguimetamodel.GuiDtoOptions;
 import sculptorguimetamodel.GuiDto;
 import sculptorguimetamodel.GuiEvent;
 import sculptorguimetamodel.GuiModule;
@@ -60,6 +61,7 @@ import sculptormetamodel.impl.NamedElementImpl;
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getStubModule <em>Stub Module</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.GuiModuleImpl#getGuiDtoOptions <em>Gui Dto Options</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,6 +177,16 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * @ordered
 	 */
 	protected StubModule stubModule;
+
+				/**
+	 * The cached value of the '{@link #getGuiDtoOptions() <em>Gui Dto Options</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuiDtoOptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList guiDtoOptions;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -421,6 +433,18 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getGuiDtoOptions() {
+		if (guiDtoOptions == null) {
+			guiDtoOptions = new EObjectContainmentEList(GuiDtoOptions.class, this, SculptorguimetamodelPackage.GUI_MODULE__GUI_DTO_OPTIONS);
+		}
+		return guiDtoOptions;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.GUI_MODULE__USER_TASKS:
@@ -458,6 +482,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
 			case SculptorguimetamodelPackage.GUI_MODULE__COMMANDS:
 				return ((InternalEList)getCommands()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.GUI_MODULE__GUI_DTO_OPTIONS:
+				return ((InternalEList)getGuiDtoOptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -506,6 +532,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				if (resolve) return getStubModule();
 				return basicGetStubModule();
+			case SculptorguimetamodelPackage.GUI_MODULE__GUI_DTO_OPTIONS:
+				return getGuiDtoOptions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -557,6 +585,10 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				setStubModule((StubModule)newValue);
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__GUI_DTO_OPTIONS:
+				getGuiDtoOptions().clear();
+				getGuiDtoOptions().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -601,6 +633,9 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				setStubModule((StubModule)null);
 				return;
+			case SculptorguimetamodelPackage.GUI_MODULE__GUI_DTO_OPTIONS:
+				getGuiDtoOptions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -634,6 +669,8 @@ public class GuiModuleImpl extends NamedElementImpl implements GuiModule {
 				return commands != null && !commands.isEmpty();
 			case SculptorguimetamodelPackage.GUI_MODULE__STUB_MODULE:
 				return stubModule != null;
+			case SculptorguimetamodelPackage.GUI_MODULE__GUI_DTO_OPTIONS:
+				return guiDtoOptions != null && !guiDtoOptions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -28,6 +28,7 @@ import sculptormetamodel.NamedElement;
  *   <li>{@link sculptorguimetamodel.GuiModule#getServiceDependencies <em>Service Dependencies</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getCommands <em>Commands</em>}</li>
  *   <li>{@link sculptorguimetamodel.GuiModule#getStubModule <em>Stub Module</em>}</li>
+ *   <li>{@link sculptorguimetamodel.GuiModule#getGuiDtoOptions <em>Gui Dto Options</em>}</li>
  * </ul>
  * </p>
  *
@@ -227,5 +228,21 @@ public interface GuiModule extends NamedElement, BehaviorContainer {
 	 * @generated
 	 */
 	void setStubModule(StubModule value);
+
+				/**
+	 * Returns the value of the '<em><b>Gui Dto Options</b></em>' containment reference list.
+	 * The list contents are of type {@link sculptorguimetamodel.GuiDtoOptions}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Gui Dto Options</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Gui Dto Options</em>' containment reference list.
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getGuiModule_GuiDtoOptions()
+	 * @model type="sculptorguimetamodel.GuiDtoOptions" containment="true"
+	 * @generated
+	 */
+	EList getGuiDtoOptions();
 
 } // GuiModule
