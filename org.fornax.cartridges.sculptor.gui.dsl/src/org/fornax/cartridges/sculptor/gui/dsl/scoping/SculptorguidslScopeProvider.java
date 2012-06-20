@@ -83,6 +83,17 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         return myScope;
     }
     
+//    IScope scope_DslView_for(DslView ctx, EReference ref) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//
+//        DslGuiModule module = (DslGuiModule) ctx.eContainer();
+//        DslGuiApplication guiApp = (DslGuiApplication) module.eContainer();
+//        addDomainObjectsInGuiApp(elements, guiApp);
+//        
+//        return myScope;
+//    }
     
 
 //    IScope scope_DslSkipUserTask_for(DslSkipUserTask ctx, EReference ref) {
@@ -102,9 +113,10 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
                 continue;
             }
             
-            if (GuidslHelper.skipGuiDto(guiModule, each)) {
-            	continue;
-            }
+            // TODO: Commented out since it was causing cyclic error
+//            if (GuidslHelper.skipGuiDto(guiModule, each)) {
+//            	continue;
+//            }
             
             elements.add(new EObjectDescription(each.getName(), each, null));
         }

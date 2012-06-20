@@ -26,6 +26,8 @@ gui LibraryWeb for Library {
 	Module for person {
 		> @PersonService
 		
+		skip Person
+		
 		View PersonForm for Person {
 			> @PersonService
 			

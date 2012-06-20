@@ -80,6 +80,10 @@ DslGuiServiceDependency :
 // Widget definitions
 //////////////////////////////////////////////////////////////////////////////////////
 
+// This isn't pulling up the 'for' feature for some reason.  Look into making these common.
+// TODO: Whenever adding a widget that has a 'for' reference to a domain obj, update Validator to validate it
+DslSourceReferringWidget :
+	DslInputDateWidget | DslNumberSpinnerWidget;
 
 DslWidget : 
 	DslInputTextWidget | DslButtonWidget | DslInformationalTextWidget | DslTableWidget | DslInputDateWidget | DslNumberSpinnerWidget | DslTextAreaWidget
@@ -170,6 +174,7 @@ DslRichTextAreaWidget :
 		(behaviorBindings+=DslOnHover)?
 	'}';
 
+	
 DslInputDateWidget :
   (doc=STRING)?
 	'inputDate' name=ID  (sourceRef = DslSourceReference)? '{'
@@ -192,6 +197,7 @@ DslInputDateWidget :
 		(behaviorBindings+=DslOnHover)?
 	'}';
  
+
 	
 DslButtonWidget :
   (doc=STRING)?
