@@ -198,6 +198,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class BehaviorBinding
     Reference behaviors : UiBehavior<<1..*>>
     Reference widget : Widget<<1..1>>
+    Attribute bindingTypeName : EString
 
   Class OnClickBinding -> BehaviorBinding
 
