@@ -36,6 +36,7 @@ import sculptorguimetamodel.Widget;
  * <ul>
  *   <li>{@link sculptorguimetamodel.impl.BehaviorBindingImpl#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.BehaviorBindingImpl#getWidget <em>Widget</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.BehaviorBindingImpl#getBindingTypeName <em>Binding Type Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,6 +62,26 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 	 * @ordered
 	 */
 	protected Widget widget;
+
+	/**
+	 * The default value of the '{@link #getBindingTypeName() <em>Binding Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindingTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BINDING_TYPE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getBindingTypeName() <em>Binding Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindingTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String bindingTypeName = BINDING_TYPE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,6 +178,27 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getBindingTypeName() {
+		return bindingTypeName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBindingTypeName(String newBindingTypeName) {
+		String oldBindingTypeName = bindingTypeName;
+		bindingTypeName = newBindingTypeName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.BEHAVIOR_BINDING__BINDING_TYPE_NAME, oldBindingTypeName, bindingTypeName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BEHAVIORS:
@@ -196,6 +238,8 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__WIDGET:
 				if (resolve) return getWidget();
 				return basicGetWidget();
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BINDING_TYPE_NAME:
+				return getBindingTypeName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,6 +258,9 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__WIDGET:
 				setWidget((Widget)newValue);
 				return;
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BINDING_TYPE_NAME:
+				setBindingTypeName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -231,6 +278,9 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__WIDGET:
 				setWidget((Widget)null);
 				return;
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BINDING_TYPE_NAME:
+				setBindingTypeName(BINDING_TYPE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,8 +296,25 @@ public class BehaviorBindingImpl extends EObjectImpl implements BehaviorBinding 
 				return behaviors != null && !behaviors.isEmpty();
 			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__WIDGET:
 				return widget != null;
+			case SculptorguimetamodelPackage.BEHAVIOR_BINDING__BINDING_TYPE_NAME:
+				return BINDING_TYPE_NAME_EDEFAULT == null ? bindingTypeName != null : !BINDING_TYPE_NAME_EDEFAULT.equals(bindingTypeName);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (bindingTypeName: ");
+		result.append(bindingTypeName);
+		result.append(')');
+		return result.toString();
 	}
 
 } //BehaviorBindingImpl

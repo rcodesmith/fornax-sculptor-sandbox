@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link sculptorguimetamodel.BehaviorBinding#getBehaviors <em>Behaviors</em>}</li>
  *   <li>{@link sculptorguimetamodel.BehaviorBinding#getWidget <em>Widget</em>}</li>
+ *   <li>{@link sculptorguimetamodel.BehaviorBinding#getBindingTypeName <em>Binding Type Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +74,31 @@ public interface BehaviorBinding extends EObject {
 	 * @generated
 	 */
 	void setWidget(Widget value);
+
+	/**
+	 * Returns the value of the '<em><b>Binding Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Binding Type Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Binding Type Name</em>' attribute.
+	 * @see #setBindingTypeName(String)
+	 * @see sculptorguimetamodel.SculptorguimetamodelPackage#getBehaviorBinding_BindingTypeName()
+	 * @model
+	 * @generated
+	 */
+	String getBindingTypeName();
+
+	/**
+	 * Sets the value of the '{@link sculptorguimetamodel.BehaviorBinding#getBindingTypeName <em>Binding Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Binding Type Name</em>' attribute.
+	 * @see #getBindingTypeName()
+	 * @generated
+	 */
+	void setBindingTypeName(String value);
 
 } // BehaviorBinding

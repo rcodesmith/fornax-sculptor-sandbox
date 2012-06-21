@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CustomBehavior;
 import sculptorguimetamodel.MarkCleanBehavior;
@@ -120,6 +121,9 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		Widget autocomp = (Widget)getNamedElement("autocomp1", personFormView.getWidgets());
 		EList bindings = autocomp.getBehaviorBindings();
 		assertEquals(1, bindings.size());
+		
+		BehaviorBinding binding = (BehaviorBinding)bindings.get(0);
+		assertEquals("OnSelectItem", binding.getBindingTypeName());
 	}
 	
 	@Test
@@ -130,6 +134,7 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		EList bindings = saveButton.getBehaviorBindings();
 		assertEquals(1, bindings.size());
 		OnClickBinding onClick = (OnClickBinding)bindings.get(0);
+		assertEquals("OnClick", onClick.getBindingTypeName());
 		EList behaviors = onClick.getBehaviors();
 		assertEquals(1, behaviors.size());
 		CustomBehavior custom = (CustomBehavior) behaviors.get(0);

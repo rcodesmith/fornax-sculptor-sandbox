@@ -1253,6 +1253,10 @@
   <children xmi:type="notation:Shape" xmi:id="_6x7fMChxEeGAFratGl8qMw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_6x7fMihxEeGAFratGl8qMw" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_6x7fMyhxEeGAFratGl8qMw" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_YIDhUbsSEeGkB52ISAVnKw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="sculptorguimetamodel.ecore#//BehaviorBinding/bindingTypeName"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_YIDhUrsSEeGkB52ISAVnKw"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_6x7fNChxEeGAFratGl8qMw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_6x7fNShxEeGAFratGl8qMw"/>
     </children>

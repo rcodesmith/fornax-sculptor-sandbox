@@ -9,13 +9,26 @@ gui LibraryWeb for Library {
 		
 		View Menu {
 			contents {
-				link personLink toView PersonForm {
+				link personLink  {
 					label = "Person Form"
+					
+					onClick=goToPersonForm
 				}
-				link mediaBrowseLink toView MediaBrowse {
+				link mediaBrowseLink {
 					label = "Media Browse"
+					
+					onClick=goToMediaBrowse
 				}
 			}
+			
+			UiBehavior NavigateToView goToPersonForm {
+				view = PersonForm
+			}
+
+			UiBehavior NavigateToView goToMediaBrowse {
+				view = MediaBrowse
+			}
+			
 		}
 		
 		View PersonForm for Person {

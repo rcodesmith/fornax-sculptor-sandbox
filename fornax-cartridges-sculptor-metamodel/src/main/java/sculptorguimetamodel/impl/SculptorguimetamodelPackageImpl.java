@@ -1992,6 +1992,15 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getBehaviorBinding_BindingTypeName() {
+		return (EAttribute)behaviorBindingEClass.getEStructuralFeatures().get(2);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOnClickBinding() {
 		return onClickBindingEClass;
 	}
@@ -2629,6 +2638,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		behaviorBindingEClass = createEClass(BEHAVIOR_BINDING);
 		createEReference(behaviorBindingEClass, BEHAVIOR_BINDING__BEHAVIORS);
 		createEReference(behaviorBindingEClass, BEHAVIOR_BINDING__WIDGET);
+		createEAttribute(behaviorBindingEClass, BEHAVIOR_BINDING__BINDING_TYPE_NAME);
 
 		onClickBindingEClass = createEClass(ON_CLICK_BINDING);
 
@@ -2997,6 +3007,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(behaviorBindingEClass, BehaviorBinding.class, "BehaviorBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBehaviorBinding_Behaviors(), this.getUiBehavior(), this.getUiBehavior_Bindings(), "behaviors", null, 1, -1, BehaviorBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBehaviorBinding_Widget(), this.getWidget(), this.getWidget_BehaviorBindings(), "widget", null, 1, 1, BehaviorBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBehaviorBinding_BindingTypeName(), ecorePackage.getEString(), "bindingTypeName", null, 0, 1, BehaviorBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(onClickBindingEClass, OnClickBinding.class, "OnClickBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

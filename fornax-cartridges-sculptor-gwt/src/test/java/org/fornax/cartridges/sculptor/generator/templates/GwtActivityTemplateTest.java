@@ -66,14 +66,19 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 //				"protected void bind() {", "bindPersonLink();",
 //				"bindMediaBrowseLink();", "}");
 
+		assertContainsConsecutiveFragments(activityBaseCode,
+				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher personLinkOnClickBehaviorDispatcher = null;"
+		);
+		
+		
 		assertContainsConsecutiveFragments(
 				activityBaseCode,
-				"	protected void bindPersonLink() {",
-				"view.getPersonLinkHasClickHandlers().addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {",
-				"@java.lang.Override",
-				"public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {",
-				"placeController.goTo(new org.fornax.cartridges.sculptor.examples.library.person.gwt.client.gen.place.PersonFormPlace());",
-				"}", "});", "}");
+				"protected void bindPersonLink() {",
+				"{",
+				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();",
+				"personLinkOnClickBehaviorDispatcher.bindHasClickHandler(view.getPersonLinkHasClickHandlers());",
+				"}",
+				"}");
 	}
 
 	@Test

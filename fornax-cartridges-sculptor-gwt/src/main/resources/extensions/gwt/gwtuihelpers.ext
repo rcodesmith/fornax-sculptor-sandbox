@@ -565,6 +565,9 @@ String widgetClickHandlersExpr(Widget w) :
 String widgetForIsWidgetExpr(Widget w) :
 	"get" + w.name.toFirstUpper() + "ForIsWidget()";
 
+
+
+
 ////////////////////////////////////////////////////////////////////////////
 // View-related functions
 ////////////////////////////////////////////////////////////////////////////
@@ -804,6 +807,10 @@ String fqnActivityImplClass(View view) :
 	view.gwtActivitiesPackage() + "." + view.gwtActivityImplClass() ;
 
 // Fully qualified activity impl class name
+
+// Get name of behavior dispatcher attribute in activity
+String behaviorDispatcherName(BehaviorBinding binding) :
+	binding.widget.name + binding.bindingTypeName + "BehaviorDispatcher";
 
 
 //////////////////////////////////////////////////////////////////////////////

@@ -488,6 +488,19 @@ create sculptorguimetamodel::ViewParameter this transform(DslViewParameter dslPa
 // Widget-related transformations
 //////////////////////////////////////////////////////////////////////////////////
 	
+
+private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
+	//debugTrace("initFromDslWidget(" + dslWidget.name + ", label=" + dslWidget.label + ")") ->
+	widget.setHint(dslWidget.hint) ->
+	widget.setDoc(dslWidget.doc) ->
+	widget.setWidgetType(dslWidget.widgetType) ->
+	widget.setName(dslWidget.name) ->
+	widget.setLabel(dslWidget.label) ->
+	setEnabledVisible(widget, dslWidget, module) ->
+	//debugTrace("num behavior bindings = " + dslWidget.behaviorBindings.size) ->
+	widget.behaviorBindings.addAll(dslWidget.behaviorBindings.transform(module));
+			
+			
 create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
 	error("Unexpected call to transformWidget(DslWidget): " + widget);
 
@@ -501,16 +514,7 @@ create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberS
 	initFromDslWidget(this, widget, module) ->
 	transformSourceReference(this, widget.sourceRef);
 
-private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
-	//debugTrace("initFromDslWidget(" + dslWidget.name + ", label=" + dslWidget.label + ")") ->
-	widget.setHint(dslWidget.hint) ->
-	widget.setDoc(dslWidget.doc) ->
-	widget.setWidgetType(dslWidget.widgetType) ->
-	widget.setName(dslWidget.name) ->
-	widget.setLabel(dslWidget.label) ->
-	setEnabledVisible(widget, dslWidget, module) ->
-	debugTrace("num behavior bindings = " + dslWidget.behaviorBindings.size) ->
-	widget.behaviorBindings.addAll(dslWidget.behaviorBindings.transform(module));
+	
 
 
 create sculptorguimetamodel::CustomWidget this transformWidget(DslCustomWidget widget, Module module) :
@@ -877,12 +881,15 @@ create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding b
 	error("Unexpected call to transform(DslBehaviorBinding)");
 	
 create sculptorguimetamodel::OnClickBinding this transform(DslOnClick binding, Module module) :
+	setBindingTypeName("OnClick") ->
 	behaviors.addAll(binding.behaviors.transformBehavior(module));
 
 create sculptorguimetamodel::OnHoverBinding this transform(DslOnHover binding, Module module) :
+	setBindingTypeName("OnHover") ->
 	behaviors.addAll(binding.behaviors.transformBehavior(module));
 
 create sculptorguimetamodel::OnSelectItemBinding this transform(DslOnSelectItem binding, Module module) :
+	setBindingTypeName("OnSelectItem") ->
 	behaviors.addAll(binding.behaviors.transformBehavior(module));
 	
 	

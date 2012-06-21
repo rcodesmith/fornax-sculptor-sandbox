@@ -22,5 +22,7 @@ public interface BehaviorBindingValidator {
 
 	boolean validateWidget(Widget value);
 
+	boolean validateBindingTypeName(String value);
+
 	boolean validateWidgets(EList value);
 }

@@ -25,6 +25,14 @@
 -----------------------------------------------------------------------------------------«ENDREM»
 
 «DEFINE widgetRelatedDeclarations FOR Widget»
+
+	«REM»
+	 Declare and create behavior dispatchers for all widgets.
+	 Note that for table columns, their behavior dispatchers are initialized in a separate template - see columnBindMethod
+	«ENDREM»
+
+	«EXPAND behaviorDispatcherInit(this) FOREACH this.behaviorBindings»	
+	
 «ENDDEFINE»
 
 
@@ -39,10 +47,14 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 	«loggerDeclaration(gwtActivityBaseClass())»
 
+	// Event bus used by this activity
 	protected final com.google.gwt.event.shared.EventBus eventBus;
+	
+	// Place controller for the activity
 	protected final com.google.gwt.place.shared.PlaceController placeController;
 	
 	protected final «fqnGwtViewInterface()» view;
+	
 	
 	«EXPAND widgetRelatedDeclarations FOREACH allWidgets()»
 	
@@ -104,9 +116,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	 */
 	protected void bind() {
 		LOG.info("bind()");
-		«FOREACH behaviors AS behavior»
-			«behavior.name»Behavior = create«behavior.name.toFirstUpper()»Behavior();
-		«ENDFOREACH»
+		
+		«IF behaviors.size > 0»
+			// Construct behaviors - must be done in bind() because some of them depend on the view
+			«FOREACH behaviors AS behavior»
+				«behavior.name»Behavior = create«behavior.name.toFirstUpper()»Behavior();
+			«ENDFOREACH»
+		«ENDIF»
 		
 		«FOREACH allWidgets() AS w»
 			bind«w.name.toFirstUpper()»();
@@ -146,13 +162,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 «DEFINE initBehavior FOR CustomBehavior»
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * «name» behavior class
-	 */
+		/**
+		 * «name» behavior class
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("custom")» «name»Behavior;
+	protected «getBehaviorClass("custom")» «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -182,13 +198,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 «DEFINE initBehavior FOR UpdateTableBehavior»
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * «name» behavior class
-	 */
+		/**
+		 * «name» behavior class
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»> «name»Behavior;
+	protected «getBehaviorClass("updateTable")»<«this.table.fqnTableForClass()»> «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -250,7 +266,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	«ELSE -»
 	«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("populateListBox")»<«this.widget.getTypedWidgetTargetType()»> «name»Behavior;
+	protected «getBehaviorClass("populateListBox")»<«this.widget.getTypedWidgetTargetType()»> «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -284,13 +300,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «DEFINE initBehavior FOR MarkDirtyBehavior»
 
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * «name» behavior class
-	 */
+		/**
+		 * «name» behavior class
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("markDirty")» «name»Behavior;
+	protected «getBehaviorClass("markDirty")» «name»Behavior  = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -314,7 +330,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	«ELSE -»
 	«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("markClean")» «name»Behavior;
+	protected «getBehaviorClass("markClean")» «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -332,13 +348,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «DEFINE initBehavior FOR WarnIfDirtyBehavior»
 
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * «name» behavior class
-	 */
+		/**
+		 * «name» behavior class
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("warnIfDirty")» «name»Behavior;
+	protected «getBehaviorClass("warnIfDirty")» «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -357,13 +373,13 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «DEFINE initBehavior FOR GoBackBehavior»
 
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * «name» behavior class
-	 */
+		/**
+		 * «name» behavior class
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("goBack")» «name»Behavior;
+	protected «getBehaviorClass("goBack")» «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
 	/**
@@ -380,27 +396,27 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 «DEFINE initBehavior FOR UpdateAttributeBehavior»
 
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * «name» behavior class
-	 */
+		/**
+		 * «name» behavior class
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
-	protected «getBehaviorClass("updateAttribute")» «name»Behavior;
+	protected «getBehaviorClass("updateAttribute")» «name»Behavior = null;
 
 	«IF formatJavaDoc() == "" -»
-	/**
-	 * Method to create the «name» behavior
-	 */
+		/**
+		 * Method to create the «name» behavior
+		 */
 	«ELSE -»
-	«formatJavaDoc()»
+		«formatJavaDoc()»
 	«ENDIF -»
 	protected «getBehaviorClass("updateAttribute")» create«name.toFirstUpper()»Behavior() {
 		return new «getBehaviorClass("updateAttribute")»("«name»", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior.Invocable() {
 
 			@Override
 			public void invoke(
-					Event event) {
+					org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {
 				«IF targetClass != null»
 					«targetClass.fqnGwtDto()» targetObj = («targetClass.fqnGwtDto()»)event.getObj();
 					«getSetterPathExpression("targetObj", targetClass, propertyPath)»((String)event.getValue());
@@ -448,7 +464,31 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «ENDDEFINE»
 
 
+«REM»----------------------------------------------------------------------------------------
+	Declarations of behavior dispatchers and Methods to create behavior dispatchers
+-------------------------------------------------------------------------------------«ENDREM»
 
+«REM»Method to create/initialize a specific behavior dispatcher«ENDREM»
+«DEFINE behaviorDispatcherInitMethod(Widget widget) FOR BehaviorBinding»
+	/**
+	 * Method to initialize behavior for «widget.name + " " + this.bindingTypeName» behavior.
+	 * Subclasses may override this to specialize the construction of these behaviors
+	 */
+	protected «gwtBehaviorDispatcherClass()» create«this.behaviorDispatcherName().toFirstUpper()»() {
+		«gwtBehaviorDispatcherClass()» bd = new «gwtBehaviorDispatcherClass()»("«widget.name + this.bindingTypeName»", «FOREACH behaviors AS b SEPARATOR ", "»«b.name»Behavior«ENDFOREACH»);
+		return bd;
+	}
+«ENDDEFINE»
+
+«REM»Declaration of behavior dispatcher attribute & call to create it«ENDREM»
+«DEFINE behaviorDispatcherDeclaration(Widget widget) FOR BehaviorBinding»
+	protected «gwtBehaviorDispatcherClass()» «this.behaviorDispatcherName()» = null;
+«ENDDEFINE»
+
+«DEFINE behaviorDispatcherInit (Widget widget) FOR BehaviorBinding»
+	«EXPAND behaviorDispatcherDeclaration(widget) FOR this»
+	«EXPAND behaviorDispatcherInitMethod(widget) FOR this»
+«ENDDEFINE»
 
 «REM»----------------------------------------------------------------------------------------
 	Methods to bind activity to view
@@ -471,28 +511,25 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 
 «DEFINE behaviorBinding(Widget widget) FOR OnSelectItemBinding»
 	{
-		«EXPAND behaviorDispatcherConstruction(widget, "OnSelectItem") FOR this»
+		«this.behaviorDispatcherName()» = create«this.behaviorDispatcherName().toFirstUpper()»();	
 
 		«IF ListBoxWidget.isInstance(widget)»
-			bd.bindHasValueChangeHandlers(view.get«widget.name.toFirstUpper()»HasValueChangeHandlers());
+			«this.behaviorDispatcherName()».bindHasValueChangeHandlers(view.get«widget.name.toFirstUpper()»HasValueChangeHandlers());
 		«ELSE»
-			bd.bindHasSelectionHandler(view.get«widget.name.toFirstUpper()»HasSelectionHandlers());
+			«this.behaviorDispatcherName()».bindHasSelectionHandler(view.get«widget.name.toFirstUpper()»HasSelectionHandlers());
 		«ENDIF»
 	}
 «ENDDEFINE»
 
 «DEFINE behaviorBinding(Widget widget) FOR OnClickBinding»
 	{
-		«EXPAND behaviorDispatcherConstruction(widget, "OnClick") FOR this»
-
-		bd.bindHasClickHandler(view.get«widget.name.toFirstUpper()»HasClickHandlers());
+		«this.behaviorDispatcherName()» = create«this.behaviorDispatcherName().toFirstUpper()»();
+		«this.behaviorDispatcherName()».bindHasClickHandler(view.get«widget.name.toFirstUpper()»HasClickHandlers());
 	}
 «ENDDEFINE»
 
-«DEFINE behaviorDispatcherConstruction(Widget widget, String bindingType) FOR BehaviorBinding»
-	«gwtBehaviorDispatcherClass()» bd = new «gwtBehaviorDispatcherClass()»("«widget.name + bindingType»", «FOREACH behaviors AS b SEPARATOR ", "»«b.name»Behavior«ENDFOREACH»);
-«ENDDEFINE»
 
+«REM»
 «DEFINE widgetBindMethod FOR LinkWidget»
 
 	protected void bind«this.name.toFirstUpper()»() {
@@ -508,6 +545,9 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	}
 
 «ENDDEFINE»
+
+«ENDREM»
+
 
 
 «DEFINE widgetBindMethod FOR TableWidget»
@@ -536,6 +576,9 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «ENDDEFINE»
 
 «DEFINE columnBindMethod(TableWidget table) FOR WidgetTableColumn»
+	«REM»Declare and create behavior dispatcher for columns here - special case for columns«ENDREM»
+	«EXPAND behaviorDispatcherInit(this.widget) FOREACH this.widget.behaviorBindings»	
+
 	/**
 	 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
 	 */
@@ -550,26 +593,25 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	Behavior binding for columns with OnSelectItemBinding bindings
 «ENDREM»
 «DEFINE behaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget) FOR OnSelectItemBinding»
-	«EXPAND behaviorDispatcherConstruction(widget, "OnSelectItem") FOR this»
+	«this.behaviorDispatcherName()» = create«this.behaviorDispatcherName().toFirstUpper()»();
 
-	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());
+	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(«this.behaviorDispatcherName()».<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());
 «ENDDEFINE»
 
 «REM»
 	Behavior binding for columns with OnClickBinding bindings
 «ENDREM»
 «DEFINE behaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget) FOR OnClickBinding»
-	«EXPAND behaviorDispatcherConstruction(widget, "OnClick") FOR this»
-
+	«this.behaviorDispatcherName()» = create«this.behaviorDispatcherName().toFirstUpper()»();
 	«EXPAND colWidgetOnClickBehaviorBinding(widget, col, tableWidget, this) FOR col.widget»
 «ENDDEFINE»
 
 «DEFINE colWidgetOnClickBehaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget, OnClickBinding binding) FOR Widget»
-	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(bd.<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());	
+	view.set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(«binding.behaviorDispatcherName()».<«tableWidget.for.fqnGwtDto()», String>getFieldUpdater());	
 «ENDDEFINE»
 
 «DEFINE colWidgetOnClickBehaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget, OnClickBinding binding) FOR ButtonWidget»
-	bd.bindColumnActionDelegate(view.get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»HasActionDelegate());
+	«binding.behaviorDispatcherName()».bindColumnActionDelegate(view.get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»HasActionDelegate());
 «ENDDEFINE»
 
 «REM»Methods to clear data from widgets«ENDREM»

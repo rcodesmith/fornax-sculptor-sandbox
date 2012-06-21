@@ -5801,13 +5801,22 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int BEHAVIOR_BINDING__WIDGET = 1;
 
 	/**
+	 * The feature id for the '<em><b>Binding Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_BINDING__BINDING_TYPE_NAME = 2;
+
+	/**
 	 * The number of structural features of the '<em>Behavior Binding</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR_BINDING_FEATURE_COUNT = 2;
+	int BEHAVIOR_BINDING_FEATURE_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Behaviors</b></em>' reference list.
@@ -5826,6 +5835,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ON_CLICK_BINDING__WIDGET = BEHAVIOR_BINDING__WIDGET;
+
+	/**
+	 * The feature id for the '<em><b>Binding Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_CLICK_BINDING__BINDING_TYPE_NAME = BEHAVIOR_BINDING__BINDING_TYPE_NAME;
 
 	/**
 	 * The number of structural features of the '<em>On Click Binding</em>' class.
@@ -5853,6 +5871,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ON_HOVER_BINDING__WIDGET = BEHAVIOR_BINDING__WIDGET;
+
+	/**
+	 * The feature id for the '<em><b>Binding Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_HOVER_BINDING__BINDING_TYPE_NAME = BEHAVIOR_BINDING__BINDING_TYPE_NAME;
 
 	/**
 	 * The number of structural features of the '<em>On Hover Binding</em>' class.
@@ -6944,6 +6971,15 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ON_SELECT_ITEM_BINDING__WIDGET = BEHAVIOR_BINDING__WIDGET;
+
+	/**
+	 * The feature id for the '<em><b>Binding Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_SELECT_ITEM_BINDING__BINDING_TYPE_NAME = BEHAVIOR_BINDING__BINDING_TYPE_NAME;
 
 	/**
 	 * The number of structural features of the '<em>On Select Item Binding</em>' class.
@@ -9505,6 +9541,17 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getBehaviorBinding_Widget();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.BehaviorBinding#getBindingTypeName <em>Binding Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Binding Type Name</em>'.
+	 * @see sculptorguimetamodel.BehaviorBinding#getBindingTypeName()
+	 * @see #getBehaviorBinding()
+	 * @generated
+	 */
+	EAttribute getBehaviorBinding_BindingTypeName();
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.OnClickBinding <em>On Click Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11269,6 +11316,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BEHAVIOR_BINDING__WIDGET = eINSTANCE.getBehaviorBinding_Widget();
+
+		/**
+		 * The meta object literal for the '<em><b>Binding Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BEHAVIOR_BINDING__BINDING_TYPE_NAME = eINSTANCE.getBehaviorBinding_BindingTypeName();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.OnClickBindingImpl <em>On Click Binding</em>}' class.
