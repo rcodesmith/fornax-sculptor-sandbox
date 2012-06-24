@@ -692,6 +692,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	GuiDtoOptions createGuiDtoOptions();
 
 																/**
+	 * Returns a new object of class '<em>Property Path Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property Path Element</em>'.
+	 * @generated
+	 */
+	PropertyPathElement createPropertyPathElement();
+
+																/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

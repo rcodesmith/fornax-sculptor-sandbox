@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.fornax.cartridges.sculptor.dsl.ui
-Bundle-Version: 2.0.10
+Bundle-Version: 2.0.11
 Bundle-SymbolicName: org.fornax.cartridges.sculptor.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.fornax.cartridges.sculptor.dsl;bundle-version="2.0.0";visibility:=reexport,

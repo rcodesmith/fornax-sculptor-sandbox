@@ -134,6 +134,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.HAS_DIRTY_VALUE_CONDITION: return createHasDirtyValueCondition();
 			case SculptorguimetamodelPackage.POPUP_PANEL_BEHAVIOR: return createPopupPanelBehavior();
 			case SculptorguimetamodelPackage.GUI_DTO_OPTIONS: return createGuiDtoOptions();
+			case SculptorguimetamodelPackage.PROPERTY_PATH_ELEMENT: return createPropertyPathElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -877,6 +878,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public GuiDtoOptions createGuiDtoOptions() {
 		GuiDtoOptionsImpl guiDtoOptions = new GuiDtoOptionsImpl();
 		return guiDtoOptions;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyPathElement createPropertyPathElement() {
+		PropertyPathElementImpl propertyPathElement = new PropertyPathElementImpl();
+		return propertyPathElement;
 	}
 
 																/**

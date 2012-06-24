@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import sculptorguimetamodel.PanelWidget;
+import sculptorguimetamodel.PropertyPathElement;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
 import sculptorguimetamodel.UiCondition;
@@ -53,11 +54,10 @@ import sculptormetamodel.SculptormetamodelPackage;
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getWidgetType <em>Widget Type</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getVisible <em>Visible</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForAttribute <em>For Attribute</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForOp <em>For Op</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getPropertyPath <em>Property Path</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#getForProperty <em>For Property</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PanelWidgetImpl#isDisclosure <em>Disclosure</em>}</li>
  * </ul>
  * </p>
@@ -206,26 +206,6 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	protected UiCondition visible;
 
 	/**
-	 * The cached value of the '{@link #getForAttribute() <em>For Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected Attribute forAttribute;
-
-	/**
-	 * The cached value of the '{@link #getForReference() <em>For Reference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForReference()
-	 * @generated
-	 * @ordered
-	 */
-	protected Reference forReference;
-
-	/**
 	 * The cached value of the '{@link #getForOp() <em>For Op</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,6 +244,16 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * @ordered
 	 */
 	protected String propertyPath = PROPERTY_PATH_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getForProperty() <em>For Property</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyPathElement forProperty;
 
 	/**
 	 * The default value of the '{@link #isDisclosure() <em>Disclosure</em>}' attribute.
@@ -539,82 +529,6 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attribute getForAttribute() {
-		if (forAttribute != null && forAttribute.eIsProxy()) {
-			InternalEObject oldForAttribute = (InternalEObject)forAttribute;
-			forAttribute = (Attribute)eResolveProxy(oldForAttribute);
-			if (forAttribute != oldForAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE, oldForAttribute, forAttribute));
-			}
-		}
-		return forAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Attribute basicGetForAttribute() {
-		return forAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setForAttribute(Attribute newForAttribute) {
-		Attribute oldForAttribute = forAttribute;
-		forAttribute = newForAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE, oldForAttribute, forAttribute));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Reference getForReference() {
-		if (forReference != null && forReference.eIsProxy()) {
-			InternalEObject oldForReference = (InternalEObject)forReference;
-			forReference = (Reference)eResolveProxy(oldForReference);
-			if (forReference != oldForReference) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE, oldForReference, forReference));
-			}
-		}
-		return forReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Reference basicGetForReference() {
-		return forReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setForReference(Reference newForReference) {
-		Reference oldForReference = forReference;
-		forReference = newForReference;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE, oldForReference, forReference));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DomainObjectOperation getForOp() {
 		if (forOp != null && forOp.eIsProxy()) {
 			InternalEObject oldForOp = (InternalEObject)forOp;
@@ -712,6 +626,49 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PropertyPathElement getForProperty() {
+		return forProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetForProperty(PropertyPathElement newForProperty, NotificationChain msgs) {
+		PropertyPathElement oldForProperty = forProperty;
+		forProperty = newForProperty;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY, oldForProperty, newForProperty);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setForProperty(PropertyPathElement newForProperty) {
+		if (newForProperty != forProperty) {
+			NotificationChain msgs = null;
+			if (forProperty != null)
+				msgs = ((InternalEObject)forProperty).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY, null, msgs);
+			if (newForProperty != null)
+				msgs = ((InternalEObject)newForProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY, null, msgs);
+			msgs = basicSetForProperty(newForProperty, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY, newForProperty, newForProperty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isDisclosure() {
 		return disclosure;
 	}
@@ -750,6 +707,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 		switch (featureID) {
 			case SculptorguimetamodelPackage.PANEL_WIDGET__BEHAVIOR_BINDINGS:
 				return ((InternalEList)getBehaviorBindings()).basicRemove(otherEnd, msgs);
+			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY:
+				return basicSetForProperty(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -782,12 +741,6 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__VISIBLE:
 				if (resolve) return getVisible();
 				return basicGetVisible();
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE:
-				if (resolve) return getForAttribute();
-				return basicGetForAttribute();
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE:
-				if (resolve) return getForReference();
-				return basicGetForReference();
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP:
 				if (resolve) return getForOp();
 				return basicGetForOp();
@@ -796,6 +749,8 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return basicGetFor();
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				return getPropertyPath();
+			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY:
+				return getForProperty();
 			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
 				return isDisclosure() ? Boolean.TRUE : Boolean.FALSE;
 		}
@@ -837,12 +792,6 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__VISIBLE:
 				setVisible((UiCondition)newValue);
 				return;
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE:
-				setForAttribute((Attribute)newValue);
-				return;
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE:
-				setForReference((Reference)newValue);
-				return;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP:
 				setForOp((DomainObjectOperation)newValue);
 				return;
@@ -851,6 +800,9 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				setPropertyPath((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY:
+				setForProperty((PropertyPathElement)newValue);
 				return;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
 				setDisclosure(((Boolean)newValue).booleanValue());
@@ -893,12 +845,6 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 			case SculptorguimetamodelPackage.PANEL_WIDGET__VISIBLE:
 				setVisible((UiCondition)null);
 				return;
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE:
-				setForAttribute((Attribute)null);
-				return;
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE:
-				setForReference((Reference)null);
-				return;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP:
 				setForOp((DomainObjectOperation)null);
 				return;
@@ -907,6 +853,9 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				setPropertyPath(PROPERTY_PATH_EDEFAULT);
+				return;
+			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY:
+				setForProperty((PropertyPathElement)null);
 				return;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
 				setDisclosure(DISCLOSURE_EDEFAULT);
@@ -940,16 +889,14 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 				return WIDGET_TYPE_EDEFAULT == null ? widgetType != null : !WIDGET_TYPE_EDEFAULT.equals(widgetType);
 			case SculptorguimetamodelPackage.PANEL_WIDGET__VISIBLE:
 				return visible != null;
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE:
-				return forAttribute != null;
-			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE:
-				return forReference != null;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP:
 				return forOp != null;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR:
 				return for_ != null;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH:
 				return PROPERTY_PATH_EDEFAULT == null ? propertyPath != null : !PROPERTY_PATH_EDEFAULT.equals(propertyPath);
+			case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY:
+				return forProperty != null;
 			case SculptorguimetamodelPackage.PANEL_WIDGET__DISCLOSURE:
 				return disclosure != DISCLOSURE_EDEFAULT;
 		}
@@ -983,11 +930,10 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 		}
 		if (baseClass == PropertyReferringWidget.class) {
 			switch (derivedFeatureID) {
-				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE;
-				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE;
 				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP;
 				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR;
 				case SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH;
+				case SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY: return SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY;
 				default: return -1;
 			}
 		}
@@ -1021,11 +967,10 @@ public class PanelWidgetImpl extends WidgetsContainerImpl implements PanelWidget
 		}
 		if (baseClass == PropertyReferringWidget.class) {
 			switch (baseFeatureID) {
-				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR_ATTRIBUTE;
-				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR_REFERENCE;
 				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR_OP;
 				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR;
 				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH: return SculptorguimetamodelPackage.PANEL_WIDGET__PROPERTY_PATH;
+				case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY: return SculptorguimetamodelPackage.PANEL_WIDGET__FOR_PROPERTY;
 				default: return -1;
 			}
 		}

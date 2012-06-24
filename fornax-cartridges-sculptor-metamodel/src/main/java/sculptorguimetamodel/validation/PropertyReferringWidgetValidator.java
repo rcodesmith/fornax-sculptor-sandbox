@@ -6,6 +6,7 @@
  */
 package sculptorguimetamodel.validation;
 
+import sculptorguimetamodel.PropertyPathElement;
 import sculptormetamodel.Attribute;
 import sculptormetamodel.DomainObject;
 import sculptormetamodel.DomainObjectOperation;
@@ -30,6 +31,8 @@ public interface PropertyReferringWidgetValidator {
 	boolean validateFor(DomainObject value);
 
 	boolean validatePropertyPath(String value);
+
+	boolean validateForProperty(PropertyPathElement value);
 
 	boolean validateForProperty(PropertyReference value);
 

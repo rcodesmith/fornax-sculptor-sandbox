@@ -16,7 +16,7 @@ ApplicationPart Person {
           scaffold
           Date birthDate
           - @Gender sex !changeable
-          - @Ssn ssn key
+          - @Ssn ssn key 
           - @PersonName name hint="gui=skip,gwt=skip"
 
           def String getDisplayName();

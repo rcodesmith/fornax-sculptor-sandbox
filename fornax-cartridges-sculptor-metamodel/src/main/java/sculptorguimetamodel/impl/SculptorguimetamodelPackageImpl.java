@@ -55,6 +55,7 @@ import sculptorguimetamodel.PanelWidget;
 import sculptorguimetamodel.PopulateListBoxBehavior;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.PopupPanelBehavior;
+import sculptorguimetamodel.PropertyPathElement;
 import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.RadioButtonsWidget;
@@ -617,6 +618,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass guiDtoOptionsEClass = null;
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertyPathElementEClass = null;
 
 																/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1578,7 +1586,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyReferringWidget_ForAttribute() {
+	public EReference getPropertyReferringWidget_ForOp() {
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1587,7 +1595,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyReferringWidget_ForReference() {
+	public EReference getPropertyReferringWidget_For() {
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1596,26 +1604,17 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyReferringWidget_ForOp() {
-		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(2);
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPropertyReferringWidget_For() {
-		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(3);
-	}
-
-																/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getPropertyReferringWidget_PropertyPath() {
-		return (EAttribute)propertyReferringWidgetEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)propertyReferringWidgetEClass.getEStructuralFeatures().get(2);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyReferringWidget_ForProperty() {
+		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(3);
 	}
 
 																/**
@@ -2424,6 +2423,42 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPropertyPathElement() {
+		return propertyPathElementEClass;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyPathElement_RemainingPath() {
+		return (EReference)propertyPathElementEClass.getEStructuralFeatures().get(0);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyPathElement_ForAttribute() {
+		return (EReference)propertyPathElementEClass.getEStructuralFeatures().get(1);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyPathElement_ForReference() {
+		return (EReference)propertyPathElementEClass.getEStructuralFeatures().get(2);
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2572,11 +2607,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEAttribute(buttonWidgetEClass, BUTTON_WIDGET__IMAGE);
 
 		propertyReferringWidgetEClass = createEClass(PROPERTY_REFERRING_WIDGET);
-		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE);
-		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_REFERENCE);
 		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_OP);
 		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR);
 		createEAttribute(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__PROPERTY_PATH);
+		createEReference(propertyReferringWidgetEClass, PROPERTY_REFERRING_WIDGET__FOR_PROPERTY);
 
 		tableWidgetEClass = createEClass(TABLE_WIDGET);
 		createEReference(tableWidgetEClass, TABLE_WIDGET__COLUMNS);
@@ -2713,6 +2747,11 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		guiDtoOptionsEClass = createEClass(GUI_DTO_OPTIONS);
 		createEAttribute(guiDtoOptionsEClass, GUI_DTO_OPTIONS__SKIP);
+
+		propertyPathElementEClass = createEClass(PROPERTY_PATH_ELEMENT);
+		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__REMAINING_PATH);
+		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__FOR_ATTRIBUTE);
+		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__FOR_REFERENCE);
 	}
 
 	/**
@@ -2941,11 +2980,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEAttribute(getButtonWidget_Image(), ecorePackage.getEString(), "image", null, 0, 1, ButtonWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyReferringWidgetEClass, PropertyReferringWidget.class, "PropertyReferringWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPropertyReferringWidget_ForAttribute(), theSculptormetamodelPackage.getAttribute(), null, "forAttribute", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyReferringWidget_ForReference(), theSculptormetamodelPackage.getReference(), null, "forReference", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyReferringWidget_ForOp(), theSculptormetamodelPackage.getDomainObjectOperation(), null, "forOp", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyReferringWidget_For(), theSculptormetamodelPackage.getDomainObject(), null, "for", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyReferringWidget_PropertyPath(), ecorePackage.getEString(), "propertyPath", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyReferringWidget_ForProperty(), this.getPropertyPathElement(), null, "forProperty", null, 0, 1, PropertyReferringWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableWidgetEClass, TableWidget.class, "TableWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTableWidget_Columns(), this.getTableColumn(), null, "columns", null, 0, -1, TableWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3082,6 +3120,11 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 		initEClass(guiDtoOptionsEClass, GuiDtoOptions.class, "GuiDtoOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGuiDtoOptions_Skip(), ecorePackage.getEBoolean(), "skip", null, 0, 1, GuiDtoOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyPathElementEClass, PropertyPathElement.class, "PropertyPathElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyPathElement_RemainingPath(), this.getPropertyPathElement(), null, "remainingPath", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyPathElement_ForAttribute(), theSculptormetamodelPackage.getAttribute(), null, "forAttribute", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyPathElement_ForReference(), theSculptormetamodelPackage.getReference(), null, "forReference", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

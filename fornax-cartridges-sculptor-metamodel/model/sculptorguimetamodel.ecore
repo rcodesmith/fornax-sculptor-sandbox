@@ -150,11 +150,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyReferringWidget" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forAttribute" eType="ecore:EClass sculptormetamodel.ecore#//Attribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forReference" eType="ecore:EClass sculptormetamodel.ecore#//Reference"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forOp" eType="ecore:EClass sculptormetamodel.ecore#//DomainObjectOperation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="ecore:EClass sculptormetamodel.ecore#//DomainObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forProperty" eType="#//PropertyPathElement"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableWidget" eSuperTypes="#//PropertyReferringWidget">
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
@@ -284,5 +284,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiDtoOptions" eSuperTypes="sculptormetamodel.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="skip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyPathElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remainingPath" eType="#//PropertyPathElement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forAttribute" eType="ecore:EClass sculptormetamodel.ecore#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forReference" eType="ecore:EClass sculptormetamodel.ecore#//Reference"/>
   </eClassifiers>
 </ecore:EPackage>

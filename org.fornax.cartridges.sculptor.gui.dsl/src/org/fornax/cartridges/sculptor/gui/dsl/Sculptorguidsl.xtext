@@ -226,8 +226,10 @@ DslInformationalTextWidget :
 
 
 DslSourceReference :
-	('forOp' forOp=[mm::DslDomainObjectOperation]) | ('forProperty' forProperty=[mm::DslProperty]) | ('forPath' forPath=STRING);
+	('forOp' forOp=[mm::DslDomainObjectOperation]) | ('forProperty' forProperty=DslPropertyPathElement) | ('forPath' forPath=STRING);
 
+DslPropertyPathElement :
+	property=[mm::DslProperty]('.' remainingPath=DslPropertyPathElement)?;
 
 DslLinkWidget :
   (doc=STRING)?

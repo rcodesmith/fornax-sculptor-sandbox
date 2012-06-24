@@ -57,7 +57,7 @@ gui LibraryWeb for Library {
 					label = "Save"
 				}
 				
-				informationalText info1 {
+				informationalText info1 forProperty ssn.number {
 					label = "Info Numero Uno"
 				}
 				

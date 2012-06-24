@@ -301,6 +301,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseGuiDtoOptions(GuiDtoOptions object) {
 				return createGuiDtoOptionsAdapter();
 			}
+			public Object casePropertyPathElement(PropertyPathElement object) {
+				return createPropertyPathElementAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1379,6 +1382,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGuiDtoOptionsAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.PropertyPathElement <em>Property Path Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.PropertyPathElement
+	 * @generated
+	 */
+	public Adapter createPropertyPathElementAdapter() {
 		return null;
 	}
 

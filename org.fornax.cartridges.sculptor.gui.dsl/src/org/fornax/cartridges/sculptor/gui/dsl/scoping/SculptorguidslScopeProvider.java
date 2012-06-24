@@ -8,6 +8,8 @@ import static org.fornax.cartridges.sculptor.dsl.DslHelper.getExtends;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.resource.EObjectDescription;
@@ -16,6 +18,7 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.fornax.cartridges.sculptor.dsl.scoping.Scope;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslAnyProperty;
+import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslAttribute;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslBasicType;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslDataTransferObject;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslDomainObject;
@@ -26,10 +29,14 @@ import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslModule;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslProperty;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslReference;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslSimpleDomainObject;
-import org.fornax.cartridges.sculptor.gui.dsl.GuidslHelper;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiApplication;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslGuiModule;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslPanelWidget;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslPropertyPathElement;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSkipDomainObject;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslSourceReference;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslTableWidget;
+import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslUiBehavior;
 import org.fornax.cartridges.sculptor.gui.dsl.sculptorguidsl.DslView;
 
 /**
@@ -82,6 +89,188 @@ public class SculptorguidslScopeProvider extends AbstractDeclarativeScopeProvide
         
         return myScope;
     }
+    
+    /**
+     * A widget within a view should only refer to a behavior that is in the view, or the containing module, not other views
+     * @param ctx
+     * @param ref
+     * @return
+     */
+    IScope scope_DslBehaviorBinding_behaviors(DslView ctx, EReference ref) {
+        Scope myScope = new Scope();
+        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+        myScope.setElements(elements);
+
+        DslGuiModule module = (DslGuiModule) ctx.eContainer();
+        
+        for (DslUiBehavior behavior : module.getBehaviors()) {
+            elements.add(new EObjectDescription(behavior.getName(), behavior, null));
+		}
+
+        for (DslUiBehavior behavior : ctx.getBehaviors()) {
+            elements.add(new EObjectDescription(behavior.getName(), behavior, null));
+		}
+
+        return myScope;
+    }
+    
+	/**
+	 * A property path element should refer to a property that is contained within the parent path elements
+	 * referred-to domain object, or innermost containing 'for' object.
+	 * 
+	 * TODO: For some reason, code completion isn't working when this is called - it's getting called with the parent path element.
+	 * But final resolution of the scope is working, which is what's important.
+	 * 
+	 * @param ctx
+	 * @param ref
+	 * @return
+	 */
+	IScope scope_DslPropertyPathElement_property(DslPropertyPathElement ctx,
+			EReference ref) {
+		Scope myScope = new Scope();
+		List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+		myScope.setElements(elements);
+
+		DslSimpleDomainObject simpleDomainObj = null;
+
+//		if(ctx.getRemainingPath() != null && ctx.getProperty() != null) {
+//			simpleDomainObj = getSimpleDomainObjForProperty(ctx.getProperty());			
+//		}
+		if (ctx.eContainer() instanceof DslPropertyPathElement) {
+			simpleDomainObj = getSimpleDomainObjForProperty(((DslPropertyPathElement) ctx
+					.eContainer()).getProperty());
+		} else {
+			simpleDomainObj = findContainerWithForObject(ctx.eContainer());
+		}
+		
+		if (simpleDomainObj == null) {
+			return myScope;
+		}
+    	
+    	addElementsForSimpleDomainObjectProperties(elements, simpleDomainObj);
+
+        return myScope;
+    }
+
+	/**
+	 * The first property reference within a source reference should be for a property in the innermost containing 'for' domain object 
+	 * 
+	 * @param ctx
+	 * @param ref
+	 * @return
+	 */
+
+	IScope scope_DslPropertyPathElement_property(DslSourceReference ctx,
+			EReference ref) {
+		Scope myScope = new Scope();
+		List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+		myScope.setElements(elements);
+
+		DslSimpleDomainObject simpleDomainObj = null;
+
+		simpleDomainObj = findContainerWithForObject(ctx.eContainer());
+		
+		if (simpleDomainObj == null) {
+			return myScope;
+		}
+    	
+    	addElementsForSimpleDomainObjectProperties(elements, simpleDomainObj);
+
+        return myScope;
+    }
+
+	private void addElementsForSimpleDomainObjectProperties(
+			List<IEObjectDescription> elements,
+			DslSimpleDomainObject simpleDomainObj) {
+		if(simpleDomainObj instanceof DslDomainObject) {
+    		DslDomainObject domainObj = (DslDomainObject)simpleDomainObj;
+    		addProperties(elements, domainObj.getAttributes(), domainObj.getReferences());
+    	} else if(simpleDomainObj instanceof DslBasicType) {
+    		DslBasicType basicType = (DslBasicType)simpleDomainObj;
+    		addProperties(elements, basicType.getAttributes(), basicType.getReferences());
+    	}
+	}
+
+	private DslSimpleDomainObject getSimpleDomainObjForProperty(DslProperty prop) {
+		if (!(prop instanceof DslReference)) {
+			// Parent path element an attribute - nothing to chain off of
+			return null;
+		}
+		DslReference dslRef = (DslReference) prop;
+		if (dslRef.getDomainObjectType() == null) {
+			return null;
+		}
+
+		return (DslSimpleDomainObject) dslRef.getDomainObjectType();
+
+	}
+	private void addProperties(List<IEObjectDescription> elements, EList<DslAttribute> attrs, EList<DslReference> refs) {
+		for (DslReference dslReference : refs) {
+			elements.add(new  EObjectDescription(dslReference.getName(), dslReference, null));
+		}
+		for (DslAttribute attr : attrs) {
+			elements.add(new  EObjectDescription(attr.getName(), attr, null));
+		}
+	}
+	
+    /**
+     * Walk up the eContainer() chain, looking for an object that has a 'for' object
+     * @param obj
+     * @return
+     */
+    private DslSimpleDomainObject findContainerWithForObject(EObject obj) {
+    	EObject currObj = obj;
+    	while(true) {
+    		if(currObj instanceof DslTableWidget) {
+    			DslTableWidget tableWidget = (DslTableWidget)currObj;
+    			if(tableWidget.getFor() != null) {
+    				return tableWidget.getFor();
+    			}
+    		} else if(currObj instanceof DslPanelWidget) {
+    			DslPanelWidget panelWidget = (DslPanelWidget)currObj;
+    			if(panelWidget.getFor() != null) {
+    				return panelWidget.getFor();
+    			}
+    		} else if(currObj instanceof DslView) {
+    			DslView view = (DslView)currObj; 
+    			if(view.getFor() != null) {
+    				return view.getFor();
+    			} else {
+    				// The view is as high as we'll go looking for 'for' objects.
+    				return null;
+    			}
+    		}
+    		currObj = currObj.eContainer();
+    	}
+    }
+    
+//    /**
+//     * Walk forwards from rootPathElem and find domain object associated with ctxPathElement in order to return the scoped elements that may be added to
+//     * from there.
+//     * @param forObj
+//     * @param rootPathElem
+//     * @param ctxPathElement
+//     * @return
+//     */
+//    IScope getScopeForPropertyPathElements(DslDomainObject forObj, DslPropertyPathElement rootPathElem, DslPropertyPathElement ctxPathElement) {
+//        Scope myScope = new Scope();
+//        List<IEObjectDescription> elements = new ArrayList<IEObjectDescription>();
+//        myScope.setElements(elements);
+//    	
+//        DslDomainObject currObj = forObj;
+//        DslProperty prop = null;
+//        DslPropertyPathElement currPathElem = rootPathElem;
+//        do {
+//        	
+//        	if(currPathElem.getProperty() instanceof DslReference) {
+//        		
+//        	}
+//        } while(ctxPathElement != rootPathElem);
+//        
+//        return myScope;
+//        
+//    }
+    
     
 //    IScope scope_DslView_for(DslView ctx, EReference ref) {
 //        Scope myScope = new Scope();

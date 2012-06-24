@@ -21,12 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslApplication;
+import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslAttribute;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslCommandEvent;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslDataTransferObject;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslDomainEvent;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslDomainObject;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslEntity;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslModule;
+import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslProperty;
+import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslReference;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslSimpleDomainObject;
 import org.fornax.cartridges.sculptor.dsl.sculptordsl.DslValueObject;
 
@@ -165,5 +168,20 @@ public class DslHelper {
         }
         return null;
     }
-
+//
+//    public static DslProperty findProperty(DslDomainObject obj, String name) {
+//    	for (DslAttribute attr : obj.getAttributes()) {
+//    		if(name.equals(attr.getName())) {
+//    			return attr;
+//    		}
+//		}
+//
+//    	for (DslReference ref : obj.getReferences()) {
+//    		if(name.equals(ref.getName())) {
+//    			return ref;
+//    		}
+//		}
+//    	return null;
+//
+//    }
 }

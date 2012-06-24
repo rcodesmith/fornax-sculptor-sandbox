@@ -903,7 +903,7 @@ Set[GuiCommand] commandsToGenerate(GuiModule module) :
 
 
 boolean hasSourceRef(PropertyReferringWidget widget) :
-	widget.forOp != null || widget.forAttribute != null || widget.forReference != null || widget.propertyPath != null;
+	widget.forOp != null || widget.forProperty != null || widget.propertyPath != null;
 	
 // Get the proper expression to access the domain object property pointed to by widget, contained in obj, with local name instName
 String getSourceRefExpression(PropertyReferringWidget widget, GuiDto obj, String instName) :

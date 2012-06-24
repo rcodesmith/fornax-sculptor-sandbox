@@ -1,6 +1,7 @@
 package org.fornax.cartridges.sculptor.generator.transformation;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import junit.framework.Assert;
@@ -19,6 +20,7 @@ import sculptorguimetamodel.ListBoxWidget;
 import sculptorguimetamodel.OnClickBinding;
 import sculptorguimetamodel.PanelWidget;
 import sculptorguimetamodel.PopulatePanelBehavior;
+import sculptorguimetamodel.PropertyPathElement;
 import sculptorguimetamodel.TableColumn;
 import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.UiCondition;
@@ -27,6 +29,7 @@ import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.Widget;
 import sculptorguimetamodel.WidgetTableColumn;
 import sculptormetamodel.DomainObject;
+import sculptormetamodel.Reference;
 import sculptormetamodel.Service;
 
 public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
@@ -279,7 +282,22 @@ public class ViewGuiDslTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals("Person", forObj.getName());
 		assertEquals("person", forObj.getModule().getName());
 		
+		InformationalTextWidget info1 = (InformationalTextWidget)getNamedElement("info1", widgets);
+		assertNotNull(info1);
 		
+		// Verify property path
+		PropertyPathElement info1PathElem1 = info1.getForProperty();
+		assertNotNull(info1PathElem1);
+		Reference info1ForPropRef = info1PathElem1.getForReference();
+		assertTrue(info1ForPropRef.eContainer() instanceof GuiDto);
+		assertNotNull(info1ForPropRef);
+		assertEquals("ssn", info1ForPropRef.getName());
+		PropertyPathElement firstNamePathElem = info1PathElem1.getRemainingPath();
+		assertNotNull(firstNamePathElem);
+		assertNotNull(firstNamePathElem.getForAttribute());
+		assertEquals("number", firstNamePathElem.getForAttribute().getName());
+		assertNull(firstNamePathElem.getRemainingPath());
+		assertTrue(firstNamePathElem.getForAttribute().eContainer() instanceof GuiDto);
 	}
 	
 

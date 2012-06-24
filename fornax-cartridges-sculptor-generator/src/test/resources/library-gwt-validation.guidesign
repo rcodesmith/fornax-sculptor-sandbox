@@ -75,8 +75,17 @@ gui LibraryWeb for Library {
 				
 				autocomplete autocomp1 {
 					label = "Auto complete one"
-					onSelectItem=navigateToMediaBrowse
+					onSelectItem=navigateToMediaBrowse, someLinkBehavior
 				}
+			}
+			
+			"someLinkBehavior in PersonForm"
+			UiBehavior Custom someLinkBehavior {
+				
+			}
+
+			UiBehavior Custom personFormCustomBehavior {
+				
 			}
 		}
 		
@@ -153,6 +162,7 @@ gui LibraryWeb for Library {
 				panel=personDetailsPanel
 			}
 			
+			"someLinkBehavior in TableView"
 			UiBehavior Custom someLinkBehavior {
 				
 			}
@@ -222,6 +232,7 @@ gui LibraryWeb for Library {
 					label = "Person ID"
 				}
 			}
+			
 		}
 		
 		"This is some MyEvent1 documentation"

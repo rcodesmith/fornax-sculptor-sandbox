@@ -8,11 +8,13 @@ package sculptorguimetamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import sculptorguimetamodel.PropertyPathElement;
 import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
@@ -28,35 +30,16 @@ import sculptormetamodel.Reference;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForAttribute <em>For Attribute</em>}</li>
- *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForReference <em>For Reference</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForOp <em>For Op</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getFor <em>For</em>}</li>
  *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getPropertyPath <em>Property Path</em>}</li>
+ *   <li>{@link sculptorguimetamodel.impl.PropertyReferringWidgetImpl#getForProperty <em>For Property</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyReferringWidget {
-	/**
-	 * The cached value of the '{@link #getForAttribute() <em>For Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForAttribute()
-	 * @generated
-	 * @ordered
-	 */
-	protected Attribute forAttribute;
-	/**
-	 * The cached value of the '{@link #getForReference() <em>For Reference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getForReference()
-	 * @generated
-	 * @ordered
-	 */
-	protected Reference forReference;
 	/**
 	 * The cached value of the '{@link #getForOp() <em>For Op</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -94,6 +77,15 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 */
 	protected String propertyPath = PROPERTY_PATH_EDEFAULT;
 	/**
+	 * The cached value of the '{@link #getForProperty() <em>For Property</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForProperty()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyPathElement forProperty;
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -109,82 +101,6 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 */
 	protected EClass eStaticClass() {
 		return SculptorguimetamodelPackage.Literals.PROPERTY_REFERRING_WIDGET;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Attribute getForAttribute() {
-		if (forAttribute != null && forAttribute.eIsProxy()) {
-			InternalEObject oldForAttribute = (InternalEObject)forAttribute;
-			forAttribute = (Attribute)eResolveProxy(oldForAttribute);
-			if (forAttribute != oldForAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE, oldForAttribute, forAttribute));
-			}
-		}
-		return forAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Attribute basicGetForAttribute() {
-		return forAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setForAttribute(Attribute newForAttribute) {
-		Attribute oldForAttribute = forAttribute;
-		forAttribute = newForAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE, oldForAttribute, forAttribute));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Reference getForReference() {
-		if (forReference != null && forReference.eIsProxy()) {
-			InternalEObject oldForReference = (InternalEObject)forReference;
-			forReference = (Reference)eResolveProxy(oldForReference);
-			if (forReference != oldForReference) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE, oldForReference, forReference));
-			}
-		}
-		return forReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Reference basicGetForReference() {
-		return forReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setForReference(Reference newForReference) {
-		Reference oldForReference = forReference;
-		forReference = newForReference;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE, oldForReference, forReference));
 	}
 
 	/**
@@ -289,14 +205,64 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PropertyPathElement getForProperty() {
+		return forProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetForProperty(PropertyPathElement newForProperty, NotificationChain msgs) {
+		PropertyPathElement oldForProperty = forProperty;
+		forProperty = newForProperty;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY, oldForProperty, newForProperty);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setForProperty(PropertyPathElement newForProperty) {
+		if (newForProperty != forProperty) {
+			NotificationChain msgs = null;
+			if (forProperty != null)
+				msgs = ((InternalEObject)forProperty).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY, null, msgs);
+			if (newForProperty != null)
+				msgs = ((InternalEObject)newForProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY, null, msgs);
+			msgs = basicSetForProperty(newForProperty, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY, newForProperty, newForProperty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY:
+				return basicSetForProperty(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE:
-				if (resolve) return getForAttribute();
-				return basicGetForAttribute();
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE:
-				if (resolve) return getForReference();
-				return basicGetForReference();
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				if (resolve) return getForOp();
 				return basicGetForOp();
@@ -305,6 +271,8 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return basicGetFor();
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
 				return getPropertyPath();
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY:
+				return getForProperty();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -316,12 +284,6 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE:
-				setForAttribute((Attribute)newValue);
-				return;
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE:
-				setForReference((Reference)newValue);
-				return;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				setForOp((DomainObjectOperation)newValue);
 				return;
@@ -330,6 +292,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
 				setPropertyPath((String)newValue);
+				return;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY:
+				setForProperty((PropertyPathElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -342,12 +307,6 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE:
-				setForAttribute((Attribute)null);
-				return;
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE:
-				setForReference((Reference)null);
-				return;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				setForOp((DomainObjectOperation)null);
 				return;
@@ -356,6 +315,9 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 				return;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
 				setPropertyPath(PROPERTY_PATH_EDEFAULT);
+				return;
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY:
+				setForProperty((PropertyPathElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -368,16 +330,14 @@ public class PropertyReferringWidgetImpl extends WidgetImpl implements PropertyR
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_ATTRIBUTE:
-				return forAttribute != null;
-			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_REFERENCE:
-				return forReference != null;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_OP:
 				return forOp != null;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR:
 				return for_ != null;
 			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__PROPERTY_PATH:
 				return PROPERTY_PATH_EDEFAULT == null ? propertyPath != null : !PROPERTY_PATH_EDEFAULT.equals(propertyPath);
+			case SculptorguimetamodelPackage.PROPERTY_REFERRING_WIDGET__FOR_PROPERTY:
+				return forProperty != null;
 		}
 		return super.eIsSet(featureID);
 	}
