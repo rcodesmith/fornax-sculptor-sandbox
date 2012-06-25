@@ -3,7 +3,7 @@
   <groupId>org.fornax.cartridges</groupId>
   <artifactId>fornax-cartridges-sculptor-smartclient-bt</artifactId>
   <versioning>
-    <release>2.0.24-gwt</release>
+    <release>2.0.25-gwt</release>
     <versions>
       <version>2.0.0</version>
       <version>2.0.0-gwt</version>
@@ -29,7 +29,8 @@
       <version>2.0.21-gwt</version>
       <version>2.0.23-gwt</version>
       <version>2.0.24-gwt</version>
+      <version>2.0.25-gwt</version>
     </versions>
-    <lastUpdated>20120621053415</lastUpdated>
+    <lastUpdated>20120625123438</lastUpdated>
   </versioning>
 </metadata>
