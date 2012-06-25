@@ -10,6 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import sculptorguimetamodel.GuiEvent;
+import sculptorguimetamodel.InformationalTextWidget;
+import sculptorguimetamodel.View;
 import sculptorguimetamodel.impl.SculptorguimetamodelFactoryImpl;
 import sculptormetamodel.impl.SculptormetamodelFactoryImpl;
 
@@ -39,6 +41,16 @@ public class GwtUiHelpersTest  extends LibraryGwtTemplateBaseTest { //extends Li
 		String res = (String)XtendUnit.xtend(EXTENSION, "gwtEventsPackage", Arrays.asList(myEvent1));
 		Assert.assertEquals("org.fornax.cartridges.sculptor.examples.library.person.gwt.client.event", res);
 		
+	}
+	
+	@Test
+	public void assertPropertyPathExpression() {
+		View personForm = (View)getNamedElement("PersonForm", personModule().getViews());
+		InformationalTextWidget info1 = (InformationalTextWidget)getNamedElement("info1", personForm.getWidgets());
+		
+		String res = (String)XtendUnit.xtend(EXTENSION, "getSourceRefExpression", Arrays.asList(info1, personForm.getFor(),
+				"object"));
+		Assert.assertEquals("object.getSsn().getNumber()", res);
 	}
 
 }

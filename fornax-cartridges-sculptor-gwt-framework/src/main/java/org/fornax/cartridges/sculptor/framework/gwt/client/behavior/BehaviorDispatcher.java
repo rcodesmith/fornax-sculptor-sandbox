@@ -158,6 +158,10 @@ public class BehaviorDispatcher {
 		}
 	}
 
+	public void invoke(ClickEvent clickEvent) {
+		invoke(new Event());
+	}
+	
 	/**
 	 * Invoke the behaviors associated with this dispatcher without an event - an empty one will be created
 	 * @param event

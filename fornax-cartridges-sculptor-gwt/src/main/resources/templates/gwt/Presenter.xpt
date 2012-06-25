@@ -15,7 +15,7 @@ package «gwtActivitiesBasePackage()»;
   */
 public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBaseInterface()» {
 
-	«EXPAND presenterInterfaceDeclarations FOREACH this.allWidgets()»
+	«EXPAND presenterInterfaceDeclarations(this) FOREACH this.allWidgets()»
 }
 «ENDDEFINE»
 
@@ -33,21 +33,43 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 
 
 
+«REM»----------------------------------------------------------------------------------------
+	Behavior binding methods
+-------------------------------------------------------------------------------------«ENDREM»
+
+«DEFINE behaviorBindingMethods(Widget widget) FOR BehaviorBinding»
+	// Presenter interface for «widget.name» widget and «this.bindingTypeName» type binding not yet implemented
+	
+«ENDDEFINE»
+
+«DEFINE behaviorBindingMethods(Widget widget) FOR OnClickBinding»
+	/**
+	  * «widget.name» widget has received a click
+	  */
+	void «widget.name»OnClick(com.google.gwt.event.dom.client.ClickEvent clickEvent);
+«ENDDEFINE»
+
+
+
+
+«REM»----------------------------------------------------------------------------------------
+	Widget presenter interface declarations
+-------------------------------------------------------------------------------------«ENDREM»
+
 «REM»Declarations that must be added to the presenter interface for each widget«ENDREM»
+«DEFINE presenterInterfaceDeclarations(View view) FOR Widget»
+	
+	«IF view.usePresenterCallbacks()»
+		«EXPAND behaviorBindingMethods(this) FOREACH this.behaviorBindings»	
+	«ENDIF»
 
-«DEFINE presenterInterfaceDeclarations FOR Widget»
-	// No presenter interface declarations for «name» widget - fill in implementation?
 «ENDDEFINE»
 
-«DEFINE presenterInterfaceDeclarations FOR ButtonWidget»
-«ENDDEFINE»
+«DEFINE presenterInterfaceDeclarations(View view) FOR TableWidget»
+	«IF view.usePresenterCallbacks()»
+		«EXPAND behaviorBindingMethods(this) FOREACH this.behaviorBindings»	
+	«ENDIF»
 
-«DEFINE presenterInterfaceDeclarations FOR LinkWidget»
-«ENDDEFINE»
-
-
-
-«DEFINE presenterInterfaceDeclarations FOR TableWidget»
     «FOREACH columns AS col»
 	    «IF col.columnType == "Text"»
 		«ELSEIF col.columnType == "Button"»
@@ -76,6 +98,8 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 «DEFINE tableColumnOnClickHandlers(TableWidget tableWidget) FOR TableColumn»
 
 «ENDDEFINE»
+
+
 
 
 

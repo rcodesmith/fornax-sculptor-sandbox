@@ -139,6 +139,10 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	
 	
 	«EXPAND widgetBindMethod FOREACH allWidgets()»
+
+	«IF this.usePresenterCallbacks()»
+		«EXPAND behaviorPresenterMethods FOREACH allWidgets()»
+	«ENDIF»
 	
 	protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {
 		return view.asWidget();
@@ -488,6 +492,25 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «DEFINE behaviorDispatcherInit (Widget widget) FOR BehaviorBinding»
 	«EXPAND behaviorDispatcherDeclaration(widget) FOR this»
 	«EXPAND behaviorDispatcherInitMethod(widget) FOR this»
+«ENDDEFINE»
+
+«REM»----------------------------------------------------------------------------------------
+	Methods to handle events called back from view
+-------------------------------------------------------------------------------------«ENDREM»
+
+«DEFINE behaviorPresenterMethods FOR Widget»
+	«EXPAND behaviorPresenterBindingMethod(this) FOREACH this.behaviorBindings»
+«ENDDEFINE»
+
+«DEFINE behaviorPresenterBindingMethod(Widget widget) FOR BehaviorBinding»
+	// No presenter callback method yet implemented for «widget.name» widget and «this.bindingTypeName» type binding
+	
+«ENDDEFINE»
+
+«DEFINE behaviorPresenterBindingMethod(Widget widget) FOR OnClickBinding»
+	public void «widget.name»OnClick(com.google.gwt.event.dom.client.ClickEvent clickEvent) {
+		«this.behaviorDispatcherName()».invoke(clickEvent);
+	}
 «ENDDEFINE»
 
 «REM»----------------------------------------------------------------------------------------

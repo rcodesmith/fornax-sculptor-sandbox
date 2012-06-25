@@ -993,12 +993,14 @@ Table column support for InformationalTextWidget type
 
     // «name» table
     @com.google.gwt.uibinder.client.UiField(provided = true)
-    public «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
-    final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
-        new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
+    «IF this.for != null»
+	    public «resolveGwtWidgetType()»<«fqnTableForClass()»> «name» = new «resolveGwtWidgetType()»<«fqnTableForClass()»>();
+	    final com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»> «name»SelectionModel =
+   	    	new com.google.gwt.view.client.SingleSelectionModel<«fqnTableForClass()»>();
 
-	// Define data provider for «name» table
-	protected «fqnDataProviderClass()»<«fqnTableForClass()»> «name»DataProvider;
+		// Define data provider for «name» table
+		protected «fqnDataProviderClass()»<«fqnTableForClass()»> «name»DataProvider;
+    «ENDIF»
 	
 	«IF paging»
 		// Pager for «name» table	

@@ -572,6 +572,9 @@ String widgetForIsWidgetExpr(Widget w) :
 // View-related functions
 ////////////////////////////////////////////////////////////////////////////
 
+boolean usePresenterCallbacks(View view) :
+	hasHint(view, "gwtpresentercallbacks");
+
 //cached List[Widget] allWidgets(View view) :
 //	allContainedWidgets(view);
 
@@ -912,10 +915,24 @@ String getSourceRefExpression(PropertyReferringWidget widget, GuiDto obj, String
 		
 		// TODO: Following should handle nested path expressions
 		case widget.propertyPath != null : getPathExpression(instName, obj, widget.propertyPath)
-			
+		
+		case widget.forProperty != null : instName + "." + getPropertyPathExpression(widget.forProperty)
+		
 		default : null
 	};
 		
+
+String getPropertyPathExpression(PropertyPathElement pathElem) :
+	pathElem.getPropertyPathElementExpression() +
+		(pathElem.remainingPath != null ? "." + pathElem.remainingPath.getPropertyPathExpression() : "");
+	
+String getPropertyPathElementExpression(PropertyPathElement pathElem) :
+	switch {
+		case pathElem.forAttribute != null : pathElem.forAttribute.getGetAccessor() + "()"
+		
+		case pathElem.forReference != null : pathElem.forReference.getGetAccessor() + "()"
+		default : ""
+	};
 
 String getPathExpression(String instName, DomainObject obj, String propertyPath) :
 	instName + "." + obj.getElementByName(propertyPath).getGetAccessor() + "()";
