@@ -6,7 +6,7 @@ git commit -a -m 'upped version to 2.0.1-gwt'
 
 git push origin my-extensions
 
-mvn deploy -DaltDeploymentRepository=pub-scupltor::default::file:///Users/ron/Documents/3rdPartySrc/sculptor-dev/fornax-sculptor-sandbox-pages/repository
+mvn deploy -DaltDeploymentRepository=pub-scupltor::default::file:///usr/local/workingArea/sculptor-dev-myextensions/fornax-sculptor-sandbox-pages/repository
 
 
 in /Users/ron/Documents/3rdPartySrc/sculptor-dev/fornax-sculptor-sandbox-pages:
