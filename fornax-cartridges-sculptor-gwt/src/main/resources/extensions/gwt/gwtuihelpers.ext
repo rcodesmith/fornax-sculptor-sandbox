@@ -26,7 +26,7 @@ String getGwtInterfaceHasSelection(Widget widget) :
 
 
 Boolean gwtDtoGenerateGap() :
-	getBooleanProperty("gwt.dto.generate.gap");
+	getBooleanProperty("gwt.dto.generate.gap") || hasHint("gwtgap");
 
 
 String baseClassName(DomainObject domainObject) :
