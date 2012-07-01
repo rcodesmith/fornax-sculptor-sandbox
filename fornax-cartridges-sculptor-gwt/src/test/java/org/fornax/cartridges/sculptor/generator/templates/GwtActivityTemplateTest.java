@@ -49,6 +49,12 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 
 		assertContains(activityBaseCode,
 				"protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {");
+		
+		assertContainsConsecutiveFragments(activityBaseCode,
+				"@Override",
+				"public void mytableGenderSelectorOnSelectItem(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {",
+				"genderSelectorOnSelectItemBehaviorDispatcher.invoke(event);",
+				"}");
 	}
 
 	@Test

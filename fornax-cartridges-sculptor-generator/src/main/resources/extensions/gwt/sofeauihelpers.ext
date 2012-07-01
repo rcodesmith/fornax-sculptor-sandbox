@@ -8,10 +8,9 @@ extension extensions::guihelper;
 ////////////////////////////////////////////////////////////////////////////
 // General widget-related functions
 ////////////////////////////////////////////////////////////////////////////
-//View findContainingView(Widget widget, Module module) :
-//	let container = widget.eContainer :
-//		debugTrace("findContainingView for " + widget) ->
-//		View.isInstance(container) ? ((View)container).transformView(module) : ((Widget)container).findContainingView(module);
+View findContainingView(Widget widget) :
+	let container = widget.eContainer :
+		View.isInstance(container) ? container : ((Widget)container).findContainingView();
 		 
 
 

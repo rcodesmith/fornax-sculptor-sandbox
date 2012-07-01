@@ -35,20 +35,26 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 
 «REM»----------------------------------------------------------------------------------------
 	Behavior binding methods
--------------------------------------------------------------------------------------«ENDREM»
+-------------------------------------------------------------------------------------
+	// Presenter interface for «widget.name» widget and «this.bindingTypeName» type binding not yet implemented
+«ENDREM»
 
 «DEFINE behaviorBindingMethods(Widget widget) FOR BehaviorBinding»
-	// Presenter interface for «widget.name» widget and «this.bindingTypeName» type binding not yet implemented
+	/**
+	  * «widget.name» widget «this.bindingTypeName» binding callback
+	  */
+	void «widget.name»«this.bindingTypeName»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event);
 	
 «ENDDEFINE»
 
+«REM»
 «DEFINE behaviorBindingMethods(Widget widget) FOR OnClickBinding»
 	/**
 	  * «widget.name» widget has received a click
 	  */
 	void «widget.name»OnClick(com.google.gwt.event.dom.client.ClickEvent clickEvent);
 «ENDDEFINE»
-
+«ENDREM»
 
 
 
@@ -67,20 +73,11 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 
 «DEFINE presenterInterfaceDeclarations(View view) FOR TableWidget»
 	«IF view.usePresenterCallbacks()»
-		«EXPAND behaviorBindingMethods(this) FOREACH this.behaviorBindings»	
+		«EXPAND behaviorBindingMethods(this) FOREACH this.behaviorBindings»			
 	«ENDIF»
 
-    «FOREACH columns AS col»
-	    «IF col.columnType == "Text"»
-		«ELSEIF col.columnType == "Button"»
-		    «EXPAND tableColumnOnClickHandlers(this) FOR col »
-		«ELSEIF col.columnType == "Date"»
-		«ELSEIF col.columnType == "Custom"»
-		«ELSEIF col.columnType == "Link"»
-		    «EXPAND tableColumnOnClickHandlers(this) FOR col »			
-	    «ENDIF»
-    «ENDFOREACH»
-    
+	«EXPAND presenterInterfaceDeclarations(view, this) FOREACH this.columns»
+	
 	«IF usesAsyncDataProvider()»
 		/**
 		 * Indication that the range of elements to be displayed for the «name» table has changed, and the
@@ -91,9 +88,38 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 		public void «name»RangeChanged(com.google.gwt.view.client.HasData<«fqnTableForClass()»> hasData);
 	«ENDIF»
 
-
-
 «ENDDEFINE»
+
+«REM»
+	Interface declarations for table columns
+«ENDREM»
+«DEFINE presenterInterfaceDeclarations(View view, TableWidget tableWidget) FOR TableColumn»
+	    «IF this.columnType == "Text"»
+		«ELSEIF this.columnType == "Button"»
+		    «EXPAND tableColumnOnClickHandlers(tableWidget) FOR this »
+		«ELSEIF this.columnType == "Date"»
+		«ELSEIF this.columnType == "Custom"»
+		«ELSEIF this.columnType == "Link"»
+		    «EXPAND tableColumnOnClickHandlers(tableWidget) FOR this »
+	    «ENDIF»
+«ENDDEFINE»
+
+«REM»
+	Widget-based table columns can have behavior bindings
+«ENDREM»
+«DEFINE presenterInterfaceDeclarations(View view, TableWidget tableWidget) FOR WidgetTableColumn»
+	«IF view.usePresenterCallbacks()»
+		«EXPAND behaviorBindingMethods(view, tableWidget, this) FOREACH this.widget.behaviorBindings»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE behaviorBindingMethods(View view, TableWidget tableWidget, WidgetTableColumn column) FOR BehaviorBinding»
+	/**
+	  * «widget.name» widget «this.bindingTypeName» binding callback
+	  */
+	void «presenterCallbackMethodName(tableWidget, column, this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event);
+«ENDDEFINE»
+
 
 «DEFINE tableColumnOnClickHandlers(TableWidget tableWidget) FOR TableColumn»
 

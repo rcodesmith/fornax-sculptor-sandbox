@@ -124,26 +124,22 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 			«ENDFOREACH»
 		«ENDIF»
 		
-		«FOREACH allWidgets() AS w»
-			bind«w.name.toFirstUpper()»();
-		«ENDFOREACH»
-		
-		«FOREACH allWidgets().typeSelect(TableWidget) AS table»
-			«FOREACH table.columns AS col»
-				bind«table.name.toFirstUpper()»«col.name.toFirstUpper()»();
+		«IF this.usePresenterCallbacks() == false»
+			«FOREACH allWidgets() AS w»
+				bind«w.name.toFirstUpper()»();
 			«ENDFOREACH»
-		«ENDFOREACH»
 		
-		
+			«FOREACH allWidgets().typeSelect(TableWidget) AS table»
+				«FOREACH table.columns AS col»
+					bind«table.name.toFirstUpper()»«col.name.toFirstUpper()»();
+				«ENDFOREACH»
+			«ENDFOREACH»
+		«ENDIF»
 	}
 	
 	
 	«EXPAND widgetBindMethod FOREACH allWidgets()»
 
-	«IF this.usePresenterCallbacks()»
-		«EXPAND behaviorPresenterMethods FOREACH allWidgets()»
-	«ENDIF»
-	
 	protected com.google.gwt.user.client.ui.Widget getViewAsWidget() {
 		return view.asWidget();
 	}
@@ -498,6 +494,8 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	Methods to handle events called back from view
 -------------------------------------------------------------------------------------«ENDREM»
 
+«REM»
+
 «DEFINE behaviorPresenterMethods FOR Widget»
 	«EXPAND behaviorPresenterBindingMethod(this) FOREACH this.behaviorBindings»
 «ENDDEFINE»
@@ -506,27 +504,49 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	// No presenter callback method yet implemented for «widget.name» widget and «this.bindingTypeName» type binding
 	
 «ENDDEFINE»
+«ENDREM»
 
+«REM»
 «DEFINE behaviorPresenterBindingMethod(Widget widget) FOR OnClickBinding»
+	@Override
 	public void «widget.name»OnClick(com.google.gwt.event.dom.client.ClickEvent clickEvent) {
 		«this.behaviorDispatcherName()».invoke(clickEvent);
 	}
 «ENDDEFINE»
+«ENDREM»
 
 «REM»----------------------------------------------------------------------------------------
 	Methods to bind activity to view
 -------------------------------------------------------------------------------------«ENDREM»
 
 «DEFINE widgetBindMethod FOR Widget»
+	«debugTrace("widgetBindMethod(" + this + ") usePresenterCallbacks=" + view.usePresenterCallbacks())»
 
-	/**
-	 * Bind behaviors to individual widgets.  Subclasses may override this to perform custom bindings.
-	 */
-	protected void bind«this.name.toFirstUpper()»() {
+	«IF view.usePresenterCallbacks() == false»
+		/**
+		 * Bind behaviors to individual widgets.  Subclasses may override this to perform custom bindings.
+		 */
+		protected void bind«this.name.toFirstUpper()»() {
 
-		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»		
-	}
+			«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»		
+		}
+	«ELSE»
+		«EXPAND presenterBindingCallbackMethods(this) FOREACH this.behaviorBindings»
+	«ENDIF»			
 «ENDDEFINE»
+
+«DEFINE presenterBindingCallbackMethods(Widget widget) FOR BehaviorBinding»
+	/**
+	  * «widget.name» widget «this.bindingTypeName» binding callback
+	  */
+	@Override
+	public void «widget.name»«this.bindingTypeName»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {
+		«this.behaviorDispatcherName()».invoke(event);
+	}
+	
+«ENDDEFINE»
+
+
 
 «DEFINE behaviorBinding FOR BehaviorBinding»
 	«debugTrace("No template for behavior binding " + this)»
@@ -574,16 +594,18 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 
 
 «DEFINE widgetBindMethod FOR TableWidget»
-
+	«debugTrace("widgetBindMethod(" + this + ") usePresenterCallbacks=" + view.usePresenterCallbacks())»
 	«REM»reuse template from Widget?«ENDREM»
-	/**
-	 * Bind behaviors to individual widgets.  Subclasses may override this to perform custom bindings.
-	 */
-	protected void bind«this.name.toFirstUpper()»() {
-
-		«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»
-	}
-
+	«IF view.usePresenterCallbacks() == false»
+		/**
+		 * Bind behaviors to individual widgets.  Subclasses may override this to perform custom bindings.
+		 */
+		protected void bind«this.name.toFirstUpper()»() {
+			«EXPAND behaviorBinding(this) FOREACH this.behaviorBindings»
+		}
+	«ELSE»
+		«EXPAND presenterBindingCallbackMethods(this) FOREACH this.behaviorBindings»
+	«ENDIF»
 	«EXPAND columnBindMethod(this) FOREACH columns»
 «ENDDEFINE»
 
@@ -591,25 +613,41 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	Behavior bindings for table columns
 «ENDREM»
 «DEFINE columnBindMethod(TableWidget table) FOR TableColumn»
-	/**
-	 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
-	 */
-	protected void bind«table.name.toFirstUpper()»«this.name.toFirstUpper()»() {
-	}
+	«IF table.view.usePresenterCallbacks() == false»
+
+		/**
+		 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
+		 */
+		protected void bind«table.name.toFirstUpper()»«this.name.toFirstUpper()»() {
+		}
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE columnBindMethod(TableWidget table) FOR WidgetTableColumn»
+	«debugTrace("columnBindMethod(" + this + ") usePresenterCallbacks=" + table.view.usePresenterCallbacks())»
 	«REM»Declare and create behavior dispatcher for columns here - special case for columns«ENDREM»
 	«EXPAND behaviorDispatcherInit(this.widget) FOREACH this.widget.behaviorBindings»	
+	
+	«IF table.view.usePresenterCallbacks() == false»
+		/**
+		 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
+		 */
+		protected void bind«table.name.toFirstUpper()»«this.name.toFirstUpper()»() {
+			«EXPAND behaviorBinding(this.widget, this, table) FOREACH this.widget.behaviorBindings»		
+		}
+	«ELSE»
+		«EXPAND presenterBindingCallbackMethods(table.findContainingView(), table, this, this.widget) FOREACH this.widget.behaviorBindings»
+	«ENDIF»
+«ENDDEFINE»
 
+«DEFINE presenterBindingCallbackMethods(View view, TableWidget tableWidget, WidgetTableColumn column, Widget widget) FOR BehaviorBinding»
 	/**
-	 * Bind behaviors to individual columns.  Subclasses may override this to perform custom bindings.
-	 */
-	protected void bind«table.name.toFirstUpper()»«this.name.toFirstUpper()»() {
-
-		«EXPAND behaviorBinding(this.widget, this, table) FOREACH this.widget.behaviorBindings»		
+	  * «widget.name» widget «this.bindingTypeName» binding callback
+	  */
+	@Override
+	public void «presenterCallbackMethodName(tableWidget, column, this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {
+		«this.behaviorDispatcherName()».invoke(event);
 	}
-
 «ENDDEFINE»
 
 «REM»

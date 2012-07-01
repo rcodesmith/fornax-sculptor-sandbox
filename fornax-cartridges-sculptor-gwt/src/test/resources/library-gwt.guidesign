@@ -75,6 +75,7 @@ gui LibraryWeb for Library {
 		}
 		
 		View TableView {
+			hint="gwtpresentercallbacks"
 			
 			parameters {
 				String param1;
@@ -97,7 +98,18 @@ gui LibraryWeb for Library {
 						
 						birthDate type=Date; //forProperty birthDate
 						
-						personLink label="Edit Person" type=Link;
+						widget listBox genderSelector forPath "sex" forEnum Gender {
+							label = "Gender"
+							onSelectItem=populatePersonDetailsPanel,updatePerson
+						}
+						
+						edit type=Button onClick=populatePersonDetailsPanel;
+						
+						widget link personLink {
+							label = "Edit Person"
+							onClick = someLinkBehavior
+							
+						}
 					}
 				}
 				
@@ -141,6 +153,19 @@ gui LibraryWeb for Library {
 				
 			}
 			
+			"Populate the person details panel"
+			UiBehavior PopulatePanel populatePersonDetailsPanel {
+				panel=personDetailsPanel
+			}
+			UiBehavior Custom someLinkBehavior {
+				
+			}
+			
+			UiBehavior UpdateAttribute updatePerson {
+				
+			}
+
+
 			"Behavior to popup a panel"
 			UiBehavior PopupPanel popupPersonDetails {
 				panelName = "Person details"

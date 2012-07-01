@@ -44,18 +44,19 @@ public class BehaviorDispatcher {
 	 *
 	 */
 	public static class Event {
-		private Integer index;
+		protected Integer index;
 		
 		private Object obj;
 		
 		private Object value;
-
-		public Integer getIndex() {
-			return index;
+		
+		public Event() {
+			
 		}
-
-		public void setIndex(Integer index) {
-			this.index = index;
+		
+		public Event(Object obj, Object val) {
+			this.obj = obj;
+			this.value = val;
 		}
 
 		public Object getObj() {
@@ -74,9 +75,19 @@ public class BehaviorDispatcher {
 			this.value = value;
 		}
 		
+
+		public Integer getIndex() {
+			return index;
+		}
+
+		public void setIndex(Integer index) {
+			this.index = index;
+		}
+
 		public String toString() {
 			return ("Event(index=" + index + ", obj = " + obj + ", value = " + value + ")");
 		}
+
 	}
 	
 	/**

@@ -25,12 +25,11 @@ String getGwtInterfaceHasSelection(Widget widget) :
 
 
 
-Boolean gwtDtoGenerateGap() :
-	getBooleanProperty("gwt.dto.generate.gap") || hasHint("gwtgap");
-
+Boolean gwtDtoGenerateGap(GuiDto guiDto) :
+	getBooleanProperty("gwt.dto.generate.gap") || guiDto.hasHint("gwtgap");
 
 String baseClassName(DomainObject domainObject) :
-  domainObject.name + (domainObject.gapClass && gwtDtoGenerateGap() ? "Base" : "");
+  domainObject.name + (domainObject.gapClass && domainObject.gwtDtoGenerateGap() ? "Base" : "");
 
 String getGwtExtendsLitteral(DomainObject domainObject) :
 	domainObject.getGwtExtendsClassName() == "" ?
@@ -105,7 +104,7 @@ String getGwtPackage(GuiModule guiModule) :
 
 String gwtDomainPackage(StubModule module) :
    let res = gwtBasePackage(module) + ".shared.domain":
-   debugTrace("gwtDomainPackage() res=" + res) ->
+//   debugTrace("gwtDomainPackage() res=" + res) ->
    res;
 
 String gwtDomainPackage(GuiModule module) :
@@ -574,6 +573,9 @@ String widgetForIsWidgetExpr(Widget w) :
 
 boolean usePresenterCallbacks(View view) :
 	hasHint(view, "gwtpresentercallbacks");
+
+String presenterCallbackMethodName(TableWidget tableWidget, TableColumn column, BehaviorBinding binding) :
+	tableWidget.name + column.name.toFirstUpper() + binding.bindingTypeName;
 
 //cached List[Widget] allWidgets(View view) :
 //	allContainedWidgets(view);
