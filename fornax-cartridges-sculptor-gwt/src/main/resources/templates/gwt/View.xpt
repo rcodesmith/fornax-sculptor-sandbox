@@ -488,9 +488,9 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	  * overridden in the implementation class if needed.
 	  */
 	public «gwtViewWidgetBaseClass()»() {
-		«EXPAND widgetInitCalls FOREACH allWidgets()»
-		
 		initWidget(getWidget());		
+
+		«EXPAND widgetInitCalls FOREACH allWidgets()»		
 	}
 	
     protected com.google.gwt.user.client.ui.Widget getWidget() {

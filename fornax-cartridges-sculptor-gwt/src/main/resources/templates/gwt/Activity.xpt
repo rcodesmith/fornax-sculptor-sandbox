@@ -103,6 +103,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		LOG.info("init()");
 		
 		getView().initView(this);
+		
 				
 	}
 
@@ -124,6 +125,14 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 			«ENDFOREACH»
 		«ENDIF»
 		
+		// Create behavior dispatchers.  Has to be done after behaviors because this is where the behaviors get added to the
+		// dispatcher
+		«FOREACH this.allAllWidgets() AS widget»
+			«FOREACH widget.behaviorBindings AS bb»
+				«bb.behaviorDispatcherName()» = create«bb.behaviorDispatcherName().toFirstUpper()»();
+			«ENDFOREACH»
+		«ENDFOREACH»
+
 		«IF this.usePresenterCallbacks() == false»
 			«FOREACH allWidgets() AS w»
 				bind«w.name.toFirstUpper()»();

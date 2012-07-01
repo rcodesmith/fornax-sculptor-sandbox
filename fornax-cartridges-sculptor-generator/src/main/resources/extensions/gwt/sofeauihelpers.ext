@@ -31,6 +31,19 @@ List[Widget] allWidgets(Widget w):
 List[Widget] allWidgets(PanelWidget w):
 	w.widgets;
 
+// Return all widgets, including widgets contained in tables
+cached List[Widget] allAllWidgets(View view):
+	{}.addAll(view.widgets).addAll(view.widgets.allAllWidgets());
+
+List[Widget] allAllWidgets(Widget w):
+	{};
+	
+List[Widget] allAllWidgets(PanelWidget w):
+	w.widgets;
+
+List[Widget] allAllWidgets(TableWidget t):
+	t.columns.typeSelect(WidgetTableColumn).widget;
+	
 	
 String getGwtExtendsLitteral(DomainObject domainObject) :
 	domainObject.getGwtExtendsClassName() == "" ?

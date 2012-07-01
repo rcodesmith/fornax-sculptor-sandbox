@@ -816,7 +816,7 @@ String fqnActivityImplClass(View view) :
 // Get name of behavior dispatcher attribute in activity
 String behaviorDispatcherName(BehaviorBinding binding) :
 	binding.widget.name + binding.bindingTypeName + "BehaviorDispatcher";
-
+	
 
 //////////////////////////////////////////////////////////////////////////////
 // Place related functions

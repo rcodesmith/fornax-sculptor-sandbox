@@ -55,6 +55,13 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"public void mytableGenderSelectorOnSelectItem(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {",
 				"genderSelectorOnSelectItemBehaviorDispatcher.invoke(event);",
 				"}");
+		
+		assertContainsConsecutiveFragments(activityBaseCode, "	protected void init() {",
+				"LOG.info(\"init()\");",
+				"genderSelectorOnSelectItemBehaviorDispatcher = createGenderSelectorOnSelectItemBehaviorDispatcher();",
+				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();",
+				"getView().initView(this);",
+				"}");
 	}
 
 	@Test
