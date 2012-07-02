@@ -378,6 +378,30 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
  	}
 «ENDDEFINE»
 
+«DEFINE initBehavior FOR ConfirmMessageBehavior»
+
+	«IF formatJavaDoc() == "" -»
+		/**
+		 * «name» behavior class
+		 */
+	«ELSE -»
+		«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("confirmMessage")» «name»Behavior = null;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("confirmMessage")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("confirmMessage")»("«name»", "«message»",
+				view);
+ 	}
+«ENDDEFINE»
+
 
 «DEFINE initBehavior FOR GoBackBehavior»
 

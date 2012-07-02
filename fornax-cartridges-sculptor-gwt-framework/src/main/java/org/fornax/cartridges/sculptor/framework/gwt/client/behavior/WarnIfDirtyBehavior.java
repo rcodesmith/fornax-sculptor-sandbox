@@ -7,6 +7,12 @@ import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlags;
 import org.fornax.cartridges.sculptor.framework.gwt.client.PresentsConfirmationMessage;
 import org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event;
 
+/**
+ * Behavior to warn if the view is dirty (there are changes in the view), and confirm with the user they
+ * wish to continue.  If the user chooses to cancel, subsequent actions will not be executed.
+ * @author ron
+ *
+ */
 public class WarnIfDirtyBehavior implements Behavior {
     private static final Logger LOG =
         Logger.getLogger(WarnIfDirtyBehavior.class.getName());

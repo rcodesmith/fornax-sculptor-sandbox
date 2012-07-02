@@ -24,7 +24,7 @@ public class UpdateAttributeBehavior extends BehaviorBase implements Behavior {
 	}
 
 	/**
-	 * Interface used to invoke a function that 
+	 * Interface used to invoke a function that will update the specific attribute 
 	 * @author ron
 	 *
 	 * @param <C>

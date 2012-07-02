@@ -6,11 +6,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.fornax.utilities.xtendtools.xunit.XpandUnit;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.View;
 
@@ -58,10 +55,35 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 		
 		assertContainsConsecutiveFragments(activityBaseCode, "	protected void init() {",
 				"LOG.info(\"init()\");",
-				"genderSelectorOnSelectItemBehaviorDispatcher = createGenderSelectorOnSelectItemBehaviorDispatcher();",
-				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();",
+				
 				"getView().initView(this);",
 				"}");
+		
+		// Verify bind method
+		assertContainsConsecutiveFragments(activityBaseCode,
+				"protected void bind() {",
+				"LOG.info(\"bind()\");",
+				"// Construct behaviors - must be done in bind() because some of them depend on the view",
+				"populatePersonDetailsPanelBehavior = createPopulatePersonDetailsPanelBehavior();",
+				"someLinkBehaviorBehavior = createSomeLinkBehaviorBehavior();",
+				"updatePersonBehavior = createUpdatePersonBehavior();",
+				"confirmSomeMessageBehavior = createConfirmSomeMessageBehavior();",
+				"popupPersonDetailsBehavior = createPopupPersonDetailsBehavior();",
+				"// Create behavior dispatchers.  Has to be done after behaviors because this is where the behaviors get added to the",
+				"// dispatcher",
+				"genderSelectorOnSelectItemBehaviorDispatcher = createGenderSelectorOnSelectItemBehaviorDispatcher();",
+				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();"
+				);
+		
+		// Verify createConfirmSomeMessageBehavior
+		assertContainsConsecutiveFragments(
+				activityBaseCode,
+				"/**",
+				"* Confirm the user wants to do something",
+				"*/",
+				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ConfirmMessageBehavior createConfirmSomeMessageBehavior() {",
+				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ConfirmMessageBehavior(\"confirmSomeMessage\", \"Are you really sure you want to do this!?!?\",",
+				"view);", "}");
 	}
 
 	@Test
