@@ -46,6 +46,7 @@ Application Library {
 
 		Service MediaService {
 			findAll => MediaRepository.findAll;
+			findByCondition => MediaRepository.findByCondition;
 		}
 
 		abstract Entity Media {

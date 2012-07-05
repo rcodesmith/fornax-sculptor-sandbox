@@ -5,7 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import org.fornax.cartridges.sculptor.examples.library.media.domain.Media;
+import org.fornax.cartridges.sculptor.examples.library.media.domain.MediaProperties;
 import org.fornax.cartridges.sculptor.examples.library.util.JpaProviderHelper;
+import org.fornax.cartridges.sculptor.framework.accessapi.ConditionalCriteria;
+import org.fornax.cartridges.sculptor.framework.accessapi.ConditionalCriteriaBuilder;
 import org.fornax.cartridges.sculptor.framework.test.AbstractDbUnitJpaTests;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +38,14 @@ public class MediaServiceTest extends AbstractDbUnitJpaTests implements MediaSer
     public void testFindAll() throws Exception {
         List<Media> all = mediaService.findAll(getServiceContext());
         assertEquals(3, all.size());
+    }
+    
+    @Test
+    public void testFindByCondition() {
+//        List<ConditionalCriteria> wrongCondition = ConditionalCriteriaBuilder.criteriaFor(Media.class)
+//        .withProperty(MediaProperties.engagements().person().ssn().number()).eq("111")
+//        .build();
+//        mediaService.findByCondition(getServiceContext(), wrongCondition);
+//
     }
 }

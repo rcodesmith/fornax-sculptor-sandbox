@@ -137,4 +137,15 @@ public class PersonServiceTest extends AbstractDbUnitJpaTests implements PersonS
         assertEquals(3, personHaber.get(1).getId().longValue());
         assertEquals(1, personHaber.get(2).getId().longValue());
     }
+    
+	@Test
+	public void testFindByCondition2() {
+		List<ConditionalCriteria> criteria = ConditionalCriteriaBuilder
+				.criteriaFor(Person.class)
+				.withProperty(PersonProperties.contact().personName().first())
+				.eq("111")
+				.build();
+		List<Person> personHaber = personService.findByCondition(
+				getServiceContext(), criteria);
+	}
 }
