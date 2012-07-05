@@ -84,6 +84,24 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ConfirmMessageBehavior createConfirmSomeMessageBehavior() {",
 				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ConfirmMessageBehavior(\"confirmSomeMessage\", \"Are you really sure you want to do this!?!?\",",
 				"view);", "}");
+		
+		
+		
+		assertContainsConsecutiveFragments(activityBaseCode,
+				"public void clearData() {",
+				"view.getNameFieldHasText().setText(\"\");",
+				"view.clearMytableData();",
+				"view.clearPersonTableData();",
+				"clearPersonDetailsPanel();",
+				"clearErrorPanel();", "}"
+				);
+		
+		assertContainsConsecutiveFragments(activityBaseCode, 
+				"public void clearPersonDetailsPanel() {",
+				"view.getNestedNameFieldHasText().setText(\"\");",
+				"view.getAddressFieldHasText().setText(\"\");",
+				"}"
+				);
 	}
 
 	@Test

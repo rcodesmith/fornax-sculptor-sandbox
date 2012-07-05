@@ -157,13 +157,61 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		return view;
 	}
 	
+	«EXPAND widgetClearMethod FOR this»
 
-	public void clearData() {
-		«EXPAND widgetClearCall FOREACH allWidgets()»
-	}
-	
+	«EXPAND widgetClearMethod FOREACH this.allWidgets().typeSelect(PanelWidget)»	
 }
 «ENDDEFINE»
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Methods to clear data from widgets
+// The View and Panels get clear methods.
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+«DEFINE widgetClearMethod FOR View»
+	/**
+	 * Clear the contents of this view - clear all fields, tables, etc
+	 */
+	public void clearData() {
+		«EXPAND widgetClearBody FOREACH this.widgets.select(w|w.isModifyable())»
+	}
+«ENDDEFINE»
+
+«DEFINE widgetClearMethod FOR PanelWidget»
+	/**
+	 * Clear the «this.name» panel
+	 */
+	public void clear«this.name.toFirstUpper()»() {
+		«EXPAND widgetClearBody FOREACH this.widgets.select(w|w.isModifyable())»
+	}
+«ENDDEFINE»
+
+
+«DEFINE widgetClearBody FOR Widget»
+«ENDDEFINE»
+
+«DEFINE widgetClearBody FOR InputTextWidget»
+	view.get«name.toFirstUpper()»HasText().setText("");
+«ENDDEFINE»
+
+
+«DEFINE widgetClearBody FOR TableWidget»
+	«IF this.for == null»
+		// No clear method since table has no domain object assigned in model
+	«ELSE»
+		view.clear«name.toFirstUpper()»Data();
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE widgetClearBody FOR PanelWidget»
+	clear«this.name.toFirstUpper()»();
+«ENDDEFINE»
+
+
+
+
 
 «DEFINE initBehavior FOR UiBehavior»
 	// TODO: No behavior init for «name».  There should be.
@@ -707,24 +755,6 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «DEFINE colWidgetOnClickBehaviorBinding(Widget widget, WidgetTableColumn col, TableWidget tableWidget, OnClickBinding binding) FOR ButtonWidget»
 	«binding.behaviorDispatcherName()».bindColumnActionDelegate(view.get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»HasActionDelegate());
 «ENDDEFINE»
-
-«REM»Methods to clear data from widgets«ENDREM»
-«DEFINE widgetClearCall FOR Widget»
-«ENDDEFINE»
-
-«DEFINE widgetClearCall FOR InputTextWidget»
-	view.get«name.toFirstUpper()»HasText().setText("");
-«ENDDEFINE»
-
-
-«DEFINE widgetClearCall FOR TableWidget»
-	«IF this.for == null»
-		// No clear method since table has no domain object assigned in model
-	«ELSE»
-    	view.get«name.toFirstUpper()»HasData().setRowData(0, new java.util.ArrayList<«fqnTableForClass()»>());	
-	«ENDIF»
-«ENDDEFINE»
-
 
 
 «REM»Declaration of service interface to be used by activity«ENDREM»

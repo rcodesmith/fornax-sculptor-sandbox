@@ -347,19 +347,25 @@ TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
 		 * HasData accessor for «name» table
 		 */
 		public com.google.gwt.view.client.HasData<«fqnTableForClass()»> get«name.toFirstUpper()»HasData();
+
+    	/**
+    	 * Clear all of the data in the «name» table
+    	 * See GWT ListDataProvider
+    	 */
+	    public void clear«name.toFirstUpper()»Data();
 		
     	«IF usesAsyncDataProvider()»
 			/**
 			  * Inform the table of the total number of items that are available
 	   	 	  * See GWT AsyncDataProvider
 	    	  */
-			public void update«name»RowCount(int count, boolean exact);
+			public void update«name.toFirstUpper()»RowCount(int count, boolean exact);
 		
 			/**
 			  * Inform the table of the new data
 	    	  * See GWT AsyncDataProvider
 			  */
-			public void update«name»RowData(int start, java.util.List<«fqnTableForClass()»> values);
+			public void update«name.toFirstUpper()»RowData(int start, java.util.List<«fqnTableForClass()»> values);
 		«ELSE»    	
     		/**
     		 * Replace the data in the «name» table with the given collection.
@@ -373,11 +379,6 @@ TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
     		 */
 		    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList);
 
-    		/**
-    		 * Clear all of the data in the «name» table
-    		 * See GWT ListDataProvider
-    		 */
-	    	public void clear«name.toFirstUpper()»Data();
 		«ENDIF»
 		
 		
@@ -488,9 +489,25 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	  * overridden in the implementation class if needed.
 	  */
 	public «gwtViewWidgetBaseClass()»() {
-		initWidget(getWidget());		
 
-		«EXPAND widgetInitCalls FOREACH allWidgets()»		
+		«LET allWidgets().select(w | w.isProvided()) AS providedWidgets»
+			«IF providedWidgets.size > 0»
+				// Initialize widgets that are provided first since they need to be created before UiBinder is bound
+				«EXPAND widgetInitCalls FOREACH providedWidgets»
+			«ENDIF»	
+		«ENDLET»
+		
+		// Create and bind UiBinder and initialize main widget
+		initWidget(getWidget());
+		
+		
+		«LET allWidgets().select(w | w.isProvided() == false) AS providedWidgets»
+			«IF providedWidgets.size > 0»
+				// Do post-creation initialization of widgets that are created by UiBinder (not provided)
+				«EXPAND widgetInitCalls FOREACH providedWidgets»
+			«ENDIF»	
+		«ENDLET»
+		
 	}
 	
     protected com.google.gwt.user.client.ui.Widget getWidget() {
@@ -562,15 +579,22 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     «IF usesAsyncDataProvider()»
 		/** {@inheritDoc}
 		  */
-		public void update«name»RowCount(int count, boolean exact) {
+		public void update«name.toFirstUpper()»RowCount(int count, boolean exact) {
 			«name»DataProvider.updateRowCount(count, exact);
 		}
 		
 		/** {@inheritDoc}
 		  */
-		public void update«name»RowData(int start, java.util.List<«fqnTableForClass()»> values) {
+		public void update«name.toFirstUpper()»RowData(int start, java.util.List<«fqnTableForClass()»> values) {
 			«name»DataProvider.updateRowData(start, values);
 		}
+		
+	    /** {@inheritDoc}
+	 	 */
+    	public void clear«name.toFirstUpper()»Data() {
+        	«name».setRowCount(0);
+    	}
+
 	«ELSE»
 	    /** {@inheritDoc}
 	 	 */
@@ -1011,7 +1035,7 @@ Table column support for InformationalTextWidget type
 «ENDDEFINE»
 
 «DEFINE widgetDeclaration FOR ListBoxWidget»
-	«IF this.forEnum != null»
+	«IF this.forEnum != null»   «REM»see isProvided() method«ENDREM»
 	    @com.google.gwt.uibinder.client.UiField( provided=true)
     	public «resolveGwtWidgetType()» «name» = new «resolveGwtWidgetType()»(«this.getTypedWidgetTargetType()».class);
     «ELSE»
@@ -1022,7 +1046,7 @@ Table column support for InformationalTextWidget type
 
 
 «DEFINE widgetDeclaration FOR TableWidget»
-
+	«REM»see isProvided() method«ENDREM»
     // «name» table
     @com.google.gwt.uibinder.client.UiField(provided = true)
     «IF this.for != null»

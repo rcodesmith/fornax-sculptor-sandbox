@@ -672,11 +672,41 @@ String getTypedWidgetTargetType(PropertyReferringWidget widget) :
 String getTypedWidgetTargetType(ListBoxWidget widget) :
 	widget.forEnum != null ? widget.forEnum.fqnGwtDto() : 
 		(widget.for != null ? widget.for.fqnGwtDto() : "String");
-	
 
+
+// Return whether widget is modifyable (and clearable) or not
+	
+Boolean isModifyable(Widget widget):
+	false;
+
+Boolean isModifyable(InputTextWidget widget):
+	true;
+
+Boolean isModifyable(PanelWidget widget):
+	true;
+
+Boolean isModifyable(TableWidget widget):
+	true;
+
+Boolean isModifyable(RadioButtonsWidget widget):
+	true;
+	
+	
 //////////////////////////////////////////////////////////////////////////////
 // Widget-related functions : resolveGwtWidgetType
 //////////////////////////////////////////////////////////////////////////////
+
+// If true, this is a 'provided' widget in terms of UiBinder (UiBinder isn't creating the widget - the view has to)
+// false by default
+Boolean isProvided(Widget widget):
+	false;
+	
+Boolean isProvided(TableWidget tableWidget):
+	true;
+	
+Boolean isProvided(ListBoxWidget widget):
+	widget.forEnum != null;
+
 
 String resolveGwtWidgetType(Widget widget) :
 	error("Unexpected call to resolveGwtWidgetType: " + widget);

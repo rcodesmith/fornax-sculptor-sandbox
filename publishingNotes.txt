@@ -9,7 +9,7 @@ git push origin my-extensions
 mvn deploy -DaltDeploymentRepository=pub-scupltor::default::file:///usr/local/workingArea/sculptor-dev-myextensions/fornax-sculptor-sandbox-pages/repository
 
 
-in /Users/ron/Documents/3rdPartySrc/sculptor-dev/fornax-sculptor-sandbox-pages:
+in /usr/local/workingArea/sculptor-dev-myextensions/fornax-sculptor-sandbox-pages
 update-directory-index.sh
 git add repository
 
