@@ -5,26 +5,26 @@
   <version>2.0.26-gwt-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20120705.054201</timestamp>
-      <buildNumber>1</buildNumber>
+      <timestamp>20120706.131707</timestamp>
+      <buildNumber>2</buildNumber>
     </snapshot>
-    <lastUpdated>20120705054201</lastUpdated>
+    <lastUpdated>20120706131707</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>2.0.26-gwt-20120705.054201-1</value>
-        <updated>20120705054201</updated>
+        <value>2.0.26-gwt-20120706.131707-2</value>
+        <updated>20120706131707</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>2.0.26-gwt-20120705.054201-1</value>
-        <updated>20120705054201</updated>
+        <value>2.0.26-gwt-20120706.131707-2</value>
+        <updated>20120706131707</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>client</classifier>
         <extension>jar</extension>
-        <value>2.0.26-gwt-20120705.054201-1</value>
-        <updated>20120705054201</updated>
+        <value>2.0.26-gwt-20120706.131707-2</value>
+        <updated>20120706131707</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
