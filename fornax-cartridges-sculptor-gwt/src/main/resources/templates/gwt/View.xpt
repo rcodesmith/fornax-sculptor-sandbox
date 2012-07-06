@@ -270,8 +270,8 @@ Table column support for LinkWidget type
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
 	«IF this.forEnum != null»
-		«this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.getTypedWidgetTargetType()»> cell =
-			new «this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.getTypedWidgetTargetType()»>(«this.getTypedWidgetTargetType()».class);
+		«this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.cellParameterizedType(col)»> cell =
+			new «this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.cellParameterizedType(col)»>(«this.getTypedWidgetTargetType()».class);
 	«ELSE»
 		«error("ListBoxWidget cell type without forEnum not yet supported")»
 	«ENDIF»
@@ -282,19 +282,21 @@ Table column support for LinkWidget type
 «REM»Getter to get the value for a column that is based on a ListBoxWidget
 TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
 «DEFINE tableColumnValueGetterDeclaration(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
-	/**
-	 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
-	 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
-	 */
-	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
+	«LET this.cellTableColumnType(col) AS columnType»
+		/**
+		 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
+		 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
+		 */
+		protected «this.hasSourceRef() ? "" : "abstract "»«columnType» get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
 	
-		«IF this.hasSourceRef()»
-		{
-	    	return «this.getSourceRefExpression(tableWidget.for, "obj")»«IF this.forEnum != null».getName()«ENDIF»;
-	    }
-	    «ELSE»
-	    ;
-		«ENDIF»
+			«IF this.hasSourceRef()»
+			{
+		    	return «this.getSourceRefExpression(tableWidget.for, "obj")»«IF this.forEnum != null && columnType == "String"».getName()«ENDIF»;
+		    }
+		    «ELSE»
+		    ;
+			«ENDIF»
+	«ENDLET»
 
 «ENDDEFINE»
 
@@ -304,11 +306,11 @@ TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
 «ENDDEFINE»
 
 «DEFINE tableColumnBehaviorBinding(TableWidget tableWidget, TableColumn col, ListBoxWidget widget) FOR OnSelectItemBinding»
-	«col.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>(){
+	«col.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «widget.cellTableColumnType(col)»>(){
 
 		@Override
 		public void update(int index,
-			«tableWidget.for.fqnGwtDto()» object, String value) {
+			«tableWidget.for.fqnGwtDto()» object, «widget.cellTableColumnType(col)» value) {
 			presenter.«presenterCallbackMethodName(tableWidget, col, this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(object, value));
 		}        	
     });
@@ -397,7 +399,7 @@ TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
 
 «DEFINE tableWidgetColumnInterfaceDeclaration(TableWidget tableWidget, WidgetTableColumn col) FOR Widget»
 	public void set«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»FieldUpdater(
-		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String> fieldUpdater);
+		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»> fieldUpdater);
 «ENDDEFINE»
 
 «DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
@@ -810,12 +812,12 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	protected «EXPAND tableColumnType(tableWidget, col) FOR this» «col.tableColumnAttrName()»;
 «ENDDEFINE»
 
-«DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR Widget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>«ENDDEFINE»
+«DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR Widget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»>«ENDDEFINE»
 
 «REM»Function of column anonymous inner class responsible for getting a value for a column«ENDREM»
 «DEFINE tableColumnValueGetterBridge(TableWidget tableWidget, TableColumn col) FOR Widget»
 			@Override
-			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+			public «this.cellTableColumnType(col)» getValue(«tableWidget.for.fqnGwtDto()» object) {
 				return get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(object);
 			}
 «ENDDEFINE»
@@ -830,7 +832,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
 	 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
 	 */
-	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
+	protected «this.hasSourceRef() ? "" : "abstract "»«this.cellTableColumnType(col)» get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
 	
 		«IF this.hasSourceRef()»
 		{
@@ -849,7 +851,7 @@ Table column support for InformationalTextWidget type
 --------------------------------------------------------------------------------------------------------------
 «ENDREM»
 
-«REM»Initialize InformationalTextWidget column - get value that should be displayed«ENDREM»
+«REM»Depracated - Initialize InformationalTextWidget column - get value that should be displayed«ENDREM»
 «DEFINE tableColumnInitText(TableWidget tableWidget) FOR TableColumn»
 
 	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
@@ -919,7 +921,7 @@ Table column support for InformationalTextWidget type
     
 	
 	public void set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(
-		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String> fieldUpdater) {
+		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»> fieldUpdater) {
 		
 			«col.tableColumnAttrName()».setFieldUpdater(fieldUpdater);
 	}

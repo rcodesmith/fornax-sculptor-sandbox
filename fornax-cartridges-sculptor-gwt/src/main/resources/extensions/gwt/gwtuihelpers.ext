@@ -690,6 +690,26 @@ Boolean isModifyable(TableWidget widget):
 
 Boolean isModifyable(RadioButtonsWidget widget):
 	true;
+
+
+// The type to be used for cell table Columns - what data type the column is holding
+String cellTableColumnType(Widget colWidget, TableColumn col) :
+	colWidget.widgetType != null ? getCellColumnType(colWidget.widgetType, "String") : "String";
+
+// Get the type that should be used for a parameterized Cell type.  This is really just getting used for
+// enum-based ListBox right now.  Calling colWidget.getTypedWidgetTargetType() is there for EnumListBox.  This
+// special case may go away when EnumListBox supports using column types of enums rather than Strings, so the
+// column type will == cell parameterized type.
+// TODO: This is messy - clean up
+// This is only called if colWidget.forEnum != null
+String cellParameterizedType(ListBoxWidget colWidget, TableColumn col) :
+	colWidget.widgetType != null ? colWidget.cellTableColumnType(col) :
+		colWidget.getTypedWidgetTargetType();
+
+
+
+//String cellTableColumnType(ListBoxWidget colWidget, TableColumn col) :
+//	(colWidget.forEnum != null && colWidget.widgetType == "psaEnumSelectionCell" ? "com.lfg.psa.gwt.framework.shared.PsaEnum" : "String");
 	
 	
 //////////////////////////////////////////////////////////////////////////////

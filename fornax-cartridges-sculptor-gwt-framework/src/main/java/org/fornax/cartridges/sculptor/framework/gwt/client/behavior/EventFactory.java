@@ -13,4 +13,9 @@ public class EventFactory {
 		Event ev = new Event(obj, val);
 		return ev;
 	}
+	
+	public static BehaviorDispatcher.Event create(Object obj, Object val) {
+		Event ev = new Event(obj, val);
+		return ev;
+	}
 }
