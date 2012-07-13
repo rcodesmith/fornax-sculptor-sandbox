@@ -98,7 +98,7 @@ gui LibraryWeb for Library {
 						
 						birthDate type=Date; //forProperty birthDate
 						
-						widget listBox genderSelector forPath "sex" forEnum Gender {
+						widget listBox genderSelector forProperty sex forEnum Gender {
 							label = "Gender"
 							onSelectItem=populatePersonDetailsPanel,updatePerson
 						}

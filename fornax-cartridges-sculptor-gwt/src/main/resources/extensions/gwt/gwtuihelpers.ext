@@ -18,7 +18,7 @@ Set[Module] getAllUsedServices(sculptorguimetamodel::GuiModule guiModule) :
 //	debugTrace("all services list: " + list) ->
 
 String getEnumCommonInterfaces(Enum enumObj) :
-	"java.io.Serializable" + (hasProperty("gwt.enum.common.interfaces") ? "," + getProperty("gwt.enum.common.interfaces") : "");
+	"java.io.Serializable, com.google.gwt.user.client.rpc.IsSerializable" + (hasProperty("gwt.enum.common.interfaces") ? "," + getProperty("gwt.enum.common.interfaces") : "");
 
 String getGwtInterfaceHasSelection(Widget widget) :
 	getGwtInterface("hasselection") + "<" + widget.getTypedWidgetTargetType() + ">";
@@ -960,29 +960,63 @@ Set[GuiCommand] commandsToGenerate(GuiModule module) :
 boolean hasSourceRef(PropertyReferringWidget widget) :
 	widget.forOp != null || widget.forProperty != null || widget.propertyPath != null;
 	
-// Get the proper expression to access the domain object property pointed to by widget, contained in obj, with local name instName
+// Get the proper expression to get the domain object property pointed to by widget, contained in obj, with local name instName
+// Expression returned contains parentheses at the end
 String getSourceRefExpression(PropertyReferringWidget widget, GuiDto obj, String instName) :
 	switch {
 		case widget.forOp != null : widget.forOp.getAccessor(instName)
 		
-		// TODO: Following should handle nested path expressions
+		// TODO: Following should handle nested path expressions... Actually, this can probably be deprecated
 		case widget.propertyPath != null : getPathExpression(instName, obj, widget.propertyPath)
 		
-		case widget.forProperty != null : instName + "." + getPropertyPathExpression(widget.forProperty)
+		case widget.forProperty != null : instName + "." + getPropertyPathExpression(widget.forProperty, true)
+		
+		default : null
+	};
+
+// Get the proper expression to set the domain object property pointed to by widget, contained in obj, with local name instName
+// Expression returned does not contain parentheses at the end, since it's for a set() call
+String getSourceRefSetterExpression(PropertyReferringWidget widget, GuiDto obj, String instName) :
+	switch {
+		case widget.forOp != null : null // Not yet supportedwidget.forOp.getAccessor(instName)
+		
+		// TODO: Following should handle nested path expressions... Actually, this can probably be deprecated
+		case widget.propertyPath != null : getSetterPathExpression(instName, obj, widget.propertyPath)
+		
+		case widget.forProperty != null : instName + "." + getPropertyPathExpression(widget.forProperty, false)
 		
 		default : null
 	};
 		
-
-String getPropertyPathExpression(PropertyPathElement pathElem) :
-	pathElem.getPropertyPathElementExpression() +
-		(pathElem.remainingPath != null ? "." + pathElem.remainingPath.getPropertyPathExpression() : "");
-	
-String getPropertyPathElementExpression(PropertyPathElement pathElem) :
+String getLeafType(PropertyPathElement pathElem) :
 	switch {
-		case pathElem.forAttribute != null : pathElem.forAttribute.getGetAccessor() + "()"
+		case pathElem.remainingPath != null :
+			getPropertyPathLeafType(pathElem.remainingPath)
+		case pathElem.forAttribute != null :
+			pathElem.forAttribute.getTypeName()
+		case pathElem.forReference != null :
+			pathElem.forReference.getTypeName()
+		default :
+			error("Got unexpected case for getPropertyPathLeafType(" + pathElem + ")")
+	};
+	 
+String getPropertyPathSetterExpression(String instName, GuiDto obj, PropertyPathElement pathElem) :
+	instName + "." + getPropertyPathExpression(pathElem, false);
+
+// If forGetter == true, trying to access getter, otherwise is setter
+String getPropertyPathExpression(PropertyPathElement pathElem, Boolean forGetter) :
+	pathElem.getPropertyPathElementExpression(forGetter) +
+		(pathElem.remainingPath != null ? "." + pathElem.remainingPath.getPropertyPathExpression(forGetter) : "");
+	
+// If forGetter == true, trying to access getter, otherwise is setter.
+// If acessing setter, the last part of the expression will be a 'set' and the prior ones a 'get'
+String getPropertyPathElementExpression(PropertyPathElement pathElem, Boolean forGetter) :
+	switch {
+		case pathElem.forAttribute != null :
+			(forGetter || pathElem.remainingPath != null ? pathElem.forAttribute.getGetAccessor() + "()": pathElem.forAttribute.getSetAccessor())
 		
-		case pathElem.forReference != null : pathElem.forReference.getGetAccessor() + "()"
+		case pathElem.forReference != null :
+			(forGetter || pathElem.remainingPath != null ? pathElem.forReference.getGetAccessor() + "()": pathElem.forReference.getSetAccessor())
 		default : ""
 	};
 

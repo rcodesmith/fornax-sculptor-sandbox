@@ -20,6 +20,28 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 	}
 
 	@Test
+	public void assertCreateUpdatePersonBehavior() throws IOException {
+		View tableView = (View) getNamedElement("TableView", personModule()
+				.getViews());
+
+		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
+				new HashMap<String, Object>(), getXpandTempDir());
+
+		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewActivityBase.java");
+
+		assertContainsConsecutiveFragments(activityBaseCode,
+				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior createUpdatePersonBehavior() {",
+				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior(\"updatePerson\", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior.Invocable() {",
+				"@Override",
+				"public void invoke(",
+				"org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {",
+				"org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Person targetObj = (org.fornax.cartridges.sculptor.examples.library.person.gwt.shared.domain.Person)event.getObj();",
+				"targetObj.setSex((org.fornax.cartridges.sculptor.examples.library.person.domain.Gender)event.getValue());",
+				"}",
+				"});",
+				"}");
+	}
+	@Test
 	public void assertTableViewBaseCode() throws IOException {
 		View tableView = (View) getNamedElement("TableView", personModule()
 				.getViews());

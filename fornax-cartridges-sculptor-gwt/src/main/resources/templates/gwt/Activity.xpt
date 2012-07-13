@@ -500,7 +500,8 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 					org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {
 				«IF targetClass != null»
 					«targetClass.fqnGwtDto()» targetObj = («targetClass.fqnGwtDto()»)event.getObj();
-					«getSetterPathExpression("targetObj", targetClass, propertyPath)»((String)event.getValue());
+					«REM»TODO: The following won't work yet - the behavior should have property path elements rather than propertyPath String«ENDREM»
+					«getPropertyPathSetterExpression("targetObj", targetClass, propertyPath)»((«propertyPath.getLeafType()»)event.getValue());
 					
 				«ELSE»
 					«FOREACH bindings AS binding»
@@ -531,7 +532,10 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 «ENDREM»
 «DEFINE invokeUpdateAttributeSetter(UpdateAttributeBehavior behavior, TableWidget table) FOR ListBoxWidget»
 	«table.for.fqnGwtDto()» targetObj = («table.for.fqnGwtDto()»)event.getObj();
-	«getSetterPathExpression("targetObj", table.for, propertyPath)»((String)event.getValue());				
+«REM»
+«getSetterPathExpression("targetObj", table.for, propertyPath)»((String)event.getValue());
+«ENDREM»
+	«this.getSourceRefSetterExpression(table.for, "targetObj")»((«this.forProperty != null ? this.forProperty.getLeafType() : "String"»)event.getValue());
 «ENDDEFINE»
 
 «REM»Declaration of service constructor arguments, with leading ,«ENDREM»

@@ -490,6 +490,9 @@ String getCollectionImplType(Reference ref) :
 String getGetAccessor(NamedElement element) :
     "get" + element.name.toFirstUpper();
 
+String getSetAccessor(NamedElement element) :
+    "set" + element.name.toFirstUpper();
+
 String getGetAccessor(TypedElement e) :
     e.getGetAccessor("");
 

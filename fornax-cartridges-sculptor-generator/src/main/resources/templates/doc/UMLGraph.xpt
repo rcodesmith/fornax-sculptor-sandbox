@@ -40,7 +40,6 @@
 «ENDDEFINE»
 
 «DEFINE start(Set[Module] focus, int detail, String subjectArea) FOR Application»
-«debugTrace("start() focus=" + focus + ", detail=" + detail + ", subjectArea=" + subjectArea)»
 «FILE dotFileName(focus, detail, subjectArea) TO_GEN_DOCS»
 	«EXPAND graphPropertiesStart»	
 	«EXPAND subGraphForModule(focus, detail, subjectArea) FOREACH focus.sortBy(e|e.name)»
