@@ -307,7 +307,7 @@ END
 package «gwtDomainPackage(this)»;
 
 	«EXPAND templates::domain::DomainObject::domainObjectBaseJavaDoc»
-public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()» implements java.io.Serializable {
+public «getAbstractLitteral()» class «baseClassName()» «getGwtExtendsLitteral()» implements java.io.Serializable, com.google.gwt.user.client.rpc.IsSerializable {
 	«EXPAND templates::domain::DomainObject::serialVersionUID»
    	«EXPAND attribute FOREACH getGwtDtoAttributes()»
 
@@ -519,7 +519,7 @@ package «gwtDomainPackage(this)»;
 /**
  * Enum for «name»
  */
-public enum «name» implements java.io.Serializable {
+public enum «name» implements java.io.Serializable, com.google.gwt.user.client.rpc.IsSerializable {
 	«EXPAND templates::domain::DomainObject::enumValue FOREACH values SEPARATOR ","»;
 
 	«EXPAND templates::domain::DomainObject::enumIdentifierMap»
