@@ -1,0 +1,13 @@
+
+
+
+
+Exceptions
+
+* Passing Through Exceptions
+
++---------------------------------------------
+gwt.exception.passthru=<fully qualified name of exceptions, separated by commas>
++---------------------------------------------
+
+

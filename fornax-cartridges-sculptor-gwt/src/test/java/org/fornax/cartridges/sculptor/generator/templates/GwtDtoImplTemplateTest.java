@@ -166,6 +166,6 @@ public class GwtDtoImplTemplateTest extends LibraryGwtTemplateBaseTest {
 		String enumCode = getFileText("org/fornax/cartridges/sculptor/examples/library/mediaalt/gwt/shared/domain/Genre.java");
 
 		assertContainsConsecutiveFragments(enumCode, "public enum Genre",
-				"implements java.io.Serializable", ",some.EnumInterface", "{");
+				"implements java.io.Serializable", ", com.google.gwt.user.client.rpc.IsSerializable", ",some.EnumInterface", "{");
 	}
 }
