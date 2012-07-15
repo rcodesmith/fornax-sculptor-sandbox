@@ -790,7 +790,7 @@ create sculptorguimetamodel::HasDirtyValueCondition this transformCondition(DslH
 	setDoc(dslCondition.doc) ->
 	setHint(dslCondition.hint) ->
 	setName(dslCondition.name) ->
-	setDirty(dslCondition.isDirty);
+	setDirty(dslCondition.dirty);
 
 
 

@@ -203,6 +203,12 @@ gui LibraryWeb for Library {
 				hint = "somehint2"
 			}
 			
+			Condition HasDirtyValue isDirty {
+				hint = "anotherhint3"
+				dirty
+			}
+
+			
 		
 			
 		}

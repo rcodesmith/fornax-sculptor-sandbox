@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import sculptorguimetamodel.CustomCondition;
+import sculptorguimetamodel.HasDirtyValueCondition;
 import sculptorguimetamodel.View;
 
 public class UiConditionTransformationTest extends GuiDslTransformationBaseTest {
@@ -35,6 +36,16 @@ public class UiConditionTransformationTest extends GuiDslTransformationBaseTest 
 		assertNotNull(cond);
 		assertEquals("isTableEditable", cond.getName());
 		assertEquals("somehint2", cond.getHint());
+	}
+	
+	@Test
+	public void assertTableViewHasDirtyCondition() {
+		View tableView = (View)getNamedElement("TableView", personModule().getViews());
+		HasDirtyValueCondition cond = (HasDirtyValueCondition)getNamedElement("isDirty", tableView.getConditions());
+		assertNotNull(cond);
+		assertEquals("isDirty", cond.getName());
+		assertEquals("anotherhint3", cond.getHint());
+		assertEquals(true, cond.isDirty());
 	}
 	
 
