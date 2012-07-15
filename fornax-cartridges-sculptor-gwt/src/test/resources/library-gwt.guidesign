@@ -175,6 +175,14 @@ gui LibraryWeb for Library {
 				panelName = "Person details"
 				view = PersonPopup
 			}
+			
+			Condition Custom isEditor {
+				
+			}
+			
+			Condition HasDirtyValue isDirty {
+				dirty
+			}
 
 			
 		}

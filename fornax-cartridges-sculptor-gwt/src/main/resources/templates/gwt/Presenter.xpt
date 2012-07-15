@@ -16,6 +16,8 @@ package «gwtActivitiesBasePackage()»;
 public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBaseInterface()» {
 
 	«EXPAND presenterInterfaceDeclarations(this) FOREACH this.allWidgets()»
+	
+	«EXPAND conditionInterfaceDeclarations(this) FOREACH this.conditions»
 }
 «ENDDEFINE»
 
@@ -31,6 +33,20 @@ public interface «gwtPresenterBaseInterface()» extends «gwtFrameworkPresenterBas
 	«ENDFILE»
 «ENDDEFINE»
 
+
+«REM»----------------------------------------------------------------------------------------
+	Condition interfaces
+-------------------------------------------------------------------------------------
+«ENDREM»
+
+«DEFINE conditionInterfaceDeclarations(View view) FOR UiCondition»
+
+	/**
+	 * @return the value of condition «name»
+	 */
+	public boolean «name.toFirstUpper()»Condition();
+	
+«ENDDEFINE»
 
 
 «REM»----------------------------------------------------------------------------------------

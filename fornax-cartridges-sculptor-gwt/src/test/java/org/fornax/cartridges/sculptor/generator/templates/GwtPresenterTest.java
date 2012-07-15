@@ -13,7 +13,7 @@ import sculptorguimetamodel.View;
 public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
 
     @Test
-    public void assertPlaceBaseCode() throws IOException {
+    public void assertPresenterBaseInterface() throws IOException {
     	View tableView = (View) getNamedElement("TableView", personModule().getViews());
     	//GuiModule guiModule = personModule();
     	Assert.assertNotNull(tableView);
@@ -27,6 +27,27 @@ public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
         assertContains(presenterBaseCode, "public interface TableViewBasePresenterIf extends org.fornax.cartridges.sculptor.framework.gwt.client.activity.Presenter {");
         
         
+    }
+    
+    @Test
+    public void assertPresenterConditionsDeclarations() throws IOException {
+    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::Presenter::presenterBaseInterfaceForUnitTest", tableView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String presenterBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewBasePresenterIf.java");
+
+        assertContainsConsecutiveFragments(presenterBaseCode, 
+        "/**",
+    	"* @return the value of condition isEditor",
+    	 "*/",
+    	"public boolean IsEditorCondition();",
+    	"/**",
+    	"* @return the value of condition isDirty",
+    	 "*/",
+    	"public boolean IsDirtyCondition();");
+    	
     }
 
 

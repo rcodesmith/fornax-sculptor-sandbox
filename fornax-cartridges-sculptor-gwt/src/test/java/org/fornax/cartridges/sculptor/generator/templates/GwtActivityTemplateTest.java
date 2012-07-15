@@ -21,13 +21,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 
 	@Test
 	public void assertCreateUpdatePersonBehavior() throws IOException {
-		View tableView = (View) getNamedElement("TableView", personModule()
-				.getViews());
-
-		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
-				new HashMap<String, Object>(), getXpandTempDir());
-
-		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewActivityBase.java");
+		String activityBaseCode = getTableViewBaseActivityCode();
 
 		assertContainsConsecutiveFragments(activityBaseCode,
 				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior createUpdatePersonBehavior() {",
@@ -43,13 +37,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 	}
 	@Test
 	public void assertTableViewBaseCode() throws IOException {
-		View tableView = (View) getNamedElement("TableView", personModule()
-				.getViews());
-
-		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
-				new HashMap<String, Object>(), getXpandTempDir());
-
-		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewActivityBase.java");
+		String activityBaseCode = getTableViewBaseActivityCode();
 
 		assertContains(
 				activityBaseCode,
@@ -126,6 +114,17 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				);
 	}
 
+	private String getTableViewBaseActivityCode() throws IOException {
+		View tableView = (View) getNamedElement("TableView", personModule()
+				.getViews());
+
+		XpandUnit.xpand("templates::gwt::Activity::activityBaseForUnitTest", tableView,
+				new HashMap<String, Object>(), getXpandTempDir());
+
+		String activityBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewActivityBase.java");
+		return activityBaseCode;
+	}
+
 	@Test
 	public void assertMenuViewBaseCode() throws IOException {
 		View tableView = (View) getNamedElement("Menu", personModule()
@@ -181,6 +180,21 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				,"this.placeController = placeController;"
 				,"this.personService = personService;"
 		);
+	}
+	
+	@Test
+	public void assertIsDirtyCondition() throws IOException {
+		
+		String activityBaseCode = getTableViewBaseActivityCode();
+		
+		assertContainsConsecutiveFragments(activityBaseCode,
+				"/**",
+				"* @return the value of condition isDirty",
+				"*/",
+				"public boolean IsDirtyCondition() {",
+				"return isDirty() == true;",
+				"}");
+
 	}
 
 }

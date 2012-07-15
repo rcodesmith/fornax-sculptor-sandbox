@@ -84,6 +84,10 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	
 	protected abstract void registerValidators();
 	
+	/**
+	 * Initialize the activity.
+	 * This will trigger the attached view to initialize, passing this activity as the presenter to it.
+	 */
 	protected void init() {
 		LOG.info("init()");
 		
@@ -144,7 +148,9 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	
 	«EXPAND widgetClearMethod FOR this»
 
-	«EXPAND widgetClearMethod FOREACH this.allWidgets().typeSelect(PanelWidget)»	
+	«EXPAND widgetClearMethod FOREACH this.allWidgets().typeSelect(PanelWidget)»
+	
+	«EXPAND conditionImplementation(this) FOREACH conditions»
 }
 «ENDDEFINE»
 
@@ -624,7 +630,6 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 -------------------------------------------------------------------------------------«ENDREM»
 
 «DEFINE widgetBindMethod FOR Widget»
-	«debugTrace("widgetBindMethod(" + this + ") usePresenterCallbacks=" + view.usePresenterCallbacks())»
 
 	«IF view.usePresenterCallbacks() == false»
 		/**
@@ -839,3 +844,30 @@ public class «gwtActivityImplClass()» extends «fqnActivityBaseClass()» implement
 		display.initView(this);
 	}
 «ENDDEFINE»
+
+
+
+
+«REM»----------------------------------------------------------------------------------------
+	Condition implementations
+-------------------------------------------------------------------------------------
+«ENDREM»
+
+
+«DEFINE conditionImplementation(View view) FOR UiCondition»
+	«error("No conditionImplementation() for condition " + this.name + ": " + this)»
+«ENDDEFINE»
+
+
+«REM»No implementaiton for CustomCondition - needs to be implemented by implementation class«ENDREM»
+«DEFINE conditionImplementation(View view) FOR CustomCondition»«ENDDEFINE»
+
+«DEFINE conditionImplementation(View view) FOR HasDirtyValueCondition»
+	/**
+	 * @return the value of condition «name»
+	 */
+	public boolean «name.toFirstUpper()»Condition() {
+		return isDirty() == «this.dirty ? "true" : "false"»;
+	}
+«ENDDEFINE»
+
