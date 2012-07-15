@@ -78,25 +78,10 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 	}
 
 
-	/**
-	 * Start the activity, attaching it to the view
-	 */
-	@Override
-	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
-		LOG.info("start()");
-		
-		init();
-		bind();
+	«EXPAND start FOR this»
 
-		//set the view widget into the panel
-		panel.setWidget(getViewAsWidget());
-		
-		registerValidators();
-		
-		populateFromPlace();
-
-	}
-
+	«EXPAND onStop FOR this»
+	
 	protected abstract void registerValidators();
 	
 	protected void init() {
@@ -161,6 +146,40 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 	«EXPAND widgetClearMethod FOREACH this.allWidgets().typeSelect(PanelWidget)»	
 }
+«ENDDEFINE»
+
+
+«DEFINE start FOR View»
+	/**
+	 * Start the activity, attaching it to the view
+	 */
+	@Override
+	public void start(com.google.gwt.user.client.ui.AcceptsOneWidget panel, com.google.gwt.event.shared.EventBus theEventBus) {
+		LOG.info("start()");
+		
+		init();
+		bind();
+
+		//set the view widget into the panel
+		panel.setWidget(getViewAsWidget());
+		
+		registerValidators();
+		
+		populateFromPlace();
+
+	}
+«ENDDEFINE»
+
+«DEFINE onStop FOR View»
+	/**
+	 * Called when the Activity's widget has been removed from view.
+	 * Detach this activity from the view.
+	 */
+	 @Override
+	 public void onStop() {
+	 	view.unsetPresenter();
+	 	super.onStop();
+	 }
 «ENDDEFINE»
 
 

@@ -78,6 +78,11 @@ package «gwtBaseWidgetsPackage()»;
          */
 		public void initView(«fqnPresenterBaseInterface()» presenter);
 		
+	    /**
+	     * Set the presenter to null
+	     */
+	    public void unsetPresenter();
+
 		«EXPAND widgetInterfaceDeclarations FOREACH this.allWidgets()»
 		
 	}
@@ -516,9 +521,18 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     	return uiBinder.createAndBindUi(this);
     }
     
-    «fqnPresenterBaseInterface()» presenter;
+    // Presenter that should handle UI events
+    protected «fqnPresenterBaseInterface()» presenter;
+    
+    /**
+     * Set the presenter to null
+     */
+    public void unsetPresenter() {
+    	presenter = null;
+    }
     
     «EXPAND initView FOR this»
+    
     
     «EXPAND widgetDeclaration FOREACH allWidgets()»
     
