@@ -127,7 +127,7 @@ String gwtDomainPackage(DomainObject do) :
    gwtDomainPackage(do.module);
 
 String gwtDomainPackage(GuiDto do) :
-	debugTrace("gwtDomainPackage(" + do + ") : guiModule = " + do.guiModule) ->
+//	debugTrace("gwtDomainPackage(" + do + ") : guiModule = " + do.guiModule) ->
    gwtDomainPackage(do.guiModule.stubModule);
 
 //String gwtDomainPackage(GuiCommand do) :
@@ -571,11 +571,19 @@ String widgetForIsWidgetExpr(Widget w) :
 // View-related functions
 ////////////////////////////////////////////////////////////////////////////
 
+String clearMethodName(Widget widget) :
+	"clear" + widget.name.toFirstUpper() + "Widget";
+
+
 boolean usePresenterCallbacks(View view) :
 	hasHint(view, "gwtpresentercallbacks");
 
 String presenterCallbackMethodName(TableWidget tableWidget, TableColumn column, BehaviorBinding binding) :
 	tableWidget.name + column.name.toFirstUpper() + binding.bindingTypeName;
+
+String presenterCallbackMethodName(Widget widget, BehaviorBinding binding) :
+	widget.name + binding.bindingTypeName;
+
 
 //cached List[Widget] allWidgets(View view) :
 //	allContainedWidgets(view);
@@ -751,10 +759,18 @@ String resolveGwtWidgetType(InformationalTextWidget widget) :
 String resolveGwtWidgetTag(InformationalTextWidget widget) :
 	getProperty("gwt.widget.informationaltext.tag");
 
-String resolveGwtCellWidgetType(InformationalTextWidget widget) :
+String resolveGwtCellWidgetType(InformationalTextWidget widget, TableColumn col) :
 	resolveGwtCellWidgetTypeWithOverriding(widget, "informationalText");
 	
-String resolveGwtCellWidgetType(LinkWidget widget) :
+	
+String resolveGwtCellWidgetType(ListBoxWidget widget, TableColumn col) :
+	widget.forEnum != null ?
+		widget.resolveGwtCellWidgetTypeWithOverriding("enumListBox") + "<" + widget.cellParameterizedType(col) + ">"
+		: error("ListBoxWidget cell type without forEnum not yet supported");
+	
+
+
+String resolveGwtCellWidgetType(LinkWidget widget, TableColumn col) :
 	resolveGwtCellWidgetTypeWithOverriding(widget, "link");
 
 String resolveGwtCellWidgetTypeWithOverriding(Widget widget, String defaultName) :

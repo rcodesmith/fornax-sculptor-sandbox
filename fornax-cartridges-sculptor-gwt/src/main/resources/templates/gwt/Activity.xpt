@@ -173,6 +173,7 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		
 		populateFromPlace();
 
+		view.clear();
 	}
 «ENDDEFINE»
 

@@ -31,12 +31,7 @@ public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
     
     @Test
     public void assertPresenterConditionsDeclarations() throws IOException {
-    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
-    	
-        XpandUnit.xpand("templates::gwt::Presenter::presenterBaseInterfaceForUnitTest", tableView,
-                new HashMap<String, Object>(), getXpandTempDir());
-        
-        String presenterBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewBasePresenterIf.java");
+    	String presenterBaseCode = getTableViewPresenterBaseCode();
 
         assertContainsConsecutiveFragments(presenterBaseCode, 
         "/**",
@@ -49,6 +44,28 @@ public class GwtPresenterTest extends LibraryGwtTemplateBaseTest {
     	"public boolean IsDirtyCondition();");
     	
     }
+
+    @Test
+    public void assertPresenterBaseAutocompleteOnSelectMethod() throws IOException {
+    	String presenterBaseCode = getTableViewPresenterBaseCode();
+
+		assertContainsConsecutiveFragments(
+				presenterBaseCode,
+				"/**",
+				"* nameSelector widget OnSelectItem binding callback",
+				"*/",
+				"void nameSelectorOnSelectItem(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event);");
+    	
+    }
+	private String getTableViewPresenterBaseCode() throws IOException {
+		View tableView = (View) getNamedElement("TableView", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::Presenter::presenterBaseInterfaceForUnitTest", tableView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String presenterBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/activity/TableViewBasePresenterIf.java");
+		return presenterBaseCode;
+	}
 
 
 }

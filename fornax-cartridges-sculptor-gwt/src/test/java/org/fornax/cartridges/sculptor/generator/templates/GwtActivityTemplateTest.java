@@ -81,6 +81,9 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"popupPersonDetailsBehavior = createPopupPersonDetailsBehavior();",
 				"// Create behavior dispatchers.  Has to be done after behaviors because this is where the behaviors get added to the",
 				"// dispatcher",
+				"nameSelectorOnSelectItemBehaviorDispatcher = createNameSelectorOnSelectItemBehaviorDispatcher();",
+				"goToPersonSearchLinkOnClickBehaviorDispatcher = createGoToPersonSearchLinkOnClickBehaviorDispatcher();",
+				"saveButtonOnClickBehaviorDispatcher = createSaveButtonOnClickBehaviorDispatcher();",
 				"genderSelectorOnSelectItemBehaviorDispatcher = createGenderSelectorOnSelectItemBehaviorDispatcher();",
 				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();"
 				);

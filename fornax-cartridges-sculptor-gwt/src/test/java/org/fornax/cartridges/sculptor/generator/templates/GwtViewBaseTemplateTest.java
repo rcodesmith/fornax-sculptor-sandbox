@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import sculptorguimetamodel.GuiApplication;
 import sculptorguimetamodel.GuiModule;
 import sculptorguimetamodel.View;
 
@@ -40,13 +39,40 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
     }
 
     @Test
-    public void assertTableViewBaseCode() throws IOException {
-    	View tableView = (View) getNamedElement("TableView", personModule().getViews());
+    public void assertTableViewAutocompleteOnSelectEventHandler() throws IOException {
+    	String tableViewBaseCode = getTableViewBaseCode();
+
+    	assertContainsConsecutiveFragments(tableViewBaseCode,
+    			"/**",
+    			"* Event handler for nameSelector widget, OnSelectItem event binding",
+    			"*/",
+    			"@com.google.gwt.uibinder.client.UiHandler(\"nameSelector\")",
+    			"public void onNameSelectorOnSelectItem(com.google.gwt.event.logical.shared.SelectionEvent<com.google.gwt.user.client.ui.SuggestOracle.Suggestion> event) {",
+    			"presenter.nameSelectorOnSelectItem(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(event));",
+    			"}");
+    }
+    
+    
+    @Test
+    public void assertTableViewLinkOnClick() throws IOException {
     	
-        XpandUnit.xpand("templates::gwt::View::viewBaseForUnitTest", tableView,
-                new HashMap<String, Object>(), getXpandTempDir());
-        
-        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/TableViewViewBase.java");
+    	String tableViewBaseCode = getTableViewBaseCode();
+
+		assertContainsConsecutiveFragments(
+				tableViewBaseCode,
+				"/**",
+				"* Event handler for goToPersonSearchLink widget, OnClick event binding",
+				"*/",
+				"@com.google.gwt.uibinder.client.UiHandler(\"goToPersonSearchLink\")",
+				"public void onGoToPersonSearchLinkOnClick(com.google.gwt.event.dom.client.ClickEvent event) {",
+				"presenter.goToPersonSearchLinkOnClick(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(event));",
+				"}");
+
+    }
+    
+    @Test
+    public void assertTableViewBaseCode() throws IOException {
+    	String tableViewBaseCode = getTableViewBaseCode();
         
         assertContainsConsecutiveFragments(tableViewBaseCode,
         		"public abstract class TableViewViewBase extends org.fornax.cartridges.sculptor.framework.gwt.client.BaseView",
@@ -87,6 +113,16 @@ public class GwtViewBaseTemplateTest extends TemplateTestBase {
         // Assert errorPanel
         assertContains(tableViewBaseCode, "com.google.gwt.user.client.ui.SimplePanel errorPanel;");
     }
+
+	private String getTableViewBaseCode() throws IOException {
+		View tableView = (View) getNamedElement("TableView", personModule().getViews());
+    	
+        XpandUnit.xpand("templates::gwt::View::viewBaseForUnitTest", tableView,
+                new HashMap<String, Object>(), getXpandTempDir());
+        
+        String tableViewBaseCode = getFileText("org/fornax/cartridges/sculptor/examples/library/person/gwt/client/gen/view/TableViewViewBase.java");
+		return tableViewBaseCode;
+	}
 
     @Test
     public void assertViewAltPkgBaseCode() throws IOException {

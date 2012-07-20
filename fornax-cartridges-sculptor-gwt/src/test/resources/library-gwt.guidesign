@@ -90,6 +90,16 @@ gui LibraryWeb for Library {
 					label = "Info Numero Uno"
 				}
 
+				autocomplete nameSelector for Person {
+					label = "Person Name"
+					onSelectItem = confirmSomeMessage
+				}
+				
+				link goToPersonSearchLink {
+					label = "Go to person search"
+					onClick = someLinkBehavior
+				}
+
 				table mytable for Person {
 					label="My Table"
 					
@@ -148,6 +158,7 @@ gui LibraryWeb for Library {
 				
 				button saveButton {
 					label = "Save"
+					onClick = "updatePerson"
 				}
 				
 				

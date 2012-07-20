@@ -83,7 +83,14 @@ package «gwtBaseWidgetsPackage()»;
 	     */
 	    public void unsetPresenter();
 
+		/**
+		 * Clear the contents of the entire view - clear all widgets
+		 */
+		public void clear();
+		
 		«EXPAND widgetInterfaceDeclarations FOREACH this.allWidgets()»
+
+		«EXPAND widgetClearMethodDeclaration FOREACH this.allWidgets()»
 		
 	}
 
@@ -101,10 +108,50 @@ package «gwtBaseWidgetsPackage()»;
 	«ENDFILE»
 «ENDDEFINE»
 
+«DEFINE widgetClearMethodDeclaration FOR Widget»
+	
+	/**
+	 * Clear contents of «name» widget
+	 */
+	public void «clearMethodName()»();
+	
+«ENDDEFINE»
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// General Widget-related templates
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+«DEFINE widgetEventHandlers FOR Widget»
+	«EXPAND widgetEventHandler(this) FOREACH this.behaviorBindings»
+«ENDDEFINE»
+
+
+«REM»Default implementation - does nothing.  Should be implemented for any widget that has something
+to clear.«ENDREM»
+«DEFINE widgetClearMethodImplementation FOR Widget»
+	/**
+	 * Clear contents of «name» widget
+	 */
+	public void «clearMethodName()»() {
+	}
+	
+«ENDDEFINE»
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // ButtonWidget-related templates
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+«DEFINE widgetEventHandler(ButtonWidget widget) FOR OnClickBinding»
+	/**
+	 * Event handler for «widget.name» widget, «this.bindingTypeName» event binding
+	 */
+	@com.google.gwt.uibinder.client.UiHandler("«widget.name»")
+	public void on«widget.name.toFirstUpper()»«this.bindingTypeName.toFirstUpper()»(com.google.gwt.event.dom.client.ClickEvent event) {
+			presenter.«widget.presenterCallbackMethodName(this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(event));
+	}
+«ENDDEFINE»
+
 
 «DEFINE widgetInterfaceDeclarations FOR ButtonWidget»
 
@@ -125,15 +172,13 @@ package «gwtBaseWidgetsPackage()»;
 	
 «ENDDEFINE»
 
+
 «DEFINE widgetInitCalls FOR ButtonWidget»
 	init«name.toFirstUpper()»();
 «ENDDEFINE»
 
 «DEFINE widgetMethods FOR ButtonWidget»
 	public void init«name.toFirstUpper()»() {
-		«IF this.findContainingView().usePresenterCallbacks()»
-			«EXPAND widgetPresenterCallback(this) FOREACH this.behaviorBindings»
-		«ENDIF»
 	}
 
 	public com.google.gwt.event.dom.client.HasClickHandlers get«name.toFirstUpper()»HasClickHandlers() {
@@ -156,17 +201,6 @@ package «gwtBaseWidgetsPackage()»;
 
 «ENDDEFINE»
 
-«DEFINE widgetPresenterCallback(ButtonWidget widget) FOR OnClickBinding»
-    «widget.name».addClickHandler(new com.google.gwt.event.dom.client.ClickHandler() {
-			
-			@Override
-			public void onClick(com.google.gwt.event.dom.client.ClickEvent event) {
-				presenter.«widget.name»«this.bindingTypeName»(new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event());
-			}
-		});
-	
-«ENDDEFINE»
-
 // ButtonWidget support in a table
 
 «DEFINE tableColumnAttrDeclaration(TableWidget tableWidget, TableColumn col) FOR ButtonWidget»
@@ -183,6 +217,7 @@ package «gwtBaseWidgetsPackage()»;
 	
 	«EXPAND tableColumnInitComment(tableWidget) FOR col»
 	protected «EXPAND tableColumnType(tableWidget, col) FOR this» init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+		LOG.info("init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column()");
 
 		«col.tableColumnAttrName()»Wrapper =
 			new «getColumnWrapperClass("button")»<«tableWidget.for.fqnGwtDto()»>();
@@ -221,9 +256,21 @@ package «gwtBaseWidgetsPackage()»;
 «DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR ButtonWidget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», «tableWidget.for.fqnGwtDto()»>«ENDDEFINE»
 
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // LinkWidget-related templates
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+«DEFINE widgetEventHandler(LinkWidget widget) FOR OnClickBinding»
+	/**
+	 * Event handler for «widget.name» widget, «this.bindingTypeName» event binding
+	 */
+	@com.google.gwt.uibinder.client.UiHandler("«widget.name»")
+	public void on«widget.name.toFirstUpper()»«this.bindingTypeName.toFirstUpper()»(com.google.gwt.event.dom.client.ClickEvent event) {
+			presenter.«widget.presenterCallbackMethodName(this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(event));
+	}
+«ENDDEFINE»
+
 
 «DEFINE widgetInterfaceDeclarations FOR LinkWidget»
     «formatJavaDoc()»
@@ -257,8 +304,8 @@ Table column support for LinkWidget type
 
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR LinkWidget»
-	«this.resolveGwtCellWidgetType()» cell =
-		new «this.resolveGwtCellWidgetType()»();
+	«this.resolveGwtCellWidgetType(col)» cell =
+		new «this.resolveGwtCellWidgetType(col)»();
 «ENDDEFINE»
 
 
@@ -266,6 +313,58 @@ Table column support for LinkWidget type
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // ListBoxWidget -related templates
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+«DEFINE widgetClearMethodImplementation FOR ListBoxWidget»
+	
+	/**
+	 * Clear contents of «name» widget
+	 */
+	public void «clearMethodName()»() {
+		«name».clear();
+	}
+«ENDDEFINE»
+		
+
+
+«DEFINE widgetEventHandler(ListBoxWidget widget) FOR OnSelectItemBinding»
+	/**
+	 * Event handler for «widget.name» widget, «this.bindingTypeName» event binding
+	 */
+	@com.google.gwt.uibinder.client.UiHandler("«widget.name»")
+	public void on«widget.name.toFirstUpper()»«this.bindingTypeName.toFirstUpper()»(com.google.gwt.event.dom.client.ChangeEvent event) {
+			presenter.«widget.presenterCallbackMethodName(this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(event));
+	}
+«ENDDEFINE»
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// AutocompleteWidget-related templates
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+«DEFINE widgetEventHandler(AutocompleteWidget widget) FOR OnSelectItemBinding»
+	/**
+	 * Event handler for «widget.name» widget, «this.bindingTypeName» event binding
+	 */
+	@com.google.gwt.uibinder.client.UiHandler("«widget.name»")
+	public void on«widget.name.toFirstUpper()»«this.bindingTypeName.toFirstUpper()»(com.google.gwt.event.logical.shared.SelectionEvent<com.google.gwt.user.client.ui.SuggestOracle.Suggestion> event) {
+			presenter.«widget.presenterCallbackMethodName(this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(event));
+	}
+«ENDDEFINE»
+
+«DEFINE widgetClearMethodImplementation FOR AutocompleteWidget»
+	
+	/**
+	 * Clear contents of «name» widget
+	 */
+	public void «clearMethodName()»() {
+		«name».clear();
+	}
+	
+«ENDDEFINE»
+
+
+
+
 «REM»
 --------------------------------------------------------------------------------------------------------------
 	Table column support for ListBoxWidget type
@@ -274,14 +373,9 @@ Table column support for LinkWidget type
 
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
-	«IF this.forEnum != null»
-		«this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.cellParameterizedType(col)»> cell =
-			new «this.resolveGwtCellWidgetTypeWithOverriding("enumListBox")»<«this.cellParameterizedType(col)»>(«this.getTypedWidgetTargetType()».class);
-	«ELSE»
-		«error("ListBoxWidget cell type without forEnum not yet supported")»
-	«ENDIF»
+	«this.resolveGwtCellWidgetType(col)» cell =
+			new «this.resolveGwtCellWidgetType(col)»(«this.getTypedWidgetTargetType()».class);
 «ENDDEFINE»
-
 
 
 «REM»Getter to get the value for a column that is based on a ListBoxWidget
@@ -407,6 +501,21 @@ TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
 		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»> fieldUpdater);
 «ENDDEFINE»
 
+
+
+
+
+
+«DEFINE widgetClearMethodImplementation FOR InputTextWidget»
+	/**
+	 * Clear contents of «name» widget
+	 */
+	public void «clearMethodName()»() {
+		«name».setText("");
+	}
+	
+«ENDDEFINE»
+
 «DEFINE widgetInterfaceDeclarations FOR InputTextWidget»
 	/**
 	 * Text accessor for «name»
@@ -466,6 +575,7 @@ TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
     
 
 «ENDDEFINE»
+
 
 «REM»Placeholder for any custom widget interface declarations.  If you have any, override this and invoke your template
 based on CustomWidget.widgetType«ENDREM»
@@ -537,14 +647,36 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
     «EXPAND widgetDeclaration FOREACH allWidgets()»
     
     «EXPAND widgetMethods FOREACH allWidgets()»
+    
+    «EXPAND viewClearImpl FOR this»
+	
+	«EXPAND widgetClearMethodImplementation FOREACH this.allWidgets()»
+
+	«IF usePresenterCallbacks()»
+		«EXPAND widgetEventHandlers FOREACH allWidgets()»
+	«ENDIF»
 }
 «ENDDEFINE»
+
+«DEFINE viewClearImpl FOR View»
+	/**
+	 * Clear the contents of the entire view - clear all widgets
+	 */
+	public void clear() {
+    	LOG.info("clear()");
+		«FOREACH widgets AS w»
+			«w.clearMethodName()»();
+		«ENDFOREACH»
+	}
+«ENDDEFINE»
+
 
 «DEFINE initView FOR View»
     /**
      * Initialize this view with the given presenter, constructing any widgets and other objects as needed.
      */
     public void initView(«fqnPresenterBaseInterface()» presenter) {
+    	LOG.info("initView()");
     	this.presenter = presenter;
     	
     }
@@ -588,6 +720,18 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // Widget methods - any methods, including init methods that may be needed
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+«REM»TODO: Should be able to replace other clearXData method that is called with this«ENDREM»
+«DEFINE widgetClearMethodImplementation FOR TableWidget»
+	/**
+	 * Clear contents of «name» widget
+	 */
+	public void «clearMethodName()»() {
+		clear«name.toFirstUpper()»Data();
+	}
+«ENDDEFINE»
+
+
 
 «DEFINE widgetMethods FOR TableWidget»
 	«IF this.for != null»
@@ -900,25 +1044,37 @@ Table column support for InformationalTextWidget type
 
 «REM»Initialize cell object«ENDREM»
 «DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR InformationalTextWidget»
-	«this.resolveGwtCellWidgetType()» cell =
-		new «this.resolveGwtCellWidgetType()»();
+	«this.resolveGwtCellWidgetType(col)» cell =
+		new «this.resolveGwtCellWidgetType(col)»();
 «ENDDEFINE»
 
 
 
 
-
+«DEFINE createTableColumnCellImpl(TableWidget tableWidget, TableColumn col) FOR Widget»
+	/**
+	 * Create cell object for table «tableWidget.name» column «col.name»
+	 */
+	protected «this.resolveGwtCellWidgetType(col)» create«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Cell() {
+		«EXPAND tableCellInit(tableWidget, col) FOR this»
+		return cell;
+	}
+«ENDDEFINE»
 
 
 «REM»Initialize a table column that is based on a Widget class«ENDREM»
 «DEFINE tableColumnInitWidget(TableWidget tableWidget, TableColumn col) FOR Widget»
+
 	
 	«EXPAND tableColumnAttrDeclaration(tableWidget, col) FOR this»
 	
+	«EXPAND createTableColumnCellImpl(tableWidget, col) FOR this»
+	
 	«EXPAND tableColumnInitComment(tableWidget) FOR col»
 	protected «EXPAND tableColumnType(tableWidget, col) FOR this» init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
-
-		«EXPAND tableCellInit(tableWidget, col) FOR this»
+		LOG.info("init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column()");
+		
+		«this.resolveGwtCellWidgetType(col)» cell = create«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Cell();
 
 		«col.tableColumnAttrName()» = new «EXPAND tableColumnType(tableWidget, col) FOR this»(cell) {
 			«EXPAND tableColumnValueGetterBridge(tableWidget, col) FOR this»
@@ -930,6 +1086,8 @@ Table column support for InformationalTextWidget type
 
 		return «col.tableColumnAttrName()»;
     }
+    
+    
     
     «EXPAND tableColumnValueGetterDeclaration(tableWidget, col) FOR this»
     
@@ -952,6 +1110,7 @@ Table column support for InformationalTextWidget type
 		return «name»;
 	}
 «ENDDEFINE»
+
 
 «DEFINE widgetMethods FOR InformationalTextWidget»
 	public com.google.gwt.user.client.ui.HasText get«name.toFirstUpper()»HasText() {
@@ -1000,6 +1159,22 @@ Table column support for InformationalTextWidget type
 		return «name»;
 	}
 «ENDDEFINE»
+
+«DEFINE widgetClearMethodImplementation FOR PanelWidget»
+	/**
+	 * Clear contents of «name» widget.
+	 * Clear each widget contained in the panel.
+	 */
+	public void «clearMethodName()»() {
+		«FOREACH widgets AS w»
+			«w.clearMethodName()»();
+		«ENDFOREACH»
+	}
+«ENDDEFINE»
+
+
+
+
 
 «DEFINE widgetMethods FOR ListBoxWidget»
 
@@ -1086,16 +1261,16 @@ Table column support for InformationalTextWidget type
 
 «REM»View impl class«ENDREM»
 «DEFINE viewImpl FOR View»
-«FILE javaFileName(fqnGwtViewWidgetImplClass(this)) TO_SRC»
-«EXPAND viewImplBody FOR this»
-«ENDFILE»
+	«FILE javaFileName(fqnGwtViewWidgetImplClass(this)) TO_SRC»
+		«EXPAND viewImplBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 «REM»View impl class - for unit tests«ENDREM»
 «DEFINE viewImplForUnitTest FOR View»
-«FILE javaFileName(fqnGwtViewWidgetImplClass(this))»
-«EXPAND viewImplBody FOR this»
-«ENDFILE»
+	«FILE javaFileName(fqnGwtViewWidgetImplClass(this))»
+		«EXPAND viewImplBody FOR this»
+	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE viewImplBody FOR View»
