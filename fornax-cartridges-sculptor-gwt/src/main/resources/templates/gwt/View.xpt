@@ -766,6 +766,7 @@ public abstract class «gwtViewWidgetBaseClass()» extends «getViewRootBaseClass()
 	    /** {@inheritDoc}
 	 	 */
 	    public void replace«name.toFirstUpper()»Data(java.util.List<«fqnTableForClass()»> newDataList) {
+        	«name».setRowCount(0);
    	 		«name»DataProvider.getList().clear();
         	«name»DataProvider.getList().addAll(0, newDataList);
         	«name»DataProvider.refresh();
