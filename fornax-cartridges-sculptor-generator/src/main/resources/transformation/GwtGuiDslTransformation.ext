@@ -821,6 +821,11 @@ create sculptorguimetamodel::DisplayMessageBehavior this transformBehavior(DslDi
 	setMessage(behavior.message) ->
 	setMessageId(behavior.messageId);
 
+create sculptorguimetamodel::UpdateHistoryBehavior this transformBehavior(DslUpdateHistoryBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name);
+
 create sculptorguimetamodel::UpdateTableBehavior this transformBehavior(DslUpdateTableBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->

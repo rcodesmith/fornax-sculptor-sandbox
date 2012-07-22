@@ -156,6 +156,11 @@ gui LibraryWeb for Library {
 				
 			}
 
+			"Update history based on current view"
+			UiBehavior UpdateHistory updateHistory {
+				
+			}
+
 			"Confirm the user wants to do something"
 			UiBehavior DisplayMessage confirmSomeMessage {
 				cancelable

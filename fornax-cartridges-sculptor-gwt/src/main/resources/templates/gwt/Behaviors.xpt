@@ -269,6 +269,29 @@
  	}
 «ENDDEFINE»
 
+«DEFINE initBehavior FOR UpdateHistoryBehavior»
+
+	«IF formatJavaDoc() == "" -»
+		/**
+		 * «name» behavior class
+		 */
+	«ELSE -»
+		«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("updateHistory")» «name»Behavior = null;
+
+	«IF formatJavaDoc() == "" -»
+	/**
+	 * Method to create the «name» behavior
+	 */
+	«ELSE -»
+	«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("updateHistory")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("updateHistory")»("«name»", this);
+ 	}
+«ENDDEFINE»
+
 «DEFINE initBehavior FOR UpdateAttributeBehavior»
 
 	«IF formatJavaDoc() == "" -»

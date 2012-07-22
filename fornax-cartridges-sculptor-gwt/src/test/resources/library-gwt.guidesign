@@ -188,6 +188,11 @@ gui LibraryWeb for Library {
 				view = PersonPopup
 			}
 			
+			"Update history based on current view"
+			UiBehavior UpdateHistory updateHistory {
+				
+			}
+
 			Condition Custom isEditor {
 				
 			}
