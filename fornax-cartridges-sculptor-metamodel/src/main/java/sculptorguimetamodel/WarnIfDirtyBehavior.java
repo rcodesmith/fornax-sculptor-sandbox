@@ -17,5 +17,5 @@ package sculptorguimetamodel;
  * @model
  * @generated
  */
-public interface WarnIfDirtyBehavior extends ConfirmMessageBehavior {
+public interface WarnIfDirtyBehavior extends DisplayMessageBehavior {
 } // WarnIfDirtyBehavior

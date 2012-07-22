@@ -250,8 +250,8 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseUpdateTableBehavior(UpdateTableBehavior object) {
 				return createUpdateTableBehaviorAdapter();
 			}
-			public Object caseConfirmMessageBehavior(ConfirmMessageBehavior object) {
-				return createConfirmMessageBehaviorAdapter();
+			public Object caseDisplayMessageBehavior(DisplayMessageBehavior object) {
+				return createDisplayMessageBehaviorAdapter();
 			}
 			public Object caseCustomBehavior(CustomBehavior object) {
 				return createCustomBehaviorAdapter();
@@ -303,6 +303,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object casePropertyPathElement(PropertyPathElement object) {
 				return createPropertyPathElementAdapter();
+			}
+			public Object caseUpdateHistoryBehavior(UpdateHistoryBehavior object) {
+				return createUpdateHistoryBehaviorAdapter();
 			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
@@ -1148,16 +1151,16 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 																/**
-	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ConfirmMessageBehavior <em>Confirm Message Behavior</em>}'.
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.DisplayMessageBehavior <em>Display Message Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see sculptorguimetamodel.ConfirmMessageBehavior
+	 * @see sculptorguimetamodel.DisplayMessageBehavior
 	 * @generated
 	 */
-	public Adapter createConfirmMessageBehaviorAdapter() {
+	public Adapter createDisplayMessageBehaviorAdapter() {
 		return null;
 	}
 
@@ -1396,6 +1399,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyPathElementAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.UpdateHistoryBehavior <em>Update History Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.UpdateHistoryBehavior
+	 * @generated
+	 */
+	public Adapter createUpdateHistoryBehaviorAdapter() {
 		return null;
 	}
 

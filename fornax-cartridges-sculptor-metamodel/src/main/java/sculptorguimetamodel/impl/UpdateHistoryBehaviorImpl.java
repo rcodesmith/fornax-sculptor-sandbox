@@ -9,24 +9,24 @@ package sculptorguimetamodel.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import sculptorguimetamodel.SculptorguimetamodelPackage;
-import sculptorguimetamodel.WarnIfDirtyBehavior;
+import sculptorguimetamodel.UpdateHistoryBehavior;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Warn If Dirty Behavior</b></em>'.
+ * An implementation of the model object '<em><b>Update History Behavior</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class WarnIfDirtyBehaviorImpl extends DisplayMessageBehaviorImpl implements WarnIfDirtyBehavior {
+public class UpdateHistoryBehaviorImpl extends UiBehaviorImpl implements UpdateHistoryBehavior {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected WarnIfDirtyBehaviorImpl() {
+	protected UpdateHistoryBehaviorImpl() {
 		super();
 	}
 
@@ -36,7 +36,7 @@ public class WarnIfDirtyBehaviorImpl extends DisplayMessageBehaviorImpl implemen
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SculptorguimetamodelPackage.Literals.WARN_IF_DIRTY_BEHAVIOR;
+		return SculptorguimetamodelPackage.Literals.UPDATE_HISTORY_BEHAVIOR;
 	}
 
-} //WarnIfDirtyBehaviorImpl
+} //UpdateHistoryBehaviorImpl

@@ -245,8 +245,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="UpdateTableBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//TableWidget"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfirmMessageBehavior" eSuperTypes="#//UiBehavior">
+  <eClassifiers xsi:type="ecore:EClass" name="DisplayMessageBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cancelable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="messageId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CustomBehavior" eSuperTypes="#//UiBehavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="CustomCondition" eSuperTypes="#//UiCondition"/>
@@ -263,7 +265,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SetDirtyFlagBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="markSpecificObj" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="WarnIfDirtyBehavior" eSuperTypes="#//ConfirmMessageBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WarnIfDirtyBehavior" eSuperTypes="#//DisplayMessageBehavior"/>
   <eClassifiers xsi:type="ecore:EClass" name="PopulateListBoxBehavior" eSuperTypes="#//UiBehavior">
     <eStructuralFeatures xsi:type="ecore:EReference" name="widget" lowerBound="1"
         eType="#//ListBoxWidget"/>
@@ -291,4 +293,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="forAttribute" eType="ecore:EClass sculptormetamodel.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forReference" eType="ecore:EClass sculptormetamodel.ecore#//Reference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateHistoryBehavior" eSuperTypes="#//UiBehavior"/>
 </ecore:EPackage>

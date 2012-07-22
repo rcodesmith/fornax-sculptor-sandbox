@@ -539,13 +539,13 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	UpdateTableBehavior createUpdateTableBehavior();
 
 																/**
-	 * Returns a new object of class '<em>Confirm Message Behavior</em>'.
+	 * Returns a new object of class '<em>Display Message Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Confirm Message Behavior</em>'.
+	 * @return a new object of class '<em>Display Message Behavior</em>'.
 	 * @generated
 	 */
-	ConfirmMessageBehavior createConfirmMessageBehavior();
+	DisplayMessageBehavior createDisplayMessageBehavior();
 
 																/**
 	 * Returns a new object of class '<em>Custom Behavior</em>'.
@@ -699,6 +699,15 @@ public interface SculptorguimetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	PropertyPathElement createPropertyPathElement();
+
+																/**
+	 * Returns a new object of class '<em>Update History Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Update History Behavior</em>'.
+	 * @generated
+	 */
+	UpdateHistoryBehavior createUpdateHistoryBehavior();
 
 																/**
 	 * Returns the package supported by this factory.

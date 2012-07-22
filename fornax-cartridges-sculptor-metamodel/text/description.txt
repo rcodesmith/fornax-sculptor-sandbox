@@ -228,8 +228,10 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class UpdateTableBehavior -> UiBehavior
     Reference table : TableWidget<<1..1>>
 
-  Class ConfirmMessageBehavior -> UiBehavior
+  Class DisplayMessageBehavior -> UiBehavior
     Attribute message : EString
+    Attribute cancelable : EBoolean
+    Attribute messageId : EString
 
   Class CustomBehavior -> UiBehavior
 
@@ -248,7 +250,7 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
   Class SetDirtyFlagBehavior -> UiBehavior
     Attribute markSpecificObj : EBoolean
 
-  Class WarnIfDirtyBehavior -> ConfirmMessageBehavior
+  Class WarnIfDirtyBehavior -> DisplayMessageBehavior
 
   Class PopulateListBoxBehavior -> UiBehavior
     Reference widget : ListBoxWidget<<1..1>>
@@ -277,3 +279,5 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference remainingPath : PropertyPathElement
     Reference forAttribute : Attribute
     Reference forReference : Reference
+
+  Class UpdateHistoryBehavior -> UiBehavior

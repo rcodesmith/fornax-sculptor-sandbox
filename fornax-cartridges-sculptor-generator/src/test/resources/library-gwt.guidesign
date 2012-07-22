@@ -157,9 +157,14 @@ gui LibraryWeb for Library {
 			}
 
 			"Confirm the user wants to do something"
-			UiBehavior ConfirmMessage confirmSomeMessage {
+			UiBehavior DisplayMessage confirmSomeMessage {
+				cancelable
 				message="Are you really sure you want to do this!?!?"
+				messageId="ARE_U_SURE_MSG"
 			}
+			
+			
+			
 		
 			UiBehavior UpdateTable updatePersonTable {
 				hint = "updateTableHint"

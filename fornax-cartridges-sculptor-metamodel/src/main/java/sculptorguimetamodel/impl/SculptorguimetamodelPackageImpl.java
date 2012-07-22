@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import sculptorguimetamodel.AddTask;
@@ -21,13 +22,13 @@ import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.ButtonWidget;
 import sculptorguimetamodel.CompositeBehavior;
-import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.CustomBehavior;
 import sculptorguimetamodel.CustomCondition;
 import sculptorguimetamodel.CustomWidget;
 import sculptorguimetamodel.DeleteTask;
 import sculptorguimetamodel.DerivedReferenceViewProperty;
+import sculptorguimetamodel.DisplayMessageBehavior;
 import sculptorguimetamodel.EnumViewProperty;
 import sculptorguimetamodel.GoBackBehavior;
 import sculptorguimetamodel.GuiApplication;
@@ -56,7 +57,6 @@ import sculptorguimetamodel.PopulateListBoxBehavior;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.PopupPanelBehavior;
 import sculptorguimetamodel.PropertyPathElement;
-import sculptorguimetamodel.PropertyReference;
 import sculptorguimetamodel.PropertyReferringWidget;
 import sculptorguimetamodel.RadioButtonsWidget;
 import sculptorguimetamodel.ReferenceTarget;
@@ -64,7 +64,6 @@ import sculptorguimetamodel.ReferenceViewProperty;
 import sculptorguimetamodel.RichTextAreaWidget;
 import sculptorguimetamodel.SculptorguimetamodelFactory;
 import sculptorguimetamodel.SculptorguimetamodelPackage;
-import sculptorguimetamodel.SectionWidget;
 import sculptorguimetamodel.ServiceProxy;
 import sculptorguimetamodel.ServiceProxyOperation;
 import sculptorguimetamodel.SetDirtyFlagBehavior;
@@ -79,12 +78,12 @@ import sculptorguimetamodel.TmpSubTaskTransitionHolder;
 import sculptorguimetamodel.UiBehavior;
 import sculptorguimetamodel.UiCondition;
 import sculptorguimetamodel.UpdateAttributeBehavior;
+import sculptorguimetamodel.UpdateHistoryBehavior;
 import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.UpdateTask;
 import sculptorguimetamodel.UserTask;
 import sculptorguimetamodel.UserTaskGroup;
 import sculptorguimetamodel.View;
-import sculptorguimetamodel.ViewAttributeReference;
 import sculptorguimetamodel.ViewDataProperty;
 import sculptorguimetamodel.ViewParameter;
 import sculptorguimetamodel.ViewTask;
@@ -92,6 +91,7 @@ import sculptorguimetamodel.WarnIfDirtyBehavior;
 import sculptorguimetamodel.Widget;
 import sculptorguimetamodel.WidgetTableColumn;
 import sculptorguimetamodel.WidgetsContainer;
+
 import sculptormetamodel.SculptormetamodelPackage;
 
 /**
@@ -187,446 +187,453 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass referenceTargetEClass = null;
+	private EClass referenceTargetEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass referenceViewPropertyEClass = null;
+	private EClass referenceViewPropertyEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass attributeViewPropertyEClass = null;
+	private EClass attributeViewPropertyEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass basicTypeViewPropertyEClass = null;
+	private EClass basicTypeViewPropertyEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass enumViewPropertyEClass = null;
+	private EClass enumViewPropertyEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass basicTypeEnumViewPropertyEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass userTaskGroupEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass derivedReferenceViewPropertyEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass addTaskEClass = null;
+	private EClass addTaskEClass = null;
 
-                /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass viewEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass widgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass inputTextWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass informationalTextWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass buttonWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass propertyReferringWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass tableWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass guiEventEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass tableColumnEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass textAreaWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass autocompleteWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass radioButtonsWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass richTextAreaWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass inputDateWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass numberSpinnerWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass serviceProxyEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass serviceProxyOperationEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass guiCommandEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass viewParameterEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass linkWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass widgetsContainerEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass panelWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass uiBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass populatePanelBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass navigateToViewBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass behaviorBindingEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass onClickBindingEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass onHoverBindingEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass uiConditionEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass guiDtoEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass guiEnumEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass stubModuleEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass listBoxWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass behaviorContainerEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass customWidgetEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass updateTableBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass confirmMessageBehaviorEClass = null;
+	private EClass displayMessageBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass customBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass customConditionEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass compositeBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass onSelectItemBindingEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass widgetTableColumnEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass simpleTableColumnEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass setDirtyFlagBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass warnIfDirtyBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass populateListBoxBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass markDirtyBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass markCleanBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass goBackBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass updateAttributeBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass hasDirtyValueConditionEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass popupPanelBehaviorEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass guiDtoOptionsEClass = null;
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass propertyPathElementEClass = null;
 
-																/**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass updateHistoryBehaviorEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -764,14 +771,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getGuiModule_For() {
+	public EReference getGuiModule_For() {
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(3);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -780,7 +787,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(4);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -789,7 +796,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(5);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -798,7 +805,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(6);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -807,7 +814,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(7);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -816,7 +823,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(8);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -825,7 +832,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiModuleEClass.getEStructuralFeatures().get(9);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -881,32 +888,32 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getUserTask_ViewProperties() {
+	public EReference getUserTask_ViewProperties() {
 		return (EReference)userTaskEClass.getEStructuralFeatures().get(5);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getUserTask_ConversationRoot() {
+	public EAttribute getUserTask_ConversationRoot() {
 		return (EAttribute)userTaskEClass.getEStructuralFeatures().get(6);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getUserTask_GapClass() {
+	public EAttribute getUserTask_GapClass() {
 		return (EAttribute)userTaskEClass.getEStructuralFeatures().get(7);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -926,14 +933,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getCreateTask_PopulateDOWith() {
+	public EReference getCreateTask_PopulateDOWith() {
 		return (EReference)createTaskEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -962,14 +969,14 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getUpdateTask_PopulateDOWith() {
+	public EReference getUpdateTask_PopulateDOWith() {
 		return (EReference)updateTaskEClass.getEStructuralFeatures().get(2);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1079,23 +1086,23 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getViewDataProperty_UserTask() {
+	public EReference getViewDataProperty_UserTask() {
 		return (EReference)viewDataPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getViewDataProperty_MessageKey() {
+	public EAttribute getViewDataProperty_MessageKey() {
 		return (EAttribute)viewDataPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1160,68 +1167,68 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getReferenceTarget() {
+	public EClass getReferenceTarget() {
 		return referenceTargetEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getReferenceTarget_Reference() {
+	public EReference getReferenceTarget_Reference() {
 		return (EReference)referenceTargetEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getReferenceTarget_Target() {
+	public EReference getReferenceTarget_Target() {
 		return (EReference)referenceTargetEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getReferenceViewProperty() {
+	public EClass getReferenceViewProperty() {
 		return referenceViewPropertyEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getReferenceViewProperty_RelatedTransitions() {
+	public EReference getReferenceViewProperty_RelatedTransitions() {
 		return (EReference)referenceViewPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getReferenceViewProperty_Reference() {
+	public EReference getReferenceViewProperty_Reference() {
 		return (EReference)referenceViewPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getReferenceViewProperty_Target() {
+	public EReference getReferenceViewProperty_Target() {
 		return (EReference)referenceViewPropertyEClass.getEStructuralFeatures().get(2);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1230,79 +1237,79 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)referenceViewPropertyEClass.getEStructuralFeatures().get(3);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getReferenceViewProperty_PreviewProperties() {
+	public EReference getReferenceViewProperty_PreviewProperties() {
 		return (EReference)referenceViewPropertyEClass.getEStructuralFeatures().get(4);
 	}
 
-                /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getAttributeViewProperty() {
+	public EClass getAttributeViewProperty() {
 		return attributeViewPropertyEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getAttributeViewProperty_Attribute() {
+	public EReference getAttributeViewProperty_Attribute() {
 		return (EReference)attributeViewPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getBasicTypeViewProperty() {
+	public EClass getBasicTypeViewProperty() {
 		return basicTypeViewPropertyEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getBasicTypeViewProperty_Reference() {
+	public EReference getBasicTypeViewProperty_Reference() {
 		return (EReference)basicTypeViewPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getBasicTypeViewProperty_Attribute() {
+	public EReference getBasicTypeViewProperty_Attribute() {
 		return (EReference)basicTypeViewPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getEnumViewProperty() {
+	public EClass getEnumViewProperty() {
 		return enumViewPropertyEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getEnumViewProperty_Reference() {
+	public EReference getEnumViewProperty_Reference() {
 		return (EReference)enumViewPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1311,7 +1318,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return basicTypeEnumViewPropertyEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1320,7 +1327,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)basicTypeEnumViewPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1329,7 +1336,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return userTaskGroupEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1338,25 +1345,25 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)userTaskGroupEClass.getEStructuralFeatures().get(0);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getUserTaskGroup_For() {
+	public EReference getUserTaskGroup_For() {
 		return (EReference)userTaskGroupEClass.getEStructuralFeatures().get(1);
 	}
 
-                /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getUserTaskGroup_Module() {
+	public EReference getUserTaskGroup_Module() {
 		return (EReference)userTaskGroupEClass.getEStructuralFeatures().get(2);
 	}
 
-                /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1365,7 +1372,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return derivedReferenceViewPropertyEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1374,25 +1381,25 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)derivedReferenceViewPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getAddTask() {
+	public EClass getAddTask() {
 		return addTaskEClass;
 	}
 
-                /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getAddTask_FindDOWith() {
+	public EReference getAddTask_FindDOWith() {
 		return (EReference)addTaskEClass.getEStructuralFeatures().get(0);
 	}
 
-                /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1401,7 +1408,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return viewEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1410,7 +1417,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)viewEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1419,7 +1426,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)viewEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1428,7 +1435,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)viewEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1437,7 +1444,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)viewEClass.getEStructuralFeatures().get(3);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1446,7 +1453,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)viewEClass.getEStructuralFeatures().get(4);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1455,7 +1462,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)viewEClass.getEStructuralFeatures().get(5);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1464,7 +1471,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)viewEClass.getEStructuralFeatures().get(6);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1473,7 +1480,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)viewEClass.getEStructuralFeatures().get(7);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1482,7 +1489,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return widgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1491,7 +1498,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)widgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1500,7 +1507,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)widgetEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1509,7 +1516,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)widgetEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1518,7 +1525,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)widgetEClass.getEStructuralFeatures().get(3);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1527,7 +1534,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)widgetEClass.getEStructuralFeatures().get(4);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1536,7 +1543,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)widgetEClass.getEStructuralFeatures().get(5);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1545,7 +1552,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return inputTextWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1554,7 +1561,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return informationalTextWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1563,7 +1570,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return buttonWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1572,7 +1579,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)buttonWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1581,7 +1588,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return propertyReferringWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1590,7 +1597,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1599,7 +1606,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1608,7 +1615,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)propertyReferringWidgetEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1617,7 +1624,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)propertyReferringWidgetEClass.getEStructuralFeatures().get(3);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1626,7 +1633,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return tableWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1635,7 +1642,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)tableWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1644,7 +1651,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1653,7 +1660,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)tableWidgetEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1662,7 +1669,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return guiEventEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1671,7 +1678,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiEventEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1680,7 +1687,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return tableColumnEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1689,7 +1696,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1698,7 +1705,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1707,7 +1714,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1716,7 +1723,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)tableColumnEClass.getEStructuralFeatures().get(3);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1725,7 +1732,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return textAreaWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1734,7 +1741,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return autocompleteWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1743,7 +1750,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return radioButtonsWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1752,7 +1759,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return richTextAreaWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1761,7 +1768,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return inputDateWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1770,7 +1777,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return numberSpinnerWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1779,7 +1786,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return serviceProxyEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1788,7 +1795,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)serviceProxyEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1797,7 +1804,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)serviceProxyEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1806,7 +1813,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return serviceProxyOperationEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1815,7 +1822,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)serviceProxyOperationEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1824,7 +1831,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return guiCommandEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1833,7 +1840,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return viewParameterEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1842,7 +1849,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)viewParameterEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1851,7 +1858,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return linkWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1860,7 +1867,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)linkWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1869,7 +1876,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)linkWidgetEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1878,7 +1885,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return widgetsContainerEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1887,7 +1894,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)widgetsContainerEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1896,7 +1903,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return panelWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1905,7 +1912,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)panelWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1914,7 +1921,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return uiBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1923,7 +1930,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)uiBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1932,7 +1939,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return populatePanelBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1941,7 +1948,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)populatePanelBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1950,7 +1957,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return navigateToViewBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1959,7 +1966,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)navigateToViewBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1968,7 +1975,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return behaviorBindingEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1977,7 +1984,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)behaviorBindingEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1986,7 +1993,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)behaviorBindingEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1995,7 +2002,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)behaviorBindingEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2004,7 +2011,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return onClickBindingEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2013,7 +2020,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return onHoverBindingEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2022,7 +2029,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return uiConditionEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2031,7 +2038,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return guiDtoEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2040,7 +2047,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiDtoEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2049,7 +2056,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)guiDtoEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2058,7 +2065,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)guiDtoEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2067,7 +2074,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return guiEnumEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2076,7 +2083,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return stubModuleEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2085,7 +2092,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)stubModuleEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2094,7 +2101,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)stubModuleEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2103,7 +2110,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return listBoxWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2112,7 +2119,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)listBoxWidgetEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2121,7 +2128,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return behaviorContainerEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2130,7 +2137,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)behaviorContainerEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2139,7 +2146,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)behaviorContainerEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2148,7 +2155,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return customWidgetEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2157,7 +2164,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return updateTableBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2166,25 +2173,43 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)updateTableBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConfirmMessageBehavior() {
-		return confirmMessageBehaviorEClass;
+	public EClass getDisplayMessageBehavior() {
+		return displayMessageBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConfirmMessageBehavior_Message() {
-		return (EAttribute)confirmMessageBehaviorEClass.getEStructuralFeatures().get(0);
+	public EAttribute getDisplayMessageBehavior_Message() {
+		return (EAttribute)displayMessageBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDisplayMessageBehavior_Cancelable() {
+		return (EAttribute)displayMessageBehaviorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDisplayMessageBehavior_MessageId() {
+		return (EAttribute)displayMessageBehaviorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2193,7 +2218,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return customBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2202,7 +2227,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return customConditionEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2211,7 +2236,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return compositeBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2220,7 +2245,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)compositeBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2229,7 +2254,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return onSelectItemBindingEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2238,7 +2263,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return widgetTableColumnEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2247,7 +2272,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)widgetTableColumnEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2256,7 +2281,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return simpleTableColumnEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2265,7 +2290,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return setDirtyFlagBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2274,7 +2299,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)setDirtyFlagBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2283,7 +2308,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return warnIfDirtyBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2292,7 +2317,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return populateListBoxBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2301,7 +2326,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)populateListBoxBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2310,7 +2335,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return markDirtyBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2319,7 +2344,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return markCleanBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2328,7 +2353,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return goBackBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2337,7 +2362,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return updateAttributeBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2346,7 +2371,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)updateAttributeBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2355,7 +2380,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)updateAttributeBehaviorEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2364,7 +2389,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return hasDirtyValueConditionEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2373,7 +2398,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)hasDirtyValueConditionEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2382,7 +2407,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return popupPanelBehaviorEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2391,7 +2416,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)popupPanelBehaviorEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2400,7 +2425,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)popupPanelBehaviorEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2409,7 +2434,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return guiDtoOptionsEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2418,7 +2443,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EAttribute)guiDtoOptionsEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2427,7 +2452,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return propertyPathElementEClass;
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2436,7 +2461,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)propertyPathElementEClass.getEStructuralFeatures().get(0);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2445,7 +2470,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)propertyPathElementEClass.getEStructuralFeatures().get(1);
 	}
 
-																/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2454,7 +2479,16 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		return (EReference)propertyPathElementEClass.getEStructuralFeatures().get(2);
 	}
 
-																/**
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUpdateHistoryBehavior() {
+		return updateHistoryBehaviorEClass;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2703,8 +2737,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		updateTableBehaviorEClass = createEClass(UPDATE_TABLE_BEHAVIOR);
 		createEReference(updateTableBehaviorEClass, UPDATE_TABLE_BEHAVIOR__TABLE);
 
-		confirmMessageBehaviorEClass = createEClass(CONFIRM_MESSAGE_BEHAVIOR);
-		createEAttribute(confirmMessageBehaviorEClass, CONFIRM_MESSAGE_BEHAVIOR__MESSAGE);
+		displayMessageBehaviorEClass = createEClass(DISPLAY_MESSAGE_BEHAVIOR);
+		createEAttribute(displayMessageBehaviorEClass, DISPLAY_MESSAGE_BEHAVIOR__MESSAGE);
+		createEAttribute(displayMessageBehaviorEClass, DISPLAY_MESSAGE_BEHAVIOR__CANCELABLE);
+		createEAttribute(displayMessageBehaviorEClass, DISPLAY_MESSAGE_BEHAVIOR__MESSAGE_ID);
 
 		customBehaviorEClass = createEClass(CUSTOM_BEHAVIOR);
 
@@ -2752,6 +2788,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__REMAINING_PATH);
 		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__FOR_ATTRIBUTE);
 		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__FOR_REFERENCE);
+
+		updateHistoryBehaviorEClass = createEClass(UPDATE_HISTORY_BEHAVIOR);
 	}
 
 	/**
@@ -2836,7 +2874,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		listBoxWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		customWidgetEClass.getESuperTypes().add(this.getPropertyReferringWidget());
 		updateTableBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
-		confirmMessageBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		displayMessageBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		customBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		customConditionEClass.getESuperTypes().add(this.getUiCondition());
 		compositeBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
@@ -2844,7 +2882,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		widgetTableColumnEClass.getESuperTypes().add(this.getTableColumn());
 		simpleTableColumnEClass.getESuperTypes().add(this.getTableColumn());
 		setDirtyFlagBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
-		warnIfDirtyBehaviorEClass.getESuperTypes().add(this.getConfirmMessageBehavior());
+		warnIfDirtyBehaviorEClass.getESuperTypes().add(this.getDisplayMessageBehavior());
 		populateListBoxBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		markDirtyBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
 		markCleanBehaviorEClass.getESuperTypes().add(this.getSetDirtyFlagBehavior());
@@ -2853,6 +2891,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		hasDirtyValueConditionEClass.getESuperTypes().add(this.getUiCondition());
 		popupPanelBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		guiDtoOptionsEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
+		updateHistoryBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3076,8 +3115,10 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEClass(updateTableBehaviorEClass, UpdateTableBehavior.class, "UpdateTableBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUpdateTableBehavior_Table(), this.getTableWidget(), null, "table", null, 1, 1, UpdateTableBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(confirmMessageBehaviorEClass, ConfirmMessageBehavior.class, "ConfirmMessageBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfirmMessageBehavior_Message(), ecorePackage.getEString(), "message", null, 0, 1, ConfirmMessageBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(displayMessageBehaviorEClass, DisplayMessageBehavior.class, "DisplayMessageBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDisplayMessageBehavior_Message(), ecorePackage.getEString(), "message", null, 0, 1, DisplayMessageBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDisplayMessageBehavior_Cancelable(), ecorePackage.getEBoolean(), "cancelable", null, 0, 1, DisplayMessageBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDisplayMessageBehavior_MessageId(), ecorePackage.getEString(), "messageId", null, 0, 1, DisplayMessageBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(customBehaviorEClass, CustomBehavior.class, "CustomBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3125,6 +3166,8 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getPropertyPathElement_RemainingPath(), this.getPropertyPathElement(), null, "remainingPath", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyPathElement_ForAttribute(), theSculptormetamodelPackage.getAttribute(), null, "forAttribute", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPropertyPathElement_ForReference(), theSculptormetamodelPackage.getReference(), null, "forReference", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(updateHistoryBehaviorEClass, UpdateHistoryBehavior.class, "UpdateHistoryBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

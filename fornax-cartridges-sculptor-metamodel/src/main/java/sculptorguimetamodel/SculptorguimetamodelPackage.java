@@ -6572,14 +6572,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UPDATE_TABLE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl <em>Confirm Message Behavior</em>}' class.
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.DisplayMessageBehaviorImpl <em>Display Message Behavior</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl
-	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getConfirmMessageBehavior()
+	 * @see sculptorguimetamodel.impl.DisplayMessageBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getDisplayMessageBehavior()
 	 * @generated
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR = 57;
+	int DISPLAY_MESSAGE_BEHAVIOR = 57;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6588,7 +6588,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+	int DISPLAY_MESSAGE_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -6597,7 +6597,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+	int DISPLAY_MESSAGE_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
 
 	/**
 	 * The feature id for the '<em><b>Hint</b></em>' attribute.
@@ -6606,7 +6606,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+	int DISPLAY_MESSAGE_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
 
 	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
@@ -6615,7 +6615,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+	int DISPLAY_MESSAGE_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -6624,16 +6624,34 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR__MESSAGE = UI_BEHAVIOR_FEATURE_COUNT + 0;
+	int DISPLAY_MESSAGE_BEHAVIOR__MESSAGE = UI_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Confirm Message Behavior</em>' class.
+	 * The feature id for the '<em><b>Cancelable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIRM_MESSAGE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+	int DISPLAY_MESSAGE_BEHAVIOR__CANCELABLE = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Message Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISPLAY_MESSAGE_BEHAVIOR__MESSAGE_ID = UI_BEHAVIOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Display Message Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISPLAY_MESSAGE_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.CustomBehaviorImpl <em>Custom Behavior</em>}' class.
@@ -7280,7 +7298,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WARN_IF_DIRTY_BEHAVIOR__NAME = CONFIRM_MESSAGE_BEHAVIOR__NAME;
+	int WARN_IF_DIRTY_BEHAVIOR__NAME = DISPLAY_MESSAGE_BEHAVIOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Doc</b></em>' attribute.
@@ -7289,7 +7307,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WARN_IF_DIRTY_BEHAVIOR__DOC = CONFIRM_MESSAGE_BEHAVIOR__DOC;
+	int WARN_IF_DIRTY_BEHAVIOR__DOC = DISPLAY_MESSAGE_BEHAVIOR__DOC;
 
 	/**
 	 * The feature id for the '<em><b>Hint</b></em>' attribute.
@@ -7298,7 +7316,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WARN_IF_DIRTY_BEHAVIOR__HINT = CONFIRM_MESSAGE_BEHAVIOR__HINT;
+	int WARN_IF_DIRTY_BEHAVIOR__HINT = DISPLAY_MESSAGE_BEHAVIOR__HINT;
 
 	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
@@ -7307,7 +7325,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WARN_IF_DIRTY_BEHAVIOR__BINDINGS = CONFIRM_MESSAGE_BEHAVIOR__BINDINGS;
+	int WARN_IF_DIRTY_BEHAVIOR__BINDINGS = DISPLAY_MESSAGE_BEHAVIOR__BINDINGS;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -7316,7 +7334,25 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WARN_IF_DIRTY_BEHAVIOR__MESSAGE = CONFIRM_MESSAGE_BEHAVIOR__MESSAGE;
+	int WARN_IF_DIRTY_BEHAVIOR__MESSAGE = DISPLAY_MESSAGE_BEHAVIOR__MESSAGE;
+
+	/**
+	 * The feature id for the '<em><b>Cancelable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WARN_IF_DIRTY_BEHAVIOR__CANCELABLE = DISPLAY_MESSAGE_BEHAVIOR__CANCELABLE;
+
+	/**
+	 * The feature id for the '<em><b>Message Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WARN_IF_DIRTY_BEHAVIOR__MESSAGE_ID = DISPLAY_MESSAGE_BEHAVIOR__MESSAGE_ID;
 
 	/**
 	 * The number of structural features of the '<em>Warn If Dirty Behavior</em>' class.
@@ -7325,7 +7361,7 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WARN_IF_DIRTY_BEHAVIOR_FEATURE_COUNT = CONFIRM_MESSAGE_BEHAVIOR_FEATURE_COUNT + 0;
+	int WARN_IF_DIRTY_BEHAVIOR_FEATURE_COUNT = DISPLAY_MESSAGE_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sculptorguimetamodel.impl.PopulateListBoxBehaviorImpl <em>Populate List Box Behavior</em>}' class.
@@ -7875,6 +7911,61 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTY_PATH_ELEMENT_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.UpdateHistoryBehaviorImpl <em>Update History Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.UpdateHistoryBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUpdateHistoryBehavior()
+	 * @generated
+	 */
+	int UPDATE_HISTORY_BEHAVIOR = 75;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_HISTORY_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_HISTORY_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_HISTORY_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_HISTORY_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
+	 * The number of structural features of the '<em>Update History Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_HISTORY_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
@@ -9624,25 +9715,47 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EReference getUpdateTableBehavior_Table();
 
 	/**
-	 * Returns the meta object for class '{@link sculptorguimetamodel.ConfirmMessageBehavior <em>Confirm Message Behavior</em>}'.
+	 * Returns the meta object for class '{@link sculptorguimetamodel.DisplayMessageBehavior <em>Display Message Behavior</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Confirm Message Behavior</em>'.
-	 * @see sculptorguimetamodel.ConfirmMessageBehavior
+	 * @return the meta object for class '<em>Display Message Behavior</em>'.
+	 * @see sculptorguimetamodel.DisplayMessageBehavior
 	 * @generated
 	 */
-	EClass getConfirmMessageBehavior();
+	EClass getDisplayMessageBehavior();
 
 	/**
-	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.ConfirmMessageBehavior#getMessage <em>Message</em>}'.
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.DisplayMessageBehavior#getMessage <em>Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Message</em>'.
-	 * @see sculptorguimetamodel.ConfirmMessageBehavior#getMessage()
-	 * @see #getConfirmMessageBehavior()
+	 * @see sculptorguimetamodel.DisplayMessageBehavior#getMessage()
+	 * @see #getDisplayMessageBehavior()
 	 * @generated
 	 */
-	EAttribute getConfirmMessageBehavior_Message();
+	EAttribute getDisplayMessageBehavior_Message();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.DisplayMessageBehavior#isCancelable <em>Cancelable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cancelable</em>'.
+	 * @see sculptorguimetamodel.DisplayMessageBehavior#isCancelable()
+	 * @see #getDisplayMessageBehavior()
+	 * @generated
+	 */
+	EAttribute getDisplayMessageBehavior_Cancelable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sculptorguimetamodel.DisplayMessageBehavior#getMessageId <em>Message Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message Id</em>'.
+	 * @see sculptorguimetamodel.DisplayMessageBehavior#getMessageId()
+	 * @see #getDisplayMessageBehavior()
+	 * @generated
+	 */
+	EAttribute getDisplayMessageBehavior_MessageId();
 
 	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.CustomBehavior <em>Custom Behavior</em>}'.
@@ -9956,6 +10069,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyPathElement_ForReference();
+
+	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.UpdateHistoryBehavior <em>Update History Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Update History Behavior</em>'.
+	 * @see sculptorguimetamodel.UpdateHistoryBehavior
+	 * @generated
+	 */
+	EClass getUpdateHistoryBehavior();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -11406,14 +11529,14 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		EReference UPDATE_TABLE_BEHAVIOR__TABLE = eINSTANCE.getUpdateTableBehavior_Table();
 
 		/**
-		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl <em>Confirm Message Behavior</em>}' class.
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.DisplayMessageBehaviorImpl <em>Display Message Behavior</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see sculptorguimetamodel.impl.ConfirmMessageBehaviorImpl
-		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getConfirmMessageBehavior()
+		 * @see sculptorguimetamodel.impl.DisplayMessageBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getDisplayMessageBehavior()
 		 * @generated
 		 */
-		EClass CONFIRM_MESSAGE_BEHAVIOR = eINSTANCE.getConfirmMessageBehavior();
+		EClass DISPLAY_MESSAGE_BEHAVIOR = eINSTANCE.getDisplayMessageBehavior();
 
 		/**
 		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
@@ -11421,7 +11544,23 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONFIRM_MESSAGE_BEHAVIOR__MESSAGE = eINSTANCE.getConfirmMessageBehavior_Message();
+		EAttribute DISPLAY_MESSAGE_BEHAVIOR__MESSAGE = eINSTANCE.getDisplayMessageBehavior_Message();
+
+		/**
+		 * The meta object literal for the '<em><b>Cancelable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DISPLAY_MESSAGE_BEHAVIOR__CANCELABLE = eINSTANCE.getDisplayMessageBehavior_Cancelable();
+
+		/**
+		 * The meta object literal for the '<em><b>Message Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DISPLAY_MESSAGE_BEHAVIOR__MESSAGE_ID = eINSTANCE.getDisplayMessageBehavior_MessageId();
 
 		/**
 		 * The meta object literal for the '{@link sculptorguimetamodel.impl.CustomBehaviorImpl <em>Custom Behavior</em>}' class.
@@ -11696,6 +11835,16 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_PATH_ELEMENT__FOR_REFERENCE = eINSTANCE.getPropertyPathElement_ForReference();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.UpdateHistoryBehaviorImpl <em>Update History Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.UpdateHistoryBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getUpdateHistoryBehavior()
+		 * @generated
+		 */
+		EClass UPDATE_HISTORY_BEHAVIOR = eINSTANCE.getUpdateHistoryBehavior();
 
 	}
 

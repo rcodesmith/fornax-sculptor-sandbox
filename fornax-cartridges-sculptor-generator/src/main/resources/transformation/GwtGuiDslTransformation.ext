@@ -813,11 +813,13 @@ create sculptorguimetamodel::NavigateToViewBehavior this transformBehavior(DslNa
 	setName(behavior.name) ->
 	setView(behavior.view.transformView(((DslGuiModule)(behavior.view.eContainer)).for.transform()));
 
-create sculptorguimetamodel::ConfirmMessageBehavior this transformBehavior(DslConfirmMessageBehavior behavior, Module module) :
+create sculptorguimetamodel::DisplayMessageBehavior this transformBehavior(DslDisplayMessageBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->
 	setName(behavior.name) ->
-	setMessage(behavior.message);
+	setCancelable(behavior.cancelable) ->
+	setMessage(behavior.message) ->
+	setMessageId(behavior.messageId);
 
 create sculptorguimetamodel::UpdateTableBehavior this transformBehavior(DslUpdateTableBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->

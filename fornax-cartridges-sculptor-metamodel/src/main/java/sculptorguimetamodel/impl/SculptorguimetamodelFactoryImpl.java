@@ -117,7 +117,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.BEHAVIOR_CONTAINER: return createBehaviorContainer();
 			case SculptorguimetamodelPackage.CUSTOM_WIDGET: return createCustomWidget();
 			case SculptorguimetamodelPackage.UPDATE_TABLE_BEHAVIOR: return createUpdateTableBehavior();
-			case SculptorguimetamodelPackage.CONFIRM_MESSAGE_BEHAVIOR: return createConfirmMessageBehavior();
+			case SculptorguimetamodelPackage.DISPLAY_MESSAGE_BEHAVIOR: return createDisplayMessageBehavior();
 			case SculptorguimetamodelPackage.CUSTOM_BEHAVIOR: return createCustomBehavior();
 			case SculptorguimetamodelPackage.CUSTOM_CONDITION: return createCustomCondition();
 			case SculptorguimetamodelPackage.COMPOSITE_BEHAVIOR: return createCompositeBehavior();
@@ -135,6 +135,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.POPUP_PANEL_BEHAVIOR: return createPopupPanelBehavior();
 			case SculptorguimetamodelPackage.GUI_DTO_OPTIONS: return createGuiDtoOptions();
 			case SculptorguimetamodelPackage.PROPERTY_PATH_ELEMENT: return createPropertyPathElement();
+			case SculptorguimetamodelPackage.UPDATE_HISTORY_BEHAVIOR: return createUpdateHistoryBehavior();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -715,9 +716,9 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConfirmMessageBehavior createConfirmMessageBehavior() {
-		ConfirmMessageBehaviorImpl confirmMessageBehavior = new ConfirmMessageBehaviorImpl();
-		return confirmMessageBehavior;
+	public DisplayMessageBehavior createDisplayMessageBehavior() {
+		DisplayMessageBehaviorImpl displayMessageBehavior = new DisplayMessageBehaviorImpl();
+		return displayMessageBehavior;
 	}
 
 																/**
@@ -888,6 +889,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public PropertyPathElement createPropertyPathElement() {
 		PropertyPathElementImpl propertyPathElement = new PropertyPathElementImpl();
 		return propertyPathElement;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UpdateHistoryBehavior createUpdateHistoryBehavior() {
+		UpdateHistoryBehaviorImpl updateHistoryBehavior = new UpdateHistoryBehaviorImpl();
+		return updateHistoryBehavior;
 	}
 
 																/**

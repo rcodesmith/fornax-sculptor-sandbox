@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.fornax.cartridges.sculptor.framework.gwt.client.HasDirtyFlags;
-import org.fornax.cartridges.sculptor.framework.gwt.client.PresentsConfirmationMessage;
+import org.fornax.cartridges.sculptor.framework.gwt.client.PresentsMessage;
 import org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event;
 
 /**
@@ -19,10 +19,10 @@ public class WarnIfDirtyBehavior implements Behavior {
 
     protected String name;
 	protected HasDirtyFlags hasDirty;
-	protected PresentsConfirmationMessage presentsConfirmation;
+	protected PresentsMessage presentsConfirmation;
 	protected String message;
 	
-	public WarnIfDirtyBehavior(String name, String message, HasDirtyFlags hasDirty, PresentsConfirmationMessage presentsConfirmation) {
+	public WarnIfDirtyBehavior(String name, String message, HasDirtyFlags hasDirty, PresentsMessage presentsConfirmation) {
 		this.name = name;
 		this.message = message;
 		this.hasDirty = hasDirty;

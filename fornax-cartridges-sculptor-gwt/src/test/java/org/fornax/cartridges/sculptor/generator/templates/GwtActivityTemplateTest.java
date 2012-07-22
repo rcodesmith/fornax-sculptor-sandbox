@@ -94,8 +94,9 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"/**",
 				"* Confirm the user wants to do something",
 				"*/",
-				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ConfirmMessageBehavior createConfirmSomeMessageBehavior() {",
-				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ConfirmMessageBehavior(\"confirmSomeMessage\", \"Are you really sure you want to do this!?!?\",",
+				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.DisplayMessageBehavior createConfirmSomeMessageBehavior() {",
+				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.DisplayMessageBehavior(\"confirmSomeMessage\", \"Are you really sure you want to do this!?!?\",",
+				"null,",
 				"view);", "}");
 		
 		

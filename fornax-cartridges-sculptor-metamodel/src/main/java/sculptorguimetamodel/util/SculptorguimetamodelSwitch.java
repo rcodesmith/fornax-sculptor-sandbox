@@ -554,11 +554,11 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SculptorguimetamodelPackage.CONFIRM_MESSAGE_BEHAVIOR: {
-				ConfirmMessageBehavior confirmMessageBehavior = (ConfirmMessageBehavior)theEObject;
-				Object result = caseConfirmMessageBehavior(confirmMessageBehavior);
-				if (result == null) result = caseUiBehavior(confirmMessageBehavior);
-				if (result == null) result = caseNamedElement(confirmMessageBehavior);
+			case SculptorguimetamodelPackage.DISPLAY_MESSAGE_BEHAVIOR: {
+				DisplayMessageBehavior displayMessageBehavior = (DisplayMessageBehavior)theEObject;
+				Object result = caseDisplayMessageBehavior(displayMessageBehavior);
+				if (result == null) result = caseUiBehavior(displayMessageBehavior);
+				if (result == null) result = caseNamedElement(displayMessageBehavior);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -624,7 +624,7 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.WARN_IF_DIRTY_BEHAVIOR: {
 				WarnIfDirtyBehavior warnIfDirtyBehavior = (WarnIfDirtyBehavior)theEObject;
 				Object result = caseWarnIfDirtyBehavior(warnIfDirtyBehavior);
-				if (result == null) result = caseConfirmMessageBehavior(warnIfDirtyBehavior);
+				if (result == null) result = caseDisplayMessageBehavior(warnIfDirtyBehavior);
 				if (result == null) result = caseUiBehavior(warnIfDirtyBehavior);
 				if (result == null) result = caseNamedElement(warnIfDirtyBehavior);
 				if (result == null) result = defaultCase(theEObject);
@@ -698,6 +698,14 @@ public class SculptorguimetamodelSwitch {
 			case SculptorguimetamodelPackage.PROPERTY_PATH_ELEMENT: {
 				PropertyPathElement propertyPathElement = (PropertyPathElement)theEObject;
 				Object result = casePropertyPathElement(propertyPathElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SculptorguimetamodelPackage.UPDATE_HISTORY_BEHAVIOR: {
+				UpdateHistoryBehavior updateHistoryBehavior = (UpdateHistoryBehavior)theEObject;
+				Object result = caseUpdateHistoryBehavior(updateHistoryBehavior);
+				if (result == null) result = caseUiBehavior(updateHistoryBehavior);
+				if (result == null) result = caseNamedElement(updateHistoryBehavior);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1561,17 +1569,17 @@ public class SculptorguimetamodelSwitch {
 	}
 
 																/**
-	 * Returns the result of interpreting the object as an instance of '<em>Confirm Message Behavior</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Display Message Behavior</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Confirm Message Behavior</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Display Message Behavior</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConfirmMessageBehavior(ConfirmMessageBehavior object) {
+	public Object caseDisplayMessageBehavior(DisplayMessageBehavior object) {
 		return null;
 	}
 
@@ -1827,6 +1835,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object casePropertyPathElement(PropertyPathElement object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Update History Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Update History Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseUpdateHistoryBehavior(UpdateHistoryBehavior object) {
 		return null;
 	}
 

@@ -8,8 +8,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import sculptorguimetamodel.BehaviorBinding;
-import sculptorguimetamodel.ConfirmMessageBehavior;
 import sculptorguimetamodel.CustomBehavior;
+import sculptorguimetamodel.DisplayMessageBehavior;
 import sculptorguimetamodel.MarkCleanBehavior;
 import sculptorguimetamodel.MarkDirtyBehavior;
 import sculptorguimetamodel.OnClickBinding;
@@ -72,12 +72,16 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 	public void assertConfirmMessageBehavior() {
 		View tableView = (View)getNamedElement("TableView", personModule().getViews());
 		
-		ConfirmMessageBehavior confirmMessageBehavior = (ConfirmMessageBehavior)getNamedElement("confirmSomeMessage", tableView.getBehaviors());
+		DisplayMessageBehavior confirmMessageBehavior = (DisplayMessageBehavior)getNamedElement("confirmSomeMessage", tableView.getBehaviors());
 		assertNotNull(confirmMessageBehavior);
 		
 		assertEquals("confirmSomeMessage", confirmMessageBehavior.getName());
 		
+		assertEquals(true, confirmMessageBehavior.isCancelable());
+		
 		assertEquals("Are you really sure you want to do this!?!?", confirmMessageBehavior.getMessage());
+		
+		assertEquals("ARE_U_SURE_MSG", confirmMessageBehavior.getMessageId());
 	}
 	
 	@Test

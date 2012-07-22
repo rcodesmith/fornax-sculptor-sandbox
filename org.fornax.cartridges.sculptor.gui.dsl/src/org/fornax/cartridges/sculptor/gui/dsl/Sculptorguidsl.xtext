@@ -328,9 +328,9 @@ DslGuiDto :
 //////////////////////////////////////////////////////////////
 
 DslUiBehavior :
-	DslPopulatePanelBehavior | DslPopulateListBoxBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslConfirmMessageBehavior
+	DslPopulatePanelBehavior | DslPopulateListBoxBehavior | DslNavigateToViewBehavior | DslUpdateTableBehavior | DslDisplayMessageBehavior
 	| DslCustomBehavior | DslCompositeBehavior | DslMarkDirtyBehavior | DslMarkCleanBehavior | DslWarnIfDirtyBehavior
-	| DslGoBackBehavior | DslUpdateAttributeBehavior | DslClearWidgetsBehavior | DslPopupPanelBehavior;
+	| DslGoBackBehavior | DslUpdateAttributeBehavior | DslClearWidgetsBehavior | DslPopupPanelBehavior | DslUpdateHistoryBehavior;
 	
 DslPopulatePanelBehavior :
   (doc=STRING)?
@@ -353,6 +353,15 @@ DslNavigateToViewBehavior :
     'view' '=' view=[DslView]
   "}";
 
+DslDisplayMessageBehavior :
+  (doc=STRING)?
+  "UiBehavior" "DisplayMessage" name=ID "{"
+	("hint" "=" hint=STRING)?
+	((cancelable?="cancelable") | (NOT "cancelable"))?
+  	('message' '=' message=STRING)?
+  	('messageId' '=' messageId=STRING)?
+  "}";
+
 DslUpdateTableBehavior :
   (doc=STRING)?
   "UiBehavior" "UpdateTable" name=ID "{"
@@ -360,16 +369,16 @@ DslUpdateTableBehavior :
   	'table' '=' table=[DslTableWidget]
   "}";
 
-DslConfirmMessageBehavior :
-  (doc=STRING)?
-  "UiBehavior" "ConfirmMessage" name=ID "{"
-	("hint" "=" hint=STRING)?
-  	('message' '=' message=STRING)?
-  "}";
 
 DslCustomBehavior :
   (doc=STRING)?
   "UiBehavior" "Custom" name=ID "{"
+	("hint" "=" hint=STRING)?
+  "}";
+
+DslUpdateHistoryBehavior :
+  (doc=STRING)?
+  "UiBehavior" "UpdateHistory" name=ID "{"
 	("hint" "=" hint=STRING)?
   "}";
 
