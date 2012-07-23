@@ -21,6 +21,7 @@ import sculptorguimetamodel.BasicTypeViewProperty;
 import sculptorguimetamodel.BehaviorBinding;
 import sculptorguimetamodel.BehaviorContainer;
 import sculptorguimetamodel.ButtonWidget;
+import sculptorguimetamodel.ClearWidgetsBehavior;
 import sculptorguimetamodel.CompositeBehavior;
 import sculptorguimetamodel.CreateTask;
 import sculptorguimetamodel.CustomBehavior;
@@ -632,6 +633,13 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * @generated
 	 */
 	private EClass updateHistoryBehaviorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass clearWidgetsBehaviorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2493,6 +2501,24 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getClearWidgetsBehavior() {
+		return clearWidgetsBehaviorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClearWidgetsBehavior_Widgets() {
+		return (EReference)clearWidgetsBehaviorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SculptorguimetamodelFactory getSculptorguimetamodelFactory() {
 		return (SculptorguimetamodelFactory)getEFactoryInstance();
 	}
@@ -2790,6 +2816,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		createEReference(propertyPathElementEClass, PROPERTY_PATH_ELEMENT__FOR_REFERENCE);
 
 		updateHistoryBehaviorEClass = createEClass(UPDATE_HISTORY_BEHAVIOR);
+
+		clearWidgetsBehaviorEClass = createEClass(CLEAR_WIDGETS_BEHAVIOR);
+		createEReference(clearWidgetsBehaviorEClass, CLEAR_WIDGETS_BEHAVIOR__WIDGETS);
 	}
 
 	/**
@@ -2892,6 +2921,7 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		popupPanelBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 		guiDtoOptionsEClass.getESuperTypes().add(theSculptormetamodelPackage.getNamedElement());
 		updateHistoryBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
+		clearWidgetsBehaviorEClass.getESuperTypes().add(this.getUiBehavior());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiApplicationEClass, GuiApplication.class, "GuiApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3168,6 +3198,9 @@ public class SculptorguimetamodelPackageImpl extends EPackageImpl implements Scu
 		initEReference(getPropertyPathElement_ForReference(), theSculptormetamodelPackage.getReference(), null, "forReference", null, 0, 1, PropertyPathElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(updateHistoryBehaviorEClass, UpdateHistoryBehavior.class, "UpdateHistoryBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(clearWidgetsBehaviorEClass, ClearWidgetsBehavior.class, "ClearWidgetsBehavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClearWidgetsBehavior_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, ClearWidgetsBehavior.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

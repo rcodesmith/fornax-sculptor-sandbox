@@ -136,6 +136,7 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 			case SculptorguimetamodelPackage.GUI_DTO_OPTIONS: return createGuiDtoOptions();
 			case SculptorguimetamodelPackage.PROPERTY_PATH_ELEMENT: return createPropertyPathElement();
 			case SculptorguimetamodelPackage.UPDATE_HISTORY_BEHAVIOR: return createUpdateHistoryBehavior();
+			case SculptorguimetamodelPackage.CLEAR_WIDGETS_BEHAVIOR: return createClearWidgetsBehavior();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -899,6 +900,16 @@ public class SculptorguimetamodelFactoryImpl extends EFactoryImpl implements Scu
 	public UpdateHistoryBehavior createUpdateHistoryBehavior() {
 		UpdateHistoryBehaviorImpl updateHistoryBehavior = new UpdateHistoryBehaviorImpl();
 		return updateHistoryBehavior;
+	}
+
+																/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClearWidgetsBehavior createClearWidgetsBehavior() {
+		ClearWidgetsBehaviorImpl clearWidgetsBehavior = new ClearWidgetsBehaviorImpl();
+		return clearWidgetsBehavior;
 	}
 
 																/**

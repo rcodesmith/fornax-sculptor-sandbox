@@ -8,13 +8,16 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import sculptorguimetamodel.BehaviorBinding;
+import sculptorguimetamodel.ClearWidgetsBehavior;
 import sculptorguimetamodel.CustomBehavior;
 import sculptorguimetamodel.DisplayMessageBehavior;
 import sculptorguimetamodel.MarkCleanBehavior;
 import sculptorguimetamodel.MarkDirtyBehavior;
 import sculptorguimetamodel.OnClickBinding;
+import sculptorguimetamodel.PanelWidget;
 import sculptorguimetamodel.PopulatePanelBehavior;
 import sculptorguimetamodel.PopupPanelBehavior;
+import sculptorguimetamodel.TableWidget;
 import sculptorguimetamodel.UpdateHistoryBehavior;
 import sculptorguimetamodel.UpdateTableBehavior;
 import sculptorguimetamodel.View;
@@ -65,7 +68,25 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		assertEquals("updateHistory", updateHistory.getName());
 		assertEquals("Update history based on current view", updateHistory.getDoc());
 	}
-	
+
+	@Test
+	public void assertClearWidgetsBehavior() {
+		View tableView = (View)getNamedElement("TableView", personModule().getViews());
+		
+		ClearWidgetsBehavior clearWidgets = (ClearWidgetsBehavior)getNamedElement("clearWidgets", tableView.getBehaviors());
+		assertNotNull(clearWidgets);
+		
+		assertEquals("clearWidgets", clearWidgets.getName());
+		assertEquals("Clear a couple widgets", clearWidgets.getDoc());
+		
+		assertEquals(2, clearWidgets.getWidgets().size());
+		
+		assertEquals("personDetailsEmptyPanel", ((PanelWidget)clearWidgets.getWidgets().get(0)).getName());
+		assertEquals("personTable", ((TableWidget)clearWidgets.getWidgets().get(1)).getName());
+		
+		
+	}
+
 	
 	@Test
 	public void assertUpdatePersonTableBehavior() {

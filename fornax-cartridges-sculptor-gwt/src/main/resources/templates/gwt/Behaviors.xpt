@@ -354,3 +354,38 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 	«this.getSourceRefSetterExpression(table.for, "targetObj")»((«this.forProperty != null ? this.forProperty.getLeafType() : "String"»)event.getValue());
 «ENDDEFINE»
 
+
+
+«DEFINE initBehavior FOR ClearWidgetsBehavior»
+
+	«IF formatJavaDoc() == "" -»
+		/**
+		 * «name» behavior class
+		 */
+	«ELSE -»
+		«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("clearWidgets")» «name»Behavior = null;
+
+	«IF formatJavaDoc() == "" -»
+		/**
+		 * Method to create the «name» behavior
+		 */
+	«ELSE -»
+		«formatJavaDoc()»
+	«ENDIF -»
+	protected «getBehaviorClass("clearWidgets")» create«name.toFirstUpper()»Behavior() {
+		return new «getBehaviorClass("clearWidgets")»("«name»", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.Invocable() {
+
+			@Override
+			public void invoke(
+					org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {
+					
+				«FOREACH this.widgets AS w»
+					display.«w.clearMethodName()»();
+				«ENDFOREACH»
+			}
+		});
+ 	}
+«ENDDEFINE»
+

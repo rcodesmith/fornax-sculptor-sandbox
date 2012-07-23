@@ -281,3 +281,6 @@ Package sculptorguimetamodel <http://www.fornax-platform.org/sculptorgui>
     Reference forReference : Reference
 
   Class UpdateHistoryBehavior -> UiBehavior
+
+  Class ClearWidgetsBehavior -> UiBehavior
+    Reference widgets : Widget<<0..*>>

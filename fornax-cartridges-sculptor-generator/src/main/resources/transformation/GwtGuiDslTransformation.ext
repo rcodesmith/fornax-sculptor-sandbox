@@ -807,6 +807,12 @@ create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPop
 	setName(behavior.name) ->
 	setPanel(behavior.panel.transformWidget(module));
 
+create sculptorguimetamodel::ClearWidgetsBehavior this transformBehavior(DslClearWidgetsBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	widgets.addAll(behavior.widgets.transformWidget(module));
+
 create sculptorguimetamodel::NavigateToViewBehavior this transformBehavior(DslNavigateToViewBehavior behavior, Module module) :
 	setDoc(behavior.doc) ->
 	setHint(behavior.hint) ->

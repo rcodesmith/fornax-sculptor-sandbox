@@ -709,6 +709,14 @@ public class SculptorguimetamodelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SculptorguimetamodelPackage.CLEAR_WIDGETS_BEHAVIOR: {
+				ClearWidgetsBehavior clearWidgetsBehavior = (ClearWidgetsBehavior)theEObject;
+				Object result = caseClearWidgetsBehavior(clearWidgetsBehavior);
+				if (result == null) result = caseUiBehavior(clearWidgetsBehavior);
+				if (result == null) result = caseNamedElement(clearWidgetsBehavior);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1850,6 +1858,21 @@ public class SculptorguimetamodelSwitch {
 	 * @generated
 	 */
 	public Object caseUpdateHistoryBehavior(UpdateHistoryBehavior object) {
+		return null;
+	}
+
+																/**
+	 * Returns the result of interpreting the object as an instance of '<em>Clear Widgets Behavior</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Clear Widgets Behavior</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseClearWidgetsBehavior(ClearWidgetsBehavior object) {
 		return null;
 	}
 

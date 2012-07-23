@@ -35,6 +35,23 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"});",
 				"}");
 	}
+	
+	
+	@Test
+	public void assertClearWidgetsBehavior() throws IOException {
+		String activityBaseCode = getTableViewBaseActivityCode();
+
+		assertContainsConsecutiveFragments(
+				activityBaseCode,
+				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ClearWidgetsBehavior createClearWidgetsBehavior() {",
+				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.ClearWidgetsBehavior(\"clearWidgets\", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.Invocable() {",
+				"@Override",
+				"public void invoke(",
+				"org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {",
+				"display.clearPersonDetailsPanelWidget();",
+				"display.clearPersonTableWidget();", "}", "});", "}");
+	}
+	
 	@Test
 	public void assertTableViewBaseCode() throws IOException {
 		String activityBaseCode = getTableViewBaseActivityCode();
@@ -80,6 +97,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"confirmSomeMessageBehavior = createConfirmSomeMessageBehavior();",
 				"popupPersonDetailsBehavior = createPopupPersonDetailsBehavior();",
 				"updateHistoryBehavior = createUpdateHistoryBehavior();",
+				"clearWidgetsBehavior = createClearWidgetsBehavior();",
 				"// Create behavior dispatchers.  Has to be done after behaviors because this is where the behaviors get added to the",
 				"// dispatcher",
 				"nameSelectorOnSelectItemBehaviorDispatcher = createNameSelectorOnSelectItemBehaviorDispatcher();",

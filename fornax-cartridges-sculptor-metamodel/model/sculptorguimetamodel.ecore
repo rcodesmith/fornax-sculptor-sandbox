@@ -294,4 +294,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="forReference" eType="ecore:EClass sculptormetamodel.ecore#//Reference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UpdateHistoryBehavior" eSuperTypes="#//UiBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClearWidgetsBehavior" eSuperTypes="#//UiBehavior">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
+        eType="#//Widget"/>
+  </eClassifiers>
 </ecore:EPackage>

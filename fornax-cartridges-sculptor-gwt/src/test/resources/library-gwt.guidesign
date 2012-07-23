@@ -193,6 +193,11 @@ gui LibraryWeb for Library {
 				
 			}
 
+			"Clear me a couple widgets"
+			UiBehavior ClearWidgets clearWidgets {
+				widgets = personDetailsPanel, personTable
+			}
+			
 			Condition Custom isEditor {
 				
 			}

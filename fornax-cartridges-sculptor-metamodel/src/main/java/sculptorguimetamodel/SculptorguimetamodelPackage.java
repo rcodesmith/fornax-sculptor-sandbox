@@ -7968,6 +7968,70 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	int UPDATE_HISTORY_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sculptorguimetamodel.impl.ClearWidgetsBehaviorImpl <em>Clear Widgets Behavior</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sculptorguimetamodel.impl.ClearWidgetsBehaviorImpl
+	 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getClearWidgetsBehavior()
+	 * @generated
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR = 76;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR__NAME = UI_BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR__DOC = UI_BEHAVIOR__DOC;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR__HINT = UI_BEHAVIOR__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Bindings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR__BINDINGS = UI_BEHAVIOR__BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Widgets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR__WIDGETS = UI_BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Clear Widgets Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLEAR_WIDGETS_BEHAVIOR_FEATURE_COUNT = UI_BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link sculptorguimetamodel.GuiApplication <em>Gui Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10081,6 +10145,27 @@ public interface SculptorguimetamodelPackage extends EPackage {
 	EClass getUpdateHistoryBehavior();
 
 	/**
+	 * Returns the meta object for class '{@link sculptorguimetamodel.ClearWidgetsBehavior <em>Clear Widgets Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Clear Widgets Behavior</em>'.
+	 * @see sculptorguimetamodel.ClearWidgetsBehavior
+	 * @generated
+	 */
+	EClass getClearWidgetsBehavior();
+
+	/**
+	 * Returns the meta object for the reference list '{@link sculptorguimetamodel.ClearWidgetsBehavior#getWidgets <em>Widgets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Widgets</em>'.
+	 * @see sculptorguimetamodel.ClearWidgetsBehavior#getWidgets()
+	 * @see #getClearWidgetsBehavior()
+	 * @generated
+	 */
+	EReference getClearWidgetsBehavior_Widgets();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11845,6 +11930,24 @@ public interface SculptorguimetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UPDATE_HISTORY_BEHAVIOR = eINSTANCE.getUpdateHistoryBehavior();
+
+		/**
+		 * The meta object literal for the '{@link sculptorguimetamodel.impl.ClearWidgetsBehaviorImpl <em>Clear Widgets Behavior</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sculptorguimetamodel.impl.ClearWidgetsBehaviorImpl
+		 * @see sculptorguimetamodel.impl.SculptorguimetamodelPackageImpl#getClearWidgetsBehavior()
+		 * @generated
+		 */
+		EClass CLEAR_WIDGETS_BEHAVIOR = eINSTANCE.getClearWidgetsBehavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Widgets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLEAR_WIDGETS_BEHAVIOR__WIDGETS = eINSTANCE.getClearWidgetsBehavior_Widgets();
 
 	}
 

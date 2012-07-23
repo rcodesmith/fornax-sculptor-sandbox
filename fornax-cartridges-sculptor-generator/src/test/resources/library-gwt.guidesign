@@ -161,6 +161,11 @@ gui LibraryWeb for Library {
 				
 			}
 
+			"Clear a couple widgets"
+			UiBehavior ClearWidgets clearWidgets {
+				widgets = personDetailsEmptyPanel, personTable
+			}
+
 			"Confirm the user wants to do something"
 			UiBehavior DisplayMessage confirmSomeMessage {
 				cancelable

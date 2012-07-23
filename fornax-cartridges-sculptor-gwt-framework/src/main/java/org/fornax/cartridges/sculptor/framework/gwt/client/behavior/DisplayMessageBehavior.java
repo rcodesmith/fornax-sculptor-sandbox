@@ -16,7 +16,7 @@ import org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDisp
  */
 public class DisplayMessageBehavior implements Behavior {
     private static final Logger LOG =
-        Logger.getLogger(WarnIfDirtyBehavior.class.getName());
+        Logger.getLogger(DisplayMessageBehavior.class.getName());
 
     // Name of this behavior
     protected String name;

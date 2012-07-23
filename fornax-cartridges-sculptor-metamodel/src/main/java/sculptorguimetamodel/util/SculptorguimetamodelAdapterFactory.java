@@ -307,6 +307,9 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseUpdateHistoryBehavior(UpdateHistoryBehavior object) {
 				return createUpdateHistoryBehaviorAdapter();
 			}
+			public Object caseClearWidgetsBehavior(ClearWidgetsBehavior object) {
+				return createClearWidgetsBehaviorAdapter();
+			}
 			public Object caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1413,6 +1416,20 @@ public class SculptorguimetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUpdateHistoryBehaviorAdapter() {
+		return null;
+	}
+
+																/**
+	 * Creates a new adapter for an object of class '{@link sculptorguimetamodel.ClearWidgetsBehavior <em>Clear Widgets Behavior</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sculptorguimetamodel.ClearWidgetsBehavior
+	 * @generated
+	 */
+	public Adapter createClearWidgetsBehaviorAdapter() {
 		return null;
 	}
 

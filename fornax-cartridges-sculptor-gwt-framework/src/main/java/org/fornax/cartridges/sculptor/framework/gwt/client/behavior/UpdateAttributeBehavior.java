@@ -23,15 +23,6 @@ public class UpdateAttributeBehavior extends BehaviorBase implements Behavior {
 		this.invocable = invocable;
 	}
 
-	/**
-	 * Interface used to invoke a function that will update the specific attribute 
-	 * @author ron
-	 *
-	 * @param <C>
-	 */
-	public interface Invocable {
-		public void invoke(Event event);	
-	}
 	
 	@Override
 	public void invoke(BehaviorCompletion completion, Event event) {
