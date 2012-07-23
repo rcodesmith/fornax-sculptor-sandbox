@@ -311,7 +311,7 @@
 		«formatJavaDoc()»
 	«ENDIF -»
 	protected «getBehaviorClass("updateAttribute")» create«name.toFirstUpper()»Behavior() {
-		return new «getBehaviorClass("updateAttribute")»("«name»", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior.Invocable() {
+		return new «getBehaviorClass("updateAttribute")»("«name»", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.Invocable() {
 
 			@Override
 			public void invoke(
