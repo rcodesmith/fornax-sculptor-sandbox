@@ -25,7 +25,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 
 		assertContainsConsecutiveFragments(activityBaseCode,
 				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior createUpdatePersonBehavior() {",
-				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior(\"updatePerson\", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior.Invocable() {",
+				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.UpdateAttributeBehavior(\"updatePerson\", new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.Invocable() {",
 				"@Override",
 				"public void invoke(",
 				"org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {",
