@@ -48,8 +48,8 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"@Override",
 				"public void invoke(",
 				"org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {",
-				"display.clearPersonDetailsPanelWidget();",
-				"display.clearPersonTableWidget();", "}", "});", "}");
+				"view.clearPersonDetailsPanelWidget();",
+				"view.clearPersonTableWidget();", "}", "});", "}");
 	}
 	
 	@Test
