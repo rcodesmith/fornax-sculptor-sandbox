@@ -11,7 +11,7 @@ import org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDisp
  * @author ron
  *
  */
-public class ClearWidgetsBehavior implements Behavior {
+public class ClearWidgetsBehavior extends BehaviorBase implements Behavior {
     private static final Logger LOG =
         Logger.getLogger(ClearWidgetsBehavior.class.getName());
 	
@@ -19,13 +19,14 @@ public class ClearWidgetsBehavior implements Behavior {
 	// Invocable to be called to clear widgets
 	protected Invocable invocation;
 	
-	public ClearWidgetsBehavior(Invocable invocation) {
+	public ClearWidgetsBehavior(String name, Invocable invocation) {
+		super(name);
 		this.invocation = invocation;
 	}
 
 	@Override
 	public void invoke(final BehaviorCompletion completion, final Event event) {
-		LOG.info("invoke()");
+		LOG.info("invoke() name = " + name);
 		
 		try {
 			this.invocation.invoke(event);
