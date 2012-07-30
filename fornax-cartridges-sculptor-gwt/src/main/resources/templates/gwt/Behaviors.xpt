@@ -382,7 +382,7 @@ Generate invoke update attribute setter when an update was made from a ListBoxWi
 					org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event) {
 					
 				«FOREACH this.widgets AS w»
-					display.«w.clearMethodName()»();
+					view.«w.clearMethodName()»();
 				«ENDFOREACH»
 			}
 		});
