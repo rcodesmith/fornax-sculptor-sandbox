@@ -1,0 +1,5 @@
+Status of merging files into sculptor-trunk:
+
+helper.ext : Ready for merge 
+GenerationHelper.java : No change needed
+Builder.xpt

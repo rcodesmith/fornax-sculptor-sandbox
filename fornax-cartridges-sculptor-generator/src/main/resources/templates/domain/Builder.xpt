@@ -20,7 +20,6 @@
 «EXTENSION extensions::properties»
 
 «DEFINE builder FOR DomainObject»
-	«debugTrace("Builder: " + this)»
 
 «FILE javaFileName(getBuilderFqn())»
 «javaHeader()»

@@ -376,56 +376,6 @@ List[NamedElement] getConstructorParameters(DomainObject domainObject) :
 String getDefaultConstructorVisibility(DomainObject domainObject) :
 	"protected";
 
-// Added by Ron:
-
-cached String getBuilderPackage(DomainObject domainObject) :
-    JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getBuilderPackage(sculptormetamodel.DomainObject);
-
-List[TypedElement] getBuilderAttributes(DomainObject domainObject) :
-	domainObject.getAllAttributes().select(a | !a.isUuid() && a != domainObject.getIdAttribute() && a.name != "version");
-
-List[Reference] getBuilderReferences(DomainObject domainObject) :
-	domainObject.getAllReferences();
-
-List[NamedElement] getBuilderProperties(DomainObject domainObject) :
-	domainObject.getBuilderAttributes()
-		.addAll(domainObject.getBuilderReferences());
-
-String getBuilderClassName(String domainObjectName) :
-	domainObjectName + "Builder";
-
-String getBuilderClassName(DomainObject domainObject) :
-	domainObject.name + "Builder";
-
-String getBuilderFqn(DomainObject domainObject) :
-	domainObject.getBuilderPackage() + "." + domainObject.getBuilderClassName();
-
-//String getBuilderExtendsClassName(DomainObject domainObject) :
-//    (domainObject.extends == null) ?
-//        (domainObject.extendsName == null ? domainObject.defaultBuilderExtendsClassName() : domainObject.extendsName + "Builder") :
-//        domainObject.extends.getBuilderPackage() + "." + domainObject.extends.name + "Builder";
-
-
-//String defaultBuilderExtendsClassName(DomainObject domainObject) :
-//	"";
-	
-//String getBuilderExtendsLitteral(DomainObject domainObject) :
-//	domainObject.getBuilderExtendsClassName() == "" ?
-//		"" :
- //    	"extends " + domainObject.getBuilderExtendsClassName();
-
-
-boolean needsBuilder(DomainObject domainObject) :
-	domainObject.abstract == false;
-
-boolean needsBuilder(Enum domainObject) :
-  false;
-  
-List[Reference] getBuilderReferences(DomainObject domainObject) :
-	domainObject.references.select(r | !r.many);
-
-List[NamedElement] getBuilderConstructorParameters(DomainObject domainObject) :
-	domainObject.getConstructorParameters();
 
 
 
@@ -490,14 +440,16 @@ String getCollectionImplType(Reference ref) :
 String getGetAccessor(NamedElement element) :
     "get" + element.name.toFirstUpper();
 
-String getSetAccessor(NamedElement element) :
-    "set" + element.name.toFirstUpper();
+
 
 String getGetAccessor(TypedElement e) :
     e.getGetAccessor("");
 
 String getGetAccessor(TypedElement e, String prefix) :
     JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getGetAccessor(sculptormetamodel.TypedElement, java.lang.String);
+
+String getSetAccessor(NamedElement element) :
+    "set" + element.name.toFirstUpper();
 
 cached String getRepositoryBaseName(Repository repository) :
     JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getRepositoryBaseName(sculptormetamodel.Repository);
@@ -1096,3 +1048,40 @@ boolean isRestRequestParameter(Parameter param) :
 
 String replacePlaceholder(String str, String placeholder, String replacement) :
 	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.replacePlaceholder(java.lang.String, java.lang.String, java.lang.String); 		
+
+
+
+// Added by Ron:
+
+cached String getBuilderPackage(DomainObject domainObject) :
+    JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getBuilderPackage(sculptormetamodel.DomainObject);
+
+List[Attribute] getBuilderAttributes(DomainObject domainObject) :
+	domainObject.getAllAttributes().select(a | !a.isUuid() && a != domainObject.getIdAttribute() && a.name != "version");
+
+List[Reference] getBuilderReferences(DomainObject domainObject) :
+	domainObject.getAllReferences();
+
+List[NamedElement] getBuilderConstructorParameters(DomainObject domainObject) :
+	domainObject.getConstructorParameters();
+List[NamedElement] getBuilderProperties(DomainObject domainObject) :
+	domainObject.getBuilderAttributes()
+		.addAll(domainObject.getBuilderReferences());
+
+
+String getBuilderClassName(DomainObject domainObject) :
+	domainObject.name + "Builder";
+
+String getBuilderFqn(DomainObject domainObject) :
+	domainObject.getBuilderPackage() + "." + domainObject.getBuilderClassName();
+
+
+boolean needsBuilder(DomainObject domainObject) :
+	domainObject.abstract == false;
+
+boolean needsBuilder(Enum domainObject) :
+  false;
+  
+
+
+
