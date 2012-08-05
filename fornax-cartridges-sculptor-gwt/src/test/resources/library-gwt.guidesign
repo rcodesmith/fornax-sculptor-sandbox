@@ -71,6 +71,12 @@ gui LibraryWeb for Library {
 //				autocomplete autocomp1 forProperty ssn {
 //					label = "Auto complete one"
 //				}
+
+				autocomplete autocomp1 {
+					label = "Auto complete one"
+					onSelectItem=navigateToMediaBrowse
+				}
+
 			}
 		}
 		
@@ -172,14 +178,39 @@ gui LibraryWeb for Library {
 				
 			}
 			
+			UiBehavior Custom customPersonTableBehavior {
+				hint="customhint"
+			}
+
+			"Documentation on the MarkDirty behavior"
+			UiBehavior MarkDirty markViewDirty {
+				hint="customhint"
+				
+				specificObject
+			}
+			
+			"Documentation on the MarkClean behavior"
+			UiBehavior MarkClean markViewClean {
+				hint="customhint"
+				
+				specificObject
+			}
+
 			UiBehavior UpdateAttribute updatePerson {
 				
+			}
+
+			UiBehavior UpdateTable updatePersonTable {
+				hint = "updateTableHint"
+				table = personTable
 			}
 
 			"Confirm the user wants to do something"
 			UiBehavior DisplayMessage confirmSomeMessage {
 				cancelable
 				message="Are you really sure you want to do this!?!?"
+				messageId="ARE_U_SURE_MSG"
+				
 			}
 
 			"Behavior to popup a panel"
@@ -238,18 +269,31 @@ gui LibraryWeb for Library {
 		UiBehavior PopulatePanel populatePersonDetailsPanel {
 			panel=personDetailsPanel
 		}
+		
+		
+		"Navigate"
+		UiBehavior NavigateToView navigateToMediaBrowse {
+			view=MediaBrowse
+		}
+
+		"Composite"
+		UiBehavior Composite compositeBehavior {
+			navigateToMediaBrowse
+		}
+
 
 	}
-	
+
 	Module for media {
 		basePackage = org.fornax.cartridges.sculptor.examples.library.mediaalt
 		
 		> @MediaService
 		
 		View MediaBrowse {
-			
+			> @MediaService
 		}
 	}
+	
 	
 	
 }

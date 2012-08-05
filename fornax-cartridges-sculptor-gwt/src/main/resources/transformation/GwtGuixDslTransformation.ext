@@ -1,0 +1,1010 @@
+/*
+ * Copyright 2007 The Fornax Project Team, including the original 
+ * author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+import sculptorguidsl;
+import sculptordsl;
+import sculptormetamodel;
+import sculptorguimetamodel;
+
+
+extension org::fornax::cartridges::sculptor::dsl::ModelLoadExtensions;
+ 
+extension transformation::DslTransformation;
+extension transformation::Transformation;
+//extension transformation::DefaultGuiDslTransformation;
+//extension transformation::GuiTransformation;
+extension transformation::GuixDslTransformation;
+extension extensions::helper;
+extension extensions::guihelper;
+extension extensions::properties;
+
+extension extensions::gwt::sofeauihelpers;
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiModule-level transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+// For any post-DSL transformations that need to occur
+modifyGuiDsl(GuiModule guiModule) :
+	debugTrace("modifyDsl -2(GuiModule) for " + guiModule.name)->
+	guiModule.commands.modifyExtends() ->
+	(guiModule.stubModule != null? guiModule.stubModule.modifyDsl(guiModule) : null) ->
+	guiModule.views.modifyDsl();
+	
+// TODO: Don't hard code "gwt" - make a gui dto sub-package property instead
+modifyDsl(StubModule stubModule, GuiModule guiModule) :
+	debugTrace("modifyDsl(StubModule, GuiModule) for " + guiModule.name)->
+//	stubModule.setBasePackage(stubModule.basePackage != null ? stubModule.basePackage : stubModule.stubFor.getBasePackage() + ".gwt") ->
+	stubModule.domainObjects.modifyDsl(guiModule) ->
+	stubModule.services.modifyDslServiceProxy(guiModule);
+
+
+modifyDsl(View view) :
+	view.widgets.modifyDsl(view);
+	
+modifyDsl(Widget widget, View view) :
+	widget.setView(view) ->
+	PanelWidget.isInstance(widget) ? ((PanelWidget)widget).widgets.modifyDsl(view) : null;
+	 
+
+// NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
+// Solution is to include those modules in the GUI model.  Consider adding a validation for this..
+private modifyDsl(GuiDto dto, GuiModule guiModule) :
+	debugTrace("modifyDsl(GuiDto, GuiModule) for " + dto.name + ", dto = " + dto + ", guiModule = " + guiModule) ->
+	dto.setGuiModule(guiModule) ->
+	dto.modifyIdAttribute() ->
+    dto.modifyChangeable() ->
+    dto.modifyOptimisticLocking();
+
+	
+modifyChangeable(GuiDto guiDto) :
+	defaultModifyChangeable(guiDto) ->
+    (guiDto.immutable ?
+        (guiDto.attributes.select(a | a.name != "uuid").modifyChangeableToFalse() ->
+        guiDto.references.select(r | !r.many).modifyChangeableToFalse()) :
+        null);
+
+
+
+	
+//	dto.setModule(guiModule.stubModule);
+
+modifyIdAttribute(GuiDto guiDto) :
+    guiDto.for.attributes.selectFirst(a | a.name == "id") != null ? guiDto.addIdAttribute() : null;
+
+modifyOptimisticLocking(GuiEnum domainObject) :
+	null;
+	
+modifyOptimisticLocking(GuiDto domainObject) :
+    isOptimisticLockingToBeGenerated() && domainObject.optimisticLocking && (domainObject.extends == null || !domainObject.extends.optimisticLocking) ?
+        addVersionAttribute(domainObject) :
+        null;
+
+private modifyDslServiceProxy(ServiceProxy serviceProxy, GuiModule guiModule) :
+	serviceProxy.setGuiModule(guiModule) ->
+	serviceProxy.operations.modifyServiceProxyOperation(guiModule.application);
+
+private modifyServiceProxyOperation(ServiceProxyOperation operation, GuiApplication guiApp) :
+	debugTrace("modifyServiceProxyOperation(" + operation + "), domainObjectType = " + operation.domainObjectType) ->
+	operation.parameters.modifyGuiParameter(guiApp) ->
+	if (operation.domainObjectType != null && GuiDto.isInstance(operation.domainObjectType) == false) then
+		 operation.setDomainObjectType(guiApp.findGuiDtoFor(operation.domainObjectType));
+	
+private modifyGuiParameter(Parameter param, GuiApplication guiApp) :
+	if (param.domainObjectType != null && GuiDto.isInstance(param.domainObjectType) == false) then
+		param.setDomainObjectType(guiApp.findGuiDtoFor(param.domainObjectType));
+		
+
+////////////////////////////////////////////////////////////////////////////
+// DSL related functions
+////////////////////////////////////////////////////////////////////////////
+
+boolean generateGuiDto(DslAnyProperty p) :
+	let res = p.getHint("gwt") != "skip" && p.getHint("gui") != "skip" :
+//	debugTrace("generateGuiDto(" + p + ")") ->
+//	debugTrace("generateGuiDto result = " + res )->
+	res;
+
+
+String getHint(DslAnyProperty prop, String parameterName) :
+	let res = getHintImpl(prop.hint, parameterName) :
+		debugTrace("getHint(" + prop + ", " + parameterName + ")")->
+		debugTrace("result: '" + res + "'" )->
+		res;
+
+//String getHintImpl(String hint, String parameterName) :
+//	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.getHint(java.lang.String, java.lang.String);
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiDto-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+
+create sculptorguimetamodel::GuiDtoOptions this transform(DslSkipDomainObject skipDO) :
+	setName(skipDO.do.name);
+
+
+create sculptorguimetamodel::GuiDto this transformToGui(DslDomainObject do) :
+	error("Unexpected call to transformToGui(DslDomainObject) for: " + do.name);
+	
+create sculptorguimetamodel::GuiDto this transformToGui(DslSimpleDomainObject do) :
+	error("Unexpected call to transformToGui(DslSimpleDomainObject) for: " + do.name);
+	
+create sculptorguimetamodel::GuiDto this transformToGui(DslEntity entity) :
+	debugTrace("transformToGui(" + entity.name + ")") ->
+	initGuiDtoFromDomainObject(entity, this) ->
+    setOptimisticLocking(!entity.notOptimisticLocking) ->
+    entity.traits.size > 0 ? debugTrace("WARNING: " + entity.name + " is being used as a GUI DTO and has one or more traits.  Members of traits are skipped") : null;
+
+
+create sculptorguimetamodel::GuiDto this transformToGui(DslBasicType domainObject) :
+	debugTrace("transformToGui(" + domainObject.name + ")") ->
+	initGuiDto(domainObject, this) ->
+	setOptimisticLocking(false) ->
+//    setDoc(domainObject.doc) ->
+//    setName(domainObject.name) ->
+//    setPackage(domainObject.package) ->
+//    setHint(domainObject.hint) ->
+    setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
+	setImmutable(!domainObject.notImmutable) ->
+    attributes.addAll(domainObject.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
+    references.addAll(domainObject.references.select(r|r.generateGuiDto()).transformToGui()) ->
+    operations.addAll(domainObject.operations.transformToGui()) ->
+    domainObject.traits.size > 0 ? debugTrace("WARNING: " + domainObject.name + " is being used as a GUI DTO and has one or more traits.  Members of traits are skipped") : null;
+
+create sculptorguimetamodel::GuiDto this transformToGui(DslValueObject domainObject) :
+	debugTrace("transformToGui(" + domainObject.name + ")") ->
+	initGuiDtoFromDomainObject(domainObject, this) ->
+	setImmutable(!domainObject.notImmutable) ->
+//    setPersistent(!domainObject.notPersistent) ->
+    setOptimisticLocking(!domainObject.notOptimisticLocking && !domainObject.notPersistent && domainObject.notImmutable) ->
+    domainObject.traits.size > 0 ? debugTrace("WARNING: " + domainObject.name + " is being used as a GUI DTO and has one or more traits.  Members of traits are skipped") : null;
+
+
+// Don't need to set guiModule, as it is set by modify() method
+private initGuiDtoFromDomainObject(DslDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
+	initGuiDto(domainObject, guiDto) ->
+    guiDto.setAbstract(domainObject.abstract) ->
+    guiDto.setCache(domainObject.cache) ->
+//    setBelongsToAggregate(domainObject.belongsTo == null ? null : domainObject.belongsTo.transform()) ->
+//    guiDto.setPersistent(!domainObject.notPersistent) ->
+    guiDto.setValidate(domainObject.validate) ->
+    guiDto.setGapClass(isGapClassToBeGenerated(domainObject.gapClass, domainObject.noGapClass)) ->
+    guiDto.attributes.addAll(domainObject.attributes.select(r|r.generateGuiDto()).transformToGui()) ->
+    guiDto.references.addAll(domainObject.references.select(r|r.generateGuiDto()).transformToGui()) ->
+    guiDto.operations.addAll(domainObject.operations.transformToGui()) ->
+    domainObject.transformExtends(guiDto)->
+//    traits.addAll(domainObject.traits.transform()) ->
+	debugTrace("New guiDto=" + guiDto) ->
+	debugTrace("initGuiDtoFromDomainObject: Done with domain object " + domainObject.name);
+
+// Don't need to set guiModule, as it is set by modify() method
+private initGuiDto(DslSimpleDomainObject domainObject, sculptorguimetamodel::GuiDto guiDto) :
+	guiDto.setFor(domainObject.transform()) ->
+    guiDto.setDoc(domainObject.doc) ->
+    guiDto.setName(domainObject.name) ->
+    guiDto.setPackage(domainObject.package) ->
+    guiDto.setHint(domainObject.hint) ->
+//    guiDto.setModule(null) ->
+	debugTrace("New guiDto=" + guiDto) ->
+	debugTrace("initGuiDto: Done with domain object " + domainObject.name);
+
+private transformExtends(DslEntity dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);
+
+private transformExtends(DslValueObject dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);
+
+
+private transformExtendsImpl(DslDomainObject dslDomainObject, DslDomainObject dslExtendsDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    (dslExtendsDomainObject != null ?
+      domainObject.setExtends(dslExtendsDomainObject.transformToGui()) :
+      null) ->
+    (dslDomainObject.extendsName != null ?
+        domainObject.setExtendsName(dslDomainObject.extendsName) :
+        null);
+        
+create sculptormetamodel::Attribute this transformToGui(DslAttribute attribute) :
+    setDoc(attribute.doc) ->
+    setName(attribute.name) ->
+    setType(attribute.type) ->
+    setCollectionType(convertCollectionTypeEnum(attribute.collectionType)) ->
+    setNaturalKey(attribute.key) ->
+    setChangeable(!attribute.notChangeable) ->
+    setRequired(attribute.required) ->
+    setNullable(attribute.nullable) ->
+    setIndex(attribute.index) ->
+    setLength(attribute.length) ->
+    setValidate(attribute.handleValidation()) ->
+    setHint(attribute.hint) ->
+    setTransient(attribute.transient) ->
+    setVisibility(convertVisibility(attribute.visibility));
+
+create sculptormetamodel::Reference this transformToGui(DslReference reference) :
+	debugTrace("transformToGui(" + reference + ")")->
+	setFrom(((DslSimpleDomainObject) reference.eContainer).transformToGui()) ->
+    setDoc(reference.doc) ->
+    setName(reference.name) ->
+    setCollectionType(convertCollectionTypeEnum(reference.collectionType)) ->
+    setMany(reference.collectionType != null && reference.collectionType != DslCollectionType::None) ->
+    setNaturalKey(reference.key) ->
+    setChangeable(!reference.notChangeable) ->
+    setRequired(reference.required) ->
+    setNullable(reference.nullable) ->
+    setCache(reference.cache) ->
+    setInverse(reference.inverse) ->
+    setCascade(reference.cascade) ->
+    setFetch(reference.fetch) ->
+    setOrderBy(reference.orderBy) ->
+    setTo(reference.domainObjectType.transformToGui()) ->
+    setValidate(reference.handleValidation()) ->
+    setHint(reference.hint) ->
+    setTransient(reference.transient) ->
+    setVisibility(convertVisibility(reference.visibility)) ->
+    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null && reference.oppositeHolder.opposite.generateGuiDto() ?
+      setOpposite(reference.oppositeHolder.opposite.transformToGui()):
+      null);
+      
+
+create sculptormetamodel::DomainObjectOperation this transformToGui(DslDomainObjectOperation operation) :
+	setDomainObject(((DslDomainObject) operation.eContainer).transformToGui()) ->
+    setDoc(operation.doc) ->
+    setName(operation.name) ->
+    setAbstract(operation.abstract) ->
+    setVisibility(convertVisibility(operation.visibility)) ->
+    parameters.addAll(operation.parameters.transformToGui()) ->
+    setCollectionType(convertCollectionType(operation.returnType)) ->
+    setMapKeyType(operation.returnType == null ? null : operation.returnType.mapKeyType) ->
+    setType(operation.returnType == null ? null : operation.returnType.type) ->
+    setDomainObjectType(operation.returnType == null || operation.returnType.domainObjectType == null ? 
+    	null : 
+    	operation.returnType.domainObjectType.transformToGui()) ->
+    setThrows(operation.throws) ->
+    setHint(operation.hint);      
+
+
+create sculptormetamodel::Parameter this transformToGui(DslParameter parameter) :
+    setName(parameter.name) ->
+    setDoc(parameter.doc) ->
+    setCollectionType(convertCollectionType(parameter.parameterType)) ->
+    setMapKeyType(parameter.parameterType == null ? null : parameter.parameterType.mapKeyType) ->
+    setType(parameter.parameterType == null ? null : parameter.parameterType.type) ->
+    setDomainObjectType(parameter.parameterType == null || parameter.parameterType.domainObjectType == null ? 
+    	null : 
+    	parameter.parameterType.domainObjectType.transformToGui());
+
+create sculptorguimetamodel::GuiEnum this transformToGui(DslEnum domainObject) :
+	initGuiDto(domainObject, this) ->
+//    setDoc(domainObject.doc) ->
+//    setName(domainObject.name) ->
+//    setPackage(domainObject.package) ->
+//    setHint(domainObject.hint) ->
+    setAggregateRoot(false) ->
+    attributes.addAll(domainObject.attributes.transformToGui()) ->
+    values.addAll(domainObject.values.transformToGui());
+
+create sculptormetamodel::EnumValue this transformToGui(DslEnumValue enumValue) :
+	setName(enumValue.name) ->
+	setDoc(enumValue.doc) ->
+	parameters.addAll(enumValue.parameters.transform());
+
+create sculptormetamodel::EnumConstructorParameter this transformToGui(DslEnumParameter parameter) :
+	parameter.value == null ?
+		setValue("" + parameter.integerValue) :
+		setValue(parameter.value);
+
+create sculptormetamodel::Attribute this transformToGui(DslEnumAttribute attribute) :
+    setDoc(attribute.doc) ->
+    setName(attribute.name) ->
+    setType(attribute.type) ->
+    setNaturalKey(attribute.key);
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiCommand-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+// TODO: This will be needed for events as well
+// TODO: Remove this as it's being done within StubModule now - there are similar extensions as this
+// Copied & modified from Transformation.ext
+modifyExtends(GuiCommand cmd) :
+    if (cmd.extendsName != null) then
+        (let matchingDomainObject = findCommandByName(((GuiModule)cmd.eContainer).application, cmd.extendsName) :
+        if (matchingDomainObject != null) then
+            (cmd.setExtends(matchingDomainObject) ->
+            cmd.setExtendsName(null))); 
+
+// Copied & modified from Transformation.ext
+private DomainObject findCommandByName(GuiApplication app, String domainObjectName) : 
+    let match = app.modules.commands.select(e | e.name == domainObjectName) : 
+    match.isEmpty ? null : match.first();
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// Service proxy-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// TODO: Try to make these service proxy transformations not use Module, but work on DSL types only
+
+// TODO: For next two methods, is there something I can use that immediately returns first?
+Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
+	module.services.select(s | s.name == dslServiceDep.dependency.name).first();
+
+DomainObject getDomainObject(DslGuiDto dslGuiDto, Module module) :
+	module.domainObjects.select(d | d.name == dslGuiDto.for.name).first();
+
+/*
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+	let domainService = getMetamodelService(dslServiceDep, module) :
+	setFor(domainService) ->
+	setName(domainService.name) ->
+	setDoc(domainService.doc) ->
+	setModule(this.for.module) ->
+	operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this)) ->
+	debugTrace("transformServiceProxy: service = " + domainService) ->
+	debugTrace("transformServiceProxy: module = " + module) ->
+	debugTrace("transformServiceProxy: domain service module = " + this.for.module);
+*/
+
+create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep) :
+	setFor(dslServiceDep.dependency.transform()) ->
+	setName(dslServiceDep.dependency.name) ->
+	setDoc(dslServiceDep.dependency.doc) ->
+//  Don't set module here - it'll automatically get set when added to container
+	operations.addAll(dslServiceDep.dependency.operations.transformToGui()) ->
+	debugTrace("Done with ServiceProxy " + name);
+	
+//create sculptorguimetamodel::ServiceProxy this transformServiceProxy(DslGuiServiceDependency dslServiceDep, Module module) :
+//	let domainService = getMetamodelService(dslServiceDep, module) :
+//		setFor(domainService) ->
+//		setName(domainService.name) ->
+//		setDoc(domainService.doc) ->
+//		setModule(module) ->
+//		operations.addAll(domainService.operations.select(o | dslServiceDep.dependency.operations.exists(e|e.name == o.name)).transformToGui(this));
+
+//create sculptorguimetamodel::ServiceProxy this transformServiceProxy(Service domainService, Module module) :
+//	debugTrace("transformServiceProxy: service = " + domainService) ->
+//	debugTrace("transformServiceProxy: module = " + module) ->
+//	setFor(domainService) ->
+//	setName(domainService.name) ->
+//	setDoc(domainService.doc) ->
+//	setModule(module) ->
+//	debugTrace("transformServiceProxy: this module = " + this.module) ->
+//	operations.addAll(domainService.operations.select(o | domainService.operations.exists(e|e.name == o.name)).transformServiceProxyOperation(this));
+
+
+
+create sculptorguimetamodel::ServiceProxyOperation this oldtransformToGui(DslServiceOperation operation) :
+	debugTrace("transformToGui(DslServiceOperation)") ->
+	setService(((DslService) operation.eContainer).transform()) ->
+	setFor(operation.transform()) ->
+    setDoc(operation.doc) ->
+    setName(operation.name) ->
+    setVisibility(convertVisibility(operation.visibility)) ->
+    parameters.addAll(operation.parameters.transformToGui()) ->
+    setCollectionType(convertCollectionType(operation.returnType)) ->
+    setMapKeyType(operation.returnType == null ? null : operation.returnType.mapKeyType) ->
+    setType(operation.returnType == null ? null : operation.returnType.type) ->
+    setDomainObjectType(operation.returnType == null || operation.returnType.domainObjectType == null ? 
+    	null : 
+    	operation.returnType.domainObjectType.transformToGui()) ->
+    setThrows(operation.throws) ->
+    setHint(operation.hint);
+//    (operation.publish != null ?
+//    	setPublish(operation.publish.transform()) :
+//    	null) ->
+//    ((operation.delegateHolder != null) && (operation.delegateHolder.delegate != null) && (operation.delegateHolder.delegate.metaType == DslRepository) ?
+//      setDelegate(((DslRepositoryOperation) operation.delegateHolder.delegateOperation).transform()) :
+//      null) ->
+//    ((operation.delegateHolder != null) && (operation.delegateHolder.delegate != null) && (operation.delegateHolder.delegate.metaType == DslService) ?
+//      setServiceDelegate(((DslServiceOperation) operation.delegateHolder.delegateOperation).transform()) :
+//      null);
+
+// Transform using metamodel type (ServiceOperation) because that contains additional proxied methods that don't exist in the DSL type (e.g. find methods proxied to repository class)
+create sculptorguimetamodel::ServiceProxyOperation this transformToGui(DslServiceOperation domainOperation) :
+	let operation = domainOperation.transform() :
+		setService(((DslService) domainOperation.eContainer).transform()) ->
+		setService(service) ->
+		setFor(operation) ->
+		setDoc(operation.doc) ->
+		setName(operation.name) ->
+		setVisibility(operation.visibility) ->
+		parameters.addAll(operation.parameters.reject(p | p.type == "org.fornax.cartridges.sculptor.framework.errorhandling.ServiceContext").transformGwtServiceOperationParam()) ->
+		setCollectionType(operation.collectionType) ->
+		setMapKeyType(operation.mapKeyType) ->
+		setType(operation.type) ->
+		setDomainObjectType(operation.domainObjectType) ->
+		setThrows(operation.throws) ->
+		setHint(operation.hint);
+
+
+Parameter transformGwtServiceOperationParam(Parameter param) :
+	let newParam = new Parameter :
+		newParam.setCollectionType(param.collectionType) ->
+		newParam.setDoc(param.doc) ->
+		newParam.setDomainObjectType(param.domainObjectType) ->
+		newParam.setHint(param.hint) ->
+		newParam.setMapKeyType(param.mapKeyType) ->
+		newParam.setName(param.name) ->
+		newParam.setType(param.type);
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// View related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+private DomainObject getForDomainObject(DslDomainObject forDO) :
+	forDO != null ? forDO.transformToGui() : null;
+
+// TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
+create sculptorguimetamodel::View this transformView(DslView view, Module module) :
+	let guiModule =  ((DslGuiModule) view.eContainer).transformModule() :
+	setHint(view.hint) ->
+	setDoc(view.doc) ->
+	setName(view.name) ->
+	setPopup(view.popup) ->
+	setFor(getForDomainObject(view.for)) ->
+	parameters.addAll(view.parameters.transform()) ->
+	widgets.addAll(view.widgets.transformWidget(module)) ->
+	setModule(guiModule) ->
+//	debugTrace("module: " + guiModule) ->
+	behaviors.addAll(view.behaviors.transformBehavior(module)) ->
+	conditions.addAll(view.conditions.transformCondition(module)) ->
+	serviceProxies.addAll(view.serviceDependencies.collect(s|guiModule.findServiceProxy(s.dependency.name)));
+	// view.serviceDependencies.transformServiceProxy(module)
+
+create sculptorguimetamodel::ViewParameter this transform(DslViewParameter dslParam) :
+	setDoc(dslParam.doc) ->
+	setName(dslParam.name) ->
+	setType(dslParam.type) ->
+	setNullable(dslParam.nullable);
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// Widget-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+	
+
+private initFromDslWidget(Widget widget, DslWidget dslWidget, Module module) :
+	//debugTrace("initFromDslWidget(" + dslWidget.name + ", label=" + dslWidget.label + ")") ->
+	widget.setHint(dslWidget.hint) ->
+	widget.setDoc(dslWidget.doc) ->
+	widget.setWidgetType(dslWidget.widgetType) ->
+	widget.setName(dslWidget.name) ->
+	widget.setLabel(dslWidget.label) ->
+	setEnabledVisible(widget, dslWidget, module) ->
+	//debugTrace("num behavior bindings = " + dslWidget.behaviorBindings.size) ->
+	widget.behaviorBindings.addAll(dslWidget.behaviorBindings.transform(module));
+			
+			
+create sculptorguimetamodel::Widget this transformWidget(DslWidget widget, Module module) :
+	error("Unexpected call to transformWidget(DslWidget): " + widget);
+
+create sculptorguimetamodel::LinkWidget this transformWidget(DslLinkWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef) ->
+	setToDestination(widget.toDestination) ->
+	setToView(widget.toView == null ? null : widget.toView.transformView(((DslGuiModule)(widget.toView.eContainer)).for.transform()));
+
+create sculptorguimetamodel::NumberSpinnerWidget this transformWidget(DslNumberSpinnerWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+
+	
+
+
+create sculptorguimetamodel::CustomWidget this transformWidget(DslCustomWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+	
+
+create sculptorguimetamodel::InputDateWidget this transformWidget(DslInputDateWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+
+create sculptorguimetamodel::ListBoxWidget this transformWidget(DslListBoxWidget widget, Module module) :
+	let domainObject = getForDomainObject(widget.for) :
+	setFor(domainObject) ->
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef) ->
+	setForEnum(widget.forEnum == null ? null : widget.forEnum.transformToGui());
+
+create sculptorguimetamodel::RichTextAreaWidget this transformWidget(DslRichTextAreaWidget widget, Module module) :
+//	setView(((DslView) widget.eContainer).transformView(module)) ->
+	initFromDslWidget(this, widget, module) ->
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+//	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef);
+//	setLabel(widget.label);
+
+create sculptorguimetamodel::RadioButtonsWidget this transformWidget(DslRadioButtonsWidget widget, Module module) :
+//	setView(((DslView) widget.eContainer).transformView(module)) ->
+	initFromDslWidget(this, widget, module) ->
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+//	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef);
+//	setLabel(widget.label);
+
+create sculptorguimetamodel::AutocompleteWidget this transformWidget(DslAutocompleteWidget widget, Module module) :
+	let domainObject = getForDomainObject(widget.for) :
+	setFor(domainObject) ->
+	initFromDslWidget(this, widget, module) ->
+//	setView(((DslView) widget.eContainer).transformView(module)) ->
+//	setHint(widget.hint) ->
+//	setDoc(widget.doc) ->
+//	setWidgetType(widget.widgetType) ->
+//	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef);
+//	setLabel(widget.label);
+
+create sculptorguimetamodel::InputTextWidget this transformWidget(DslInputTextWidget widget, Module module) :
+//	setView(this.findContainingView(module)) ->
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+
+create sculptorguimetamodel::TextAreaWidget this transformWidget(DslTextAreaWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+
+	
+create sculptorguimetamodel::ButtonWidget this transformWidget(DslButtonWidget widget, Module module) :
+	initFromDslWidget(this, widget, module) ->
+	transformSourceReference(this, widget.sourceRef);
+
+	
+create sculptorguimetamodel::InformationalTextWidget this transformWidget(DslInformationalTextWidget widget, Module module) :
+	setHint(widget.hint) ->
+	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
+	setName(widget.name) ->
+	transformSourceReference(this, widget.sourceRef) ->
+	setLabel(widget.label);
+	
+create sculptorguimetamodel::TableWidget this transformWidget(DslTableWidget widget, Module module) :
+//	let view = ((DslView) widget.eContainer).transformView(module) :
+	let domainObject = getForDomainObject(widget.for) :
+//	let domainObject = module.domainObjects.select(e | e.name == widget.for.name).first() :
+//	setView(view) ->
+	setHint(widget.hint) ->
+	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
+	setName(widget.name) ->
+	setLabel(widget.label) ->
+	setFor(domainObject) ->
+	setEnabledVisible(this, widget, module) ->
+	setPaging(widget.paging) ->
+	setSize(widget.size) ->
+	transformSourceReference(this, widget.sourceRef) ->
+	columns.addAll(widget.columns.transformColumn(module));
+
+private setEnabledVisible(Widget widget, DslWidget dslWidget, Module module) :
+	widget.setEnabled(dslWidget.enabled == null ? null : dslWidget.enabled.transformCondition(module)) ->
+	widget.setVisible(dslWidget.visible == null ? null : dslWidget.visible.transformCondition(module));
+	
+create sculptorguimetamodel::SimpleTableColumn this transformColumn(DslSimpleTableColumn col, Module module) :
+	setName(col.name)->
+	// TODO: add doc to dsl & here
+	setHint(widget.hint) ->
+	setLabel(col.label) ->
+	setColumnType(col.columnType) ->
+	setSortable(col.sortable) ->
+	setFilterable(col.filterable) ->
+	setEditable(col.editable) ->
+	transformSourceReference(this, col.sourceRef) ->
+	behaviorBindings.addAll(col.behaviorBindings.transform(module));
+
+create sculptorguimetamodel::WidgetTableColumn this transformColumn(DslWidgetTableColumn col, Module module) :
+	setName(col.widget.name) ->
+	setColumnType("Widget") ->
+	setHint(widget.hint) ->
+	setSortable(col.sortable) ->
+	setFilterable(col.filterable) ->
+	setEditable(col.editable) ->
+	setWidget(col.widget.transformWidget(module)) ->
+	setLabel(col.widget.transformWidget(module).label);
+
+create sculptorguimetamodel::PanelWidget this transformWidget(DslPanelWidget widget, Module module) :
+	let domainObject = getForDomainObject(widget.for) :
+	setFor(domainObject) ->
+//	setView(((DslView) widget.eContainer).transformView(module)) ->
+	setHint(widget.hint) ->
+	setDoc(widget.doc) ->
+	setWidgetType(widget.widgetType) ->
+	setName(widget.name) ->	
+	setLabel(widget.label) ->
+//	setFor(widget.for == null ? null : widget.for.transform()) ->
+	setDisclosure(widget.disclosure) ->
+	widgets.addAll(widget.widgets.transformWidget(module));
+
+// DslSourceReference attributes are 'inlined' into the containing PropertyReferringWidget 
+private transformSourceReference(PropertyReferringWidget propRefWidget, DslSourceReference sourceRef) :
+	if sourceRef != null then 
+//		debugTrace("transformSourceReference() forProperty = " + sourceRef.forProperty) ->
+//		debugTrace("propertyPath=" + sourceRef.forPath) ->
+//		debugTrace("eContainer = " + sourceRef.forProperty.eContainer) ->
+		
+		propRefWidget.setForProperty(sourceRef.forProperty != null ? sourceRef.forProperty.transform() : null) ->
+		propRefWidget.setPropertyPath(sourceRef.forPath);
+		
+		
+//		debugTrace("forProperty name = " + sourceRef.forProperty.name) ->
+//		(sourceRef.forProperty != null ? sourceRef.forProperty.transform().transformSourceRefProp(propRefWidget) : null) ->
+//		(sourceRef.forProperty != null && DslReference.isInstance(sourceRef.forProperty) ? propRefWidget.setForReference(sourceRef.forProperty.transform()) : null) ->
+//		(sourceRef.forOp != null && DslDomainObjectOperation.isInstance(sourceRef.forOp) ? propRefWidget.setForOp(sourceRef.forOp.transform()) : null) ->
+//		debugTrace("forAttribute = " + propRefWidget.forAttribute) ->
+//		debugTrace("forReference = " + propRefWidget.forReference) ->
+//		debugTrace("forOp = " + propRefWidget.forOp);
+
+
+create sculptorguimetamodel::PropertyPathElement this transform(DslPropertyPathElement pathElem) :
+	setForReference(DslReference.isInstance(pathElem.property) ? pathElem.property.transformToGui() : null) ->
+	setForAttribute(DslAttribute.isInstance(pathElem.property) ? pathElem.property.transformToGui() : null) ->	
+	setRemainingPath(pathElem.remainingPath == null ? null : pathElem.remainingPath.transform());
+
+create sculptorguimetamodel::ViewAttributeReference this transformSourceRef(DslAnyProperty prop) :
+	debugTrace("Got prop " + prop.name);
+	
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiEvent related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+create sculptorguimetamodel::GuiEvent this transformEvent(DslGuiEvent event, Module module) :
+	setGuiModule(((DslGuiModule) event.eContainer).transformModule()) ->
+	setName(event.name) ->
+	setDoc(event.doc) ->
+	attributes.addAll(event.attributes.transformAttribute(module));
+	
+create sculptormetamodel::Attribute this transformAttribute(DslGuiAttribute attr, Module module) :
+//	setEvent(((DslEvent) attr.eContainer).transformEvent(module)) ->
+	setName(attr.name) ->
+	setDoc(attr.doc) ->
+	setType(attr.type.translateGwtTypeName());
+	
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiCommand related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+// Transform in StubModule
+create sculptorguimetamodel::GuiCommand this transformToGui(DslCommandEvent dslCmd) :
+	initGuiDtoFromDomainObject(dslCmd, this);
+//	setName(dslCmd.name) ->
+//	setAbstract(dslCmd.abstract) ->
+//	setExtends( dslCmd.extends != null ? dslCmd.extends.transformToGui() : null) ->
+//	setExtendsName( dslCmd.extendsName != null ? dslCmd.extendsName : null) ->
+//	setDoc(dslCmd.doc) ->
+//	setHint(dslCmd.hint) ->
+//	attributes.addAll(dslCmd.attributes.transformToGui()) ->
+//	references.addAll(dslCmd.references.transformToGui(this))
+//	;
+
+
+private transformExtends(DslCommandEvent dslDomainObject, sculptorguimetamodel::GuiDto domainObject) :
+    dslDomainObject.transformExtendsImpl(dslDomainObject.extends, domainObject);
+
+
+private modifyDsl(GuiCommand cmd, GuiModule guiModule) :
+	cmd.setGuiModule(guiModule) ->
+	cmd.modifyDslExtends();
+//	debugTrace("modifyDsl(GuiCommand)");
+//	dto.setGuiModule(guiModule);
+	
+// TODO: This will be needed for events as well
+// Copied & modified from Transformation.ext
+modifyDslExtends(GuiCommand cmd) :
+    if (cmd.extendsName != null) then
+        (let matchingDomainObject = findCommandByNameInStubModule(((GuiModule)cmd.eContainer.guiModule).application, cmd.extendsName) :
+        if (matchingDomainObject != null) then
+            (cmd.setExtends(matchingDomainObject) ->
+            cmd.setExtendsName(null))); 
+
+// Copied & modified from Transformation.ext
+private DomainObject findCommandByNameInStubModule(GuiApplication app, String domainObjectName) : 
+    let match = app.modules.stubModule.domainObjects.select(e | e.name == domainObjectName) : 
+    match.isEmpty ? null : match.first();
+
+
+	
+create sculptormetamodel::Attribute this transformToGui(DslAttribute attribute) :
+    setDoc(attribute.doc) ->
+    setName(attribute.name) ->
+    setType(attribute.type) ->
+    setCollectionType(convertCollectionTypeEnum(attribute.collectionType)) ->
+    setChangeable(!attribute.notChangeable) ->
+    setRequired(attribute.required) ->
+    setNullable(attribute.nullable) ->
+    setLength(attribute.length) ->
+    setValidate(attribute.handleValidation()) ->
+    setHint(attribute.hint) ->
+    setTransient(attribute.transient) ->
+    setVisibility(convertVisibility(attribute.visibility));
+
+create sculptormetamodel::Reference this transformToGui(DslReference reference, DomainObject owner) :
+	setFrom(owner) ->
+    setDoc(reference.doc) ->
+    setName(reference.name) ->
+    setCollectionType(convertCollectionTypeEnum(reference.collectionType)) ->
+    setMany(reference.collectionType != null && reference.collectionType != DslCollectionType::None) ->
+    setChangeable(!reference.notChangeable) ->
+    setRequired(reference.required) ->
+    setNullable(reference.nullable) ->
+    setInverse(reference.inverse) ->
+    setCascade(reference.cascade) ->
+    setFetch(reference.fetch) ->
+    setOrderBy(reference.orderBy) ->
+    setTo(reference.domainObjectType.transformToGui()) ->
+    setValidate(reference.handleValidation()) ->
+    setHint(reference.hint) ->
+    setTransient(reference.transient) ->
+    setVisibility(convertVisibility(reference.visibility)) ->
+    (reference.oppositeHolder != null && reference.oppositeHolder.opposite != null && reference.oppositeHolder.opposite.generateGuiDto() ?
+      setOpposite(reference.oppositeHolder.opposite.transform()):
+      null)
+    ;
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// UiCondition-related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+create sculptorguimetamodel::UiCondition this transformCondition(DslUiCondition dslCondition, Module module) :
+	error("Unexpected call to transformCondition(DslUiCondition) - base class condition");
+
+create sculptorguimetamodel::CustomCondition this transformCondition(DslUiCustomCondition dslCondition, Module module) :
+	setDoc(dslCondition.doc) ->
+	setHint(dslCondition.hint) ->
+	setName(dslCondition.name);
+
+create sculptorguimetamodel::HasDirtyValueCondition this transformCondition(DslHasDirtyValueCondition dslCondition, Module module) :
+	setDoc(dslCondition.doc) ->
+	setHint(dslCondition.hint) ->
+	setName(dslCondition.name) ->
+	setDirty(dslCondition.dirty);
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// UiBehavior related transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+create sculptorguimetamodel::UiBehavior this transformBehavior(DslUiBehavior behavior, Module module) :
+	error("Unexpected call to transformBehavior(DslUiBehavior) - base class behavior");
+
+create sculptorguimetamodel::PopulatePanelBehavior this transformBehavior(DslPopulatePanelBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setPanel(behavior.panel.transformWidget(module));
+
+create sculptorguimetamodel::ClearWidgetsBehavior this transformBehavior(DslClearWidgetsBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	widgets.addAll(behavior.widgets.transformWidget(module));
+
+create sculptorguimetamodel::NavigateToViewBehavior this transformBehavior(DslNavigateToViewBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setView(behavior.view.transformView(((DslGuiModule)(behavior.view.eContainer)).for.transform()));
+
+create sculptorguimetamodel::DisplayMessageBehavior this transformBehavior(DslDisplayMessageBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setCancelable(behavior.cancelable) ->
+	setMessage(behavior.message) ->
+	setMessageId(behavior.messageId);
+
+create sculptorguimetamodel::UpdateHistoryBehavior this transformBehavior(DslUpdateHistoryBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name);
+
+create sculptorguimetamodel::UpdateTableBehavior this transformBehavior(DslUpdateTableBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setTable(behavior.table.transformWidget(module));
+
+create sculptorguimetamodel::PopulateListBoxBehavior this transformBehavior(DslPopulateListBoxBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setWidget(behavior.widget.transformWidget(module));
+
+create sculptorguimetamodel::CustomBehavior this transformBehavior(DslCustomBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name);
+
+create sculptorguimetamodel::CompositeBehavior this transformBehavior(DslCompositeBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	behaviors.addAll(behavior.behaviors.transformBehavior(module));
+
+create sculptorguimetamodel::MarkDirtyBehavior this transformBehavior(DslMarkDirtyBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setMarkSpecificObj(behavior.specificObject);
+
+create sculptorguimetamodel::MarkCleanBehavior this transformBehavior(DslMarkCleanBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setMarkSpecificObj(behavior.specificObject);
+
+create sculptorguimetamodel::WarnIfDirtyBehavior this transformBehavior(DslWarnIfDirtyBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setMessage(behavior.message);
+
+create sculptorguimetamodel::GoBackBehavior this transformBehavior(DslGoBackBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name);
+
+create sculptorguimetamodel::UpdateAttributeBehavior this transformBehavior(DslUpdateAttributeBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setPropertyPath(behavior.propertyPath) ->
+	setTargetClass(behavior.targetClass == null ? null : behavior.targetClass.transformToGui());
+
+create sculptorguimetamodel::PopupPanelBehavior this transformBehavior(DslPopupPanelBehavior behavior, Module module) :
+	setDoc(behavior.doc) ->
+	setHint(behavior.hint) ->
+	setName(behavior.name) ->
+	setPanelName(behavior.panelName) ->
+	setView(behavior.view.transformView(((DslGuiModule)(behavior.view.eContainer)).for.transform()));
+	
+	
+create sculptorguimetamodel::BehaviorBinding this transform(DslBehaviorBinding binding, Module module) :
+	error("Unexpected call to transform(DslBehaviorBinding)");
+	
+create sculptorguimetamodel::OnClickBinding this transform(DslOnClick binding, Module module) :
+	setBindingTypeName("OnClick") ->
+	behaviors.addAll(binding.behaviors.transformBehavior(module));
+
+create sculptorguimetamodel::OnHoverBinding this transform(DslOnHover binding, Module module) :
+	setBindingTypeName("OnHover") ->
+	behaviors.addAll(binding.behaviors.transformBehavior(module));
+
+create sculptorguimetamodel::OnSelectItemBinding this transform(DslOnSelectItem binding, Module module) :
+	setBindingTypeName("OnSelectItem") ->
+	behaviors.addAll(binding.behaviors.transformBehavior(module));
+	
+	
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// Copied from DslTransformation.ext
+//////////////////////////////////////////////////////////////////////////////////
+
+private String convertVisibility(DslVisibility dslVisibility) :
+	dslVisibility == null ?
+		"public" :
+		dslVisibility.toString();
+
+private String convertCollectionType(DslComplexType dslComplexType) :
+	if (dslComplexType == null) then
+		null
+	else if (dslComplexType.mapCollectionType != null) then
+		dslComplexType.mapCollectionType
+	else
+		convertCollectionTypeEnum(dslComplexType.collectionType);
+		
+private String convertCollectionTypeEnum(DslCollectionType collectionType) :
+	if (collectionType == null || collectionType == DslCollectionType::None) then
+		null
+	else
+		collectionType.toString();
+
+// End of Copied from DslTransformation.ext
+
+		
+//////////////////////////////////////////////////////////////////////////////////
+// Transformation helper functions.  Currently overlapped with sofeauihelpers.ext
+//////////////////////////////////////////////////////////////////////////////////
+String translateGwtTypeName(String typeStr) :
+    JAVA org.fornax.cartridges.sculptor.gwt.generator.util.GwtGenerationHelper.translateGwtTypeName(java.lang.String);
+
+	
+	
+//////////////////////////////////////////////////////////////////////////////////
+// DSL transformation helper functions.  Currently overlapped with DslTransformation.ext
+// TODO: Make these common somewhere, or import DslTransformation?
+//////////////////////////////////////////////////////////////////////////////////
+private String convertCollectionTypeEnum(DslCollectionType collectionType) :
+	if (collectionType == null || collectionType == DslCollectionType::None) then
+		null
+	else
+		collectionType.toString();
+
+private String handleValidation(DslAttribute attribute) :
+    ((attribute.validate != null) ? attribute.validate : "") +
+	handleParameterizedAnnotation("range", "min,max,message", attribute.range, attribute.validate) +
+	handleParameterizedAnnotation("length", "max,min,message", attribute.length, attribute.validate) +
+	handleParameterizedAnnotation("digits", "integerDigits,fractionalDigits,message", attribute.digits, attribute.validate) +
+//	handleParameterizedAnnotation("size", "min,max,message", attribute.size, attribute.validate) +
+	handleBooleanAnnotation("assertTrue", attribute.assertTrue, attribute.assertTrueMessage, attribute.validate) +
+	handleBooleanAnnotation("assertFalse", attribute.assertFalse, attribute.assertFalseMessage, attribute.validate) +
+	handleBooleanAnnotation("creditCardNumber", attribute.creditCardNumber, attribute.creditCardNumberMessage, attribute.validate) +
+	handleBooleanAnnotation("ean", attribute.ean, attribute.eanMessage, attribute.validate) +
+	handleBooleanAnnotation("email", attribute.email, attribute.emailMessage, attribute.validate) +
+	handleBooleanAnnotation("notNull", !attribute.nullable && !attribute.type.isPrimitiveType(), attribute.nullableMessage, attribute.validate) +
+	handleBooleanAnnotation("notEmpty", attribute.notEmpty, attribute.notEmptyMessage, attribute.validate) +
+	handleBooleanAnnotation("future", attribute.future, attribute.futureMessage, attribute.validate) +
+	handleBooleanAnnotation("past", attribute.past, attribute.pastMessage, attribute.validate) +
+	handleSimpleAnnotation("min", attribute.min, attribute.validate) +
+	handleSimpleAnnotation("max", attribute.max, attribute.validate) +
+	// TODO: add missing parameter 'flags', needs special handling
+	handleParameterizedAnnotation("pattern", "regex,message", attribute.pattern, attribute.validate)
+	// TODO: add support for 'patterns' annotation
+	;
+
+private String handleValidation(DslReference reference) :
+    ((reference.validate != null) ? reference.validate : "") +
+	handleParameterizedAnnotation("size", "min,max,message", reference.size, reference.validate) +
+	handleBooleanAnnotation("notNull", !reference.nullable, reference.nullableMessage, reference.validate) +
+	handleBooleanAnnotation("notEmpty", reference.notEmpty, reference.notEmptyMessage, reference.validate) +
+	handleBooleanAnnotation("valid", reference.valid, reference.validMessage, reference.validate)
+	;
+
+private String handleParameterizedAnnotation(String annotation, String parameterNames, String parameters, String validate) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.handleParameterizedAnnotation(java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+
+private String handleSimpleAnnotation(String annotation, String value, String validate) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.handleSimpleAnnotation(java.lang.String, java.lang.String, java.lang.String);
+
+private String handleBooleanAnnotation(String annotation, Boolean value, String message, String validate) :
+	JAVA org.fornax.cartridges.sculptor.generator.util.GenerationHelper.handleBooleanAnnotation(java.lang.String, java.lang.Boolean, java.lang.String, java.lang.String);
+
+private String convertVisibility(DslVisibility dslVisibility) :
+	dslVisibility == null ?
+		"public" :
+		dslVisibility.toString();
+
+
+
+	
+	

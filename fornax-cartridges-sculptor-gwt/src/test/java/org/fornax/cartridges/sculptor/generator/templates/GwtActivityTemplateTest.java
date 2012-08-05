@@ -87,13 +87,18 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"}");
 		
 		// Verify bind method
-		assertContainsConsecutiveFragments(activityBaseCode,
+		assertContainsConsecutiveFragments(
+				activityBaseCode,
 				"protected void bind() {",
 				"LOG.info(\"bind()\");",
 				"// Construct behaviors - must be done in bind() because some of them depend on the view",
 				"populatePersonDetailsPanelBehavior = createPopulatePersonDetailsPanelBehavior();",
 				"someLinkBehaviorBehavior = createSomeLinkBehaviorBehavior();",
+				"customPersonTableBehaviorBehavior = createCustomPersonTableBehaviorBehavior();",
+				"markViewDirtyBehavior = createMarkViewDirtyBehavior();",
+				"markViewCleanBehavior = createMarkViewCleanBehavior();",
 				"updatePersonBehavior = createUpdatePersonBehavior();",
+				"updatePersonTableBehavior = createUpdatePersonTableBehavior();",
 				"confirmSomeMessageBehavior = createConfirmSomeMessageBehavior();",
 				"popupPersonDetailsBehavior = createPopupPersonDetailsBehavior();",
 				"updateHistoryBehavior = createUpdateHistoryBehavior();",
@@ -104,8 +109,7 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"goToPersonSearchLinkOnClickBehaviorDispatcher = createGoToPersonSearchLinkOnClickBehaviorDispatcher();",
 				"saveButtonOnClickBehaviorDispatcher = createSaveButtonOnClickBehaviorDispatcher();",
 				"genderSelectorOnSelectItemBehaviorDispatcher = createGenderSelectorOnSelectItemBehaviorDispatcher();",
-				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();"
-				);
+				"personLinkOnClickBehaviorDispatcher = createPersonLinkOnClickBehaviorDispatcher();");
 		
 		// Verify createConfirmSomeMessageBehavior
 		assertContainsConsecutiveFragments(
@@ -114,11 +118,8 @@ public class GwtActivityTemplateTest extends TemplateTestBase {
 				"* Confirm the user wants to do something",
 				"*/",
 				"protected org.fornax.cartridges.sculptor.framework.gwt.client.behavior.DisplayMessageBehavior createConfirmSomeMessageBehavior() {",
-				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.DisplayMessageBehavior(\"confirmSomeMessage\", \"Are you really sure you want to do this!?!?\",",
-				"null,",
-				"view);", "}");
-		
-		
+				"return new org.fornax.cartridges.sculptor.framework.gwt.client.behavior.DisplayMessageBehavior(\"confirmSomeMessage\", \"Are you really sure you want to do this!?!?\", \"ARE_U_SURE_MSG\",",
+				"view);", "}");		
 		
 		assertContainsConsecutiveFragments(activityBaseCode,
 				"public void clearData() {",

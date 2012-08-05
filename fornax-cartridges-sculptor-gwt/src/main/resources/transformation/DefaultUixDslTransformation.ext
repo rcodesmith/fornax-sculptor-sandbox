@@ -1,0 +1,41 @@
+
+import sculptorguidsl;
+import sculptordsl;
+import sculptormetamodel;
+import sculptorguimetamodel;
+ 
+extension transformation::DslTransformation;
+extension transformation::Transformation;
+
+extension extensions::helper;
+extension extensions::guihelper;
+extension extensions::properties;
+
+extension org::fornax::cartridges::sculptor::dsl::ModelLoadExtensions;
+extension org::fornax::cartridges::sculptor::dsl::Extensions;
+
+
+addDefault(DslGuiApplication gui, Application app) :
+	if isGuiDefaultsToBeCreated() then {
+	
+		// if no modules have been added in the gui dsl, add default based on business dsl
+		addDefaultModules(gui)
+	}
+	
+	else {
+		null
+	};
+	
+	
+addDefaultModules(DslGuiApplication gui) :
+    let dslModel = (DslModel) gui.guiForApplication.eContainer :
+    // allElements will include imported elements also
+    let allBusinessModules = gui.guiForApplication.allElements().typeSelect(DslModule) :
+	gui.modules.addAll(
+		allBusinessModules.reject(
+			m | gui.modules.select(e | e.for == m).size > 0
+		).createDefaultModule()
+	);
+
+create DslGuiModule this createDefaultModule(DslModule module) :
+	this.setFor(module);

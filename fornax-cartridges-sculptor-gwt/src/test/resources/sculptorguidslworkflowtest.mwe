@@ -26,7 +26,7 @@
     <component id="guidslTransformation" class="org.eclipse.xtend.XtendComponent">
     	<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"
         	useSingleGlobalResourceSet="true"/>
- 	    <invoke value="transformation::GuiDslTransformation::transform(guiDslModel)"/>
+ 	    <invoke value="transformation::GuixDslTransformation::transform(guiDslModel)"/>
         <outputSlot value="guiModel"/>
 	</component>
 </workflow>

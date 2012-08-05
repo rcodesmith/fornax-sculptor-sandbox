@@ -127,8 +127,8 @@ String gwtDomainPackage(DomainObject do) :
    gwtDomainPackage(do.module);
 
 String gwtDomainPackage(GuiDto do) :
-//	debugTrace("gwtDomainPackage(" + do + ") : guiModule = " + do.guiModule) ->
-   gwtDomainPackage(do.guiModule.stubModule);
+	debugTrace("gwtDomainPackage here(" + do + ") : guiModule = " + do.guiModule) ->
+	gwtDomainPackage(do.guiModule.stubModule);
 
 //String gwtDomainPackage(GuiCommand do) :
 //   gwtDomainPackage(do.guiModule.stubModule);

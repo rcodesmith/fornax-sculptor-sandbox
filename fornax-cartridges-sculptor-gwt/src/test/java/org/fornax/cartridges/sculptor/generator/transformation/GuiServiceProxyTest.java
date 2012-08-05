@@ -62,7 +62,7 @@ public class GuiServiceProxyTest extends GuiDslTransformationBaseTest {
 //		assertEquals("java.util.Date", entryDateParam.getType());
 
 		
-		ServiceProxyOperation sendOp = (ServiceProxyOperation)ops.get(4);
+		ServiceProxyOperation sendOp = (ServiceProxyOperation)ops.get(3);
 		assertNotNull(sendOp);
 		validateServiceOperation(sendOp, "send", 2);
 		
@@ -93,6 +93,8 @@ public class GuiServiceProxyTest extends GuiDslTransformationBaseTest {
 	public void assertMediaServiceProxy() {
 		ServiceProxy proxy = (ServiceProxy) getNamedElement("MediaService", mediaModule()
 				.getStubModule().getServices());
+		StubModule aStubModule = mediaModule()
+				.getStubModule();
 		assertNotNull(proxy);
 		StubModule stubModule = (StubModule)proxy.getModule();
 		assertNotNull(stubModule);

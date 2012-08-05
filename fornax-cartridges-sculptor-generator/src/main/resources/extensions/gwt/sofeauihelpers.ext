@@ -442,8 +442,8 @@ String gwtViewWidgetBaseInterface(View view) :
 	"I" + view.gwtViewWidgetBaseClass();
 
 // Fully qualified name of GWT view widget interface
-String fqnViewWidgetBaseInterface(View view) :
-	view.fqnActivityBaseClass() + "." + view.gwtViewWidgetBaseInterface();
+//String fqnViewWidgetBaseInterface(View view) :
+//	view.fqnActivityBaseClass() + "." + view.gwtViewWidgetBaseInterface();
 
 // GWT view widget impl interface relative name
 String gwtViewWidgetImplInterface(View view) :

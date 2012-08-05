@@ -1,0 +1,189 @@
+/*
+ * Copyright 2007 The Fornax Project Team, including the original 
+ * author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+import properties;
+import sculptorguidsl;
+import sculptordsl;
+import sculptormetamodel;
+import sculptorguimetamodel;
+
+extension org::fornax::cartridges::sculptor::dsl::ModelLoadExtensions;
+ 
+extension transformation::DslTransformation;
+extension transformation::Transformation;
+extension transformation::DefaultGuiDslTransformation;
+extension transformation::GuiTransformation;
+extension transformation::GwtGuixDslTransformation;
+
+extension extensions::helper;
+extension extensions::guihelper;
+extension extensions::properties;
+
+create sculptorguimetamodel::GuiApplication this transform(DslGuiApplication gui) :
+	let startTime = currentTimeMillis() :
+	debugTrace("transform(DslGuiApplication gui) start") ->
+    setDoc(gui.doc) ->
+    setName(gui.name) ->
+	// initiate transformation of the business tier part from here in order to exploit the cache of create extensions
+	
+	setGuiForApplication(((DslModel)gui.guiForApplication.eRootContainer).transform().modify()) ->
+
+    setBasePackage(guiForApplication.basePackage) ->
+
+	debugTrace("transform(DslGuiApplication gui) about to add defaults") ->
+
+	gui.addDefault(guiForApplication) ->
+	
+	debugTrace("transform(DslGuiApplication gui) about to transform modules") ->
+
+	modules.addAll(gui.modules.transformModule()) ->
+
+	debugTrace("transform(DslGuiApplication gui) done transform modules") ->
+	
+	//modules.userTasks.checkIdAttribute() ->
+	
+	// AddTask must be added afterwards, when all modules are populated
+	transformAddTask() ->
+	// we need to process subtaskTransitions twice, since it adds missing  
+//	modules.userTasks.prepareTransformSubtaskTransitions() ->
+//	modules.userTasks.transformSubtaskTransitions() -> 
+//	modules.userTasks.transformRelatedTransitions() ->
+	debugTrace("GuiApplication modules at end of transform(DslGuiApplication) before modifyDsl() called: " + modules.name)->
+	modules.modifyGuiDsl();
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// GuiModule-level transformations
+//////////////////////////////////////////////////////////////////////////////////
+
+modify(GuiApplication guiApp) :
+	debugTrace("modify(GuiApplication) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") ->
+//	guiApp.modules.dtos.modify() ->
+//	guiApp.modules.dtos.assignStubModule() ->
+	guiApp;
+	
+// For any post-DSL transformations that need to occur
+modify(GuiModule guiModule) :
+//	guiModule.commands.modifyExtends();
+	guiModule.stubModule.domainObjects.modify(guiModule) ->
+	guiModule.stubModule.modify();
+
+
+create sculptorguimetamodel::StubModule this transformStubModule(DslModule dslModule, DslGuiModule dslGuiModule) :
+	debugTrace("transformStubModule guix(dslModule = " + dslModule + ")") ->
+	//debugTrace("skipObjects = " + dslGuiModule.skipDomainObjects) ->
+	setStubFor(dslModule.transform()) ->
+	setGuiModule(dslGuiModule.transformModule()) ->
+    setApplication(getGlobalApplication()) ->  // TODO: Remove - don't think it does anything
+//    debugTrace("!!! stub = " + this) ->
+//	debugTrace("!@! app = " + application) ->
+    setBasePackage(dslGuiModule.basePackage) ->
+    setDoc(dslModule.doc) ->
+    setName(dslModule.name) ->
+    setHint(dslModule.hint) ->
+    // TODO: add support for DslDomainEvent and maybe DslTrait too
+    domainObjects.addAll(
+    	dslModule.domainObjects
+    	.reject(d | dslGuiModule.skipDomainObjects.select(e|e.do == d).size > 0)
+    	.reject(e|DslDomainEvent.isInstance(e) || DslTrait.isInstance(e))
+    	.transformToGui()) ->
+    debugTrace("Transforming services for module " + dslModule) ->
+	services.addAll(dslGuiModule.serviceDependencies.transformServiceProxy()) ->
+	// TODO: For some reason, the following is causing problems.  For now, require all services to be declared at module level
+//	services.addAll(dslGuiModule.views.serviceDependencies.transformServiceProxy().reject(s|services.exists(e|e.name == s.name)));
+	debugTrace("Domain objects in stub module " + this.name + " : " + domainObjects.name)->
+	debugTrace("done with transformStubModule(dslModule = " + dslModule + ")");
+
+
+
+
+
+
+// NOTE: If any referred-to DTOs exist that are non-GUI mapped modules, they'll get missed here.
+// Solution is to include those modules in the GUI model.  Consider adding a validation for this..
+private modify(GuiDto dto) :
+//	dto.setModule(dto.guiModule.stubModule) ->
+	debugTrace("Modified DTO " + dto.name + " curr module = " + dto.module + ", stub module = " + dto.guiModule.stubModule);
+
+
+
+
+checkIdAttribute(UserTask task) :
+	if (task.for.getIdAttribute() == null) then 
+		error("You must define id attribute for " + task.for.name);
+
+// Added by ron	
+Service getMetamodelService(DslGuiServiceDependency dslServiceDep, Module module) :
+	module.services.select(s | s.name == dslServiceDep.dependency.name);
+
+// TODO: Put a validation check here to ensure the service (serviceDependency) is actually in the contained module.  Right now it's a silent failure
+create sculptorguimetamodel::GuiModule this transformModule(DslGuiModule module) :
+	setApplication(((DslGuiApplication) module.eContainer).transform()) ->
+	setName(module.for.name) ->
+	setFor(module.for.transform()) ->
+	setHint(module.hint) ->
+	setBasePackage(module.basePackage) ->
+	
+//	userTasks.addAll(module.userTasks.transformTask(module.for.transform())) ->
+	
+	// Added by ron for GWT:
+//	hasProperty("ui.custom.guidto") ? dtos.addAll(module.for.domainObjects.reject(e|DslEvent.isInstance(e)).transformToGui()) : null ->
+//	serviceProxies.addAll(module.serviceDependencies.transformServiceProxy()) ->
+	events.addAll(module.events.transformEvent(module.for.transform())) ->
+	//commands.addAll(module.for.domainObjects().select(d | DslCommandEvent.isInstance(d)).transformCommand(module.for.transform())) ->	
+	behaviors.addAll(module.behaviors.transformBehavior(module.for.transform())) ->
+	conditions.addAll(module.conditions.transformCondition(module.for.transform())) ->
+	hasProperty("ui.custom.guidto") ? setStubModule(module.for.transformStubModule(module)) : null ->
+	//guiDtoOptions.addAll(module.skipDomainObjects.transform()) ->
+//	setStubModule(module.for.transformStubModule(module)) ->
+	hasProperty("ui.custom.guidto") ? views.addAll(module.views.transformView(module.for.transform())) : null ->
+	debugTrace("Done with transformModule(DslGuiModule) for module " + module.for.name);
+
+
+
+private create sculptorguimetamodel::ViewTask this createSurrogatePreviewTask(ReferenceTarget refTarget) :
+	setName("preview" + refTarget.target.name) ->
+	setTaskType("preview") ->
+	setFor(refTarget.target);
+ 
+
+// TODO a lot of duplication with above transformDslGuiProperty
+//List[ViewDataProperty] transformDslGuiPreviewProperty(DslGuiPreviewProperty prop, UserTask previewTask) :
+//	prop.basicTypeProperty == null ?
+//		prop.for.transform().transformProperty(previewTask, (DslGuiApplication) prop.eRootContainer) :
+		// BasicTypeProperty can be for a attribute or an enum 
+//		{transformDslGuiPreviewBasicTypeProperty(prop, previewTask)};
+
+// TODO a lot of duplication with above transformDslGuiBasicTypeProperty
+//ViewDataProperty transformDslGuiPreviewBasicTypeProperty(DslGuiPreviewProperty prop, UserTask previewTask) :
+//	((prop.basicTypeProperty == null) ? error("Unexpected call to transformDslGuiPreviewBasicTypeProperty with null basicTypeProperty " +
+//		previewTask.name + " " + prop.for.name) : null) ->
+	// BasicTypeProperty can be for a attribute or an enum
+//	prop.basicTypeProperty.transformDslGuiPreviewBasicTypeProperty(prop, previewTask);
+
+// TODO a lot of duplication with above transformDslGuiBasicTypeProperty
+//ViewDataProperty transformDslGuiPreviewBasicTypeProperty(DslAnyProperty prop, DslGuiPreviewProperty dslGuiProp, UserTask previewTask) :
+//	error("Unexpected call to transformDslGuiPreviewBasicTypeProperty(DslAnyProperty prop, DslGuiPreviewProperty dslGuiProp, UserTask previewTask): " +
+//		previewTask.name + " " + dslGuiProp.for.name + " " + prop);
+	
+//ViewDataProperty transformDslGuiPreviewBasicTypeProperty(DslAttribute prop, DslGuiPreviewProperty dslGuiProp, UserTask previewTask) :
+//	prop.transform().transformBasicTypeAttributeProperty((Reference) dslGuiProp.for.transform(), previewTask);
+	
+//ViewDataProperty transformDslGuiPreviewBasicTypeProperty(DslReference prop, DslGuiPreviewProperty dslGuiProp, UserTask previewTask) :
+//	prop.transform().transformBasicTypeEnumProperty((Reference) dslGuiProp.for.transform(), previewTask);
+
+

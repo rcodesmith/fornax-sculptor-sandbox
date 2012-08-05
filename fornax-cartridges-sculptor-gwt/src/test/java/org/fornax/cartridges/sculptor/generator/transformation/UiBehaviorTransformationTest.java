@@ -27,9 +27,9 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 
 	@Test
 	public void assertPersonModuleBehaviors() {
-		assertEquals(2, personModule().getBehaviors().size());
+		assertEquals(3, personModule().getBehaviors().size());
 		
-        assertOneAndOnlyOne(personModule().getBehaviors(), "navigateToMediaBrowse", "compositeBehavior");
+        assertOneAndOnlyOne(personModule().getBehaviors(), "populatePersonDetailsPanel", "navigateToMediaBrowse", "compositeBehavior");
 
 	}
 	
@@ -77,11 +77,11 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		assertNotNull(clearWidgets);
 		
 		assertEquals("clearWidgets", clearWidgets.getName());
-		assertEquals("Clear a couple widgets", clearWidgets.getDoc());
+		assertEquals("Clear me a couple widgets", clearWidgets.getDoc());
 		
 		assertEquals(2, clearWidgets.getWidgets().size());
 		
-		assertEquals("personDetailsEmptyPanel", ((PanelWidget)clearWidgets.getWidgets().get(0)).getName());
+		assertEquals("personDetailsPanel", ((PanelWidget)clearWidgets.getWidgets().get(0)).getName());
 		assertEquals("personTable", ((TableWidget)clearWidgets.getWidgets().get(1)).getName());
 		
 		
@@ -175,13 +175,17 @@ public class UiBehaviorTransformationTest extends GuiDslTransformationBaseTest {
 		EList behaviors = onClick.getBehaviors();
 		assertEquals(1, behaviors.size());
 		CustomBehavior custom = (CustomBehavior) behaviors.get(0);
-		assertEquals("saveChanges", custom.getName());
+		assertEquals("someLinkBehavior", custom.getName());
 		
 		EList revBindings = custom.getBindings();
-		assertEquals(1, revBindings.size());
-		OnClickBinding revBinding = (OnClickBinding)revBindings.get(0);
-		Assert.assertSame(revBinding, onClick);
-		
+		assertEquals(3, revBindings.size());
+		boolean found = false;
+		for (Object binding : revBindings) {
+			if(onClick == binding) {
+				found = true;
+			}
+		}
+		Assert.assertTrue(found);
 	}
 	//
 

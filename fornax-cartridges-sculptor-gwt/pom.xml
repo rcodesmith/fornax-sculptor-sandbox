@@ -68,6 +68,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.fornax.cartridges</groupId>
+			<artifactId>fornax-cartridges-sculptor-metamodel</artifactId>
+			<version>${project.version}</version>
+<!-- 			<scope>provided</scope>
+ -->		</dependency>
+
   
 
 		<dependency>

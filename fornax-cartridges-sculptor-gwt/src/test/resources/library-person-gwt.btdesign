@@ -5,8 +5,10 @@ ApplicationPart Person {
           findPersonByName => PersonRepository.findPersonByName;
           PagedResult<@Person> findPaged(String name, PagingParameter pagingParameter);
           List<@Person> findByDate(Date entryDate);
-          
+
           send(String from, @CreatePersonCmd cmd);
+          
+          List<@Person> findRelatedPeople(@Person person);
         }
      
         Entity Person {
