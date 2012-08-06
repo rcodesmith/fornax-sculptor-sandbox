@@ -82,6 +82,10 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 
 	«EXPAND onStop FOR this»
 	
+	/**
+	 * Method to register any validators - this is called during activity start()
+	 * Subclasses should implement this method.
+	 */
 	protected abstract void registerValidators();
 	
 	/**

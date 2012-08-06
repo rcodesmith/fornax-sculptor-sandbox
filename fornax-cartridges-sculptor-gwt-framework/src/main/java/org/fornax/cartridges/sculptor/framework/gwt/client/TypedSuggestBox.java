@@ -1,5 +1,6 @@
 package org.fornax.cartridges.sculptor.framework.gwt.client;
 
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 
@@ -20,6 +21,11 @@ public class TypedSuggestBox<T> extends SuggestBox implements HasSelectedItem<T>
 	public void setSelectedItem(T item) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void clear() {
+		this.setValue("");
+		((MultiWordSuggestOracle)this.getSuggestOracle()).clear();
 	}
 
 
