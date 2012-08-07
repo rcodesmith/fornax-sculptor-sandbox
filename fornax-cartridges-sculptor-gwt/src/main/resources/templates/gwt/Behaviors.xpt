@@ -40,9 +40,13 @@
 		});
 	}
 
-	/**
-	 * Custom method for the «name» behavior.  Must be overridden by derived class.
-	 */
+	«IF formatJavaDoc() == "" -»
+		/**
+	 	 * Custom method for the «name» behavior.  Must be overridden by derived class.
+		 */
+	«ELSE -»
+		«formatJavaDoc()»
+	«ENDIF -»
 	protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback);
 
 

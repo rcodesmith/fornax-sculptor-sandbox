@@ -1,0 +1,447 @@
+«IMPORT sculptormetamodel»
+«IMPORT sculptorguimetamodel»
+«EXTENSION extensions::helper»
+«EXTENSION extensions::properties»
+«EXTENSION extensions::guihelper»
+«EXTENSION extensions::gwt::gwtuihelpers»
+«EXTENSION extensions::gwt::sofeauihelpers»
+
+
+«REM»Interface declarations for Table Columns«ENDREM»
+«DEFINE tableColumnInterfaceDeclarations(TableWidget tableWidget) FOR TableColumn»
+«ENDDEFINE»
+
+«REM»Interface declarations for Widget Table Columns«ENDREM»
+«DEFINE tableColumnInterfaceDeclarations(TableWidget tableWidget) FOR WidgetTableColumn»
+	«EXPAND tableWidgetColumnInterfaceDeclaration(tableWidget, this) FOR this.widget»
+«ENDDEFINE»
+
+«DEFINE tableWidgetColumnInterfaceDeclaration(TableWidget tableWidget, WidgetTableColumn col) FOR Widget»
+	public void set«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»FieldUpdater(
+		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»> fieldUpdater);
+«ENDDEFINE»
+
+
+
+
+
+
+
+«DEFINE tableColumnInitComment(TableWidget tableWidget) FOR TableColumn»
+    /**
+     * Initialization method for «name» column of «tableWidget.name» table.
+     * Override this in derived class to specialize the initialization of this column if needed.
+     */
+«ENDDEFINE»
+
+
+
+«REM»Deprecated - won't be needed after switching everything to widget-based columns«ENDREM»
+«DEFINE tableColumnInitDate(TableWidget tableWidget) FOR TableColumn»
+
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+	
+		com.google.gwt.cell.client.DateCell dateCell = new com.google.gwt.cell.client.DateCell();
+	
+		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», java.util.Date>(dateCell) {
+                        @Override
+                        public Date getValue(«tableWidget.for.fqnGwtDto()» object) {
+                        	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
+                        }
+        };
+        
+        return «this.tableColumnAttrName()»;
+	}
+	
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»java.util.Date get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression("object")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+«ENDDEFINE»
+
+«REM»Deprecated - won't be needed after switching everything to widget-based columns«ENDREM»
+«DEFINE tableColumnInitButton(TableWidget tableWidget) FOR TableColumn»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String>  «this.tableColumnAttrName()»;
+
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+
+		com.google.gwt.cell.client.ButtonCell cellB = new com.google.gwt.cell.client.ButtonCell();
+		
+		«this.tableColumnAttrName()» = new Column<«tableWidget.for.fqnGwtDto()», String>(cellB) {
+
+			@Override
+			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+            	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
+			}
+		};
+		return «this.tableColumnAttrName()»;
+    }
+    
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression("object")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+
+«ENDDEFINE»
+
+«REM»Deprecated - won't be needed after switching everything to widget-based columns«ENDREM»
+«DEFINE tableColumnInitLink(TableWidget tableWidget) FOR TableColumn»
+	
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+
+		com.google.gwt.cell.client.ClickableTextCell cellB = new com.google.gwt.cell.client.ClickableTextCell();
+		
+		«this.tableColumnAttrName()» = new Column<«tableWidget.for.fqnGwtDto()», String>(cellB) {
+
+			@Override
+			public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+				return "«this.label»";
+			}
+
+		};
+		return «this.tableColumnAttrName()»;
+    }
+    
+«ENDDEFINE»
+
+
+«REM»
+--------------------------------------------------------------------------------------------------------------
+	Table column support for Widget type
+--------------------------------------------------------------------------------------------------------------
+«ENDREM»
+
+
+«DEFINE tableColumnAttrDeclaration(TableWidget tableWidget, TableColumn col) FOR Widget»
+	protected «EXPAND tableColumnType(tableWidget, col) FOR this» «col.tableColumnAttrName()»;
+«ENDDEFINE»
+
+«DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR Widget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»>«ENDDEFINE»
+
+«REM»Function of column anonymous inner class responsible for getting a value for a column«ENDREM»
+«DEFINE tableColumnValueGetterBridge(TableWidget tableWidget, TableColumn col) FOR Widget»
+			@Override
+			public «this.cellTableColumnType(col)» getValue(«tableWidget.for.fqnGwtDto()» object) {
+				return get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(object);
+			}
+«ENDDEFINE»
+
+
+«DEFINE tableColumnEventHandlers(TableWidget tableWidget, TableColumn col) FOR Widget»
+«ENDDEFINE»
+
+«REM»Getter to get the value for a column that is based on a Widget«ENDREM»
+«DEFINE tableColumnValueGetterDeclaration(TableWidget tableWidget, TableColumn col) FOR Widget»
+	/**
+	 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
+	 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»«this.cellTableColumnType(col)» get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression(tableWidget.for, "obj")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+
+«ENDDEFINE»
+
+
+«REM»
+--------------------------------------------------------------------------------------------------------------
+Table column support for InformationalTextWidget type
+--------------------------------------------------------------------------------------------------------------
+«ENDREM»
+
+«REM»Depracated - Initialize InformationalTextWidget column - get value that should be displayed«ENDREM»
+«DEFINE tableColumnInitText(TableWidget tableWidget) FOR TableColumn»
+
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> «this.tableColumnAttrName()»;
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR this»
+	protected com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», String> init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+		«this.tableColumnAttrName()» = new com.google.gwt.user.cellview.client.TextColumn<«tableWidget.for.fqnGwtDto()»>() {
+                        @Override
+                        public String getValue(«tableWidget.for.fqnGwtDto()» object) {
+                        	return get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(object);
+                        }
+        };
+        
+        return «this.tableColumnAttrName()»;
+	}
+	    
+		
+	/**
+	 * Method to return the value that should be displayed in the «name» column of «tableWidget.name» table.
+	 */
+	protected «this.hasSourceRef() ? "" : "abstract "»String get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» object)
+	
+		«IF this.hasSourceRef()»
+		{
+	    	return «this.getSourceRefExpression(tableWidget.for.fqnGwtDto(), "object")»;
+	    }
+	    «ELSE»
+	    ;
+		«ENDIF»
+«ENDDEFINE»
+
+
+«REM»Initialize cell object«ENDREM»
+«DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR InformationalTextWidget»
+	«this.resolveGwtCellWidgetType(col)» cell =
+		new «this.resolveGwtCellWidgetType(col)»();
+«ENDDEFINE»
+
+
+
+
+«DEFINE createTableColumnCellImpl(TableWidget tableWidget, TableColumn col) FOR Widget»
+	/**
+	 * Create cell object for table «tableWidget.name» column «col.name»
+	 */
+	protected «this.resolveGwtCellWidgetType(col)» create«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Cell() {
+		«EXPAND tableCellInit(tableWidget, col) FOR this»
+		return cell;
+	}
+«ENDDEFINE»
+
+
+«REM»Initialize a table column that is based on a Widget class«ENDREM»
+«DEFINE tableColumnInitWidget(TableWidget tableWidget, TableColumn col) FOR Widget»
+
+	
+	«EXPAND tableColumnAttrDeclaration(tableWidget, col) FOR this»
+	
+	«EXPAND createTableColumnCellImpl(tableWidget, col) FOR this»
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR col»
+	protected «EXPAND tableColumnType(tableWidget, col) FOR this» init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+		LOG.info("init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column()");
+		
+		«this.resolveGwtCellWidgetType(col)» cell = create«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Cell();
+
+		«col.tableColumnAttrName()» = new «EXPAND tableColumnType(tableWidget, col) FOR this»(cell) {
+			«EXPAND tableColumnValueGetterBridge(tableWidget, col) FOR this»
+		};
+		
+		«IF tableWidget.findContainingView().usePresenterCallbacks()»
+		    «EXPAND tableColumnBehaviorBinding(tableWidget, col, this) FOREACH this.behaviorBindings»
+		«ENDIF»
+
+		return «col.tableColumnAttrName()»;
+    }
+    
+    
+    
+    «EXPAND tableColumnValueGetterDeclaration(tableWidget, col) FOR this»
+    
+	
+	public void set«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»FieldUpdater(
+		com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «this.cellTableColumnType(col)»> fieldUpdater) {
+		
+			«col.tableColumnAttrName()».setFieldUpdater(fieldUpdater);
+	}
+	
+	
+«ENDDEFINE»
+
+
+
+
+//
+// ButtonWidget support in a table
+//
+«DEFINE tableColumnAttrDeclaration(TableWidget tableWidget, TableColumn col) FOR ButtonWidget»
+	protected «EXPAND tableColumnType(tableWidget, col) FOR this» «col.tableColumnAttrName()»;
+	
+	protected «getColumnWrapperClass("button")»<«tableWidget.for.fqnGwtDto()»> «col.tableColumnAttrName()»Wrapper;
+	 
+«ENDDEFINE»
+
+«REM»Initialize a table column that is based on a ButtonWidget class«ENDREM»
+«DEFINE tableColumnInitWidget(TableWidget tableWidget, TableColumn col) FOR ButtonWidget»
+	
+	«EXPAND tableColumnAttrDeclaration(tableWidget, col) FOR this»
+	
+	«EXPAND tableColumnInitComment(tableWidget) FOR col»
+	protected «EXPAND tableColumnType(tableWidget, col) FOR this» init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column() {
+		LOG.info("init«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»Column()");
+
+		«col.tableColumnAttrName()»Wrapper =
+			new «getColumnWrapperClass("button")»<«tableWidget.for.fqnGwtDto()»>();
+		//«col.tableColumnAttrName()»Wrapper.init();
+
+		«col.tableColumnAttrName()»Wrapper.setLabelGetter(new org.fornax.cartridges.sculptor.framework.gwt.client.ValueGetter<«tableWidget.for.fqnGwtDto()», String>() {
+				«EXPAND tableColumnValueGetterBridge(tableWidget, col) FOR this»
+			
+		});
+		
+		«col.tableColumnAttrName()» = «col.tableColumnAttrName()»Wrapper.getColumn();
+		
+		«IF tableWidget.findContainingView().usePresenterCallbacks()»
+		    «EXPAND tableColumnBehaviorBinding(tableWidget, col, this) FOREACH this.behaviorBindings»
+		«ENDIF»
+
+		return «col.tableColumnAttrName()»Wrapper.getColumn();
+    }
+    
+    «EXPAND tableColumnValueGetterDeclaration(tableWidget, col) FOR this»
+    
+	public org.fornax.cartridges.sculptor.framework.gwt.client.widgets.cell.HasActionDelegate<«tableWidget.for.fqnGwtDto()»> get«tableWidget.name.toFirstUpper()»Table«this.name.toFirstUpper()»HasActionDelegate() {
+		return «col.tableColumnAttrName()»Wrapper;
+	}
+	
+«ENDDEFINE»
+
+«REM»Support for OnClick for ButtonWidget it table«ENDREM»
+«DEFINE tableColumnBehaviorBinding(TableWidget tableWidget, TableColumn col, ButtonWidget widget) FOR OnClickBinding»
+        «col.tableColumnAttrName()»Wrapper.setDelegate(new com.google.gwt.cell.client.ActionCell.Delegate<«tableWidget.for.fqnGwtDto()»>() {
+			@Override
+			public void execute(«tableWidget.for.fqnGwtDto()» rowObject) {
+				presenter.«presenterCallbackMethodName(tableWidget, col, this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(rowObject));
+			}
+		});
+
+«ENDDEFINE»
+
+
+«DEFINE tableWidgetColumnInterfaceDeclaration(TableWidget tableWidget, WidgetTableColumn col) FOR ButtonWidget»
+	/**
+	 * Get the action cell delegate for the «this.name» column.  This is typically used for button actions.
+	 */
+	public org.fornax.cartridges.sculptor.framework.gwt.client.widgets.cell.HasActionDelegate<«tableWidget.for.fqnGwtDto()»> get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»HasActionDelegate();
+«ENDDEFINE»
+
+«DEFINE tableColumnType(TableWidget tableWidget, TableColumn col) FOR ButtonWidget»com.google.gwt.user.cellview.client.Column<«tableWidget.for.fqnGwtDto()», «tableWidget.for.fqnGwtDto()»>«ENDDEFINE»
+
+//
+// End ButtonWidget support in a table
+//
+
+
+
+
+//
+// LinkWidget support in a table
+//
+
+«REM»Initialize cell object«ENDREM»
+«DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR LinkWidget»
+	«this.resolveGwtCellWidgetType(col)» cell =
+		new «this.resolveGwtCellWidgetType(col)»();
+«ENDDEFINE»
+
+//
+// End LinkWidget support in a table
+//
+
+
+
+
+//
+// ListBoxWidget support in a table
+//
+
+«REM»Initialize cell object«ENDREM»
+«DEFINE tableCellInit(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
+	«this.resolveGwtCellWidgetType(col)» cell =
+			new «this.resolveGwtCellWidgetType(col)»(«this.getTypedWidgetTargetType()».class);
+«ENDDEFINE»
+
+
+«REM»Getter to get the value for a column that is based on a ListBoxWidget
+TODO: Combine this with generic method for Widget that looks the same?«ENDREM»
+«DEFINE tableColumnValueGetterDeclaration(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
+	«LET this.cellTableColumnType(col) AS columnType»
+		/**
+		 * Method to return the value that should be displayed in the «col.name» column of «tableWidget.name» table.
+		 * This method «IF this.hasSourceRef()»can«ELSE»must«ENDIF» be overridden by the concrete view class.
+		 */
+		protected «this.hasSourceRef() ? "" : "abstract "»«columnType» get«tableWidget.name.toFirstUpper()»Table«col.name.toFirstUpper()»ColValue(«tableWidget.for.fqnGwtDto()» obj)
+	
+			«IF this.hasSourceRef()»
+			{
+		    	return «this.getSourceRefExpression(tableWidget.for, "obj")»«IF this.forEnum != null && columnType == "String"».getName()«ENDIF»;
+		    }
+		    «ELSE»
+		    ;
+			«ENDIF»
+	«ENDLET»
+
+«ENDDEFINE»
+
+
+
+«REM»ListBoxWidget in table column: Presenter callback binding for OnSelectItemBinding«ENDREM»
+«DEFINE tableColumnBehaviorBinding(TableWidget tableWidget, TableColumn col, ListBoxWidget widget) FOR OnSelectItemBinding»
+	«col.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», «widget.cellTableColumnType(col)»>(){
+
+		@Override
+		public void update(int index,
+			«tableWidget.for.fqnGwtDto()» object, «widget.cellTableColumnType(col)» value) {
+			presenter.«presenterCallbackMethodName(tableWidget, col, this)»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.EventFactory.create(object, value));
+		}        	
+    });
+
+«ENDDEFINE»
+
+
+
+
+
+
+«REM»Attach event handlers as needed to widget-based column
+«DEFINE columnEventHandlersBridge(TableWidget tableWidget, TableColumn col) FOR ListBoxWidget»
+		«col.tableColumnAttrName()».setFieldUpdater(new com.google.gwt.cell.client.FieldUpdater<«tableWidget.for.fqnGwtDto()», String>() {
+
+			@Override
+			public void update(int index, «tableWidget.for.fqnGwtDto()» object, String value) {
+				LOG.info("Click on column «col.name» for object " + object);
+
+				onSelect«tableWidget.name.toFirstUpper()»«col.name.toFirstUpper()»Col(object, value);
+			}
+			
+		});
+		
+«ENDDEFINE»
+«ENDREM»
+
+//
+// End ListBoxWidget support in a table
+//
+
+
+
+//
+// General templates for widget support in a table
+//
+«DEFINE tableColumnBehaviorBinding(TableWidget tableWidget, TableColumn col, Widget widget) FOR BehaviorBinding»
+		«debugTrace("tableColumnBehaviorBinding(TableWidget, TableColumn, Widget) widget = " + widget + ", binding=" + this)»
+
+	// No presenter callback support for «widget.name» widget in «tableWidget.name» table for «this.bindingTypeName» type binding
+«ENDDEFINE»
