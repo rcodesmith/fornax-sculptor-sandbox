@@ -3,7 +3,7 @@
   <groupId>org.fornax.cartridges</groupId>
   <artifactId>fornax-cartridges-sculptor-metamodel</artifactId>
   <versioning>
-    <release>2.0.33-gwt</release>
+    <release>2.0.34-gwt</release>
     <versions>
       <version>2.0.0</version>
       <version>2.0.0-gwt</version>
@@ -38,7 +38,8 @@
       <version>2.0.31-gwt</version>
       <version>2.0.32-gwt</version>
       <version>2.0.33-gwt</version>
+      <version>2.0.34-gwt</version>
     </versions>
-    <lastUpdated>20120806123626</lastUpdated>
+    <lastUpdated>20120807124848</lastUpdated>
   </versioning>
 </metadata>

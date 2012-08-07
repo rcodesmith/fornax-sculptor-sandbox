@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.fornax.cartridges</groupId>
+  <artifactId>fornax-cartridges-sculptor-gwt</artifactId>
+  <version>2.0.34-gwt</version>
+  <name>Sculptor GWT cartridge</name>
+  
+	<properties>
+		<sculptor.version>2.0.34-gwt</sculptor.version>
+		<!-- Convenience property to set the GWT version -->
+		<gwtVersion>2.4.0</gwtVersion>
+		<!-- GWT needs at least java 1.5 -->
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<slf4j.version>1.6.1</slf4j.version>
+		<logback.version>0.9.28</logback.version>
+		<spring.version>3.0.4.RELEASE</spring.version>
+		<log4j.version>1.2.14</log4j.version>
+		<commons-logging.version>1.0.3</commons-logging.version>
+		<commons-lang.version>2.1</commons-lang.version>
+	</properties>
+
+	<!--  Until this gets completely moved into its own project -->
+ 	<parent>
+		<groupId>org.fornax.cartridges</groupId>
+		<artifactId>fornax-cartridges-sculptor-parent</artifactId>
+		<version>2.0.34-gwt</version>
+                <relativePath>../fornax-cartridges-sculptor-parent/</relativePath>
+	</parent>
+<!--
+ -->
+ 
+ 
+         <repositories>
+                <repository>
+                        <id>fornax-platform.org</id>
+                        <name>Fornax Repository</name>
+                        <url>http://fornax-platform.org/nexus/content/repositories/public</url>
+                        <releases><enabled>true</enabled></releases>
+                        <snapshots><enabled>true</enabled></snapshots>
+                </repository>
+                
+                </repositories>
+                
+        <pluginRepositories>
+                <pluginRepository>
+                        <id>fornax-platform.org</id>
+                        <name>Fornax Repository</name>
+                        <url>
+                                http://fornax-platform.org/nexus/content/repositories/public
+                        </url>
+                        <releases>
+                                <enabled>true</enabled>
+                        </releases>
+                        <snapshots>
+                                <enabled>true</enabled>
+                        </snapshots>
+                </pluginRepository>
+        </pluginRepositories>
+        
+        
+        
+   <dependencies>
+		<dependency>
+			<groupId>org.fornax.cartridges</groupId>
+			<artifactId>fornax-cartridges-sculptor-generator</artifactId>
+			<version>${sculptor.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fornax.cartridges</groupId>
+			<artifactId>fornax-cartridges-sculptor-metamodel</artifactId>
+			<version>${project.version}</version>
+<!-- 			<scope>provided</scope>
+ -->		</dependency>
+
+  
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<!-- Add scope provided when deployed in jboss -->
+		    <!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<!-- Add scope provided when deployed in jboss -->
+		    <!-- <scope>provided</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+<!-- 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+ -->		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>1.6.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+        	<groupId>org.fornax.utilities</groupId>
+        	<artifactId>fornax-utilities-xtendtools</artifactId>
+        	<version>1.0.1</version>
+        	<scope>test</scope>
+		</dependency>
+    
+   </dependencies>
+  
+  <build>
+  	<plugins>
+  	
+  		<!--  TODO: Remove once framework stuff completely removed outta here -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+  	</plugins>
+  	
+  	
+  	
+  	
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/gwt/client/**</include>
+          <include>**/gwt/shared/**</include>
+          <include>**/*.gwt.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+
+
+
+  </build>
+</project>
