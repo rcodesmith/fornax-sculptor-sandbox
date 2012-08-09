@@ -1,5 +1,12 @@
+git diff 9a4727958ec6e1cfe1c4d6879a84c4e3baabc3a8 HEAD fornax-cartridges-sculptor-generator/src/main/resources/extensions/dbhelper.ext
+
+Changeset with skipddl and put system attributes last:
+d6eb68fb24ae42049d089965d633a714097c5d06
+
 Status of merging files into sculptor-trunk:
 
 helper.ext : Ready for merge 
 GenerationHelper.java : No change needed
 Builder.xpt
+
+dbhelper.ext

@@ -76,8 +76,21 @@ public abstract class «gwtActivityBaseClass()» extends «gwtFrameworkActivityBase
 		this.«service.name.toFirstLower()» = «service.name.toFirstLower()»;
 		«ENDFOREACH»
 	}
-
-
+	
+	public com.google.gwt.event.shared.EventBus getEventBus() {
+		return this.eventBus;
+	}
+	
+	public com.google.gwt.place.shared.PlaceController getPlaceController() {
+		return this.placeController;
+	}
+	
+	«FOREACH serviceProxies AS service»
+	public «service.gwtServiceAsyncInterface()» get«service.name»() {
+		return this.«service.name.toFirstLower()»;
+	}
+	«ENDFOREACH»
+	
 	«EXPAND start FOR this»
 
 	«EXPAND onStop FOR this»

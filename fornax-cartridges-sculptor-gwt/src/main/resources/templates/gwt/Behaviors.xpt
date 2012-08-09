@@ -35,7 +35,7 @@
 			@Override
 			public void invoke(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event, 
 				com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback) {
-				«name»(callback);
+				«name»(event, callback);
 			}
 		});
 	}
@@ -47,7 +47,8 @@
 	«ELSE -»
 		«formatJavaDoc()»
 	«ENDIF -»
-	protected abstract void «name»(com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback);
+	protected abstract void «name»(org.fornax.cartridges.sculptor.framework.gwt.client.behavior.BehaviorDispatcher.Event event,
+		com.google.gwt.user.client.rpc.AsyncCallback<Boolean> callback);
 
 
 «ENDDEFINE»
