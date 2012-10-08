@@ -231,7 +231,22 @@
    <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.11.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.11">
       <category name="Sculptor"/>
    </feature>
-   <feature url="features/org.fornax.cartridges.sculptor.dsl_2.0.12.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.0.12">
+   <feature url="features/org.fornax.cartridges.sculptor.dsl_2.2.0.0.jar" id="org.fornax.cartridges.sculptor.dsl" version="2.2.0.0">
+      <category name="Sculptor"/>
+   </feature>
+   <feature url="features/org.fornax.cartridges.sculptor.guix.dsl_2.0.13.jar" id="org.fornax.cartridges.sculptor.guix.dsl" version="2.0.13">
+      <category name="Sculptor"/>
+   </feature>
+   <feature url="features/org.fornax.cartridges.sculptor.guix.dsl_2.0.14.jar" id="org.fornax.cartridges.sculptor.guix.dsl" version="2.0.14">
+      <category name="Sculptor"/>
+   </feature>
+   <feature url="features/org.fornax.cartridges.sculptor.guix.dsl_2.0.15.jar" id="org.fornax.cartridges.sculptor.guix.dsl" version="2.0.15">
+      <category name="Sculptor"/>
+   </feature>
+   <feature url="features/org.fornax.cartridges.sculptor.guix.dsl_2.0.16.jar" id="org.fornax.cartridges.sculptor.guix.dsl" version="2.0.16">
+      <category name="Sculptor"/>
+   </feature>
+   <feature url="features/org.fornax.cartridges.sculptor.guix.dsl_2.0.17.jar" id="org.fornax.cartridges.sculptor.guix.dsl" version="2.0.17">
       <category name="Sculptor"/>
    </feature>
    <category-def name="Topcased" label="Topcased">
